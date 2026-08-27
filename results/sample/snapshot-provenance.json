@@ -1,0 +1,13 @@
+{
+  "schema_version": "prd2play.snapshot-provenance.v1",
+  "source_run_id": "2026-08-27T16-59-18-612Z-b6b63896",
+  "source_run_updated_at": "2026-08-27T16:59:19.798Z",
+  "copied_files": [
+    "summary.json",
+    "cases.json",
+    "events.jsonl",
+    "screenshots/**"
+  ],
+  "secrets_included": false,
+  "note": "Generated fixture evidence; not a claim about unseen real games or Hy3 model quality."
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "prd2play.case.v1",
+  "id": "clean-control",
+  "title": "Coin Collector clean control",
+  "difficulty": {
+    "level": "D1",
+    "rationale": "A short deterministic happy path with one mechanic and no injected fault."
+  },
+  "source": {
+    "type": "project_authored",
+    "description": "Project-authored Canvas fixture for evaluator false-positive checks.",
+    "license": "MIT"
+  },
+  "game": {
+    "entry_path": "/examples/coin-collector/index.html",
+    "surface": "canvas2d",
+    "viewport": { "width": 960, "height": 640 }
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "device": "mouse",
+      "code": "[data-testid='start']"
+    },
+    {
+      "action_id": "MOVE_RIGHT",
+      "device": "keyboard",
+      "code": "ArrowRight"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "RUN-01",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "The game enters playing state after the visible start control is activated.",
+      "depends_on": [],
+      "observable": ["bridge.status", "HUD.status", "game_started"]
+    },
+    {
+      "id": "LOGIC-COIN-01",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Collecting one coin removes it and increases score by exactly one.",
+      "depends_on": ["RUN-01"],
+      "observable": ["state.score", "state.coins_count", "coin_collected"]
+    },
+    {
+      "id": "LOGIC-WIN-01",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Collecting all coins enters won state with final score two.",
+      "depends_on": ["LOGIC-COIN-01"],
+      "observable": ["state.status", "state.score", "game_won"]
+    },
+    {
+      "id": "UI-SCORE-01",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "The visible HUD score equals the internal score after every collection.",
+      "depends_on": ["LOGIC-COIN-01"],
+      "observable": ["HUD.score", "screenshot"]
+    },
+    {
+      "id": "UI-WIN-01",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "The visible status announces won when the game reaches won state.",
+      "depends_on": ["LOGIC-WIN-01"],
+      "observable": ["HUD.status", "screenshot"]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "complete-happy-path",
+      "description": "Start and collect both coins through real browser input.",
+      "seed": 1042,
+      "steps": [
+        {
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": ["CP-READY"]
+        },
+        {
+          "action_id": "MOVE_RIGHT",
+          "advance_ms": 0,
+          "checkpoints": ["CP-COIN-1", "CP-HUD-1"]
+        },
+        {
+          "action_id": "MOVE_RIGHT",
+          "advance_ms": 0,
+          "checkpoints": ["CP-FINAL", "CP-FINAL-UI"]
+        }
+      ]
+    }
+  ]
+}
+

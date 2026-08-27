@@ -1,0 +1,55 @@
+{
+  "schema_version": "prd2play.oracle.v1",
+  "case_id": "score-plus-two",
+  "scenario_id": "complete-happy-path",
+  "checkpoints": [
+    {
+      "id": "CP-READY", "action_index": 0, "layer": "L1",
+      "requirement_ids": ["RUN-01"], "terminal": false,
+      "expected": {
+        "state": { "status": "playing" },
+        "ui": { "statusText": "playing", "canvasVisible": true },
+        "event_types": ["game_started"]
+      }
+    },
+    {
+      "id": "CP-COIN-1", "action_index": 1, "layer": "L2",
+      "requirement_ids": ["LOGIC-COIN-01"], "terminal": false,
+      "expected": {
+        "state": { "player.x": 1, "score": 1, "coins_count": 1 },
+        "ui": {}, "event_types": ["coin_collected"]
+      }
+    },
+    {
+      "id": "CP-HUD-1", "action_index": 1, "layer": "L3",
+      "requirement_ids": ["UI-SCORE-01"], "terminal": false,
+      "expected": {
+        "state": {}, "ui": { "scoreText": "1", "statusText": "playing" }, "event_types": []
+      }
+    },
+    {
+      "id": "CP-FINAL", "action_index": 2, "layer": "L2",
+      "requirement_ids": ["LOGIC-COIN-01", "LOGIC-WIN-01"], "terminal": true,
+      "expected": {
+        "state": { "player.x": 2, "score": 2, "coins_count": 0, "status": "won" },
+        "ui": {}, "event_types": ["coin_collected", "game_won"]
+      }
+    },
+    {
+      "id": "CP-FINAL-UI", "action_index": 2, "layer": "L3",
+      "requirement_ids": ["UI-SCORE-01", "UI-WIN-01"], "terminal": false,
+      "expected": {
+        "state": {}, "ui": { "scoreText": "2", "statusText": "won" }, "event_types": []
+      }
+    }
+  ],
+  "fault_ground_truth": {
+    "sample_kind": "faulty",
+    "first_divergence_checkpoint": "CP-COIN-1",
+    "root_requirement_id": "LOGIC-COIN-01",
+    "root_layer": "L2",
+    "error_type": "state_effect_error",
+    "final_outcome_correct": false
+  }
+}
+

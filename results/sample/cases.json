@@ -1,0 +1,2031 @@
+[
+  {
+    "schema_version": "prd2play.case-result.v1",
+    "case_id": "clean-control",
+    "title": "Coin Collector clean control",
+    "difficulty": {
+      "level": "D1",
+      "rationale": "A short deterministic happy path with one mechanic and no injected fault."
+    },
+    "fixture_variant": "clean",
+    "case_file": "datasets/cases/clean-control/case.json",
+    "oracle_file": "datasets/cases/clean-control/oracle.private.json",
+    "oracle_ground_truth": {
+      "sample_kind": "clean",
+      "first_divergence_checkpoint": null,
+      "root_requirement_id": null,
+      "root_layer": null,
+      "error_type": "none",
+      "final_outcome_correct": true
+    },
+    "evaluation": {
+      "schema_version": "prd2play.evaluation.v1",
+      "case_id": "clean-control",
+      "difficulty": "D1",
+      "final_outcome_correct": true,
+      "process_correct": true,
+      "lucky_pass_detected": false,
+      "gates": {
+        "L1": "pass",
+        "L2": "pass",
+        "L3": "pass"
+      },
+      "highest_certified_level": "L3",
+      "first_failure": null,
+      "all_failures": []
+    },
+    "observations": [
+      {
+        "action_index": 0,
+        "checkpoint_id": "CP-READY",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 0
+          },
+          "score": 0,
+          "coins_count": 2,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "030bc9d9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "7595e31969a59973685d9736567dd130cd40db919cd20fd3e6de71eb27ac513f",
+          "screenshot": "results/sample/screenshots/clean-control/clean-control-action-00.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 1,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "1",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "1",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 7.875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "a7092df783d06dbdff8238fabf88b1b8b39d3331d61e3c181060f1c3f2ceed5a",
+          "screenshot": "results/sample/screenshots/clean-control/clean-control-action-01.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 1,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "1",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "1",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 7.875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "a7092df783d06dbdff8238fabf88b1b8b39d3331d61e3c181060f1c3f2ceed5a",
+          "screenshot": "results/sample/screenshots/clean-control/clean-control-action-01.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/clean-control/clean-control-action-02.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL-UI",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/clean-control/clean-control-action-02.png"
+        }
+      }
+    ],
+    "browser": {
+      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=clean",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+          "location": {
+            "url": "",
+            "line_number": 0,
+            "column_number": 0
+          },
+          "action_index": 1
+        }
+      ],
+      "page_errors": [],
+      "diagnostics": []
+    }
+  },
+  {
+    "schema_version": "prd2play.case-result.v1",
+    "case_id": "score-plus-two",
+    "title": "Score effect error",
+    "difficulty": {
+      "level": "D1",
+      "rationale": "The first collection directly violates one numeric state effect and the terminal score is also wrong."
+    },
+    "fixture_variant": "score_plus_two",
+    "case_file": "datasets/cases/score-plus-two/case.json",
+    "oracle_file": "datasets/cases/score-plus-two/oracle.private.json",
+    "oracle_ground_truth": {
+      "sample_kind": "faulty",
+      "first_divergence_checkpoint": "CP-COIN-1",
+      "root_requirement_id": "LOGIC-COIN-01",
+      "root_layer": "L2",
+      "error_type": "state_effect_error",
+      "final_outcome_correct": false
+    },
+    "evaluation": {
+      "schema_version": "prd2play.evaluation.v1",
+      "case_id": "score-plus-two",
+      "difficulty": "D1",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "lucky_pass_detected": false,
+      "gates": {
+        "L1": "pass",
+        "L2": "fail",
+        "L3": "fail"
+      },
+      "highest_certified_level": "L1",
+      "first_failure": {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "layer": "L2",
+        "requirement_ids": [
+          "LOGIC-COIN-01"
+        ],
+        "error_type": "state_effect_error",
+        "diffs": [
+          {
+            "channel": "state",
+            "path": "score",
+            "expected": 1,
+            "actual": 2
+          }
+        ]
+      },
+      "all_failures": [
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-COIN-1",
+          "layer": "L2",
+          "requirement_ids": [
+            "LOGIC-COIN-01"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 1,
+              "actual": 2
+            }
+          ]
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-HUD-1",
+          "layer": "L3",
+          "requirement_ids": [
+            "UI-SCORE-01"
+          ],
+          "error_type": "state_ui_inconsistency",
+          "diffs": [
+            {
+              "channel": "ui",
+              "path": "scoreText",
+              "expected": "1",
+              "actual": "2"
+            }
+          ]
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "CP-FINAL",
+          "layer": "L2",
+          "requirement_ids": [
+            "LOGIC-COIN-01",
+            "LOGIC-WIN-01"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 2,
+              "actual": 4
+            }
+          ]
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "CP-FINAL-UI",
+          "layer": "L3",
+          "requirement_ids": [
+            "UI-SCORE-01",
+            "UI-WIN-01"
+          ],
+          "error_type": "state_ui_inconsistency",
+          "diffs": [
+            {
+              "channel": "ui",
+              "path": "scoreText",
+              "expected": "2",
+              "actual": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "observations": [
+      {
+        "action_index": 0,
+        "checkpoint_id": "CP-READY",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 0
+          },
+          "score": 0,
+          "coins_count": 2,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "030bc9d9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "7595e31969a59973685d9736567dd130cd40db919cd20fd3e6de71eb27ac513f",
+          "screenshot": "results/sample/screenshots/score-plus-two/score-plus-two-action-00.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/score-plus-two/score-plus-two-action-01.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/score-plus-two/score-plus-two-action-01.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 4,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "4",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "4",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.6875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "77e225f237f803d5983881c6498c47f9cb91a9046cd6185a5f02d5b478582773",
+          "screenshot": "results/sample/screenshots/score-plus-two/score-plus-two-action-02.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL-UI",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 4,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "4",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "4",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.6875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "77e225f237f803d5983881c6498c47f9cb91a9046cd6185a5f02d5b478582773",
+          "screenshot": "results/sample/screenshots/score-plus-two/score-plus-two-action-02.png"
+        }
+      }
+    ],
+    "browser": {
+      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=score_plus_two",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+          "location": {
+            "url": "",
+            "line_number": 0,
+            "column_number": 0
+          },
+          "action_index": 1
+        }
+      ],
+      "page_errors": [],
+      "diagnostics": []
+    }
+  },
+  {
+    "schema_version": "prd2play.case-result.v1",
+    "case_id": "score-compensated",
+    "title": "Compensating score errors",
+    "difficulty": {
+      "level": "D2",
+      "rationale": "The first state effect is wrong, a later error compensates for it, and the terminal score is correct."
+    },
+    "fixture_variant": "score_compensated",
+    "case_file": "datasets/cases/score-compensated/case.json",
+    "oracle_file": "datasets/cases/score-compensated/oracle.private.json",
+    "oracle_ground_truth": {
+      "sample_kind": "lucky_pass",
+      "first_divergence_checkpoint": "CP-COIN-1",
+      "root_requirement_id": "LOGIC-COIN-01",
+      "root_layer": "L2",
+      "error_type": "state_effect_error",
+      "final_outcome_correct": true
+    },
+    "evaluation": {
+      "schema_version": "prd2play.evaluation.v1",
+      "case_id": "score-compensated",
+      "difficulty": "D2",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "lucky_pass_detected": true,
+      "gates": {
+        "L1": "pass",
+        "L2": "fail",
+        "L3": "fail"
+      },
+      "highest_certified_level": "L1",
+      "first_failure": {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "layer": "L2",
+        "requirement_ids": [
+          "LOGIC-COIN-01"
+        ],
+        "error_type": "state_effect_error",
+        "diffs": [
+          {
+            "channel": "state",
+            "path": "score",
+            "expected": 1,
+            "actual": 2
+          }
+        ]
+      },
+      "all_failures": [
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-COIN-1",
+          "layer": "L2",
+          "requirement_ids": [
+            "LOGIC-COIN-01"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 1,
+              "actual": 2
+            }
+          ]
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-HUD-1",
+          "layer": "L3",
+          "requirement_ids": [
+            "UI-SCORE-01"
+          ],
+          "error_type": "state_ui_inconsistency",
+          "diffs": [
+            {
+              "channel": "ui",
+              "path": "scoreText",
+              "expected": "1",
+              "actual": "2"
+            }
+          ]
+        }
+      ]
+    },
+    "observations": [
+      {
+        "action_index": 0,
+        "checkpoint_id": "CP-READY",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 0
+          },
+          "score": 0,
+          "coins_count": 2,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "030bc9d9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "7595e31969a59973685d9736567dd130cd40db919cd20fd3e6de71eb27ac513f",
+          "screenshot": "results/sample/screenshots/score-compensated/score-compensated-action-00.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/score-compensated/score-compensated-action-01.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/score-compensated/score-compensated-action-01.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/score-compensated/score-compensated-action-02.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL-UI",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/score-compensated/score-compensated-action-02.png"
+        }
+      }
+    ],
+    "browser": {
+      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=score_compensated",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+          "location": {
+            "url": "",
+            "line_number": 0,
+            "column_number": 0
+          },
+          "action_index": 1
+        }
+      ],
+      "page_errors": [],
+      "diagnostics": []
+    }
+  },
+  {
+    "schema_version": "prd2play.case-result.v1",
+    "case_id": "hud-stale",
+    "title": "Stale score HUD",
+    "difficulty": {
+      "level": "D3",
+      "rationale": "Internal state and the terminal outcome remain correct, so the defect is observable only by correlating the L3 HUD with the L2 game state across the playthrough."
+    },
+    "fixture_variant": "hud_stale",
+    "case_file": "datasets/cases/hud-stale/case.json",
+    "oracle_file": "datasets/cases/hud-stale/oracle.private.json",
+    "oracle_ground_truth": {
+      "sample_kind": "faulty",
+      "first_divergence_checkpoint": "CP-HUD-1",
+      "root_requirement_id": "UI-SCORE-01",
+      "root_layer": "L3",
+      "error_type": "state_ui_inconsistency",
+      "final_outcome_correct": true
+    },
+    "evaluation": {
+      "schema_version": "prd2play.evaluation.v1",
+      "case_id": "hud-stale",
+      "difficulty": "D3",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "lucky_pass_detected": true,
+      "gates": {
+        "L1": "pass",
+        "L2": "pass",
+        "L3": "fail"
+      },
+      "highest_certified_level": "L2",
+      "first_failure": {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "layer": "L3",
+        "requirement_ids": [
+          "UI-SCORE-01"
+        ],
+        "error_type": "state_ui_inconsistency",
+        "diffs": [
+          {
+            "channel": "ui",
+            "path": "scoreText",
+            "expected": "1",
+            "actual": "0"
+          }
+        ]
+      },
+      "all_failures": [
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-HUD-1",
+          "layer": "L3",
+          "requirement_ids": [
+            "UI-SCORE-01"
+          ],
+          "error_type": "state_ui_inconsistency",
+          "diffs": [
+            {
+              "channel": "ui",
+              "path": "scoreText",
+              "expected": "1",
+              "actual": "0"
+            }
+          ]
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "CP-FINAL-UI",
+          "layer": "L3",
+          "requirement_ids": [
+            "UI-SCORE-01",
+            "UI-WIN-01"
+          ],
+          "error_type": "state_ui_inconsistency",
+          "diffs": [
+            {
+              "channel": "ui",
+              "path": "scoreText",
+              "expected": "2",
+              "actual": "0"
+            }
+          ]
+        }
+      ]
+    },
+    "observations": [
+      {
+        "action_index": 0,
+        "checkpoint_id": "CP-READY",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 0
+          },
+          "score": 0,
+          "coins_count": 2,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "030bc9d9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "7595e31969a59973685d9736567dd130cd40db919cd20fd3e6de71eb27ac513f",
+          "screenshot": "results/sample/screenshots/hud-stale/hud-stale-action-00.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 1,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "a7092df783d06dbdff8238fabf88b1b8b39d3331d61e3c181060f1c3f2ceed5a",
+          "screenshot": "results/sample/screenshots/hud-stale/hud-stale-action-01.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 1,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "a7092df783d06dbdff8238fabf88b1b8b39d3331d61e3c181060f1c3f2ceed5a",
+          "screenshot": "results/sample/screenshots/hud-stale/hud-stale-action-01.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/hud-stale/hud-stale-action-02.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL-UI",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/hud-stale/hud-stale-action-02.png"
+        }
+      }
+    ],
+    "browser": {
+      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=hud_stale",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+          "location": {
+            "url": "",
+            "line_number": 0,
+            "column_number": 0
+          },
+          "action_index": 1
+        }
+      ],
+      "page_errors": [],
+      "diagnostics": []
+    }
+  },
+  {
+    "schema_version": "prd2play.case-result.v1",
+    "case_id": "cross-layer-masked",
+    "title": "Cross-layer masked score error",
+    "difficulty": {
+      "level": "D3",
+      "rationale": "The HUD presents the expected collection count while the internal score is temporarily wrong, and a later compensating effect restores the expected terminal state."
+    },
+    "fixture_variant": "cross_layer_masked",
+    "case_file": "datasets/cases/cross-layer-masked/case.json",
+    "oracle_file": "datasets/cases/cross-layer-masked/oracle.private.json",
+    "oracle_ground_truth": {
+      "sample_kind": "lucky_pass",
+      "first_divergence_checkpoint": "CP-COIN-1",
+      "root_requirement_id": "LOGIC-COIN-01",
+      "root_layer": "L2",
+      "error_type": "state_effect_error",
+      "final_outcome_correct": true
+    },
+    "evaluation": {
+      "schema_version": "prd2play.evaluation.v1",
+      "case_id": "cross-layer-masked",
+      "difficulty": "D3",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "lucky_pass_detected": true,
+      "gates": {
+        "L1": "pass",
+        "L2": "fail",
+        "L3": "observed_not_certified"
+      },
+      "highest_certified_level": "L1",
+      "first_failure": {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "layer": "L2",
+        "requirement_ids": [
+          "LOGIC-COIN-01"
+        ],
+        "error_type": "state_effect_error",
+        "diffs": [
+          {
+            "channel": "state",
+            "path": "score",
+            "expected": 1,
+            "actual": 2
+          }
+        ]
+      },
+      "all_failures": [
+        {
+          "action_index": 1,
+          "checkpoint_id": "CP-COIN-1",
+          "layer": "L2",
+          "requirement_ids": [
+            "LOGIC-COIN-01"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 1,
+              "actual": 2
+            }
+          ]
+        }
+      ]
+    },
+    "observations": [
+      {
+        "action_index": 0,
+        "checkpoint_id": "CP-READY",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 0
+          },
+          "score": 0,
+          "coins_count": 2,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "0",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "0",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 10.640625,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "030bc9d9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "7595e31969a59973685d9736567dd130cd40db919cd20fd3e6de71eb27ac513f",
+          "screenshot": "results/sample/screenshots/cross-layer-masked/cross-layer-masked-action-00.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-COIN-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "1",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "1",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 7.875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/cross-layer-masked/cross-layer-masked-action-01.png"
+        }
+      },
+      {
+        "action_index": 1,
+        "checkpoint_id": "CP-HUD-1",
+        "state": {
+          "status": "playing",
+          "player": {
+            "x": 1
+          },
+          "score": 2,
+          "coins_count": 1,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "1",
+          "statusText": "playing",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "1",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 7.875,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "playing",
+              "visible": true,
+              "rect": {
+                "x": 756.390625,
+                "y": 249.5,
+                "width": 56.609375,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "996ca185",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9c155484b77f77495006115344cfb2db4ef76cbecb68ad9c34eca6c8b73335bf",
+          "screenshot": "results/sample/screenshots/cross-layer-masked/cross-layer-masked-action-01.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/cross-layer-masked/cross-layer-masked-action-02.png"
+        }
+      },
+      {
+        "action_index": 2,
+        "checkpoint_id": "CP-FINAL-UI",
+        "state": {
+          "status": "won",
+          "player": {
+            "x": 2
+          },
+          "score": 2,
+          "coins_count": 0,
+          "seed": 1042
+        },
+        "ui": {
+          "scoreText": "2",
+          "statusText": "won",
+          "canvasVisible": true,
+          "dom": {
+            "score": {
+              "present": true,
+              "text": "2",
+              "visible": true,
+              "rect": {
+                "x": 183.1875,
+                "y": 249.5,
+                "width": 9.984375,
+                "height": 18
+              }
+            },
+            "status": {
+              "present": true,
+              "text": "won",
+              "visible": true,
+              "rect": {
+                "x": 780.78125,
+                "y": 249.5,
+                "width": 32.21875,
+                "height": 18
+              }
+            }
+          },
+          "canvas": {
+            "present": true,
+            "visible": true,
+            "width": 640,
+            "height": 160,
+            "client_width": 698,
+            "client_height": 176,
+            "pixel_checksum": "e91b43e9",
+            "sampled_alpha_pixels": 4096
+          }
+        },
+        "event_types": [
+          "player_moved",
+          "coin_collected",
+          "game_won"
+        ],
+        "runtime_errors": [],
+        "evidence": {
+          "state_hash": "9f0f3bad808a2400a8b4b2ba3206965b3bd74763df8c821f486280461f3fbde6",
+          "screenshot": "results/sample/screenshots/cross-layer-masked/cross-layer-masked-action-02.png"
+        }
+      }
+    ],
+    "browser": {
+      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=cross_layer_masked",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+          "location": {
+            "url": "",
+            "line_number": 0,
+            "column_number": 0
+          },
+          "action_index": 1
+        }
+      ],
+      "page_errors": [],
+      "diagnostics": []
+    }
+  }
+]

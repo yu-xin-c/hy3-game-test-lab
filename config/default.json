@@ -1,0 +1,20 @@
+{
+  "schema_version": "prd2play.config.v1",
+  "dataset_manifest": "datasets/manifest.json",
+  "artifact_dir": "artifacts/runs",
+  "browser": {
+    "base_url": "http://127.0.0.1:4173",
+    "viewport": { "width": 960, "height": 640 },
+    "device_scale_factor": 1,
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "action_timeout_ms": 5000,
+    "navigation_timeout_ms": 10000
+  },
+  "evaluation": {
+    "continue_after_first_failure": true,
+    "localization_tolerance_steps": 1,
+    "l3_multimodal_enabled": false,
+    "require_human_review_for_uncertain": true
+  }
+}

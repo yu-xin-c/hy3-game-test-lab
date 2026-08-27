@@ -1,0 +1,38 @@
+{
+  "name": "hy3-prd2play",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PRD-grounded cross-layer verification and first-failure localization for browser games, built with Hy3.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "check:data": "tsx scripts/validate-dataset.ts",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "test:all": "pnpm run test && pnpm run test:browser",
+    "check": "pnpm run build && pnpm run check:data && pnpm run test",
+    "demo:serve": "tsx scripts/serve-demo.ts",
+    "eval:sample": "tsx scripts/run-sample-eval.ts",
+    "eval:freeze": "tsx scripts/freeze-sample.ts",
+    "eval:visual": "tsx scripts/judge-screenshot.ts",
+    "hy3:probe": "tsx scripts/probe-hy3.ts",
+    "hy3:plan": "tsx scripts/generate-plan.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.0",
+    "jsdom": "^30.0.1",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  },
+  "packageManager": "pnpm@10.24.0"
+}

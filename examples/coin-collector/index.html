@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRD2Play Coin Collector</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell" data-testid="game-root">
+      <header>
+        <p class="eyebrow">PRD2PLAY FIXTURE</p>
+        <h1>Coin Collector</h1>
+        <p>按两次右方向键收集金币，验证状态、终局与 HUD 是否一致。</p>
+      </header>
+
+      <section class="hud" aria-label="游戏状态">
+        <div>分数 <strong data-testid="score">0</strong></div>
+        <div>状态 <strong data-testid="status">menu</strong></div>
+      </section>
+
+      <canvas
+        id="game"
+        data-testid="game-canvas"
+        width="640"
+        height="160"
+        aria-label="金币收集游戏画布"
+      ></canvas>
+
+      <div class="actions">
+        <button type="button" data-testid="start">开始游戏</button>
+        <span>控制：← / →</span>
+      </div>
+    </main>
+    <script type="module" src="./game.js"></script>
+  </body>
+</html>
+

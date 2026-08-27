@@ -1,0 +1,34 @@
+{
+  "schema_version": "prd2play.dataset.v1",
+  "name": "PRD2Play Pilot",
+  "version": "0.1.0",
+  "description": "Project-authored smoke corpus covering clean, wrong-final, lucky-pass, UI-only, and cross-layer masked failures.",
+  "cases": [
+    {
+      "case_file": "datasets/cases/clean-control/case.json",
+      "oracle_file": "datasets/cases/clean-control/oracle.private.json",
+      "fixture_variant": "clean"
+    },
+    {
+      "case_file": "datasets/cases/score-plus-two/case.json",
+      "oracle_file": "datasets/cases/score-plus-two/oracle.private.json",
+      "fixture_variant": "score_plus_two"
+    },
+    {
+      "case_file": "datasets/cases/score-compensated/case.json",
+      "oracle_file": "datasets/cases/score-compensated/oracle.private.json",
+      "fixture_variant": "score_compensated"
+    },
+    {
+      "case_file": "datasets/cases/hud-stale/case.json",
+      "oracle_file": "datasets/cases/hud-stale/oracle.private.json",
+      "fixture_variant": "hud_stale"
+    },
+    {
+      "case_file": "datasets/cases/cross-layer-masked/case.json",
+      "oracle_file": "datasets/cases/cross-layer-masked/oracle.private.json",
+      "fixture_variant": "cross_layer_masked"
+    }
+  ]
+}
+
