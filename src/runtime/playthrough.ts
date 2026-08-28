@@ -158,7 +158,8 @@ async function performAction(
 
 async function readBrowserSnapshot(
   page: Page,
-  afterEventSeq: number
+  afterEventSeq: number,
+  selectors: PublicCase["game"]["selectors"]
 ): Promise<BrowserSnapshot> {
   const bridgePayload = await page.evaluate(async ({ afterSeq }) => {
     const bridge = window.__PRD2PLAY__;
@@ -170,12 +171,12 @@ async function readBrowserSnapshot(
     return { observation, events };
   }, { afterSeq: afterEventSeq });
 
-  const visualPayload = await page.evaluate(() => {
+  const visualPayload = await page.evaluate((configuredSelectors) => {
     // Keep this callback free of nested function declarations. Some TS
     // launchers decorate nested functions with an out-of-scope `__name`
     // helper before Playwright serializes the callback into the browser.
-    const scoreNode = document.querySelector("[data-testid='score']");
-    const statusNode = document.querySelector("[data-testid='status']");
+    const scoreNode = document.querySelector(configuredSelectors.score);
+    const statusNode = document.querySelector(configuredSelectors.status);
     const scoreRect = scoreNode?.getBoundingClientRect();
     const statusRect = statusNode?.getBoundingClientRect();
     const scoreStyle = scoreNode ? window.getComputedStyle(scoreNode) : null;
@@ -217,12 +218,12 @@ async function readBrowserSnapshot(
         }
       : { present: false, text: null };
 
-    const canvas = document.querySelector("canvas");
+    const surfaceNode = document.querySelector(configuredSelectors.surface);
     let canvasEvidence: Record<string, unknown> = { present: false };
     let canvasVisible = false;
-    if (canvas) {
-      const rect = canvas.getBoundingClientRect();
-      const style = window.getComputedStyle(canvas);
+    if (surfaceNode) {
+      const rect = surfaceNode.getBoundingClientRect();
+      const style = window.getComputedStyle(surfaceNode);
       canvasVisible =
         rect.width > 0 &&
         rect.height > 0 &&
@@ -232,20 +233,21 @@ async function readBrowserSnapshot(
       canvasEvidence = {
         present: true,
         visible: canvasVisible,
-        width: canvas.width,
-        height: canvas.height,
+        tag_name: surfaceNode.tagName.toLowerCase(),
         client_width: rect.width,
         client_height: rect.height
       };
 
-      try {
-        const context = canvas.getContext("2d");
+      if (surfaceNode instanceof HTMLCanvasElement) try {
+        canvasEvidence.width = surfaceNode.width;
+        canvasEvidence.height = surfaceNode.height;
+        const context = surfaceNode.getContext("2d");
         if (context) {
           const pixels = context.getImageData(
             0,
             0,
-            canvas.width,
-            canvas.height
+            surfaceNode.width,
+            surfaceNode.height
           ).data;
           const stride = Math.max(4, Math.floor(pixels.length / 4096 / 4) * 4);
           let checksum = 2_166_136_261;
@@ -281,7 +283,7 @@ async function readBrowserSnapshot(
       },
       canvas: canvasEvidence
     };
-  });
+  }, selectors);
 
   return {
     bridge: bridgePayload.observation,
@@ -419,7 +421,11 @@ export async function runPlaythrough(
       };
       if (bridgeReady) {
         try {
-          snapshot = await readBrowserSnapshot(page, eventSeq);
+          snapshot = await readBrowserSnapshot(
+            page,
+            eventSeq,
+            publicCase.game.selectors
+          );
           eventSeq = snapshot.latestEventSeq;
         } catch (error) {
           addRunnerDiagnostic(`Evidence capture failed: ${errorMessage(error)}`);

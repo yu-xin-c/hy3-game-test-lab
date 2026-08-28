@@ -24,6 +24,12 @@ export interface StaticServerOptions {
   rootDirectory: string;
   host?: string;
   port?: number;
+  /**
+   * `examples-only` is for a repository root and prevents the game from
+   * fetching datasets/oracles. `isolated-root` is safe only when rootDirectory
+   * itself contains nothing except one generated, read-only game bundle.
+   */
+  exposure?: "examples-only" | "isolated-root";
 }
 
 export interface RunningStaticServer {
@@ -58,7 +64,8 @@ function isInsideRoot(root: string, candidate: string): boolean {
 
 async function resolveRequestFile(
   canonicalRoot: string,
-  requestPathname: string
+  requestPathname: string,
+  exposure: NonNullable<StaticServerOptions["exposure"]>
 ): Promise<string | null> {
   let decodedPath: string;
   try {
@@ -71,7 +78,11 @@ async function resolveRequestFile(
   // The browser under test is untrusted: it must never be able to fetch the
   // private oracle, environment files, source tree, or prior artifacts from
   // its own origin. Node reads datasets directly; HTTP only serves fixtures.
-  if (decodedPath !== "/examples" && !decodedPath.startsWith("/examples/")) {
+  if (
+    exposure === "examples-only" &&
+    decodedPath !== "/examples" &&
+    !decodedPath.startsWith("/examples/")
+  ) {
     return null;
   }
 
@@ -116,6 +127,7 @@ export async function startStaticServer(
   const canonicalRoot = await realpath(resolve(options.rootDirectory));
   const host = options.host ?? "127.0.0.1";
   const port = options.port ?? 0;
+  const exposure = options.exposure ?? "examples-only";
 
   if (!Number.isInteger(port) || port < 0 || port > 65_535) {
     throw new Error(`Invalid static-server port: ${String(port)}`);
@@ -142,7 +154,11 @@ export async function startStaticServer(
         return;
       }
 
-      const filePath = await resolveRequestFile(canonicalRoot, url.pathname);
+      const filePath = await resolveRequestFile(
+        canonicalRoot,
+        url.pathname,
+        exposure
+      );
       if (!filePath) {
         sendText(response, 404, "Not found\n");
         return;

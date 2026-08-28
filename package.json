@@ -2,7 +2,7 @@
   "name": "hy3-prd2play",
   "version": "0.1.0",
   "private": true,
-  "description": "PRD-grounded cross-layer verification and first-failure localization for browser games, built with Hy3.",
+  "description": "Generate browser games with Hy3, then test them against their frozen PRD.",
   "type": "module",
   "license": "MIT",
   "engines": {
@@ -20,6 +20,7 @@
     "eval:freeze": "tsx scripts/freeze-sample.ts",
     "eval:visual": "tsx scripts/judge-screenshot.ts",
     "hy3:probe": "tsx scripts/probe-hy3.ts",
+    "hy3:generate": "tsx scripts/generate-game.ts",
     "hy3:plan": "tsx scripts/generate-plan.ts"
   },
   "dependencies": {

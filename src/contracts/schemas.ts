@@ -78,6 +78,15 @@ export const PublicCaseSchema = z.object({
     viewport: z.object({
       width: z.number().int().positive(),
       height: z.number().int().positive()
+    }),
+    selectors: z.object({
+      score: z.string().min(1).default("[data-testid='score']"),
+      status: z.string().min(1).default("[data-testid='status']"),
+      surface: z.string().min(1).default("canvas")
+    }).default({
+      score: "[data-testid='score']",
+      status: "[data-testid='status']",
+      surface: "canvas"
     })
   }),
   controls: z.array(ControlSchema).min(1),

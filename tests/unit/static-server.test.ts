@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { startStaticServer } from "../../src/runtime/static-server";
 
@@ -46,6 +48,28 @@ describe("fixture-only static server", () => {
       expect(response.headers.get("allow")).toBe("GET, HEAD");
     } finally {
       await server.close();
+    }
+  });
+
+  it("can expose one isolated generated-game directory without exposing its parent", async () => {
+    const temporaryRoot = await mkdtemp(resolve(tmpdir(), "prd2play-server-"));
+    const gameRoot = resolve(temporaryRoot, "game");
+    await mkdir(gameRoot);
+    await writeFile(resolve(gameRoot, "index.html"), "<h1>generated</h1>");
+    await writeFile(resolve(temporaryRoot, "oracle.private.json"), "secret");
+    const server = await startStaticServer({
+      rootDirectory: gameRoot,
+      port: 0,
+      exposure: "isolated-root"
+    });
+    try {
+      expect((await fetch(`${server.origin}/index.html`)).status).toBe(200);
+      expect(
+        (await fetch(`${server.origin}/../oracle.private.json`)).status
+      ).toBe(404);
+    } finally {
+      await server.close();
+      await rm(temporaryRoot, { recursive: true });
     }
   });
 });
