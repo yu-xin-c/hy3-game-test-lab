@@ -1,13 +1,12 @@
 # 系统架构
 
-GameTestLab 的目标输入是生成好的浏览器游戏。需求或 PRD 是可选测试依据，不是系统主角。
+GameTestLab 把浏览器游戏加载到独立的 Chromium 环境中，再按给定场景完成一局试玩。场景可以手写，也可以根据已有的需求说明补充。
 
 ```mermaid
 flowchart LR
   G["生成游戏"] --> A["Adapter / manifest"]
-  S["可选需求或 PRD"] --> P["测试规划"]
+  S["测试场景与检查点"] --> R["Playwright 自动试玩"]
   A --> R["Playwright 自动试玩"]
-  P --> R
   R --> L1["L1 运行"]
   R --> L2["L2 逻辑"]
   R --> L3["L3 界面"]
@@ -32,7 +31,7 @@ flowchart LR
 - 状态桥只用于 reset 和观察，不能代替真实玩家输入；
 - 浏览器失败后在安全情况下继续路径，用于识别错误补偿；
 - L2 已失败而画面表面正常时，L3 只能记为 `observed_not_certified`；
-- 没有 PRD 时执行通用场景；有 PRD 时增加定制规则检查。
+- 通用场景检查启动、输入和终局，玩法说明可以补充特定规则。
 
 ## 隔离
 
@@ -41,6 +40,6 @@ flowchart LR
 - fixture 模式只服务 `/examples/**`，生成游戏使用单独的 `isolated-root`；
 - 所有结果保存相对路径和 hash，方便复核。
 
-## 当前边界
+## 目前能跑到哪里
 
 当前 pilot 已跑通预制 case/oracle 的完整浏览器路径；任意生成目录的 adapter、无规格通用场景生成和多模态结果聚合尚待接入。
