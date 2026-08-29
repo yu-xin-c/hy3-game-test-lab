@@ -21,7 +21,7 @@ function makeOracle(
   checkpointId: string | null
 ): PrivateOracle {
   return PrivateOracleSchema.parse({
-    schema_version: "prd2play.oracle.v1",
+    schema_version: "gametestlab.oracle.v1",
     case_id: id,
     scenario_id: "scenario",
     checkpoints: [
@@ -77,7 +77,7 @@ function makeEvaluation(
     : null;
 
   return CaseEvaluationSchema.parse({
-    schema_version: "prd2play.evaluation.v1",
+    schema_version: "gametestlab.evaluation.v1",
     case_id: id,
     difficulty,
     final_outcome_correct: finalCorrect,

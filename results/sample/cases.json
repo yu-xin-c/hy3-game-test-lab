@@ -1,6 +1,6 @@
 [
   {
-    "schema_version": "prd2play.case-result.v1",
+    "schema_version": "gametestlab.case-result.v1",
     "case_id": "clean-control",
     "title": "Coin Collector clean control",
     "difficulty": {
@@ -19,7 +19,7 @@
       "final_outcome_correct": true
     },
     "evaluation": {
-      "schema_version": "prd2play.evaluation.v1",
+      "schema_version": "gametestlab.evaluation.v1",
       "case_id": "clean-control",
       "difficulty": "D1",
       "final_outcome_correct": true,
@@ -78,10 +78,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "030bc9d9",
             "sampled_alpha_pixels": 4096
           }
@@ -138,10 +139,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -199,10 +201,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -260,10 +263,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -322,10 +326,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -343,7 +348,7 @@
       }
     ],
     "browser": {
-      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=clean",
+      "url": "http://127.0.0.1:52368/examples/coin-collector/index.html?variant=clean",
       "console": [
         {
           "type": "warning",
@@ -361,7 +366,7 @@
     }
   },
   {
-    "schema_version": "prd2play.case-result.v1",
+    "schema_version": "gametestlab.case-result.v1",
     "case_id": "score-plus-two",
     "title": "Score effect error",
     "difficulty": {
@@ -380,7 +385,7 @@
       "final_outcome_correct": false
     },
     "evaluation": {
-      "schema_version": "prd2play.evaluation.v1",
+      "schema_version": "gametestlab.evaluation.v1",
       "case_id": "score-plus-two",
       "difficulty": "D1",
       "final_outcome_correct": false,
@@ -526,10 +531,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "030bc9d9",
             "sampled_alpha_pixels": 4096
           }
@@ -586,10 +592,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -647,10 +654,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -708,10 +716,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -770,10 +779,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -791,7 +801,7 @@
       }
     ],
     "browser": {
-      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=score_plus_two",
+      "url": "http://127.0.0.1:52368/examples/coin-collector/index.html?variant=score_plus_two",
       "console": [
         {
           "type": "warning",
@@ -809,7 +819,7 @@
     }
   },
   {
-    "schema_version": "prd2play.case-result.v1",
+    "schema_version": "gametestlab.case-result.v1",
     "case_id": "score-compensated",
     "title": "Compensating score errors",
     "difficulty": {
@@ -828,7 +838,7 @@
       "final_outcome_correct": true
     },
     "evaluation": {
-      "schema_version": "prd2play.evaluation.v1",
+      "schema_version": "gametestlab.evaluation.v1",
       "case_id": "score-compensated",
       "difficulty": "D2",
       "final_outcome_correct": true,
@@ -938,10 +948,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "030bc9d9",
             "sampled_alpha_pixels": 4096
           }
@@ -998,10 +1009,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1059,10 +1071,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1120,10 +1133,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -1182,10 +1196,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -1203,7 +1218,7 @@
       }
     ],
     "browser": {
-      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=score_compensated",
+      "url": "http://127.0.0.1:52368/examples/coin-collector/index.html?variant=score_compensated",
       "console": [
         {
           "type": "warning",
@@ -1221,7 +1236,7 @@
     }
   },
   {
-    "schema_version": "prd2play.case-result.v1",
+    "schema_version": "gametestlab.case-result.v1",
     "case_id": "hud-stale",
     "title": "Stale score HUD",
     "difficulty": {
@@ -1240,7 +1255,7 @@
       "final_outcome_correct": true
     },
     "evaluation": {
-      "schema_version": "prd2play.evaluation.v1",
+      "schema_version": "gametestlab.evaluation.v1",
       "case_id": "hud-stale",
       "difficulty": "D3",
       "final_outcome_correct": true,
@@ -1351,10 +1366,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "030bc9d9",
             "sampled_alpha_pixels": 4096
           }
@@ -1411,10 +1427,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1472,10 +1489,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1533,10 +1551,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -1595,10 +1614,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -1616,7 +1636,7 @@
       }
     ],
     "browser": {
-      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=hud_stale",
+      "url": "http://127.0.0.1:52368/examples/coin-collector/index.html?variant=hud_stale",
       "console": [
         {
           "type": "warning",
@@ -1634,7 +1654,7 @@
     }
   },
   {
-    "schema_version": "prd2play.case-result.v1",
+    "schema_version": "gametestlab.case-result.v1",
     "case_id": "cross-layer-masked",
     "title": "Cross-layer masked score error",
     "difficulty": {
@@ -1653,7 +1673,7 @@
       "final_outcome_correct": true
     },
     "evaluation": {
-      "schema_version": "prd2play.evaluation.v1",
+      "schema_version": "gametestlab.evaluation.v1",
       "case_id": "cross-layer-masked",
       "difficulty": "D3",
       "final_outcome_correct": true,
@@ -1746,10 +1766,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "030bc9d9",
             "sampled_alpha_pixels": 4096
           }
@@ -1806,10 +1827,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1867,10 +1889,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "996ca185",
             "sampled_alpha_pixels": 4096
           }
@@ -1928,10 +1951,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -1990,10 +2014,11 @@
           "canvas": {
             "present": true,
             "visible": true,
-            "width": 640,
-            "height": 160,
+            "tag_name": "canvas",
             "client_width": 698,
             "client_height": 176,
+            "width": 640,
+            "height": 160,
             "pixel_checksum": "e91b43e9",
             "sampled_alpha_pixels": 4096
           }
@@ -2011,7 +2036,7 @@
       }
     ],
     "browser": {
-      "url": "http://127.0.0.1:61904/examples/coin-collector/index.html?variant=cross_layer_masked",
+      "url": "http://127.0.0.1:52368/examples/coin-collector/index.html?variant=cross_layer_masked",
       "console": [
         {
           "type": "warning",

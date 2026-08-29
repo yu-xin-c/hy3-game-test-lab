@@ -25,7 +25,7 @@ import {
 import { startStaticServer } from "../src/runtime/static-server";
 
 interface CaseArtifact {
-  schema_version: "prd2play.case-result.v1";
+  schema_version: "gametestlab.case-result.v1";
   case_id: string;
   title: string;
   difficulty: PublicCase["difficulty"];
@@ -44,7 +44,7 @@ interface CaseArtifact {
 }
 
 interface RunSummary {
-  schema_version: "prd2play.run-summary.v1";
+  schema_version: "gametestlab.run-summary.v1";
   run_id: string;
   created_at: string;
   finished_at: string;
@@ -164,7 +164,7 @@ async function main(): Promise<void> {
 
         evaluatedSamples.push({ evaluation, oracle });
         caseArtifacts.push({
-          schema_version: "prd2play.case-result.v1",
+          schema_version: "gametestlab.case-result.v1",
           case_id: publicCase.id,
           title: publicCase.title,
           difficulty: publicCase.difficulty,
@@ -210,7 +210,7 @@ async function main(): Promise<void> {
 
   const finishedAt = new Date();
   const summary: RunSummary = {
-    schema_version: "prd2play.run-summary.v1",
+    schema_version: "gametestlab.run-summary.v1",
     run_id: runId,
     created_at: startedAt.toISOString(),
     finished_at: finishedAt.toISOString(),
@@ -241,7 +241,7 @@ async function main(): Promise<void> {
   await writeJson(resolve(runDirectory, "cases.json"), caseArtifacts);
   await writeJson(resolve(runDirectory, "summary.json"), summary);
   await updateLatestPointer(runsDirectory, {
-    schema_version: "prd2play.latest-run.v1",
+    schema_version: "gametestlab.latest-run.v1",
     run_id: runId,
     run_path: repositoryRelative(repositoryRoot, runDirectory),
     summary_path: repositoryRelative(

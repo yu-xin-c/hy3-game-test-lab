@@ -3,7 +3,7 @@ import { extname } from "node:path";
 import { z } from "zod";
 
 export const VisualVerdictSchema = z.object({
-  schema_version: z.literal("prd2play.visual-verdict.v1"),
+  schema_version: z.literal("gametestlab.visual-verdict.v1"),
   verdict: z.enum(["pass", "fail", "uncertain"]),
   confidence: z.number().min(0).max(1),
   requirement_id: z.string().min(1),
@@ -76,7 +76,7 @@ export async function judgeScreenshot(options: {
         {
           role: "system",
           content:
-            "You are the optional L3 visual assessor in PRD2Play. Judge only visible evidence for the supplied public requirement. If the screenshot is ambiguous or the requirement cannot be established visually, return uncertain. Return one JSON object with schema_version prd2play.visual-verdict.v1, verdict, confidence, requirement_id, rationale, visible_evidence, and possible_false_positive."
+            "You are the optional L3 visual assessor in GameTestLab. Judge only visible evidence for the supplied public requirement. If the screenshot is ambiguous or the requirement cannot be established visually, return uncertain. Return one JSON object with schema_version gametestlab.visual-verdict.v1, verdict, confidence, requirement_id, rationale, visible_evidence, and possible_false_positive."
         },
         {
           role: "user",

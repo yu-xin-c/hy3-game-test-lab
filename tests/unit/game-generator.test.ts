@@ -112,7 +112,7 @@ function validGameManifest(): Record<string, unknown> {
       }
     ],
     bridge: {
-      protocol: "prd2play/1",
+      protocol: "gametestlab/1",
       evidence_only: true,
       actions_via_real_input: true
     }
@@ -137,7 +137,7 @@ function validGameResponse(gameJs?: string): string {
           `let state={status:"menu",score:0};let events=[];
 document.querySelector("[data-testid='start']").addEventListener("click",()=>{state.status="playing"});
 window.addEventListener("keydown",event=>{if(event.code==="ArrowRight")state.score=1});
-window.__PRD2PLAY__={protocol:"prd2play/1",isReady:()=>true,reset:()=>{state={status:"menu",score:0};events=[]},observe:()=>({tick:0,status:state.status,state:{...state},latest_event_seq:events.length}),getEvents:({afterSeq})=>events.filter(event=>event.seq>afterSeq)};`
+window.__GAMETESTLAB__={protocol:"gametestlab/1",isReady:()=>true,reset:()=>{state={status:"menu",score:0};events=[]},observe:()=>({tick:0,status:state.status,state:{...state},latest_event_seq:events.length}),getEvents:({afterSeq})=>events.filter(event=>event.seq>afterSeq)};`
       },
       { path: "game.manifest.json", content: JSON.stringify(manifest) }
     ]
@@ -146,7 +146,7 @@ window.__PRD2PLAY__={protocol:"prd2play/1",isReady:()=>true,reset:()=>{state={st
 
 describe("generateGameFromBrief", () => {
   it("uses two isolated Hy3 calls and freezes auditable artifacts", async () => {
-    const outputRoot = await mkdtemp(join(tmpdir(), "prd2play-generation-"));
+    const outputRoot = await mkdtemp(join(tmpdir(), "gametestlab-generation-"));
     temporaryRoots.push(outputRoot);
     const calls: Array<{ system: string; user: string }> = [];
     const client = {

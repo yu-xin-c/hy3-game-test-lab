@@ -1,8 +1,8 @@
 {
-  "name": "hy3-prd2play",
+  "name": "hy3-game-test-lab",
   "version": "0.1.0",
   "private": true,
-  "description": "Generate browser games with Hy3, then test them against their frozen PRD.",
+  "description": "Layered playtesting and first-failure localization for AI-generated browser games.",
   "type": "module",
   "license": "MIT",
   "engines": {

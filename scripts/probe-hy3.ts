@@ -8,11 +8,11 @@ console.log(
 );
 
 const response = await client.complete(
-  "You are a connectivity probe. Reply with exactly PRD2PLAY_HY3_OK.",
+  "You are a connectivity probe. Reply with exactly GAMETESTLAB_HY3_OK.",
   "Confirm that the chat-completions endpoint is reachable."
 );
 
-if (!response.includes("PRD2PLAY_HY3_OK")) {
+if (!response.includes("GAMETESTLAB_HY3_OK")) {
   throw new Error(`Hy3 endpoint responded, but probe token was absent: ${response}`);
 }
 

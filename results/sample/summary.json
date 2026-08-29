@@ -1,10 +1,10 @@
 {
-  "schema_version": "prd2play.run-summary.v1",
-  "run_id": "2026-08-27T16-59-18-612Z-b6b63896",
-  "created_at": "2026-08-27T16:59:18.612Z",
-  "finished_at": "2026-08-27T16:59:19.798Z",
+  "schema_version": "gametestlab.run-summary.v1",
+  "run_id": "2026-08-29T06-11-45-870Z-1ce7e529",
+  "created_at": "2026-08-29T06:11:45.870Z",
+  "finished_at": "2026-08-29T06:11:47.063Z",
   "dataset": {
-    "name": "PRD2Play Pilot",
+    "name": "GameTestLab Pilot",
     "version": "0.1.0",
     "manifest": "datasets/manifest.json"
   },

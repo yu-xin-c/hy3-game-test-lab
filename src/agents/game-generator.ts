@@ -20,7 +20,7 @@ import {
 } from "../contracts/generation";
 import { Hy3Client } from "../llm/hy3-client";
 
-const PRD_SYSTEM_PROMPT = `You are the product-definition stage of PRD2Play.
+const PRD_SYSTEM_PROMPT = `You are the product-definition stage of GameTestLab.
 Turn the user's raw browser-game request into a precise, testable PRD. This is
 the first of two isolated Hy3 requests: do not write game code and do not claim
 that anything has been implemented or tested. Preserve ambiguity as an explicit
@@ -45,7 +45,7 @@ Every acceptance criterion must be traceable through an exact source_quote or
 one or more IDs supplied in source_intents. Include user goal, controls, rules,
 UI behavior, acceptance criteria, and assumptions.`;
 
-const GAME_SYSTEM_PROMPT = `You are the implementation stage of PRD2Play.
+const GAME_SYSTEM_PROMPT = `You are the implementation stage of GameTestLab.
 Generate a complete, dependency-free browser game from the frozen PRD supplied
 in this request. This request is isolated from the original user brief: treat
 the frozen PRD and its SHA-256 as the complete specification. Do not rewrite or
@@ -57,7 +57,7 @@ paths: ${GAME_PACKAGE_FILE_ALLOWLIST.join(", ")}. No absolute paths, parent
 segments, nested paths, remote scripts, package-manager dependencies, or extra
 files are permitted. index.html must load ./styles.css and ./game.js.
 
-game.js must install window.__PRD2PLAY__ with protocol "prd2play/1" and the
+game.js must install window.__GAMETESTLAB__ with protocol "gametestlab/1" and the
 methods isReady(), reset({seed}), observe(), and getEvents({afterSeq}). observe()
 must return tick, status (menu|playing|won|lost), state, and latest_event_seq;
 events must have increasing seq, tick, type, and optional payload. The bridge is
@@ -78,13 +78,13 @@ game.manifest.json must itself be valid JSON with this shape:
   "hud_selectors":{"status":"[data-testid='status']"},
   "state_schema":{"fields":{"status":{"type":"string","description":"..."}},"required":["status"]},
   "event_schema":[{"type":"game_started","description":"...","payload_fields":{}}],
-  "bridge":{"protocol":"prd2play/1","evidence_only":true,"actions_via_real_input":true}
+  "bridge":{"protocol":"gametestlab/1","evidence_only":true,"actions_via_real_input":true}
 }
 Omit inapplicable optional control fields rather than setting them to null.`;
 
-const REQUEST_SCHEMA_VERSION = "prd2play.hy3-generation-request.v1" as const;
+const REQUEST_SCHEMA_VERSION = "gametestlab.hy3-generation-request.v1" as const;
 const FROZEN_PRD_INPUT_SCHEMA_VERSION =
-  "prd2play.frozen-prd-input.v1" as const;
+  "gametestlab.frozen-prd-input.v1" as const;
 
 export interface GenerateGameFromBriefInput {
   brief: UserBriefInput;

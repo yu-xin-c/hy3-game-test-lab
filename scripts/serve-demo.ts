@@ -5,20 +5,20 @@ function parsePort(raw: string | undefined): number {
   if (raw === undefined) return 4173;
   const port = Number(raw);
   if (!Number.isInteger(port) || port < 0 || port > 65_535) {
-    throw new Error(`PRD2PLAY_PORT must be an integer from 0 to 65535, got ${raw}`);
+    throw new Error(`GAMETESTLAB_PORT must be an integer from 0 to 65535, got ${raw}`);
   }
   return port;
 }
 
 async function main(): Promise<void> {
-  const rootDirectory = resolve(process.env.PRD2PLAY_ROOT ?? process.cwd());
+  const rootDirectory = resolve(process.env.GAMETESTLAB_ROOT ?? process.cwd());
   const server = await startStaticServer({
     rootDirectory,
-    host: process.env.PRD2PLAY_HOST ?? "127.0.0.1",
-    port: parsePort(process.env.PRD2PLAY_PORT)
+    host: process.env.GAMETESTLAB_HOST ?? "127.0.0.1",
+    port: parsePort(process.env.GAMETESTLAB_PORT)
   });
 
-  console.log(`PRD2Play demo server: ${server.origin}`);
+  console.log(`GameTestLab demo server: ${server.origin}`);
   console.log(`Serving files from: ${rootDirectory}`);
 
   let stopping = false;

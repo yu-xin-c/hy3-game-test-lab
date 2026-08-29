@@ -52,7 +52,7 @@ describe("fixture-only static server", () => {
   });
 
   it("can expose one isolated generated-game directory without exposing its parent", async () => {
-    const temporaryRoot = await mkdtemp(resolve(tmpdir(), "prd2play-server-"));
+    const temporaryRoot = await mkdtemp(resolve(tmpdir(), "gametestlab-server-"));
     const gameRoot = resolve(temporaryRoot, "game");
     await mkdir(gameRoot);
     await writeFile(resolve(gameRoot, "index.html"), "<h1>generated</h1>");

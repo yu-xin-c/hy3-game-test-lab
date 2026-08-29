@@ -33,7 +33,7 @@ export interface RuntimeDiagnostic {
 }
 
 export interface ActionTrace {
-  schema_version: "prd2play.trace.v1";
+  schema_version: "gametestlab.trace.v1";
   case_id: string;
   scenario_id: string;
   action_index: number;
@@ -162,9 +162,9 @@ async function readBrowserSnapshot(
   selectors: PublicCase["game"]["selectors"]
 ): Promise<BrowserSnapshot> {
   const bridgePayload = await page.evaluate(async ({ afterSeq }) => {
-    const bridge = window.__PRD2PLAY__;
-    if (!bridge || bridge.protocol !== "prd2play/1") {
-      throw new Error("window.__PRD2PLAY__ bridge is unavailable");
+    const bridge = window.__GAMETESTLAB__;
+    if (!bridge || bridge.protocol !== "gametestlab/1") {
+      throw new Error("window.__GAMETESTLAB__ bridge is unavailable");
     }
     const observation = await bridge.observe();
     const events = await bridge.getEvents({ afterSeq });
@@ -381,14 +381,14 @@ export async function runPlaythrough(
       });
       await page.waitForFunction(
         () =>
-          window.__PRD2PLAY__?.protocol === "prd2play/1" &&
-          window.__PRD2PLAY__.isReady(),
+          window.__GAMETESTLAB__?.protocol === "gametestlab/1" &&
+          window.__GAMETESTLAB__.isReady(),
         undefined,
         { timeout: navigationTimeout }
       );
       await page.evaluate(async ({ seed }) => {
-        const bridge = window.__PRD2PLAY__;
-        if (!bridge) throw new Error("window.__PRD2PLAY__ bridge is unavailable");
+        const bridge = window.__GAMETESTLAB__;
+        if (!bridge) throw new Error("window.__GAMETESTLAB__ bridge is unavailable");
         await bridge.reset({ seed });
       }, { seed: scenario.seed });
       bridgeReady = true;
@@ -473,7 +473,7 @@ export async function runPlaythrough(
       }
 
       trace.push({
-        schema_version: "prd2play.trace.v1",
+        schema_version: "gametestlab.trace.v1",
         case_id: publicCase.id,
         scenario_id: scenario.id,
         action_index: actionIndex,

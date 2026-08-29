@@ -20,8 +20,8 @@ pnpm run eval:sample
 
 | 字段 | 值 |
 | --- | --- |
-| Source run ID | `2026-08-27T16-59-18-612Z-b6b63896` |
-| 数据 | `PRD2Play Pilot` v0.1.0，5 个项目自建故障/对照变体 |
+| Source run ID | `2026-08-29T06-11-45-870Z-1ce7e529` |
+| 数据 | `GameTestLab Pilot` v0.1.0，5 个项目自建故障/对照变体 |
 | 浏览器 | Chromium `151.0.7922.34`，headless |
 | Hy3 API | **未使用**（`hy3_api_used=false`） |
 | 人工审核 | **未完成**；`human-review.csv` 所有行均为 `pending_human` |

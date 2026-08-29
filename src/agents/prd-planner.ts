@@ -20,7 +20,7 @@ const PlanStepSchema = z.object({
 });
 
 export const Hy3TestPlanSchema = z.object({
-  schema_version: z.literal("prd2play.hy3-plan.v1"),
+  schema_version: z.literal("gametestlab.hy3-plan.v1"),
   summary: z.string().min(1),
   requirements: z.array(RequirementSchema).min(1),
   scenarios: z.array(
@@ -37,16 +37,16 @@ export const Hy3TestPlanSchema = z.object({
 
 export type Hy3TestPlan = z.infer<typeof Hy3TestPlanSchema>;
 
-const SYSTEM_PROMPT = `You are the planning component of PRD2Play, a browser-game
+const SYSTEM_PROMPT = `You are the planning component of GameTestLab, a browser-game
 verification system. Convert a public product requirements document into an auditable,
 layered test plan. L1 covers boot/runtime/input readiness, L2 covers state transitions,
 rules and terminal conditions, and L3 covers visible UI/state consistency and semantic
 visual quality. Use only the action IDs supplied by the caller. Do not invent private
 expected values, hidden oracle data, implementation details, or claims that a test has
 already passed. Return one JSON object and no prose. The object must use schema_version
-"prd2play.hy3-plan.v1" and this exact shape:
+"gametestlab.hy3-plan.v1" and this exact shape:
 {
-  "schema_version": "prd2play.hy3-plan.v1",
+  "schema_version": "gametestlab.hy3-plan.v1",
   "summary": "...",
   "requirements": [{
     "id": "RUN-01|LOGIC-...|UI-...", "layer": "L1|L2|L3",
@@ -156,7 +156,7 @@ export async function generateHy3TestPlan(
   await mkdir(outputDirectory, { recursive: true });
   const hy3 = loadHy3Config();
   const manifest = {
-    schema_version: "prd2play.hy3-run.v1",
+    schema_version: "gametestlab.hy3-run.v1",
     created_at: new Date().toISOString(),
     case_id: input.publicCase.id,
     provider: "Hy3 OpenAI-compatible API",

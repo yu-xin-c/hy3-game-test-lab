@@ -1,6 +1,6 @@
 {
-  "schema_version": "prd2play.dataset.v1",
-  "name": "PRD2Play Pilot",
+  "schema_version": "gametestlab.dataset.v1",
+  "name": "GameTestLab Pilot",
   "version": "0.1.0",
   "description": "Project-authored smoke corpus covering clean, wrong-final, lucky-pass, UI-only, and cross-layer masked failures.",
   "cases": [

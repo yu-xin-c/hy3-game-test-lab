@@ -12,8 +12,8 @@ export interface GameObservation {
   latest_event_seq: number;
 }
 
-export interface PRD2PlayBridge {
-  protocol: "prd2play/1";
+export interface GameTestLabBridge {
+  protocol: "gametestlab/1";
   isReady(): boolean;
   reset(options: { seed: number }): Promise<void> | void;
   observe(): Promise<GameObservation> | GameObservation;
@@ -22,7 +22,7 @@ export interface PRD2PlayBridge {
 
 declare global {
   interface Window {
-    __PRD2PLAY__?: PRD2PlayBridge;
+    __GAMETESTLAB__?: GameTestLabBridge;
   }
 }
 

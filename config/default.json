@@ -1,5 +1,5 @@
 {
-  "schema_version": "prd2play.config.v1",
+  "schema_version": "gametestlab.config.v1",
   "dataset_manifest": "datasets/manifest.json",
   "artifact_dir": "artifacts/runs",
   "browser": {

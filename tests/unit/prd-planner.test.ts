@@ -3,7 +3,7 @@ import { PublicCaseSchema } from "../../src/contracts/schemas";
 import { generateHy3TestPlan } from "../../src/agents/prd-planner";
 
 const publicCase = PublicCaseSchema.parse({
-  schema_version: "prd2play.case.v1",
+  schema_version: "gametestlab.case.v1",
   id: "planner-unit",
   title: "Planner unit fixture",
   difficulty: { level: "D1", rationale: "One action." },
@@ -44,7 +44,7 @@ describe("generateHy3TestPlan", () => {
       async complete(system: string, user: string) {
         captured = `${system}\n${user}`;
         return JSON.stringify({
-          schema_version: "prd2play.hy3-plan.v1",
+          schema_version: "gametestlab.hy3-plan.v1",
           summary: "Start-path plan.",
           requirements: [
             {
@@ -99,7 +99,7 @@ describe("generateHy3TestPlan", () => {
     const client = {
       async complete() {
         return JSON.stringify({
-          schema_version: "prd2play.hy3-plan.v1",
+          schema_version: "gametestlab.hy3-plan.v1",
           summary: "Invalid plan.",
           requirements: [
             {

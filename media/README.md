@@ -5,9 +5,9 @@
 推荐文件名：
 
 ```text
-prd2play-demo.mp4
+gametestlab-demo.mp4
 # 或
-prd2play-demo.gif
+gametestlab-demo.gif
 ```
 
 发布时在下表填写真实信息：

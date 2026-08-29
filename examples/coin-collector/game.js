@@ -103,8 +103,8 @@ window.addEventListener("keydown", (event) => {
   if (event.code === "ArrowLeft") move(-1);
 });
 
-window.__PRD2PLAY__ = {
-  protocol: "prd2play/1",
+window.__GAMETESTLAB__ = {
+  protocol: "gametestlab/1",
   isReady: () => true,
   reset: ({ seed: nextSeed }) => {
     seed = nextSeed;

@@ -8,7 +8,7 @@ import {
 import { evaluateCase } from "../../src/evaluation/evaluator";
 
 const publicCase = PublicCaseSchema.parse({
-  schema_version: "prd2play.case.v1",
+  schema_version: "gametestlab.case.v1",
   id: "unit-playthrough",
   title: "Evaluator unit playthrough",
   difficulty: { level: "D3", rationale: "Exercises all three gates." },
@@ -67,7 +67,7 @@ const publicCase = PublicCaseSchema.parse({
 });
 
 const oracle = PrivateOracleSchema.parse({
-  schema_version: "prd2play.oracle.v1",
+  schema_version: "gametestlab.oracle.v1",
   case_id: "unit-playthrough",
   scenario_id: "finish",
   checkpoints: [

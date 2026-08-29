@@ -1,5 +1,5 @@
 {
-  "schema_version": "prd2play.oracle.v1",
+  "schema_version": "gametestlab.oracle.v1",
   "case_id": "cross-layer-masked",
   "scenario_id": "complete-happy-path",
   "checkpoints": [

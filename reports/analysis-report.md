@@ -1,143 +1,128 @@
-# PRD2Play 端到端分析报告模板
+# GameTestLab 分析报告模板
 
-> **状态：模板，不是实验结果。** 正式报告必须由冻结的 generation trace、play trace、三向逐例 verdict 和人审记录生成并复核；在未运行前保持“待运行”，不得填入估计值、设计期望或 fixture 真值充当测量结果。
->
-> 当前 5 个 coin-collector case 只有项目自建 PRD/game/mutation 与 play trace，用于测试 evaluator。它们没有 user brief、AI PRD 或 AI-generated game，因此 `brief→PRD`、正式 `PRD→game` 生成表现、通用可玩性和端到端成功率均应写 `N/A（fixture 未评测）`，不能把 pilot 数字填入这些栏位。
+> **状态：模板，不是实验结果。** 正式数字必须由冻结 play trace 和人工审核记录生成。当前 coin-collector fixture 只用于校准评测器，不能代表 AI 生成游戏的质量。
 
-## 1. 运行元数据
+## 1. 运行信息
 
 | 字段 | 值 |
 | --- | --- |
-| Run ID | 待运行 |
-| Git commit | 待运行 |
-| 数据集名称/版本/hash | 待运行 |
-| User brief 数 / hash | 待运行；fixture pilot 写“不适用” |
-| 冻结 AI PRD 数 / hash | 待运行；fixture pilot 写“不适用” |
-| 生成 game artifact 数 / manifest hash | 待运行；fixture pilot 写“不适用” |
-| 独立游戏 / 场景 / 运行数 | 待运行 |
+| Run ID / Git commit | 待运行 |
+| 数据集版本 / hash | 待运行 |
+| 游戏数 / 场景数 / 运行数 | 待运行 |
+| 游戏文件 manifest / hash | 待运行 |
 | Node / Chromium / OS | 待运行 |
-| PRD 生成：Hy3 模型 / 端点 / reasoning / prompt hash | 待运行；未调用必须写“未调用” |
-| 游戏生成：Hy3 模型 / 端点 / reasoning / prompt hash | 待运行；未调用必须写“未调用” |
-| Generation trace 路径/hash | 待运行；fixture pilot 写“不存在” |
-| Play trace 路径/hash | 待运行 |
-| Intent rubric / generic playability spec / oracle hash | 待运行 |
-| 配置文件/hash | 待运行 |
+| seed / viewport / locale | 待运行 |
+| 测试计划 / oracle hash | 待运行 |
+| 可选需求或 PRD hash | 未使用则写“不适用” |
 | UTC 起止时间 | 待运行 |
-| 机器产物路径 | 待运行 |
+| Play trace / 截图路径 | 待运行 |
 | 人工审核记录 | 待运行 |
 
 ## 2. 研究问题
 
-- RQ1：AI 生成的 PRD 对原始 user brief 的意图覆盖率如何，主要遗漏、冲突和无依据改写是什么？
-- RQ2：生成游戏对冻结 PRD 的实现一致性如何；L1/L2/L3 的失败分别发生在哪里？
-- RQ3：不依赖样本 PRD，生成游戏是否满足启动、控制、推进、终局和重开等通用可玩性底线？
-- RQ4：只看终局会漏掉多少过程错误；系统能否定位 play trace 中第一处可观察偏离？
-- RQ5：三向错误、D1/D2/D3 和证据 channel 的差异是否揭示稳定能力断点？
-- RQ6：确定性检查、多模态判断和人工审核的分歧在哪里？
+- RQ1：AI 生成游戏能否正常加载、开始并响应真实输入？
+- RQ2：完整 playthrough 中的状态、事件、边界和终局是否正确？
+- RQ3：UI 是否与内部状态一致，视觉问题能否由确定性或多模态证据发现？
+- RQ4：系统能否定位首个可观察偏离，并控制 clean 样本误报？
 
-## 3. 三向与端到端结果
+## 3. 总体结果
 
-| 指标 | 值 | 分子/分母 | 人审一致性 | 产物字段 |
+| 指标 | 值 | 分子 / 分母 | 95% CI |
+| --- | --- | --- | --- |
+| 有效运行率 | 待运行 | 待运行 | 待运行 |
+| L1 运行通过率 | 待运行 | 待运行 | 待运行 |
+| L2 逻辑通过率 | 待运行 | 待运行 | 待运行 |
+| L3 UI 通过率 | 待运行 | 待运行 | 待运行 |
+| Final answer accuracy | 待运行 | 待运行 | 待运行 |
+| Process correctness | 待运行 | 待运行 | 待运行 |
+| Localization exact | 待运行 | 待运行 | 待运行 |
+| Localization within one | 待运行 | 待运行 | 待运行 |
+| False-positive rate | 待运行 | 待运行 | 待运行 |
+| Lucky-pass recall | 待运行 | 待运行 | 待运行 |
+| Error type macro-F1 | 待运行 | 待运行 | 待运行 |
+
+分母为零时写 `N/A (0 samples)`。小样本优先报告原始计数，不用百分比制造精确感。
+
+## 4. 分层分析
+
+### L1 运行
+
+报告加载、Start、输入响应、page error、console error 和 runner 异常。说明失败是否阻断了 L2/L3。
+
+| 失败类型 | n | 代表 run | 证据 |
+| --- | ---: | --- | --- |
+| 待运行 | 待运行 | 待运行 | 待运行 |
+
+### L2 逻辑路径
+
+报告状态转换、得分/生命、事件、边界、终局以及完整路径长度。分别解释终局正确和过程正确，列出 lucky pass。
+
+| Case/run | 首个偏离 | expected / actual | 终局 | 是否 lucky pass |
 | --- | --- | --- | --- | --- |
-| Intent traceability coverage | 待运行 | 待运行 | — | `intent_traceability.coverage`；fixture 不适用 |
-| Intent alignment pass rate | 待运行 | 待运行 | 待运行 | `intent_alignment`；fixture 不适用 |
-| PRD→game implementation pass rate | 待运行 | 待运行 | 待运行 | `implementation_conformance`；fixture 不作模型分数 |
-| Game→generic playability pass rate | 待运行 | 待运行 | 待运行 | `generic_playability`；fixture 不适用 |
-| End-to-end success rate（三向均通过） | 待运行 | 待运行 | 待运行 | `overall_task_success`；fixture 不适用 |
-| Spec laundering count | 待运行 | 待运行 | 待运行 | `spec_laundering_detected`；实现 PRD 但意图失败 |
-| PRD generation failure rate | 待运行 | 待运行 | — | generation trace |
-| Game generation failure rate | 待运行 | 待运行 | — | generation trace |
+| 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
 
-三向结果必须并列解释。PRD→game 通过不能补偿 brief→PRD 遗漏；PRD 未写某项也不能让基本不可玩的游戏在 generic 方向通过。某方向缺少独立依据时写 `unverified`/`N/A`，不能默认 pass。
+### L3 UI/多模态
 
-生成契约中的溯源字段只验证形式引用，不证明语义正确。本表只有接入真实生成产物、独立依据和冻结 run 后才能填数。
+报告 DOM/Canvas 与内部状态的一致性、截图证据和可选视觉裁判。没有视觉裁判的项目写 `unverified`，不能按通过计数。
 
-## 4. Playthrough 与定位结果
+| Case/run | 检测通道 | UI 问题 | 置信度 | 人工裁决 |
+| --- | --- | --- | ---: | --- |
+| 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
 
-| 指标 | 值 | 分子/分母 | 95% CI | 产物字段 |
-| --- | --- | --- | --- | --- |
-| 有效运行率 | 待运行 | 待运行 | 待运行 | run manifest |
-| Final answer accuracy | 待运行 | 待运行 | 待运行 | `final_answer_accuracy` |
-| Process correctness | 待运行 | 待运行 | 待运行 | `process_correctness` |
-| Localization exact | 待运行 | 待运行 | 待运行 | `localization_exact_accuracy` |
-| Localization within one | 待运行 | 待运行 | 待运行 | `localization_within_one_accuracy` |
-| False-positive rate | 待运行 | 待运行 | 待运行 | `false_positive_rate` |
-| Lucky-pass recall | 待运行 | 待运行 | 待运行 | `lucky_pass_recall` |
-| Error type macro-F1 | 待运行 | 待运行 | 待运行 | `error_type_macro_f1` |
+## 5. 难度与覆盖
 
-分母为零时写 `N/A (0 samples)`，不能显示为 0%。pilot 样本极少时以原始计数为主，不用置信区间制造精确感。
+| 分组 | n | L1 pass | L2 pass | L3 pass | Process correct | Exact localization |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| D1 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
+| D2 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
+| D3 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
 
-## 5. 难度、方向与层级拆分
+同时说明游戏家族、引擎、输入方式、路径长度和错误类型覆盖。单个游戏的 mutation 不能外推为普遍能力。
 
-先按三向评测分别给出样本数、通过率与主要错误；再对有 play trace 的样本按 D1/D2/D3 与 L1/L2/L3 展开。L1/L2/L3 是证据层，不是三个评测方向。
+## 6. 错误分布与首错
 
-| 分组 | n | Final accuracy | Process correctness | Exact localization | FPR |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| D1 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
-| D2 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
-| D3 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
-| L1 涉及样本 | 待运行 | — | 待运行 | 待运行 | 待运行 |
-| L2 涉及样本 | 待运行 | — | 待运行 | 待运行 | 待运行 |
-| L3 涉及样本 | 待运行 | — | 待运行 | 待运行 | 待运行 |
-
-分析时必须说明不同分组的样本构成。若 D3 只有一个游戏的 mutation，不得称为普遍能力下降。
-
-## 6. 错误类型分布
-
-| 错误类型 | 人工真值 n | 自动预测 n | Precision | Recall | 典型证据引用 |
+| 错误类型 | 人工真值 n | 自动预测 n | Precision | Recall | 代表证据 |
 | --- | ---: | ---: | ---: | ---: | --- |
-| 待从 taxonomy 动态生成 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
+| 待从 taxonomy 生成 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
 
-需要单独列出 `unknown` 和 `artifact_failure`，不能把它们合并到“其他”后隐藏。
+`unknown`、`generation_failure` 和 `artifact_failure` 单独列出。`first_failure` 表示 play trace 中首个可观察偏离；源代码根因若无直接证据，只能作为假设。
 
-同时分列 `intent_omission/conflict`、`implementation_deviation`、`generic_unplayable` 与 `generation_failure`。关系级错误和 play checkpoint 错误不能混成一个无层次的 taxonomy。
+## 7. 误报与人工审核
 
-## 7. Lucky pass 案例分析
+| 项目 | 结果 |
+| --- | --- |
+| clean 自动报错数 / clean 总数 | 待运行 |
+| clean 报错人工确认数 | 待运行 |
+| 双人审核一致率 / Cohen's kappa | 待运行 |
+| 分歧数 / 第三人裁决数 | 待运行 |
+| 主要分歧来源 | 待运行 |
 
-对每个“终局正确、过程错误”样本填写：
+正文说明抽样方法、盲态信息和审核者是否知道 fixture mutation。
 
-| Case/run | 首个偏离 | 根需求 | 中间 expected/actual | 终局为何恢复 | 是否被检出 | 证据 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 待运行 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 | 待运行 |
+## 8. 代表案例
 
-正文应解释错误补偿机制，而不只重复 `lucky_pass_detected=true`。
+正式报告至少展示：一个 L1 失败、一个 L2 首错或 lucky pass、一个 L3 UI 问题，以及一个 clean 负例。每例包含：
 
-## 8. 能力断点
+1. 游戏 artifact 与 run ID；
+2. 动作路径和首个失败 checkpoint；
+3. expected/actual 与截图或事件引用；
+4. 失败后是否继续、终局是否正确；
+5. 自动标签与人工裁决；
+6. 一条可复现命令。
 
-仅在数据支持时回答：性能从哪种路径长度、依赖深度、层级或错误组合开始显著下降？
+需求或 PRD 仅在它确实提供测试依据时引用；通用可玩性和玩家可见问题仍需独立判断。
 
-- 候选断点：待运行；
-- 支持样本与效应量：待运行；
-- 反例：待运行；
-- 是否在独立游戏家族复现：待运行；
-- 结论置信等级：探索性 / 预注册验证（选择其一）。
+## 9. 有效性威胁
 
-pilot 的五个 fixture 只适合展示 evaluator 分析方法，默认结论应写“未测试 AI 生成链，且样本不足，无法确定能力断点”。
+- bridge 暴露的状态是否代表玩家真实体验；
+- runner 或服务器故障是否被误判为游戏错误；
+- fixture mutation 是否过于规则化；
+- 游戏家族、引擎、输入方式和路径覆盖是否不足；
+- oracle 是否泄漏给生成模型；
+- 多模态裁判的偏差、版本漂移和可复现性；
+- 相关 seed 是否被误当作独立样本；
+- 人工审核是否受到自动标签影响。
 
-## 9. 失败案例
+## 10. 结论
 
-正式报告至少各选一类：brief 意图遗漏、PRD 实现偏离、通用不可玩、play lucky pass、UI/多模态分歧。每例包括：
-
-1. 原始 brief、冻结 PRD 与 game artifact hash；
-2. 失败所属方向和独立判定依据；
-3. 第一处 play expected/actual diff（如适用）；
-4. 后续是否继续、终局是否正确；
-5. 自动错误类型与人工裁决；
-6. 生成阶段根因假设与证据边界；
-7. 可复现命令和 generation/play artifact 相对路径。
-
-## 10. 有效性威胁
-
-- 构念边界：三向指标是否真正区分用户意图、契约实现和一般可玩性；
-- 构念效度：bridge 状态是否真的代表玩家可见行为；
-- 内部效度：fixture mutation 与 runner bug 是否混淆；
-- 外部效度：游戏家族、引擎与语言覆盖不足；
-- 标注效度：作者与审核者是否知道 mutation；
-- 泄漏：intent rubric、通用规范或 oracle 是否进入 PRD/游戏生成提示词或开发调参；
-- 共同方法偏差：是否让同一模型生成 PRD、编译测试并裁判，导致自我一致而非真实正确；
-- 统计：相关 seed 被误当独立样本、小分母与多重比较；
-- 多模态：模型裁判偏差、版本漂移与无法复现。
-
-## 11. 结论
-
-待真实结果和验证报告完成后撰写。结论需明确区分：generation trace 已验证、play evaluator 工程链路已验证、fixture pilot 中观察到、正式三向数据支持、仍未验证五种证据级别。不得把 coin fixture 的预设故障检出率描述为 Hy3 游戏生成表现。
+待真实实验完成后撰写。结论必须区分：评测器回归测试通过、fixture 中检测到预设故障、真实 AI 生成游戏实验结果，以及仍未验证的多模态或泛化能力。

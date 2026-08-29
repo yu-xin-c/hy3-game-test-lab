@@ -3,7 +3,7 @@ import { isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 interface LatestRun {
-  schema_version: "prd2play.latest-run.v1";
+  schema_version: "gametestlab.latest-run.v1";
   run_id: string;
   run_path: string;
   summary_path: string;
@@ -30,7 +30,7 @@ function rewriteArtifactPaths(value: string, runPath: string): string {
 async function main(): Promise<void> {
   const latestPath = resolve(repositoryRoot, "artifacts/runs/latest.json");
   const latest = JSON.parse(await readFile(latestPath, "utf8")) as LatestRun;
-  if (latest.schema_version !== "prd2play.latest-run.v1") {
+  if (latest.schema_version !== "gametestlab.latest-run.v1") {
     throw new Error("Unsupported latest-run pointer");
   }
 
@@ -59,7 +59,7 @@ async function main(): Promise<void> {
     resolve(resultsDirectory, "snapshot-provenance.json"),
     `${JSON.stringify(
       {
-        schema_version: "prd2play.snapshot-provenance.v1",
+        schema_version: "gametestlab.snapshot-provenance.v1",
         source_run_id: latest.run_id,
         source_run_updated_at: latest.updated_at,
         copied_files: [

@@ -1,49 +1,46 @@
 # 系统架构
 
-PRD2Play 的入口是用户请求生成游戏。Hy3 先生成 PRD，PRD 冻结后再生成游戏；测试从冻结 PRD 编译，但 PRD 不是唯一真值，仍需独立检查它是否漏掉用户意图，并用通用规则检查基本可玩性。
+GameTestLab 的目标输入是生成好的浏览器游戏。需求或 PRD 是可选测试依据，不是系统主角。
 
 ```mermaid
 flowchart LR
-  U["用户 brief"] --> P["Hy3 生成 PRD"]
-  P --> F["冻结 PRD / hash"]
-  F --> G["Hy3 生成 game files"]
-  F --> T["编译场景与检查点"]
-  G --> R["Playwright 真实 playthrough"]
-  T --> R
-  R --> L["L1 运行 / L2 逻辑 / L3 界面"]
-  U --> A["独立意图覆盖抽检"]
-  F --> A
-  G --> B["通用可玩性底线"]
-  R --> B
-  L --> O["终局 / 过程 / 首错 / lucky pass"]
-  A --> O
-  B --> O
+  G["生成游戏"] --> A["Adapter / manifest"]
+  S["可选需求或 PRD"] --> P["测试规划"]
+  A --> R["Playwright 自动试玩"]
+  P --> R
+  R --> L1["L1 运行"]
+  R --> L2["L2 逻辑"]
+  R --> L3["L3 界面"]
+  L1 --> O["首错与分级报告"]
+  L2 --> O
+  L3 --> O
 ```
 
-## 组件职责
+## 组件
 
-| 组件 | 职责 | 当前状态 |
-| --- | --- | --- |
-| 两阶段生成器 | `brief → PRD → game`，冻结 PRD 并保存请求、响应和 hash | 代码、CLI 和 mock 单测已实现；真实 Hy3 调用未执行 |
-| 生成契约 | 校验 user brief、generated PRD、四文件 game package、manifest | `src/contracts/generation.ts` 已实现 |
-| PRD 测试规划 | 从冻结 PRD 提取 requirement、scenario、risk 和 unknown | `hy3:plan` 已实现；真实调用未形成报告 |
-| Browser runner | 用真实键鼠/触摸输入执行路径，采集 state、event、UI、error 和截图 | fixture pilot 已实现；生成包接入待实测 |
-| Game bridge | 只提供 reset 和可观察证据，不替代玩家输入 | `window.__PRD2PLAY__` 已实现 |
-| Evaluator | 比较 private oracle，执行 L1/L2/L3 门，输出终局、过程、首错和 lucky pass | fixture pilot 已实现 |
-| 独立审核 | 检查 brief 覆盖、通用可玩性与自动定位误报 | 规则和正式人审尚未完成 |
+| 组件 | 职责 |
+| --- | --- |
+| Game adapter | 描述入口、控件、viewport、UI selector 和状态/事件结构 |
+| Test planner | 从可选需求/PRD 与通用可玩性规则生成场景和检查点 |
+| Browser runner | 使用真实键鼠/触摸输入，采集错误、状态、事件、DOM、Canvas 和截图 |
+| Evaluator | 执行 L1/L2/L3 门，比较 expected/actual，定位第一处偏离 |
+| Metrics/report | 汇总终局、过程、错误类型、定位准确率、误报率和难度结果 |
 
-## 两条审计记录
+## 证据原则
 
-- **Generation trace**：原始 brief、PRD 请求/响应、冻结 PRD/hash、游戏请求/响应、game files/hash。
-- **Play trace**：场景、真实动作、state/event/UI、runtime error、截图、checkpoint diff 与终局。
+- Vitest 和 jsdom 只能作为快速检查，不能认证游戏真实可玩；
+- 状态桥只用于 reset 和观察，不能代替真实玩家输入；
+- 浏览器失败后在安全情况下继续路径，用于识别错误补偿；
+- L2 已失败而画面表面正常时，L3 只能记为 `observed_not_certified`；
+- 没有 PRD 时执行通用场景；有 PRD 时增加定制规则检查。
 
-两条 trace 共同描述完整过程。自动首错目前只定位 play trace 中第一处可观察偏离；生成阶段根因另行分析，不能把浏览器首错直接说成某个生成步骤的根因。
+## 隔离
 
-## 信息边界
+- 被测游戏运行在独立 browser context 和只读静态目录；
+- private oracle、故障标签和 API key 不暴露给游戏；
+- fixture 模式只服务 `/examples/**`，生成游戏使用单独的 `isolated-root`；
+- 所有结果保存相对路径和 hash，方便复核。
 
-- 游戏生成只读取冻结 PRD，不读取 private oracle、故障标签或人审规则；
-- fixture 服务器只暴露 `/examples/**`；生成游戏通过单独只读目录的 `isolated-root` 服务；
-- API key 只在进程环境中使用，不写入请求快照、结果或日志；
-- L1/L2/L3 主要判断 PRD 实现，brief 覆盖和通用可玩性需独立依据，缺少依据时明确记为未验证。
+## 当前边界
 
-当前 coin-collector sample 是项目自建 evaluator fixture，不包含 AI 生成 PRD 或游戏，不能作为 Hy3 游戏生成成绩。
+当前 pilot 已跑通预制 case/oracle 的完整浏览器路径；任意生成目录的 adapter、无规格通用场景生成和多模态结果聚合尚待接入。

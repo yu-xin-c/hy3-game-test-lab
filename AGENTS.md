@@ -1,6 +1,6 @@
 # Repository guidance
 
-PRD2Play is a personal/activity project for the 2026 Tencent Rhino-Bird Hy3
+GameTestLab is a personal/activity project for the 2026 Tencent Rhino-Bird Hy3
 practical task. It is not an official Tencent release.
 
 ## Non-negotiable rules

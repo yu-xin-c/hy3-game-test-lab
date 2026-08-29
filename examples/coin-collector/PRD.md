@@ -28,7 +28,7 @@ board, collect two coins, and reach a visible win state.
 
 ## Testability contract
 
-The fixture exposes the versioned `window.__PRD2PLAY__` read-only observation
+The fixture exposes the versioned `window.__GAMETESTLAB__` read-only observation
 bridge. Tests must use real mouse and keyboard input for actions; they may use the
 bridge only to reset a seed and read state/events. Private expected values and
 fault labels are stored outside this document.

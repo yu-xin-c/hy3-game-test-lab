@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-export const USER_BRIEF_SCHEMA_VERSION = "prd2play.user-brief.v1" as const;
-export const GENERATED_PRD_SCHEMA_VERSION = "prd2play.generated-prd.v1" as const;
-export const GAME_MANIFEST_SCHEMA_VERSION = "prd2play.game-manifest.v1" as const;
-export const GAME_PACKAGE_SCHEMA_VERSION = "prd2play.game-package.v1" as const;
-export const GENERATION_RUN_SCHEMA_VERSION = "prd2play.generation-run.v1" as const;
+export const USER_BRIEF_SCHEMA_VERSION = "gametestlab.user-brief.v1" as const;
+export const GENERATED_PRD_SCHEMA_VERSION = "gametestlab.generated-prd.v1" as const;
+export const GAME_MANIFEST_SCHEMA_VERSION = "gametestlab.game-manifest.v1" as const;
+export const GAME_PACKAGE_SCHEMA_VERSION = "gametestlab.game-package.v1" as const;
+export const GENERATION_RUN_SCHEMA_VERSION = "gametestlab.generation-run.v1" as const;
 
 const IdentifierSchema = z
   .string()
@@ -228,7 +228,7 @@ export const GameManifestSchema = z
     event_schema: z.array(GameEventSchema).min(1),
     bridge: z
       .object({
-        protocol: z.literal("prd2play/1"),
+        protocol: z.literal("gametestlab/1"),
         evidence_only: z.literal(true),
         actions_via_real_input: z.literal(true)
       })
@@ -253,7 +253,7 @@ const GamePackageFileSchema = z
   .strict();
 
 const BRIDGE_ASSIGNMENT =
-  /window(?:\.__PRD2PLAY__|\[['"]__PRD2PLAY__['"]\])\s*=/;
+  /window(?:\.__GAMETESTLAB__|\[['"]__GAMETESTLAB__['"]\])\s*=/;
 
 export const GeneratedGamePackageSchema = z
   .object({
@@ -297,11 +297,11 @@ export const GeneratedGamePackageSchema = z
       context.addIssue({
         code: "custom",
         path: ["files"],
-        message: "game.js must assign window.__PRD2PLAY__"
+        message: "game.js must assign window.__GAMETESTLAB__"
       });
     }
     for (const requiredToken of [
-      "prd2play/1",
+      "gametestlab/1",
       "isReady",
       "reset",
       "observe",

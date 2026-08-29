@@ -1,5 +1,5 @@
 {
-  "schema_version": "prd2play.case.v1",
+  "schema_version": "gametestlab.case.v1",
   "id": "cross-layer-masked",
   "title": "Cross-layer masked score error",
   "difficulty": {

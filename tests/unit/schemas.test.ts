@@ -39,7 +39,7 @@ describe("dataset schemas", () => {
 
   it("rejects a public case with an unsafe non-root entry path", () => {
     const result = PublicCaseSchema.safeParse({
-      schema_version: "prd2play.case.v1",
+      schema_version: "gametestlab.case.v1",
       id: "bad-path",
       title: "Bad path",
       difficulty: { level: "D1", rationale: "Schema rejection fixture." },

@@ -158,7 +158,7 @@ export function evaluateCase(
   const processCorrect = failures.length === 0;
 
   return {
-    schema_version: "prd2play.evaluation.v1",
+    schema_version: "gametestlab.evaluation.v1",
     case_id: publicCase.id,
     difficulty: publicCase.difficulty.level,
     final_outcome_correct: finalOutcomeCorrect,

@@ -60,7 +60,7 @@ export const ScenarioSchema = z.object({
 });
 
 export const PublicCaseSchema = z.object({
-  schema_version: z.literal("prd2play.case.v1"),
+  schema_version: z.literal("gametestlab.case.v1"),
   id: z.string().min(1),
   title: z.string().min(1),
   difficulty: z.object({
@@ -108,7 +108,7 @@ export const CheckpointExpectationSchema = z.object({
 });
 
 export const PrivateOracleSchema = z.object({
-  schema_version: z.literal("prd2play.oracle.v1"),
+  schema_version: z.literal("gametestlab.oracle.v1"),
   case_id: z.string().min(1),
   scenario_id: z.string().min(1),
   checkpoints: z.array(CheckpointExpectationSchema).min(1),
@@ -129,7 +129,7 @@ export const DatasetManifestEntrySchema = z.object({
 });
 
 export const DatasetManifestSchema = z.object({
-  schema_version: z.literal("prd2play.dataset.v1"),
+  schema_version: z.literal("gametestlab.dataset.v1"),
   name: z.string().min(1),
   version: z.string().min(1),
   description: z.string().min(1),
@@ -164,7 +164,7 @@ export const FailureSchema = z.object({
 });
 
 export const CaseEvaluationSchema = z.object({
-  schema_version: z.literal("prd2play.evaluation.v1"),
+  schema_version: z.literal("gametestlab.evaluation.v1"),
   case_id: z.string(),
   difficulty: DifficultySchema,
   final_outcome_correct: z.boolean(),

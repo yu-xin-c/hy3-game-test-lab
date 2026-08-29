@@ -1,7 +1,7 @@
 {
-  "schema_version": "prd2play.snapshot-provenance.v1",
-  "source_run_id": "2026-08-27T16-59-18-612Z-b6b63896",
-  "source_run_updated_at": "2026-08-27T16:59:19.798Z",
+  "schema_version": "gametestlab.snapshot-provenance.v1",
+  "source_run_id": "2026-08-29T06-11-45-870Z-1ce7e529",
+  "source_run_updated_at": "2026-08-29T06:11:47.063Z",
   "copied_files": [
     "summary.json",
     "cases.json",
