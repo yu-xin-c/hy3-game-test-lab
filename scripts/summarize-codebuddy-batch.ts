@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 function argument(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -33,8 +34,11 @@ const requestedTaskIds = new Set(
     .filter(Boolean)
 );
 const manifest = await readJson(resolve(batchDirectory, "batch-manifest.json"));
+const activeManifest = await readJson(fileURLToPath(new URL("../datasets/game-tasks/manifest.json", import.meta.url)));
+const activeIds = new Set(activeManifest.tasks.map((task: Record<string, any>) => String(task.id)));
 const tasks = (manifest.tasks as Array<Record<string, any>>).filter(
-  (task) => requestedTaskIds.size === 0 || requestedTaskIds.has(String(task.id))
+  (task) => activeIds.has(String(task.id)) &&
+    (requestedTaskIds.size === 0 || requestedTaskIds.has(String(task.id)))
 );
 const taskSummaries: Array<Record<string, any>> = [];
 
@@ -138,7 +142,10 @@ const summary = {
   batch_id: manifest.batch_id,
   generated_at: new Date().toISOString(),
   scoring_status: "provisional_requires_oracle_review",
-  prepared_tasks: (manifest.tasks as unknown[]).length,
+  active_task_set_version: activeManifest.version,
+  prepared_tasks: (manifest.tasks as Array<Record<string, any>>).filter((task) => activeIds.has(String(task.id))).length,
+  original_batch_tasks: manifest.tasks.length,
+  excluded_task_ids: manifest.tasks.filter((task: Record<string, any>) => !activeIds.has(String(task.id))).map((task: Record<string, any>) => task.id),
   evaluated_tasks: taskSummaries.length,
   totals,
   rates: {
@@ -157,6 +164,7 @@ const markdown = [
   `# ${manifest.batch_id} 评测结果`,
   "",
   `已准备 ${summary.prepared_tasks} 道题，已评测 ${summary.evaluated_tasks} 道。每道题只生成一次。`,
+  `按当前任务集统计；历史批次中已移除的 ${summary.excluded_task_ids.length} 道题不计入下表，旧游戏与证据仍保留。`,
   "以下是原始断言计数，含待复核的文案误报；未检查某层的路径也包含在原始分母中。不能直接用作正式模型分数。",
   "先看[结果复核](review.md)，再看下表。成功、失败、重开路径混合计数，终局断言通过率不等于游戏通关率。",
   "",

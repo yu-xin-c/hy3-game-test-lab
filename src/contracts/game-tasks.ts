@@ -127,7 +127,7 @@ export const GameTaskSetManifestSchema = z.object({
   version: z.string().min(1),
   description: z.string().min(1),
   contract_file: z.literal("GAME_CONTRACT.md"),
-  tasks: z.array(TaskManifestEntrySchema).length(106)
+  tasks: z.array(TaskManifestEntrySchema).min(1)
 }).strict().superRefine((manifest, context) => {
   const ids = new Set<string>();
   const directories = new Set<string>();

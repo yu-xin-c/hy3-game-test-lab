@@ -231,8 +231,8 @@ async function main(): Promise<void> {
     for (const feature of entry.features) featureCounts[feature] += 1;
   }
 
-  const expectedCategories = { action: 36, puzzle: 27, creative: 17, simulation: 16, education: 10 };
-  const expectedFeatures = { "3d": 15, camera: 10, multiplayer: 15, persistence: 14, leaderboard: 11, touch: 6 };
+  const expectedCategories = { action: 31, puzzle: 26, creative: 13, simulation: 16, education: 10 };
+  const expectedFeatures = { "3d": 13, camera: 0, multiplayer: 15, persistence: 13, leaderboard: 10, touch: 6 };
   if (JSON.stringify(categoryCounts) !== JSON.stringify(expectedCategories)) {
     throw new Error(`category distribution mismatch: ${JSON.stringify(categoryCounts)}`);
   }

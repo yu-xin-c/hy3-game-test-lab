@@ -41,7 +41,7 @@ pnpm run demo:serve
 
 ## 接入一个游戏
 
-现有 pilot 从 `case.json` 读取游戏入口、控件、界面 selector、测试路径和检查点。正式任务中的生成游戏使用 `game.manifest.json`；adapter 会把它和该题已经冻结的试玩步骤、正确结果接到同一套 Chromium runner。自动试玩始终通过页面上的真实键鼠、触控或摄像头输入完成，观察桥只负责重置游戏和读取证据。
+现有 pilot 从 `case.json` 读取游戏入口、控件、界面 selector、测试路径和检查点。正式任务中的生成游戏使用 `game.manifest.json`；adapter 会把它和该题已经冻结的试玩步骤、正确结果接到同一套 Chromium runner。当前任务使用页面上的真实键鼠或触控输入，观察桥只负责重置游戏和读取证据；摄像头类已移出评测范围。
 
 测试路径和检查点可以直接编写；如果手头有需求文档或 PRD，也可以把它作为生成测试建议的可选输入：
 
@@ -59,7 +59,7 @@ pnpm run hy3:plan -- \
 pnpm run prepare:codebuddy
 pnpm run eval:task -- \
   --task target-rush \
-  --game-dir ../codebuddy-hy3-experiments/20260902-formal-106/generated/target-rush/files \
+  --game-dir ../codebuddy-hy3-experiments/20260912-formal-96-v3/generated/target-rush/files \
   --replays 3 \
   --generator codebuddy-hy3
 ```
@@ -77,9 +77,9 @@ pnpm run eval:task -- \
 
 当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 98 项 Vitest/jsdom 测试和 20 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
 
-[完整游戏任务集](datasets/game-tasks/README.md) 已准备 106 个独立游戏，玩法数量对齐 36/27/17/16/10，3D、摄像头、多人、存档、排行榜和触控题也按原跑批比例覆盖。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
+[完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 
-首批已用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏，每款只生成一次，完成 48 次路径重放。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改，游戏、逐步记录和截图均已保存。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。106 题尚未全部生成和评分，当前结果不作为正式模型分数。
+首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。96 题尚未全部生成和评分，当前结果不作为正式模型分数。
 
 ## 仓库结构
 
@@ -88,7 +88,7 @@ src/runtime/       Chromium 自动试玩与证据采集
 src/evaluation/    分层判定、首错定位、指标和视觉判断
 src/contracts/     游戏、测试和结果的数据结构
 src/agents/        Hy3 测试规划与样本生成
-datasets/          106 道正式任务、Pilot case 和 private oracle
+datasets/          96 道当前任务、已移除题目归档、Pilot case 和 private oracle
 scripts/           数据构造、CodeBuddy 准备和正式评测命令
 tests/             Vitest、jsdom 和 Playwright 测试
 docs/              方案、方法、数据与安全说明

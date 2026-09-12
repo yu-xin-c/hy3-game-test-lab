@@ -1,8 +1,8 @@
 {
   "schema_version": "gametestlab.game-task-set.v1",
   "name": "GameTestLab Complete Game Tasks",
-  "version": "2026-09-12.1",
-  "description": "106 complete browser-game generation tasks matched to the supplied gameplay and feature distribution.",
+  "version": "2026-09-12.2",
+  "description": "96 browser-game generation tasks; 10 camera tasks excluded from the original 106-task distribution.",
   "contract_file": "GAME_CONTRACT.md",
   "tasks": [
     {
@@ -77,15 +77,6 @@
       ]
     },
     {
-      "id": "gesture-goalie",
-      "directory": "gesture-goalie",
-      "difficulty": "D3",
-      "category": "action",
-      "features": [
-        "camera"
-      ]
-    },
-    {
       "id": "room-five-in-row",
       "directory": "room-five-in-row",
       "difficulty": "D2",
@@ -110,15 +101,6 @@
       "category": "creative",
       "features": [
         "3d"
-      ]
-    },
-    {
-      "id": "gesture-fireworks",
-      "directory": "gesture-fireworks",
-      "difficulty": "D3",
-      "category": "creative",
-      "features": [
-        "camera"
       ]
     },
     {
@@ -248,24 +230,6 @@
       ]
     },
     {
-      "id": "drone-dodge",
-      "directory": "drone-dodge",
-      "difficulty": "D3",
-      "category": "action",
-      "features": [
-        "camera"
-      ]
-    },
-    {
-      "id": "pose-fighter",
-      "directory": "pose-fighter",
-      "difficulty": "D3",
-      "category": "action",
-      "features": [
-        "camera"
-      ]
-    },
-    {
       "id": "volcano-survival",
       "directory": "volcano-survival",
       "difficulty": "D2",
@@ -350,15 +314,6 @@
       ]
     },
     {
-      "id": "archery-range",
-      "directory": "archery-range",
-      "difficulty": "D3",
-      "category": "action",
-      "features": [
-        "camera"
-      ]
-    },
-    {
       "id": "robot-brawl",
       "directory": "robot-brawl",
       "difficulty": "D3",
@@ -387,16 +342,6 @@
       "difficulty": "D2",
       "category": "action",
       "features": []
-    },
-    {
-      "id": "basketball-shot",
-      "directory": "basketball-shot",
-      "difficulty": "D3",
-      "category": "action",
-      "features": [
-        "camera",
-        "leaderboard"
-      ]
     },
     {
       "id": "ninja-slice",
@@ -486,16 +431,6 @@
       "difficulty": "D2",
       "category": "puzzle",
       "features": []
-    },
-    {
-      "id": "cube-rotation",
-      "directory": "cube-rotation",
-      "difficulty": "D3",
-      "category": "puzzle",
-      "features": [
-        "3d",
-        "camera"
-      ]
     },
     {
       "id": "logic-circuit",
@@ -597,16 +532,6 @@
       ]
     },
     {
-      "id": "hand-particle-sculpture",
-      "directory": "hand-particle-sculpture",
-      "difficulty": "D3",
-      "category": "creative",
-      "features": [
-        "3d",
-        "camera"
-      ]
-    },
-    {
       "id": "collaborative-mural",
       "directory": "collaborative-mural",
       "difficulty": "D3",
@@ -654,16 +579,6 @@
       ]
     },
     {
-      "id": "face-mask-studio",
-      "directory": "face-mask-studio",
-      "difficulty": "D3",
-      "category": "creative",
-      "features": [
-        "camera",
-        "persistence"
-      ]
-    },
-    {
       "id": "zen-garden",
       "directory": "zen-garden",
       "difficulty": "D3",
@@ -697,15 +612,6 @@
       "features": [
         "3d",
         "multiplayer"
-      ]
-    },
-    {
-      "id": "shadow-puppet",
-      "directory": "shadow-puppet",
-      "difficulty": "D3",
-      "category": "creative",
-      "features": [
-        "camera"
       ]
     },
     {

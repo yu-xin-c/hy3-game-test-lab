@@ -891,7 +891,9 @@ function catalogTask(entry: CatalogEntry, index: number): TaskConfig {
   };
 }
 
-const tasks: TaskConfig[] = [...coreTasks, ...catalog.map(catalogTask)];
+// Camera tasks are retained only as historical definitions, not active tasks.
+const tasks: TaskConfig[] = [...coreTasks, ...catalog.map(catalogTask)]
+  .filter((task) => !task.features.includes("camera"));
 
 const existingTaskEntries = [
   { id: "target-rush", directory: "target-rush", difficulty: "D1" as const, category: "action" as const, features: [] as Feature[] },
@@ -1062,8 +1064,8 @@ const contractPath = resolve(taskRoot, "GAME_CONTRACT.md");
 const manifest = GameTaskSetManifestSchema.parse({
   schema_version: "gametestlab.game-task-set.v1",
   name: "GameTestLab Complete Game Tasks",
-  version: "2026-09-12.1",
-  description: "106 complete browser-game generation tasks matched to the supplied gameplay and feature distribution.",
+  version: "2026-09-12.2",
+  description: "96 browser-game generation tasks; 10 camera tasks excluded from the original 106-task distribution.",
   contract_file: "GAME_CONTRACT.md",
   tasks: [
     ...existingTaskEntries,

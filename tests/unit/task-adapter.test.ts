@@ -17,12 +17,12 @@ import {
   assertGameManifestMatchesTask
 } from "../../src/contracts/task-adapter";
 
-async function loadTask(id: string): Promise<{
+async function loadTask(id: string, archived = false): Promise<{
   plan: GameTaskPlan;
   oracle: GameTaskOracle;
 }> {
   const directory = fileURLToPath(
-    new URL(`../../datasets/game-tasks/${id}/`, import.meta.url)
+    new URL(`../../datasets/${archived ? "archived-camera-tasks" : "game-tasks"}/${id}/`, import.meta.url)
   );
   const [planText, oracleText] = await Promise.all([
     readFile(`${directory}test-plan.json`, "utf8"),
@@ -95,7 +95,7 @@ describe("formal game task adapter", () => {
   });
 
   it("preserves camera fixtures and multiplayer actors", async () => {
-    const cameraTask = await loadTask("gesture-goalie");
+    const cameraTask = await loadTask("gesture-goalie", true);
     const cameraAdapted = adaptGameTask(
       cameraTask.plan,
       cameraTask.oracle,

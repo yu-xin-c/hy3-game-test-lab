@@ -13,7 +13,7 @@ function argument(name: string): string | undefined {
   return value;
 }
 
-const batchId = argument("--batch-id") ?? "20260912-formal-106-v2";
+const batchId = argument("--batch-id") ?? "20260912-formal-96-v3";
 if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(batchId)) {
   throw new Error("Unsafe --batch-id");
 }
