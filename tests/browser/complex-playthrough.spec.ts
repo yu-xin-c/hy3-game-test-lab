@@ -1,4 +1,6 @@
 import { expect, test } from "@playwright/test";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import { PublicCaseSchema } from "../../src/contracts/schemas";
 import { runPlaythrough } from "../../src/runtime/playthrough";
 
@@ -172,4 +174,26 @@ test("camera actions switch the fake stream and advance virtual time", async ({ 
     state: { status: "playing", progress: 1, score: 10, last_action: "blue" },
     event_types: expect.arrayContaining(["camera_frame_detected", "stage_completed"])
   });
+
+  // Formal batches use tsx, whose function-name transform differs from the
+  // Playwright test runner. Exercise that execution path too.
+  const script = `
+    import { chromium } from '@playwright/test';
+    import { runPlaythrough } from './src/runtime/playthrough.ts';
+    const executablePath = process.env.GAMETESTLAB_CHROMIUM_EXECUTABLE;
+    const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+    try {
+      const context = await browser.newContext();
+      await context.route('**/examples/complex-camera/index.html**', route =>
+        route.fulfill({ status: 200, contentType: 'text/html', body: ${JSON.stringify(cameraGame)} }));
+      const page = await context.newPage();
+      const result = await runPlaythrough({ page, baseURL: ${JSON.stringify(baseURL)},
+        publicCase: ${JSON.stringify(publicCase)}, scenarioId: 'camera', fixtureVariant: 'formal' });
+      console.log(JSON.stringify({ diagnostics: result.diagnostics, state: result.observations[0]?.state }));
+    } finally { await browser.close(); }
+  `;
+  const cli = await promisify(execFile)(process.execPath, ["--import", "tsx", "--input-type=module", "-e", script], {
+    timeout: 20_000
+  });
+  expect(JSON.parse(cli.stdout)).toMatchObject({ diagnostics: [], state: { progress: 1, score: 10 } });
 });

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
@@ -11,6 +12,15 @@ function argument(name: string): string | undefined {
 
 async function readJson(path: string): Promise<Record<string, any>> {
   return JSON.parse(await readFile(path, "utf8")) as Record<string, any>;
+}
+
+function canonical(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+  if (value !== null && typeof value === "object") {
+    return `{${Object.entries(value).sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, item]) => `${JSON.stringify(key)}:${canonical(item)}`).join(",")}}`;
+  }
+  return JSON.stringify(value) ?? "null";
 }
 
 const batchDirectory = resolve(argument("--batch-dir") ?? "");
@@ -33,8 +43,9 @@ for (const task of tasks) {
   let generation: Record<string, any>;
   try {
     generation = await readJson(generationPath);
-  } catch {
-    continue;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
+    throw error;
   }
   const resultPath = resolve(dirname(generationPath), String(generation.result_file));
   const result = await readJson(resultPath);
@@ -62,8 +73,26 @@ for (const task of tasks) {
     },
     aggregate: result.aggregate ?? null,
     contract_findings: result.contract?.findings?.length ?? 0,
+    gates: Object.fromEntries(["L1", "L2", "L3"].map((layer) => {
+      const counts: Record<string, number> = {};
+      for (const scenario of scenarios) {
+        const status = scenario.evaluation?.gates?.[layer] ?? "unverified";
+        counts[status] = (counts[status] ?? 0) + 1;
+      }
+      return [layer, counts];
+    })),
+    input_hashes: result.input_hashes,
+    source_result: generation.result_file,
     scenarios: [...scenarioGroups].map(([id, entries]) => {
       const evaluations = entries.map((entry) => entry.evaluation ?? {});
+      const stateHashes = entries.map((entry) => createHash("sha256")
+        .update(canonical((entry.observations ?? []).map((observation: Record<string, any>) => ({
+          action_index: observation.action_index,
+          checkpoint_id: observation.checkpoint_id,
+          state: observation.state,
+          event_types: observation.event_types
+        }))))
+        .digest("hex"));
       return {
         id,
         replays: entries.length,
@@ -72,6 +101,8 @@ for (const task of tasks) {
         lucky_passes: evaluations.filter((entry) => entry.lucky_pass_detected === true).length,
         stable_process: new Set(evaluations.map((entry) => entry.process_correct)).size <= 1,
         stable_final: new Set(evaluations.map((entry) => entry.final_outcome_correct)).size <= 1,
+        checkpoint_state_hashes: stateHashes,
+        stable_checkpoint_states: new Set(stateHashes).size === 1 && entries.length > 1,
         first_failures: [...new Set(evaluations
           .map((entry) => entry.first_failure?.error_type)
           .filter(Boolean))]
@@ -106,6 +137,7 @@ const summary = {
   schema_version: "gametestlab.codebuddy-batch-summary.v1",
   batch_id: manifest.batch_id,
   generated_at: new Date().toISOString(),
+  scoring_status: "provisional_requires_oracle_review",
   prepared_tasks: (manifest.tasks as unknown[]).length,
   evaluated_tasks: taskSummaries.length,
   totals,
@@ -125,6 +157,8 @@ const markdown = [
   `# ${manifest.batch_id} 评测结果`,
   "",
   `已准备 ${summary.prepared_tasks} 道题，已评测 ${summary.evaluated_tasks} 道。每道题只生成一次。`,
+  "以下是原始断言计数，含待复核的文案误报；未检查某层的路径也包含在原始分母中。不能直接用作正式模型分数。",
+  "先看[结果复核](review.md)，再看下表。成功、失败、重开路径混合计数，终局断言通过率不等于游戏通关率。",
   "",
   "| 游戏 | 类型 | 难度 | 过程通过 | 终局通过 | L1 | L2 | L3 | 协议问题 |",
   "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
@@ -136,11 +170,28 @@ const markdown = [
   "",
   `合计：过程 ${summary.rates.process}，终局 ${summary.rates.final}，L1 ${summary.rates.L1}，L2 ${summary.rates.L2}，L3 ${summary.rates.L3}；lucky pass ${totals.lucky_passes} 次。`,
   "",
+  "各层原始状态（通过 / 失败 / 被上游阻断 / 未验证 / 仅观察）：",
+  "",
+  ...taskSummaries.map((task) => `- ${task.id}：` + ["L1", "L2", "L3"].map((layer) => {
+    const counts = task.gates[layer];
+    return `${layer} ${["pass", "fail", "blocked", "unverified", "observed_not_certified"].map((status) => counts[status] ?? 0).join(" / ")}`;
+  }).join("；")),
+  "",
   "复现情况：",
   "",
   ...taskSummaries.flatMap((task) => task.scenarios.map((scenario: Record<string, any>) =>
-    `- ${task.id}/${scenario.id}：过程 ${scenario.process_passes}/${scenario.replays}，终局 ${scenario.final_passes}/${scenario.replays}${scenario.stable_process && scenario.stable_final ? "，三次一致" : "，三次不完全一致"}`
-  ))
+    `- ${task.id}/${scenario.id}：过程 ${scenario.process_passes}/${scenario.replays}，终局 ${scenario.final_passes}/${scenario.replays}${scenario.stable_process && scenario.stable_final ? "，通过/失败结果一致" : "，通过/失败结果不一致"}；检查点状态${scenario.stable_checkpoint_states ? "一致" : "未证实一致"}`
+  )),
+  "",
+  "## 复跑",
+  "",
+  "[证据目录](evidence/index.json)包含未人工修改的生成游戏、题面、生成记录、逐步状态和截图。安装依赖与 Chromium 后，在仓库根目录运行：",
+  "",
+  "```bash",
+  "pnpm run eval:task -- --task science-lab --game-dir results/codebuddy-hy3-pilot/evidence/science-lab/game --replays 3 --generator codebuddy-hy3",
+  "```",
+  "",
+  "这会重跑冻结断言，包括已知误报。诊断对照另存，不覆盖原始评分记录。"
 ];
 await writeFile(resolve(outputDirectory, "README.md"), `${markdown.join("\n")}\n`, "utf8");
 console.log(`Summarized ${taskSummaries.length} evaluated tasks: ${resolve(outputDirectory, "README.md")}`);

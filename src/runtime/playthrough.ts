@@ -265,13 +265,15 @@ async function performAction(
 }
 
 async function installCameraFixture(page: Page): Promise<void> {
-  await page.addInitScript(() => {
+  // Keep injected code literal: tsx adds closure-external __name helpers to
+  // nested functions, which are unavailable when serialized into the page.
+  await page.addInitScript({ content: `(() => {
     const canvas = document.createElement("canvas");
     canvas.width = 320;
     canvas.height = 240;
     const context = canvas.getContext("2d");
     if (!context) throw new Error("camera fixture needs Canvas2D");
-    const drawFrame = (id: string) => {
+    const drawFrame = (id) => {
       context.fillStyle = "#10141f";
       context.fillRect(0, 0, canvas.width, canvas.height);
       context.lineWidth = 16;
@@ -368,10 +370,8 @@ async function installCameraFixture(page: Page): Promise<void> {
       configurable: true,
       value: async () => stream
     });
-    (window as unknown as {
-      __GAMETESTLAB_CAMERA_FIXTURE__: { setFrame(id: string): void };
-    }).__GAMETESTLAB_CAMERA_FIXTURE__ = { setFrame: drawFrame };
-  });
+    window.__GAMETESTLAB_CAMERA_FIXTURE__ = { setFrame: drawFrame };
+  })();` });
 }
 
 async function flushBrowserTasks(pages: Page[]): Promise<void> {
