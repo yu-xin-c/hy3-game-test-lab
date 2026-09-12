@@ -91,14 +91,28 @@ function checkpointFailures(
   }
   for (const [path, expected] of Object.entries(oracle.expected.state)) {
     const actual = getPath(observation.state, path);
-    if (!isDeepStrictEqual(actual, expected)) {
+    const tolerance = oracle.expected.state_tolerances?.[path];
+    const matches = tolerance === undefined ? isDeepStrictEqual(actual, expected)
+      : typeof actual === "number" && Number.isFinite(actual) && typeof expected === "number" &&
+        Math.abs(actual - expected) <= tolerance + Number.EPSILON * Math.max(1, Math.abs(actual), Math.abs(expected)) * 4;
+    if (!matches) {
       evidenceDiffs.push({
         channel: "state",
         path,
-        expected,
+        expected: tolerance === undefined ? expected : { value: expected, absolute_tolerance: tolerance },
         actual: reportableActual(actual)
       });
     }
+  }
+  for (const [path, rule] of Object.entries(oracle.expected.ui_text ?? {})) {
+    const actual = getPath(observation.ui, path);
+    const normalize = (text: string) => text.trim().replace(/\s+/g, " ");
+    const matches = typeof actual === "string" && (rule.mode === "nonempty"
+      ? normalize(actual).length > 0
+      : rule.ignore_case
+        ? normalize(actual).toLowerCase() === normalize(rule.value).toLowerCase()
+        : normalize(actual) === normalize(rule.value));
+    if (!matches) evidenceDiffs.push({ channel: "ui", path, expected: rule, actual: reportableActual(actual) });
   }
   for (const [path, expected] of Object.entries(oracle.expected.ui)) {
     const actual = getPath(observation.ui, path);
@@ -112,7 +126,9 @@ function checkpointFailures(
     }
   }
   for (const eventType of oracle.expected.event_types) {
-    if (!observation.event_types.includes(eventType)) {
+    const types = oracle.expected.event_scope === "since_previous_checkpoint"
+      ? observation.event_types_since_checkpoint ?? [] : observation.event_types;
+    if (!types.includes(eventType)) {
       evidenceDiffs.push({
         channel: "event",
         path: eventType,

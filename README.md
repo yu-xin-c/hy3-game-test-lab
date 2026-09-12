@@ -4,7 +4,7 @@ GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 
 
 > 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。不训练、不微调，也不发布模型权重；自建校准集未调用模型，真实游戏实验使用 CodeBuddy CN 的 Hy3 High。
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [校准集结果](results/sample/README.md) · [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)
+[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [校准集结果](results/sample/README.md) · [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md) · [新版规则复核](results/checking-policy-v2/README.md)
 
 ## 怎么检测游戏
 
@@ -59,7 +59,7 @@ pnpm run hy3:plan -- \
 pnpm run prepare:codebuddy
 pnpm run eval:task -- \
   --task target-rush \
-  --game-dir ../codebuddy-hy3-experiments/20260912-formal-96-v3/generated/target-rush/files \
+  --game-dir ../codebuddy-hy3-experiments/20260912-formal-96-v4/generated/target-rush/files \
   --replays 3 \
   --generator codebuddy-hy3
 ```
@@ -75,11 +75,13 @@ pnpm run eval:task -- \
 
 ## 现在做到哪了
 
-当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 98 项 Vitest/jsdom 测试和 20 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
+当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 104 项 Vitest/jsdom 测试和 21 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
 
 [完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 
 首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。96 题尚未全部生成和评分，当前结果不作为正式模型分数。
+
+新规则 `2026-09-12.3` 补齐了各路径的启动检查、检查点间事件记录、终局后 32ms 的画面检查和两条跳步骤测试。它不再强制 HUD 使用隐藏的固定文案；目前 L3 基础检查只确认文字状态、非空及可见性，数值含义和画面质量仍需另测。已有游戏的新规则复核单独保存，不与旧分数合并。
 
 ## 仓库结构
 

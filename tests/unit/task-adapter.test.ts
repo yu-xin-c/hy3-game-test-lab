@@ -94,6 +94,16 @@ describe("formal game task adapter", () => {
     expect(adapted.scenarioOracles).toHaveLength(3);
   });
 
+  it("accepts equivalent quotes in HUD attribute selectors", async () => {
+    const task = await loadTask("key-door-escape");
+    const manifest = matchingManifest(task.plan, task.oracle);
+    manifest.hud_selectors.score = task.plan.selectors.score.replaceAll("'", '"');
+    manifest.hud_selectors.status = task.plan.selectors.status.replaceAll("'", '"');
+    expect(() => assertGameManifestMatchesTask(task.plan, task.oracle, manifest)).not.toThrow();
+    manifest.hud_selectors.score = "#unrelated-hud";
+    expect(() => assertGameManifestMatchesTask(task.plan, task.oracle, manifest)).toThrow();
+  });
+
   it("preserves camera fixtures and multiplayer actors", async () => {
     const cameraTask = await loadTask("gesture-goalie", true);
     const cameraAdapted = adaptGameTask(

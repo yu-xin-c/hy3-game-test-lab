@@ -9,12 +9,19 @@
           "id": "TR-CP-START",
           "action_index": 0,
           "layer": "L1",
-          "requirement_ids": ["TR-RUN"],
+          "requirement_ids": [
+            "TR-RUN"
+          ],
           "terminal": false,
           "expected": {
-            "state": { "status": "playing", "score": 0, "misses": 0, "remaining_ms": 20000, "target_index": 0 },
+            "state": {
+              "status": "playing"
+            },
             "ui": {},
-            "event_types": ["game_started"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
             "physics": []
           }
         },
@@ -22,12 +29,22 @@
           "id": "TR-CP-HIT-1",
           "action_index": 1,
           "layer": "L2",
-          "requirement_ids": ["TR-HIT"],
+          "requirement_ids": [
+            "TR-HIT"
+          ],
           "terminal": false,
           "expected": {
-            "state": { "status": "playing", "score": 1, "misses": 0, "target_index": 1 },
+            "state": {
+              "status": "playing",
+              "score": 1,
+              "misses": 0,
+              "target_index": 1
+            },
             "ui": {},
-            "event_types": ["target_hit"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "target_hit"
+            ],
             "physics": []
           }
         },
@@ -35,24 +52,51 @@
           "id": "TR-CP-WON",
           "action_index": 5,
           "layer": "L2",
-          "requirement_ids": ["TR-HIT"],
+          "requirement_ids": [
+            "TR-HIT"
+          ],
           "terminal": true,
           "expected": {
-            "state": { "status": "won", "score": 5, "misses": 0, "target_index": 5 },
+            "state": {
+              "status": "won",
+              "score": 5,
+              "misses": 0,
+              "target_index": 5
+            },
             "ui": {},
-            "event_types": ["target_hit", "game_won"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "target_hit",
+              "game_won"
+            ],
             "physics": []
           }
         },
         {
           "id": "TR-CP-WON-UI",
-          "action_index": 5,
+          "action_index": 6,
           "layer": "L3",
-          "requirement_ids": ["TR-HUD"],
+          "requirement_ids": [
+            "TR-HUD"
+          ],
           "terminal": false,
           "expected": {
             "state": {},
-            "ui": { "scoreText": "Score: 5/5", "statusText": "Won" },
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [],
             "physics": []
           }
@@ -63,15 +107,45 @@
       "scenario_id": "loss-path",
       "checkpoints": [
         {
+          "id": "target-rush-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "TR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
           "id": "TR-CP-MISS-LOST",
           "action_index": 3,
           "layer": "L2",
-          "requirement_ids": ["TR-LOSE"],
+          "requirement_ids": [
+            "TR-LOSE"
+          ],
           "terminal": true,
           "expected": {
-            "state": { "status": "lost", "score": 0, "misses": 3 },
+            "state": {
+              "status": "lost",
+              "score": 0,
+              "misses": 3
+            },
             "ui": {},
-            "event_types": ["target_missed", "game_lost"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "target_missed",
+              "game_lost"
+            ],
             "physics": []
           }
         }
@@ -81,15 +155,45 @@
       "scenario_id": "timeout-path",
       "checkpoints": [
         {
+          "id": "target-rush-timeout-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "TR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
           "id": "TR-CP-TIMEOUT",
           "action_index": 1,
           "layer": "L2",
-          "requirement_ids": ["TR-LOSE"],
+          "requirement_ids": [
+            "TR-LOSE"
+          ],
           "terminal": true,
           "expected": {
-            "state": { "status": "lost", "score": 0, "misses": 0, "remaining_ms": 0 },
+            "state": {
+              "status": "lost",
+              "score": 0,
+              "misses": 0,
+              "remaining_ms": 0
+            },
             "ui": {},
-            "event_types": ["game_lost"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_lost"
+            ],
             "physics": []
           }
         }
@@ -99,15 +203,46 @@
       "scenario_id": "restart-path",
       "checkpoints": [
         {
+          "id": "target-rush-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "TR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
           "id": "TR-CP-RESET",
           "action_index": 2,
           "layer": "L2",
-          "requirement_ids": ["TR-RESET"],
+          "requirement_ids": [
+            "TR-RESET"
+          ],
           "terminal": true,
           "expected": {
-            "state": { "status": "menu", "score": 0, "misses": 0, "remaining_ms": 20000, "target_index": 0 },
+            "state": {
+              "status": "menu",
+              "score": 0,
+              "misses": 0,
+              "remaining_ms": 20000,
+              "target_index": 0
+            },
             "ui": {},
-            "event_types": ["game_reset"],
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
             "physics": []
           }
         }

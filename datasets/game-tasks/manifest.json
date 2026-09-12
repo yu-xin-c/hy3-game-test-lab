@@ -1,7 +1,7 @@
 {
   "schema_version": "gametestlab.game-task-set.v1",
   "name": "GameTestLab Complete Game Tasks",
-  "version": "2026-09-12.2",
+  "version": "2026-09-12.3",
   "description": "96 browser-game generation tasks; 10 camera tasks excluded from the original 106-task distribution.",
   "contract_file": "GAME_CONTRACT.md",
   "tasks": [

@@ -1,0 +1,51 @@
+{
+  "evaluation_context": "retrospective_diagnostic",
+  "checking_policy_version": "2026-09-12.3",
+  "generated_games_modified": false,
+  "tasks": [
+    {
+      "task_id": "target-rush",
+      "game_sha256": "fdfa6cfda19dc14a51c6d19be4c745b31ebc280e242263ff09d6c01e4cf2bd51",
+      "old_process_passes": 5,
+      "old_runs": 12,
+      "revised_common_process_passes": 6,
+      "revised_common_runs": 12,
+      "additional_runs": 0,
+      "additional_failures": 0,
+      "source_result": "target-rush/result.json"
+    },
+    {
+      "task_id": "key-door-escape",
+      "game_sha256": "4c93320923817d3cc0699dd63a15e789d4df09e4bb8234306fa15db0a7d4731c",
+      "old_process_passes": 6,
+      "old_runs": 9,
+      "revised_common_process_passes": 9,
+      "revised_common_runs": 9,
+      "additional_runs": 0,
+      "additional_failures": 0,
+      "source_result": "key-door-escape/result.json"
+    },
+    {
+      "task_id": "mini-farm",
+      "game_sha256": "5f4f0533b476289d1615086b2a0891731a2378fcf6f146d7578e0e28393957a1",
+      "old_process_passes": 0,
+      "old_runs": 9,
+      "revised_common_process_passes": 6,
+      "revised_common_runs": 9,
+      "additional_runs": 0,
+      "additional_failures": 0,
+      "source_result": "mini-farm/result.json"
+    },
+    {
+      "task_id": "science-lab",
+      "game_sha256": "8bda54b63042932096035facdb91ce1d525b7221c681993bb17a76e968216786",
+      "old_process_passes": 3,
+      "old_runs": 9,
+      "revised_common_process_passes": 9,
+      "revised_common_runs": 9,
+      "additional_runs": 6,
+      "additional_failures": 6,
+      "source_result": "science-lab/result.json"
+    }
+  ]
+}

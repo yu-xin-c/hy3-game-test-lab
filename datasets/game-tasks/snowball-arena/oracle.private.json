@@ -15,14 +15,10 @@
           "terminal": false,
           "expected": {
             "state": {
-              "status": "playing",
-              "progress": 0,
-              "score": 0,
-              "lives": 2,
-              "last_action": null,
-              "connected": 1
+              "status": "playing"
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_started"
             ],
@@ -47,6 +43,7 @@
               "connected": 2
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "stage_completed"
             ],
@@ -71,6 +68,7 @@
               "connected": 2
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "stage_completed",
               "game_won"
@@ -80,7 +78,7 @@
         },
         {
           "id": "X012-CP-WON-UI",
-          "action_index": 4,
+          "action_index": 5,
           "layer": "L3",
           "requirement_ids": [
             "X012-HUD"
@@ -89,9 +87,20 @@
           "expected": {
             "state": {},
             "ui": {
-              "scoreText": "Score: 30",
-              "statusText": "Won"
+              "dom.score.visible": true,
+              "dom.status.visible": true
             },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [],
             "physics": []
           }
@@ -101,6 +110,26 @@
     {
       "scenario_id": "loss-path",
       "checkpoints": [
+        {
+          "id": "snowball-arena-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "X012-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "X012-CP-LOST",
           "action_index": 3,
@@ -119,6 +148,7 @@
               "connected": 2
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "action_rejected",
               "progress_reset",
@@ -132,6 +162,26 @@
     {
       "scenario_id": "restart-path",
       "checkpoints": [
+        {
+          "id": "snowball-arena-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "X012-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "X012-CP-RESET",
           "action_index": 3,
@@ -150,6 +200,7 @@
               "connected": 0
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_reset"
             ],

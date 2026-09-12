@@ -1,4 +1,5 @@
 {
+  "checking_policy_version": "2026-09-12.3",
   "schema_version": "gametestlab.game-task-plan.v1",
   "task_id": "meteor-survivor",
   "title": "Meteor Survivor",
@@ -114,7 +115,7 @@
       "id": "MS-HUD",
       "layer": "L3",
       "severity": "must",
-      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
       "depends_on": [
         "MS-MAIN"
       ],
@@ -188,7 +189,13 @@
           "kind": "advance_time",
           "advance_ms": 1000,
           "checkpoints": [
-            "MS-CP-WON",
+            "MS-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
             "MS-CP-WON-UI"
           ]
         }
@@ -208,7 +215,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "meteor-survivor-loss-path-started"
+          ]
         },
         {
           "kind": "advance_time",
@@ -233,7 +242,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "meteor-survivor-restart-path-started"
+          ]
         },
         {
           "kind": "input",

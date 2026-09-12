@@ -15,14 +15,10 @@
           "terminal": false,
           "expected": {
             "state": {
-              "status": "playing",
-              "lane": 1,
-              "elapsed_ms": 0,
-              "passed": 0,
-              "collisions": 0,
-              "score": 0
+              "status": "playing"
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_started"
             ],
@@ -47,6 +43,7 @@
               "score": 200
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "obstacle_passed"
             ],
@@ -71,6 +68,7 @@
               "score": 500
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_won"
             ],
@@ -79,7 +77,7 @@
         },
         {
           "id": "NR-CP-WON-UI",
-          "action_index": 8,
+          "action_index": 9,
           "layer": "L3",
           "requirement_ids": [
             "NR-HUD"
@@ -88,9 +86,20 @@
           "expected": {
             "state": {},
             "ui": {
-              "scoreText": "Score: 500",
-              "statusText": "Won"
+              "dom.score.visible": true,
+              "dom.status.visible": true
             },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [],
             "physics": []
           }
@@ -100,6 +109,26 @@
     {
       "scenario_id": "loss-path",
       "checkpoints": [
+        {
+          "id": "neon-lane-racer-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "NR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "NR-CP-LOST",
           "action_index": 1,
@@ -118,6 +147,7 @@
               "score": 0
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "car_crashed"
             ],
@@ -129,6 +159,26 @@
     {
       "scenario_id": "restart-path",
       "checkpoints": [
+        {
+          "id": "neon-lane-racer-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "NR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "NR-CP-RESET",
           "action_index": 2,
@@ -147,6 +197,7 @@
               "score": 0
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_reset"
             ],

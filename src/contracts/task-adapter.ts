@@ -11,6 +11,11 @@ function sameValue(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right);
 }
 
+function normalizedSelector(selector: string): string {
+  return selector.trim().replace(/\[([\w-]+)\s*=\s*(['"])([^'"]*)\2\s*\]/g,
+    (_match, name: string, _quote: string, value: string) => `[${name}="${value}"]`);
+}
+
 function expectedStateFields(oracle: GameTaskOracle): Set<string> {
   return new Set(
     oracle.scenarios.flatMap((scenario) =>
@@ -73,7 +78,8 @@ export function assertGameManifestMatchesTask(
   }
 
   for (const key of ["score", "status"] as const) {
-    if (manifest.hud_selectors[key] !== plan.selectors[key]) {
+    const selector = manifest.hud_selectors[key];
+    if (selector === undefined || normalizedSelector(selector) !== normalizedSelector(plan.selectors[key])) {
       errors.push(`hud selector ${key} does not match`);
     }
   }

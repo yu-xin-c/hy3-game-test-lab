@@ -1,4 +1,5 @@
 {
+  "checking_policy_version": "2026-09-12.3",
   "schema_version": "gametestlab.game-task-plan.v1",
   "task_id": "signal-memory",
   "title": "Signal Memory",
@@ -8,58 +9,174 @@
   },
   "category": "puzzle",
   "features": [],
-  "environment": { "pages": 1, "fake_camera": false, "persistent_storage": false },
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
   "surface": "canvas2d",
-  "viewport": { "width": 800, "height": 600 },
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
   "selectors": {
     "score": "[data-testid='score']",
     "status": "[data-testid='status']",
     "surface": "#signal-canvas"
   },
   "controls": [
-    { "action_id": "START", "device": "mouse", "selector": "#start-btn" },
-    { "action_id": "RED", "device": "mouse", "x_ratio": 0.25, "y_ratio": 0.25 },
-    { "action_id": "GREEN", "device": "mouse", "x_ratio": 0.75, "y_ratio": 0.25 },
-    { "action_id": "BLUE", "device": "mouse", "x_ratio": 0.25, "y_ratio": 0.75 },
-    { "action_id": "YELLOW", "device": "mouse", "x_ratio": 0.75, "y_ratio": 0.75 },
-    { "action_id": "RESTART", "device": "mouse", "selector": "#restart-btn" },
-    { "action_id": "RESTART_KEY", "device": "keyboard", "code": "KeyR" }
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "RED",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "x_ratio": 0.25,
+      "y_ratio": 0.25
+    },
+    {
+      "action_id": "GREEN",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "x_ratio": 0.75,
+      "y_ratio": 0.25
+    },
+    {
+      "action_id": "BLUE",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "x_ratio": 0.25,
+      "y_ratio": 0.75
+    },
+    {
+      "action_id": "YELLOW",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "x_ratio": 0.75,
+      "y_ratio": 0.75
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyR"
+    }
   ],
   "requirements": [
     {
-      "id": "SM-RUN", "layer": "L1", "severity": "must",
+      "id": "SM-RUN",
+      "layer": "L1",
+      "severity": "must",
       "statement": "游戏可以进入播放阶段且无运行错误。",
-      "depends_on": [], "observable": ["status", "phase", "runtime"]
+      "depends_on": [],
+      "observable": [
+        "status",
+        "phase",
+        "runtime"
+      ]
     },
     {
-      "id": "SM-PLAYBACK", "layer": "L2", "severity": "must",
+      "id": "SM-PLAYBACK",
+      "layer": "L2",
+      "severity": "must",
       "statement": "序列按固定时间播放，播放期间忽略玩家输入。",
-      "depends_on": ["SM-RUN"], "observable": ["phase", "sequence", "input_ignored"]
+      "depends_on": [
+        "SM-RUN"
+      ],
+      "observable": [
+        "phase",
+        "sequence",
+        "input_ignored"
+      ]
     },
     {
-      "id": "SM-SEQUENCE", "layer": "L2", "severity": "must",
+      "id": "SM-SEQUENCE",
+      "layer": "L2",
+      "severity": "must",
       "statement": "正确输入推进进度、增加分数并进入下一回合。",
-      "depends_on": ["SM-PLAYBACK"], "observable": ["round", "progress", "score", "events"]
+      "depends_on": [
+        "SM-PLAYBACK"
+      ],
+      "observable": [
+        "round",
+        "progress",
+        "score",
+        "events"
+      ]
     },
     {
-      "id": "SM-WRONG", "layer": "L2", "severity": "must",
+      "id": "SM-WRONG",
+      "layer": "L2",
+      "severity": "must",
       "statement": "错误输入扣生命、清空进度并重播当前回合。",
-      "depends_on": ["SM-PLAYBACK"], "observable": ["lives", "progress", "phase", "events"]
+      "depends_on": [
+        "SM-PLAYBACK"
+      ],
+      "observable": [
+        "lives",
+        "progress",
+        "phase",
+        "events"
+      ]
     },
     {
-      "id": "SM-WIN", "layer": "L2", "severity": "must",
+      "id": "SM-WIN",
+      "layer": "L2",
+      "severity": "must",
       "statement": "完成三回合获胜，生命归零失败。",
-      "depends_on": ["SM-SEQUENCE", "SM-WRONG"], "observable": ["status", "score", "events"]
+      "depends_on": [
+        "SM-SEQUENCE",
+        "SM-WRONG"
+      ],
+      "observable": [
+        "status",
+        "score",
+        "events"
+      ]
     },
     {
-      "id": "SM-RESET", "layer": "L2", "severity": "must",
+      "id": "SM-RESET",
+      "layer": "L2",
+      "severity": "must",
       "statement": "重开恢复菜单、生命、分数、回合和序列。",
-      "depends_on": ["SM-RUN"], "observable": ["state", "game_reset"]
+      "depends_on": [
+        "SM-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
     },
     {
-      "id": "SM-HUD", "layer": "L3", "severity": "must",
-      "statement": "HUD 与分数、生命、回合、阶段和状态一致。",
-      "depends_on": ["SM-SEQUENCE"], "observable": ["scoreText", "statusText", "screenshot"]
+      "id": "SM-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
+      "depends_on": [
+        "SM-SEQUENCE"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
     }
   ],
   "scenarios": [
@@ -67,58 +184,230 @@
       "id": "win-path",
       "description": "等待每轮播放完成，正确输入三轮序列。",
       "seed": 505,
-      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
       "steps": [
-        { "kind": "input", "action_id": "START", "checkpoints": ["SM-CP-START"] },
-        { "kind": "advance_time", "advance_ms": 1500, "checkpoints": ["SM-CP-INPUT-1"] },
-        { "kind": "input", "action_id": "RED", "checkpoints": [] },
-        { "kind": "input", "action_id": "BLUE", "checkpoints": ["SM-CP-ROUND-2"] },
-        { "kind": "advance_time", "advance_ms": 2100, "checkpoints": [] },
-        { "kind": "input", "action_id": "GREEN", "checkpoints": [] },
-        { "kind": "input", "action_id": "YELLOW", "checkpoints": [] },
-        { "kind": "input", "action_id": "RED", "checkpoints": ["SM-CP-ROUND-3"] },
-        { "kind": "advance_time", "advance_ms": 2700, "checkpoints": [] },
-        { "kind": "input", "action_id": "BLUE", "checkpoints": [] },
-        { "kind": "input", "action_id": "RED", "checkpoints": [] },
-        { "kind": "input", "action_id": "YELLOW", "checkpoints": [] },
-        { "kind": "input", "action_id": "GREEN", "checkpoints": ["SM-CP-WON", "SM-CP-WON-UI"] }
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-START"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1500,
+          "checkpoints": [
+            "SM-CP-INPUT-1"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BLUE",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-ROUND-2"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 2100,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "GREEN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "YELLOW",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-ROUND-3"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 2700,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BLUE",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "YELLOW",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "GREEN",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
+            "SM-CP-WON-UI"
+          ]
+        }
       ]
     },
     {
       "id": "loss-path",
       "description": "第一回合连续三次输入错误颜色。",
       "seed": 505,
-      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
       "steps": [
-        { "kind": "input", "action_id": "START", "checkpoints": [] },
-        { "kind": "advance_time", "advance_ms": 1500, "checkpoints": [] },
-        { "kind": "input", "action_id": "YELLOW", "checkpoints": ["SM-CP-WRONG-1"] },
-        { "kind": "advance_time", "advance_ms": 1500, "checkpoints": [] },
-        { "kind": "input", "action_id": "YELLOW", "checkpoints": ["SM-CP-WRONG-2"] },
-        { "kind": "advance_time", "advance_ms": 1500, "checkpoints": [] },
-        { "kind": "input", "action_id": "YELLOW", "checkpoints": ["SM-CP-LOST"] }
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "signal-memory-loss-path-started"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1500,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "YELLOW",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-WRONG-1"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1500,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "YELLOW",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-WRONG-2"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1500,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "YELLOW",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-LOST"
+          ]
+        }
       ]
     },
     {
       "id": "restart-path",
       "description": "完成一个正确输入后返回菜单。",
       "seed": 505,
-      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
       "steps": [
-        { "kind": "input", "action_id": "START", "checkpoints": [] },
-        { "kind": "advance_time", "advance_ms": 1500, "checkpoints": [] },
-        { "kind": "input", "action_id": "RED", "checkpoints": [] },
-        { "kind": "input", "action_id": "RESTART_KEY", "checkpoints": ["SM-CP-RESET"] }
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "signal-memory-restart-path-started"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1500,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART_KEY",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-RESET"
+          ]
+        }
       ]
     },
     {
       "id": "playback-input-path",
       "description": "播放序列时立即点击，验证输入被忽略。",
       "seed": 505,
-      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
       "steps": [
-        { "kind": "input", "action_id": "START", "checkpoints": [] },
-        { "kind": "input", "action_id": "RED", "checkpoints": ["SM-CP-IGNORED"] }
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "signal-memory-playback-input-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SM-CP-IGNORED"
+          ]
+        }
       ]
     }
   ]

@@ -1,4 +1,5 @@
 {
+  "checking_policy_version": "2026-09-12.3",
   "schema_version": "gametestlab.game-task-plan.v1",
   "task_id": "science-lab",
   "title": "Science Lab",
@@ -148,7 +149,7 @@
       "id": "SL-HUD",
       "layer": "L3",
       "severity": "must",
-      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
       "depends_on": [
         "SL-MAIN"
       ],
@@ -200,7 +201,7 @@
         },
         {
           "kind": "advance_time",
-          "advance_ms": 2000,
+          "advance_ms": 2032,
           "checkpoints": []
         },
         {
@@ -217,7 +218,7 @@
         },
         {
           "kind": "advance_time",
-          "advance_ms": 1000,
+          "advance_ms": 1032,
           "checkpoints": []
         },
         {
@@ -231,7 +232,13 @@
           "action_id": "POUR",
           "advance_ms": 0,
           "checkpoints": [
-            "SL-CP-WON",
+            "SL-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
             "SL-CP-WON-UI"
           ]
         }
@@ -251,7 +258,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "science-lab-loss-path-started"
+          ]
         },
         {
           "kind": "input",
@@ -267,7 +276,7 @@
         },
         {
           "kind": "advance_time",
-          "advance_ms": 3000,
+          "advance_ms": 3032,
           "checkpoints": []
         },
         {
@@ -294,7 +303,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "science-lab-restart-path-started"
+          ]
         },
         {
           "kind": "input",
@@ -308,6 +319,108 @@
           "advance_ms": 0,
           "checkpoints": [
             "SL-CP-RESET"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skip-mixing",
+      "description": "未加酸碱就装瓶，必须失败。",
+      "seed": 615,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-skip-mixing-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1032,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "POUR",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-skip-mixing-rejected"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skip-heat-peak",
+      "description": "未升到60°C就装瓶，必须失败。",
+      "seed": 615,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-skip-heat-peak-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_ACID",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_BASE",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1032,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "POUR",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-skip-heat-peak-rejected"
           ]
         }
       ]

@@ -359,12 +359,19 @@ export const PhysicsInvariantSchema = z.discriminatedUnion("type", [
 const CheckpointExpectedSchema = z.object({
   state: z.record(z.string(), z.unknown()).default({}),
   ui: z.record(z.string(), z.unknown()).default({}),
+  state_tolerances: z.record(z.string(), z.number().finite().nonnegative()).optional(),
+  ui_text: z.record(z.string(), z.discriminatedUnion("mode", [
+    z.object({ mode: z.literal("equals"), value: z.string(), ignore_case: z.boolean().default(false) }).strict(),
+    z.object({ mode: z.literal("nonempty") }).strict()
+  ])).optional(),
+  event_scope: z.enum(["current_action", "since_previous_checkpoint"]).optional(),
   event_types: z.array(z.string()).default([]),
   physics: z.array(PhysicsInvariantSchema).default([])
 }).strict().superRefine((expected, context) => {
   if (
     Object.keys(expected.state).length === 0 &&
     Object.keys(expected.ui).length === 0 &&
+    Object.keys(expected.ui_text ?? {}).length === 0 &&
     expected.event_types.length === 0 &&
     expected.physics.length === 0
   ) {
@@ -372,6 +379,11 @@ const CheckpointExpectedSchema = z.object({
       code: "custom",
       message: "checkpoint must contain at least one assertion"
     });
+  }
+  for (const path of Object.keys(expected.state_tolerances ?? {})) {
+    if (typeof expected.state[path] !== "number" || !Number.isFinite(expected.state[path])) {
+      context.addIssue({ code: "custom", path: ["state_tolerances", path], message: "tolerance requires a finite numeric state expectation" });
+    }
   }
 });
 
@@ -387,6 +399,7 @@ export const CheckpointExpectationSchema = z.object({
     checkpoint.terminal &&
     Object.keys(checkpoint.expected.state).length === 0 &&
     Object.keys(checkpoint.expected.ui).length === 0 &&
+    Object.keys(checkpoint.expected.ui_text ?? {}).length === 0 &&
     checkpoint.expected.event_types.length === 0
   ) {
     context.addIssue({
@@ -467,6 +480,7 @@ export const ObservationSchema = z.object({
   state: z.record(z.string(), z.unknown()),
   ui: z.record(z.string(), z.unknown()),
   event_types: z.array(z.string()),
+  event_types_since_checkpoint: z.array(z.string()).optional(),
   samples: z.array(TimelineSampleSchema).default([]),
   runtime_errors: z.array(z.string()).default([]),
   runtime_error_evidence: z.array(RuntimeErrorEvidenceSchema).default([]),

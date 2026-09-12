@@ -147,6 +147,37 @@ test("secondary-page input is observed from the primary page", async ({ context,
   });
 });
 
+test("checkpoint event intervals include unchecked actions without leaking across checkpoints or reset", async ({ context, page }) => {
+  await context.route("**/examples/complex-interval/index.html**", route =>
+    route.fulfill({ status: 200, contentType: "text/html", body: persistenceGame }));
+  const publicCase = PublicCaseSchema.parse({
+    ...baseCase("complex-interval", "/examples/complex-interval/index.html"),
+    controls: [
+      { action_id: "START", device: "mouse", selector: "#start" },
+      { action_id: "STAGE", device: "mouse", selector: "#stage" },
+      { action_id: "RESTART", device: "mouse", selector: "#restart" }
+    ],
+    scenarios: [{ id: "interval", description: "event windows", seed: 3,
+      clock: { mode: "virtual", start_time_ms: virtualStartTime, setup_ms: 0 },
+      steps: [
+        { kind: "input", action_id: "START", checkpoints: ["START"] },
+        { kind: "input", action_id: "STAGE" },
+        { kind: "advance_time", advance_ms: 32, checkpoints: ["STAGE", "SAME-STEP"] },
+        { kind: "advance_time", advance_ms: 32, checkpoints: ["EMPTY"] },
+        { kind: "input", action_id: "STAGE" },
+        { kind: "input", action_id: "RESTART", checkpoints: ["RESET"] }
+      ]
+    }]
+  });
+  const result = await runPlaythrough({ page, baseURL, publicCase, scenarioId: "interval", fixtureVariant: "formal" });
+  expect(result.diagnostics).toEqual([]);
+  expect(result.observations[1]?.event_types).toEqual([]);
+  expect(result.observations[1]?.event_types_since_checkpoint).toEqual(["stage_completed", "state_saved"]);
+  expect(result.observations[2]?.event_types_since_checkpoint).toEqual(["stage_completed", "state_saved"]);
+  expect(result.observations[3]?.event_types_since_checkpoint).toEqual([]);
+  expect(result.observations[4]?.event_types_since_checkpoint).toEqual(["game_reset"]);
+});
+
 test("camera actions switch the fake stream and advance virtual time", async ({ context, page }) => {
   await context.route("**/examples/complex-camera/index.html**", (route) =>
     route.fulfill({ status: 200, contentType: "text/html", body: cameraGame })

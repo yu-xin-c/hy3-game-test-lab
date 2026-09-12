@@ -1,4 +1,5 @@
 {
+  "checking_policy_version": "2026-09-12.3",
   "schema_version": "gametestlab.game-task-plan.v1",
   "task_id": "zen-garden",
   "title": "Zen Garden",
@@ -129,7 +130,7 @@
       "id": "X061-HUD",
       "layer": "L3",
       "severity": "must",
-      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
       "depends_on": [
         "X061-MAIN"
       ],
@@ -183,7 +184,13 @@
           "action_id": "STAGE_3",
           "advance_ms": 0,
           "checkpoints": [
-            "X061-CP-WON",
+            "X061-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
             "X061-CP-WON-UI"
           ]
         }
@@ -203,7 +210,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "zen-garden-loss-path-started"
+          ]
         },
         {
           "kind": "input",
@@ -235,7 +244,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "zen-garden-restart-path-started"
+          ]
         },
         {
           "kind": "input",

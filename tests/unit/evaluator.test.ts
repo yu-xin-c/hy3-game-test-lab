@@ -145,6 +145,58 @@ function cleanObservations(): Observation[] {
 }
 
 describe("evaluateCase", () => {
+  it("normalizes only explicitly declared UI text rules", () => {
+    const revised = structuredClone(oracle);
+    revised.checkpoints[4]!.expected.ui = {};
+    revised.checkpoints[4]!.expected.ui_text = { statusText: { mode: "equals", value: "Won", ignore_case: true } };
+    const rows = cleanObservations();
+    rows[4] = observation("CP-FINAL-UI", 2, {}, { statusText: "  WON\n" });
+    expect(evaluateCase(publicCase, revised, rows).process_correct).toBe(true);
+    rows[4] = observation("CP-FINAL-UI", 2, {}, { statusText: "Lost" });
+    expect(evaluateCase(publicCase, revised, rows).process_correct).toBe(false);
+    expect(evaluateCase(publicCase, oracle, rows).process_correct).toBe(false);
+  });
+
+  it("accepts numeric error only within an explicit tolerance", () => {
+    const revised = structuredClone(oracle);
+    revised.checkpoints[3]!.expected.state_tolerances = { score: 0.2 };
+    const rows = cleanObservations();
+    rows[3] = observation("CP-FINAL", 2, { score: 2.1, status: "won" });
+    expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(true);
+    expect(evaluateCase(publicCase, oracle, rows).final_outcome_correct).toBe(false);
+    rows[3] = observation("CP-FINAL", 2, { score: 2.2, status: "won" });
+    expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(true);
+    for (const score of [2.3, "2", null, Number.NaN, Number.POSITIVE_INFINITY]) {
+      rows[3] = observation("CP-FINAL", 2, { score, status: "won" });
+      expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(false);
+    }
+    revised.checkpoints[3]!.expected.state_tolerances = { nonexistent: 1 };
+    expect(PrivateOracleSchema.safeParse(revised).success).toBe(false);
+  });
+
+  it("uses interval events only when requested, never guesses missing evidence", () => {
+    const revised = structuredClone(oracle);
+    revised.checkpoints[3]!.expected.event_types = ["scored"];
+    const rows = cleanObservations();
+    rows[3]!.event_types_since_checkpoint = ["scored"];
+    expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(false);
+    revised.checkpoints[3]!.expected.event_scope = "since_previous_checkpoint";
+    expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(true);
+    delete rows[3]!.event_types_since_checkpoint;
+    expect(evaluateCase(publicCase, revised, rows).final_outcome_correct).toBe(false);
+  });
+
+  it("does not count a blank or absent HUD as visible content", () => {
+    const revised = structuredClone(oracle);
+    revised.checkpoints[4]!.expected.ui = {};
+    revised.checkpoints[4]!.expected.ui_text = { scoreText: { mode: "nonempty" } };
+    for (const text of ["  \n", undefined, 0]) {
+      const rows = cleanObservations();
+      rows[4] = observation("CP-FINAL-UI", 2, {}, { scoreText: text });
+      expect(evaluateCase(publicCase, revised, rows).gates.L3).toBe("fail");
+    }
+  });
+
   it("certifies a complete correct trace through L3", () => {
     const result = evaluateCase(publicCase, oracle, cleanObservations());
 

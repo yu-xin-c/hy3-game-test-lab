@@ -135,7 +135,11 @@ function validateReferences(plan: GameTaskPlan, oracle: GameTaskOracle): void {
       throw new Error(`${plan.task_id}/${scenarioId} needs a terminal checkpoint`);
     }
     if (terminalCheckpoints[0]?.action_index !== scenario.steps.length - 1) {
-      throw new Error(`${plan.task_id}/${scenarioId} terminal checkpoint must be last`);
+      const trailing = scenario.steps.slice(terminalCheckpoints[0]!.action_index + 1);
+      const renderOnly = trailing.length === 1 && trailing[0]?.kind === "advance_time" &&
+        trailing[0].advance_ms === 32 && trailing[0].checkpoints.length > 0 &&
+        trailing[0].checkpoints.every(id => scenarioOracle.checkpoints.some(cp => cp.id === id && cp.layer === "L3"));
+      if (!renderOnly) throw new Error(`${plan.task_id}/${scenarioId} only a 32ms UI observation may follow the terminal checkpoint`);
     }
   }
   assertUnique(allCheckpointIds, `${plan.task_id} checkpoints`);

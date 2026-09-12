@@ -9,6 +9,7 @@ import {
   type GameTaskOracle,
   type GameTaskPlan
 } from "../src/contracts/game-tasks";
+import { reviseTaskChecks } from "../src/contracts/revise-task-checks";
 
 const repositoryRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const taskRoot = resolve(repositoryRoot, "datasets/game-tasks");
@@ -668,9 +669,9 @@ const coreTasks: TaskConfig[] = [
     surface: "canvas2d",
     surfaceSelector: "#lab-canvas",
     goal: "配出中性溶液，把温度从20°C升到60°C、再降到40°C并装瓶。",
-    gameplay: "加入 Acid 后 pH=3；再加入 Base 后 pH=7。按住 H 时每秒升温20°C，松开停止；按住 C 时每秒降温20°C，松开停止。只有 pH=7 且温度=40°C 时 Pour 才成功。",
+    gameplay: "加入 Acid 后 pH=3；再加入 Base 后 pH=7。按住 H 时每秒升温20°C，松开停止；按住 C 时每秒降温20°C，松开停止。必须依次加过 Acid 和 Base，升温达到60°C后再降到40°C，才可 Pour 获胜；空烧杯的初始 pH=7 不算完成混合。温度读数允许0.64°C误差（20°C/s × 32ms），但误差不能代替混合和升温阶段。",
     winRule: "按规定混合并在40°C时装瓶获胜。",
-    lossRule: "温度达到80°C，或未中和就 Pour，立即失败。",
+    lossRule: "温度达到80°C，或未完成酸碱混合、未经历60°C阶段、装瓶温度不合格时 Pour，立即失败。",
     resetRule: "Restart 恢复空烧杯、pH=7、20°C、加热关闭和菜单。",
     stateFields: ["status", "acid_added", "base_added", "ph", "temperature", "heating", "cooling", "bottled"],
     eventTypes: ["game_started", "acid_added", "base_added", "heater_started", "heater_stopped", "cooler_started", "cooler_stopped", "temperature_changed", "solution_bottled", "experiment_failed", "game_won", "game_reset"],
@@ -1064,7 +1065,7 @@ const contractPath = resolve(taskRoot, "GAME_CONTRACT.md");
 const manifest = GameTaskSetManifestSchema.parse({
   schema_version: "gametestlab.game-task-set.v1",
   name: "GameTestLab Complete Game Tasks",
-  version: "2026-09-12.2",
+  version: "2026-09-12.3",
   description: "96 browser-game generation tasks; 10 camera tasks excluded from the original 106-task distribution.",
   contract_file: "GAME_CONTRACT.md",
   tasks: [
@@ -1090,4 +1091,19 @@ for (const task of existingTaskEntries) {
   ];
   await writeFile(resolve(directory, "input-sha256.txt"), `${hashes.join("\n")}\n`, "utf8");
 }
-console.log(`Built ${manifest.tasks.length} distribution-matched game tasks.`);
+for (const entry of manifest.tasks) {
+  const directory = resolve(taskRoot, entry.directory);
+  const planPath = resolve(directory, "test-plan.json");
+  const oraclePath = resolve(directory, "oracle.private.json");
+  const revised = reviseTaskChecks(
+    GameTaskPlanSchema.parse(JSON.parse(await readFile(planPath, "utf8"))),
+    GameTaskOracleSchema.parse(JSON.parse(await readFile(oraclePath, "utf8")))
+  );
+  await writeFile(planPath, `${JSON.stringify(revised.plan, null, 2)}\n`);
+  await writeFile(oraclePath, `${JSON.stringify(revised.oracle, null, 2)}\n`);
+  const hashes = await Promise.all(["brief.md", "test-plan.json", "oracle.private.json"].map(async (name) =>
+    `${await sha256(resolve(directory, name))}  ${name}`));
+  hashes.push(`${await sha256(contractPath)}  ../GAME_CONTRACT.md`);
+  await writeFile(resolve(directory, "input-sha256.txt"), hashes.join("\n") + "\n");
+}
+console.log(`Built ${manifest.tasks.length} game tasks with checking policy ${manifest.version}.`);

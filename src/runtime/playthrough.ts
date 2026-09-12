@@ -691,6 +691,8 @@ export async function runPlaythrough(
   let activeFrameIndex: number | null = null;
   let diagnosticElapsedMs = 0;
   const scenarioSamples: TimelineSample[] = [];
+  let checkpointEventEpoch = -1;
+  let checkpointEventTypes: string[] = [];
 
   const addRunnerDiagnostic = (message: string) => {
     diagnostics.push({
@@ -1158,6 +1160,11 @@ export async function runPlaythrough(
       const state = snapshot.bridge?.state ?? {};
       const hash = stateHash(state);
       const eventTypes = snapshot.events.map((event) => event.type);
+      if (snapshot.latestEventEpoch !== checkpointEventEpoch || step.kind === "reload") {
+        checkpointEventTypes = [];
+        checkpointEventEpoch = snapshot.latestEventEpoch;
+      }
+      checkpointEventTypes.push(...eventTypes);
 
       for (const checkpointId of step.checkpoints) {
         const evidence: Observation["evidence"] = { state_hash: hash };
@@ -1168,12 +1175,15 @@ export async function runPlaythrough(
           state,
           ui: snapshot.ui,
           event_types: eventTypes,
+          event_types_since_checkpoint: [...new Set(checkpointEventTypes)],
           samples: [...scenarioSamples],
           runtime_errors: checkpointRuntimeErrors,
           runtime_error_evidence: runtimeErrorEvidence,
           evidence
         });
       }
+
+      if (step.checkpoints.length > 0) checkpointEventTypes = [];
 
       trace.push({
         schema_version: publicCase.schema_version === "gametestlab.case.v3"

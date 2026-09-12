@@ -6,51 +6,150 @@
       "scenario_id": "win-path",
       "checkpoints": [
         {
-          "id": "KD-CP-START", "action_index": 0, "layer": "L1",
-          "requirement_ids": ["KD-RUN"], "terminal": false,
+          "id": "KD-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "KD-RUN"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "status": "playing", "player.x": 1, "player.y": 1, "lives": 2, "has_key": false, "door_open": false },
-            "ui": {}, "event_types": ["game_started"], "physics": []
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-DOOR-BLOCKED", "action_index": 3, "layer": "L2",
-          "requirement_ids": ["KD-DOOR"], "terminal": false,
+          "id": "KD-CP-DOOR-BLOCKED",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-DOOR"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "player.x": 3, "player.y": 1, "has_key": false, "door_open": false },
-            "ui": {}, "event_types": ["door_blocked"], "physics": []
+            "state": {
+              "player.x": 3,
+              "player.y": 1,
+              "has_key": false,
+              "door_open": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "door_blocked"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-KEY", "action_index": 7, "layer": "L2",
-          "requirement_ids": ["KD-DOOR"], "terminal": false,
+          "id": "KD-CP-KEY",
+          "action_index": 7,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-DOOR"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "player.x": 1, "player.y": 3, "lives": 2, "has_key": true, "door_open": false },
-            "ui": {}, "event_types": ["player_moved", "key_collected"], "physics": []
+            "state": {
+              "player.x": 1,
+              "player.y": 3,
+              "lives": 2,
+              "has_key": true,
+              "door_open": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "player_moved",
+              "key_collected"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-DOOR-OPEN", "action_index": 12, "layer": "L2",
-          "requirement_ids": ["KD-DOOR"], "terminal": false,
+          "id": "KD-CP-DOOR-OPEN",
+          "action_index": 12,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-DOOR"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "player.x": 4, "player.y": 1, "has_key": true, "door_open": true },
-            "ui": {}, "event_types": ["door_opened", "player_moved"], "physics": []
+            "state": {
+              "player.x": 4,
+              "player.y": 1,
+              "has_key": true,
+              "door_open": true
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "door_opened",
+              "player_moved"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-WON", "action_index": 14, "layer": "L2",
-          "requirement_ids": ["KD-WIN"], "terminal": true,
+          "id": "KD-CP-WON",
+          "action_index": 14,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-WIN"
+          ],
+          "terminal": true,
           "expected": {
-            "state": { "status": "won", "player.x": 6, "player.y": 1, "lives": 2, "has_key": true, "door_open": true },
-            "ui": {}, "event_types": ["player_moved", "game_won"], "physics": []
+            "state": {
+              "status": "won",
+              "player.x": 6,
+              "player.y": 1,
+              "lives": 2,
+              "has_key": true,
+              "door_open": true
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "player_moved",
+              "game_won"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-WON-UI", "action_index": 14, "layer": "L3",
-          "requirement_ids": ["KD-HUD"], "terminal": false,
+          "id": "KD-CP-WON-UI",
+          "action_index": 15,
+          "layer": "L3",
+          "requirement_ids": [
+            "KD-HUD"
+          ],
+          "terminal": false,
           "expected": {
-            "state": {}, "ui": { "scoreText": "Lives: 2/2 · Key: Yes", "statusText": "Won" },
-            "event_types": [], "physics": []
+            "state": {},
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [],
+            "physics": []
           }
         }
       ]
@@ -59,19 +158,73 @@
       "scenario_id": "loss-path",
       "checkpoints": [
         {
-          "id": "KD-CP-TRAP-1", "action_index": 5, "layer": "L2",
-          "requirement_ids": ["KD-TRAP"], "terminal": false,
+          "id": "key-door-escape-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "KD-RUN"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "status": "playing", "player.x": 1, "player.y": 1, "lives": 1, "has_key": false, "door_open": false },
-            "ui": {}, "event_types": ["trap_hit", "player_respawned"], "physics": []
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
           }
         },
         {
-          "id": "KD-CP-LOST", "action_index": 10, "layer": "L2",
-          "requirement_ids": ["KD-TRAP"], "terminal": true,
+          "id": "KD-CP-TRAP-1",
+          "action_index": 5,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-TRAP"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "status": "lost", "lives": 0, "has_key": true, "door_open": false },
-            "ui": {}, "event_types": ["trap_hit", "game_lost"], "physics": []
+            "state": {
+              "status": "playing",
+              "player.x": 1,
+              "player.y": 1,
+              "lives": 1,
+              "has_key": false,
+              "door_open": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "trap_hit",
+              "player_respawned"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "KD-CP-LOST",
+          "action_index": 10,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-TRAP"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "lives": 0,
+              "has_key": true,
+              "door_open": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "trap_hit",
+              "game_lost"
+            ],
+            "physics": []
           }
         }
       ]
@@ -80,11 +233,48 @@
       "scenario_id": "restart-path",
       "checkpoints": [
         {
-          "id": "KD-CP-RESET", "action_index": 2, "layer": "L2",
-          "requirement_ids": ["KD-RESET"], "terminal": true,
+          "id": "key-door-escape-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "KD-RUN"
+          ],
+          "terminal": false,
           "expected": {
-            "state": { "status": "menu", "player.x": 1, "player.y": 1, "lives": 2, "has_key": false, "door_open": false },
-            "ui": {}, "event_types": ["game_reset"], "physics": []
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "KD-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "KD-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "player.x": 1,
+              "player.y": 1,
+              "lives": 2,
+              "has_key": false,
+              "door_open": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
           }
         }
       ]

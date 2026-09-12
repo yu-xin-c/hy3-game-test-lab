@@ -152,6 +152,7 @@ export const GameTaskSetManifestSchema = z.object({
 });
 
 export const GameTaskPlanSchema = z.object({
+  checking_policy_version: z.string().min(1).optional(),
   schema_version: z.literal(GAME_TASK_PLAN_SCHEMA_VERSION),
   task_id: TaskIdSchema,
   title: z.string().min(1),

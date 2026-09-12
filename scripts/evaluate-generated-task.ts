@@ -54,6 +54,24 @@ async function sha256File(path: string): Promise<string> {
   return createHash("sha256").update(await readFile(path)).digest("hex");
 }
 
+async function verifyFrozenInputs(directory: string): Promise<void> {
+  const lines = (await readFile(resolve(directory, "input-sha256.txt"), "utf8")).trim().split(/\r?\n/);
+  const expectedNames = new Set(["brief.md", "test-plan.json", "oracle.private.json", "../GAME_CONTRACT.md"]);
+  for (const line of lines) {
+    const match = /^([a-f0-9]{64})  (.+)$/.exec(line);
+    if (!match || !expectedNames.delete(match[2]!)) throw new Error("Invalid or duplicate frozen input entry");
+    let path = resolve(directory, match[2]!);
+    if (match[2] === "../GAME_CONTRACT.md") {
+      try {
+        await readFile(resolve(directory, "GAME_CONTRACT.md"));
+        path = resolve(directory, "GAME_CONTRACT.md");
+      } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+    }
+    if (await sha256File(path) !== match[1]) throw new Error(`Frozen input changed: ${match[2]}`);
+  }
+  if (expectedNames.size > 0) throw new Error("Incomplete frozen input hashes");
+}
+
 async function sha256Directory(directory: string): Promise<string> {
   const hash = createHash("sha256");
   const entries = await readdir(directory, { withFileTypes: true });
@@ -143,6 +161,8 @@ if (!Number.isInteger(replayCount) || replayCount < 1 || replayCount > 20) {
   throw new Error("--replays must be an integer from 1 to 20");
 }
 const generator = argument("--generator") ?? "unspecified";
+const evaluationContext = argument("--context") ?? "frozen_task_evaluation";
+if (!["frozen_task_evaluation", "retrospective_diagnostic"].includes(evaluationContext)) throw new Error("Invalid --context");
 const timestamp = new Date().toISOString().replaceAll(":", "-").replaceAll(".", "-");
 const outputDirectory = resolve(
   argument("--out") ?? `artifacts/formal/${taskId}-${timestamp}`
@@ -155,7 +175,19 @@ await mkdir(outputDirectory, { recursive: false }).catch(async (error: unknown) 
 
 let failurePhase: "generation_validation" | "playthrough" = "generation_validation";
 try {
-const taskDirectory = resolve(repositoryRoot, "datasets/game-tasks", taskId);
+const taskDirectory = argument("--task-dir")
+  ? resolve(requiredArgument("--task-dir"))
+  : resolve(repositoryRoot, "datasets/game-tasks", taskId);
+await verifyFrozenInputs(taskDirectory);
+const evaluationInputHashes = {
+  test_plan_sha256: await sha256File(resolve(taskDirectory, "test-plan.json")),
+  oracle_sha256: await sha256File(resolve(taskDirectory, "oracle.private.json")),
+  evaluator_sha256: await sha256File(resolve(repositoryRoot, "src/evaluation/evaluator.ts")),
+  runner_sha256: await sha256File(resolve(repositoryRoot, "src/runtime/playthrough.ts")),
+  frozen_task_sha256: await sha256File(resolve(taskDirectory, "input-sha256.txt")),
+  game_directory_sha256: await sha256Directory(gameDirectory),
+  game_manifest_sha256: await sha256File(resolve(gameDirectory, "game.manifest.json"))
+};
 const [plan, taskOracle, packageInspection] = await Promise.all([
   readJson(resolve(taskDirectory, "test-plan.json")).then((value) =>
     GameTaskPlanSchema.parse(value)
@@ -166,6 +198,7 @@ const [plan, taskOracle, packageInspection] = await Promise.all([
   inspectGeneratedPackage(gameDirectory)
 ]);
 const contractFindings = [...packageInspection.contractFindings];
+if (plan.task_id !== taskId || taskOracle.task_id !== taskId) throw new Error("Task directory ID mismatch");
 const manifestResult = GameManifestSchema.safeParse(packageInspection.manifest);
 if (manifestResult.success) {
   try {
@@ -284,6 +317,8 @@ const result = {
   features: plan.features,
   difficulty: plan.difficulty,
   generator,
+  evaluation_context: evaluationContext,
+  checking_policy_version: plan.checking_policy_version ?? "legacy",
   status: contractFindings.length === 0
     ? "evaluated"
     : "evaluated_with_contract_findings",
@@ -291,11 +326,7 @@ const result = {
   finished_at: finishedAt.toISOString(),
   replay_count: replayCount,
   browser: { name: "chromium", version: browserVersion },
-  input_hashes: {
-    frozen_task_sha256: await sha256File(resolve(taskDirectory, "input-sha256.txt")),
-    game_directory_sha256: await sha256Directory(gameDirectory),
-    game_manifest_sha256: await sha256File(resolve(gameDirectory, "game.manifest.json"))
-  },
+  input_hashes: evaluationInputHashes,
   aggregate: {
     contract_pass: contractFindings.length === 0,
     scenario_runs: typedResults.length,

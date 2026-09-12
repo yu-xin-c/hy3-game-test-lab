@@ -196,7 +196,7 @@ const markdown = [
   "[证据目录](evidence/index.json)包含未人工修改的生成游戏、题面、生成记录、逐步状态和截图。安装依赖与 Chromium 后，在仓库根目录运行：",
   "",
   "```bash",
-  "pnpm run eval:task -- --task science-lab --game-dir results/codebuddy-hy3-pilot/evidence/science-lab/game --replays 3 --generator codebuddy-hy3",
+  "pnpm run eval:task -- --task science-lab --task-dir results/codebuddy-hy3-pilot/evidence/science-lab/task --game-dir results/codebuddy-hy3-pilot/evidence/science-lab/game --replays 3 --generator codebuddy-hy3",
   "```",
   "",
   "这会重跑冻结断言，包括已知误报。诊断对照另存，不覆盖原始评分记录。"

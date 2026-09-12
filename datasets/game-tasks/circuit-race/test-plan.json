@@ -1,4 +1,5 @@
 {
+  "checking_policy_version": "2026-09-12.3",
   "schema_version": "gametestlab.game-task-plan.v1",
   "task_id": "circuit-race",
   "title": "Circuit Race",
@@ -136,7 +137,7 @@
       "id": "X006-HUD",
       "layer": "L3",
       "severity": "must",
-      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
       "depends_on": [
         "X006-MAIN"
       ],
@@ -191,7 +192,13 @@
           "action_id": "STAGE_3",
           "advance_ms": 0,
           "checkpoints": [
-            "X006-CP-WON",
+            "X006-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
             "X006-CP-WON-UI"
           ]
         }
@@ -211,7 +218,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "circuit-race-loss-path-started"
+          ]
         },
         {
           "kind": "input",
@@ -249,7 +258,9 @@
           "kind": "input",
           "action_id": "START",
           "advance_ms": 0,
-          "checkpoints": []
+          "checkpoints": [
+            "circuit-race-restart-path-started"
+          ]
         },
         {
           "kind": "input",

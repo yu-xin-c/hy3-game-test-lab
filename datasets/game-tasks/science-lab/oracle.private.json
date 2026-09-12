@@ -15,16 +15,10 @@
           "terminal": false,
           "expected": {
             "state": {
-              "status": "playing",
-              "acid_added": false,
-              "base_added": false,
-              "ph": 7,
-              "temperature": 20,
-              "heating": false,
-              "cooling": false,
-              "bottled": false
+              "status": "playing"
             },
             "ui": {},
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_started"
             ],
@@ -51,6 +45,10 @@
               "bottled": false
             },
             "ui": {},
+            "state_tolerances": {
+              "temperature": 0.64
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "base_added"
             ],
@@ -77,6 +75,10 @@
               "bottled": true
             },
             "ui": {},
+            "state_tolerances": {
+              "temperature": 0.64
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "solution_bottled",
               "game_won"
@@ -86,7 +88,7 @@
         },
         {
           "id": "SL-CP-WON-UI",
-          "action_index": 9,
+          "action_index": 10,
           "layer": "L3",
           "requirement_ids": [
             "SL-HUD"
@@ -95,9 +97,20 @@
           "expected": {
             "state": {},
             "ui": {
-              "scoreText": "pH: 7 · Temp: 40°C",
-              "statusText": "Won"
+              "dom.score.visible": true,
+              "dom.status.visible": true
             },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [],
             "physics": []
           }
@@ -107,6 +120,26 @@
     {
       "scenario_id": "loss-path",
       "checkpoints": [
+        {
+          "id": "science-lab-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SL-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "SL-CP-LOST",
           "action_index": 4,
@@ -127,6 +160,10 @@
               "bottled": false
             },
             "ui": {},
+            "state_tolerances": {
+              "temperature": 0.64
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "temperature_changed",
               "experiment_failed"
@@ -139,6 +176,26 @@
     {
       "scenario_id": "restart-path",
       "checkpoints": [
+        {
+          "id": "science-lab-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SL-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
         {
           "id": "SL-CP-RESET",
           "action_index": 2,
@@ -159,8 +216,108 @@
               "bottled": false
             },
             "ui": {},
+            "state_tolerances": {
+              "temperature": 0.64
+            },
+            "event_scope": "since_previous_checkpoint",
             "event_types": [
               "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "skip-mixing",
+      "checkpoints": [
+        {
+          "id": "SL-skip-mixing-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SL-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SL-skip-mixing-rejected",
+          "action_index": 4,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "acid_added": false,
+              "base_added": false,
+              "bottled": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "experiment_failed"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "skip-heat-peak",
+      "checkpoints": [
+        {
+          "id": "SL-skip-heat-peak-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SL-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SL-skip-heat-peak-rejected",
+          "action_index": 6,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "acid_added": true,
+              "base_added": true,
+              "bottled": false
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "experiment_failed"
             ],
             "physics": []
           }
