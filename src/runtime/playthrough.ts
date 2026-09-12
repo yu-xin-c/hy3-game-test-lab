@@ -275,7 +275,61 @@ async function installCameraFixture(page: Page): Promise<void> {
       context.fillStyle = "#10141f";
       context.fillRect(0, 0, canvas.width, canvas.height);
       context.lineWidth = 16;
-      if (id === "left-pose" || id.includes("blue") || id.includes("left")) {
+      context.lineCap = "round";
+      context.lineJoin = "round";
+      if (id === "swipe-up-blue") {
+        context.strokeStyle = "#2477ff";
+        context.beginPath();
+        context.moveTo(160, 190);
+        context.lineTo(160, 58);
+        context.moveTo(116, 102);
+        context.lineTo(160, 58);
+        context.lineTo(204, 102);
+        context.stroke();
+      } else if (id === "circle-red") {
+        context.strokeStyle = "#ef4444";
+        context.beginPath();
+        context.arc(160, 120, 58, 0, Math.PI * 2);
+        context.stroke();
+      } else if (id === "open-gold") {
+        context.strokeStyle = "#f7c948";
+        context.lineWidth = 13;
+        context.beginPath();
+        context.moveTo(112, 192);
+        context.lineTo(94, 136);
+        context.lineTo(94, 82);
+        context.moveTo(94, 136);
+        context.lineTo(120, 58);
+        context.moveTo(116, 132);
+        context.lineTo(146, 45);
+        context.moveTo(140, 132);
+        context.lineTo(174, 48);
+        context.moveTo(164, 136);
+        context.lineTo(202, 68);
+        context.moveTo(187, 137);
+        context.lineTo(226, 100);
+        context.moveTo(112, 192);
+        context.quadraticCurveTo(166, 222, 214, 183);
+        context.lineTo(226, 100);
+        context.stroke();
+      } else if (id === "fist-wrong") {
+        context.fillStyle = "#ef4444";
+        context.beginPath();
+        context.roundRect(105, 82, 110, 104, 32);
+        context.fill();
+        context.strokeStyle = "#10141f";
+        context.lineWidth = 6;
+        context.beginPath();
+        context.moveTo(105, 116);
+        context.lineTo(215, 116);
+        context.moveTo(132, 84);
+        context.lineTo(132, 125);
+        context.moveTo(160, 84);
+        context.lineTo(160, 125);
+        context.moveTo(188, 84);
+        context.lineTo(188, 125);
+        context.stroke();
+      } else if (id === "left-pose" || id.includes("blue") || id.includes("left")) {
         context.fillStyle = "#2477ff";
         context.fillRect(28, 72, 72, 96);
       } else if (id === "center-pose" || id.includes("green") || id.includes("center")) {
@@ -294,11 +348,6 @@ async function installCameraFixture(page: Page): Promise<void> {
         context.lineTo(312, 178);
         context.closePath();
         context.fill();
-      } else if (id.includes("circle-red")) {
-        context.strokeStyle = "#ef4444";
-        context.beginPath();
-        context.arc(160, 120, 58, 0, Math.PI * 2);
-        context.stroke();
       } else {
         context.strokeStyle = "#ef4444";
         context.beginPath();
