@@ -1,0 +1,101 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "maze-collector",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "MC-CP-START", "action_index": 0, "layer": "L1",
+          "requirement_ids": ["MC-RUN"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "player.x": 1, "player.y": 1, "coins_collected": 0, "moves_used": 0, "moves_remaining": 18 },
+            "ui": {}, "event_types": ["game_started"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-WALL", "action_index": 1, "layer": "L2",
+          "requirement_ids": ["MC-MOVE"], "terminal": false,
+          "expected": {
+            "state": { "player.x": 1, "player.y": 1, "moves_used": 0, "moves_remaining": 18 },
+            "ui": {}, "event_types": ["wall_blocked"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-COIN-1", "action_index": 3, "layer": "L2",
+          "requirement_ids": ["MC-COIN"], "terminal": false,
+          "expected": {
+            "state": { "player.x": 3, "player.y": 1, "coins_collected": 1, "moves_used": 2, "moves_remaining": 16 },
+            "ui": {}, "event_types": ["player_moved", "coin_collected"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-EXIT-LOCKED", "action_index": 5, "layer": "L2",
+          "requirement_ids": ["MC-MOVE", "MC-EXIT"], "terminal": false,
+          "expected": {
+            "state": { "player.x": 4, "player.y": 1, "coins_collected": 1, "moves_used": 3 },
+            "ui": {}, "event_types": ["exit_locked"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-COIN-2", "action_index": 10, "layer": "L2",
+          "requirement_ids": ["MC-COIN"], "terminal": false,
+          "expected": {
+            "state": { "player.x": 1, "player.y": 3, "coins_collected": 2, "moves_used": 8, "moves_remaining": 10 },
+            "ui": {}, "event_types": ["player_moved", "coin_collected"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-COIN-3", "action_index": 14, "layer": "L2",
+          "requirement_ids": ["MC-COIN"], "terminal": false,
+          "expected": {
+            "state": { "player.x": 5, "player.y": 3, "coins_collected": 3, "moves_used": 12, "moves_remaining": 6 },
+            "ui": {}, "event_types": ["player_moved", "coin_collected"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-WON", "action_index": 16, "layer": "L2",
+          "requirement_ids": ["MC-EXIT"], "terminal": true,
+          "expected": {
+            "state": { "status": "won", "player.x": 5, "player.y": 1, "coins_collected": 3, "moves_used": 14, "moves_remaining": 4 },
+            "ui": {}, "event_types": ["player_moved", "game_won"], "physics": []
+          }
+        },
+        {
+          "id": "MC-CP-WON-UI", "action_index": 16, "layer": "L3",
+          "requirement_ids": ["MC-HUD"], "terminal": false,
+          "expected": {
+            "state": {}, "ui": { "scoreText": "Coins: 3/3", "statusText": "Won" },
+            "event_types": [], "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "MC-CP-LOST", "action_index": 18, "layer": "L2",
+          "requirement_ids": ["MC-LOSE"], "terminal": true,
+          "expected": {
+            "state": { "status": "lost", "player.x": 1, "player.y": 1, "coins_collected": 0, "moves_used": 18, "moves_remaining": 0 },
+            "ui": {}, "event_types": ["player_moved", "game_lost"], "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "MC-CP-RESET", "action_index": 2, "layer": "L2",
+          "requirement_ids": ["MC-RESET"], "terminal": true,
+          "expected": {
+            "state": { "status": "menu", "player.x": 1, "player.y": 1, "coins_collected": 0, "moves_used": 0, "moves_remaining": 18 },
+            "ui": {}, "event_types": ["game_reset"], "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

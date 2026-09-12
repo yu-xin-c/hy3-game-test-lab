@@ -1,0 +1,250 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "gesture-fireworks",
+  "title": "Gesture Fireworks",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "摄像头手势、Canvas 反馈和序列状态共同决定结果。"
+  },
+  "category": "creative",
+  "features": [
+    "camera"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": true,
+    "persistent_storage": false
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "BLUE",
+      "actor": "primary",
+      "device": "camera",
+      "key_event": "press",
+      "fixture_frame": "swipe-up-blue"
+    },
+    {
+      "action_id": "RED",
+      "actor": "primary",
+      "device": "camera",
+      "key_event": "press",
+      "fixture_frame": "circle-red"
+    },
+    {
+      "action_id": "GOLD",
+      "actor": "primary",
+      "device": "camera",
+      "key_event": "press",
+      "fixture_frame": "open-gold"
+    },
+    {
+      "action_id": "WRONG",
+      "actor": "primary",
+      "device": "camera",
+      "key_event": "press",
+      "fixture_frame": "fist-wrong"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "GF-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "GF-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "三段固定假视频必须被识别为正确手势并按序发射烟花。",
+      "depends_on": [
+        "GF-RUN"
+      ],
+      "observable": [
+        "progress",
+        "launches",
+        "last_gesture",
+        "events"
+      ]
+    },
+    {
+      "id": "GF-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "两次错误手势会扣光生命并失败。",
+      "depends_on": [
+        "GF-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "GF-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复0进度、0次发射、2条生命和菜单。",
+      "depends_on": [
+        "GF-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "GF-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "GF-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 609,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "GF-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "BLUE",
+          "advance_ms": 600,
+          "checkpoints": [
+            "GF-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RED",
+          "advance_ms": 600,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "GOLD",
+          "advance_ms": 600,
+          "checkpoints": [
+            "GF-CP-WON",
+            "GF-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 609,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 600,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 600,
+          "checkpoints": [
+            "GF-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 609,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BLUE",
+          "advance_ms": 600,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "GF-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

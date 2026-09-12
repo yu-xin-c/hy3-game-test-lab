@@ -1,0 +1,287 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "cooperative-city",
+  "title": "Cooperative City",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "两页协作、资源建设、双方确认和共享倒计时必须同步。"
+  },
+  "category": "simulation",
+  "features": [
+    "multiplayer"
+  ],
+  "environment": {
+    "pages": 2,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "dom",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#city"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "JOIN",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#join-btn"
+    },
+    {
+      "action_id": "BUILD_POWER",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#power-btn"
+    },
+    {
+      "action_id": "BUILD_WATER",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#water-btn"
+    },
+    {
+      "action_id": "APPROVE_P1",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#approve-btn"
+    },
+    {
+      "action_id": "APPROVE_P2",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#approve-btn"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "CC-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "CC-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "两个页面必须同步建设资源与确认状态，并在条件满足时同时结束。",
+      "depends_on": [
+        "CC-RUN"
+      ],
+      "observable": [
+        "connected",
+        "power",
+        "water",
+        "approvals",
+        "elapsed_ms"
+      ]
+    },
+    {
+      "id": "CC-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "10秒内协作未完成时两个页面必须同时失败。",
+      "depends_on": [
+        "CC-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "CC-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "主页面 Restart 同步清空资源、确认、计时和连接并回到菜单。",
+      "depends_on": [
+        "CC-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "CC-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "CC-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 613,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "CC-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BUILD_POWER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BUILD_POWER",
+          "advance_ms": 0,
+          "checkpoints": [
+            "CC-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "BUILD_WATER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BUILD_WATER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "APPROVE_P1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "APPROVE_P2",
+          "advance_ms": 0,
+          "checkpoints": [
+            "CC-CP-WON",
+            "CC-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 613,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 10000,
+          "checkpoints": [
+            "CC-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 613,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "BUILD_POWER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "CC-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

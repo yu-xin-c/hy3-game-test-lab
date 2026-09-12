@@ -1,5 +1,5 @@
 {
-  "schema_version": "gametestlab.case.v1",
+  "schema_version": "gametestlab.case.v2",
   "id": "score-compensated",
   "title": "Compensating score errors",
   "difficulty": {
@@ -60,4 +60,3 @@
     }
   ]
 }
-

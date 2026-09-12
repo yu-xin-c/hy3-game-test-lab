@@ -7,6 +7,7 @@ const variant = new URLSearchParams(window.location.search).get("variant") ?? "c
 
 let seed = 0;
 let tick = 0;
+let eventEpoch = 0;
 let eventSeq = 0;
 let events = [];
 let state;
@@ -23,7 +24,9 @@ function initialState() {
 
 function emit(type, payload = undefined) {
   eventSeq += 1;
-  events.push({ seq: eventSeq, tick, type, payload });
+  events.push(payload === undefined
+    ? { seq: eventSeq, tick, type }
+    : { seq: eventSeq, tick, type, payload });
 }
 
 function displayedScore() {
@@ -104,11 +107,12 @@ window.addEventListener("keydown", (event) => {
 });
 
 window.__GAMETESTLAB__ = {
-  protocol: "gametestlab/1",
+  protocol: "gametestlab/2",
   isReady: () => true,
   reset: ({ seed: nextSeed }) => {
     seed = nextSeed;
     tick = 0;
+    eventEpoch += 1;
     eventSeq = 0;
     events = [];
     state = initialState();
@@ -124,6 +128,7 @@ window.__GAMETESTLAB__ = {
       coins_count: state.coins.length,
       seed
     },
+    event_epoch: eventEpoch,
     latest_event_seq: eventSeq
   }),
   getEvents: ({ afterSeq }) =>

@@ -7,6 +7,15 @@ import type {
   PrivateOracle,
   PublicCase
 } from "../contracts/schemas";
+import { evaluatePhysicsInvariants } from "./physics";
+
+const missingEvidence = Object.freeze({
+  kind: "missing"
+});
+
+function reportableActual(value: unknown): unknown {
+  return value === undefined ? missingEvidence : value;
+}
 
 function getPath(value: unknown, path: string): unknown {
   return path.split(".").reduce<unknown>((current, segment) => {
@@ -25,10 +34,14 @@ function classifyFailure(
   channel: Failure["diffs"][number]["channel"],
   path: string
 ): Failure["error_type"] {
-  if (channel === "runtime" && path === "checkpoint") return "artifact_failure";
+  if (
+    channel === "runtime" &&
+    (path === "checkpoint" || path.startsWith("observation."))
+  ) return "artifact_failure";
   if (channel === "runtime") return "runtime_error";
   if (channel === "ui") return "state_ui_inconsistency";
   if (channel === "event") return "missing_event";
+  if (channel === "physics") return "invariant_violation";
   if (path === "status") return "terminal_condition_error";
   if (path === "score" || path === "lives" || path.includes("count")) {
     return "state_effect_error";
@@ -36,44 +49,90 @@ function classifyFailure(
   return "state_transition_error";
 }
 
-function checkpointFailure(
+function checkpointFailures(
   oracle: PrivateOracle["checkpoints"][number],
-  observation: Observation | undefined
-): Failure | null {
-  const diffs: Failure["diffs"] = [];
+  observation: Observation | undefined,
+  options: {
+    includePhysics?: boolean;
+    includeRuntime?: boolean;
+  } = {}
+): Failure[] {
+  const includePhysics = options.includePhysics ?? true;
+  const includeRuntime = options.includeRuntime ?? true;
+  const runtimeDiffs: Failure["diffs"] = [];
+  const evidenceDiffs: Failure["diffs"] = [];
+  const physicsViolations = observation && includePhysics
+    ? evaluatePhysicsInvariants(oracle.expected.physics, observation.samples)
+    : [];
 
   if (!observation) {
-    diffs.push({
+    return [{
+      action_index: oracle.action_index,
+      checkpoint_id: oracle.id,
+      layer: "L1",
+      requirement_ids: oracle.requirement_ids,
+      error_type: "artifact_failure",
+      diffs: [{
+        channel: "runtime",
+        path: "checkpoint",
+        expected: oracle.id,
+        actual: "missing"
+      }]
+    }];
+  }
+
+  if (includeRuntime && observation.action_index !== oracle.action_index) {
+    runtimeDiffs.push({
       channel: "runtime",
-      path: "checkpoint",
-      expected: oracle.id,
-      actual: "missing"
+      path: "observation.action_index",
+      expected: oracle.action_index,
+      actual: observation.action_index
     });
-  } else {
-    for (const [path, expected] of Object.entries(oracle.expected.state)) {
-      const actual = getPath(observation.state, path);
-      if (!isDeepStrictEqual(actual, expected)) {
-        diffs.push({ channel: "state", path, expected, actual });
-      }
+  }
+  for (const [path, expected] of Object.entries(oracle.expected.state)) {
+    const actual = getPath(observation.state, path);
+    if (!isDeepStrictEqual(actual, expected)) {
+      evidenceDiffs.push({
+        channel: "state",
+        path,
+        expected,
+        actual: reportableActual(actual)
+      });
     }
-    for (const [path, expected] of Object.entries(oracle.expected.ui)) {
-      const actual = getPath(observation.ui, path);
-      if (!isDeepStrictEqual(actual, expected)) {
-        diffs.push({ channel: "ui", path, expected, actual });
-      }
+  }
+  for (const [path, expected] of Object.entries(oracle.expected.ui)) {
+    const actual = getPath(observation.ui, path);
+    if (!isDeepStrictEqual(actual, expected)) {
+      evidenceDiffs.push({
+        channel: "ui",
+        path,
+        expected,
+        actual: reportableActual(actual)
+      });
     }
-    for (const eventType of oracle.expected.event_types) {
-      if (!observation.event_types.includes(eventType)) {
-        diffs.push({
-          channel: "event",
-          path: eventType,
-          expected: "present",
-          actual: "missing"
+  }
+  for (const eventType of oracle.expected.event_types) {
+    if (!observation.event_types.includes(eventType)) {
+      evidenceDiffs.push({
+        channel: "event",
+        path: eventType,
+        expected: "present",
+        actual: "missing"
+      });
+    }
+  }
+  if (includeRuntime) {
+    if (observation.runtime_error_evidence.length > 0) {
+      for (const error of observation.runtime_error_evidence) {
+        runtimeDiffs.push({
+          channel: "runtime",
+          path: "browser",
+          expected: "no error",
+          actual: error.message
         });
       }
-    }
-    for (const error of observation.runtime_errors) {
-      diffs.push({
+    } else for (const error of observation.runtime_errors) {
+      runtimeDiffs.push({
         channel: "runtime",
         path: "browser",
         expected: "no error",
@@ -82,19 +141,63 @@ function checkpointFailure(
     }
   }
 
-  if (diffs.length === 0) return null;
-  const first = diffs[0];
-  if (!first) return null;
-  return {
-    action_index: oracle.action_index,
-    checkpoint_id: oracle.id,
-    layer: diffs.some((diff) => diff.channel === "runtime")
-      ? "L1"
-      : oracle.layer,
-    requirement_ids: oracle.requirement_ids,
-    error_type: classifyFailure(first.channel, first.path),
-    diffs
-  };
+  const failures: Failure[] = [];
+  if (runtimeDiffs.length > 0) {
+    const firstRuntime = [...observation.runtime_error_evidence]
+      .sort((left, right) => left.elapsed_ms - right.elapsed_ms)[0];
+    failures.push({
+      action_index: firstRuntime?.action_index ?? oracle.action_index,
+      ...(firstRuntime?.frame_index === null ||
+        firstRuntime?.frame_index === undefined
+        ? {}
+        : { frame_index: firstRuntime.frame_index }),
+      ...(firstRuntime ? { elapsed_ms: firstRuntime.elapsed_ms } : {}),
+      checkpoint_id: oracle.id,
+      layer: "L1",
+      requirement_ids: oracle.requirement_ids,
+      error_type: classifyFailure("runtime", runtimeDiffs[0]?.path ?? "browser"),
+      diffs: runtimeDiffs
+    });
+  }
+  for (const physics of physicsViolations) {
+    failures.push({
+      action_index: physics.action_index ?? oracle.action_index,
+      ...(physics.sample_index === undefined
+        ? {}
+        : { sample_index: physics.sample_index }),
+      ...(physics.frame_index === undefined
+        ? {}
+        : { frame_index: physics.frame_index }),
+      ...(physics.tick === undefined ? {} : { tick: physics.tick }),
+      ...(physics.elapsed_ms === undefined
+        ? {}
+        : { elapsed_ms: physics.elapsed_ms }),
+      checkpoint_id: oracle.id,
+      layer: physics.kind === "unverified" ? "L1" : oracle.layer,
+      requirement_ids: oracle.requirement_ids,
+      error_type: physics.error_type,
+      diffs: [{
+        channel: "physics",
+        path: physics.path,
+        expected: physics.expected,
+        actual: physics.actual
+      }]
+    });
+  }
+  if (evidenceDiffs.length > 0) {
+    const first = evidenceDiffs[0];
+    if (first) {
+      failures.push({
+        action_index: oracle.action_index,
+        checkpoint_id: oracle.id,
+        layer: oracle.layer,
+        requirement_ids: oracle.requirement_ids,
+        error_type: classifyFailure(first.channel, first.path),
+        diffs: evidenceDiffs
+      });
+    }
+  }
+  return failures;
 }
 
 function gateStatus(
@@ -102,9 +205,10 @@ function gateStatus(
   failures: Failure[],
   oracle: PrivateOracle
 ): CaseEvaluation["gates"][Layer] {
+  if (failures.some((failure) => failure.layer === layer)) return "fail";
   const hasAssertions = oracle.checkpoints.some((item) => item.layer === layer);
   if (!hasAssertions) return "unverified";
-  return failures.some((failure) => failure.layer === layer) ? "fail" : "pass";
+  return "pass";
 }
 
 function terminalMatches(
@@ -113,10 +217,17 @@ function terminalMatches(
 ): boolean {
   const terminal = [...oracle.checkpoints].reverse().find((item) => item.terminal);
   if (!terminal) return false;
-  return checkpointFailure(
+  const observation = observations.find(
+    (item) => item.checkpoint_id === terminal.id
+  );
+  if (!observation || observation.action_index !== terminal.action_index) {
+    return false;
+  }
+  return checkpointFailures(
     terminal,
-    observations.find((item) => item.checkpoint_id === terminal.id)
-  ) === null;
+    observation,
+    { includePhysics: false, includeRuntime: false }
+  ).length === 0;
 }
 
 export function evaluateCase(
@@ -125,14 +236,18 @@ export function evaluateCase(
   observations: Observation[]
 ): CaseEvaluation {
   const failures = oracle.checkpoints
-    .map((checkpoint) =>
-      checkpointFailure(
+    .flatMap((checkpoint) =>
+      checkpointFailures(
         checkpoint,
         observations.find((item) => item.checkpoint_id === checkpoint.id)
       )
     )
-    .filter((value): value is Failure => value !== null)
-    .sort((a, b) => a.action_index - b.action_index);
+    .sort((a, b) =>
+      a.action_index - b.action_index ||
+      (a.elapsed_ms ?? Number.POSITIVE_INFINITY) -
+        (b.elapsed_ms ?? Number.POSITIVE_INFINITY) ||
+      Number(a.layer !== "L1") - Number(b.layer !== "L1")
+    );
 
   const rawL1 = gateStatus("L1", failures, oracle);
   const rawL2 = gateStatus("L2", failures, oracle);
@@ -158,7 +273,7 @@ export function evaluateCase(
   const processCorrect = failures.length === 0;
 
   return {
-    schema_version: "gametestlab.evaluation.v1",
+    schema_version: "gametestlab.evaluation.v2",
     case_id: publicCase.id,
     difficulty: publicCase.difficulty.level,
     final_outcome_correct: finalOutcomeCorrect,

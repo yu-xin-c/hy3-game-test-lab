@@ -64,6 +64,7 @@ function isInsideRoot(root: string, candidate: string): boolean {
 
 async function resolveRequestFile(
   canonicalRoot: string,
+  canonicalExposureRoot: string,
   requestPathname: string,
   exposure: NonNullable<StaticServerOptions["exposure"]>
 ): Promise<string | null> {
@@ -108,6 +109,7 @@ async function resolveRequestFile(
 
   // realpath closes the symlink traversal gap left by lexical normalization.
   if (!isInsideRoot(canonicalRoot, canonicalCandidate)) return null;
+  if (!isInsideRoot(canonicalExposureRoot, canonicalCandidate)) return null;
   const fileStat = await stat(canonicalCandidate);
   return fileStat.isFile() ? canonicalCandidate : null;
 }
@@ -128,6 +130,9 @@ export async function startStaticServer(
   const host = options.host ?? "127.0.0.1";
   const port = options.port ?? 0;
   const exposure = options.exposure ?? "examples-only";
+  const canonicalExposureRoot = exposure === "examples-only"
+    ? await realpath(resolve(canonicalRoot, "examples"))
+    : canonicalRoot;
 
   if (!Number.isInteger(port) || port < 0 || port > 65_535) {
     throw new Error(`Invalid static-server port: ${String(port)}`);
@@ -156,6 +161,7 @@ export async function startStaticServer(
 
       const filePath = await resolveRequestFile(
         canonicalRoot,
+        canonicalExposureRoot,
         url.pathname,
         exposure
       );

@@ -1,0 +1,162 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "factory-line",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "X070-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "X070-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "progress": 0,
+              "score": 0,
+              "lives": 2,
+              "last_action": null,
+              "connected": 1
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "X070-CP-MID",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "X070-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "progress": 1,
+              "score": 10,
+              "lives": 2,
+              "last_action": "P1投入原料",
+              "connected": 2
+            },
+            "ui": {},
+            "event_types": [
+              "stage_completed"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "X070-CP-WON",
+          "action_index": 4,
+          "layer": "L2",
+          "requirement_ids": [
+            "X070-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "progress": 3,
+              "score": 30,
+              "lives": 2,
+              "last_action": "P1验收成品",
+              "connected": 2
+            },
+            "ui": {},
+            "event_types": [
+              "stage_completed",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "X070-CP-WON-UI",
+          "action_index": 4,
+          "layer": "L3",
+          "requirement_ids": [
+            "X070-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Score: 30",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "X070-CP-LOST",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "X070-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "progress": 0,
+              "score": 0,
+              "lives": 0,
+              "last_action": "wrong",
+              "connected": 2
+            },
+            "ui": {},
+            "event_types": [
+              "action_rejected",
+              "progress_reset",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "X070-CP-RESET",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "X070-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "progress": 0,
+              "score": 0,
+              "lives": 2,
+              "last_action": null,
+              "connected": 0
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,880 @@
+{
+  "schema_version": "gametestlab.game-task-set.v1",
+  "name": "GameTestLab Complete Game Tasks",
+  "version": "2026-09-12.1",
+  "description": "106 complete browser-game generation tasks matched to the supplied gameplay and feature distribution.",
+  "contract_file": "GAME_CONTRACT.md",
+  "tasks": [
+    {
+      "id": "target-rush",
+      "directory": "target-rush",
+      "difficulty": "D1",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "maze-collector",
+      "directory": "maze-collector",
+      "difficulty": "D1",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "key-door-escape",
+      "directory": "key-door-escape",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "platform-rescue",
+      "directory": "platform-rescue",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "signal-memory",
+      "directory": "signal-memory",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "fruit-slice-touch",
+      "directory": "fruit-slice-touch",
+      "difficulty": "D1",
+      "category": "action",
+      "features": [
+        "touch"
+      ]
+    },
+    {
+      "id": "neon-lane-racer",
+      "directory": "neon-lane-racer",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "dual-arena",
+      "directory": "dual-arena",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "meteor-survivor",
+      "directory": "meteor-survivor",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "gesture-goalie",
+      "directory": "gesture-goalie",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "room-five-in-row",
+      "directory": "room-five-in-row",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "persistent-2048",
+      "directory": "persistent-2048",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "particle-orchestra",
+      "directory": "particle-orchestra",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "gesture-fireworks",
+      "directory": "gesture-fireworks",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "photo-orbit-gallery",
+      "directory": "photo-orbit-gallery",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "pet-care-day",
+      "directory": "pet-care-day",
+      "difficulty": "D1",
+      "category": "simulation",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "mini-farm",
+      "directory": "mini-farm",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "cooperative-city",
+      "directory": "cooperative-city",
+      "difficulty": "D3",
+      "category": "simulation",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "math-quest",
+      "directory": "math-quest",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "science-lab",
+      "directory": "science-lab",
+      "difficulty": "D2",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "ocean-hunter",
+      "directory": "ocean-hunter",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "sky-jump",
+      "directory": "sky-jump",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "touch"
+      ]
+    },
+    {
+      "id": "rooftop-runner",
+      "directory": "rooftop-runner",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "asteroid-shooter",
+      "directory": "asteroid-shooter",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "3d",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "boxing-duel",
+      "directory": "boxing-duel",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "circuit-race",
+      "directory": "circuit-race",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "multiplayer",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "whack-mole",
+      "directory": "whack-mole",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "touch"
+      ]
+    },
+    {
+      "id": "fruit-combo",
+      "directory": "fruit-combo",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "touch",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "drone-dodge",
+      "directory": "drone-dodge",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "pose-fighter",
+      "directory": "pose-fighter",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "volcano-survival",
+      "directory": "volcano-survival",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "snowball-arena",
+      "directory": "snowball-arena",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "rhythm-dash",
+      "directory": "rhythm-dash",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "helicopter-rescue",
+      "directory": "helicopter-rescue",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "space-defense",
+      "directory": "space-defense",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "samurai-reflex",
+      "directory": "samurai-reflex",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "cave-runner",
+      "directory": "cave-runner",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "crab-race",
+      "directory": "crab-race",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "submarine-dodge",
+      "directory": "submarine-dodge",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "tower-climber",
+      "directory": "tower-climber",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "kart-time-trial",
+      "directory": "kart-time-trial",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "3d",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "archery-range",
+      "directory": "archery-range",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "robot-brawl",
+      "directory": "robot-brawl",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "laser-maze-run",
+      "directory": "laser-maze-run",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "bee-swarm",
+      "directory": "bee-swarm",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "football-penalty",
+      "directory": "football-penalty",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "basketball-shot",
+      "directory": "basketball-shot",
+      "difficulty": "D3",
+      "category": "action",
+      "features": [
+        "camera",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "ninja-slice",
+      "directory": "ninja-slice",
+      "difficulty": "D2",
+      "category": "action",
+      "features": [
+        "touch"
+      ]
+    },
+    {
+      "id": "island-survival",
+      "directory": "island-survival",
+      "difficulty": "D2",
+      "category": "action",
+      "features": []
+    },
+    {
+      "id": "sokoban-warehouse",
+      "directory": "sokoban-warehouse",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "tetromino-stack",
+      "directory": "tetromino-stack",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "minesweeper-safe",
+      "directory": "minesweeper-safe",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "sliding-puzzle",
+      "directory": "sliding-puzzle",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "match-three-gems",
+      "directory": "match-three-gems",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "mahjong-pairs",
+      "directory": "mahjong-pairs",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "hex-connect",
+      "directory": "hex-connect",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "chess-endgame",
+      "directory": "chess-endgame",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "escape-room",
+      "directory": "escape-room",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "cube-rotation",
+      "directory": "cube-rotation",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "features": [
+        "3d",
+        "camera"
+      ]
+    },
+    {
+      "id": "logic-circuit",
+      "directory": "logic-circuit",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "pipe-connect",
+      "directory": "pipe-connect",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "tower-of-hanoi",
+      "directory": "tower-of-hanoi",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "word-grid",
+      "directory": "word-grid",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "color-sort",
+      "directory": "color-sort",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "nonogram",
+      "directory": "nonogram",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "laser-mirror",
+      "directory": "laser-mirror",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "balance-scale",
+      "directory": "balance-scale",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "memory-cards",
+      "directory": "memory-cards",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "number-link",
+      "directory": "number-link",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": []
+    },
+    {
+      "id": "tangram-3d",
+      "directory": "tangram-3d",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "touch-jigsaw",
+      "directory": "touch-jigsaw",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "features": [
+        "touch"
+      ]
+    },
+    {
+      "id": "galaxy-painter",
+      "directory": "galaxy-painter",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "hand-particle-sculpture",
+      "directory": "hand-particle-sculpture",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d",
+        "camera"
+      ]
+    },
+    {
+      "id": "collaborative-mural",
+      "directory": "collaborative-mural",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "music-visualizer",
+      "directory": "music-visualizer",
+      "difficulty": "D2",
+      "category": "creative",
+      "features": []
+    },
+    {
+      "id": "virtual-fireworks",
+      "directory": "virtual-fireworks",
+      "difficulty": "D2",
+      "category": "creative",
+      "features": []
+    },
+    {
+      "id": "kaleidoscope",
+      "directory": "kaleidoscope",
+      "difficulty": "D2",
+      "category": "creative",
+      "features": []
+    },
+    {
+      "id": "interactive-clock",
+      "directory": "interactive-clock",
+      "difficulty": "D2",
+      "category": "creative",
+      "features": []
+    },
+    {
+      "id": "photo-sphere",
+      "directory": "photo-sphere",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d",
+        "persistence"
+      ]
+    },
+    {
+      "id": "face-mask-studio",
+      "directory": "face-mask-studio",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "camera",
+        "persistence"
+      ]
+    },
+    {
+      "id": "zen-garden",
+      "directory": "zen-garden",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d",
+        "persistence"
+      ]
+    },
+    {
+      "id": "sound-board",
+      "directory": "sound-board",
+      "difficulty": "D2",
+      "category": "creative",
+      "features": []
+    },
+    {
+      "id": "constellation-maker",
+      "directory": "constellation-maker",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d"
+      ]
+    },
+    {
+      "id": "voxel-showcase",
+      "directory": "voxel-showcase",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "3d",
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "shadow-puppet",
+      "directory": "shadow-puppet",
+      "difficulty": "D3",
+      "category": "creative",
+      "features": [
+        "camera"
+      ]
+    },
+    {
+      "id": "cafe-manager",
+      "directory": "cafe-manager",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence",
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "pet-shelter",
+      "directory": "pet-shelter",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "orchard-season",
+      "directory": "orchard-season",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "city-budget",
+      "directory": "city-budget",
+      "difficulty": "D3",
+      "category": "simulation",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "factory-line",
+      "directory": "factory-line",
+      "difficulty": "D3",
+      "category": "simulation",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "hospital-shift",
+      "directory": "hospital-shift",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": []
+    },
+    {
+      "id": "train-dispatch",
+      "directory": "train-dispatch",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": []
+    },
+    {
+      "id": "aquarium-builder",
+      "directory": "aquarium-builder",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": []
+    },
+    {
+      "id": "fashion-studio",
+      "directory": "fashion-studio",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": []
+    },
+    {
+      "id": "dungeon-growth",
+      "directory": "dungeon-growth",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "leaderboard"
+      ]
+    },
+    {
+      "id": "life-simulator",
+      "directory": "life-simulator",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "market-trader",
+      "directory": "market-trader",
+      "difficulty": "D3",
+      "category": "simulation",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "campsite-manager",
+      "directory": "campsite-manager",
+      "difficulty": "D2",
+      "category": "simulation",
+      "features": [
+        "persistence"
+      ]
+    },
+    {
+      "id": "vocabulary-relay",
+      "directory": "vocabulary-relay",
+      "difficulty": "D3",
+      "category": "education",
+      "features": [
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "history-timeline",
+      "directory": "history-timeline",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "science-circuit",
+      "directory": "science-circuit",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "geography-map",
+      "directory": "geography-map",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "typing-class",
+      "directory": "typing-class",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "coding-maze",
+      "directory": "coding-maze",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "music-theory",
+      "directory": "music-theory",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    },
+    {
+      "id": "culture-detective",
+      "directory": "culture-detective",
+      "difficulty": "D1",
+      "category": "education",
+      "features": []
+    }
+  ]
+}

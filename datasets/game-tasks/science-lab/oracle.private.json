@@ -1,0 +1,171 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "science-lab",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "SL-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SL-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "acid_added": false,
+              "base_added": false,
+              "ph": 7,
+              "temperature": 20,
+              "heating": false,
+              "cooling": false,
+              "bottled": false
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SL-CP-MID",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "acid_added": true,
+              "base_added": true,
+              "ph": 7,
+              "temperature": 20,
+              "heating": false,
+              "cooling": false,
+              "bottled": false
+            },
+            "ui": {},
+            "event_types": [
+              "base_added"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SL-CP-WON",
+          "action_index": 9,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "acid_added": true,
+              "base_added": true,
+              "ph": 7,
+              "temperature": 40,
+              "heating": false,
+              "cooling": false,
+              "bottled": true
+            },
+            "ui": {},
+            "event_types": [
+              "solution_bottled",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SL-CP-WON-UI",
+          "action_index": 9,
+          "layer": "L3",
+          "requirement_ids": [
+            "SL-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "pH: 7 · Temp: 40°C",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "SL-CP-LOST",
+          "action_index": 4,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "acid_added": true,
+              "base_added": false,
+              "ph": 3,
+              "temperature": 80,
+              "heating": false,
+              "cooling": false,
+              "bottled": false
+            },
+            "ui": {},
+            "event_types": [
+              "temperature_changed",
+              "experiment_failed"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "SL-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "SL-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "acid_added": false,
+              "base_added": false,
+              "ph": 7,
+              "temperature": 20,
+              "heating": false,
+              "cooling": false,
+              "bottled": false
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

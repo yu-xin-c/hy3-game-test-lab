@@ -1,0 +1,316 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "science-lab",
+  "title": "Science Lab",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "混合顺序、持续加热和时间探针共同决定实验是否成功。"
+  },
+  "category": "education",
+  "features": [],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#lab-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "ADD_ACID",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#acid-btn"
+    },
+    {
+      "action_id": "ADD_BASE",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#base-btn"
+    },
+    {
+      "action_id": "HEAT_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "KeyH"
+    },
+    {
+      "action_id": "HEAT_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "KeyH"
+    },
+    {
+      "action_id": "COOL_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "KeyC"
+    },
+    {
+      "action_id": "COOL_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "KeyC"
+    },
+    {
+      "action_id": "POUR",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#pour-btn"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "SL-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "SL-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "混合顺序和持续加热、降温必须按虚拟时间更新实验状态。",
+      "depends_on": [
+        "SL-RUN"
+      ],
+      "observable": [
+        "acid_added",
+        "base_added",
+        "ph",
+        "temperature",
+        "heating",
+        "cooling"
+      ]
+    },
+    {
+      "id": "SL-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "过热到80°C或错误装瓶会立即失败。",
+      "depends_on": [
+        "SL-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "SL-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复空烧杯、pH=7、20°C、加热关闭和菜单。",
+      "depends_on": [
+        "SL-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "SL-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "SL-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 615,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_ACID",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_BASE",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 2000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "COOL_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "COOL_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "POUR",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-CP-WON",
+            "SL-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 615,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_ACID",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 3000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HEAT_UP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 615,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ADD_ACID",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "SL-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

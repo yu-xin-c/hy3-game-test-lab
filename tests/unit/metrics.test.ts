@@ -31,7 +31,7 @@ function makeOracle(
         layer: errorType === "state_ui_inconsistency" ? "L3" : "L2",
         requirement_ids: ["REQ-01"],
         terminal: true,
-        expected: { state: {} }
+        expected: { state: { status: "playing" } }
       }
     ],
     fault_ground_truth: {
@@ -77,7 +77,7 @@ function makeEvaluation(
     : null;
 
   return CaseEvaluationSchema.parse({
-    schema_version: "gametestlab.evaluation.v1",
+    schema_version: "gametestlab.evaluation.v2",
     case_id: id,
     difficulty,
     final_outcome_correct: finalCorrect,

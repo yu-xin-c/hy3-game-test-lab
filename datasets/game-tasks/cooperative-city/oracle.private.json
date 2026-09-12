@@ -1,0 +1,160 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "cooperative-city",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "CC-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "CC-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "connected": 1,
+              "power": 0,
+              "water": 0,
+              "approvals": 0,
+              "elapsed_ms": 0
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "CC-CP-MID",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "CC-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "connected": 2,
+              "power": 2,
+              "water": 0,
+              "approvals": 0,
+              "elapsed_ms": 0
+            },
+            "ui": {},
+            "event_types": [
+              "power_built"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "CC-CP-WON",
+          "action_index": 7,
+          "layer": "L2",
+          "requirement_ids": [
+            "CC-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "connected": 2,
+              "power": 2,
+              "water": 2,
+              "approvals": 2,
+              "elapsed_ms": 0
+            },
+            "ui": {},
+            "event_types": [
+              "plan_approved",
+              "city_completed"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "CC-CP-WON-UI",
+          "action_index": 7,
+          "layer": "L3",
+          "requirement_ids": [
+            "CC-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Power: 2 · Water: 2",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "CC-CP-LOST",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "CC-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "connected": 2,
+              "power": 0,
+              "water": 0,
+              "approvals": 0,
+              "elapsed_ms": 10000
+            },
+            "ui": {},
+            "event_types": [
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "CC-CP-RESET",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "CC-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "connected": 0,
+              "power": 0,
+              "water": 0,
+              "approvals": 0,
+              "elapsed_ms": 0
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

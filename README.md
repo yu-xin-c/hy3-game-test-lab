@@ -1,10 +1,10 @@
 # GameTestLab
 
-GameTestLab 用来自动试玩 AI 生成的浏览器游戏。它会在 Chromium 里打开游戏，点击开始、发送键鼠输入并一路推进到终局，同时记录页面错误、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
+GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
 
-> 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。仓库只通过 API 调用 Hy3，不训练、不微调，也不发布模型权重。
+> 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。需要模型能力时通过 API 调用 Hy3，不训练、不微调，也不发布模型权重；当前冻结 Pilot 未调用 Hy3。
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [Pilot 结果](results/sample/README.md)
+[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [校准集结果](results/sample/README.md) · [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)
 
 ## 怎么检测游戏
 
@@ -12,11 +12,11 @@ GameTestLab 用来自动试玩 AI 生成的浏览器游戏。它会在 Chromium 
 
 | 层级 | 实际检查 |
 | --- | --- |
-| L1 运行 | 页面能否加载和启动，键鼠输入是否生效，是否出现 console 或 page error |
-| L2 逻辑 | 每次操作后的状态、计分和事件是否符合预期，边界条件和完整游戏路径能否走通 |
-| L3 界面 | HUD 是否与内部状态一致，关键内容是否可见，Canvas 和截图是否符合画面检查项 |
+| L1 运行 | 页面能否加载和启动，是否出现 console、page、网络错误或外部依赖 |
+| L2 逻辑 | 声明的检查点上，输入后的状态、计分和事件是否符合预期，完整路径能否走通 |
+| L3 界面 | HUD 是否与内部状态一致，DOM 和 Canvas 证据是否符合断言 |
 
-L1 直接在 Playwright 启动的真实 Chromium 中执行。L2 按测试路径发送真实输入，并在每个检查点读取状态和事件，与 oracle 比较。L3 采集 DOM、Canvas 和截图，也可以接入多模态模型检查视觉语义。
+L1 直接在 Playwright 启动的真实 Chromium 中执行。L2 按测试路径发送真实输入，并在每个检查点读取状态和事件，与 oracle 比较。计时或物理玩法可以冻结浏览器时钟，按固定时间片推进，并根据观察桥提供的几何状态检查碰撞、穿透、跳跃高度、落脚支撑和世界边界。L3 采集 DOM、Canvas 和截图；截图用于人工复核，也可以交给独立的多模态裁判。
 
 最终状态正确不代表过程正确。如果中间出现过偏离，后面又被其他错误抵消，报告仍会保留第一次偏离并标记为 `lucky pass`。Vitest 和 jsdom 用于快速检查纯逻辑与 DOM；能否实际游玩以 Chromium 结果为准。
 
@@ -41,7 +41,7 @@ pnpm run demo:serve
 
 ## 接入一个游戏
 
-现有 pilot 从 `case.json` 读取游戏入口、控件、界面 selector、测试路径和检查点。生成游戏会把入口与控件写进 `game.manifest.json`，对应的通用 adapter 还在开发。自动试玩始终通过页面上的真实键鼠输入完成，观察桥只负责重置游戏和读取证据。
+现有 pilot 从 `case.json` 读取游戏入口、控件、界面 selector、测试路径和检查点。正式任务中的生成游戏使用 `game.manifest.json`；adapter 会把它和该题已经冻结的试玩步骤、正确结果接到同一套 Chromium runner。自动试玩始终通过页面上的真实键鼠、触控或摄像头输入完成，观察桥只负责重置游戏和读取证据。
 
 测试路径和检查点可以直接编写；如果手头有需求文档或 PRD，也可以把它作为生成测试建议的可选输入：
 
@@ -53,7 +53,18 @@ pnpm run hy3:plan -- \
   --case datasets/cases/clean-control/case.json
 ```
 
-仓库里的 `hy3:generate` 可以生成实验用游戏样本。
+仓库里的 `hy3:generate` 可以生成实验用游戏包，并在隔离 Chromium 中检查入口和观察桥。CodeBuddy 批量实验使用单独的工作目录：
+
+```bash
+pnpm run prepare:codebuddy
+pnpm run eval:task -- \
+  --task target-rush \
+  --game-dir ../codebuddy-hy3-experiments/20260902-formal-106/generated/target-rush/files \
+  --replays 3 \
+  --generator codebuddy-hy3
+```
+
+第二条命令要在 CodeBuddy 生成该题的四个游戏文件后运行。
 
 每次评测会留下这些文件：
 
@@ -64,9 +75,11 @@ pnpm run hy3:plan -- \
 
 ## 现在做到哪了
 
-当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。仓库现有 20 项 Vitest 和 2 项真实 Chromium 测试，均已通过；冻结结果在 [results/sample](results/sample/README.md)。
+当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 98 项 Vitest/jsdom 测试和 20 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
 
-这组结果说明管线能够识别预设故障，不能用来评价 Hy3 的游戏生成能力。现在的 pilot 仍由预制的 `case.json + oracle` 驱动。终稿前还需要补充多个独立生成的游戏、人工抽检和两分钟 Demo；生成目录的通用 adapter、无规格场景生成，以及多模态结果汇总也还没有完成。
+[完整游戏任务集](datasets/game-tasks/README.md) 已准备 106 个独立游戏，玩法数量对齐 36/27/17/16/10，3D、摄像头、多人、存档、排行榜和触控题也按原跑批比例覆盖。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
+
+正式实验已用 CodeBuddy CN 的 Hy3 High 独立生成并评测前两款游戏，每款只生成一次、无人工改代码、三次重放。当前抓到了不可见目标、界面与状态不一致、终局偶然正确和时间边界不稳定；结果见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)。这还只是五款代表性游戏中的前两款，不是 106 题最终分数。
 
 ## 仓库结构
 
@@ -75,7 +88,8 @@ src/runtime/       Chromium 自动试玩与证据采集
 src/evaluation/    分层判定、首错定位、指标和视觉判断
 src/contracts/     游戏、测试和结果的数据结构
 src/agents/        Hy3 测试规划与样本生成
-datasets/          Pilot case 和 private oracle
+datasets/          106 道正式任务、Pilot case 和 private oracle
+scripts/           数据构造、CodeBuddy 准备和正式评测命令
 tests/             Vitest、jsdom 和 Playwright 测试
 docs/              方案、方法、数据与安全说明
 results/sample/    已冻结的 Pilot 结果

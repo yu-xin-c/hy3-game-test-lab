@@ -1,0 +1,162 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "pet-care-day",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "PC-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "PC-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "hunger": 2,
+              "happiness": 2,
+              "energy": 2,
+              "actions": 0,
+              "saved": true
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PC-CP-MID",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "PC-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "hunger": 3,
+              "happiness": 2,
+              "energy": 2,
+              "actions": 1,
+              "saved": true
+            },
+            "ui": {},
+            "event_types": [
+              "state_loaded"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PC-CP-WON",
+          "action_index": 4,
+          "layer": "L2",
+          "requirement_ids": [
+            "PC-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "hunger": 3,
+              "happiness": 3,
+              "energy": 3,
+              "actions": 3,
+              "saved": true
+            },
+            "ui": {},
+            "event_types": [
+              "pet_slept",
+              "state_saved",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PC-CP-WON-UI",
+          "action_index": 4,
+          "layer": "L3",
+          "requirement_ids": [
+            "PC-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Needs: 3/3/3",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "PC-CP-LOST",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "PC-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "hunger": 0,
+              "happiness": 0,
+              "energy": 0,
+              "actions": 0,
+              "saved": true
+            },
+            "ui": {},
+            "event_types": [
+              "need_decayed",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "PC-CP-RESET",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "PC-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "hunger": 2,
+              "happiness": 2,
+              "energy": 2,
+              "actions": 0,
+              "saved": false
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

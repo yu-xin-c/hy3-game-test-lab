@@ -1,0 +1,276 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "boxing-duel",
+  "title": "Boxing Duel",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "围绕双人拳击设置三段确定性路径，并覆盖错误输入和重开。"
+  },
+  "category": "action",
+  "features": [
+    "multiplayer"
+  ],
+  "environment": {
+    "pages": 2,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "JOIN",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#join-btn"
+    },
+    {
+      "action_id": "STAGE_1",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyA"
+    },
+    {
+      "action_id": "STAGE_2",
+      "actor": "secondary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyS"
+    },
+    {
+      "action_id": "STAGE_3",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyD"
+    },
+    {
+      "action_id": "WRONG",
+      "actor": "secondary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyX"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "X005-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "X005-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "双人拳击的三个阶段必须按固定顺序推进进度和分数。",
+      "depends_on": [
+        "X005-RUN"
+      ],
+      "observable": [
+        "progress",
+        "score",
+        "lives",
+        "last_action",
+        "events"
+      ]
+    },
+    {
+      "id": "X005-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "两次错误操作会清空生命并失败。",
+      "depends_on": [
+        "X005-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "X005-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复0进度、0分、2条生命、空 last_action 和菜单。",
+      "depends_on": [
+        "X005-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "X005-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "X005-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 704,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X005-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_1",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X005-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_2",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_3",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X005-CP-WON",
+            "X005-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 704,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X005-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 704,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "JOIN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X005-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

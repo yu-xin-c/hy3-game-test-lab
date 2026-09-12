@@ -1,71 +1,40 @@
-import { randomUUID } from "node:crypto";
-import { mkdir, rename, writeFile } from "node:fs/promises";
+import { execFile as execFileCallback } from "node:child_process";
+import { createHash, randomUUID } from "node:crypto";
+import { mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
+import { createRequire } from "node:module";
+import { arch, platform, release } from "node:os";
 import { dirname, relative, resolve } from "node:path";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 import { loadDatasetEntry, loadManifest } from "../src/contracts/loaders";
-import type {
-  CaseEvaluation,
-  Observation,
-  PrivateOracle,
-  PublicCase
+import { resolveRegularFileInsideRoot } from "../src/contracts/paths";
+import {
+  CaseResultArtifactV2Schema,
+  LatestRunPointerSchema,
+  RunSummaryV2Schema,
+  StoredTraceV2Schema,
+  type CaseResultArtifactV2,
+  type RunSummaryV2
+} from "../src/contracts/artifacts";
+import {
+  CaseEvaluationSchema,
+  ObservationSchema
 } from "../src/contracts/schemas";
 import { evaluateCase } from "../src/evaluation/evaluator";
 import {
   computeMetrics,
-  type AggregateMetrics,
   type EvaluatedSample
 } from "../src/evaluation/metrics";
-import {
-  runPlaythrough,
-  type BrowserConsoleRecord,
-  type BrowserPageErrorRecord,
-  type RuntimeDiagnostic
-} from "../src/runtime/playthrough";
+import { runPlaythrough } from "../src/runtime/playthrough";
 import { startStaticServer } from "../src/runtime/static-server";
+import { validateDataset } from "./validate-dataset";
 
-interface CaseArtifact {
-  schema_version: "gametestlab.case-result.v1";
-  case_id: string;
-  title: string;
-  difficulty: PublicCase["difficulty"];
-  fixture_variant: string;
-  case_file: string;
-  oracle_file: string;
-  oracle_ground_truth: PrivateOracle["fault_ground_truth"];
-  evaluation: CaseEvaluation;
-  observations: Observation[];
-  browser: {
-    url: string;
-    console: BrowserConsoleRecord[];
-    page_errors: BrowserPageErrorRecord[];
-    diagnostics: RuntimeDiagnostic[];
-  };
-}
-
-interface RunSummary {
-  schema_version: "gametestlab.run-summary.v1";
-  run_id: string;
-  created_at: string;
-  finished_at: string;
-  dataset: {
-    name: string;
-    version: string;
-    manifest: string;
-  };
-  runtime: {
-    browser: "chromium";
-    browser_version: string;
-    headless: true;
-    hy3_api_used: false;
-  };
-  artifact_files: {
-    action_trace: "events.jsonl";
-    case_results: "cases.json";
-    summary: "summary.json";
-  };
-  metrics: AggregateMetrics;
-}
+const execFile = promisify(execFileCallback);
+const require = createRequire(import.meta.url);
+const playwrightVersion = (
+  require("@playwright/test/package.json") as { version: string }
+).version;
 
 function filesystemTimestamp(date: Date): string {
   return date.toISOString().replaceAll(":", "-").replaceAll(".", "-");
@@ -77,6 +46,52 @@ function repositoryRelative(repositoryRoot: string, path: string): string {
 
 async function writeJson(path: string, value: unknown): Promise<void> {
   await writeFile(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function jsonRoundTrip(value: unknown): unknown {
+  return JSON.parse(JSON.stringify(value)) as unknown;
+}
+
+async function sha256File(path: string): Promise<string> {
+  return createHash("sha256").update(await readFile(path)).digest("hex");
+}
+
+async function collectFiles(directory: string): Promise<string[]> {
+  const files: string[] = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await collectFiles(path));
+    else if (entry.isFile()) files.push(path);
+    else if (entry.isSymbolicLink()) {
+      throw new Error(`Symbolic links are not allowed in hashed game directories: ${path}`);
+    }
+  }
+  return files.sort();
+}
+
+async function sha256Directory(directory: string): Promise<string> {
+  const hash = createHash("sha256");
+  for (const path of await collectFiles(directory)) {
+    hash.update(repositoryRelative(directory, path));
+    hash.update("\0");
+    hash.update(await readFile(path));
+    hash.update("\0");
+  }
+  return hash.digest("hex");
+}
+
+async function gitState(repositoryRoot: string): Promise<{
+  commit: string;
+  dirty: boolean;
+}> {
+  const [commit, status] = await Promise.all([
+    execFile("git", ["rev-parse", "HEAD"], { cwd: repositoryRoot }),
+    execFile("git", ["status", "--porcelain"], { cwd: repositoryRoot })
+  ]);
+  return {
+    commit: commit.stdout.trim(),
+    dirty: status.stdout.trim().length > 0
+  };
 }
 
 async function updateLatestPointer(
@@ -98,7 +113,12 @@ async function main(): Promise<void> {
     ".."
   );
   const manifestPath = resolve(repositoryRoot, "datasets/manifest.json");
+  await validateDataset(repositoryRoot, "datasets/manifest.json");
   const manifest = await loadManifest(manifestPath);
+  const [manifestSha256, repositoryState] = await Promise.all([
+    sha256File(manifestPath),
+    gitState(repositoryRoot)
+  ]);
   const datasetEntries = await Promise.all(
     manifest.cases.map(async (entry) => ({
       entry,
@@ -123,22 +143,47 @@ async function main(): Promise<void> {
     port: 0
   });
 
-  const caseArtifacts: CaseArtifact[] = [];
+  const caseArtifacts: CaseResultArtifactV2[] = [];
   const evaluatedSamples: EvaluatedSample[] = [];
   const traceLines: string[] = [];
   let browserVersion = "unknown";
 
   let browser;
   try {
-    browser = await chromium.launch({ headless: true });
+    const executablePath = process.env.GAMETESTLAB_CHROMIUM_EXECUTABLE;
+    browser = await chromium.launch({
+      headless: true,
+      ...(executablePath ? { executablePath } : {})
+    });
     browserVersion = browser.version();
 
     for (const { entry, publicCase, oracle } of datasetEntries) {
+      const [casePath, oraclePath, gameEntryPath] = await Promise.all([
+        resolveRegularFileInsideRoot(repositoryRoot, entry.case_file, {
+          rejectSymlink: true
+        }),
+        resolveRegularFileInsideRoot(repositoryRoot, entry.oracle_file, {
+          rejectSymlink: true
+        }),
+        resolveRegularFileInsideRoot(
+          repositoryRoot,
+          publicCase.game.entry_path.slice(1),
+          { requiredPrefix: "examples", rejectSymlink: true }
+        )
+      ]);
+      const [caseSha256, oracleSha256, gameDirectorySha256] = await Promise.all([
+        sha256File(casePath),
+        sha256File(oraclePath),
+        sha256Directory(dirname(gameEntryPath))
+      ]);
       const context = await browser.newContext({
         viewport: publicCase.game.viewport,
         deviceScaleFactor: 1,
         locale: "zh-CN",
-        timezoneId: "Asia/Shanghai"
+        timezoneId: "Asia/Shanghai",
+        ...(publicCase.controls.some((control) => control.device === "touch")
+          ? { hasTouch: true }
+          : {})
       });
 
       try {
@@ -156,15 +201,16 @@ async function main(): Promise<void> {
           ),
           evidencePathRoot: repositoryRoot
         });
-        const evaluation = evaluateCase(
-          publicCase,
-          oracle,
-          playthrough.observations
+        const storedObservations = playthrough.observations.map((observation) =>
+          ObservationSchema.parse(jsonRoundTrip(observation))
+        );
+        const evaluation = CaseEvaluationSchema.parse(
+          jsonRoundTrip(evaluateCase(publicCase, oracle, storedObservations))
         );
 
         evaluatedSamples.push({ evaluation, oracle });
-        caseArtifacts.push({
-          schema_version: "gametestlab.case-result.v1",
+        caseArtifacts.push(CaseResultArtifactV2Schema.parse(jsonRoundTrip({
+          schema_version: "gametestlab.case-result.v2",
           case_id: publicCase.id,
           title: publicCase.title,
           difficulty: publicCase.difficulty,
@@ -172,17 +218,26 @@ async function main(): Promise<void> {
           case_file: entry.case_file,
           oracle_file: entry.oracle_file,
           oracle_ground_truth: oracle.fault_ground_truth,
+          input_hashes: {
+            case_sha256: caseSha256,
+            oracle_sha256: oracleSha256,
+            game_directory_sha256: gameDirectorySha256
+          },
           evaluation,
-          observations: playthrough.observations,
+          observations: storedObservations,
           browser: {
             url: playthrough.url,
             console: playthrough.console,
             page_errors: playthrough.page_errors,
+            network: playthrough.network,
             diagnostics: playthrough.diagnostics
           }
-        });
+        })));
         for (const event of playthrough.trace) {
-          traceLines.push(JSON.stringify({ run_id: runId, ...event }));
+          const storedTrace = StoredTraceV2Schema.parse(
+            jsonRoundTrip({ run_id: runId, ...event })
+          );
+          traceLines.push(JSON.stringify(storedTrace));
         }
 
         console.log(
@@ -209,21 +264,27 @@ async function main(): Promise<void> {
   }
 
   const finishedAt = new Date();
-  const summary: RunSummary = {
-    schema_version: "gametestlab.run-summary.v1",
+  const summary: RunSummaryV2 = RunSummaryV2Schema.parse({
+    schema_version: "gametestlab.run-summary.v2",
     run_id: runId,
     created_at: startedAt.toISOString(),
     finished_at: finishedAt.toISOString(),
     dataset: {
       name: manifest.name,
       version: manifest.version,
-      manifest: repositoryRelative(repositoryRoot, manifestPath)
+      manifest: repositoryRelative(repositoryRoot, manifestPath),
+      manifest_sha256: manifestSha256
     },
     runtime: {
       browser: "chromium",
       browser_version: browserVersion,
       headless: true,
-      hy3_api_used: false
+      hy3_api_used: false,
+      node_version: process.version,
+      playwright_version: playwrightVersion,
+      os: `${platform()} ${release()} ${arch()}`,
+      git_commit: repositoryState.commit,
+      git_dirty: repositoryState.dirty
     },
     artifact_files: {
       action_trace: "events.jsonl",
@@ -231,7 +292,7 @@ async function main(): Promise<void> {
       summary: "summary.json"
     },
     metrics: computeMetrics(evaluatedSamples)
-  };
+  });
 
   await writeFile(
     resolve(runDirectory, "events.jsonl"),
@@ -240,7 +301,7 @@ async function main(): Promise<void> {
   );
   await writeJson(resolve(runDirectory, "cases.json"), caseArtifacts);
   await writeJson(resolve(runDirectory, "summary.json"), summary);
-  await updateLatestPointer(runsDirectory, {
+  await updateLatestPointer(runsDirectory, LatestRunPointerSchema.parse({
     schema_version: "gametestlab.latest-run.v1",
     run_id: runId,
     run_path: repositoryRelative(repositoryRoot, runDirectory),
@@ -249,7 +310,7 @@ async function main(): Promise<void> {
       resolve(runDirectory, "summary.json")
     ),
     updated_at: finishedAt.toISOString()
-  });
+  }));
 
   console.log(`Artifacts: ${runDirectory}`);
   console.log(JSON.stringify(summary.metrics, null, 2));

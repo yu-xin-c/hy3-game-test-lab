@@ -1,0 +1,160 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "gesture-fireworks",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "GF-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "GF-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "progress": 0,
+              "launches": 0,
+              "lives": 2,
+              "last_gesture": null
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "GF-CP-MID",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "GF-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "progress": 1,
+              "launches": 1,
+              "lives": 2,
+              "last_gesture": "blue"
+            },
+            "ui": {},
+            "event_types": [
+              "gesture_detected",
+              "firework_launched"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "GF-CP-WON",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "GF-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "progress": 3,
+              "launches": 3,
+              "lives": 2,
+              "last_gesture": "gold"
+            },
+            "ui": {},
+            "event_types": [
+              "gesture_detected",
+              "firework_launched",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "GF-CP-WON-UI",
+          "action_index": 3,
+          "layer": "L3",
+          "requirement_ids": [
+            "GF-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Fireworks: 3/3",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "GF-CP-LOST",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "GF-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "progress": 0,
+              "launches": 0,
+              "lives": 0,
+              "last_gesture": "wrong"
+            },
+            "ui": {},
+            "event_types": [
+              "gesture_detected",
+              "gesture_wrong",
+              "progress_reset",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "GF-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "GF-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "progress": 0,
+              "launches": 0,
+              "lives": 2,
+              "last_gesture": null
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

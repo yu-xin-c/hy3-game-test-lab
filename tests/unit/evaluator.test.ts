@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  CaseEvaluationSchema,
   ObservationSchema,
   PrivateOracleSchema,
   PublicCaseSchema,
@@ -209,6 +210,198 @@ describe("evaluateCase", () => {
       layer: "L1",
       error_type: "runtime_error"
     });
+    expect(result.gates).toEqual({ L1: "fail", L2: "blocked", L3: "blocked" });
+  });
+
+  it("keeps a correct terminal outcome separate from a physics process failure", () => {
+    const physicsOracle = PrivateOracleSchema.parse({
+      ...oracle,
+      schema_version: "gametestlab.oracle.v2",
+      checkpoints: oracle.checkpoints.map((checkpoint) =>
+        checkpoint.id === "CP-FINAL"
+          ? {
+              ...checkpoint,
+              expected: {
+                ...checkpoint.expected,
+                physics: [{
+                  id: "PHYS-PEN",
+                  type: "no_penetration",
+                  platform_id: "ledge"
+                }]
+              }
+            }
+          : checkpoint
+      )
+    });
+    const observations = cleanObservations();
+    observations[3] = ObservationSchema.parse({
+      ...observations[3],
+      state: {
+        score: 2,
+        status: "won",
+        player: { x: 10, y: 90, width: 20, height: 20 },
+        platforms: [{ id: "ledge", x: 0, y: 100, width: 100, height: 20 }]
+      },
+      samples: [{
+        sample_index: 7,
+        elapsed_ms: 116.7,
+        tick: 7,
+        status: "won",
+        state: {
+          player: { x: 10, y: 90, width: 20, height: 20 },
+          platforms: [{ id: "ledge", x: 0, y: 100, width: 100, height: 20 }]
+        },
+        event_types: []
+      }]
+    });
+
+    const result = evaluateCase(publicCase, physicsOracle, observations);
+
+    expect(result).toMatchObject({
+      final_outcome_correct: true,
+      process_correct: false,
+      lucky_pass_detected: true,
+      first_failure: {
+        checkpoint_id: "CP-FINAL",
+        error_type: "physics_penetration",
+        sample_index: 7,
+        elapsed_ms: 116.7
+      }
+    });
+  });
+
+  it("does not blame game physics when required timeline evidence is absent", () => {
+    const physicsOracle = PrivateOracleSchema.parse({
+      ...oracle,
+      schema_version: "gametestlab.oracle.v2",
+      checkpoints: oracle.checkpoints.map((checkpoint) =>
+        checkpoint.id === "CP-FINAL"
+          ? {
+              ...checkpoint,
+              expected: {
+                ...checkpoint.expected,
+                physics: [{ id: "PHYS-PEN", type: "no_penetration" }]
+              }
+            }
+          : checkpoint
+      )
+    });
+
+    const result = evaluateCase(publicCase, physicsOracle, cleanObservations());
+
+    expect(result).toMatchObject({
+      final_outcome_correct: true,
+      process_correct: false,
+      lucky_pass_detected: true,
+      gates: { L1: "fail", L2: "blocked", L3: "blocked" },
+      first_failure: {
+        checkpoint_id: "CP-FINAL",
+        layer: "L1",
+        error_type: "artifact_failure"
+      }
+    });
+    expect(result.first_failure?.sample_index).toBeUndefined();
+  });
+
+  it("classifies a checkpoint with the wrong action index as bad evidence", () => {
+    const observations = cleanObservations();
+    observations[1] = observation("CP-MID", 2, { score: 1 });
+
+    const result = evaluateCase(publicCase, oracle, observations);
+
+    expect(result.first_failure).toMatchObject({
+      checkpoint_id: "CP-MID",
+      layer: "L1",
+      error_type: "artifact_failure",
+      diffs: [{
+        channel: "runtime",
+        path: "observation.action_index",
+        expected: 1,
+        actual: 2
+      }]
+    });
+  });
+
+  it("keeps missing values explicit after a JSON round trip", () => {
+    const observations = cleanObservations();
+    observations[1] = observation("CP-MID", 1, {});
+
+    const result = evaluateCase(publicCase, oracle, observations);
+    const stored = JSON.parse(JSON.stringify(result)) as unknown;
+    const reparsed = CaseEvaluationSchema.parse(stored);
+
+    expect(reparsed.first_failure?.diffs[0]).toEqual({
+      channel: "state",
+      path: "score",
+      expected: 1,
+      actual: { kind: "missing" }
+    });
+  });
+
+  it("does not certify a terminal observation from the wrong action", () => {
+    const observations = cleanObservations();
+    observations[3] = observation(
+      "CP-FINAL",
+      0,
+      { score: 2, status: "won" }
+    );
+
+    const result = evaluateCase(publicCase, oracle, observations);
+
+    expect(result.final_outcome_correct).toBe(false);
+    expect(result.first_failure).toMatchObject({
+      checkpoint_id: "CP-FINAL",
+      layer: "L1",
+      error_type: "artifact_failure"
+    });
+  });
+
+  it("uses structured runtime evidence even without the legacy string list", () => {
+    const observations = cleanObservations();
+    observations[1] = ObservationSchema.parse({
+      ...observations[1],
+      runtime_errors: [],
+      runtime_error_evidence: [{
+        source: "console",
+        message: "console: STRUCTURED_ONLY",
+        action_index: 1,
+        frame_index: null,
+        elapsed_ms: 0
+      }]
+    });
+
+    const result = evaluateCase(publicCase, oracle, observations);
+
+    expect(result.first_failure).toMatchObject({
+      action_index: 1,
+      layer: "L1",
+      error_type: "runtime_error"
+    });
+  });
+
+  it("fails L1 for runtime evidence even when the oracle has no L1 checkpoint", () => {
+    const noL1Oracle = PrivateOracleSchema.parse({
+      ...oracle,
+      checkpoints: oracle.checkpoints.filter((checkpoint) =>
+        checkpoint.layer !== "L1"
+      )
+    });
+    const observations = cleanObservations().filter(
+      (item) => item.checkpoint_id !== "CP-RUN"
+    );
+    observations[0] = ObservationSchema.parse({
+      ...observations[0],
+      runtime_error_evidence: [{
+        source: "pageerror",
+        message: "pageerror: setup failed",
+        action_index: 1,
+        frame_index: null,
+        elapsed_ms: 0
+      }]
+    });
+
+    const result = evaluateCase(publicCase, noL1Oracle, observations);
+
     expect(result.gates).toEqual({ L1: "fail", L2: "blocked", L3: "blocked" });
   });
 });

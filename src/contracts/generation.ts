@@ -2,9 +2,9 @@ import { z } from "zod";
 
 export const USER_BRIEF_SCHEMA_VERSION = "gametestlab.user-brief.v1" as const;
 export const GENERATED_PRD_SCHEMA_VERSION = "gametestlab.generated-prd.v1" as const;
-export const GAME_MANIFEST_SCHEMA_VERSION = "gametestlab.game-manifest.v1" as const;
-export const GAME_PACKAGE_SCHEMA_VERSION = "gametestlab.game-package.v1" as const;
-export const GENERATION_RUN_SCHEMA_VERSION = "gametestlab.generation-run.v1" as const;
+export const GAME_MANIFEST_SCHEMA_VERSION = "gametestlab.game-manifest.v3" as const;
+export const GAME_PACKAGE_SCHEMA_VERSION = "gametestlab.game-package.v2" as const;
+export const GENERATION_RUN_SCHEMA_VERSION = "gametestlab.generation-run.v2" as const;
 
 const IdentifierSchema = z
   .string()
@@ -131,11 +131,14 @@ export const GeneratedPrdSchema = z
 const GameControlSchema = z
   .object({
     action_id: IdentifierSchema,
-    device: z.enum(["keyboard", "mouse", "touch"]),
+    actor: z.enum(["primary", "secondary"]).default("primary"),
+    device: z.enum(["keyboard", "mouse", "touch", "camera"]),
+    key_event: z.enum(["press", "down", "up"]).default("press"),
     code: z.string().min(1).optional(),
     selector: z.string().min(1).optional(),
     x_ratio: z.number().min(0).max(1).optional(),
     y_ratio: z.number().min(0).max(1).optional(),
+    fixture_frame: z.string().min(1).optional(),
     description: z.string().min(1)
   })
   .strict()
@@ -148,7 +151,7 @@ const GameControlSchema = z
       });
     }
     if (
-      control.device !== "keyboard" &&
+      (control.device === "mouse" || control.device === "touch") &&
       !control.selector &&
       (control.x_ratio === undefined || control.y_ratio === undefined)
     ) {
@@ -156,6 +159,20 @@ const GameControlSchema = z
         code: "custom",
         path: ["selector"],
         message: "pointer control requires selector or x_ratio/y_ratio"
+      });
+    }
+    if (control.device !== "keyboard" && control.key_event !== "press") {
+      context.addIssue({
+        code: "custom",
+        path: ["key_event"],
+        message: "pointer controls only support press"
+      });
+    }
+    if (control.device === "camera" && !control.fixture_frame) {
+      context.addIssue({
+        code: "custom",
+        path: ["fixture_frame"],
+        message: "camera control requires fixture_frame"
       });
     }
   });
@@ -228,13 +245,31 @@ export const GameManifestSchema = z
     event_schema: z.array(GameEventSchema).min(1),
     bridge: z
       .object({
-        protocol: z.literal("gametestlab/1"),
+        protocol: z.literal("gametestlab/2"),
         evidence_only: z.literal(true),
         actions_via_real_input: z.literal(true)
       })
       .strict()
   })
-  .strict();
+  .strict()
+  .superRefine((manifest, context) => {
+    for (const [path, values] of [
+      ["controls", manifest.controls.map((control) => control.action_id)],
+      ["event_schema", manifest.event_schema.map((event) => event.type)]
+    ] as const) {
+      const seen = new Set<string>();
+      for (const [index, value] of values.entries()) {
+        if (seen.has(value)) {
+          context.addIssue({
+            code: "custom",
+            path: [path, index],
+            message: `duplicate identifier ${value}`
+          });
+        }
+        seen.add(value);
+      }
+    }
+  });
 
 export const GAME_PACKAGE_FILE_ALLOWLIST = [
   "index.html",
@@ -252,8 +287,95 @@ const GamePackageFileSchema = z
   })
   .strict();
 
-const BRIDGE_ASSIGNMENT =
-  /window(?:\.__GAMETESTLAB__|\[['"]__GAMETESTLAB__['"]\])\s*=/;
+function htmlAttribute(tag: string, name: string): string | null {
+  const match = new RegExp(
+    `\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`,
+    "i"
+  ).exec(tag);
+  return match?.[1] ?? match?.[2] ?? match?.[3] ?? null;
+}
+
+function hasHtmlAsset(
+  html: string,
+  tagName: "script" | "link",
+  attribute: "src" | "href",
+  expectedPath: string
+): boolean {
+  const tags = html.match(new RegExp(`<${tagName}\\b[^>]*>`, "gi")) ?? [];
+  return tags.some((tag) => {
+    const value = htmlAttribute(tag, attribute)?.split(/[?#]/, 1)[0];
+    if (value !== expectedPath && value !== `./${expectedPath}`) return false;
+    if (tagName === "link") {
+      return htmlAttribute(tag, "rel")?.toLowerCase() === "stylesheet";
+    }
+    return true;
+  });
+}
+
+function hasBridgeAssignment(source: string): boolean {
+  try {
+    // Parse only; the generated source is never executed in the validator.
+    Function(source);
+  } catch {
+    return false;
+  }
+  let cleaned = "";
+  let index = 0;
+  let mode: "code" | "line" | "block" | "string" = "code";
+  let quote = "";
+  while (index < source.length) {
+    const character = source[index] ?? "";
+    const next = source[index + 1] ?? "";
+    if (mode === "line") {
+      if (character === "\n") {
+        mode = "code";
+        cleaned += "\n";
+      } else cleaned += " ";
+      index += 1;
+      continue;
+    }
+    if (mode === "block") {
+      if (character === "*" && next === "/") {
+        cleaned += "  ";
+        index += 2;
+        mode = "code";
+      } else {
+        cleaned += character === "\n" ? "\n" : " ";
+        index += 1;
+      }
+      continue;
+    }
+    if (mode === "string") {
+      if (character === "\\") {
+        cleaned += "  ";
+        index += 2;
+      } else {
+        cleaned += character === "\n" ? "\n" : " ";
+        index += 1;
+        if (character === quote) mode = "code";
+      }
+      continue;
+    }
+    if (character === "/" && next === "/") {
+      cleaned += "  ";
+      index += 2;
+      mode = "line";
+    } else if (character === "/" && next === "*") {
+      cleaned += "  ";
+      index += 2;
+      mode = "block";
+    } else if (character === '"' || character === "'" || character === "`") {
+      quote = character;
+      mode = "string";
+      cleaned += " ";
+      index += 1;
+    } else {
+      cleaned += character;
+      index += 1;
+    }
+  }
+  return /\bwindow\s*\.\s*__GAMETESTLAB__\s*=/.test(cleaned);
+}
 
 export const GeneratedGamePackageSchema = z
   .object({
@@ -284,7 +406,10 @@ export const GeneratedGamePackageSchema = z
     }
 
     const indexHtml = byPath.get("index.html") ?? "";
-    if (!indexHtml.includes("game.js") || !indexHtml.includes("styles.css")) {
+    if (
+      !hasHtmlAsset(indexHtml, "script", "src", "game.js") ||
+      !hasHtmlAsset(indexHtml, "link", "href", "styles.css")
+    ) {
       context.addIssue({
         code: "custom",
         path: ["files"],
@@ -292,8 +417,23 @@ export const GeneratedGamePackageSchema = z
       });
     }
 
+    const remoteScheme = /(?:https?|wss?):\s*\/\//i;
+    const protocolRelativeHtml = /\b(?:src|href|action|poster)\s*=\s*(?:["']\s*)?\/\//i;
+    const protocolRelativeText = /["'`]\s*\/\/[A-Za-z0-9]/;
+    if ([...byPath.values()].some((content) =>
+      remoteScheme.test(content) ||
+      protocolRelativeHtml.test(content) ||
+      protocolRelativeText.test(content)
+    )) {
+      context.addIssue({
+        code: "custom",
+        path: ["files"],
+        message: "game package must not load remote dependencies"
+      });
+    }
+
     const gameJs = byPath.get("game.js") ?? "";
-    if (!BRIDGE_ASSIGNMENT.test(gameJs)) {
+    if (!hasBridgeAssignment(gameJs)) {
       context.addIssue({
         code: "custom",
         path: ["files"],
@@ -301,11 +441,12 @@ export const GeneratedGamePackageSchema = z
       });
     }
     for (const requiredToken of [
-      "gametestlab/1",
+      "gametestlab/2",
       "isReady",
       "reset",
       "observe",
-      "getEvents"
+      "getEvents",
+      "event_epoch"
     ]) {
       if (!gameJs.includes(requiredToken)) {
         context.addIssue({
@@ -362,6 +503,8 @@ export const GenerationRunManifestSchema = z
     frozen_prd_sha256: z.string().regex(/^[a-f0-9]{64}$/),
     game_package_file: z.string().min(1),
     game_directory: z.string().min(1),
+    smoke_file: z.string().min(1),
+    runtime_smoke_passed: z.literal(true),
     calls: z.tuple([GenerationCallAuditSchema, GenerationCallAuditSchema]),
     secret_fields_persisted: z.literal(false),
     second_response_mutated_frozen_prd: z.literal(false),

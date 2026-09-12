@@ -112,7 +112,7 @@ function validGameManifest(): Record<string, unknown> {
       }
     ],
     bridge: {
-      protocol: "gametestlab/1",
+      protocol: "gametestlab/2",
       evidence_only: true,
       actions_via_real_input: true
     }
@@ -137,7 +137,8 @@ function validGameResponse(gameJs?: string): string {
           `let state={status:"menu",score:0};let events=[];
 document.querySelector("[data-testid='start']").addEventListener("click",()=>{state.status="playing"});
 window.addEventListener("keydown",event=>{if(event.code==="ArrowRight")state.score=1});
-window.__GAMETESTLAB__={protocol:"gametestlab/1",isReady:()=>true,reset:()=>{state={status:"menu",score:0};events=[]},observe:()=>({tick:0,status:state.status,state:{...state},latest_event_seq:events.length}),getEvents:({afterSeq})=>events.filter(event=>event.seq>afterSeq)};`
+let eventEpoch=0;
+window.__GAMETESTLAB__={protocol:"gametestlab/2",isReady:()=>true,reset:()=>{state={status:"menu",score:0};events=[];eventEpoch+=1},observe:()=>({tick:0,status:state.status,state:{...state},event_epoch:eventEpoch,latest_event_seq:events.length}),getEvents:({afterSeq})=>events.filter(event=>event.seq>afterSeq)};`
       },
       { path: "game.manifest.json", content: JSON.stringify(manifest) }
     ]
@@ -166,7 +167,18 @@ describe("generateGameFromBrief", () => {
         outputRoot,
         runId: "unit-run"
       },
-      client
+      client,
+      async () => ({
+        schema_version: "gametestlab.generated-smoke.v2",
+        passed: true,
+        checked_at: "2026-08-30T00:00:00.000Z",
+        browser: "chromium",
+        browser_version: "unit-browser",
+        event_epochs: [1, 2],
+        exercised_control_ids: ["CTRL_START"],
+        runtime_errors: [],
+        external_requests: []
+      })
     );
 
     expect(calls).toHaveLength(2);
@@ -188,6 +200,8 @@ describe("generateGameFromBrief", () => {
     );
     expect(result.manifest.prd_review_status).toBe("pending");
     expect(result.manifest.secret_fields_persisted).toBe(false);
+    expect(result.manifest.runtime_smoke_passed).toBe(true);
+    expect(result.manifest.smoke_file).toBe("game/smoke.json");
     expect(result.manifest.calls.map((call) => call.input_basis)).toEqual([
       "user_brief",
       "frozen_prd"
@@ -240,5 +254,68 @@ describe("generateGameFromBrief", () => {
       validGameResponse("console.log('no bridge')")
     ) as unknown;
     expect(GeneratedGamePackageSchema.safeParse(parsed).success).toBe(false);
+
+    const commentOnly = JSON.parse(validGameResponse(
+      "// window.__GAMETESTLAB__ = gametestlab/2 isReady reset observe getEvents"
+    )) as unknown;
+    expect(GeneratedGamePackageSchema.safeParse(commentOnly).success).toBe(false);
+  });
+
+  it("requires real script and stylesheet tags", () => {
+    const value = JSON.parse(validGameResponse()) as {
+      files: Array<{ path: string; content: string }>;
+    };
+    const index = value.files.find((file) => file.path === "index.html");
+    if (!index) throw new Error("missing index fixture");
+    index.content = "<!doctype html><p>game.js styles.css</p>";
+
+    expect(GeneratedGamePackageSchema.safeParse(value).success).toBe(false);
+  });
+
+  it("rejects duplicate controls and remote dependencies", () => {
+    const duplicate = JSON.parse(validGameResponse()) as {
+      files: Array<{ path: string; content: string }>;
+    };
+    const manifestFile = duplicate.files.find(
+      (file) => file.path === "game.manifest.json"
+    );
+    if (!manifestFile) throw new Error("missing manifest fixture");
+    const manifest = JSON.parse(manifestFile.content) as {
+      controls: Array<Record<string, unknown>>;
+    };
+    manifest.controls.push({ ...manifest.controls[0] });
+    manifestFile.content = JSON.stringify(manifest);
+    expect(GeneratedGamePackageSchema.safeParse(duplicate).success).toBe(false);
+
+    const remote = JSON.parse(validGameResponse()) as {
+      files: Array<{ path: string; content: string }>;
+    };
+    const index = remote.files.find((file) => file.path === "index.html");
+    if (!index) throw new Error("missing index fixture");
+    index.content += '<script src="https://cdn.example/game.js"></script>';
+    expect(GeneratedGamePackageSchema.safeParse(remote).success).toBe(false);
+  });
+
+  it.each([
+    ["unquoted HTML", "index.html", "<script src=https://cdn.example/x.js></script>"],
+    [
+      "dynamic script",
+      "game.js",
+      "const s=document.createElement('script');s.src='https://cdn.example/x.js';document.head.append(s);"
+    ],
+    [
+      "XHR",
+      "game.js",
+      "const x=new XMLHttpRequest();x.open('GET','https://cdn.example/data');x.send();"
+    ]
+  ])("rejects %s remote dependencies", (_name, path, injected) => {
+    const value = JSON.parse(validGameResponse()) as {
+      files: Array<{ path: string; content: string }>;
+    };
+    const file = value.files.find((candidate) => candidate.path === path);
+    if (!file) throw new Error(`missing ${path} fixture`);
+    file.content += injected;
+
+    expect(GeneratedGamePackageSchema.safeParse(value).success).toBe(false);
   });
 });

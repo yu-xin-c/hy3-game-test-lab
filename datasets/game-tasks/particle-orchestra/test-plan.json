@@ -1,0 +1,263 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "particle-orchestra",
+  "title": "Particle Orchestra",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "WebGL 粒子反馈、输入序列和错误恢复需要跨层一致。"
+  },
+  "category": "creative",
+  "features": [
+    "3d"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "webgl",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "A",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit1"
+    },
+    {
+      "action_id": "B",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit2"
+    },
+    {
+      "action_id": "C",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit3"
+    },
+    {
+      "action_id": "D",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit4"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "PO-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "PO-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "正确粒子音轨序列必须逐步推进进度和分数。",
+      "depends_on": [
+        "PO-RUN"
+      ],
+      "observable": [
+        "sequence",
+        "progress",
+        "score",
+        "active_cluster",
+        "events"
+      ]
+    },
+    {
+      "id": "PO-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "三次错误输入会清空机会并失败。",
+      "depends_on": [
+        "PO-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "PO-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 清空进度和分数，恢复3次机会并回到菜单。",
+      "depends_on": [
+        "PO-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "PO-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "PO-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 608,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PO-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "A",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PO-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "C",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "D",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "B",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PO-CP-WON",
+            "PO-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 608,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "B",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "B",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "B",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PO-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 608,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "A",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PO-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

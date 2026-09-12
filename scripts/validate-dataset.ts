@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadDatasetEntry, loadManifest } from "../src/contracts/loaders";
+import { resolveRegularFileInsideRoot } from "../src/contracts/paths";
 import type {
   DatasetManifest,
   Difficulty,
@@ -125,13 +126,18 @@ function validateEntry(
 
   const scenarioCheckpointIds: string[] = [];
   selectedScenario.steps.forEach((step, actionIndex) => {
-    if (!controlIdSet.has(step.action_id)) {
+    if (step.kind === "input" && !controlIdSet.has(step.action_id)) {
       errors.push(
         `${caseId}: scenario '${selectedScenario.id}' uses unknown action '${step.action_id}' at index ${actionIndex}`
       );
     }
     scenarioCheckpointIds.push(...step.checkpoints);
   });
+  if ((selectedScenario.steps.at(-1)?.checkpoints.length ?? 0) === 0) {
+    errors.push(
+      `${caseId}: scenario '${selectedScenario.id}' must end with a checkpoint`
+    );
+  }
   addDuplicateErrors(
     errors,
     caseId,
@@ -142,6 +148,7 @@ function validateEntry(
   const checkpointById = new Map(
     oracle.checkpoints.map((checkpoint) => [checkpoint.id, checkpoint])
   );
+  const coveredRequirementIds = new Set<string>();
   for (const checkpointId of scenarioCheckpointIds) {
     if (!checkpointById.has(checkpointId)) {
       errors.push(
@@ -151,6 +158,15 @@ function validateEntry(
   }
   const scenarioCheckpointSet = new Set(scenarioCheckpointIds);
   for (const checkpoint of oracle.checkpoints) {
+    for (const requirementId of checkpoint.requirement_ids) {
+      coveredRequirementIds.add(requirementId);
+    }
+    addDuplicateErrors(
+      errors,
+      caseId,
+      `physics invariant id in checkpoint '${checkpoint.id}'`,
+      checkpoint.expected.physics.map((invariant) => invariant.id)
+    );
     if (!scenarioCheckpointSet.has(checkpoint.id)) {
       errors.push(
         `${caseId}: oracle checkpoint '${checkpoint.id}' is not referenced by the selected scenario`
@@ -182,6 +198,16 @@ function validateEntry(
       }
     }
   }
+  for (const requirement of publicCase.requirements) {
+    if (
+      requirement.severity === "must" &&
+      !coveredRequirementIds.has(requirement.id)
+    ) {
+      errors.push(
+        `${caseId}: must requirement '${requirement.id}' has no checkpoint`
+      );
+    }
+  }
 
   const terminalCount = oracle.checkpoints.filter(
     (checkpoint) => checkpoint.terminal
@@ -199,6 +225,9 @@ function validateEntry(
       truth.error_type !== "none"
     ) {
       errors.push(`${caseId}: clean sample must have null fault location and error_type 'none'`);
+    }
+    if (!truth.final_outcome_correct) {
+      errors.push(`${caseId}: clean sample must have a correct final outcome`);
     }
   } else {
     if (!truth.first_divergence_checkpoint) {
@@ -225,6 +254,21 @@ function validateEntry(
     if (truth.error_type === "none") {
       errors.push(`${caseId}: non-clean sample cannot use error_type 'none'`);
     }
+    if (truth.sample_kind === "lucky_pass" && !truth.final_outcome_correct) {
+      errors.push(`${caseId}: lucky-pass sample must have a correct final outcome`);
+    }
+    const firstCheckpoint = truth.first_divergence_checkpoint
+      ? checkpointById.get(truth.first_divergence_checkpoint)
+      : undefined;
+    if (
+      truth.root_requirement_id &&
+      firstCheckpoint &&
+      !firstCheckpoint.requirement_ids.includes(truth.root_requirement_id)
+    ) {
+      errors.push(
+        `${caseId}: root requirement '${truth.root_requirement_id}' is not attached to first divergence '${firstCheckpoint.id}'`
+      );
+    }
   }
 }
 
@@ -232,7 +276,11 @@ export async function validateDataset(
   repositoryRoot = defaultRepositoryRoot,
   manifestFile = "datasets/manifest.json"
 ): Promise<DatasetValidationSummary> {
-  const manifestPath = resolve(repositoryRoot, manifestFile);
+  const manifestPath = await resolveRegularFileInsideRoot(
+    repositoryRoot,
+    manifestFile,
+    { rejectSymlink: true }
+  );
   const manifest: DatasetManifest = await loadManifest(manifestPath);
   const errors: string[] = [];
   const seenCaseIds = new Set<string>();
@@ -271,6 +319,11 @@ export async function validateDataset(
       const { publicCase, oracle } = await loadDatasetEntry(
         repositoryRoot,
         entry
+      );
+      await resolveRegularFileInsideRoot(
+        repositoryRoot,
+        publicCase.game.entry_path.slice(1),
+        { requiredPrefix: "examples", rejectSymlink: true }
       );
       if (seenCaseIds.has(publicCase.id)) {
         errors.push(`manifest: duplicate loaded case id '${publicCase.id}'`);

@@ -1,5 +1,4 @@
 import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
 import {
   DatasetManifestSchema,
   PrivateOracleSchema,
@@ -8,6 +7,7 @@ import {
   type PrivateOracle,
   type PublicCase
 } from "./schemas";
+import { resolveRegularFileInsideRoot } from "./paths";
 
 async function readJson(path: string): Promise<unknown> {
   return JSON.parse(await readFile(path, "utf8")) as unknown;
@@ -29,8 +29,16 @@ export async function loadDatasetEntry(
   repositoryRoot: string,
   entry: DatasetManifest["cases"][number]
 ): Promise<{ publicCase: PublicCase; oracle: PrivateOracle }> {
-  const publicCase = await loadCase(resolve(repositoryRoot, entry.case_file));
-  const oracle = await loadOracle(resolve(repositoryRoot, entry.oracle_file));
+  const [casePath, oraclePath] = await Promise.all([
+    resolveRegularFileInsideRoot(repositoryRoot, entry.case_file, {
+      rejectSymlink: true
+    }),
+    resolveRegularFileInsideRoot(repositoryRoot, entry.oracle_file, {
+      rejectSymlink: true
+    })
+  ]);
+  const publicCase = await loadCase(casePath);
+  const oracle = await loadOracle(oraclePath);
   if (publicCase.id !== oracle.case_id) {
     throw new Error(
       `Case/oracle mismatch: ${publicCase.id} != ${oracle.case_id}`
@@ -38,4 +46,3 @@ export async function loadDatasetEntry(
   }
   return { publicCase, oracle };
 }
-

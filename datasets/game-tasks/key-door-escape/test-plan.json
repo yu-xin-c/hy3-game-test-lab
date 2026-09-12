@@ -1,0 +1,115 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "key-door-escape",
+  "title": "Key Door Escape",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "包含钥匙、锁门、生命和复活，多条规则必须保持一致。"
+  },
+  "category": "puzzle",
+  "features": [],
+  "environment": { "pages": 1, "fake_camera": false, "persistent_storage": false },
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#board"
+  },
+  "controls": [
+    { "action_id": "START", "device": "mouse", "selector": "#start-btn" },
+    { "action_id": "UP", "device": "keyboard", "code": "ArrowUp" },
+    { "action_id": "DOWN", "device": "keyboard", "code": "ArrowDown" },
+    { "action_id": "LEFT", "device": "keyboard", "code": "ArrowLeft" },
+    { "action_id": "RIGHT", "device": "keyboard", "code": "ArrowRight" },
+    { "action_id": "RESTART", "device": "mouse", "selector": "#restart-btn" },
+    { "action_id": "RESTART_KEY", "device": "keyboard", "code": "KeyR" }
+  ],
+  "requirements": [
+    {
+      "id": "KD-RUN", "layer": "L1", "severity": "must",
+      "statement": "游戏可以进入 playing 状态且无运行错误。",
+      "depends_on": [], "observable": ["status", "runtime"]
+    },
+    {
+      "id": "KD-DOOR", "layer": "L2", "severity": "must",
+      "statement": "没有钥匙时门阻挡，取得钥匙后门可以打开。",
+      "depends_on": ["KD-RUN"], "observable": ["has_key", "door_open", "events"]
+    },
+    {
+      "id": "KD-TRAP", "layer": "L2", "severity": "must",
+      "statement": "陷阱扣除生命并复活，生命归零失败。",
+      "depends_on": ["KD-RUN"], "observable": ["lives", "player", "events"]
+    },
+    {
+      "id": "KD-WIN", "layer": "L2", "severity": "must",
+      "statement": "开门后进入出口获胜。",
+      "depends_on": ["KD-DOOR"], "observable": ["status", "game_won"]
+    },
+    {
+      "id": "KD-RESET", "layer": "L2", "severity": "must",
+      "statement": "重开恢复生命、钥匙、门和玩家位置。",
+      "depends_on": ["KD-RUN"], "observable": ["state", "game_reset"]
+    },
+    {
+      "id": "KD-HUD", "layer": "L3", "severity": "must",
+      "statement": "HUD 与生命、钥匙和状态一致。",
+      "depends_on": ["KD-DOOR"], "observable": ["scoreText", "statusText"]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "先撞锁门，再取钥匙、开门并到达出口。",
+      "seed": 303,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": ["KD-CP-START"] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": ["KD-CP-DOOR-BLOCKED"] },
+        { "kind": "input", "action_id": "LEFT", "checkpoints": [] },
+        { "kind": "input", "action_id": "LEFT", "checkpoints": [] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": [] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": ["KD-CP-KEY"] },
+        { "kind": "input", "action_id": "UP", "checkpoints": [] },
+        { "kind": "input", "action_id": "UP", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": ["KD-CP-DOOR-OPEN"] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": ["KD-CP-WON", "KD-CP-WON-UI"] }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "两次踩到陷阱，验证复活和生命归零。",
+      "seed": 303,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": [] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": [] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": ["KD-CP-TRAP-1"] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": [] },
+        { "kind": "input", "action_id": "DOWN", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": ["KD-CP-LOST"] }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "移动后使用 Restart 返回菜单。",
+      "seed": 303,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": [] },
+        { "kind": "input", "action_id": "RIGHT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RESTART", "checkpoints": ["KD-CP-RESET"] }
+      ]
+    }
+  ]
+}

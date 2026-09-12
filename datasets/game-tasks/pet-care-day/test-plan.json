@@ -1,0 +1,247 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "pet-care-day",
+  "title": "Pet Care Day",
+  "difficulty": {
+    "level": "D1",
+    "rationale": "三项需求值和刷新后的存档结果都能用短路径验证。"
+  },
+  "category": "simulation",
+  "features": [
+    "persistence"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": true
+  },
+  "surface": "dom",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#pet-room"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "FEED",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#feed-btn"
+    },
+    {
+      "action_id": "PLAY",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#play-btn"
+    },
+    {
+      "action_id": "SLEEP",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#sleep-btn"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "PC-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "PC-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "照料动作和刷新恢复必须保持三项需求值及进度一致。",
+      "depends_on": [
+        "PC-RUN"
+      ],
+      "observable": [
+        "hunger",
+        "happiness",
+        "energy",
+        "actions",
+        "saved"
+      ]
+    },
+    {
+      "id": "PC-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "时间推进导致任一需求值降到0时必须失败。",
+      "depends_on": [
+        "PC-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "PC-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 清除当前存档，恢复三项为2并回到菜单。",
+      "depends_on": [
+        "PC-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "PC-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "PC-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 611,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PC-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "FEED",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "reload",
+          "actor": "primary",
+          "checkpoints": [
+            "PC-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "PLAY",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SLEEP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PC-CP-WON",
+            "PC-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 611,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 6000,
+          "checkpoints": [
+            "PC-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 611,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "FEED",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "reload",
+          "actor": "primary",
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PC-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "platform-rescue",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "PR-CP-START", "action_index": 0, "layer": "L1",
+          "requirement_ids": ["PR-RUN"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "lives": 3, "has_key": false, "player.grounded": true },
+            "ui": {}, "event_types": ["game_started"], "physics": []
+          }
+        },
+        {
+          "id": "PR-CP-LAND-1", "action_index": 3, "layer": "L2",
+          "requirement_ids": ["PR-MOTION", "PR-PHYSICS"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "lives": 3, "player.grounded": true, "player.support_id": "platform-1" },
+            "ui": {}, "event_types": ["player_landed"],
+            "physics": [
+              { "id": "PR-PEN-1", "type": "no_penetration", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-TUN-1", "type": "no_tunneling", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-SUPPORT-1", "type": "grounded_has_support", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-APEX-1", "type": "jump_apex_reaches", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5, "platform_id": "platform-1", "jump_event": "player_jumped" },
+              { "id": "PR-LAND-STABLE-1", "type": "eventually_supported", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5, "platform_id": "platform-1", "min_consecutive_samples": 2 },
+              { "id": "PR-BOUNDS-1", "type": "world_bounds", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5, "bounds_path": "world" }
+            ]
+          }
+        },
+        {
+          "id": "PR-CP-KEY", "action_index": 5, "layer": "L2",
+          "requirement_ids": ["PR-PHYSICS", "PR-KEY-WIN"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "lives": 3, "has_key": true, "player.grounded": true, "player.support_id": "platform-2" },
+            "ui": {}, "event_types": ["player_landed", "key_collected"],
+            "physics": [
+              { "id": "PR-PEN-2", "type": "no_penetration", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-TUN-2", "type": "no_tunneling", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-SUPPORT-2", "type": "grounded_has_support", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-BOUNDS-2", "type": "world_bounds", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5, "bounds_path": "world" }
+            ]
+          }
+        },
+        {
+          "id": "PR-CP-WON", "action_index": 7, "layer": "L2",
+          "requirement_ids": ["PR-PHYSICS", "PR-KEY-WIN"], "terminal": false,
+          "expected": {
+            "state": { "status": "won", "lives": 3, "has_key": true, "player.grounded": true, "player.support_id": "goal" },
+            "ui": {}, "event_types": ["player_landed", "game_won"],
+            "physics": [
+              { "id": "PR-PEN-3", "type": "no_penetration", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-TUN-3", "type": "no_tunneling", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-SUPPORT-3", "type": "grounded_has_support", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5 },
+              { "id": "PR-BOUNDS-3", "type": "world_bounds", "player_path": "player", "platforms_path": "platforms", "epsilon": 0.5, "bounds_path": "world" }
+            ]
+          }
+        },
+        {
+          "id": "PR-CP-WON-UI", "action_index": 7, "layer": "L3",
+          "requirement_ids": ["PR-HUD"], "terminal": false,
+          "expected": {
+            "state": {}, "ui": { "scoreText": "Lives: 3/3 · Key: Yes", "statusText": "Won" },
+            "event_types": [], "physics": []
+          }
+        },
+        {
+          "id": "PR-CP-WIN-FINAL", "action_index": 8, "layer": "L2",
+          "requirement_ids": ["PR-KEY-WIN"], "terminal": true,
+          "expected": {
+            "state": { "status": "won", "lives": 3, "has_key": true },
+            "ui": {}, "event_types": [], "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "PR-CP-HIT-1", "action_index": 2, "layer": "L2",
+          "requirement_ids": ["PR-HAZARD"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "lives": 2, "has_key": false },
+            "ui": {}, "event_types": ["hazard_hit", "player_respawned"], "physics": []
+          }
+        },
+        {
+          "id": "PR-CP-HIT-2", "action_index": 5, "layer": "L2",
+          "requirement_ids": ["PR-HAZARD"], "terminal": false,
+          "expected": {
+            "state": { "status": "playing", "lives": 1, "has_key": false },
+            "ui": {}, "event_types": ["hazard_hit", "player_respawned"], "physics": []
+          }
+        },
+        {
+          "id": "PR-CP-LOST", "action_index": 8, "layer": "L2",
+          "requirement_ids": ["PR-HAZARD"], "terminal": false,
+          "expected": {
+            "state": { "status": "lost", "lives": 0, "has_key": false },
+            "ui": {}, "event_types": ["hazard_hit", "game_lost"], "physics": []
+          }
+        },
+        {
+          "id": "PR-CP-LOSS-FINAL", "action_index": 9, "layer": "L2",
+          "requirement_ids": ["PR-HAZARD"], "terminal": true,
+          "expected": {
+            "state": { "status": "lost", "lives": 0, "has_key": false },
+            "ui": {}, "event_types": [], "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "PR-CP-RESET", "action_index": 4, "layer": "L2",
+          "requirement_ids": ["PR-RESET"], "terminal": true,
+          "expected": {
+            "state": { "status": "menu", "lives": 3, "has_key": false },
+            "ui": {}, "event_types": ["game_reset"], "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "mini-farm",
+  "title": "Mini Farm",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "三块田、成长计时、刷新存档和金币榜单形成完整经营链。"
+  },
+  "category": "simulation",
+  "features": [
+    "persistence",
+    "leaderboard"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": true
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#farm-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "PLOT1",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#plot-1"
+    },
+    {
+      "action_id": "PLOT2",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#plot-2"
+    },
+    {
+      "action_id": "PLOT3",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#plot-3"
+    },
+    {
+      "action_id": "PLANT",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#plant-btn"
+    },
+    {
+      "action_id": "WATER",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#water-btn"
+    },
+    {
+      "action_id": "HARVEST",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#harvest-btn"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MF-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "MF-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "选地、种植、浇水、成长、收获和刷新恢复必须形成同一经营状态。",
+      "depends_on": [
+        "MF-RUN"
+      ],
+      "observable": [
+        "plots",
+        "elapsed_ms",
+        "harvested",
+        "coins",
+        "best_coins",
+        "saved"
+      ]
+    },
+    {
+      "id": "MF-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "15秒内未完成三次收获必须失败。",
+      "depends_on": [
+        "MF-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "MF-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 清空当前田地、计时和金币；评测新场景从空榜单开始。",
+      "depends_on": [
+        "MF-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "MF-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "MF-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 612,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MF-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "PLOT1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLANT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WATER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "reload",
+          "actor": "primary",
+          "checkpoints": [
+            "MF-CP-MID"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 3000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HARVEST",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLOT2",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLANT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WATER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 3000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HARVEST",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLOT3",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLANT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WATER",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 3000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "HARVEST",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MF-CP-WON",
+            "MF-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 612,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 15000,
+          "checkpoints": [
+            "MF-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 612,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLOT1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "PLANT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MF-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

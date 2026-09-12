@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=800, initial-scale=1.0" />
+    <title>GameTestLab Platform Probe</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="surface" class="surface" data-testid="game-root">
+      <canvas
+        id="game"
+        width="800"
+        height="600"
+        aria-label="平台跳跃物理测试画布"
+        data-testid="game-canvas"
+      ></canvas>
+
+      <section class="hud" aria-label="游戏状态">
+        <div>状态 <strong id="status" data-testid="status">menu</strong></div>
+        <div>时间 <strong id="sim-time" data-testid="sim-time">0.000</strong> ms</div>
+        <div>支撑 <strong id="support" data-testid="support">ground</strong></div>
+        <div>模式 <strong id="variant" data-testid="variant">normal</strong></div>
+      </section>
+
+      <section class="controls" aria-label="游戏控制">
+        <button id="start-btn" type="button" data-testid="start">Start</button>
+        <span>← / → 移动 · Space 跳跃 · R 重开</span>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

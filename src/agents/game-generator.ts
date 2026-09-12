@@ -19,6 +19,12 @@ import {
   type UserBriefInput
 } from "../contracts/generation";
 import { Hy3Client } from "../llm/hy3-client";
+import {
+  GeneratedGameSmokeResultSchema,
+  smokeGeneratedGame,
+  type GeneratedGameSmokeOptions,
+  type GeneratedGameSmokeResult
+} from "../runtime/generated-smoke";
 
 const PRD_SYSTEM_PROMPT = `You are the product-definition stage of GameTestLab.
 Turn the user's raw browser-game request into a precise, testable PRD. This is
@@ -43,7 +49,8 @@ Return exactly one JSON object and no prose. It must have this shape:
 }
 Every acceptance criterion must be traceable through an exact source_quote or
 one or more IDs supplied in source_intents. Include user goal, controls, rules,
-UI behavior, acceptance criteria, and assumptions.`;
+UI behavior, acceptance criteria, and assumptions. If gameplay requires holding
+and releasing a key, represent key-down and key-up as separate control IDs.`;
 
 const GAME_SYSTEM_PROMPT = `You are the implementation stage of GameTestLab.
 Generate a complete, dependency-free browser game from the frozen PRD supplied
@@ -57,12 +64,16 @@ paths: ${GAME_PACKAGE_FILE_ALLOWLIST.join(", ")}. No absolute paths, parent
 segments, nested paths, remote scripts, package-manager dependencies, or extra
 files are permitted. index.html must load ./styles.css and ./game.js.
 
-game.js must install window.__GAMETESTLAB__ with protocol "gametestlab/1" and the
+game.js must install window.__GAMETESTLAB__ with protocol "gametestlab/2" and the
 methods isReady(), reset({seed}), observe(), and getEvents({afterSeq}). observe()
-must return tick, status (menu|playing|won|lost), state, and latest_event_seq;
-events must have increasing seq, tick, type, and optional payload. The bridge is
-white-box evidence only. Player actions must still enter through real keyboard,
-mouse, or touch DOM event listeners; never expose an action method on the bridge.
+must return tick, status (menu|playing|won|lost), state, event_epoch, and
+latest_event_seq; events must have increasing seq, tick, type, and optional
+payload. Calling getEvents({afterSeq:0}) must return the complete current event
+log. Every reset must clear that log and sequence and increment event_epoch.
+The bridge is white-box evidence only. Player actions must still enter through
+real keyboard, mouse, touch, or camera input; never expose an action
+method on the bridge. For held keyboard input, emit separate manifest controls
+for key down and key up.
 
 game.manifest.json must itself be valid JSON with this shape:
 {
@@ -71,14 +82,16 @@ game.manifest.json must itself be valid JSON with this shape:
   "surface":"dom|canvas2d|webgl",
   "viewport":{"width":800,"height":600},
   "controls":[{
-    "action_id":"same ID as a PRD control","device":"keyboard|mouse|touch",
-    "code":"KeyboardEvent.code when applicable","selector":"CSS selector when applicable",
+    "action_id":"same ID as a PRD control","actor":"primary|secondary",
+    "device":"keyboard|mouse|touch|camera",
+    "key_event":"press|down|up","code":"KeyboardEvent.code when applicable",
+    "selector":"CSS selector when applicable","fixture_frame":"camera fixture ID when applicable",
     "description":"..."
   }],
-  "hud_selectors":{"status":"[data-testid='status']"},
+  "hud_selectors":{"score":"[data-testid='score']","status":"[data-testid='status']"},
   "state_schema":{"fields":{"status":{"type":"string","description":"..."}},"required":["status"]},
   "event_schema":[{"type":"game_started","description":"...","payload_fields":{}}],
-  "bridge":{"protocol":"gametestlab/1","evidence_only":true,"actions_via_real_input":true}
+  "bridge":{"protocol":"gametestlab/2","evidence_only":true,"actions_via_real_input":true}
 }
 Omit inapplicable optional control fields rather than setting them to null.`;
 
@@ -98,6 +111,7 @@ export interface GeneratedGameArtifacts {
   prd: GeneratedPrd;
   gamePackage: GeneratedGamePackage;
   gameManifest: ReturnType<typeof gameManifestFromPackage>;
+  smoke: GeneratedGameSmokeResult;
   manifest: GenerationRunManifest;
   outputDirectory: string;
 }
@@ -207,7 +221,10 @@ function safeGameOutputPath(root: string, filePath: string): string {
 
 export async function generateGameFromBrief(
   input: GenerateGameFromBriefInput,
-  client: Pick<Hy3Client, "complete"> = new Hy3Client()
+  client: Pick<Hy3Client, "complete"> = new Hy3Client(),
+  smokeValidator: (
+    options: GeneratedGameSmokeOptions
+  ) => Promise<GeneratedGameSmokeResult> = smokeGeneratedGame
 ): Promise<GeneratedGameArtifacts> {
   const brief = UserBriefSchema.parse(input.brief);
   const runId = input.runId ?? defaultRunId();
@@ -290,6 +307,12 @@ export async function generateGameFromBrief(
     `${JSON.stringify(gamePackage, null, 2)}\n`,
     "utf8"
   );
+  const smoke = GeneratedGameSmokeResultSchema.parse(await smokeValidator({
+    gameDirectory,
+    manifest: gameManifest
+  }));
+  const smokePath = resolve(gamePhaseDirectory, "smoke.json");
+  await writeFile(smokePath, `${JSON.stringify(smoke, null, 2)}\n`, "utf8");
 
   const manifest = GenerationRunManifestSchema.parse({
     schema_version: GENERATION_RUN_SCHEMA_VERSION,
@@ -301,6 +324,8 @@ export async function generateGameFromBrief(
     frozen_prd_sha256: frozenPrdSha256,
     game_package_file: "game/package.json",
     game_directory: "game/files",
+    smoke_file: "game/smoke.json",
+    runtime_smoke_passed: true,
     calls: [
       {
         phase: "prd",
@@ -334,6 +359,7 @@ export async function generateGameFromBrief(
     prd,
     gamePackage,
     gameManifest,
+    smoke,
     manifest,
     outputDirectory
   };

@@ -1,0 +1,167 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "photo-orbit-gallery",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "PG-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "PG-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "focus_index": 0,
+              "focus_name": "Forest",
+              "selected": [],
+              "progress": 0,
+              "mistakes": 0
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PG-CP-MID",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "focus_index": 2,
+              "focus_name": "Mars",
+              "selected": [
+                "Mars"
+              ],
+              "progress": 1,
+              "mistakes": 0
+            },
+            "ui": {},
+            "event_types": [
+              "photo_selected"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PG-CP-WON",
+          "action_index": 7,
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "focus_index": 0,
+              "focus_name": "Forest",
+              "selected": [
+                "Mars",
+                "Ocean",
+                "Forest"
+              ],
+              "progress": 3,
+              "mistakes": 0
+            },
+            "ui": {},
+            "event_types": [
+              "photo_selected",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "PG-CP-WON-UI",
+          "action_index": 7,
+          "layer": "L3",
+          "requirement_ids": [
+            "PG-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Found: 3/3",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "PG-CP-LOST",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "focus_index": 1,
+              "focus_name": "City",
+              "selected": [],
+              "progress": 0,
+              "mistakes": 2
+            },
+            "ui": {},
+            "event_types": [
+              "selection_wrong",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "PG-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "focus_index": 0,
+              "focus_name": "Forest",
+              "selected": [],
+              "progress": 0,
+              "mistakes": 0
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+ce4b36b9775e3dfdd4125bc0375a8acdefeb3b9bc0c343b2b0ae4ec3c74af983  brief.md
+c973f6930d3e822636b4ae2d33f2f4dc07709e67daf81bde052ed6c83a9ee64b  test-plan.json
+0a1803dc9714d39e9d97ccd16d89e0ba6a23d1bbb2ff77a880490a10f72e6370  oracle.private.json
+0d5347dea8e6c0f57dfb84caf38ced53c13073e8020f1fd236277541d2e8bb95  ../GAME_CONTRACT.md

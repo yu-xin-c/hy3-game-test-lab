@@ -1,5 +1,5 @@
 {
-  "schema_version": "gametestlab.oracle.v1",
+  "schema_version": "gametestlab.oracle.v2",
   "case_id": "clean-control",
   "scenario_id": "complete-happy-path",
   "checkpoints": [

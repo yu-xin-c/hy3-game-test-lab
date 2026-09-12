@@ -1,0 +1,261 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "nonogram",
+  "title": "Nonogram",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "围绕数织续局设置三段确定性路径，并覆盖错误输入和重开。"
+  },
+  "category": "puzzle",
+  "features": [
+    "persistence"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": true
+  },
+  "surface": "dom",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-board"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "STAGE_1",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#stage-1"
+    },
+    {
+      "action_id": "STAGE_2",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#stage-2"
+    },
+    {
+      "action_id": "STAGE_3",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#stage-3"
+    },
+    {
+      "action_id": "WRONG",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#wrong-action"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "X045-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "X045-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "数织续局的三个阶段必须按固定顺序推进进度和分数。",
+      "depends_on": [
+        "X045-RUN"
+      ],
+      "observable": [
+        "progress",
+        "score",
+        "lives",
+        "last_action",
+        "events"
+      ]
+    },
+    {
+      "id": "X045-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "两次错误操作会清空生命并失败。",
+      "depends_on": [
+        "X045-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "X045-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复0进度、0分、2条生命、空 last_action 和菜单，并清除当前存档。",
+      "depends_on": [
+        "X045-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "X045-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "X045-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 744,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X045-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "reload",
+          "actor": "primary",
+          "checkpoints": [
+            "X045-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_2",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_3",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X045-CP-WON",
+            "X045-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 744,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "WRONG",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X045-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 744,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "STAGE_1",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "reload",
+          "actor": "primary",
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "X045-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

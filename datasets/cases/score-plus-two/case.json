@@ -1,5 +1,5 @@
 {
-  "schema_version": "gametestlab.case.v1",
+  "schema_version": "gametestlab.case.v2",
   "id": "score-plus-two",
   "title": "Score effect error",
   "difficulty": {
@@ -60,4 +60,3 @@
     }
   ]
 }
-

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { startStaticServer } from "../../src/runtime/static-server";
@@ -67,6 +67,25 @@ describe("fixture-only static server", () => {
       expect(
         (await fetch(`${server.origin}/../oracle.private.json`)).status
       ).toBe(404);
+    } finally {
+      await server.close();
+      await rm(temporaryRoot, { recursive: true });
+    }
+  });
+
+  it("does not follow an examples symlink into another repository directory", async () => {
+    const temporaryRoot = await mkdtemp(resolve(tmpdir(), "gametestlab-symlink-"));
+    await mkdir(resolve(temporaryRoot, "examples"));
+    await mkdir(resolve(temporaryRoot, "datasets"));
+    await writeFile(resolve(temporaryRoot, "datasets/oracle.json"), "secret");
+    await symlink(
+      resolve(temporaryRoot, "datasets"),
+      resolve(temporaryRoot, "examples/leak")
+    );
+    const server = await startStaticServer({ rootDirectory: temporaryRoot });
+    try {
+      expect((await fetch(`${server.origin}/examples/leak/oracle.json`)).status)
+        .toBe(404);
     } finally {
       await server.close();
       await rm(temporaryRoot, { recursive: true });

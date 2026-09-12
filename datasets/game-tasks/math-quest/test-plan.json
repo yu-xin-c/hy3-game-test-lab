@@ -1,0 +1,242 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "math-quest",
+  "title": "Math Quest",
+  "difficulty": {
+    "level": "D1",
+    "rationale": "固定题序、答案和错误次数构成短而明确的知识闯关。"
+  },
+  "category": "education",
+  "features": [],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "dom",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#quiz"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "ANSWER_A",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#answer-a"
+    },
+    {
+      "action_id": "ANSWER_B",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#answer-b"
+    },
+    {
+      "action_id": "ANSWER_C",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#answer-c"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MQ-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "MQ-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "固定题序中的正确答案必须推进题号并增加10分。",
+      "depends_on": [
+        "MQ-RUN"
+      ],
+      "observable": [
+        "question_index",
+        "score",
+        "mistakes",
+        "last_answer",
+        "events"
+      ]
+    },
+    {
+      "id": "MQ-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "累计两次错误答案会立即失败。",
+      "depends_on": [
+        "MQ-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "MQ-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复第一题、0分和0次错误。",
+      "depends_on": [
+        "MQ-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "MQ-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "MQ-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 614,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MQ-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_B",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MQ-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_C",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_A",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MQ-CP-WON",
+            "MQ-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 614,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_A",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_A",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MQ-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 614,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "ANSWER_B",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MQ-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

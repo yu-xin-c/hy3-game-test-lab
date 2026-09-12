@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const chromiumExecutablePath = process.env.GAMETESTLAB_CHROMIUM_EXECUTABLE;
+
 export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: false,
@@ -20,7 +22,12 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] }
+      use: {
+        ...devices["Desktop Chrome"],
+        ...(chromiumExecutablePath
+          ? { launchOptions: { executablePath: chromiumExecutablePath } }
+          : {})
+      }
     }
   ],
   webServer: {
@@ -30,4 +37,3 @@ export default defineConfig({
     timeout: 30_000
   }
 });
-

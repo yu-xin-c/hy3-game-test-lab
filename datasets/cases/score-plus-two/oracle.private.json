@@ -1,5 +1,5 @@
 {
-  "schema_version": "gametestlab.oracle.v1",
+  "schema_version": "gametestlab.oracle.v2",
   "case_id": "score-plus-two",
   "scenario_id": "complete-happy-path",
   "checkpoints": [
@@ -52,4 +52,3 @@
     "final_outcome_correct": false
   }
 }
-

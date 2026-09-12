@@ -1,0 +1,157 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "math-quest",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "MQ-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "MQ-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "question_index": 0,
+              "score": 0,
+              "mistakes": 0,
+              "last_answer": null
+            },
+            "ui": {},
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MQ-CP-MID",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "MQ-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "question_index": 1,
+              "score": 10,
+              "mistakes": 0,
+              "last_answer": "B"
+            },
+            "ui": {},
+            "event_types": [
+              "answer_correct",
+              "question_changed"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MQ-CP-WON",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "MQ-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "question_index": 3,
+              "score": 30,
+              "mistakes": 0,
+              "last_answer": "A"
+            },
+            "ui": {},
+            "event_types": [
+              "answer_correct",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MQ-CP-WON-UI",
+          "action_index": 3,
+          "layer": "L3",
+          "requirement_ids": [
+            "MQ-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "scoreText": "Score: 30/30",
+              "statusText": "Won"
+            },
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "MQ-CP-LOST",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "MQ-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "question_index": 2,
+              "score": 0,
+              "mistakes": 2,
+              "last_answer": "A"
+            },
+            "ui": {},
+            "event_types": [
+              "answer_wrong",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "MQ-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "MQ-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "question_index": 0,
+              "score": 0,
+              "mistakes": 0,
+              "last_answer": null
+            },
+            "ui": {},
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

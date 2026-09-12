@@ -1,0 +1,274 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "photo-orbit-gallery",
+  "title": "Photo Orbit Gallery",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "WebGL 相册导航、循环索引和有序选择必须一致。"
+  },
+  "category": "creative",
+  "features": [
+    "3d"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "webgl",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#gallery-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "NEXT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "PREV",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "SELECT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Enter"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "PG-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "PG-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "循环导航和有序照片确认必须正确更新焦点与选择列表。",
+      "depends_on": [
+        "PG-RUN"
+      ],
+      "observable": [
+        "focus_index",
+        "focus_name",
+        "selected",
+        "progress",
+        "events"
+      ]
+    },
+    {
+      "id": "PG-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "两次错误确认会失败。",
+      "depends_on": [
+        "PG-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "PG-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 恢复 Forest 焦点、空选择和0次错误。",
+      "depends_on": [
+        "PG-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "PG-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 的分数和状态必须与内部状态一致，关键画面在800×600视口内完整可见。",
+      "depends_on": [
+        "PG-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 610,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PG-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SELECT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PG-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SELECT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SELECT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PG-CP-WON",
+            "PG-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 610,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SELECT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "SELECT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PG-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 610,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "NEXT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PG-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

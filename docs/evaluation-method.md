@@ -12,10 +12,10 @@ jsdom 不具备完整布局、Canvas 和真实输入链路，因此不能单独�
 
 ## L1：运行检测
 
-L1 先看游戏能不能顺利进入可操作状态。
+L1 先看游戏能不能顺利进入可操作状态。场景需要显式写出 Start 和玩家输入，runner 不会自动补齐缺少的步骤。
 
 1. 在隔离浏览器上下文加载入口；
-2. 监听 page error 和 console error，并记录 runner 加载异常；
+2. 监听 page error、console error、请求开始/失败、HTTP 4xx/5xx、WebSocket 和外部资源，并记录 runner 加载异常；
 3. 等待游戏 ready，并触发 Start；
 4. 发送至少一次真实玩家输入；
 5. 检查页面仍可响应且能导出最小观测。
@@ -34,6 +34,8 @@ L2 沿着完整 playthrough 检查规则和状态变化，终局只是其中一�
 
 这种做法能发现两类容易漏检的问题：中间步骤错误但终局偶然正确的 **lucky pass**，以及终局失败前更早发生的逻辑偏离。
 
+计时游戏可以给 scenario 配置虚拟时钟。`setup_ms` 是显式初始化预算，之后才 reset 并开始计时；`advance_time` 推进指定时长；`advance_frames` 是保留的格式名，实际按固定时间片推进并读取内存状态，不等同于浏览器逐帧。物理 oracle 支持重叠、tunneling、错误 grounded、跳跃高度、稳定落脚和世界边界。有有效采样的物理失败会记录 game `tick`、探针序号和耗时；复现以 `tick` 为主。
+
 ```text
 final_correct   = 终局 checkpoint 通过
 process_correct = 全部过程 checkpoint 通过
@@ -50,20 +52,20 @@ L3 把内部状态和玩家实际看到的界面对在一起。
 - 一致性：分数、生命、终局提示等是否与 L2 状态相符；
 - 可选多模态：布局遮挡、文字可读性、关键元素是否可见。
 
-能用确定性规则判断的内容优先使用 DOM/Canvas 比较。未配置多模态裁判时，视觉语义项记为 `unverified`，不能写成通过。
+能用确定性规则判断的内容优先使用 DOM/Canvas 比较。`eval:visual` 可以单独检查一张截图，未配置模型时返回 `unverified`；它的结果尚未汇总进 L3 gate 和 summary。
 
 ## 浏览器执行协议
 
 1. 校验 public case、scenario 和 oracle；
 2. 固定 seed、viewport、locale、timezone 与超时；
 3. 创建隔离上下文并注册错误监听；
-4. 等待 `window.__GAMETESTLAB__.isReady()`，再 reset；
-5. 顺序发送动作，等待规定的 `advance_ms`；
-6. 采集 state、增量 event、UI、Canvas、截图引用和 runtime error；
+4. 等待 `window.__GAMETESTLAB__.isReady()`，reset 后以 `event_epoch` 建立事件基线；
+5. 顺序执行真实输入或虚拟时间推进；
+6. 每个时间片采集 state 和增量 event，在每个步骤结束时采集 UI、Canvas、截图和 runtime/network error；
 7. 对比 checkpoint，记录所有失败和 `first_failure`；
 8. 输出逐例结果并聚合 summary。
 
-每次运行绑定 Git commit、游戏文件 hash、数据/schema 版本、Node/Chromium/OS、seed、UTC 时间和唯一 run ID。需求或 PRD 若参与生成断言，也记录版本/hash。
+`eval:sample` 生成的 run 会记录 Git commit、游戏文件 hash、数据/schema 版本、Node/Chromium/OS、seed、UTC 时间和唯一 run ID。PRD hash 目前保存在生成产物中，尚未接入评测 run。
 
 ## 判定状态
 
@@ -86,7 +88,9 @@ L3 把内部状态和玩家实际看到的界面对在一起。
 - 缺失观测记为运行/产物失败，不能静默删除；
 - 数值容差或视觉阈值必须提前写入 oracle。
 
-`first_failure` 是按 `(action_index, checkpoint order)` 排序后的第一个失败点。它表示首个**可观察偏离**，不直接等同于源代码根因。报告可另附关联需求和根因假设，但必须区分二者。
+`first_failure` 先按动作、再按可观察时间排序。报告保留 checkpoint、错误类型、action 和可用的 game tick，便于在相同 seed 下对照重放。它表示首个**可观察偏离**，不直接等同于源代码根因。
+
+物理判断依赖游戏桥提供的几何状态，属于白盒证据；Canvas 与截图负责交叉检查画面，不能把同一份内存状态当成独立视觉证明。缺样本或非法几何记为 `artifact_failure`；需要连续 tick 的 tunneling 检查遇到跳 tick 时也按证据不足处理。
 
 ## 核心指标
 

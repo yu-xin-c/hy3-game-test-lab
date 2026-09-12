@@ -1,0 +1,117 @@
+{
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "target-rush",
+  "title": "Target Rush",
+  "difficulty": {
+    "level": "D1",
+    "rationale": "单一点击循环，状态少，但同时覆盖倒计时、错误点击和重开。"
+  },
+  "category": "action",
+  "features": [],
+  "environment": { "pages": 1, "fake_camera": false, "persistent_storage": false },
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#playfield"
+  },
+  "controls": [
+    { "action_id": "START", "device": "mouse", "selector": "#start-btn" },
+    { "action_id": "HIT", "device": "mouse", "selector": "#target" },
+    { "action_id": "MISS", "device": "mouse", "x_ratio": 0.08, "y_ratio": 0.92 },
+    { "action_id": "RESTART", "device": "mouse", "selector": "#restart-btn" },
+    { "action_id": "RESTART_KEY", "device": "keyboard", "code": "KeyR" }
+  ],
+  "requirements": [
+    {
+      "id": "TR-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以进入 playing 状态且无运行错误。",
+      "depends_on": [],
+      "observable": ["status", "runtime"]
+    },
+    {
+      "id": "TR-HIT",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "每次目标点击只增加一分，五分获胜。",
+      "depends_on": ["TR-RUN"],
+      "observable": ["score", "target_index", "events"]
+    },
+    {
+      "id": "TR-LOSE",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "三次 miss 或倒计时结束会失败。",
+      "depends_on": ["TR-RUN"],
+      "observable": ["misses", "remaining_ms", "status"]
+    },
+    {
+      "id": "TR-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "重开恢复菜单和全部初始值。",
+      "depends_on": ["TR-RUN"],
+      "observable": ["state", "game_reset"]
+    },
+    {
+      "id": "TR-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 与内部得分和状态一致。",
+      "depends_on": ["TR-HIT"],
+      "observable": ["scoreText", "statusText"]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "连续击中五个目标并获胜。",
+      "seed": 101,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": ["TR-CP-START"] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": ["TR-CP-HIT-1"] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": [] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": [] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": [] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": ["TR-CP-WON", "TR-CP-WON-UI"] }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "连续三次点击空白区域并失败。",
+      "seed": 101,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": [] },
+        { "kind": "input", "action_id": "MISS", "checkpoints": [] },
+        { "kind": "input", "action_id": "MISS", "checkpoints": [] },
+        { "kind": "input", "action_id": "MISS", "checkpoints": ["TR-CP-MISS-LOST"] }
+      ]
+    },
+    {
+      "id": "timeout-path",
+      "description": "不点击目标，推进到倒计时结束。",
+      "seed": 101,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": [] },
+        { "kind": "advance_time", "advance_ms": 20000, "checkpoints": ["TR-CP-TIMEOUT"] }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "得分后使用 Restart 返回菜单。",
+      "seed": 101,
+      "clock": { "mode": "virtual", "start_time_ms": 1788105600000, "setup_ms": 0 },
+      "steps": [
+        { "kind": "input", "action_id": "START", "checkpoints": [] },
+        { "kind": "input", "action_id": "HIT", "checkpoints": [] },
+        { "kind": "input", "action_id": "RESTART_KEY", "checkpoints": ["TR-CP-RESET"] }
+      ]
+    }
+  ]
+}
