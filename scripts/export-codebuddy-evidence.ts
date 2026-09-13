@@ -10,6 +10,7 @@ function argument(name: string): string {
 }
 const batch = resolve(argument("--batch-dir"));
 const output = resolve(argument("--out-dir"));
+const taskRoot = process.argv.includes("--task-root") ? resolve(argument("--task-root")) : undefined;
 const manifest = JSON.parse(await readFile(resolve(batch, "batch-manifest.json"), "utf8"));
 const index: unknown[] = [];
 await mkdir(output, { recursive: true });
@@ -49,6 +50,27 @@ for (const task of manifest.tasks) {
     throw new Error(`Generated files changed since evaluation: ${task.id}`);
   }
   const destination = resolve(output, task.id);
+  if (taskRoot) {
+    const source = resolve(taskRoot, task.id);
+    const hashes: Record<string, string> = {
+      "test-plan.json": result.input_hashes.test_plan_sha256,
+      "oracle.private.json": result.input_hashes.oracle_sha256,
+      "input-sha256.txt": result.input_hashes.frozen_task_sha256
+    };
+    for (const [name, expectedHash] of Object.entries(hashes)) {
+      const actual = createHash("sha256").update(await readFile(resolve(source, name))).digest("hex");
+      if (actual !== expectedHash) throw new Error(`Task snapshot differs from evaluation: ${task.id}/${name}`);
+    }
+    // Public generation inputs must agree too; never attach revised requirements to old code.
+    for (const name of ["brief.md", "GAME_CONTRACT.md"]) {
+      const current = await readFile(name === "brief.md" ? resolve(source, name) : resolve(taskRoot, name));
+      const frozen = await readFile(resolve(batch, "public", task.id, name));
+      if (!current.equals(frozen)) throw new Error(`Task snapshot differs from generation prompt: ${task.id}/${name}`);
+    }
+    await mkdir(resolve(destination, "task"), { recursive: true });
+    for (const name of ["brief.md", ...Object.keys(hashes)]) await cp(resolve(source, name), resolve(destination, "task", name));
+    await cp(resolve(taskRoot, "GAME_CONTRACT.md"), resolve(destination, "task/GAME_CONTRACT.md"));
+  }
   await mkdir(destination, { recursive: true });
   await cp(gameDirectory, resolve(destination, "game"), { recursive: true });
   await cp(promptPath, resolve(destination, "prompt.md"));

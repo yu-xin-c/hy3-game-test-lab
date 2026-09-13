@@ -4,11 +4,13 @@ GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 
 
 > 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。不训练、不微调，也不发布模型权重；自建校准集未调用模型，真实游戏实验使用 CodeBuddy CN 的 Hy3 High。
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [校准集结果](results/sample/README.md) · [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md) · [新版规则复核](results/checking-policy-v2/README.md)
+[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [校准集结果](results/sample/README.md) · [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md) · [新版规则复核](results/checking-policy-v2/README.md) · [新批次实测](results/codebuddy-hy3-v4/README.md)
 
 ## 怎么检测游戏
 
 测试分成三层，但都来自同一次自动试玩：
+
+本轮不测摄像头、视频理解和语音交互类游戏；DOM、Canvas、3D 游戏保留。这个限制针对游戏任务，不限制用多模态模型辅助检查界面。
 
 | 层级 | 实际检查 |
 | --- | --- |
@@ -82,6 +84,8 @@ pnpm run eval:task -- \
 首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。96 题尚未全部生成和评分，当前结果不作为正式模型分数。
 
 新规则 `2026-09-12.3` 补齐了各路径的启动检查、检查点间事件记录、终局后 32ms 的画面检查和两条跳步骤测试。它不再强制 HUD 使用隐藏的固定文案；目前 L3 基础检查只确认文字状态、非空及可见性，数值含义和画面质量仍需另测。已有游戏的新规则复核单独保存，不与旧分数合并。
+
+新批次已完成 Signal Memory（D3）的一次 Hy3 生成和 12 次回放。原始检查通过 3/12；去除题面未规定的阶段名称约束后，诊断重算通过 12/12。游戏代码未修改，接口差异和未覆盖玩法仍单独列出。详见[本次结果](results/codebuddy-hy3-v4/README.md)。
 
 ## 仓库结构
 

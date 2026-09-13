@@ -15,6 +15,7 @@
     "prepare:codebuddy": "tsx scripts/prepare-codebuddy-batch.ts",
     "summarize:codebuddy": "tsx scripts/summarize-codebuddy-batch.ts",
     "export:codebuddy": "tsx scripts/export-codebuddy-evidence.ts",
+    "record:codebuddy": "tsx scripts/record-codebuddy-generation.ts",
     "check:game-tasks": "tsx scripts/validate-game-tasks.ts",
     "test": "vitest run",
     "test:browser": "playwright test",
