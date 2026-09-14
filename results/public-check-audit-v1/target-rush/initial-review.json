@@ -1,0 +1,280 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "Target Rush 无第二位玩家，控件 actor 默认 primary，引文直接支持。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "\"actor\": \"primary\", \"device\": \"mouse\", \"key_event\": \"press\", \"selector\": \"#start-btn\"",
+      "reason": "manifest 模板中 START 控件显式给出 device 为 mouse，逐字支持。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"actor\": \"primary\", \"device\": \"mouse\", \"key_event\": \"press\", \"selector\": \"#start-btn\"",
+      "reason": "同模板，START 的 key_event 显式为 press，逐字支持。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "#start-btn：开始",
+      "reason": "题面明确 start 使用 #start-btn，支持 selector 取值。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "HIT 无第二玩家，默认 primary，引文支持。"
+    },
+    {
+      "id": "A6",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开仅给 `#target：当前目标` 与“点击”，未规定 device=mouse，鼠标或触控均允许（鼠标和触控使用 selector），无法唯一推出 mouse。"
+    },
+    {
+      "id": "A7",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 HIT 的 key_event 取值，press 与 down 均未限定，无法唯一推出 press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "#target：当前目标",
+      "reason": "题面明确目标控件为 #target，支持 selector 取值。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "MISS 无第二玩家，默认 primary，引文支持。"
+    },
+    {
+      "id": "A10",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开只说“点击游戏区域的空白位置算一次 miss”，未限定 device=mouse，触控亦可，无法唯一推出 mouse。"
+    },
+    {
+      "id": "A11",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 MISS 的 key_event，press/down 均未限定，无法唯一推出 press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "公开仅要求点击空白区域算 miss，未规定具体坐标；0.08 是执行器自行选取的空白点击点，属内部约定而非游戏需求。"
+    },
+    {
+      "id": "A13",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "同 A12，0.92 为执行器自行选取的空白点击坐标，非公开要求。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "RESTART 无第二玩家，默认 primary，引文支持。"
+    },
+    {
+      "id": "A15",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开仅给 `#restart-btn：重开` 与“按钮”，未限定 device=mouse，触控亦允许，无法唯一推出 mouse。"
+    },
+    {
+      "id": "A16",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 RESTART 的 key_event，press/down 均未限定，无法唯一推出 press。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "#restart-btn：重开",
+      "reason": "题面明确重开使用 #restart-btn，支持 selector 取值。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "RESTART_KEY 无第二玩家，默认 primary，引文支持。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "键盘 `R` 也可以返回初始菜单",
+      "reason": "题面规定 R 键返回菜单，设备为 keyboard，引文支持。"
+    },
+    {
+      "id": "A20",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开键盘示例 key_event 为 down，且未规定 R 键的 key_event，press 无法唯一推出。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "键盘 `R` 也可以返回初始菜单",
+      "reason": "题面规定键盘 R，且“键盘控件使用 code”，按公开键盘示例 KeyH 的 KeyX 格式唯一推出 code=KeyR。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "状态文字固定使用 `Menu`、`Playing`、`Won`、`Lost`",
+      "reason": "开始后进入游戏区域，进行中状态为 Playing，引文给出状态枚举支持 playing。"
+    },
+    {
+      "id": "A23",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "“since_previous_checkpoint”是执行器在检查点之间采集事件的内部约定，并非游戏需求。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 `game_started`",
+      "reason": "题面要求点击 Start 后记录 game_started，逐字支持。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "每次正确点击目标，分数增加 1",
+      "reason": "首次正确击中分数+1，因此 score=1，引文支持。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "点击游戏区域的空白位置算一次 miss",
+      "reason": "未点空白则 miss 不增，故这些检查点 misses=0，引文支持（重置点另由清空规则支持）。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "目标立即移动到由 seed 决定的下一个位置",
+      "reason": "每次击中目标序号递增，重置清空为 0，故首次击中后 target_index=1，引文支持递增逻辑。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`target_hit`、`target_missed`、`game_won`、`game_lost`、`game_reset`",
+      "reason": "事件列表含 target_hit，击中后产生该事件，逐字支持。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "20 秒内击中 5 个目标：`won`",
+      "reason": "达成胜利条件时 status=won，引文支持。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "分数达到 5 时立即结束",
+      "reason": "5 次击中分数=5 并结束，引文支持 score=5。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "目标立即移动到由 seed 决定的下一个位置",
+      "reason": "每次击中序号递增，5 次击中后 target_index=5，递增逻辑由引文支持。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`target_hit`、`target_missed`、`game_won`、`game_lost`、`game_reset`",
+      "reason": "事件列表含 game_won，胜利时产生，逐字支持。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示 `Score: n/5`",
+      "reason": "HUD 始终显示分数，故 score 可见，引文支持。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示 `Score: n/5`、`Misses: n/3`、`Time: n.n` 和当前状态",
+      "reason": "HUD 始终显示当前状态，故 status 可见，引文支持。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示 `Score: n/5`",
+      "reason": "分数文本始终显示且非空，引文支持。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "状态文字固定使用 `Menu`、`Playing`、`Won`、`Lost`",
+      "reason": "状态文案固定含 Won，忽略大小写匹配，引文支持。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "miss 达到 3：`lost`",
+      "reason": "失败条件含 lost，引文给出 lost 状态，支持。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "每次正确点击目标，分数增加 1",
+      "reason": "未击中则分数为 0，且“Restart 必须清空分数”支持重置点，引文支持 score=0。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "miss 达到 3",
+      "reason": "漏点 3 次即失败，此时 misses=3，引文支持。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`target_hit`、`target_missed`、`game_won`、`game_lost`、`game_reset`",
+      "reason": "事件列表含 target_missed，空白点击产生，逐字支持。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`target_hit`、`target_missed`、`game_won`、`game_lost`、`game_reset`",
+      "reason": "事件列表含 game_lost，失败时产生，逐字支持。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "20 秒倒计时归零时",
+      "reason": "倒计时归零时 remaining_ms=0，引文支持。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "恢复菜单状态",
+      "reason": "reset 按 seed 恢复菜单状态，故 status=menu，引文支持。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "倒计时使用毫秒计算",
+      "reason": "20 秒以毫秒计为 20000ms，重置后回到满倒计时，引文支持。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "Restart 必须清空分数、miss、倒计时和目标序号",
+      "reason": "重启清空目标序号，故 target_index=0，引文支持。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`target_hit`、`target_missed`、`game_won`、`game_lost`、`game_reset`",
+      "reason": "事件列表含 game_reset，重置时产生，逐字支持。"
+    }
+  ]
+}

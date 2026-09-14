@@ -29,6 +29,15 @@ export const AuditReviewSchema = z.object({ assertions: z.array(z.object({
   id: z.string(), verdict: z.enum(["supported", "unsupported", "ambiguous", "test_mechanics"]),
   public_quote: z.string().nullable(), reason: z.string()
 })) });
+export function parseAuditResponse(text: string): unknown {
+  const trimmed = text.trim();
+  if (!trimmed.startsWith("```")) return JSON.parse(trimmed);
+  const match = /^```(?:json)?\s*\n([\s\S]*?)\n```(?:\s|$)/i.exec(trimmed);
+  if (!match || /^```/m.test(trimmed.slice(match[0].length))) throw new Error("Ambiguous audit JSON blocks");
+  // Some providers append an explanation after a single JSON code fence.
+  // Parse that explicit block only; never recover fragments from invalid JSON.
+  return JSON.parse(match[1]!);
+}
 export function validateAuditReview(input: unknown, assertions: AuditAssertion[], publicText: string) {
   const parsed = AuditReviewSchema.parse(input);
   const remaining = new Set(assertions.map(a => a.id));

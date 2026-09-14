@@ -57,12 +57,12 @@ const summary: any = {
   batch_id: "consolidated-96",
   generated_at: new Date().toISOString(),
   selection: "latest tested and Hy3-reviewed result for each frozen task",
-  scoring_status: "raw_assertions_and_model_review_pending_human_validation",
+  scoring_status: "raw_assertions_and_model_review_separate",
   all_tasks_completed: selected.length === expectedIds.length,
   totals: countGroup(selected),
   by_difficulty: Object.fromEntries(["D1", "D2", "D3"].map(level => [level, countGroup(selected.filter(task => task.difficulty === level))])),
   model_review: {
-    status: "not_human_ground_truth",
+    status: "model_review_not_independent_gold",
     totals: modelCounts(modelRows),
     by_difficulty: Object.fromEntries(["D1", "D2", "D3"].map(level => [level, modelCounts(modelRows.filter(row => row.difficulty === level))])),
     process_disagreements: disagreements

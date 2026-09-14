@@ -1,0 +1,11 @@
+{
+  "tasks": 96,
+  "assertions": 5182,
+  "statuses": [
+    {
+      "task_id": "target-rush",
+      "status": "reviewed",
+      "assertions": 46
+    }
+  ]
+}

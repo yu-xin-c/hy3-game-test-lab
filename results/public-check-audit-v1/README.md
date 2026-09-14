@@ -10,4 +10,8 @@ inventory.json 冻结了去重汇总所选 96 个原始游戏任务，共 5,182 
 pnpm exec tsx scripts/audit-public-checks.ts --out results/public-check-audit-v1 --calls artifacts/public-check-audit-v1 --cli /path/to/codebuddy --limit 8
 ```
 
-去掉 --limit 可核对全部 96 题。已完成且提示哈希匹配的题目会跳过；每次失败都会停止派发并保留原始响应。原始服务商响应位于 artifacts，不上传。完整引文匹配也不证明语义正确，后续修订需核对原文与可执行行为。
+去掉 --limit 可核对全部 96 题。已完成且提示哈希匹配的题目会跳过。引用或覆盖校验失败时，保留 initial-review.json，仅把有问题的条目交给 Hy3 纠正一次；纠正后仍须通过同样的严格校验。repair-prompt.txt 与 repair-receipt.json 保留纠正凭据。再次失败则停止派发，不用模糊匹配放行。原始服务商响应位于 artifacts，不上传。完整引文匹配也不证明语义正确，后续修订需核对原文与可执行行为。
+
+首题 target-rush 的首次输出覆盖了 46 项，但有 5 项引文不在公开原文中，原结果被拒绝，未计为完成。此类错误属于核对模型的证据引用问题，不是游戏缺陷，也不能用于修订判据。
+
+纠正后 target-rush 的 46 项均通过覆盖与引用校验：模型标记 36 项 supported、7 项 ambiguous、3 项 test_mechanics。这些是模型标签，不是确认数量。继续核对发现 A31 的 supported 不应直接采纳：引文“目标立即移动到由 seed 决定的下一个位置”没有明确规定终局 target_index 必须为 5；它可以表示当前目标编号，也可以表示已完成数量，公开题面只要求该字段存在。原判断保留，不用真实引文掩盖语义跳步，也不据此认证该检查。

@@ -90,7 +90,7 @@ pnpm run eval:task -- \
 
 ## 现在做到哪了
 
-当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 136 项 Vitest/jsdom 测试和 24 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
+当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 137 项 Vitest/jsdom 测试和 24 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
 
 [完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 

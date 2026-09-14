@@ -1,5 +1,12 @@
 import { expect, it } from "vitest";
-import { collectAuditAssertions, validateAuditReview } from "../../src/evaluation/oracle-audit";
+import { collectAuditAssertions, parseAuditResponse, validateAuditReview } from "../../src/evaluation/oracle-audit";
+
+it("parses one explicit JSON fence but rejects ambiguous or broken JSON", () => {
+  expect(parseAuditResponse('```json\n{"assertions":[]}\n```\nExplanation.')).toEqual({ assertions: [] });
+  expect(() => parseAuditResponse('```json\n{}\n```\n```json\n{}\n```')).toThrow();
+  expect(() => parseAuditResponse('```json\n{broken}\n```')).toThrow();
+  expect(() => parseAuditResponse('prefix {"assertions":[]}')).toThrow();
+});
 
 it("deduplicates predicates without losing checkpoint contexts", () => {
   const result = collectAuditAssertions({ controls: [] }, { scenarios: [{ scenario_id: "win", checkpoints:
