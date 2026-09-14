@@ -15,9 +15,14 @@ if (new Set(ids).size !== ids.length || ids.some(id => !/^[a-z][a-z0-9-]*$/.test
 const readJson = async (path: string) => JSON.parse(await readFile(path, "utf8"));
 const save = (path: string, value: unknown) => writeFile(path, JSON.stringify(value, null, 2) + "\n");
 await mkdir(output, { recursive: true });
-const manifest = { version: "process-v1", tasks: ids, generator: "hy3", reviewer: "hy3", public_process: "numbered pre-implementation plan plus recorded code mutations", human_validation: "required" };
+const manifest = { version: "process-v1", tasks: ids, generator: "hy3", reviewer: "hy3", public_process: "numbered pre-implementation plan plus recorded code mutations" };
 try { await writeFile(resolve(output, "manifest.json"), JSON.stringify(manifest, null, 2), { flag: "wx" }); }
-catch (error) { if ((error as NodeJS.ErrnoException).code !== "EEXIST" || JSON.stringify(await readJson(resolve(output, "manifest.json"))) !== JSON.stringify(manifest)) throw error; }
+catch (error) {
+  if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+  const previous = await readJson(resolve(output, "manifest.json"));
+  // Ignore obsolete annotation metadata when resuming an immutable older run.
+  for (const [key, value] of Object.entries(manifest)) if (JSON.stringify(previous[key]) !== JSON.stringify(value)) throw error;
+}
 for (const id of ids) {
   if (!only.includes(id)) continue;
   const out = resolve(output, id), gameDir = resolve(out, "game"), taskDir = resolve(out, "task");
@@ -117,7 +122,7 @@ for (const id of ids) {
   const findings = review.findings.map(f => ({ ...f, code_provenance: f.file && f.excerpt ? locateExcerpt(reconstruction, f.file, f.excerpt) : null,
     quote_verified: f.file && f.excerpt ? game[f.file]?.includes(f.excerpt) === true : null }));
   await save(resolve(out, "review.json"), { model: "hy3", model_verified: true, verdict: review, findings });
-  await save(resolve(out, "status.json"), { task_id: id, stage: "complete", difficulty: testPlan.difficulty.level, human_review: "pending" });
+  await save(resolve(out, "status.json"), { task_id: id, stage: "complete", difficulty: testPlan.difficulty.level });
   console.log(`COMPLETE ${id}`);
   } catch (error) {
     await save(resolve(out, "status.json"), { task_id: id, stage: "failed", error: error instanceof Error ? error.message : String(error) });

@@ -16,4 +16,4 @@ for (const finding of summary.findings) {
     game_sha256: finding.game_sha256 });
 }
 await writeFile(resolve(root, "review-cases.json"), JSON.stringify({ cases }, null, 2));
-console.log(`Prepared ${cases.length} human review cases; no annotations created`);
+console.log(`Prepared ${cases.length} read-only evidence cases`);
