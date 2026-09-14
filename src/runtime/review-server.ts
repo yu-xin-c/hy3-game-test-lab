@@ -6,9 +6,10 @@ import { fileURLToPath } from "node:url";
 
 
 
-export async function startReviewServer(rootDirectory: string, port = 4175, miningDirectory?: string) {
+export async function startReviewServer(rootDirectory: string, port = 4175, miningDirectory?: string, explorationDirectory?: string) {
   const root = await realpath(rootDirectory), token = randomUUID();
   const miningRoot = miningDirectory ? await realpath(miningDirectory) : null;
+  const explorationRoot = explorationDirectory ? await realpath(explorationDirectory) : null;
   const optional = async (path: string) => { try { return JSON.parse(await readFile(path, "utf8")); } catch (e) { if ((e as NodeJS.ErrnoException).code === "ENOENT") return null; throw e; } };
   const ids = async (): Promise<string[]> => {
     const manifest = await optional(resolve(root, "manifest.json"));
@@ -24,6 +25,20 @@ export async function startReviewServer(rootDirectory: string, port = 4175, mini
       const host = request.headers.host;
       if (host !== `127.0.0.1:${actualPort}` && host !== `localhost:${actualPort}`) { send(403, { error: "Invalid host" }); return; }
       const url = new URL(request.url ?? "/", `http://${host}`);
+      if (explorationRoot && request.method === "GET" && url.pathname === "/exploration") {
+        response.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" });
+        response.end(await readFile(fileURLToPath(new URL("../ui/exploration.html", import.meta.url)))); return;
+      }
+      if (explorationRoot && request.method === "GET" && url.pathname === "/api/exploration") {
+        const cases = await Promise.all(["zen-garden", "science-circuit", "mini-farm"].map(async id => {
+          const dir = resolve(explorationRoot, id);
+          return { id, trace: await optional(resolve(dir, "trace.json")), summary: await optional(resolve(dir, "summary.json")),
+            review: await optional(resolve(dir, "review/review.json")),
+            diagnostic_review: await optional(resolve(dir, "cross-check-review/review.json")),
+            replays: await Promise.all([1, 2, 3].map(n => optional(resolve(dir, `replay-${n}/summary.json`)))) };
+        }));
+        send(200, { cases: cases.filter(c => c.trace), scope: "探索工程验证；不是未知游戏发现率或推理定位准确率" }); return;
+      }
       if (miningRoot && (url.pathname === "/mined" || url.pathname.startsWith("/api/mined") || url.pathname.startsWith("/mined-artifact/"))) {
         const dataset = await optional(resolve(miningRoot, "review-cases.json"));
         const cases = dataset?.cases ?? [];

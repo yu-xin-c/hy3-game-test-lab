@@ -8,7 +8,7 @@ pnpm run run:process -- --out 新目录 --cli /absolute/path/to/codebuddy
 pnpm run report:process -- --out results/process-v1
 ```
 
-页面在 http://127.0.0.1:4175，真实错误证据在 /mined。两页只读，展示公开要求、方案、代码、状态、时间采样与 Hy3 复核。
+页面在 http://127.0.0.1:4175，真实错误证据在 /mined，自主探索在 /exploration。页面只读，展示公开要求、方案、代码、状态、时间采样与 Hy3 复核。探索页分别保留初次复核与补充诊断，不把后者覆盖为原始成绩。
 
 生成和模型复核均固定 Hy3/high。模型只接收公开要求；私有检查只用于生成后的测试。已有代码核对哈希后复用，中断尝试单独保留，基础设施错误不计作游戏缺陷。单题续跑使用 --only。
 
