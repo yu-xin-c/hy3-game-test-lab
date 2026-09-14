@@ -24,6 +24,16 @@ pnpm run report:process -- --out results/process-v1
 
 ## 实测入口
 
+### 按状态探索
+
+`scripts/explore-game.ts` 让混元根据当前页面、可用按钮和只读状态，每轮选择一次操作，由 Chromium 执行。支持点击、按键持续时间和推进时钟，逐步保存观测、截图、模型调用凭据及执行失败。模型不读取实现代码或私有答案；公开需求和运行观测用于决定下一步。
+
+```sh
+pnpm exec tsx scripts/explore-game.ts --source results/full-96/evidence/zen-garden --out artifacts/my-exploration --cli /absolute/path/to/codebuddy --steps 12
+```
+
+输出目录必须是新目录。默认固定种子 404；探索决策可能变化，保存的具体输入才是后续复现的依据。当前入口产生待复验的路径，不将模型怀疑计为确定缺陷，也不代表已覆盖全部玩法。尚不支持画布坐标点击或拖拽。浏览器截图留作证据，目前决策输入是文本和对象状态。
+
 - [3 题生成过程与 33 次路径执行](../results/process-v1/REPORT.md)
 - [真实错误复验、混元定位与局部干预](../results/error-mining-v1/REPORT.md)
 - [96 题运行汇总](../results/consolidated/summary.json)

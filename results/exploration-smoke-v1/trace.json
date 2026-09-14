@@ -1,0 +1,458 @@
+{
+  "model": "hy3",
+  "game_sha256": "c820e98fe07734f95c738c8858696a161b6aaa908f6ea56575f25ef8c62f954a",
+  "seed": 404,
+  "steps": [
+    {
+      "step": 0,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "在菜单状态点击开始游戏，进入 playing 阶段以探索正常玩法",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 6,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "text": "分数 0 · 进度 0/3 · 生命 2\nMenu\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\nZen Garden\n完成三段目标：摆放岩石 → 画出沙纹 → 保存庭院\n开始游戏\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "after": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 3
+        },
+        "text": "分数 0 · 进度 0/3 · 生命 2\nPlaying\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "execution_error": null
+    },
+    {
+      "step": 1,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 2
+        },
+        "reason": "在 playing 状态按正确顺序点击 Stage 1（摆放岩石），探索正常玩法首段",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 3
+        },
+        "text": "分数 0 · 进度 0/3 · 生命 2\nPlaying\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "after": {
+        "probe": {
+          "tick": 19,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 1,
+            "score": 10,
+            "lives": 2,
+            "last_action": "stage_1",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "text": "分数 10 · 进度 1/3 · 生命 2\nPlaying\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "execution_error": null
+    },
+    {
+      "step": 2,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 3
+        },
+        "reason": "按正确顺序点击 Stage 2（画出沙纹），推进进度至 2 段，探索正常玩法",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 19,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 1,
+            "score": 10,
+            "lives": 2,
+            "last_action": "stage_1",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "text": "分数 10 · 进度 1/3 · 生命 2\nPlaying\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "after": {
+        "probe": {
+          "tick": 25,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 2,
+            "score": 20,
+            "lives": 2,
+            "last_action": "stage_2",
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "text": "分数 20 · 进度 2/3 · 生命 2\nPlaying\n1. 摆放岩石\n2. 画出沙纹\n3. 保存庭院\n摆放岩石 (Stage 1)\n画出沙纹 (Stage 2)\n保存庭院 (Stage 3)\n错误操作\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "开始游戏",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "重新开始",
+            "id": "restart-btn-overlay",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "摆放岩石 (Stage 1)",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "画出沙纹 (Stage 2)",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "保存庭院 (Stage 3)",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": []
+      },
+      "execution_error": null
+    }
+  ],
+  "scope": "adaptive exploration; suspicions are not confirmed defects"
+}
