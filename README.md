@@ -4,9 +4,9 @@ GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 
 
 > 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。不训练、不微调，也不发布模型权重；自建校准集未调用模型，真实游戏实验使用 CodeBuddy CN 的 Hy3 High。
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [全量记录](results/full-96/README.md) · [实测分析](results/full-96/analysis.md) · [校准集结果](results/sample/README.md)
+[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [96 题去重结果](results/consolidated/README.md) · [逐批证据](results/full-96/README.md) · [校准集结果](results/sample/README.md)
 
-本轮已完成 **83/96** 个不同游戏的生成、浏览器测试和混元复核。剩余 13 题受 Hy3 限流阻断，接口提示 2026-09-13 17:59:47（北京时间）恢复。原始结果包含规则误报，不能直接作为最终模型成绩。[执行状态](docs/full-run-status.md)说明首轮和补跑的区别。[阶段汇报 PPT](docs/evaluation-slides.pptx)保留了这些限制。
+本轮已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。结果按最新有效尝试去重汇总，原始失败尝试仍保留。原始规则包含误报，混元复核也不是人工真值，因此暂不把任一列称为最终模型准确率。[执行状态](docs/full-run-status.md)说明三个批次的关系。[汇报 PPT](docs/evaluation-slides.pptx)使用去重后的结果。
 
 ## 怎么检测游戏
 
@@ -83,11 +83,11 @@ pnpm run eval:task -- \
 
 [完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 
-首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。96 题尚未全部生成和评分，当前结果不作为正式模型分数。
+首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未人工修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。这部分是早期试跑，不与正式 96 题结果混合。
 
 新规则 `2026-09-12.3` 补齐了各路径的启动检查、检查点间事件记录、终局后 32ms 的画面检查和两条跳步骤测试。它不再强制 HUD 使用隐藏的固定文案；目前 L3 基础检查只确认文字状态、非空及可见性，数值含义和画面质量仍需另测。已有游戏的新规则复核单独保存，不与旧分数合并。
 
-96 题批次现在通过 CodeBuddy CLI 固定调用 Hy3/high 生成游戏，再由 Chromium 运行和 Hy3 复核。逐题保存原始代码、输入哈希、操作记录、规则结果和模型判断。两种判断分开汇总，真人抽检前不报告校正后的模型分数。最新计数见[全量记录](results/full-96/README.md)，包括待生成项与基础设施异常。
+96 题通过 CodeBuddy CLI 固定调用 Hy3/high 生成游戏，再由 Chromium 运行和 Hy3 复核。逐题保存原始代码、输入哈希、操作记录、规则结果和模型判断。两种判断分开汇总，真人抽检前不报告校正后的模型分数。最新去重计数见[96 题汇总](results/consolidated/README.md)，各次基础设施失败仍可在原批次追溯。
 
 其中 Signal Memory 的原始检查通过 3/12；去除题面未规定的阶段名称约束后，诊断重算通过 12/12。游戏代码未修改，原分数不覆盖。详见[诊断记录](results/codebuddy-hy3-v4/README.md)。
 

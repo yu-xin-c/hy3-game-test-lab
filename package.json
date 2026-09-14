@@ -20,6 +20,7 @@
     "run:codebuddy": "tsx scripts/run-codebuddy-batch.ts",
     "judge:codebuddy": "tsx scripts/judge-codebuddy-batch.ts",
     "report:codebuddy": "tsx scripts/report-full-batch.ts",
+    "consolidate:results": "tsx scripts/consolidate-results.ts",
     "check:game-tasks": "tsx scripts/validate-game-tasks.ts",
     "test": "vitest run",
     "test:browser": "playwright test",
