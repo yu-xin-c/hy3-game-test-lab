@@ -37,7 +37,8 @@ function expectedEventTypes(oracle: GameTaskOracle): Set<string> {
 export function assertGameManifestMatchesTask(
   plan: GameTaskPlan,
   oracle: GameTaskOracle,
-  manifest: GameManifest
+  manifest: GameManifest,
+  options: { pointerEquivalence?: boolean } = {}
 ): void {
   const errors: string[] = [];
   if (manifest.entry_path !== "index.html") errors.push("entry_path must be index.html");
@@ -68,6 +69,14 @@ export function assertGameManifestMatchesTask(
       "y_ratio",
       "fixture_frame"
     ] as const) {
+      // key_event affects keyboard execution only; pointer actions are clicks/taps.
+      if (options.pointerEquivalence !== false && field === "key_event" && taskControl.device !== "keyboard" && gameControl.device !== "keyboard") continue;
+      if (options.pointerEquivalence !== false && field === "selector" && ["mouse", "touch"].includes(taskControl.device) && taskControl.device === gameControl.device) {
+        const effective = (c: typeof taskControl | typeof gameControl) => c.selector ??
+          (c.x_ratio !== undefined && c.y_ratio !== undefined ? plan.selectors.surface : undefined);
+        const left = effective(gameControl), right = effective(taskControl);
+        if (left !== undefined && right !== undefined && normalizedSelector(left) === normalizedSelector(right)) continue;
+      }
       if (!sameValue(gameControl[field], taskControl[field])) {
         errors.push(`control ${actionId}.${field} does not match`);
       }

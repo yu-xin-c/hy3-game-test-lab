@@ -1,0 +1,1354 @@
+{
+  "scope": "Manifest compatibility only, not browser gameplay scores. Compare the same code with pointer equivalence disabled/enabled.",
+  "adapter_sha256": "7b3ef6026ff5824a04f6b5af92946c08f2e470c25a754cf727e1bf6a70269bb3",
+  "tasks": 96,
+  "strict_passes": 86,
+  "equivalent_passes": 86,
+  "newly_compatible": [],
+  "rows": [
+    {
+      "task_id": "target-rush",
+      "plan_sha256": "0b2655ac715ad989731d24971aead22ee3d45c6251ebd49b06f8963659a14427",
+      "oracle_sha256": "148c0e8d096844731e5ab120fba4478801049f4a910fd13d2fba9a4d7e9a3419",
+      "manifest_sha256": "9b11c62b43d7cf76893c5e5f54a179efa7adf30f3f161af1bd9c250991f1077f",
+      "strict_metadata": {
+        "pass": false,
+        "error": "Error: Generated game does not match task target-rush:\n- control MISS.selector does not match\n- control MISS.x_ratio does not match\n- control MISS.y_ratio does not match\n- control RESTART_KEY.key_event does not match"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "Error: Generated game does not match task target-rush:\n- control MISS.x_ratio does not match\n- control MISS.y_ratio does not match\n- control RESTART_KEY.key_event does not match"
+      }
+    },
+    {
+      "task_id": "maze-collector",
+      "plan_sha256": "f58970f5e304ec4f7dc99f08d7e251e0e9b7cf3e94d71e770e8100c9fd614de3",
+      "oracle_sha256": "a22c8171853c117afebe6bb32c14b5cbc235587b5899c12ba47910d78beea6b2",
+      "manifest_sha256": "b7b8d370267c4a320986474f4611ecc21dedac17a85d730cf0ab96d8fdf26bd0",
+      "strict_metadata": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  }\n]"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  }\n]"
+      }
+    },
+    {
+      "task_id": "key-door-escape",
+      "plan_sha256": "34ec53ea79dbb93c52a1b6674189170093b708d751ba629c99ae847e4512578a",
+      "oracle_sha256": "cfb5d54b8e2d391e821c101ef60f9cdc28532990c31da50c1b6d0d42b0ddeb5b",
+      "manifest_sha256": "d7b50d349536ae489bb5e96eda7164734f85a54a6d25f88efe042ad8ef44a16c",
+      "strict_metadata": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"fields\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"fields\\\"\"\n  }\n]"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"fields\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"fields\\\"\"\n  }\n]"
+      }
+    },
+    {
+      "task_id": "platform-rescue",
+      "plan_sha256": "6b14563f53bda1f90e1bbeebb6774c5b2716c70fab970395013ec97d2be78fdb",
+      "oracle_sha256": "f2327571c1b0e136e0d80ffc1795058923a0feaf80369b4b66c832bd1ef5dd74",
+      "manifest_sha256": "4a5d038614f7866acc1bbe7399e0b88a2427af64ac8864703696a80ccf76fc1a",
+      "strict_metadata": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  },\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"items\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"platforms\"\n    ],\n    \"message\": \"Unrecognized key: \\\"items\\\"\"\n  },\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"world\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  }\n]"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  },\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"items\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"platforms\"\n    ],\n    \"message\": \"Unrecognized key: \\\"items\\\"\"\n  },\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"world\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  }\n]"
+      }
+    },
+    {
+      "task_id": "signal-memory",
+      "plan_sha256": "371d578b6a7f2b4fe5467fd71abd0ccdf65c175c90effdb303ab3fcac2728af2",
+      "oracle_sha256": "052034d6e8507aef1455c658324158002d5efdbc108bd5d93ec8b158ce8226c7",
+      "manifest_sha256": "b9b301de793d9a2bf697bf8ef774e46bd632e6f5e82f9e29103d31b09ab90677",
+      "strict_metadata": {
+        "pass": false,
+        "error": "Error: Generated game does not match task signal-memory:\n- control RED.selector does not match\n- control GREEN.selector does not match\n- control BLUE.selector does not match\n- control YELLOW.selector does not match\n- control RESTART_KEY.key_event does not match"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "Error: Generated game does not match task signal-memory:\n- control RESTART_KEY.key_event does not match"
+      }
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "plan_sha256": "e667755c922e3ec765b9109ee6e90edd55599a54f04845579cef49bc699645df",
+      "oracle_sha256": "7fd937ab9c732d03253a8680a1644990d37662697e0efa848a1fe800d8c57481",
+      "manifest_sha256": "19ab588b9b2c6247001155cce07b9d77618bedaa8c9fc04326704fdf3c40308b",
+      "strict_metadata": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      0,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      0,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]"
+      }
+    },
+    {
+      "task_id": "neon-lane-racer",
+      "plan_sha256": "74308c2ca42f64fd659978bb73a8b0d265a497856fe2bfd446ae375564bc6e78",
+      "oracle_sha256": "5435561b6be51cbdd99ecb63e212677e12ce79dba781589c53d6724a76c660af",
+      "manifest_sha256": "8694c275e9c6fe2defbdcb23f4b542407ad48508cbaf0a2283761c5626f0bb9d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "dual-arena",
+      "plan_sha256": "51cabd4a96453adf4aec2bfee33396bc943a55b40d195da48ecc7fb39ac5e96e",
+      "oracle_sha256": "0829607335689f25a299d4904f7d18a950a3d46b4fe1fe1f2e784ef740cb1d2e",
+      "manifest_sha256": "c18d5569cbea5fd967b0bd906c0460fa0ac2673b3c33ffbcbff01213055ce708",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "meteor-survivor",
+      "plan_sha256": "54b4320dba5e6df7cac1f64c5aad80ff51e17a0c601f5cdc99ded514b05408a0",
+      "oracle_sha256": "41d6c232e796698ebfdd45dd5989d9f50c3d9af427240dda53d1cc5709e9be78",
+      "manifest_sha256": "ce988403b92d3998ba29f253fb54859002ab140c8b530c0e1927414660334e8d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "room-five-in-row",
+      "plan_sha256": "dce0fd7d3623333187c8663b746e0e61c6474146bf409a123e3ad6059959dc15",
+      "oracle_sha256": "a2200e8e9b3626ccc627ac187541bc3337709f2a94805bc748bb1715944b413f",
+      "manifest_sha256": "1659b779e6aecbc39d7f1b88f84c5f7451bbdd84ab402600b6dd1c3be9e70644",
+      "strict_metadata": {
+        "pass": false,
+        "error": "Error: Generated game does not match task room-five-in-row:\n- control JOIN.actor does not match\n- control P2_C0.actor does not match\n- control P2_C1.actor does not match\n- control P2_C2.actor does not match\n- control P2_C3.actor does not match\n- control P2_C4.actor does not match"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "Error: Generated game does not match task room-five-in-row:\n- control JOIN.actor does not match\n- control P2_C0.actor does not match\n- control P2_C1.actor does not match\n- control P2_C2.actor does not match\n- control P2_C3.actor does not match\n- control P2_C4.actor does not match"
+      }
+    },
+    {
+      "task_id": "persistent-2048",
+      "plan_sha256": "12b9ea9420c4c2ebead1946f86cf36737990abe4b6ab4ad3cf1288da88dddd92",
+      "oracle_sha256": "683e0efc02cd3676258cad27a9df9a697e39aedff354b9e828f341c23d797bc6",
+      "manifest_sha256": "c720826466ae901d9bc0977033f8516ca6a19de43d11bffc6445b55c7c43af16",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "particle-orchestra",
+      "plan_sha256": "b925533c2a17b81ff82e8ffc31fbb271bb79797df779b7b44875e4bed542aa77",
+      "oracle_sha256": "d9b1d737387605aa3883ef97e703b999a860a2495280e6355c27093ec2ed0981",
+      "manifest_sha256": "327f8be4ea48696ea326db039be997960916f599c01eddcfd0316a878148a57d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "photo-orbit-gallery",
+      "plan_sha256": "49863e858249f6f536822bbe4cb7c5a5c4b8485b58c6dffa7c39d9e6da9936d5",
+      "oracle_sha256": "78b60d95ef8c185516a789b1c96045c63fc3546cda07d38df9b22a72f8139377",
+      "manifest_sha256": "8aea996eb1ab39652362ddd8862b5880be687725b8f1c6dd0681a9287edced7c",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "pet-care-day",
+      "plan_sha256": "2287b9e433c2603bb42e35eb3e66170de823d2533bb57313d272caa8ae620a09",
+      "oracle_sha256": "10a37a4a1a5884c20b8aaf09a2cd51be4acf2a25970d1920f9b5ece43b7d56fe",
+      "manifest_sha256": "58cc34edea02a8014f7c455d4986b5f790a379ed26de357cf3b1b8dd0eb50a31",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "mini-farm",
+      "plan_sha256": "57c22692b28097d7b1f4eff427adda1dc75cabb85f70d977f00e529c1443b69f",
+      "oracle_sha256": "c653699e9b29a032dab4ac2fc19d9220eadcd44c8edf91f541f260bbc713ad0a",
+      "manifest_sha256": "eeec5fb3bd4b6596210d53f06c212e015237d6e6b25eb89226c5652173a69802",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "cooperative-city",
+      "plan_sha256": "298c4fc6af08b9d7f096c4cca0601c657ca01af4f80f77845b00dc163c8c8e92",
+      "oracle_sha256": "dc6de4441a2faaef231e7ccc7f362152a6d580c16a43886c3eb74e7aa79b7c12",
+      "manifest_sha256": "8f7a34cff4afd550ba00d9f16087dea5c246351b70dbfc76c27f267abd686e99",
+      "strict_metadata": {
+        "pass": false,
+        "error": "Error: Generated game does not match task cooperative-city:\n- control JOIN.actor does not match\n- control BUILD_WATER.actor does not match\n- control APPROVE_P2.actor does not match"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "Error: Generated game does not match task cooperative-city:\n- control JOIN.actor does not match\n- control BUILD_WATER.actor does not match\n- control APPROVE_P2.actor does not match"
+      }
+    },
+    {
+      "task_id": "math-quest",
+      "plan_sha256": "77e4656aac226b45578e644951a63b7d4449876f159749fef1e6db7d0fde3970",
+      "oracle_sha256": "749d1d43d323faf0a1eb8e75dd01fef18ef8e088ccc905ddea33a9275305a81f",
+      "manifest_sha256": "acfa73984db722cabed9d18453cb4bff01cfdd7a8aeab92ef5b41a2ad75b15a0",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "science-lab",
+      "plan_sha256": "7da66b6030e30a109841b6e1258c7b5173e0d4b57a18301829fadc3581c1ef16",
+      "oracle_sha256": "a4781d1f0d7bdbf7c5cdea2a58948b5ba5dc2458014f44267f700ab0f896abc5",
+      "manifest_sha256": "29486c93459955a54b942fd05cf1ff2ab21204e7cc3b21ba85060a9cb4a3f542",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "ocean-hunter",
+      "plan_sha256": "fa37e9811a798cfd9ee21f4a69b676d095a193f82f6ccb9d2c0bb4af54963dc7",
+      "oracle_sha256": "cf7dc20443a9427f572e6660b555ecbb57a56cb0acfde3b7808ef671884b9385",
+      "manifest_sha256": "d28cbfef73206bc14a3f8b00b127df9577ff8e6113af4d15c532fc9d2305e165",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "sky-jump",
+      "plan_sha256": "81f6de8ce76040da0b4a75c5b5fa9f6ce38bb965839c0dc673297cc85f2002d1",
+      "oracle_sha256": "7816a61b8ebae487e70abd640392f9e5022676fdb2218c61405444504e51ddea",
+      "manifest_sha256": "e82903b7ee0ef9d21ef7c4e6c4b93818fb09cd76ae623256ce5b36c1568c8a82",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "rooftop-runner",
+      "plan_sha256": "a58af53c3ea6f10c91cca792b541a42482d0b8c11bbe15d5951b041bdb579332",
+      "oracle_sha256": "52f1021d98b8636ba05411d34ce163edb8ca38e5f0cc70e6b07004d3f47d9c86",
+      "manifest_sha256": "417e8070c9becfc0578b56dfca3088f1d3325a2baad73633de67111965a9dd34",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "asteroid-shooter",
+      "plan_sha256": "a712dd1883d606c206003d8e57353cd8dd49a131a4747df28de1b4146feb3e78",
+      "oracle_sha256": "721ef56a0e0dde72d4fd2e9b44b4de7bc348355b1c5667dfc85efa9ee673e2c2",
+      "manifest_sha256": "e951e9290a0a3e1671ac125189510f514c0c7373ce385717e844d92d46a66686",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "boxing-duel",
+      "plan_sha256": "5f6beedc4905c20a3b3f74bc095185735b1ec7e457d2c9ef59d6955c55f61b34",
+      "oracle_sha256": "da99b2fe526811a8986dd86870bf5030fd4c1654e95cbe9cf96b0983863f970d",
+      "manifest_sha256": "53b2c234c6708990ea508ff33c30d26a000b609cdb23d438e57e98058f4031fe",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "circuit-race",
+      "plan_sha256": "a1b8c575c39872b7c44511ce94457d7ca065851730a92663a4f35cc9d45e4db2",
+      "oracle_sha256": "c40b47556c3e996b6002000a00d35f5594b531eea84ec2437d7cdff3ede6652e",
+      "manifest_sha256": "26b35d0ec73087c7a8da1e7f2878d6d893ff7d1f670338973a22d0a9db2a18ce",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "whack-mole",
+      "plan_sha256": "1322ede8839eb838bc8415870c5bddfafed246059788aa260b2d7014b0b367e5",
+      "oracle_sha256": "304ad6ad2df20420f2f3b8afff6fbfcf824b70dad601b33d0463da78b6896a9c",
+      "manifest_sha256": "bcd0ec9cba7025d5385c8e64770de92f32b21d3fd50a72f049f4feb2be614660",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "fruit-combo",
+      "plan_sha256": "691e740e326abeda8d403ef41635488a708772428c83a23594d593a31eeeeef0",
+      "oracle_sha256": "eda66e9334cb5111f519a424e79b224e6291442351a28d29ed32325d46fc17c1",
+      "manifest_sha256": "6e2ff28aef25714d800d9ade9f7219639246db3d6da8b3e79a5d53338caa7b99",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "volcano-survival",
+      "plan_sha256": "78f77df3670a552644a39ce5fd9fa14b82fb284d3f9786f72c2473d8fdc86e55",
+      "oracle_sha256": "de47e35e9c05b513fa7b6ae6e95b458174d2eca40924d44ea29d346958c04373",
+      "manifest_sha256": "786dbd9250c3bfb255fea90ae9d52812bca4f1e7fd3273c29dc279e5aecd3bf0",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "snowball-arena",
+      "plan_sha256": "017b821e55d9d68e14a27ec1c33133e4ca14e3b172f54faefb322b6e39c2acd3",
+      "oracle_sha256": "ecd6be06400702d558d28aadcd7c3ecbca1eb7b6a5d9790f9c9e181627d806d0",
+      "manifest_sha256": "585b3a0261fc4701c39c830407e8cac96c93936cc4745c81f720d8395bcbd6f9",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "rhythm-dash",
+      "plan_sha256": "211bedea4c8438e9bca73e2f3f5d43d3b26d9f29329664b1cb50fe7c9fd28abb",
+      "oracle_sha256": "c82b3f8286eea8c7bdf336fa301baf85452951385bac29fe4af8ccdb5dc5b7cb",
+      "manifest_sha256": "23560d2b610f0d4728ebb7ac29da917cfe2d03a1d4cb76f4f7658d4af710d21d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "helicopter-rescue",
+      "plan_sha256": "b09775cfb58fb32cc166f6f2c05190246389c034af929a7a58778c30f30cb0db",
+      "oracle_sha256": "f3e1440ba2bce9f68729195607dd724dcfab0b7280d0564067c513c9454c6faf",
+      "manifest_sha256": "71ddcb48bd63019777c00147e6b9dba1e12d14d5a31f677ea3a67a8d1ae10380",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "space-defense",
+      "plan_sha256": "d5173ac234691ff82ed3286de94489f849871e43b4f47ae875a8d8d81c4a87be",
+      "oracle_sha256": "f66138ae5a320348814228a71dc8c09578869f93bc02f55c6d00695e9cc5de4d",
+      "manifest_sha256": "ceb924309e516f1b2b5e8a844392e44b79fee7537ad3ff33d883b976404c4e30",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "samurai-reflex",
+      "plan_sha256": "6285638db9b9b29ead128fe9984926ff7601b3395a9bc78de0a5f88ed61a5e33",
+      "oracle_sha256": "375719334bf937529f78a03942e42c99ab32a565c08513622b9551019f919edb",
+      "manifest_sha256": "1a0e112c181d3adee8cbbf6653b0c4e30d89e117b8348bd823f53ed951e49022",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "cave-runner",
+      "plan_sha256": "6caaccde14bc1f526e34099adfcd98408cb15504e7022322c2d9f4eb4143cbdc",
+      "oracle_sha256": "83c629f78014f5a58d1e3b1858f33478826a6ceeceb57563d967dd93f0652a09",
+      "manifest_sha256": "7451e47ff587d6a919df6123be164bf5b4ffab2988c58f8056ece42bfbec805c",
+      "strict_metadata": {
+        "pass": false,
+        "error": "Error: Generated game does not match task cave-runner:\n- control STAGE_1.key_event does not match\n- control STAGE_2.key_event does not match\n- control STAGE_3.key_event does not match\n- control WRONG.key_event does not match"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "Error: Generated game does not match task cave-runner:\n- control STAGE_1.key_event does not match\n- control STAGE_2.key_event does not match\n- control STAGE_3.key_event does not match\n- control WRONG.key_event does not match"
+      }
+    },
+    {
+      "task_id": "crab-race",
+      "plan_sha256": "5b3e5f03e69f57bc77d7039759ff32e574edb9f301ba987e9192c3009e560e6a",
+      "oracle_sha256": "bc9fb24f418603a2830eca3f0d2c18986940283436fcf22f5674353e9328c4f2",
+      "manifest_sha256": "89cc7d59f9b0b1002205a86edda1eb0bc13cfe60b883e7702c2ed60d4c523005",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "submarine-dodge",
+      "plan_sha256": "2c63e648d2ba2e0bdc54ac12603d107dde85eeff29be9a2496163fcdd26d372e",
+      "oracle_sha256": "edc2f57b31b0fec421327a6411d2ce8d65044eafea59efd081d53138a6e139d8",
+      "manifest_sha256": "179e0ab6c97f6d98f2e83517587d25be93da690ba3f50cb59fb8d5526b30e599",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "tower-climber",
+      "plan_sha256": "4a0ee1b2a33ba2cf4cd64e31ff0d5d2eac34c930f1aff9242860006de11d1966",
+      "oracle_sha256": "9603fbfaa045bb37ee6fbcec37b13b7844ee860ed51db0a2b99331a2eb98c4f0",
+      "manifest_sha256": "a5c1511cd5a551dac9e7cf38ef135d2b69e97fe6e85f253fcb3a785382583cbb",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "kart-time-trial",
+      "plan_sha256": "23e94852440d7f04dcbccb8fe0e60ee2cf6182b9f3a2473492a095bbc853a5cc",
+      "oracle_sha256": "8c7f2a879e804209584feaa6f83c629e3c8589755fd7490e462690f8f379911c",
+      "manifest_sha256": "1dd4e6a2ff2ce71140be572cff622aebba99472c2f82bfc4c1e40063d7006c9f",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "robot-brawl",
+      "plan_sha256": "cc88015a81e1fb2d8f30dae2969ea4b0b82731b8b5fa031b4988553331ab7a4d",
+      "oracle_sha256": "07520c4e234bdcf72c54a7d93be8045452f1c036eed5e9bb332cb77ffdc7126a",
+      "manifest_sha256": "0fba046a39ae2875aea17d03e80561fad1fb43ee7ac4de0a39b0a4689f1bdde9",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "laser-maze-run",
+      "plan_sha256": "0b7f1efd1663a052488e095f6b44be5e77e1d8dfa4797c9e26e07d0d430a02f3",
+      "oracle_sha256": "8fead4ebea359818543ee3e55c90ac901603f39ca65ae149f12a7e4005145f3c",
+      "manifest_sha256": "7c975f0a0e907dfa2df5c656306f10c330a51da9511f5cfbfd57cc5bf2246fc9",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "bee-swarm",
+      "plan_sha256": "23c48cd6863b8444a3cd3ef05fd1697a39d9f4cbdb6d46b1aba00e3b1222b07b",
+      "oracle_sha256": "31af049bf9c8669bd7fa4b9fce64e4380a933283fc44e9f812ea5ab60ba7299f",
+      "manifest_sha256": "b223525c4af243067ff8bb150a8f5b18e78fbeb37e15a2da6f9692133f30c7dd",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "football-penalty",
+      "plan_sha256": "f82671cc28602085cecaa3bbf2b38d592d6bc6a0911fe549477ce72f25732f5e",
+      "oracle_sha256": "c67ded5b5637f1c3928b26f8edb40916c31150a89f0bc251f3c93f0bea426669",
+      "manifest_sha256": "b7fe0518019aa7a61f55ce62b757fb620c7ff6f088067d415e0192b88e66b8c6",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "ninja-slice",
+      "plan_sha256": "0aa69f42fe8e2b2de1db1afffd08b4b58baa3efb7b7264c844a1f84d27a72cea",
+      "oracle_sha256": "fd6e15c142d2bd26a43fff681ad085f4dec56db84e9c919991ccb3e66d29c864",
+      "manifest_sha256": "e5639c512b2d52fa9a7c06717c63f5d801de91b5ef074ceb2c2376034fdc3b34",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "island-survival",
+      "plan_sha256": "7877e28844b653294d4059aafd22d4ba86d1a3fbc1f222434c0f6e92e3d74504",
+      "oracle_sha256": "2599bfb8842baa6cac84cf0874651ff6a96622c6cbea308f41ebb244e62f39ee",
+      "manifest_sha256": "ee9b721806a39ae58f5e7345bd2629b1a9be07774ffb9216070111a52e94cd5b",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "sokoban-warehouse",
+      "plan_sha256": "9142578939272f5aa80ddb0a3131e3f03a7acd3609d7fbd0b95be69b83cc658e",
+      "oracle_sha256": "f5a220341363f9431cbc3f15dd45168d552c539b158abe94aa2d8a4cc02a6b71",
+      "manifest_sha256": "d6cd676a1ea43fecb55b3782e140d7f5bd3e1adb238ece7ffe9ba1f0f42e9649",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "tetromino-stack",
+      "plan_sha256": "5b4dc9f840666e11080447a8aee48b81e345488ba51e006801878c0bbc651ee1",
+      "oracle_sha256": "258420d4ee56984f4fd04bd91c92fd2257d6ec5ef47f1d76bc51b16e1da81740",
+      "manifest_sha256": "88415468e39e4cf3a53a602091db9155bf6f1b6cc35ded632b44e2ce17676c12",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "minesweeper-safe",
+      "plan_sha256": "e74de27a9614443d680e8abd7c51fb78492d2733b3eddba774dd436c5407b5b8",
+      "oracle_sha256": "937bec8fc0855566f250462bd600b8b02b88c349f6595fe29dfc0ab4bf4e9feb",
+      "manifest_sha256": "c4da6b0e9e84804faa8e434599e81850bcf38e874cec1719b3918d2af00c5ca8",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "sliding-puzzle",
+      "plan_sha256": "f34d36e7a29daec8be5b22a4d5b53e00e679db133536f1394917efa348a0597d",
+      "oracle_sha256": "5f029e8453dafd019cc8b567315fb359330ceaeeea89e5629863ed15fe2d3a1a",
+      "manifest_sha256": "f1acc22767bb24e1e14715bdbd6f1bcb8fd95c180dd11e05f8b378489415e97b",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "match-three-gems",
+      "plan_sha256": "852b8ab636a2701079df68fe9212a13e5e457da439be2aa7c928890a61024626",
+      "oracle_sha256": "f77e14e3a5ec569875dc388451318fe7712464b678dc6258e94c64e7107be20d",
+      "manifest_sha256": "a85ac6c330b06b3b14dfb4bd7f565c8fb1b0be9bac229d8ed130dd18c9bdc700",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "mahjong-pairs",
+      "plan_sha256": "76f0179d03663546817c033ce2399b447ea8314233e8dfaa3d3f7fde98000aa8",
+      "oracle_sha256": "463db626cde4aa3c1f51cef192b144931fdbecf155556f0b79a76e1fc34a076d",
+      "manifest_sha256": "7b766d754a2b1225ecf5dcb5a14d57ed26b0b0c097cef090275bea27f6c32910",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "hex-connect",
+      "plan_sha256": "36706a83c5fb089b2e3f493962f126df44802862e3f42b88ed750b87acdf128d",
+      "oracle_sha256": "a0a9015bf391f6f3a8848eff359d8fa6563d619ac4616738982c2d25568d7733",
+      "manifest_sha256": "2a510dd01439430842f9274895c59ac3af932be00cc72298c83ae277044a1b2f",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "chess-endgame",
+      "plan_sha256": "8a600c58dd37155ff50900db06ebd078169095935340521041d85c559347ec20",
+      "oracle_sha256": "492d4f5bae6316228c1b8818869aac38c1d3e9372d8cd4380a5cf78d9fef09fb",
+      "manifest_sha256": "1a121d557466bca4df5921d362d157bf0a9c40247d0e03e63b94663221c70017",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "escape-room",
+      "plan_sha256": "2c2e07bd24be4f71cf269f625b4aae738f05fe4c1a12fac8189de8783e64cbd1",
+      "oracle_sha256": "aa1bb6f96037374dfba0c5ffa0c96dc8285326dcede26dc0f954e66800392174",
+      "manifest_sha256": "0f6b19b7a2709879647a090b5d9fe4c3daacf04418800701fc73383fa635faac",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "logic-circuit",
+      "plan_sha256": "f0df3914c38ef43a451a655bad1316b30d79ccda5a64a48cd68aacfb29e2cc7d",
+      "oracle_sha256": "88cf620b6bf976fa36aa0bdcb8a9bb6db0cf280fb8d76d36ba55cf90a26eda98",
+      "manifest_sha256": "0570a47c128f12ce85acae17ecc8648726c306b275fdafda3c32862fd7f968c9",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "pipe-connect",
+      "plan_sha256": "aac4772a0f8d27f9407da78f4fe851bac777f8ffeed6df7ad9daf9237cd3ca8d",
+      "oracle_sha256": "07fc793d70636e01517f9189d3a25bd835630ac75f6ceaef835abf6960367a47",
+      "manifest_sha256": "cf1e2c5145608f18f3d446d49c1258316addd9bb1271f60a77616d28131d9322",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "tower-of-hanoi",
+      "plan_sha256": "8af47778211f282a96b1574e14662b95603ef1d1afb86ed72fed80b43aed71e6",
+      "oracle_sha256": "4a4051b6959d91f90122972310f466efef1f8e880d10419d64c167fbccbbce23",
+      "manifest_sha256": "1da711984c6b18949d9856b05d07c5732e35fb23e7449eba681a370b0be8da98",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "word-grid",
+      "plan_sha256": "6dedf0e809105ec09658abbc8cdf8458b55e3d21e799ce887b3f9ec4f572c18f",
+      "oracle_sha256": "8b462622cb49f922bc904af5be7efd194395f50cbd79e6273dd68abe52846aaf",
+      "manifest_sha256": "47fe73942b74a924ea66249d47360a77b9b5e9ba90463e4719d022ed4262dbc6",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "color-sort",
+      "plan_sha256": "c0ee724d4655f103eac5e533442c356ae7637d0fa5361ce077c679cde0580e9b",
+      "oracle_sha256": "fceb834759f78f1dcef333983d5e0acf0093bab245bed5f60679c941558cb40a",
+      "manifest_sha256": "4caaa2216ce125cdc837a20a2831a19391569dbe03c891182d1257eeba31c065",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "nonogram",
+      "plan_sha256": "403cc5bdb6efb8ad26c34574ace2831c27166716aaf9976f464b87505cf2d8b9",
+      "oracle_sha256": "cac29a09e395cf0dd63112283dfc87c38ae314bc4c3b12d5899d253448b71cd2",
+      "manifest_sha256": "82270f9ace5930a75e739b11acaf72f871eb92d58e3afbc35005f97e3a70332b",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "laser-mirror",
+      "plan_sha256": "798bbb3e91931b23d1aa0b060d20e7fa54547b4e7ffccc90452a44f22b529271",
+      "oracle_sha256": "49a058d6ebe4642e6d3015f0a2ed383416e618aac002e9a481af498f91ca0821",
+      "manifest_sha256": "1fcb87dbff8ac1679a059e44b3c9ffbb48157332b7602a9ee31b731bf143d702",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "balance-scale",
+      "plan_sha256": "26287bbfba446f281af8ad1e9567514b83a84affcc0902a741270015caef0b6f",
+      "oracle_sha256": "abfb56d508d05c3665d13727db9234f2fe403f2c45dfe40f4c498c2baafb53f7",
+      "manifest_sha256": "29674a35664e120dfe70e0c4d493d377a456da1df1e511788821ccbfdece5733",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "memory-cards",
+      "plan_sha256": "0fcfdbfa0d52e7a0d4183804f981c128da8ef6ce8294efe2b6861717645155a9",
+      "oracle_sha256": "d3b01d473c6219ce1621b3230cb81738b19e6dabebf884cfad4a8a2a50810db4",
+      "manifest_sha256": "ec6b1cae4bd87344b9f3bd367ff7eef840d3dff90414cc2619570c147d26b8f4",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "number-link",
+      "plan_sha256": "f9d27edba86c4847f80f0c242391b78d23e65e7423f74a95679a4d6917a1d3b7",
+      "oracle_sha256": "6e6adfafc54f1cb3db4ad40e4a314a9eed4a3ab005e5e09b3ceb68e6858cc270",
+      "manifest_sha256": "af0cb8de19637822ccbc934b6978a74a9c710aa61abaa81b00544a9759eaab4d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "tangram-3d",
+      "plan_sha256": "3cf51d20d4fe6143b0bc8da20b6faa331a604be69dbe355806f1fa446632237c",
+      "oracle_sha256": "242ad43743708d07b9737405c3746c0da4a60942ecc906a2e1f61544f895fd52",
+      "manifest_sha256": "39fb8940a102d1886145ed7168dfb2467a4ded7cd5db5d1688b241547e894046",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "touch-jigsaw",
+      "plan_sha256": "dc2ffb99629d8d4272c802d883092ef0fa5510f8b5c0226034c1dc991ee4e49c",
+      "oracle_sha256": "2eab4f21438637b9a3fb8da48e394992aeafbec7e1a073cd2b0ec2c0825373cb",
+      "manifest_sha256": "00ccd55a0b4b4a1151d7b88b99a747eef7c6cb6b826c22dc7dfb07614b1c25da",
+      "strict_metadata": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      4,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]"
+      },
+      "pointer_equivalence": {
+        "pass": false,
+        "error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      4,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]"
+      }
+    },
+    {
+      "task_id": "galaxy-painter",
+      "plan_sha256": "72d2b11d39a2dee2cda64d9b95844fb1ad8cdd6c53c9d25b3041b58bae895e3c",
+      "oracle_sha256": "c555107e51d7a21f3315f99c48abee28ab6d6d7b845dfafa895a3e4576a19a3f",
+      "manifest_sha256": "a9287bf5cc243bba548be464063936cefe2691c8c0c9781759d7e1ec8b920976",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "collaborative-mural",
+      "plan_sha256": "4038eb62374b00e8ae5d40ccf4fcde3f82a83de3e40f4de17fca5ee101b5ebc4",
+      "oracle_sha256": "d2b830dd6600369fbd325aeac74a44a649d8cd1be8d08ec13d84696f4f892bbf",
+      "manifest_sha256": "748ecf4fa193abf6995fe15aee6bb64c9372202d809aed2a51c9368630d60e1a",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "music-visualizer",
+      "plan_sha256": "8b73dbda633ad4c68bd4162b65c658b7c5cae5ee8ee605299cf9c9ce39b6bdc0",
+      "oracle_sha256": "2f05d132eac679777c58659bcd420bb0e71232e27ed238db6002ad6d9fd8e64c",
+      "manifest_sha256": "6e078a1c78ea8406c0bf9db6245b706c7202f18e811362d5de8540a08a4731c2",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "virtual-fireworks",
+      "plan_sha256": "8e321e038305afd1ee81ea104532767cda66779628da40d778a62a3535c61aa8",
+      "oracle_sha256": "b229e707360470e6e3e081ae4ab63d1100445161bf5fae82e5c2163679da0863",
+      "manifest_sha256": "afe8624f3d8210f0db21a14697644fb8533506e3816a8b66774138ee81739c07",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "kaleidoscope",
+      "plan_sha256": "36e11df8c447478481cd577870df2cee8ddc43376ed01e68c862a717752bb0d6",
+      "oracle_sha256": "3fff415d69ad89b140d1bf1c2e44e3dfba5513f0a73a8c7aca9c15a9fa5000b0",
+      "manifest_sha256": "ad1edc7ccefc35c6b3b923f3fc79e74d10a8007fd370fd98b011cab7713dd346",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "interactive-clock",
+      "plan_sha256": "91b1cee9c78273575d816a52c14fee02cf493f45f05b1de8b97bfc849f133162",
+      "oracle_sha256": "76b94832c3f1d46e75e37f02306b4659e759d2693d8f83ceb3812523f623b243",
+      "manifest_sha256": "03c0cf3a7b0423f1ac457fb31f064dc4bafdbab06145ba29710860cc2c9eb2f3",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "photo-sphere",
+      "plan_sha256": "36dcc88cabdba03485d61ac16af9700e951c8b4fda0ea91e9445bd251bf2e2ff",
+      "oracle_sha256": "9286006f87a0e7c1b42806a1a7e917df8cb95eec477587ea346ca0b26826d970",
+      "manifest_sha256": "ff7a8b7fefc1fc368e282ef083ffdb1ea74afc9f3671b424671c0fb8f0cb1c01",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "zen-garden",
+      "plan_sha256": "235f1c883d19546cb599b3b33e93bba8d40b10abcde19d3e212cc840abac5120",
+      "oracle_sha256": "1efdcca693f6cb76c9c62fe0c54372228bf22d0ac50ee62017ff88e6e33c952c",
+      "manifest_sha256": "b898f4c0e106e9e6cb1ad08212c77be12e1484899cbcb249a3235a4557087c33",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "sound-board",
+      "plan_sha256": "90bfadcac0957985318431c19c6eaf98aa70e338c706d33bc9d14c3a1bd518b2",
+      "oracle_sha256": "99f2527bcd7c1bf8f826c76ba8073d066d0bff20bff5711228083cfe1ed3d790",
+      "manifest_sha256": "01a37ca0512f54ce5305d7983c0b4e0aa0d899beb09d91e496b5995d44709bcc",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "constellation-maker",
+      "plan_sha256": "9869bacd3f4b43d20b3994af46e42203b3193c052b3fbe2c3aeaa113b95a50e5",
+      "oracle_sha256": "7e3babd4305d37d09dcaa78848ddd7db610ecd661c2fd590546ed2a00ff73e40",
+      "manifest_sha256": "05924f44e9de0bfab147f8dd0d824d10bcdd19700bfdd92311e0c9109d2bfb19",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "voxel-showcase",
+      "plan_sha256": "47fa051975d1a5b986e702dc31ee8ab0c4617c37df3fd4b42694dc0d56d72329",
+      "oracle_sha256": "675c7bf565a0c0ffb3d05401f164426a5162fef1cace83661ea2d8d581ff313e",
+      "manifest_sha256": "731141f2b34e21e795f9d90ada8cb3903e256a250fc4c9e61522cbf4be154877",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "cafe-manager",
+      "plan_sha256": "c3a78ec57f354eaae51ea568c1aaa0eeec88515835bed6825b8f48e489709b02",
+      "oracle_sha256": "deda17e0989d390cbb57bc6a8df8bf326b0799ebf7f61b7e3b81dc52d284deda",
+      "manifest_sha256": "ef1c37e26697869dc56098591f2570d3ad446d4a645b5588f77d5b37eb4839a0",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "pet-shelter",
+      "plan_sha256": "4328a93fb348ba1e4ee5ec4a5a2cf3ca024823857ff051fbfdf2669ac8e28ad7",
+      "oracle_sha256": "75adf13e7b387543454c1b3229fd8ac393ca92c0570d6e7106697160292ce338",
+      "manifest_sha256": "d4ebccff3297eb94cb700c1f05750320d09eab7df89e374bc9072c8fd34f176d",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "orchard-season",
+      "plan_sha256": "60312f590ef85ea2a41a13319998322c46375b55b25b4a927a22e12e2ac64a8b",
+      "oracle_sha256": "c36033ce3931966caeee4744012d4d35a0474a85673c068cc42cfa6bedf0b1d2",
+      "manifest_sha256": "631c4056ea56db793a4ae9cd85290cb2b8ed0585fd09eec185201aa379d4bb12",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "city-budget",
+      "plan_sha256": "b488745f77d2b5eabde12c6f1eb77666e05858540b55b1295b0e15744cf23bfe",
+      "oracle_sha256": "60d9b0dad85449bd4b55da3dd167c12bed4f75d994f051641725567b0a5a3026",
+      "manifest_sha256": "1035d248fe2590edf88c556552df0dc0c76b519cfeb4c322b9a7ae65d5d1b217",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "factory-line",
+      "plan_sha256": "d23187120d8b342413f81679b4e74939ef5b94201af89785db58980b2800b242",
+      "oracle_sha256": "9d1ce18e00a534f944e187ad87626677db428fd5a1c84717525aebf73e9dc69e",
+      "manifest_sha256": "8daef5af8aef8f82529bd1e9e07713e5bad9c68f6a869916f7fcfd63703967a6",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "hospital-shift",
+      "plan_sha256": "1f47be6a1b8a00c07dc2c12ff074081dafd2f933b2e61dc9196333696095fb2a",
+      "oracle_sha256": "0ac71584ff8bab61f4b76f931a6294f0c6f3cc80877c960065655d83228db428",
+      "manifest_sha256": "e87f96e8540b799adea0390b7236d50a23f7033054aa47eeaea092d4b921e6f3",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "train-dispatch",
+      "plan_sha256": "a786a5ead193e3e8639bbd157ac7a970471ae0d1b0fe1b0242276eab3eb8ce05",
+      "oracle_sha256": "d7cd10ff488d72acd56b45869d5dd5bd0712e8305ec97c3bf917a83b853b7c38",
+      "manifest_sha256": "c8d400b0bb8e8ce06d95cc8b19ad860d8ba326e4ba9333bd6aaa53e7e6baaf58",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "aquarium-builder",
+      "plan_sha256": "e25befff5e722678ad286db30ab2386a8d2c43f0b0f3c4f9fd89e619bb5766a8",
+      "oracle_sha256": "9f634b307d6c0beba7f9e8d4e5e1218cf2438f8defa950fe47118b697447187c",
+      "manifest_sha256": "19be8f1c957aa51f1d0d268007e3f5de8a911da82c5afd490fc52a540ec2a9a6",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "fashion-studio",
+      "plan_sha256": "2d34e6382549d7a72d28b8ee6076919c0b3744f45611dda8ee20a41518e53fb5",
+      "oracle_sha256": "572f5a243d5b22b6a8c5d058c83405ddde9f40169ac83bef98f482fa5625f9b1",
+      "manifest_sha256": "ce55afe517f751064f99ab5613e6c6d5e3ffaec52538ac9675b3171501fac54a",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "dungeon-growth",
+      "plan_sha256": "990bb7dfeb52bb100cffde08e8b4e07659658885bfb34c3563324bf2a988a831",
+      "oracle_sha256": "dfe6a106d92cf1d3a008945f6402e2e0ab7e9b045148e01a203a9e004bd466a0",
+      "manifest_sha256": "dfe62c2f71f94920ca82e81d9243219a8aa0169285b8bd551e02950cb19a3d69",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "life-simulator",
+      "plan_sha256": "facb13e5bc8e418a18c43f32c34d971760ca9522e89fcc1cf21b863ad5fcf2fb",
+      "oracle_sha256": "13102f455129657a4985e3eec7932adf678b55fdf60e6ca22125d6ed40e1804e",
+      "manifest_sha256": "8ca0336d30281fdc7cb6801c211f7c7393bb533b357cc17cc21c719e1521028c",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "market-trader",
+      "plan_sha256": "a010aee7abdeb73731a88657007aa9d8b39c832fb55546d001b83a86b384ec28",
+      "oracle_sha256": "f00d60d02d73bd391118eb5ab56334017a876ed1e26a0b436d1503cfd98d27c5",
+      "manifest_sha256": "5ddd3ff1fca2ed13fa4de14268d6be766133f1c1f3153c0dc19d1bffc49fd792",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "campsite-manager",
+      "plan_sha256": "4f6fd21744ba234b052606901fa4f904d8e75219a5e4f0d3c628581e2639f553",
+      "oracle_sha256": "2b12acf8ecaa3e3dc1c16cee5cc4b25b94c5f7ba98fa8fb6aea116c9a23f2c36",
+      "manifest_sha256": "6eeaec5fb2f01b5a44126e35e5023f710fe4851e4192a533ffbf7d25bb7f6e51",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "vocabulary-relay",
+      "plan_sha256": "ceb81bfb020eb84fcd316f89caf9a4b4f7a91ba2d40fac431c2bf78d5156bc30",
+      "oracle_sha256": "c1d18b56481dfbe15bd772dc2b09d47f364e456732068ae0ef5b05a960b2bdbf",
+      "manifest_sha256": "d201dc736c965a0a299782805f19ff52f59c5e13173c6c1b1fc43c16e00d0aa4",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "history-timeline",
+      "plan_sha256": "db5fbb7b3ff3ae670b11ea7ba53d1e8e8f2dc20defb6a3748e45994414fbd430",
+      "oracle_sha256": "e38097e84f1f2557ca19cece0b04e4f3b07996f36639d582b1ffce3c6b40a99a",
+      "manifest_sha256": "44223f0034d976d1263d6447ba134950ac04a837a767118aec3cb20f42b846cb",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "science-circuit",
+      "plan_sha256": "8404e6c70e52a8de43ed9625eb7c5586553201171ce3e167576ab087f10a54af",
+      "oracle_sha256": "eb0bcd758f74588857d5138e4a7cb696ba0901972b0cfc2c092f0f64376d6a27",
+      "manifest_sha256": "bd76295fc98ac2a1724c9c2aeb215d3cbcca85e60f01f3dea66258c866f219a5",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "geography-map",
+      "plan_sha256": "0504bc88684390ad32572d43cdf4b008e9895d5b072f6a728eb050393d1cc2ea",
+      "oracle_sha256": "6642689f15247573770433a86b71f5f2ec7fe56eeaff7a1de9fe9de7836aa5a7",
+      "manifest_sha256": "5e667d20d2398ba8d0da148c83e465b1a8523dae16594a53a68793d912c0e304",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "typing-class",
+      "plan_sha256": "64b6c86b60a445f9aadee583a6f815840a200032add571e954fd0f8072c9b72c",
+      "oracle_sha256": "d8bf60bb884c72bcefcdbe24c368fad070d7efa98f72573d8fd537c488416ac2",
+      "manifest_sha256": "c0d33ae0582b3127cc60c518f8067ddfac9c0123ed6a50036796a11e8e08a812",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "coding-maze",
+      "plan_sha256": "92f0a15e707afcc965b5ec4a167b88b60dc861ed68517f5828d61357fb690af8",
+      "oracle_sha256": "bea383d0da48c38e725b61d1efe37b7fd3327d1b8d6518858fee65ec70b6d520",
+      "manifest_sha256": "a9a626d0e7ab130d1e1d662531ecc53498c76dca82028bd175e569ced48827cb",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "music-theory",
+      "plan_sha256": "a3c51cf6991e42ea233fe485193b1b11632a53243d8690ec24157af8b6881d61",
+      "oracle_sha256": "e573e8aac5242c57d972cd1cdd0e12d738363b7b1c04be5212729334505bb2e6",
+      "manifest_sha256": "9d64d6c5f945d449db74880db53f2043778dadaed552312c41ba9f3f08e0285e",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    },
+    {
+      "task_id": "culture-detective",
+      "plan_sha256": "55946fe19cf5c835bf92c1781a9f1a9aff30764786844aadb1f87e0aef45127b",
+      "oracle_sha256": "c7de23c62784f0cff8570759fbff5039c1090c1e3914b5a542b3410ae8dd4c95",
+      "manifest_sha256": "47154ddeb4dbb62caab5b08408e1fa54ffec31ade4cf08862d5da37e970aba97",
+      "strict_metadata": {
+        "pass": true,
+        "error": null
+      },
+      "pointer_equivalence": {
+        "pass": true,
+        "error": null
+      }
+    }
+  ]
+}

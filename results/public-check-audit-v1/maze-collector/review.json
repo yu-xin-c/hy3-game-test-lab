@@ -1,0 +1,418 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "3f5417c5cacf4345bf5090e52d2560cef49a50e2da7b9da63befd978f2f3b77b",
+  "review": {
+    "assertions": [
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "UP 未指定第二玩家，默认 primary。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键即键盘按键，故 UP 设备为 keyboard。"
+      },
+      {
+        "id": "A7",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开只要求用方向键移动，未规定 key_event 取值；键盘示例用 down，无法唯一推出 press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键即 Arrow 键，向上为 ArrowUp。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "DOWN 默认 primary。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键为键盘，DOWN 设备 keyboard。"
+      },
+      {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键即 Arrow 键，向下为 ArrowDown。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "LEFT 默认 primary。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键为键盘，LEFT 设备 keyboard。"
+      },
+      {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键即 Arrow 键，向左为 ArrowLeft。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "RIGHT 默认 primary。"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键为键盘，RIGHT 设备 keyboard。"
+      },
+      {
+        "id": "A19",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "玩家使用方向键每次移动一格",
+        "reason": "方向键即 Arrow 键，向右为 ArrowRight。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "RESTART 默认 primary。"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "鼠标和触控使用 `selector`",
+        "reason": "RESTART 对应 #restart-btn 按钮选择器，按公开约定选择器控件设备为 mouse/touch，按钮默认 mouse。"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "`#start-btn`、`#restart-btn`",
+        "reason": "Maze 规定 RESTART 选择器为 #restart-btn。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "RESTART_KEY 默认 primary。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回初始菜单",
+        "reason": "RESTART_KEY 为键盘 R，设备 keyboard。"
+      },
+      {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定键盘控件的 key_event 取值，键盘示例用 down，无法唯一推出 press。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回初始菜单",
+        "reason": "键盘 R 对应 code 为 KeyR（通用键盘 code 约定）。"
+      },
+      {
+        "id": "A30",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope 取 since_previous_checkpoint 是评测器对事件采样区间的内部约定，公开要求未提及。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`",
+        "reason": "各路径点击 Start 后必须产生 game_started 事件。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "`S` 是起点 `(1,1)`",
+        "reason": "WALL 检查点为起点被墙阻挡，玩家仍在 (1,1)，x=1 由起点坐标决定。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "`S` 是起点 `(1,1)`",
+        "reason": "起点 (1,1)，撞墙/未移动时 y=1。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "撞墙不消耗移动次数，WALL 时 moves_used=0。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "总有效移动为 18，起点处 moves_remaining=18。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "撞墙、在金币未收齐时进入出口都要被阻挡",
+        "reason": "向上撞墙触发 wall_blocked 事件，且事件列表含 wall_blocked。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "#######\n#S.C.E#\n#.#.#.#\n#C...C#\n#######",
+        "reason": "由固定地图，从 (1,1) 右移两次进入 (3,1) 金币，player.x=3。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "进入金币格会收集金币，金币不能重复收集",
+        "reason": "进入首枚金币后 coins_collected=1。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "两次成功移动后 moves_used=2。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "moves_remaining=18-2=16。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`player_moved`、`wall_blocked`、`coin_collected`、`exit_locked`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "每次成功移动产生 player_moved 事件。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`player_moved`、`wall_blocked`、`coin_collected`、`exit_locked`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "收集金币产生 coin_collected 事件。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "#######\n#S.C.E#\n#.#.#.#\n#C...C#\n#######",
+        "reason": "金币未收齐时向右进入出口被阻挡，玩家停在 (4,1)，player.x=4。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "三次成功移动后 moves_used=3，被阻挡不计数。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "在金币未收齐时进入出口都要被阻挡",
+        "reason": "金币不足碰出口触发 exit_locked 事件。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "#######\n#S.C.E#\n#.#.#.#\n#C...C#\n#######",
+        "reason": "地图 (1,3) 为金币，向下两步到达，player.y=3。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "进入金币格会收集金币，金币不能重复收集",
+        "reason": "收集第二枚金币后 coins_collected=2。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "八次成功移动后 moves_used=8。"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "moves_remaining=18-8=10。"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "#######\n#S.C.E#\n#.#.#.#\n#C...C#\n#######",
+        "reason": "地图 (5,3) 为第三枚金币，右移四步到达，player.x=5。"
+      },
+      {
+        "id": "A51",
+        "verdict": "supported",
+        "public_quote": "进入金币格会收集金币，金币不能重复收集",
+        "reason": "收集第三枚金币后 coins_collected=3。"
+      },
+      {
+        "id": "A52",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "十二次成功移动后 moves_used=12。"
+      },
+      {
+        "id": "A53",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "moves_remaining=18-12=6。"
+      },
+      {
+        "id": "A54",
+        "verdict": "supported",
+        "public_quote": "玩家收齐 3 枚金币后进入出口即获胜",
+        "reason": "收齐三金币并进入出口，状态 won。"
+      },
+      {
+        "id": "A55",
+        "verdict": "supported",
+        "public_quote": "只有成功进入相邻可走格才增加 moves",
+        "reason": "通关前共 14 次成功移动，moves_used=14。"
+      },
+      {
+        "id": "A56",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "moves_remaining=18-14=4。"
+      },
+      {
+        "id": "A57",
+        "verdict": "supported",
+        "public_quote": "玩家收齐 3 枚金币后进入出口即获胜",
+        "reason": "获胜产生 game_won 事件，且事件列表含 game_won。"
+      },
+      {
+        "id": "A58",
+        "verdict": "supported",
+        "public_quote": "`[data-testid=\"score\"]` 显示金币数；`[data-testid=\"status\"]` 显示状态",
+        "reason": "HUD 必须显示 score，故可见。"
+      },
+      {
+        "id": "A59",
+        "verdict": "supported",
+        "public_quote": "`[data-testid=\"score\"]` 显示金币数；`[data-testid=\"status\"]` 显示状态",
+        "reason": "HUD 必须显示 status，故可见。"
+      },
+      {
+        "id": "A60",
+        "verdict": "supported",
+        "public_quote": "HUD 显示 `Coins: n/3`、`Moves: n/18` 和状态",
+        "reason": "HUD 显示金币数，score 文本非空。"
+      },
+      {
+        "id": "A61",
+        "verdict": "supported",
+        "public_quote": "状态固定使用 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "获胜时状态文字为 Won，且公开允许忽略大小写与连续空白。"
+      },
+      {
+        "id": "A62",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "耗尽移动未通关，状态 lost，状态集合含 lost。"
+      },
+      {
+        "id": "A63",
+        "verdict": "supported",
+        "public_quote": "恢复地图、金币和移动次数",
+        "reason": "loss 路径未进入金币故 coins=0；重开后恢复初始金币为 0。"
+      },
+      {
+        "id": "A64",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "耗尽 18 次有效移动，moves_used=18。"
+      },
+      {
+        "id": "A65",
+        "verdict": "supported",
+        "public_quote": "18 次有效移动用完仍未通关则失败",
+        "reason": "moves_remaining=18-18=0。"
+      },
+      {
+        "id": "A66",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`player_moved`、`wall_blocked`、`coin_collected`、`exit_locked`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "失败产生 game_lost 事件。"
+      },
+      {
+        "id": "A67",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回初始菜单",
+        "reason": "重开返回初始菜单，状态 menu，状态集合含 menu。"
+      },
+      {
+        "id": "A68",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`player_moved`、`wall_blocked`、`coin_collected`、`exit_locked`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "重开产生 game_reset 事件，且观察接口规定 reset 记录 game_reset。"
+      },
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "\"action_id\": \"START\",\n      \"actor\": \"primary\",",
+        "reason": "公开 controls 示例连续原文在 START 控件对象中给出 actor 为 primary。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "\"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",",
+        "reason": "同上示例连续原文给出 START 的 device 为 mouse。"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "\"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",",
+        "reason": "同上示例连续原文给出 START 的 key_event 为 press。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "\"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",",
+        "reason": "同上示例连续原文给出 START 的 selector 为 #start-btn；Maze 接口亦规定 #start-btn。"
+      },
+      {
+        "id": "A23",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开文本仅在 START 鼠标按钮示例中给出 key_event 为 press，未陈述 RESTART 按钮使用 press，无法据引文支持该具体取值。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。",
+        "reason": "公开原文规定 status 取值含 playing，且 Start 后进入游玩阶段（非 menu/won/lost），故状态为 playing 有依据。"
+      }
+    ]
+  },
+  "quote_repair_applied": true,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

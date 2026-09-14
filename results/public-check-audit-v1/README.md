@@ -1,5 +1,7 @@
 # 96 题判据溯源
 
+已保存结果的汇总见 [SUMMARY.md](SUMMARY.md)，可用 `pnpm exec tsx scripts/report-public-check-audit.ts --root results/public-check-audit-v1` 重建。脚本会重新核验完整性、引用和调用凭据，不把未完成题目算作已核对。
+
 inventory.json 冻结了去重汇总所选 96 个原始游戏任务，共 5,182 个不同检查项。相同字段、取值和检查类型合并，但保留全部场景/检查点位置。清单使用生成时实际保存的 prompt.md，而不是后来修订的题面。
 
 检查范围包括控件约定、状态值、页面要求、事件、容差和采样区间。Hy3 逐项给出 supported、unsupported、ambiguous 或 test_mechanics；声称有依据时必须引用公开提示中的连续原文。程序校验覆盖完整、ID 唯一、引文真实存在。模型的语义判断仍是核对线索，不是独立真值，不能直接据此删规则、修改游戏分数或宣称整个标准集可靠。

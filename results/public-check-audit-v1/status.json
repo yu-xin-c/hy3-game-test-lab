@@ -6,6 +6,11 @@
       "task_id": "target-rush",
       "status": "reviewed",
       "assertions": 46
+    },
+    {
+      "task_id": "maze-collector",
+      "status": "reviewed",
+      "assertions": 68
     }
   ]
 }

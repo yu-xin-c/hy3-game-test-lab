@@ -184,6 +184,7 @@ const evaluationInputHashes = {
   oracle_sha256: await sha256File(resolve(taskDirectory, "oracle.private.json")),
   evaluator_sha256: await sha256File(resolve(repositoryRoot, "src/evaluation/evaluator.ts")),
   runner_sha256: await sha256File(resolve(repositoryRoot, "src/runtime/playthrough.ts")),
+  task_adapter_sha256: await sha256File(resolve(repositoryRoot, "src/contracts/task-adapter.ts")),
   frozen_task_sha256: await sha256File(resolve(taskDirectory, "input-sha256.txt")),
   game_directory_sha256: await sha256Directory(gameDirectory),
   game_manifest_sha256: await sha256File(resolve(gameDirectory, "game.manifest.json"))

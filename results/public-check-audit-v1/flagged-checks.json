@@ -1,0 +1,252 @@
+{
+  "scope": "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality",
+  "issues": [
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A6",
+        "kind": "control",
+        "path": "HIT.device",
+        "expected": "mouse",
+        "contexts": [
+          "HIT"
+        ]
+      },
+      "decision": {
+        "id": "A6",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅给 `#target：当前目标` 与“点击”，未规定 device=mouse，鼠标或触控均允许（鼠标和触控使用 selector），无法唯一推出 mouse。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A7",
+        "kind": "control",
+        "path": "HIT.key_event",
+        "expected": "press",
+        "contexts": [
+          "HIT"
+        ]
+      },
+      "decision": {
+        "id": "A7",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 HIT 的 key_event 取值，press 与 down 均未限定，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A10",
+        "kind": "control",
+        "path": "MISS.device",
+        "expected": "mouse",
+        "contexts": [
+          "MISS"
+        ]
+      },
+      "decision": {
+        "id": "A10",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开只说“点击游戏区域的空白位置算一次 miss”，未限定 device=mouse，触控亦可，无法唯一推出 mouse。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A11",
+        "kind": "control",
+        "path": "MISS.key_event",
+        "expected": "press",
+        "contexts": [
+          "MISS"
+        ]
+      },
+      "decision": {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 MISS 的 key_event，press/down 均未限定，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A15",
+        "kind": "control",
+        "path": "RESTART.device",
+        "expected": "mouse",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅给 `#restart-btn：重开` 与“按钮”，未限定 device=mouse，触控亦允许，无法唯一推出 mouse。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A16",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A16",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 RESTART 的 key_event，press/down 均未限定，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "target-rush",
+      "assertion": {
+        "id": "A20",
+        "kind": "control",
+        "path": "RESTART_KEY.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART_KEY"
+        ]
+      },
+      "decision": {
+        "id": "A20",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开键盘示例 key_event 为 down，且未规定 R 键的 key_event，press 无法唯一推出。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A7",
+        "kind": "control",
+        "path": "UP.key_event",
+        "expected": "press",
+        "contexts": [
+          "UP"
+        ]
+      },
+      "decision": {
+        "id": "A7",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开只要求用方向键移动，未规定 key_event 取值；键盘示例用 down，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A11",
+        "kind": "control",
+        "path": "DOWN.key_event",
+        "expected": "press",
+        "contexts": [
+          "DOWN"
+        ]
+      },
+      "decision": {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A15",
+        "kind": "control",
+        "path": "LEFT.key_event",
+        "expected": "press",
+        "contexts": [
+          "LEFT"
+        ]
+      },
+      "decision": {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A19",
+        "kind": "control",
+        "path": "RIGHT.key_event",
+        "expected": "press",
+        "contexts": [
+          "RIGHT"
+        ]
+      },
+      "decision": {
+        "id": "A19",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定方向键的 key_event 取值，示例键盘用 down，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A27",
+        "kind": "control",
+        "path": "RESTART_KEY.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART_KEY"
+        ]
+      },
+      "decision": {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定键盘控件的 key_event 取值，键盘示例用 down，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion": {
+        "id": "A23",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A23",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开文本仅在 START 鼠标按钮示例中给出 key_event 为 press，未陈述 RESTART 按钮使用 press，无法据引文支持该具体取值。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    }
+  ]
+}

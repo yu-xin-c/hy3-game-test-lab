@@ -84,6 +84,34 @@ function matchingManifest(
 }
 
 describe("formal game task adapter", () => {
+  it("ignores pointer key_event metadata but preserves keyboard semantics", async () => {
+    const { plan, oracle } = await loadTask("target-rush");
+    const manifest = matchingManifest(plan, oracle);
+    manifest.controls.find(c => c.action_id === "START")!.key_event = "down";
+    expect(() => assertGameManifestMatchesTask(plan, oracle, manifest)).not.toThrow();
+    manifest.controls.find(c => c.action_id === "RESTART_KEY")!.key_event = "up";
+    expect(() => assertGameManifestMatchesTask(plan, oracle, manifest)).toThrow("key_event");
+  });
+
+  it("accepts an explicit default surface for ratio controls without ignoring wrong targets", async () => {
+    const { plan, oracle } = await loadTask("signal-memory");
+    const manifest = matchingManifest(plan, oracle);
+    manifest.controls.find(c => c.action_id === "RED")!.selector = plan.selectors.surface;
+    expect(() => assertGameManifestMatchesTask(plan, oracle, manifest)).not.toThrow();
+    manifest.controls.find(c => c.action_id === "RED")!.selector = "#wrong-canvas";
+    expect(() => assertGameManifestMatchesTask(plan, oracle, manifest)).toThrow("selector");
+  });
+
+  it("still rejects changed ratio coordinates and actors", async () => {
+    const { plan, oracle } = await loadTask("signal-memory");
+    const manifest = matchingManifest(plan, oracle);
+    manifest.controls.find(c => c.action_id === "RED")!.x_ratio = 0.75;
+    expect(() => assertGameManifestMatchesTask(plan, oracle, manifest)).toThrow("x_ratio");
+    const second = matchingManifest(plan, oracle);
+    second.controls.find(c => c.action_id === "RED")!.actor = "secondary";
+    expect(() => assertGameManifestMatchesTask(plan, oracle, second)).toThrow("actor");
+  });
+
   it("adapts a persistence task with a real reload step", async () => {
     const { plan, oracle } = await loadTask("persistent-2048");
     const adapted = adaptGameTask(plan, oracle, matchingManifest(plan, oracle));
