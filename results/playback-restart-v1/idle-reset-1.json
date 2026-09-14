@@ -1,0 +1,239 @@
+{
+  "scenario": "idle-reset",
+  "repeat": 1,
+  "errors": [],
+  "steps": [
+    {
+      "step": 0,
+      "action": "initial wait 100ms",
+      "before": {
+        "probe": {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 0,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      },
+      "after": {
+        "probe": {
+          "tick": 100,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 0,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      }
+    },
+    {
+      "step": 1,
+      "action": "click Restart",
+      "before": {
+        "probe": {
+          "tick": 100,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 0,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      },
+      "after": {
+        "probe": {
+          "tick": 100,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 100,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      }
+    },
+    {
+      "step": 2,
+      "action": "wait 950ms",
+      "before": {
+        "probe": {
+          "tick": 100,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 100,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      },
+      "after": {
+        "probe": {
+          "tick": 1050,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 100,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      }
+    },
+    {
+      "step": 3,
+      "action": "wait 500ms",
+      "before": {
+        "probe": {
+          "tick": 1050,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 100,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      },
+      "after": {
+        "probe": {
+          "tick": 1550,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 100,
+            "type": "game_reset",
+            "payload": {}
+          }
+        ],
+        "text": "Round: 1/3\nLives: 3/3\n0\nMenu\nStart Restart"
+      }
+    }
+  ]
+}

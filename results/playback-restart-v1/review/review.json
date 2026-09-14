@@ -1,0 +1,58 @@
+{
+  "model": "hy3",
+  "findings": [
+    {
+      "scenario": "playback-reset",
+      "first_observed_step": 4,
+      "error_type": "stale-playback-timer-leaks-into-menu",
+      "explanation": "After clicking Restart during playback (step3, tick 401, event_epoch 2, game_reset emitted), the pending setTimeout chains scheduled by startPlayback keep running against the new menu state. At tick 1301 a dangling timer fires input_phase_started and sets state.phase='input' while state.status stays 'menu'. Observed at step4 (tick 1351): status 'menu', phase 'input', event input_phase_started seq2 tick1301. This violates the required state model (phase must be 'menu' in menu) and leaks an event into the reset session. The HUD also renders 'Repeat' (input phase label) while status shows 'Menu'.",
+      "file": "game.js",
+      "excerpt": "  function startPlayback() {\n    state.phase = \"playback\";\n    state.last_feedback = \"\";\n    emit(\"playback_started\", {});\n    var seq = state.sequence;\n    var i = 0;\n    function step() {\n      if (i >= seq.length) {\n        currentHighlight = null;\n        state.phase = \"input\";\n        emit(\"input_phase_started\", {});\n        return;\n      }\n      currentHighlight = seq[i];\n      setTimeout(function () {\n        currentHighlight = null;\n        setTimeout(function () {\n          i += 1;\n          step();\n        }, GAP_MS);\n      }, HIGHLIGHT_MS);\n    }\n    step();\n  }",
+      "related_plan_steps": [
+        3,
+        5
+      ],
+      "earliest_plan_error_step": 3,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 79,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      }
+    },
+    {
+      "scenario": "playback-reset-start",
+      "first_observed_step": 5,
+      "error_type": "premature-input-phase-from-stale-timer",
+      "explanation": "Restart during playback then Start again (step3 reset tick401, step4 Start tick401) leaves the first game's playback setTimeout chain pending. That stale chain fires input_phase_started at tick 1301 on the restarted game's state, so state.phase becomes 'input' before the restarted game's legitimate playback ends (legit input_phase_started at tick 1601). Two input_phase_started events are emitted (1301 and 1601). Consequently a click at tick 1351 (step6, still inside the legit playback window for round1 [RED,BLUE] which should end at 1601) is accepted as signal_correct instead of being ignored, violating '播放期间玩家输入必须被忽略' and the required playback/input timing.",
+      "file": "game.js",
+      "excerpt": "  function doReset(seed) {\n    if (typeof seed === \"number\") currentSeed = seed;\n    eventEpoch += 1;\n    eventSeq = 0;\n    events = [];\n    currentHighlight = null;\n    state = {\n      status: \"menu\",\n      phase: \"menu\",\n      round: 1,\n      lives: 3,\n      score: 0,\n      progress: 0,\n      sequence: [],\n      last_feedback: \"\"\n    };\n    emit(\"game_reset\", {});\n  }",
+      "related_plan_steps": [
+        3,
+        5
+      ],
+      "earliest_plan_error_step": 3,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 119,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      }
+    }
+  ],
+  "limits": [
+    "idle-reset path only confirms that Restart in menu resets state; no negative behavior observed there.",
+    "Full win path (9 correct inputs -> won, score 90) not executed; not verified.",
+    "Full loss path (3 wrong inputs -> lost, lives 0) not executed; not verified.",
+    "Normal signal_correct/signal_wrong judgement during a legitimate input phase not directly exercised (only via the buggy premature-input window).",
+    "Behaviour of clicks during legitimate playback (input_ignored) not directly observed as ignored; the bug shows it NOT ignored.",
+    "Keyboard RESTART_KEY (KeyR) not exercised; only #restart-btn click tested.",
+    "won/lost input-ignored behaviour not executed.",
+    "seed determinism beyond the constant sequence table not exercised; game.js ignores seed for sequence generation (sequences are fixed constants), so determinism is trivially satisfied but not stress-tested."
+  ],
+  "scope": "Independent model review of supplied diagnostic trajectories; not independently labelled localization accuracy."
+}
