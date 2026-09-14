@@ -1,0 +1,16 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "output_format": "stream-json",
+  "prompt_sha256": "b19351abc8927ca7a750824f6aa5b010a6fc81ae300aa7b65dcfd8f81c599922",
+  "response_sha256": "bb07ef3313c0b0aeae67bbcbeac52b0feb37ee51e557021aea3fb78bfe371473",
+  "usage": {
+    "input_tokens": 13253,
+    "output_tokens": 566,
+    "cache_creation_input_tokens": 12741,
+    "cache_read_input_tokens": 512,
+    "cache_creation": null,
+    "server_tool_use": null,
+    "service_tier": null
+  }
+}

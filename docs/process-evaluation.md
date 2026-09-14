@@ -34,8 +34,18 @@ pnpm exec tsx scripts/explore-game.ts --source results/full-96/evidence/zen-gard
 
 输出目录必须是新目录。默认固定种子 404；探索决策可能变化，保存的具体输入才是后续复现的依据。当前入口产生待复验的路径，不将模型怀疑计为确定缺陷，也不代表已覆盖全部玩法。尚不支持画布坐标点击或拖拽。浏览器截图留作证据，目前决策输入是文本和对象状态。
 
+固定重放不调用模型，必须匹配原游戏哈希、种子与按钮身份。`--prefix` 则先执行保存的输入，再继续让混元探索。输出不符合 JSON 接口时最多请求一次格式纠正，两个调用均保留。
+
+```sh
+pnpm exec tsx scripts/explore-game.ts --source results/full-96/evidence/zen-garden --out artifacts/my-replay --replay artifacts/my-exploration/trace.json
+pnpm exec tsx scripts/judge-exploration.ts --source results/full-96/evidence/zen-garden --trace artifacts/my-exploration/trace.json --out artifacts/my-review --cli /absolute/path/to/codebuddy
+```
+
+复核阶段才向混元提供代码，不提供探索员的疑似错误判断，减少相互影响。精确代码引用匹配后追溯 Write/Edit。重放报告严格比较完整观测；帧数差异也会报告为不一致，不因最终状态相同而宣称完全复现。复核意见仍需结合独立检查或运行对照，不能作为定位准确率的标准标签。
+
 - [3 题生成过程与 33 次路径执行](../results/process-v1/REPORT.md)
 - [真实错误复验、混元定位与局部干预](../results/error-mining-v1/REPORT.md)
+- [混元自主探索、三次路径复现与复核漏检](../results/exploration-v1/REPORT.md)
 - [96 题运行汇总](../results/consolidated/summary.json)
 - [完整分析与指标口径](../reports/analysis-report.md)
 

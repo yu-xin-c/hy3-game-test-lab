@@ -1,0 +1,14 @@
+{
+  "model": "hy3",
+  "game_sha256": "c820e98fe07734f95c738c8858696a161b6aaa908f6ea56575f25ef8c62f954a",
+  "trace_sha256": "7e1f2cbcd18daab6299d35695d4725947ccfc046091efc0b879604d66c4650de",
+  "findings": [],
+  "limits": [
+    "记录未包含'第一阶段后刷新页面'步骤，本地存档恢复 progress/score/lives/last_action 的要求未被实际执行验证（未覆盖，不计为错误）。",
+    "记录的 text 快照相对权威 bridge 状态存在滞后（如 step 8 文本显示 Playing/生命2，而 probe.state 为 lost/生命0），文本字段不具权威性，违规判定仅依据 probe 状态。",
+    "WebGL 三维可辨认对象的像素级渲染正确性记录未断言，仅确认无运行错误且代码使用原生 WebGL（makeBox/makeOcta/drawObject）。",
+    "state_loaded 事件仅在'带存档刷新'时发出，记录中无刷新故未观测到；不视为缺陷。",
+    "终局 lost 时 restart-btn-overlay 可见性在记录中报告为 false，但 updateOverlay 的 lost 分支将其 display 设为 ''，且底部 #restart-btn 在终局可见可用（step 8 中 visible:true），Restart 要求已满足；该可见性报告差异视为探测器 artifact。"
+  ],
+  "scope": "Model review of observed gameplay; code provenance is not independent proof of earliest reasoning error."
+}
