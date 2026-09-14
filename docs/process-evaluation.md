@@ -45,6 +45,10 @@ pnpm exec tsx scripts/judge-exploration.ts --source results/full-96/evidence/zen
 
 探索器也按 manifest 的状态 HUD 选择器读取实际文字，与对象状态交叉比较。只识别公开约定的 Menu/Playing/Won/Lost；选择器缺失、匹配多处、不可见或自定义文案均返回 unavailable，不强行判错。mismatch 表示两处观测矛盾，不能自行决定哪一处错误。混元需结合需求、等待时间与代码复核。新增字段与旧记录比较时会造成完整观测不一致，因此跨版本结果不作确定性结论。
 
+新探索使用任务约定的 800×600 视口，将种子、虚拟时钟起点和每步额外推进的 100ms 写入 environment，并提供给混元。模型等待期间时钟暂停；wait 的毫秒数加这 100ms 才是本步推进量。旧路径缺少 environment 时按原实现的 1000×800 重放，不悄悄改变旧实验条件。
+
+发布证据可使用 `pnpm exec tsx scripts/export-exploration.ts artifacts/my-exploration results/new-exploration`。该命令核对调用提示哈希，仅复制路径、汇总、复核和提示凭据，不复制服务商原始响应。输出目录须是新目录。
+
 - [3 题生成过程与 33 次路径执行](../results/process-v1/REPORT.md)
 - [真实错误复验、混元定位与局部干预](../results/error-mining-v1/REPORT.md)
 - [混元自主探索、三次路径复现与复核漏检](../results/exploration-v1/REPORT.md)

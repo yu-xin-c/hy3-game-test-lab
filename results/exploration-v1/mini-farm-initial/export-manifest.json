@@ -1,0 +1,225 @@
+{
+  "files": [
+    {
+      "file": "trace.json",
+      "sha256": "c07068e0a33504379273e824e3e5cd406f3fe3f22824cdf91713a5846becb76a"
+    },
+    {
+      "file": "decision-0/prompt.txt",
+      "sha256": "ab2d63809fb70fa2bd01c3d3f7f72a38aa30a0d1932a83d07f936dc7b0fac0ac"
+    },
+    {
+      "file": "decision-0/receipt.json",
+      "sha256": "24e7ccb2527854c0914a6432b23298e133df82b16544ec8c138f315f45f36b7a"
+    },
+    {
+      "file": "decision-1/prompt.txt",
+      "sha256": "cf2d16cccf0adcecc80772f522379fce9181dec2580e4d3d3b64c73639f30594"
+    },
+    {
+      "file": "decision-1/receipt.json",
+      "sha256": "6e67765feca009296106f19863caf452911b631fb302c813fa1d5c3a8e0948b5"
+    },
+    {
+      "file": "decision-10/prompt.txt",
+      "sha256": "db8dc3c580a45d512d4b6c6b2e5966f22d1ddd893f6df1f58da8aa6066d20659"
+    },
+    {
+      "file": "decision-10/receipt.json",
+      "sha256": "bade4c2d4e11e9642098312b6c69747b0ef4ac0b0f25e0acf559fc44a8e60d42"
+    },
+    {
+      "file": "decision-11/prompt.txt",
+      "sha256": "654c5e4053519d7e9dc532bcab04e6e068ed86dcf50395119f009115c22ffe98"
+    },
+    {
+      "file": "decision-11/receipt.json",
+      "sha256": "1957c37dc68542cb0baff61b6426e8611a5d88ff266c7aa25b4c148b1200852c"
+    },
+    {
+      "file": "decision-12/prompt.txt",
+      "sha256": "d5965820bba67062ca36b64e3b3c16a106c8c78f4392f0b18f2e6e8b4e7b0df2"
+    },
+    {
+      "file": "decision-12/receipt.json",
+      "sha256": "438181a0dfc9ce91341b413f997da57b71584bcc2754afddbcd922447916bb5d"
+    },
+    {
+      "file": "decision-13/prompt.txt",
+      "sha256": "01805f3cba07580d0d93ed7e3ce07054b499e21763ee763aca6f9da090d9115a"
+    },
+    {
+      "file": "decision-13/receipt.json",
+      "sha256": "b2b7b80fbb34698f209363364a229b9c9390da43897270e0b898b53558db6908"
+    },
+    {
+      "file": "decision-14/prompt.txt",
+      "sha256": "53d9c7bd3558e5b90e67e6cfa58558b09e579a5b3dd04cc8030691e9c68a8ecf"
+    },
+    {
+      "file": "decision-14/receipt.json",
+      "sha256": "c39a47ab5665539b7804087ef16f88403b754dfebc5c52a3dcf02527f9b2ff18"
+    },
+    {
+      "file": "decision-15/prompt.txt",
+      "sha256": "d7333441ebb219ba2816053dcf36f9e586c63b03b9e9fb68913c8da55f44bf91"
+    },
+    {
+      "file": "decision-15/receipt.json",
+      "sha256": "6f4e19db0d274b9cb7ef2a2754819ae0c6b41c9aea607e460e0f72d066adc3ad"
+    },
+    {
+      "file": "decision-16/prompt.txt",
+      "sha256": "2110366fa9f8efd2bf659549a4a820fe8795bd9b1106386ada6d5249cf0eb989"
+    },
+    {
+      "file": "decision-16/receipt.json",
+      "sha256": "2646efb3c03761fb875fd8d7d3e3b65e0be01da409f3583c6295d85b67c2a67d"
+    },
+    {
+      "file": "decision-17/prompt.txt",
+      "sha256": "4b381d0557e46f5641a1239eb4cd1eb8d0de306bdce008a2653d32e7f82c5897"
+    },
+    {
+      "file": "decision-17/receipt.json",
+      "sha256": "82933059dd5fa87e86da4bd329ec80c63f5fe590c16ef079439f378d28eda25e"
+    },
+    {
+      "file": "decision-18/prompt.txt",
+      "sha256": "f25ebea3239c9c435159b6453ae0b5d174632202d9ac43938ac8df2a09d7097e"
+    },
+    {
+      "file": "decision-18/receipt.json",
+      "sha256": "134646fc4775d537a760072dec273964b250a98e005c88ca6916d10eeb99b184"
+    },
+    {
+      "file": "decision-19/prompt.txt",
+      "sha256": "7c56df06463d79f92ee140318035ece87697070cad23f52f9745c9d999daacff"
+    },
+    {
+      "file": "decision-19/receipt.json",
+      "sha256": "5d475dc25da5c2a051ef86ff13cd0f8b08755bf271f1b5e7d68175b2fa5c194e"
+    },
+    {
+      "file": "decision-2/prompt.txt",
+      "sha256": "821d23d3a4171381d97383b7eef5a5a2835263687c0afa8f9dc8be265b460c15"
+    },
+    {
+      "file": "decision-2/receipt.json",
+      "sha256": "c72e5947ac0fe296177523aa6597c5ffe34810a76a8a5c96f74ead2979a1a6da"
+    },
+    {
+      "file": "decision-20/prompt.txt",
+      "sha256": "54c2d623bd082842d503b5dcc3c59f581da4515cc211848bdd4464731b3f183d"
+    },
+    {
+      "file": "decision-20/receipt.json",
+      "sha256": "636b711dcc49df4b8affaa042945bd1fbdc40849d3cd0fb9216ea6e198aa76ef"
+    },
+    {
+      "file": "decision-21/prompt.txt",
+      "sha256": "c0133b37e81a44536123985f4d8e0153c3893070a84e7b889629d46709ce1a1d"
+    },
+    {
+      "file": "decision-21/receipt.json",
+      "sha256": "8d214baef26809a95a280d2c4669388720bdd05f6b6c1c6a2d0b5e225d1110e4"
+    },
+    {
+      "file": "decision-21-format-retry/prompt.txt",
+      "sha256": "c64622252b8b2ac308e7fd3f97cd68b2f61ee9f2f78202edc895686f612ea970"
+    },
+    {
+      "file": "decision-21-format-retry/receipt.json",
+      "sha256": "3d08513a33e1a5b98e1b7dcb604483d2119b335f2252fa9941a5634bc8ef3683"
+    },
+    {
+      "file": "decision-22/prompt.txt",
+      "sha256": "14c18f35092c24fca056a25eb0def748ae6e13b318f967674a7f557d0df0a6c6"
+    },
+    {
+      "file": "decision-22/receipt.json",
+      "sha256": "8537f4aa3a049a880fcb339702a89a8501e9838feb75eba08665535e93b271bc"
+    },
+    {
+      "file": "decision-22-format-retry/prompt.txt",
+      "sha256": "c438d668000a58192db15c382c7d167e5d2290c94b99827c328d6960d9d6932c"
+    },
+    {
+      "file": "decision-22-format-retry/receipt.json",
+      "sha256": "cc2e7183ec25ee8e9c3858fd9c0decbf21d1673e42fdc1539ae215598910e60a"
+    },
+    {
+      "file": "decision-23/prompt.txt",
+      "sha256": "0b910447c7d2f904be9c74fc72969e83bf196559b94f9ee191d3b43500f6c898"
+    },
+    {
+      "file": "decision-23/receipt.json",
+      "sha256": "0d2cef9efe848d2ee55b182e84039dd73343043db69f9d844676590860f97c38"
+    },
+    {
+      "file": "decision-23-format-retry/prompt.txt",
+      "sha256": "3485908d2e827c654d61a933dc9b56257e26924b35002fda393eac14f557921a"
+    },
+    {
+      "file": "decision-23-format-retry/receipt.json",
+      "sha256": "907c479ab41a08e60b97547d5cb22c656784d8a15a6522d6de607d524840ea6b"
+    },
+    {
+      "file": "decision-3/prompt.txt",
+      "sha256": "629c6f54782f700ff92eba9c12814ebc21121aa1ea8f026c8401f04b7b059274"
+    },
+    {
+      "file": "decision-3/receipt.json",
+      "sha256": "43163586a0712df9fbaeab0c178e4e966e28270adfc1333bbd60d23dcdb249c8"
+    },
+    {
+      "file": "decision-4/prompt.txt",
+      "sha256": "89dd958c778d294983664dab83044125a83867147b1dc87f2a455c4b44c83287"
+    },
+    {
+      "file": "decision-4/receipt.json",
+      "sha256": "92e0894ec1d4d2844973728b0ee8b36fce18c4e328c0923b3eee441664fff17f"
+    },
+    {
+      "file": "decision-5/prompt.txt",
+      "sha256": "12b3fa94da5e564943aa89f92876ab4fc489e236733e9cff28178cbb0e61c6ba"
+    },
+    {
+      "file": "decision-5/receipt.json",
+      "sha256": "469be02274bd223dcea26b224185b44af63bb553c1e747f1b406f7e5715f2891"
+    },
+    {
+      "file": "decision-6/prompt.txt",
+      "sha256": "ed3544f7a53ae2112b7998ae897af8e395ae1fbb9ba39aa154daa4d1fa878f13"
+    },
+    {
+      "file": "decision-6/receipt.json",
+      "sha256": "f454987fca9cb97a4a5794c06b3aa9140f22ad36ce1ff828738eb373a9a8f44f"
+    },
+    {
+      "file": "decision-7/prompt.txt",
+      "sha256": "ffa10b29e757cd84712fb49505fb6963a2504dc29441935d81ae0c58c3ffca88"
+    },
+    {
+      "file": "decision-7/receipt.json",
+      "sha256": "96a25634fecc83d8b816c63da6cc8b05d2e3e3986102da7fb4177758e2bcfd76"
+    },
+    {
+      "file": "decision-8/prompt.txt",
+      "sha256": "da2c8dd9767fcdb0963768f4ffbe7e4277eed43a2736c011c0f5535af037d88c"
+    },
+    {
+      "file": "decision-8/receipt.json",
+      "sha256": "e1a86d89adb6c5688c93d145346f0e244728de38e218c8a697c785dbfff7d1dc"
+    },
+    {
+      "file": "decision-9/prompt.txt",
+      "sha256": "c87c6a8b2587de72000e5f124b862011c291badb4125b3245ffce190f88f5008"
+    },
+    {
+      "file": "decision-9/receipt.json",
+      "sha256": "a2d682ee372e4603e931c5e414c8bc2a003920a3363d043619745b1c76b65d93"
+    }
+  ],
+  "scope": "Allowlisted evidence export; prompt hashes verified; raw provider output excluded."
+}

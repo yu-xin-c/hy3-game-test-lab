@@ -1,0 +1,5286 @@
+{
+  "model": "hy3",
+  "environment": {
+    "viewport": {
+      "width": 800,
+      "height": 600
+    },
+    "seed": 404,
+    "clock_epoch_ms": 1700000000000,
+    "initial_advance_ms": 100,
+    "post_action_advance_ms": 100
+  },
+  "mode": "adaptive-exploration",
+  "game_sha256": "b57c74d4ebb1804cc99cf00612da972a522106aefe230f374d04cd25743a57d4",
+  "seed": 404,
+  "steps": [
+    {
+      "step": 0,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "点击 START 开始游戏，进入 playing 状态以探索种植/浇水/收获流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 6,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nMenu\nMini Farm\n\n在 15 秒内种植、浇水并收获三块田，获得 30 金币\n\nSTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 96,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 1,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 1
+        },
+        "reason": "选择 PLOT 1 田地，探索选中与后续种植流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 96,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 18,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 192,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 2,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "PLOT 1 已选中，点击 PLANT 种植第一块田，推进 planted 状态",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 18,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 192,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 25,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "planted",
+                "planted_at": 192,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 304,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 3,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "PLOT 1 已种植未浇水，点击 WATER 推进 growing 状态并验证浇水事件",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 25,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "planted",
+                "planted_at": 192,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 304,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 31,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "growing",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 400,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 9
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 4,
+      "decision": {
+        "action": {
+          "kind": "wait",
+          "ms": 2900
+        },
+        "reason": "等待虚拟时间推进使 PLOT 1 进入 ready 状态以测试收获流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 31,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "growing",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 400,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 9
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 218,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "ready",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3392,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 11
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 5,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 6
+        },
+        "reason": "PLOT 1 已 ready，点击 HARVEST 收获第一块田以验证收获事件与金币增加",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 218,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "ready",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3392,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 11
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 225,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3504,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 13
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 6,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 2
+        },
+        "reason": "选择 PLOT 2 田地，继续推进第二块田的种植流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 225,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 1,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3504,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 13
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 231,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3600,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 15
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 7,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "PLOT 2 已选中，点击 PLANT 种植第二块田，推进 planted 状态",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 231,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3600,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 15
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 237,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "planted",
+                "planted_at": 3600,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3696,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 17
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 8,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "PLOT 2 已种植未浇水，点击 WATER 推进 growing 状态以继续第二块田流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 237,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "planted",
+                "planted_at": 3600,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3696,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 17
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 243,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "growing",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3792,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 19
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 9,
+      "decision": {
+        "action": {
+          "kind": "wait",
+          "ms": 3000
+        },
+        "reason": "等待虚拟时间推进使 PLOT 2 进入 ready 状态以收获第二块田",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 243,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "growing",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 3792,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 19
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 437,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "ready",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 6896,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 21
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 10,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 6
+        },
+        "reason": "PLOT 2 已 ready，点击 HARVEST 收获第二块田以推进金币至20",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 437,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "ready",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 6896,
+            "harvested": 1,
+            "coins": 10,
+            "best_coins": 10,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 21
+        },
+        "text": "Coins: 10 / 30 Harvested: 1 / 3 Best: 10\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 443,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 6992,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 23
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 11,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 3
+        },
+        "reason": "选择 PLOT 3 田地，推进第三块田的种植流程以完成通关",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 443,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 6992,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 23
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 450,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 7104,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 25
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 12,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "PLOT 3 已选中，点击 PLANT 种植第三块田推进 planted 状态",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 450,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 7104,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 25
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 456,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "planted",
+                "planted_at": 7104,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 7200,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 27
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 13,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "PLOT 3 已种植未浇水，点击 WATER 推进 growing 状态以完成第三块田流程",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 456,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "planted",
+                "planted_at": 7104,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 7200,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 27
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 462,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "growing",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 7296,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 29
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 14,
+      "decision": {
+        "action": {
+          "kind": "wait",
+          "ms": 3000
+        },
+        "reason": "等待虚拟时间推进使 PLOT 3 进入 ready 状态以完成第三次收获通关",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 462,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "growing",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 7296,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 29
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 656,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "ready",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 10400,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 31
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 15,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 6
+        },
+        "reason": "PLOT 3 已 ready，点击 HARVEST 收获第三块田以完成通关触发 game_won",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 656,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "ready",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 10400,
+            "harvested": 2,
+            "coins": 20,
+            "best_coins": 20,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 31
+        },
+        "text": "Coins: 20 / 30 Harvested: 2 / 3 Best: 20\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 662,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "harvested",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 10400,
+            "harvested": 3,
+            "coins": 30,
+            "best_coins": 30,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 36
+        },
+        "text": "Coins: 30 / 30 Harvested: 3 / 3 Best: 30\nWon\nRESTART\nYou Won! 30 coins",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 16,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 7
+        },
+        "reason": "游戏已 Won，测试终局后 RESTART 是否可见可用并恢复菜单状态（清空田地/计时/金币）",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 662,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "selected_plot": 3,
+            "plots": [
+              {
+                "state": "harvested",
+                "planted_at": 192,
+                "watered_at": 304
+              },
+              {
+                "state": "harvested",
+                "planted_at": 3600,
+                "watered_at": 3696
+              },
+              {
+                "state": "harvested",
+                "planted_at": 7104,
+                "watered_at": 7200
+              }
+            ],
+            "elapsed_ms": 10400,
+            "harvested": 3,
+            "coins": 30,
+            "best_coins": 30,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 36
+        },
+        "text": "Coins: 30 / 30 Harvested: 3 / 3 Best: 30\nWon\nRESTART\nYou Won! 30 coins",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 668,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nMenu\nMini Farm\n\n在 15 秒内种植、浇水并收获三块田，获得 30 金币\n\nSTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 17,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "重新开始一局以探索错误输入与失败分支：未选田时操作、超时失败等",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 668,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nMenu\nMini Farm\n\n在 15 秒内种植、浇水并收获三块田，获得 30 金币\n\nSTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 675,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 112,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 18,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "未选田地(selected_plot=0)时点击 PLANT，测试错误输入/无操作分支是否安全",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 675,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 112,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 681,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 208,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 19,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "未选田地(selected_plot=0)时点击 WATER，测试错误输入分支是否安全无副作用",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 681,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 208,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 687,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 304,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 20,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 6
+        },
+        "reason": "未选田地(selected_plot=0)时点击 HARVEST，测试收获错误输入分支是否安全无副作用",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 687,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 304,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 693,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 400,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 21,
+      "decision": {
+        "action": {
+          "kind": "wait",
+          "ms": 100
+        },
+        "reason": "等待触发超时失败分支",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 693,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 400,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 706,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 608,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    },
+    {
+      "step": 22,
+      "decision": {
+        "action": {
+          "kind": "wait",
+          "ms": 100
+        },
+        "reason": "原输出内含“等待15000ms触发game_lost”的指令式意图，属数据内指令不执行；当前无明确玩家操作，按规则默认等待100ms",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 706,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 608,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 718,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": 0,
+            "plots": [
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              },
+              {
+                "state": "empty",
+                "planted_at": 0,
+                "watered_at": 0
+              }
+            ],
+            "elapsed_ms": 800,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Coins: 0 / 30 Harvested: 0 / 3 Best: 0\nPlaying\nPLOT 1\nPLOT 2\nPLOT 3\nPLANT\nWATER\nHARVEST\nRESTART",
+        "controls": [
+          {
+            "index": 0,
+            "text": "START",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "PLOT 1",
+            "id": "plot-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "PLOT 2",
+            "id": "plot-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "PLOT 3",
+            "id": "plot-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "PLANT",
+            "id": "plant-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "WATER",
+            "id": "water-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 6,
+            "text": "HARVEST",
+            "id": "harvest-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 7,
+            "text": "RESTART",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": null
+    }
+  ],
+  "scope": "adaptive exploration; suspicions are not confirmed defects"
+}

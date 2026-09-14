@@ -1,0 +1,37 @@
+{
+  "files": [
+    {
+      "file": "summary.json",
+      "sha256": "3d68bcb5fcc8ede10afeeddc718a136c4a9292a30a07dbff2dac7a7a0afe3543"
+    },
+    {
+      "file": "trace.json",
+      "sha256": "ecc448fe74c95d626adaf6354e19c1a46726234c51df52561142964c879e695f"
+    },
+    {
+      "file": "decision-23/prompt.txt",
+      "sha256": "d830f0db85ec0fe86d90fd1516839660e1b0492bb7fe40f5b4e423e98d833a74"
+    },
+    {
+      "file": "decision-23/receipt.json",
+      "sha256": "f2d9ae602dda876b54f408a06a3d9e18cc12bd666ae813e66e6ae578ecaa29f6"
+    },
+    {
+      "file": "decision-24/prompt.txt",
+      "sha256": "39f9a6ca7299f3dbb43055d8502f803ad102548aae1a51815db329b206245107"
+    },
+    {
+      "file": "decision-24/receipt.json",
+      "sha256": "b67ff4d0be15890fad18784004f0a1eac0ae46fb4e1e232056f6b6c165ce665a"
+    },
+    {
+      "file": "decision-25/prompt.txt",
+      "sha256": "baa3dbee2a7c207febe806e3905ed0f5f8772e337446df4abc9bfbc70f8c671a"
+    },
+    {
+      "file": "decision-25/receipt.json",
+      "sha256": "3aecc081725d951069649c81b3a12da8a993ee90bc672263ecef6539c401f963"
+    }
+  ],
+  "scope": "Allowlisted evidence export; prompt hashes verified; raw provider output excluded."
+}

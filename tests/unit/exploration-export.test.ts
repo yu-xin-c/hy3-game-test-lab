@@ -1,0 +1,22 @@
+import { it, expect } from "vitest";
+import { mkdtemp, mkdir, writeFile, readFile, readdir } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
+import { execFileSync } from "node:child_process";
+import { contentHash } from "../../src/evaluation/generation-provenance";
+it("exports only allowlisted evidence and rejects modified prompts", async () => {
+  const root = await mkdtemp(resolve(tmpdir(), "hy3-exploration-export-"));
+  const source = resolve(root, "input"), call = resolve(source, "decision-0");
+  await mkdir(call, { recursive: true });
+  await writeFile(resolve(source, "trace.json"), "{}");
+  await writeFile(resolve(call, "prompt.txt"), "public prompt");
+  await writeFile(resolve(call, "receipt.json"), JSON.stringify({ model: "hy3", model_verified: true, prompt_sha256: contentHash("public prompt") }));
+  await writeFile(resolve(call, "response.raw.jsonl"), "do not export");
+  const run = (out: string) => execFileSync(process.execPath, ["--import", "tsx", "scripts/export-exploration.ts", source, out], { stdio: "pipe" });
+  const out = resolve(root, "export");
+  run(out);
+  expect(await readdir(resolve(out, "decision-0"))).toEqual(["prompt.txt", "receipt.json"]);
+  expect(JSON.parse(await readFile(resolve(out, "export-manifest.json"), "utf8")).files).toHaveLength(3);
+  await writeFile(resolve(call, "prompt.txt"), "tampered");
+  expect(() => run(resolve(root, "rejected"))).toThrow();
+});

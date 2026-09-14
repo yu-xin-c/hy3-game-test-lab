@@ -1,0 +1,13 @@
+{
+  "model": "hy3",
+  "game_sha256": "b57c74d4ebb1804cc99cf00612da972a522106aefe230f374d04cd25743a57d4",
+  "trace_sha256": "ecc448fe74c95d626adaf6354e19c1a46726234c51df52561142964c879e695f",
+  "findings": [],
+  "limits": [
+    "未执行页面刷新动作，故 state_loaded 事件与 localStorage 刷新后恢复行为未在记录中观测，无法据此判定违反",
+    "未通过桥接 reset({seed}) 显式设种，seed=404 的确定性未在记录中直接体现（game.js 的农场逻辑不含随机分支，newState() 固定为空田，确定性由代码保证而非观测）",
+    "终局（won/lost）后仅点击了 RESTART 按钮，未尝试对已被隐藏的田地/种植/浇水/收获按钮再次点击；输入防护依赖 status!=='playing' 早返回与按钮隐藏，未在记录中以失败点击二次证实",
+    "计时边界仅以一次 lost 触发（elapsed_ms=15008≥15000）观测，未做 15000±32ms 多组边界回归"
+  ],
+  "scope": "Model review of observed gameplay; code provenance is not independent proof of earliest reasoning error."
+}

@@ -1,0 +1,13 @@
+{
+  "files": [
+    {
+      "file": "summary.json",
+      "sha256": "f402e2da2046f576ac0f27a24707e6981915308666cdd9a9a3f031be5918502f"
+    },
+    {
+      "file": "trace.json",
+      "sha256": "e1aff92f2b3654fb6f9cd36fc27325c6a7fd450ea42a2b0dea41eb97831c427d"
+    }
+  ],
+  "scope": "Allowlisted evidence export; prompt hashes verified; raw provider output excluded."
+}

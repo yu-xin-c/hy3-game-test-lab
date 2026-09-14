@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "file": "review.json",
+      "sha256": "e71f314999a57753dedca06e91bc953eadfdc4b2c1e6a27f06019740da09e57f"
+    },
+    {
+      "file": "call/prompt.txt",
+      "sha256": "b6f5943c538243b38b1d8fa97452141a3978d043f7fe30c65cdf1e477524e4fe"
+    },
+    {
+      "file": "call/receipt.json",
+      "sha256": "26243bd0994a98dcb1e80b967363110bff95f1798c392f1da24a5a775a2a63e9"
+    }
+  ],
+  "scope": "Allowlisted evidence export; prompt hashes verified; raw provider output excluded."
+}
