@@ -20,7 +20,8 @@ for (const packet of inventory) {
   catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") continue; throw error; }
   if (result.model !== "hy3") throw new Error("Non-Hy3 audit output");
   const review = validateAuditReview(result.review, packet.assertions, packet.publicText);
-  for (const pair of result.quote_repair_applied ? [["prompt.txt", "receipt.json"], ["repair-prompt.txt", "repair-receipt.json"]] : [["prompt.txt", "receipt.json"]]) {
+  const receiptPairs = [["prompt.txt", "receipt.json"], ...(result.quote_repair_applied ? [["repair-prompt.txt", "repair-receipt.json"]] : []), ...(result.line_repair_applied ? [["line-prompt.txt", "line-receipt.json"]] : [])];
+  for (const pair of receiptPairs) {
     const prompt = await readFile(resolve(dir, pair[0]!), "utf8");
     const receipt = JSON.parse(await readFile(resolve(dir, pair[1]!), "utf8"));
     if (!receipt.model_verified || receipt.model !== "hy3" || receipt.prompt_sha256 !== contentHash(prompt)) throw new Error(`${packet.task_id}: invalid receipt`);

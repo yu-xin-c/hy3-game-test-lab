@@ -49,3 +49,17 @@ export function validateAuditReview(input: unknown, assertions: AuditAssertion[]
   if (remaining.size) throw new Error(`Missing ${remaining.size} assertion decisions`);
   return parsed;
 }
+
+export function resolveLineAuditReview(input: unknown, assertions: AuditAssertion[], publicText: string) {
+  const schema = z.object({ assertions: z.array(z.object({ id: z.string(),
+    verdict: z.enum(["supported", "unsupported", "ambiguous", "test_mechanics"]),
+    line_start: z.number().int().positive().nullable(), line_end: z.number().int().positive().nullable(), reason: z.string() })) });
+  const lines = publicText.split("\n");
+  const parsed = schema.parse(input);
+  return validateAuditReview({ assertions: parsed.assertions.map(row => {
+    if ((row.line_start === null) !== (row.line_end === null)) throw new Error("Both line bounds required");
+    if (row.line_start !== null && (row.line_end! < row.line_start || row.line_end! > lines.length)) throw new Error("Invalid source line range");
+    return { id: row.id, verdict: row.verdict, reason: row.reason,
+      public_quote: row.line_start === null ? null : lines.slice(row.line_start - 1, row.line_end!).join("\n") };
+  }) }, assertions, publicText);
+}

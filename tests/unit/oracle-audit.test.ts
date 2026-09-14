@@ -1,5 +1,14 @@
 import { expect, it } from "vitest";
-import { collectAuditAssertions, parseAuditResponse, validateAuditReview } from "../../src/evaluation/oracle-audit";
+import { collectAuditAssertions, parseAuditResponse, resolveLineAuditReview, validateAuditReview } from "../../src/evaluation/oracle-audit";
+
+it("extracts source line citations without rewriting or fabricating text", () => {
+  const assertions = [{ id: "A1", kind: "state", path: "score", expected: 90, contexts: [] }];
+  const row = { id: "A1", verdict: "supported", line_start: 2, line_end: 3, reason: "source" };
+  expect(resolveLineAuditReview({ assertions: [row] }, assertions, "Title\n Score: 90\n exact.").assertions[0]?.public_quote).toBe(" Score: 90\n exact.");
+  expect(() => resolveLineAuditReview({ assertions: [{ ...row, line_end: 9 }] }, assertions, "one")).toThrow();
+  expect(() => resolveLineAuditReview({ assertions: [{ ...row, line_start: null }] }, assertions, "one")).toThrow();
+  expect(() => resolveLineAuditReview({ assertions: [{ ...row, line_start: null, line_end: null }] }, assertions, "one")).toThrow();
+});
 
 it("parses one explicit JSON fence but rejects ambiguous or broken JSON", () => {
   expect(parseAuditResponse('```json\n{"assertions":[]}\n```\nExplanation.')).toEqual({ assertions: [] });

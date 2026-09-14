@@ -1,0 +1,24 @@
+{
+  "assertions": [
+    {"id":"A1","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"公开要求默认玩家为 primary，START 属默认玩家，actor=primary 成立。"},
+    {"id":"A2","verdict":"supported","public_quote":"\"device\": \"mouse\",","reason":"公开 manifest 示例 START 控件 device 为 mouse。"},
+    {"id":"A3","verdict":"supported","public_quote":"\"key_event\": \"press\",","reason":"公开 manifest 示例 START 控件 key_event 为 press。"},
+    {"id":"A4","verdict":"supported","public_quote":"\"selector\": \"#start-btn\",","reason":"公开 manifest 示例 START 控件 selector 为 #start-btn。"},
+    {"id":"A5","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，UP 属默认玩家。"},
+    {"id":"A9","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，DOWN 属默认玩家。"},
+    {"id":"A13","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，LEFT 属默认玩家。"},
+    {"id":"A17","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，RIGHT 属默认玩家。"},
+    {"id":"A21","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，RESTART 属默认玩家。"},
+    {"id":"A22","verdict":"supported","public_quote":"Restart 按钮或键盘 `R` 返回菜单","reason":"Restart 以按钮（#restart-btn）实现，按钮属鼠标控件，device=mouse。"},
+    {"id":"A24","verdict":"supported","public_quote":"#start-btn、`#restart-btn`；`#board` 为游戏区域。","reason":"自动测试接口规定 #restart-btn，RESTART 对应此 selector。"},
+    {"id":"A25","verdict":"supported","public_quote":"默认玩家为 `primary`。","reason":"默认玩家为 primary，RESTART_KEY 属默认玩家。"},
+    {"id":"A26","verdict":"supported","public_quote":"Restart 按钮或键盘 `R` 返回菜单","reason":"键盘 R 返回菜单，RESTART_KEY 用 keyboard。"},
+    {"id":"A28","verdict":"supported","public_quote":"键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。","reason":"键盘控件用 code（示例 KeyH 对应 H 键），R 键 code 为 KeyR。"},
+    {"id":"A29","verdict":"supported","public_quote":"`status` 只能是 `menu`、`playing`、`won`、`lost`。","reason":"status 枚举含 playing，开始后未分胜负即为 playing。"},
+    {"id":"A31","verdict":"supported","public_quote":"所有游戏点击 Start 后记录 `game_started`。","reason":"点击 Start 后必须记录 game_started。"},
+    {"id":"A40","verdict":"supported","public_quote":"钥匙不消耗，直到本局结束。","reason":"钥匙不消耗至本局结束，所列检查点均持钥。"},
+    {"id":"A49","verdict":"supported","public_quote":"`[data-testid=\"score\"]` 显示生命与钥匙；`[data-testid=\"status\"]` 显示状态。","reason":"score 选择器须存在并显示内容，visible=true。"},
+    {"id":"A50","verdict":"supported","public_quote":"`[data-testid=\"score\"]` 显示生命与钥匙；`[data-testid=\"status\"]` 显示状态。","reason":"status 选择器须存在并显示内容，visible=true。"},
+    {"id":"A60","verdict":"supported","public_quote":"每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。","reason":"reset/重开记录 game_reset，事件列表含该类型。"}
+  ]
+}
