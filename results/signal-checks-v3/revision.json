@@ -1,0 +1,35 @@
+{
+  "source": "results/process-v1/signal-memory/task",
+  "source_plan_sha256": "371d578b6a7f2b4fe5467fd71abd0ccdf65c175c90effdb303ab3fcac2728af2",
+  "source_oracle_sha256": "052034d6e8507aef1455c658324158002d5efdbc108bd5d93ec8b158ce8226c7",
+  "public_brief_changed": false,
+  "game_changed": false,
+  "changes": [
+    {
+      "checkpoint": "SM-CP-WON",
+      "removed": {
+        "phase": "complete",
+        "round": 3,
+        "progress": 4
+      },
+      "reason": "Public brief defines terminal status/score/lives and reset values, not internal terminal phase labels or post-win counters. Active-round checks are retained."
+    },
+    {
+      "checkpoint": "SM-CP-LOST",
+      "removed": {
+        "phase": "complete"
+      },
+      "reason": "Public brief defines terminal status/score/lives and reset values, not internal terminal phase labels or post-win counters. Active-round checks are retained."
+    },
+    {
+      "checkpoint": "SM-CP-RESET",
+      "removed": {
+        "phase": "idle"
+      },
+      "reason": "Public brief defines terminal status/score/lives and reset values, not internal terminal phase labels or post-win counters. Active-round checks are retained."
+    }
+  ],
+  "controls": "Canvas quadrant coordinates explicitly relative to #signal-canvas, already named in public brief.",
+  "added_scenario": "restart-during-playback",
+  "scope": "Retrospective rule correction and coverage addition, not a new generated game or preregistered benchmark."
+}

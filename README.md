@@ -4,6 +4,8 @@
 
 补充案例：[播放中重开导致旧计时器干扰新一局](results/playback-restart-v1/REPORT.md)。原始混元游戏、真实浏览器复现、混元复核和生成代码来源均保留。
 
+[判据修订与重跑](results/signal-checks-v3/README.md)：Signal Memory 原有路径在修正检查和指针执行后 12/12 通过，新增反例仍 0/3 通过。旧结果不覆盖。
+
 已完成 96 题运行评测、3 题生成过程实验及真实错误对照；指标口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
 
 GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
@@ -88,7 +90,7 @@ pnpm run eval:task -- \
 
 ## 现在做到哪了
 
-当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 134 项 Vitest/jsdom 测试和 23 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
+当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。仓库现有 134 项 Vitest/jsdom 测试和 24 项真实 Chromium 测试；冻结结果在 [results/sample](results/sample/README.md)。
 
 [完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 

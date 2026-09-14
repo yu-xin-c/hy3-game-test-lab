@@ -84,6 +84,23 @@ function baseCase(id: string, entryPath: string) {
   };
 }
 
+test("selector-relative pointer ratios reach the requested position instead of the center", async ({ context, page }) => {
+  const body = persistenceGame.replace('<div id="game"></div>', '<div id="game" style="position:absolute;left:100px;top:100px;width:400px;height:200px;background:red"></div>')
+    .replace("render();\n</script>", `document.querySelector('#game').onclick = e => {
+      const box=e.currentTarget.getBoundingClientRect();
+      state.score=Math.round(e.clientX-box.left);state.progress=Math.round(e.clientY-box.top);render();
+    };render();\n</script>`);
+  await context.route("**/examples/relative-pointer/index.html**", route => route.fulfill({ status: 200, contentType: "text/html", body }));
+  const publicCase = PublicCaseSchema.parse({ ...baseCase("relative-pointer", "/examples/relative-pointer/index.html"),
+    controls: [{ action_id: "POINT", device: "mouse", selector: "#game", x_ratio: 0.25, y_ratio: 0.75 }],
+    scenarios: [{ id: "point", description: "relative coordinates", seed: 1,
+      clock: { mode: "virtual", start_time_ms: virtualStartTime },
+      steps: [{ kind: "input", action_id: "POINT", checkpoints: ["POINT"] }] }] });
+  const result = await runPlaythrough({ page, baseURL, publicCase, scenarioId: "point", fixtureVariant: "formal" });
+  expect(result.diagnostics).toEqual([]);
+  expect(result.observations[0]?.state).toMatchObject({ score: 100, progress: 150 });
+});
+
 test("reload steps preserve browser storage and collect the loaded state", async ({ context, page }) => {
   await context.route("**/examples/complex-persistence/index.html**", (route) =>
     route.fulfill({ status: 200, contentType: "text/html", body: persistenceGame })

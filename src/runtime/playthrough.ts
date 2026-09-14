@@ -231,16 +231,21 @@ async function performAction(
   let x: number;
   let y: number;
   const pointerSelector = control.selector ?? control.code;
+  const hasRatio = control.x_ratio !== undefined || control.y_ratio !== undefined;
+  if (hasRatio && (control.x_ratio === undefined || control.y_ratio === undefined)) {
+    throw new Error(`${control.device} action ${actionId} needs both x/y ratios`);
+  }
   if (pointerSelector) {
     const target = page.locator(pointerSelector).first();
-    if (control.device === "mouse") {
+    if (control.device === "mouse" && !hasRatio) {
       await target.click({ timeout });
       return;
     }
+    await target.scrollIntoViewIfNeeded({ timeout });
     const box = await target.boundingBox({ timeout });
-    if (!box) throw new Error(`Touch target is not visible: ${pointerSelector}`);
-    x = box.x + box.width / 2;
-    y = box.y + box.height / 2;
+    if (!box) throw new Error(`Pointer target is not visible: ${pointerSelector}`);
+    x = box.x + box.width * (control.x_ratio ?? 0.5);
+    y = box.y + box.height * (control.y_ratio ?? 0.5);
   } else {
     if (control.x_ratio === undefined || control.y_ratio === undefined) {
       throw new Error(
