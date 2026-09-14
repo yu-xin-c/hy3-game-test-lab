@@ -1,0 +1,11 @@
+{
+  "model": "hy3",
+  "verdict": {
+    "defect": false,
+    "first_error_index": null,
+    "file": null,
+    "excerpt": null,
+    "explanation": "仅评估『Restart 在局内必须可见可用，并恢复0分、0进度、2生命和菜单』。轨迹显示：START 后进入 playing（index 1）以及 STAGE_1 后仍在 playing（index 2）时 restartVisible 均为 true，说明 Restart 在局内可见可用；index 3 执行 RESTART（clickError 为 null）后状态变为 menu、score=0、progress=0、lives=2，且 HUD/菜单完整可见，符合『恢复0分、0进度、2生命和菜单』要求。game.js 末尾将 restart-btn 挂到 #hud，使其局内持续可见，与观测一致。无违反项。"
+  },
+  "quote_matches": null
+}

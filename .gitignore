@@ -15,3 +15,5 @@ results/process-v1/**/*.raw.json
 results/process-v1/**/*.raw.jsonl
 results/error-mining-v1/**/*.raw.json
 results/error-mining-v1/**/*.raw.jsonl
+results/verifier-v1/**/*.raw.json
+results/verifier-v1/**/*.raw.jsonl

@@ -1,0 +1,106 @@
+{
+  "scope": "two public requirements, four code versions; not whole-game or reasoning accuracy",
+  "complete": true,
+  "detection": {
+    "numerator": 2,
+    "denominator": 2,
+    "rate": 1
+  },
+  "observed_step_localization": {
+    "numerator": 1,
+    "denominator": 2,
+    "rate": 0.5
+  },
+  "false_positive_rate": {
+    "numerator": 0,
+    "denominator": 2,
+    "rate": 0
+  },
+  "rows": [
+    {
+      "id": "A",
+      "origin_game": "zen-garden",
+      "diagnostic_control": true,
+      "gold": {
+        "defect": false,
+        "first_error_index": null
+      },
+      "review": {
+        "model": "hy3",
+        "verdict": {
+          "defect": false,
+          "first_error_index": null,
+          "file": null,
+          "excerpt": null,
+          "explanation": "评估要求：错误操作后 HUD 胜负状态必须与游戏状态一致。三次重复运行中，WRONG 操作后的状态与 HUD 始终一致：第一次 WRONG（index 2）后 status=playing、hud=Playing；第二次 WRONG（index 3）后 status=lost、hud=Lost；WAIT_1000MS 后保持 lost/Lost。游戏在 performWrongAction 中将 state.status 置为 'lost' 后调用 updateHUD，后者经 map[state.status] 直接映射为 'Lost'（game.js 中 updateHUD 的 map 与 st.textContent 赋值），状态与 HUD 文案严格对应，未出现不一致。"
+        },
+        "quote_matches": null
+      },
+      "repeats": 3
+    },
+    {
+      "id": "B",
+      "origin_game": "science-circuit",
+      "diagnostic_control": false,
+      "gold": {
+        "defect": true,
+        "first_error_index": 1
+      },
+      "review": {
+        "model": "hy3",
+        "verdict": {
+          "defect": true,
+          "first_error_index": 3,
+          "file": "game.js",
+          "excerpt": "    endPanel.classList.toggle(\"hidden\", !(state.status === \"won\" || state.status === \"lost\"));",
+          "explanation": "要求 Restart 在局内（playing）必须可见且可用。但 #restart-btn 仅位于 #end 面板中，而上面这行在 status 不是 won/lost 时会把 #end 面板设为隐藏（display:none），导致游戏进行中 Restart 既不可见也不可点击。三次 run 在 index 3 以 playing 状态执行 RESTART 时均报 'Restart could not be clicked within 1500ms'，且 index 1~3 的 restartVisible 始终为 false，违反该要求（恢复逻辑本身正确，但无法在局内触发）。"
+        },
+        "quote_matches": true
+      },
+      "repeats": 3
+    },
+    {
+      "id": "C",
+      "origin_game": "zen-garden",
+      "diagnostic_control": false,
+      "gold": {
+        "defect": true,
+        "first_error_index": 3
+      },
+      "review": {
+        "model": "hy3",
+        "verdict": {
+          "defect": true,
+          "first_error_index": 3,
+          "file": "game.js",
+          "excerpt": "  function wrongAction() {\n    if (state.status !== 'playing') return;\n    emit('action_rejected', {});\n    state.progress = 0;\n    emit('progress_reset', {});\n    state.lives -= 1;\n    state.last_action = 'wrong';\n    if (state.lives <= 0) {\n      state.lives = 0;\n      saveState();\n      state.status = 'lost';\n      emit('game_lost', {});\n    } else {\n      saveState();\n    }\n  }",
+          "explanation": "评测要求“错误操作后，HUD胜负状态必须与游戏状态一致”。index 2 的第一次 WRONG 后 state.status 仍为 playing，HUD 显示 Playing，一致。index 3 的第二次 WRONG 触发 wrongAction 将 state.status 置为 'lost'（lives 归零），但该函数未调用 updateHUD()/updateOverlay()，导致 HUD 仍显示 'Playing'，与游戏状态 lost 不一致，且 WAIT_1000MS 后仍未更新。最早出现不一致的操作是 index 3。"
+        },
+        "quote_matches": true
+      },
+      "repeats": 3
+    },
+    {
+      "id": "D",
+      "origin_game": "science-circuit",
+      "diagnostic_control": true,
+      "gold": {
+        "defect": false,
+        "first_error_index": null
+      },
+      "review": {
+        "model": "hy3",
+        "verdict": {
+          "defect": false,
+          "first_error_index": null,
+          "file": null,
+          "excerpt": null,
+          "explanation": "仅评估『Restart 在局内必须可见可用，并恢复0分、0进度、2生命和菜单』。轨迹显示：START 后进入 playing（index 1）以及 STAGE_1 后仍在 playing（index 2）时 restartVisible 均为 true，说明 Restart 在局内可见可用；index 3 执行 RESTART（clickError 为 null）后状态变为 menu、score=0、progress=0、lives=2，且 HUD/菜单完整可见，符合『恢复0分、0进度、2生命和菜单』要求。game.js 末尾将 restart-btn 挂到 #hud，使其局内持续可见，与观测一致。无违反项。"
+        },
+        "quote_matches": null
+      },
+      "repeats": 3
+    }
+  ],
+  "repeated_browser_runs": 12
+}
