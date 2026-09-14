@@ -32,4 +32,4 @@ pnpm run eval:task -- --task science-lab --game-dir results/codebuddy-hy3-pilot/
 
 复跑旧规则时额外指定 `--task-dir results/codebuddy-hy3-pilot/evidence/science-lab/task`。运行前验证冻结输入哈希，结果记录实际规则、评测器、运行器和游戏哈希。
 
-下一批生成目录为 `20260912-formal-96-v4`，对应公开规则 `2026-09-12.3`，仍无摄像头题。该批次已准备，尚未生成；其余题的玩法断言、独立人工抽检和演示视频仍需完成。
+后续96题批次已完成，去重汇总见 results/consolidated。此处仅保留早期规则诊断，不能作为全量运行状态。

@@ -82,7 +82,7 @@ pnpm run eval:task -- \
 - `events.jsonl`：每次操作后的状态、事件、UI 和截图引用
 - `cases.json`：每个 case 的 L1/L2/L3 结果、终局结果和首次错误
 - `summary.json`：整体正确率、定位结果、错误分布和难度拆分
-- `screenshots/`：可以人工复查的画面
+- `screenshots/`：逐步保存的画面证据
 
 ## 现在做到哪了
 

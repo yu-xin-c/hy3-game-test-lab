@@ -5,7 +5,7 @@
 ## 分类原则
 
 1. 先记录第一处可观察偏离，再分析根因；两者可以不同。
-2. 自动分类优先依据第一个差异 channel 和 path，人工复核可纠正但必须保留原预测。
+2. 自动分类优先依据第一个差异 channel 和 path，后续复核或对照纠正时必须保留原预测。
 3. 一个 checkpoint 可以产生多个 Failure；每个 Failure 用 `error_type` 表示主错误，并在 `diffs` 中保留对应差异。
 4. 基础设施错误与游戏错误分开，避免把 runner 故障算成模型能力问题。
 
@@ -25,7 +25,7 @@
 | `terminal_condition_error` | 胜负/结束触发时机或条件错误 | 过早获胜、收完道具仍 playing | 终局状态字段常触发此类 |
 | `missing_event` | 需求规定的领域事件未发出 | 状态改变但无 `coin_collected` | 若状态也错，主类通常选状态错误并保留事件 diff |
 | `state_ui_inconsistency` | UI 与内部状态或冻结断言不一致 | 内部得分 1、HUD 显示 0 | 布局/遮挡而非值不符用 visual |
-| `visual_layout_error` | 可见元素布局、遮挡、尺寸或视觉功能错误 | 按钮不可见、文字截断、关键对象重叠 | pilot 确定性检查覆盖有限，常需截图人审 |
+| `visual_layout_error` | 可见元素布局、遮挡、尺寸或视觉功能错误 | 按钮不可见、文字截断、关键对象重叠 | 确定性检查覆盖有限，截图模型结论另列 |
 | `physics_penetration` | 采样时对象与实体平台发生非法重叠 | player/platform AABB 重叠 | 与跨采样穿透分开记录 |
 | `physics_tunneling` | 连续 game tick 间跨过平台碰撞面 | 前后 AABB 的连续扫掠 | 跳 tick 或平台几何变化时证据不足，不判游戏错误 |
 | `physics_unsupported_grounding` | grounded 为真但没有几何支撑 | grounded、support id、接触面 | bridge 几何缺失归产物错误 |
@@ -49,7 +49,7 @@
 - state 的 `score`、`lives`、计数路径 → `state_effect_error`；
 - 其他 state 路径 → `state_transition_error`。
 
-这不是根因分析器。当前结果只保存自动分类；正式实验计划增加独立的人工裁决字段，再计算分类 F1 并审计规则偏差。
+该分类器只给出证据层面的主标签。真实游戏的 Hy3 原始标签另行保留并按场景统计，不把模型标签当作标准答案计算分类 F1。代码来源追溯见生成过程模块。
 
 ## 多错误与补偿错误
 
@@ -66,6 +66,6 @@
 
 1. 从 `unknown` 或高频分歧中提出新类别；
 2. 给出正例、反例和与邻近类别的边界；
-3. 至少两名审核者在独立样本上试标；
+3. 使用标准明确的正反例验证分类边界；
 4. 更新 schema、本文档、标注指南和指标脚本；
 5. 升级版本并重算，不覆盖旧 run。

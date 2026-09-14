@@ -22,4 +22,4 @@ pnpm run report:codebuddy -- \
 
 运行期间没有切换其他模型。新运行遇到 429 时仍会保留中断记录并停止该组后续派发。
 
-跨批次结果按题目去重汇总在 `results/consolidated`，原批次分数不覆盖。真人抽检仍待完成。
+本次采用自动对照验证，结果与适用范围见仓库 reports/validation-report.md。历史批次原始数据不覆盖，视频由用户负责。

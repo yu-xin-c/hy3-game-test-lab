@@ -67,7 +67,6 @@ const summary: any = {
     by_difficulty: Object.fromEntries(["D1", "D2", "D3"].map(level => [level, modelCounts(modelRows.filter(row => row.difficulty === level))])),
     process_disagreements: disagreements
   },
-  human_validation: { completed: false, localization_accuracy: null, false_positive_rate: null },
   source_batches: summaries.map((summary, index) => ({ batch_id: summary.batch_id, path: relative(output, sources[index]!) })),
   tasks: selected.map(({ source_results, ...task }) => ({ ...task, source_results: relative(output, source_results) }))
 };
@@ -75,18 +74,11 @@ const summary: any = {
 await mkdir(output, { recursive: true });
 await writeFile(resolve(output, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`);
 await writeFile(resolve(output, "batch-manifest.json"), `${JSON.stringify({ ...manifest, batch_id: "consolidated-96", source_batches: summary.source_batches }, null, 2)}\n`);
-const humanReviews = [];
-for (const task of selected) {
-  const sourceReviews = await json(resolve(task.source_results, "human-review.json"));
-  humanReviews.push(...sourceReviews.filter((entry: any) => entry.task_id === task.id).map((entry: any) => ({ ...entry, source_results: relative(output, task.source_results) })));
-}
-await writeFile(resolve(output, "human-review.json"), `${JSON.stringify(humanReviews, null, 2)}\n`);
-
 const rows = ["# 96 题去重汇总", "", "每题选用最新一份同时具有浏览器证据和 Hy3 复核的结果。失败尝试仍保留在原批次目录，不覆盖历史记录。", "",
   `完成 ${summary.totals.browser_tested_tasks}/${summary.totals.tasks} 题，浏览器运行 ${summary.totals.path_runs} 次。生成和模型复核均使用 Hy3。`,
   `原始规则过程通过 ${summary.totals.process_passes}/${summary.totals.path_runs} 次；整题所有路径过程通过 ${summary.totals.all_paths_process_correct}/${summary.totals.tasks}。`,
   `Hy3 过程判断正确 ${summary.model_review.totals.process_correct}/${summary.model_review.totals.process_known} 个可判断场景；与原始规则有 ${disagreements.length} 个场景不一致。`,
-  "", "这些数字尚未经过真人抽检。原始规则存在隐藏字段和文案误报，Hy3 复核也不是人工标准答案，因此不能把任一列直接称为模型准确率。待审条目见 human-review.json。", "",
+  "", "原始规则存在隐藏字段和文案误报，Hy3 复核也不是独立标准答案，两种口径分别保留。自动要求对照见 reports/validation-report.md。", "",
   "| 难度 | 游戏数 | 浏览器运行 | 原始过程通过 | 整题全路径过程通过 | Hy3 过程正确 / 可判断 |",
   "| --- | ---: | ---: | ---: | ---: | ---: |",
   ...["D1", "D2", "D3"].map(level => {

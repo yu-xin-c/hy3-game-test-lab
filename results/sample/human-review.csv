@@ -1,6 +1,0 @@
-case_id,review_target,reviewer_type,review_status,automated_first_checkpoint,human_first_checkpoint,automated_error_type,human_error_type,agreement,notes
-clean-control,false-positive,project_author,pending_human,none,,none,,,
-score-plus-two,first-failure,project_author,pending_human,CP-COIN-1,,state_effect_error,,,
-score-compensated,lucky-pass,project_author,pending_human,CP-COIN-1,,state_effect_error,,,
-hud-stale,ui-only-failure,project_author,pending_human,CP-HUD-1,,state_ui_inconsistency,,,
-cross-layer-masked,cross-layer-masking,project_author,pending_human,CP-COIN-1,,state_effect_error,,,

@@ -1,57 +1,28 @@
-# 赛题要求对照
+# 任务二要求与交付核对
 
-本项目选择“任务二：大模型生成内容的过程质量评测与错误定位”，把 AI 生成的浏览器游戏作为待测内容。Runner 会实际进入游戏、走完一条路径，并记录错误最早出现在哪一步。
+任务名称：可验证场景：过程评估与错误定位。本项目选择代码任务，以 Hy3 生成的浏览器游戏为对象。按用户要求，交付采用自动评测，视频由用户负责。
 
-## 对照表
-
-| 赛题要求 | 本项目做法 | 验收入口 |
+| 要求 | 当前证据 | 核对结论 |
 | --- | --- | --- |
-| 公开代码、运行说明和许可 | README、环境版本、MIT 许可 | `README.md`、`.nvmrc`、`LICENSE` |
-| 使用 Hy3 API，不训练或微调 | 可用 Hy3 生成待测游戏或辅助生成测试计划；密钥只从环境变量读取 | `src/llm/`、`.env.example` |
-| 展示内容生成后的质量检测过程 | 浏览器逐步执行动作并保存 state、event、DOM/Canvas、截图和错误 | `src/runtime/`、`results/` |
-| 过程正确性与错误定位 | 区分终局与过程，通过第一个失败 checkpoint 定位首个可观察偏离 | `src/evaluation/`、`docs/evaluation-method.md` |
-| 分层评价 | L1 运行、L2 逻辑路径、L3 UI/多模态逐层认证 | `src/evaluation/evaluator.ts` |
-| 错误分类 | 使用稳定错误枚举，并保留 expected/actual 证据 | `docs/error-taxonomy.md`、`src/contracts/schemas.ts` |
-| 难度和数据来源 | 每例记录来源、许可、D1/D2/D3 和难度理由 | `datasets/`、`docs/dataset-card.md` |
-| 准确率和误报验证 | 报告 clean 误报率、首错定位、lucky pass 和人工抽检结果 | `src/evaluation/metrics.ts`、`reports/validation-report.md` |
-| 完整结果分析 | 从冻结机器产物生成分层结果和失败案例 | `reports/analysis-report.md` |
-| 两分钟演示 | 展示一次真实路径、三层证据与首错 | `docs/demo-script.md` |
+| 可运行 Hy3 应用 | `run:process`、`app`、`src/llm/codebuddy.ts`，三题完整生成记录 | 有应用及实际调用证据 |
+| 完整公开解答过程 | `results/process-v1` 的方案、工具日志、代码版本、复核 | 三题具备公开方案，历史 96 题不能补称都有编号推理过程 |
+| 分层题集与来源 | `datasets/game-tasks`、数据卡，D1/D2/D3 为 12/57/27 | 结构和分层齐全 |
+| 明确标准与自动判定 | 每题私有检查、公开要求和校验脚本 | 有检查，但部分字段、文案及语义约束仍需核对，不能认证全部标准可靠 |
+| 过程正确性、首错、分类 | 运行检查、公开方案复核、代码精确引用与来源重建 | 能输出证据，三种位置分别记录 |
+| 表面通过但逻辑有缺陷 | 校准集错误补偿、真实 HUD/状态矛盾、模型标记九个场景 | 校准标准与模型意见分开，不能把局部通过称作完整答案正确 |
+| 定位与误报验证 | `results/verifier-v1` 四个实现、12 次运行 | 操作首错 1/2，指定要求正常对照误报 0/2；公开方案首错仍缺独立验证 |
+| 完整运行结果 | 96 题、876 次路径、292 场景复核，错误分类与分层表 | 运行层面有完整结果，不能作为 96 题生成推理正确率 |
+| 难度边界分析 | `reports/analysis-report.md` | 已分析，现有结果不支持可靠临界点 |
+| 开源仓库与说明 | README、MIT、环境示例、源码、运行说明 | 已发布，持续更新 |
+| 汇报材料 | `docs/evaluation-slides-v2.pptx` | 六页 PPT 已更新 |
 
-## 游戏怎么测
+## 尚需补强的实质证据
 
-| 层级 | 主要问题 | 核心证据 |
-| --- | --- | --- |
-| L1 运行 | 游戏能否加载、开始并响应输入 | 页面/console 错误、ready 状态、真实输入 |
-| L2 逻辑 | 状态转换、计分、事件、边界和终局是否正确 | action、state、event、checkpoint diff |
-| L3 UI/多模态 | 玩家看到的界面是否与内部状态一致、是否清晰可玩 | DOM、Canvas、截图、可选视觉裁判 |
+1. 核对存在争议的判定标准，区分真正违反公开需求与测试附加约束。后续修订必须另存版本，不能覆盖原始成绩。
+2. 对公开实现方案的判断建立可执行标准，验证评估器是否找到实际错误步骤。目前的操作位置和代码来源不能替代这一项。
 
-认证顺序为 L1 → L2 → L3。上游失败时，下游记为 `blocked`；没有视觉裁判或对应断言时记为 `unverified`，不能默认通过。
+新增更多演示页面或重复跑已知案例，不能单独补上上述缺口。自动测试通过只证明其覆盖的工程行为。
 
-## 提交前硬门
+## 验收入口
 
-1. `pnpm run check` 与 `pnpm run test:browser` 在干净环境通过；
-2. 至少对一个真实 AI 生成游戏完成 Chromium playthrough，自建 fixture 仅用于校准；
-3. 报告同时给出终局正确性、过程正确性、首错和 clean 误报；
-4. 检测失败后在页面仍可操作时继续执行，以识别错误补偿和 lucky pass；
-5. 自动结果经过分层人工抽检，报告分母、分歧和裁决；
-6. README、报告和视频只声明已有产物能够证明的能力；
-7. 不提交 API key、私有地址或未授权游戏素材；
-8. Demo 时长不超过 120 秒。
-
-## 最小发布证据
-
-```text
-release-evidence/
-├── game-manifest.json
-├── test-plan.json
-├── summary.json
-├── cases.json
-├── events.jsonl
-├── screenshots/
-├── config.resolved.redacted.json
-├── human-review.csv
-├── analysis-report.md
-└── demo.mp4
-```
-
-证据包至少记录 Git commit、数据和 schema 版本、游戏文件 hash、seed、浏览器版本、UTC 时间与 run ID。若使用需求文档或 PRD 生成断言，同时保存其版本/hash；若没有，则使用预先冻结的通用规则和人工 oracle。
+`pnpm run check` 验证代码、数据结构和单元测试，`pnpm run test:browser` 验证 Chromium 行为。完整报告见 `reports/analysis-report.md`，验证口径见 `reports/validation-report.md`。新一次评审应先冻结输入，再记录模型输出与独立对照结果。

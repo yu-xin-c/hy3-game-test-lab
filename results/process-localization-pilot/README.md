@@ -24,7 +24,7 @@ Platform Rescue 的四次 Write 可重建与最终文件完全一致的代码。
 
 诊断路径和 CSS 对照由项目脚本指定，Hy3 负责模型复核与代码定位，并非自动搜索修复。原始模型意见保留在各游戏 judgment.json。模型关于某些 JS 逻辑“正确”的宽泛表述只能理解为此次执行路径获得支持，不代表所有分支已验证。
 
-本次是定向选择的诊断样例，不是随机抽样。没有人工标准标注，定位准确率、误报率均为 null。未提供带编号的公开解题分析，所有推理首错均为 null。生成记录完整性 1/3，不等于定位准确率 1/3。
+本次是定向选择的诊断样例，不是随机抽样。没有预先冻结的独立标准，定位准确率、误报率均为 null。未提供带编号的公开解题分析，所有推理首错均为 null。生成记录完整性 1/3，不等于定位准确率 1/3。
 
 ## 文件与复现
 
@@ -37,4 +37,4 @@ pnpm exec tsx scripts/experiment-generation-localization.ts --out results/my-pro
 pnpm exec tsx scripts/experiment-generation-localization.ts --out results/my-process-pilot --report
 ```
 
-下一轮应使用保留完整工具记录和简短公开实现说明的新生成样本，加入有人工确认首错的真实玩法缺陷，才能衡量过程评估器的定位准确率。
+后续生成过程与自动对照实验见 results/process-v1 和 results/verifier-v1，本节保留历史诊断范围。

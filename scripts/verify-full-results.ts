@@ -60,10 +60,9 @@ for (const task of summary.tasks) {
   }
   checked++;
 }
-const humans = await json(resolve(root, "human-review.json"));
 const audit = { checked_at: new Date().toISOString(), tasks_expected: summary.tasks.length, tasks_checked: checked,
-  reviewed, distinct_browser_scenarios: scenarios, human_records_completed: humans.filter((r: any) => r.reviewer && r.reviewed_at && typeof r.evidence_sufficient === "boolean").length,
-  integrity_pass: errors.length === 0, human_validation_completed: false, errors, warnings };
+  reviewed, distinct_browser_scenarios: scenarios,
+  integrity_pass: errors.length === 0, errors, warnings };
 await writeFile(resolve(root, "integrity-audit.json"), JSON.stringify(audit,null,2) + "\n");
 console.log(JSON.stringify(audit,null,2));
 if (errors.length && !process.argv.includes("--allow-partial")) process.exitCode = 1;
