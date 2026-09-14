@@ -1,0 +1,150 @@
+{
+  "rule_source": "Signal Memory public brief: first round has two colors; each highlight 400ms plus gap 200ms; ignore inputs during playback.",
+  "boundary_policy": "32ms conservative early-boundary tolerance; this check does not certify menu-reset semantics or whole-game correctness.",
+  "checks": [
+    {
+      "file": "idle-reset-1.json",
+      "trace_sha256": "79a954f7f7d74fa5dd5e330f2a504f21bb9765198cea912ce940407a156347a8",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 0,
+      "verdict": "not_exercised",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "idle-reset-2.json",
+      "trace_sha256": "7d76ffd13da6178bd816b11b4529322919599ef0514e72c647559b260b279440",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 0,
+      "verdict": "not_exercised",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "idle-reset-3.json",
+      "trace_sha256": "bb7f1707bfd9435ecec117a78d95ff510b8345429c3ede6d263b0f323d792110",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 0,
+      "verdict": "not_exercised",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "playback-reset-1.json",
+      "trace_sha256": "393928adb7873360047685dc981351e8542ac0a4c97cfbde0fa97d7e6b379e75",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 1,
+      "verdict": "no_observed_violation",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "playback-reset-2.json",
+      "trace_sha256": "af851da5cc77718aa9823db5560e4d2a7aafa09ed7a0fe5a9c930807bffa44e3",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 1,
+      "verdict": "no_observed_violation",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "playback-reset-3.json",
+      "trace_sha256": "f633544f1250b8b0e881f8ab0907979ea4ef7631142731cc8f6fe471d9088d46",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 1,
+      "verdict": "no_observed_violation",
+      "first_observed_step": null,
+      "violations": []
+    },
+    {
+      "file": "playback-reset-start-1.json",
+      "trace_sha256": "78ca1639c30b0d3c5013af150dba1c20aa738cda9766b2a0c22a34d1ddec3321",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 2,
+      "verdict": "violated",
+      "first_observed_step": 5,
+      "violations": [
+        {
+          "step": 5,
+          "type": "premature_input_phase",
+          "event_tick": 1301,
+          "expected_end_tick": 1601,
+          "early_by_ms": 300
+        },
+        {
+          "step": 6,
+          "type": "input_accepted_during_playback",
+          "event_tick": 1351,
+          "expected_end_tick": 1601,
+          "early_by_ms": 250
+        }
+      ]
+    },
+    {
+      "file": "playback-reset-start-2.json",
+      "trace_sha256": "0e6a81f765591667275ac2d9af5005fc2a35815fa96380496c9c5ebb6723454f",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 2,
+      "verdict": "violated",
+      "first_observed_step": 5,
+      "violations": [
+        {
+          "step": 5,
+          "type": "premature_input_phase",
+          "event_tick": 1300,
+          "expected_end_tick": 1600,
+          "early_by_ms": 300
+        },
+        {
+          "step": 6,
+          "type": "input_accepted_during_playback",
+          "event_tick": 1350,
+          "expected_end_tick": 1600,
+          "early_by_ms": 250
+        }
+      ]
+    },
+    {
+      "file": "playback-reset-start-3.json",
+      "trace_sha256": "fd474710ecab5fb6e43b265f8a0e19a44cf1f5a6e22a2a450733d9ceec2df22e",
+      "scope": "first-round minimum playback duration only",
+      "duration_ms": 1200,
+      "tolerance_ms": 32,
+      "observed_starts": 2,
+      "verdict": "violated",
+      "first_observed_step": 5,
+      "violations": [
+        {
+          "step": 5,
+          "type": "premature_input_phase",
+          "event_tick": 1300,
+          "expected_end_tick": 1600,
+          "early_by_ms": 300
+        },
+        {
+          "step": 6,
+          "type": "input_accepted_during_playback",
+          "event_tick": 1350,
+          "expected_end_tick": 1600,
+          "early_by_ms": 250
+        }
+      ]
+    }
+  ]
+}

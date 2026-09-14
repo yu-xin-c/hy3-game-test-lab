@@ -24,10 +24,15 @@
 
 ## 复跑
 
+新增独立时间规则校验，结果在 timing-checks.json。规则不读取模型结论，也不使用游戏自行报告的序列长度来决定标准时长，而使用公开要求的 1200ms，并留出 32ms 容差。三个重开后开始的记录均在 step 5 检出提前进入输入阶段（早 300ms），step 6 检出提前接受输入（早 250ms）。该操作定位与混元结果一致；这是单例补充核验，不是独立测试集定位准确率。
+
+菜单路径标记为 not_exercised；只重开不开始的路径，对“新回合最短播放时长”没有检出违反，但并不证明菜单语义正确。本规则不承担菜单污染检查，也不证明整个游戏无错。
+
 混元独立复核识别两个表现：菜单污染首次观测为 step 4，新局提前进入输入阶段为 step 5（step 6 的真实点击进一步证明提前计分）。精确引用分别对应 game.js:79 和 :119，均追溯到第 3 次 Write。模型将公开方案首错判为第 3 步；这一归因保留为模型意见，不作为独立标准答案或计入定位准确率。两个表现属于同一旧计时器缺陷，不计作两个独立错误。输出及调用凭据见 review/，原始服务商响应仅本地保留。
 
 ```sh
 pnpm exec tsx scripts/check-playback-restart.ts --out artifacts/playback-restart-new
+pnpm exec tsx scripts/verify-playback-evidence.ts --evidence artifacts/playback-restart-new
 pnpm exec tsx scripts/judge-playback-restart.ts --evidence artifacts/playback-restart-new --out artifacts/playback-review-new --cli /path/to/codebuddy
 ```
 
