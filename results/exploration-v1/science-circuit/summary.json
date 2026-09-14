@@ -1,0 +1,17 @@
+{
+  "game_sha256": "cc4ab56b24bda8e666e0fa4d81b7c72d1f76a509d67176ed141b14d0969e8f75",
+  "completed_steps": 12,
+  "execution_errors": 1,
+  "suspected_steps": [
+    4,
+    5,
+    7,
+    8,
+    9,
+    11
+  ],
+  "replay_trace_sha256": null,
+  "exact_observation_match": null,
+  "first_observation_difference": null,
+  "note": "Observation repeatability is not a defect verdict; runtime fields are compared without normalization."
+}

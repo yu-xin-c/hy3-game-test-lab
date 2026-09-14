@@ -43,6 +43,8 @@ pnpm exec tsx scripts/judge-exploration.ts --source results/full-96/evidence/zen
 
 复核阶段才向混元提供代码，不提供探索员的疑似错误判断，减少相互影响。精确代码引用匹配后追溯 Write/Edit。重放报告严格比较完整观测；帧数差异也会报告为不一致，不因最终状态相同而宣称完全复现。复核意见仍需结合独立检查或运行对照，不能作为定位准确率的标准标签。
 
+探索器也按 manifest 的状态 HUD 选择器读取实际文字，与对象状态交叉比较。只识别公开约定的 Menu/Playing/Won/Lost；选择器缺失、匹配多处、不可见或自定义文案均返回 unavailable，不强行判错。mismatch 表示两处观测矛盾，不能自行决定哪一处错误。混元需结合需求、等待时间与代码复核。新增字段与旧记录比较时会造成完整观测不一致，因此跨版本结果不作确定性结论。
+
 - [3 题生成过程与 33 次路径执行](../results/process-v1/REPORT.md)
 - [真实错误复验、混元定位与局部干预](../results/error-mining-v1/REPORT.md)
 - [混元自主探索、三次路径复现与复核漏检](../results/exploration-v1/REPORT.md)

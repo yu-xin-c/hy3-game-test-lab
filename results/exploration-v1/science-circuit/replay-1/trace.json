@@ -1,0 +1,1965 @@
+{
+  "model": "hy3",
+  "mode": "fixed-input-replay",
+  "game_sha256": "cc4ab56b24bda8e666e0fa4d81b7c72d1f76a509d67176ed141b14d0969e8f75",
+  "seed": 404,
+  "steps": [
+    {
+      "step": 0,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "点击 Start 进入游戏，开始探索正常玩法第一阶段",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 6,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nMenu\nScience Circuit\n\n完成三段科学电路目标：\n\n连接电池\n接入开关\n点亮灯泡\nStart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 1,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 1
+        },
+        "reason": "正常玩法：点击连接电池推进第一阶段，验证 stage_completed 与进度加分",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 12,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 18,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 1,
+            "score": 10,
+            "lives": 2,
+            "last_action": "stage-1"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Score: 10 | Progress: 1/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 2,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 2
+        },
+        "reason": "正常推进第二阶段：接入开关，验证 stage_completed 与进度加分",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 18,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 1,
+            "score": 10,
+            "lives": 2,
+            "last_action": "stage-1"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 3
+        },
+        "text": "Score: 10 | Progress: 1/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 25,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 2,
+            "score": 20,
+            "lives": 2,
+            "last_action": "stage-2"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 4
+        },
+        "text": "Score: 20 | Progress: 2/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 3,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 3
+        },
+        "reason": "正常推进第三阶段：点亮灯泡，完成三段目标验证 game_won 与终局状态",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 25,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 2,
+            "score": 20,
+            "lives": 2,
+            "last_action": "stage-2"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 4
+        },
+        "text": "Score: 20 | Progress: 2/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 31,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "progress": 3,
+            "score": 30,
+            "lives": 2,
+            "last_action": "stage-3"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 6
+        },
+        "text": "Score: 30 | Progress: 3/3 | Lives: 2\nWon\nWon!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 4,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "测试终局后输入：点击错误操作验证 won 状态下分数/进度/胜负不可被改变",
+        "suspected_problem": "待验证：游戏结束后错误操作是否仍触发 action_rejected 或改变状态"
+      },
+      "before": {
+        "probe": {
+          "tick": 31,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "progress": 3,
+            "score": 30,
+            "lives": 2,
+            "last_action": "stage-3"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 6
+        },
+        "text": "Score: 30 | Progress: 3/3 | Lives: 2\nWon\nWon!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 31,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "progress": 3,
+            "score": 30,
+            "lives": 2,
+            "last_action": "stage-3"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 6
+        },
+        "text": "Score: 30 | Progress: 3/3 | Lives: 2\nWon\nWon!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "execution_error": "Error: Selected control is not visible/enabled",
+      "matches_original": true
+    },
+    {
+      "step": 5,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "测试终局后 Restart：验证恢复菜单状态、0进度0分2生命与 game_reset 事件",
+        "suspected_problem": "待验证：Restart 是否从 won 终局正确复位并重新进入 menu"
+      },
+      "before": {
+        "probe": {
+          "tick": 31,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "progress": 3,
+            "score": 30,
+            "lives": 2,
+            "last_action": "stage-3"
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 6
+        },
+        "text": "Score: 30 | Progress: 3/3 | Lives: 2\nWon\nWon!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Won",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "won",
+          "displayed": "won"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 37,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 1
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nMenu\nScience Circuit\n\n完成三段科学电路目标：\n\n连接电池\n接入开关\n点亮灯泡\nStart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 6,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "从菜单进入游戏，准备探索错误操作路径（未覆盖的 action_rejected / progress_reset / 扣生命分支）",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 37,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 1
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nMenu\nScience Circuit\n\n完成三段科学电路目标：\n\n连接电池\n接入开关\n点亮灯泡\nStart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 43,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 7,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 4
+        },
+        "reason": "探索错误操作分支：playing 下点击错误操作，验证 action_rejected/progress_reset 与扣生命",
+        "suspected_problem": "待验证：错误操作是否清空 progress 并扣1生命、状态仍 playing"
+      },
+      "before": {
+        "probe": {
+          "tick": 43,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 50,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 1,
+            "last_action": "wrong"
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 4
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 1\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 8,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 2
+        },
+        "reason": "探索乱序分支：progress=0 时点击接入开关（非首段），应判顺序错误并扣生命",
+        "suspected_problem": "待验证：乱序点击 stage-2 是否触发 action_rejected/progress_reset，且生命 1→0 导致 game_lost"
+      },
+      "before": {
+        "probe": {
+          "tick": 50,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 1,
+            "last_action": "wrong"
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 4
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 1\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 56,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "stage-2"
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 7
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 0\nLost\nLost!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Lost",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "lost",
+          "displayed": "lost"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 9,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 5
+        },
+        "reason": "测试终局后 Restart：从 lost 状态验证复位为 menu、0进度0分2生命并触发 game_reset",
+        "suspected_problem": "待验证：Restart 是否从 lost 终局正确复位到 menu 且 event_epoch 递增"
+      },
+      "before": {
+        "probe": {
+          "tick": 56,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "stage-2"
+          },
+          "event_epoch": 3,
+          "latest_event_seq": 7
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 0\nLost\nLost!\nRestart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": true,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Lost",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "lost",
+          "displayed": "lost"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 62,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 4,
+          "latest_event_seq": 1
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nMenu\nScience Circuit\n\n完成三段科学电路目标：\n\n连接电池\n接入开关\n点亮灯泡\nStart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 10,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 0
+        },
+        "reason": "进入游戏，准备探索 progress>0 时的错误操作清空进度与错误后恢复通关分支",
+        "suspected_problem": null
+      },
+      "before": {
+        "probe": {
+          "tick": 62,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 4,
+          "latest_event_seq": 1
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nMenu\nScience Circuit\n\n完成三段科学电路目标：\n\n连接电池\n接入开关\n点亮灯泡\nStart",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Menu",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "menu",
+          "displayed": "menu"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 68,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 4,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    },
+    {
+      "step": 11,
+      "decision": {
+        "action": {
+          "kind": "click",
+          "target": 1
+        },
+        "reason": "错误恢复分支：先正常完成 stage-1 使 progress>0，再触发错误操作以验证 progress 被清空（step7 时 progress 为0未能观测到清空效果）",
+        "suspected_problem": "待验证：progress>0 时错误操作是否清空进度且仍扣1生命"
+      },
+      "before": {
+        "probe": {
+          "tick": 68,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": ""
+          },
+          "event_epoch": 4,
+          "latest_event_seq": 2
+        },
+        "text": "Score: 0 | Progress: 0/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "after": {
+        "probe": {
+          "tick": 75,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "progress": 1,
+            "score": 10,
+            "lives": 2,
+            "last_action": "stage-1"
+          },
+          "event_epoch": 4,
+          "latest_event_seq": 3
+        },
+        "text": "Score: 10 | Progress: 1/3 | Lives: 2\nPlaying\n实验室\n\n目标顺序：连接电池 → 接入开关 → 点亮灯泡\n\n连接电池\n接入开关\n点亮灯泡\n错误操作",
+        "controls": [
+          {
+            "index": 0,
+            "text": "Start",
+            "id": "start-btn",
+            "visible": false,
+            "disabled": false
+          },
+          {
+            "index": 1,
+            "text": "连接电池",
+            "id": "stage-1",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 2,
+            "text": "接入开关",
+            "id": "stage-2",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 3,
+            "text": "点亮灯泡",
+            "id": "stage-3",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 4,
+            "text": "错误操作",
+            "id": "wrong-action",
+            "visible": true,
+            "disabled": false
+          },
+          {
+            "index": 5,
+            "text": "Restart",
+            "id": "restart-btn",
+            "visible": false,
+            "disabled": false
+          }
+        ],
+        "errors": [],
+        "status_hud": {
+          "selector": "[data-testid=\"status\"]",
+          "samples": [
+            {
+              "text": "Playing",
+              "visible": true
+            }
+          ]
+        },
+        "status_cross_check": {
+          "result": "match",
+          "state": "playing",
+          "displayed": "playing"
+        }
+      },
+      "execution_error": null,
+      "matches_original": true
+    }
+  ],
+  "scope": "adaptive exploration; suspicions are not confirmed defects"
+}

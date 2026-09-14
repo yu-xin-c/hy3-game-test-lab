@@ -5,6 +5,7 @@ import { z } from "zod";
 import { callCodeBuddy, parseModelJson } from "../src/llm/codebuddy";
 import { contentHash } from "../src/evaluation/generation-provenance";
 import { startStaticServer } from "../src/runtime/static-server";
+import { compareStatusHud } from "../src/evaluation/hud-consistency";
 
 // An explorer, not a correctness oracle. No source code or private answers enter
 // the action-selection prompt. Every decision uses the preceding browser state.
@@ -34,6 +35,7 @@ if (generation.model_id !== "hy3" || generation.output_sha256 !== gameHash) thro
 if (replay && (replay.game_sha256 !== gameHash || replay.seed !== 404)) throw new Error("Replay game hash or seed mismatch");
 if (replay) for (const step of replay.steps) actionSchema.parse(step.decision);
 const requirements = await readFile(resolve(source, "prompt.md"), "utf8");
+const manifest = JSON.parse(await readFile(resolve(source, "game/game.manifest.json"), "utf8"));
 const server = await startStaticServer({ rootDirectory: resolve(source, "game"), exposure: "isolated-root" });
 const browser = await chromium.launch();
 const trace: any[] = [], errors: string[] = [];
@@ -47,7 +49,7 @@ try {
   await page.goto(server.origin);
   await page.evaluate(() => window.__GAMETESTLAB__!.reset({ seed: 404 }));
   await page.clock.runFor(100);
-  const observe = async () => ({
+  const observeBase = async () => ({
     probe: await page.evaluate(async () => await window.__GAMETESTLAB__!.observe()),
     text: (await page.locator("body").innerText()).slice(0, 12000),
     controls: await page.locator('button, [role="button"], input[type="button"]').evaluateAll(elements => elements.map((e, index) => {
@@ -55,6 +57,15 @@ try {
       return { index, text: e.textContent, id: e.id, visible: box.width > 0 && box.height > 0 && style.visibility !== "hidden" && style.display !== "none", disabled: (e as HTMLButtonElement).disabled };
     })), errors: [...errors]
   });
+  const observe = async () => {
+    const base = await observeBase();
+    const selector = manifest.hud_selectors?.status;
+    const samples = typeof selector === "string" ? await page.locator(selector).evaluateAll(elements => elements.map(e => {
+      const rect = e.getBoundingClientRect(), css = getComputedStyle(e);
+      return { text: e.textContent, visible: rect.width > 0 && rect.height > 0 && css.visibility !== "hidden" && css.display !== "none" };
+    })) : [];
+    return { ...base, status_hud: { selector: selector ?? null, samples }, status_cross_check: compareStatusHud(base.probe.status, samples) };
+  };
   let observation = await observe();
   for (let step = 0; step < steps; step++) {
     const replayStep = replay?.steps[step];

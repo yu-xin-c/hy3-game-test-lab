@@ -1,0 +1,28 @@
+{
+  "model": "hy3",
+  "game_sha256": "cc4ab56b24bda8e666e0fa4d81b7c72d1f76a509d67176ed141b14d0969e8f75",
+  "trace_sha256": "ba284a67b27754d5c94e6d4b19f55608e502c8b2fe15397731aa753505751f3b",
+  "findings": [
+    {
+      "first_observed_step": 0,
+      "error_type": "界面与重开可见性违反",
+      "explanation": "公开要求明确规定『Restart 在局内和终局都必须可见、可用』，即 playing（局内）与 won/lost（终局）两种状态下 Restart 都必须可见且可用。探索记录显示：step 0 点击 #start-btn 后 status=playing，但 controls 中 restart-btn 始终 visible:false（step 0/1/2/6/7/10 等所有 playing 状态均如此），仅终局面板中可见。restart-btn 被放在 #end 面板内，而 render() 仅在 won/lost 时显示该面板，导致游玩中 Restart 不可见，直接违反该要求。文本 HUD 与对象状态 status 在所有 step 均为 match，无矛盾，本结论基于已执行操作（进入 playing 后的控件可见性）作出。",
+      "file": "game.js",
+      "excerpt": "endPanel.classList.toggle(\"hidden\", !(state.status === \"won\" || state.status === \"lost\"));",
+      "code_provenance": {
+        "file": "game.js",
+        "line": 59,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      }
+    }
+  ],
+  "limits": [
+    "未覆盖：相同 seed 的初始状态与时间表决定性未在探索中以显式 seed 重置验证（记录中重置均经 Restart，seed=null）",
+    "未覆盖：manifest 结构、视口 800×600 尺寸、isReady()、状态可序列化性未在探索文本中直接验证",
+    "未覆盖：菜单态或游玩中点击 stage/wrong 控件之外的边界行为（如游戏开始前点击 stage）未执行"
+  ],
+  "scope": "Model review of observed gameplay; code provenance is not independent proof of earliest reasoning error."
+}
