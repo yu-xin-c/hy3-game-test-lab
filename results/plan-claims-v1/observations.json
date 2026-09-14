@@ -1,0 +1,203 @@
+{
+  "source_plan_sha256": "89864026d1c0ca71f36ef69ed8646dd351bd44d8176f9c1b4db464c682b2c056",
+  "game_hashes": {
+    "game.js": "2ec0f96bfbf612f681f2c0ec0e00febb9612b1eb16ac53ce889c0b19e9ad8444",
+    "game.manifest.json": "2af7aca3c8da6142f73bb9a74c65a8b4d908b1e6b55f2b9a3fe75cdd99d0f28a",
+    "index.html": "283a81d071fbb09a252ccf42f9ec4bc5a74b374e6cf4e1daa5c223ef3863e77c",
+    "styles.css": "4d7980f17086f59e8283e900ad2e51b823356156f4db0a896398b988ae3bfe65"
+  },
+  "observations": [
+    {
+      "repeat": 1,
+      "dom": {
+        "selectors": [
+          {
+            "selector": "#signal-canvas",
+            "exists": true
+          },
+          {
+            "selector": "#start-btn",
+            "exists": true
+          },
+          {
+            "selector": "#restart-btn",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"score\"]",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"status\"]",
+            "exists": true
+          }
+        ],
+        "width": 800,
+        "height": 600
+      },
+      "reset_seed": 1,
+      "resets": [
+        {
+          "tick": 1,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        {
+          "tick": 1,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "dom": {
+        "selectors": [
+          {
+            "selector": "#signal-canvas",
+            "exists": true
+          },
+          {
+            "selector": "#start-btn",
+            "exists": true
+          },
+          {
+            "selector": "#restart-btn",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"score\"]",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"status\"]",
+            "exists": true
+          }
+        ],
+        "width": 800,
+        "height": 600
+      },
+      "reset_seed": 1,
+      "resets": [
+        {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        }
+      ]
+    },
+    {
+      "repeat": 3,
+      "dom": {
+        "selectors": [
+          {
+            "selector": "#signal-canvas",
+            "exists": true
+          },
+          {
+            "selector": "#start-btn",
+            "exists": true
+          },
+          {
+            "selector": "#restart-btn",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"score\"]",
+            "exists": true
+          },
+          {
+            "selector": "[data-testid=\"status\"]",
+            "exists": true
+          }
+        ],
+        "width": 800,
+        "height": 600
+      },
+      "reset_seed": 1,
+      "resets": [
+        {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "phase": "menu",
+            "round": 1,
+            "lives": 3,
+            "score": 0,
+            "progress": 0,
+            "sequence": [],
+            "last_feedback": ""
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        }
+      ]
+    }
+  ]
+}

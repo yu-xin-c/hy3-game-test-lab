@@ -1,0 +1,15 @@
+{
+  "scope": "Selected explicit verification assertions only; related prefixes from one game",
+  "gold": [
+    {
+      "id": "prefix-1",
+      "has_error": false,
+      "first_error_step": null
+    },
+    {
+      "id": "prefix-2",
+      "has_error": true,
+      "first_error_step": 2
+    }
+  ]
+}

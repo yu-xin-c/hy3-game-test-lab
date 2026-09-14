@@ -1,0 +1,315 @@
+[
+  {
+    "id": "prefix-1",
+    "steps": [
+      {
+        "id": 1,
+        "requirement": "搭建 800×600 的 DOM+Canvas2D 界面，含 #signal-canvas、#start-btn、#restart-btn 与 HUD（Round/Lives/Score/phase/status），并提供 [data-testid=\"score\"] 与 [data-testid=\"status\"]。",
+        "implementation": "index.html 放置固定 800×600 容器，canvas 宽高属性 800×600，四区域各 400×300（红左上、绿右上、蓝左下、黄右下）。styles.css 不加载任何网络/字体/CDN 资源。HUD 文本节点显示 Round: n/3、Lives: n/3、Score: n、phase 文案（Watch/Repeat）与 status；status 节点 data-testid=\"status\" 仅显示 Menu/Playing/Won/Lost 之一，score 节点 data-testid=\"score\" 显示整数。",
+        "verification": "运行后用 DOM 选择器确认 #signal-canvas、#start-btn、#restart-btn、[data-testid=\"score\"]、[data-testid=\"status\"] 均存在，且 #signal-canvas 的 width/height 为 800/600。"
+      }
+    ],
+    "scope": "Only assess the explicitly observed verification assertions: step1 element existence and canvas dimensions; step2 sequence/progress immediately after reset(seed=1) and repeat reset. Do not assess implementation text, other seeds, or unobserved claims.",
+    "observations": [
+      {
+        "repeat": 1,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        }
+      },
+      {
+        "repeat": 2,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        }
+      },
+      {
+        "repeat": 3,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        }
+      }
+    ]
+  },
+  {
+    "id": "prefix-2",
+    "steps": [
+      {
+        "id": 1,
+        "requirement": "搭建 800×600 的 DOM+Canvas2D 界面，含 #signal-canvas、#start-btn、#restart-btn 与 HUD（Round/Lives/Score/phase/status），并提供 [data-testid=\"score\"] 与 [data-testid=\"status\"]。",
+        "implementation": "index.html 放置固定 800×600 容器，canvas 宽高属性 800×600，四区域各 400×300（红左上、绿右上、蓝左下、黄右下）。styles.css 不加载任何网络/字体/CDN 资源。HUD 文本节点显示 Round: n/3、Lives: n/3、Score: n、phase 文案（Watch/Repeat）与 status；status 节点 data-testid=\"status\" 仅显示 Menu/Playing/Won/Lost 之一，score 节点 data-testid=\"score\" 显示整数。",
+        "verification": "运行后用 DOM 选择器确认 #signal-canvas、#start-btn、#restart-btn、[data-testid=\"score\"]、[data-testid=\"status\"] 均存在，且 #signal-canvas 的 width/height 为 800/600。"
+      },
+      {
+        "id": 2,
+        "requirement": "基于固定 seed 生成三回合序列，保证 seed 相同序列相同，且每个输入只对应一次颜色判断。",
+        "implementation": "序列由 round 固定查表：round1=[RED,BLUE]、round2=[GREEN,YELLOW,RED]、round3=[BLUE,RED,YELLOW,GREEN]；reset({seed}) 采用 mulberry32(seed) 保证确定性（本题序列为常量，seed 仅用于确定性契约）。state.sequence 为当前回合颜色数组，state.progress 为已正确输入索引（0 起）。区域点击只取单击位置所在象限一次，与 sequence[progress] 比较一次。",
+        "verification": "调用 reset({seed:1}) 后 observe().state.sequence 等于 [\"RED\",\"BLUE\"] 且 progress=0；再次 reset 相同 seed 得到相同 sequence；不同 seed 也得到相同三回合序列（确定性满足）。"
+      }
+    ],
+    "scope": "Only assess the explicitly observed verification assertions: step1 element existence and canvas dimensions; step2 sequence/progress immediately after reset(seed=1) and repeat reset. Do not assess implementation text, other seeds, or unobserved claims.",
+    "observations": [
+      {
+        "repeat": 1,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        },
+        "reset_seed": 1,
+        "resets": [
+          {
+            "tick": 1,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          {
+            "tick": 1,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 2,
+            "latest_event_seq": 1
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        },
+        "reset_seed": 1,
+        "resets": [
+          {
+            "tick": 0,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          {
+            "tick": 0,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 2,
+            "latest_event_seq": 1
+          }
+        ]
+      },
+      {
+        "repeat": 3,
+        "dom": {
+          "selectors": [
+            {
+              "selector": "#signal-canvas",
+              "exists": true
+            },
+            {
+              "selector": "#start-btn",
+              "exists": true
+            },
+            {
+              "selector": "#restart-btn",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"score\"]",
+              "exists": true
+            },
+            {
+              "selector": "[data-testid=\"status\"]",
+              "exists": true
+            }
+          ],
+          "width": 800,
+          "height": 600
+        },
+        "reset_seed": 1,
+        "resets": [
+          {
+            "tick": 0,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          {
+            "tick": 0,
+            "status": "menu",
+            "state": {
+              "status": "menu",
+              "phase": "menu",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0,
+              "sequence": [],
+              "last_feedback": ""
+            },
+            "event_epoch": 2,
+            "latest_event_seq": 1
+          }
+        ]
+      }
+    ]
+  }
+]

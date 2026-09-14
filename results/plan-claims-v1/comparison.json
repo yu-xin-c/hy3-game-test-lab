@@ -1,0 +1,31 @@
+{
+  "scope": "Two related prefixes, one original Hy3 game; not generalization accuracy or complete-plan validation.",
+  "comparison": [
+    {
+      "id": "prefix-1",
+      "has_error": false,
+      "first_error_step": null,
+      "review": {
+        "id": "prefix-1",
+        "model": "hy3",
+        "has_error": false,
+        "first_error_step": null,
+        "explanation": "观测3次repeat均确认#signal-canvas、#start-btn、#restart-btn、[data-testid=\"score\"]、[data-testid=\"status\"]存在，且canvas width/height=800/600，与step1 verification断言一致，无反驳。"
+      },
+      "exact_match": true
+    },
+    {
+      "id": "prefix-2",
+      "has_error": true,
+      "first_error_step": 2,
+      "review": {
+        "id": "prefix-2",
+        "model": "hy3",
+        "has_error": true,
+        "first_error_step": 2,
+        "explanation": "Step1 全部元素存在且 canvas 800×600 已观测确认通过。Step2 断言 reset(seed=1) 后 state.sequence 应等于 [\"RED\",\"BLUE\"]，但三次实测观测均显示 sequence=[]（空数组），progress=0 符合。sequence 与预期不符，为首个被反驳的断言。"
+      },
+      "exact_match": true
+    }
+  ]
+}

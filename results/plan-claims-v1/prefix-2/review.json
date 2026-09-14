@@ -1,0 +1,7 @@
+{
+  "id": "prefix-2",
+  "model": "hy3",
+  "has_error": true,
+  "first_error_step": 2,
+  "explanation": "Step1 全部元素存在且 canvas 800×600 已观测确认通过。Step2 断言 reset(seed=1) 后 state.sequence 应等于 [\"RED\",\"BLUE\"]，但三次实测观测均显示 sequence=[]（空数组），progress=0 符合。sequence 与预期不符，为首个被反驳的断言。"
+}
