@@ -11,6 +11,11 @@
       "task_id": "maze-collector",
       "status": "reviewed",
       "assertions": 68
+    },
+    {
+      "task_id": "key-door-escape",
+      "status": "failed",
+      "error": "Error: Unmatched public quote A24"
     }
   ]
 }

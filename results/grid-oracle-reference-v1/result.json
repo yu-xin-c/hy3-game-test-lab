@@ -1,0 +1,1006 @@
+{
+  "source": "results/infra-recovery/evidence/key-door-escape/task",
+  "brief_sha256": "adaa758c150b89be1e9bb0215cee2c76d1440c87193da680ca4dee22d4610415",
+  "plan_sha256": "34ec53ea79dbb93c52a1b6674189170093b708d751ba629c99ae847e4512578a",
+  "oracle_sha256": "cfb5d54b8e2d391e821c101ef60f9cdc28532990c31da50c1b6d0d42b0ddeb5b",
+  "map": [
+    "########",
+    "#S..D.E#",
+    "#.#.#..#",
+    "#K..T..#",
+    "########"
+  ],
+  "reference_sha256": "c5a1ee4f7ab0e02d4e40922afba0334d4783a66a1108d30f019742166c55bea3",
+  "scope": "Independent public-rule state reference; no generated game code or Hy3 judgments used. UI/events/controls not certified.",
+  "counts": {
+    "matched": 36,
+    "not_determined": 2
+  },
+  "rows": [
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-START",
+      "action_index": 0,
+      "path": "status",
+      "expected": "playing",
+      "reference": "playing",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-BLOCKED",
+      "action_index": 3,
+      "path": "player.x",
+      "expected": 3,
+      "reference": 3,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-BLOCKED",
+      "action_index": 3,
+      "path": "player.y",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-BLOCKED",
+      "action_index": 3,
+      "path": "has_key",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-BLOCKED",
+      "action_index": 3,
+      "path": "door_open",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-KEY",
+      "action_index": 7,
+      "path": "player.x",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-KEY",
+      "action_index": 7,
+      "path": "player.y",
+      "expected": 3,
+      "reference": 3,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-KEY",
+      "action_index": 7,
+      "path": "lives",
+      "expected": 2,
+      "reference": 2,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-KEY",
+      "action_index": 7,
+      "path": "has_key",
+      "expected": true,
+      "reference": true,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-KEY",
+      "action_index": 7,
+      "path": "door_open",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-OPEN",
+      "action_index": 12,
+      "path": "player.x",
+      "expected": 4,
+      "reference": 4,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-OPEN",
+      "action_index": 12,
+      "path": "player.y",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-OPEN",
+      "action_index": 12,
+      "path": "has_key",
+      "expected": true,
+      "reference": true,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-DOOR-OPEN",
+      "action_index": 12,
+      "path": "door_open",
+      "expected": true,
+      "reference": true,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "status",
+      "expected": "won",
+      "reference": "won",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "player.x",
+      "expected": 6,
+      "reference": 6,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "player.y",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "lives",
+      "expected": 2,
+      "reference": 2,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "has_key",
+      "expected": true,
+      "reference": true,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "win-path",
+      "checkpoint": "KD-CP-WON",
+      "action_index": 14,
+      "path": "door_open",
+      "expected": true,
+      "reference": true,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "key-door-escape-loss-path-started",
+      "action_index": 0,
+      "path": "status",
+      "expected": "playing",
+      "reference": "playing",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "status",
+      "expected": "playing",
+      "reference": "playing",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "player.x",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "player.y",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "lives",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "has_key",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-TRAP-1",
+      "action_index": 5,
+      "path": "door_open",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-LOST",
+      "action_index": 10,
+      "path": "status",
+      "expected": "lost",
+      "reference": "lost",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-LOST",
+      "action_index": 10,
+      "path": "lives",
+      "expected": 0,
+      "reference": 0,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-LOST",
+      "action_index": 10,
+      "path": "has_key",
+      "expected": true,
+      "reference": null,
+      "verdict": "not_determined"
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoint": "KD-CP-LOST",
+      "action_index": 10,
+      "path": "door_open",
+      "expected": false,
+      "reference": null,
+      "verdict": "not_determined"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "key-door-escape-restart-path-started",
+      "action_index": 0,
+      "path": "status",
+      "expected": "playing",
+      "reference": "playing",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "status",
+      "expected": "menu",
+      "reference": "menu",
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "player.x",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "player.y",
+      "expected": 1,
+      "reference": 1,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "lives",
+      "expected": 2,
+      "reference": 2,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "has_key",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoint": "KD-CP-RESET",
+      "action_index": 2,
+      "path": "door_open",
+      "expected": false,
+      "reference": false,
+      "verdict": "matched"
+    }
+  ],
+  "traces": [
+    {
+      "scenario_id": "win-path",
+      "trace": [
+        {
+          "action_index": 0,
+          "action": {
+            "kind": "input",
+            "action_id": "START",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-START"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 1,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 2,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 3,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 3,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-DOOR-BLOCKED"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 3,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 4,
+          "action": {
+            "kind": "input",
+            "action_id": "LEFT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 5,
+          "action": {
+            "kind": "input",
+            "action_id": "LEFT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 6,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 2
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 7,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-KEY"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 3
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 8,
+          "action": {
+            "kind": "input",
+            "action_id": "UP",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 2
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 9,
+          "action": {
+            "kind": "input",
+            "action_id": "UP",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 10,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 11,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 3,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 12,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-DOOR-OPEN"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 4,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": true
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 13,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 5,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": true
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 14,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-WON"
+            ]
+          },
+          "state": {
+            "status": "won",
+            "player": {
+              "x": 6,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": true
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 15,
+          "action": {
+            "kind": "advance_time",
+            "advance_ms": 32,
+            "checkpoints": [
+              "KD-CP-WON-UI"
+            ]
+          },
+          "state": {
+            "status": "won",
+            "player": {
+              "x": 6,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": true
+          },
+          "unknown_fields": []
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "trace": [
+        {
+          "action_index": 0,
+          "action": {
+            "kind": "input",
+            "action_id": "START",
+            "advance_ms": 0,
+            "checkpoints": [
+              "key-door-escape-loss-path-started"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 1,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 2
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 2,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 3
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 3,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 3
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 4,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 3,
+              "y": 3
+            },
+            "lives": 2,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 5,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-TRAP-1"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 1,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 6,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 2
+            },
+            "lives": 1,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 7,
+          "action": {
+            "kind": "input",
+            "action_id": "DOWN",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 3
+            },
+            "lives": 1,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 8,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 3
+            },
+            "lives": 1,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 9,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 3,
+              "y": 3
+            },
+            "lives": 1,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 10,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-LOST"
+            ]
+          },
+          "state": {
+            "status": "lost",
+            "player": {
+              "x": 4,
+              "y": 3
+            },
+            "lives": 0,
+            "has_key": true,
+            "door_open": false
+          },
+          "unknown_fields": [
+            "player.x",
+            "player.y",
+            "has_key",
+            "door_open"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "trace": [
+        {
+          "action_index": 0,
+          "action": {
+            "kind": "input",
+            "action_id": "START",
+            "advance_ms": 0,
+            "checkpoints": [
+              "key-door-escape-restart-path-started"
+            ]
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 1,
+          "action": {
+            "kind": "input",
+            "action_id": "RIGHT",
+            "advance_ms": 0,
+            "checkpoints": []
+          },
+          "state": {
+            "status": "playing",
+            "player": {
+              "x": 2,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        },
+        {
+          "action_index": 2,
+          "action": {
+            "kind": "input",
+            "action_id": "RESTART",
+            "advance_ms": 0,
+            "checkpoints": [
+              "KD-CP-RESET"
+            ]
+          },
+          "state": {
+            "status": "menu",
+            "player": {
+              "x": 1,
+              "y": 1
+            },
+            "lives": 2,
+            "has_key": false,
+            "door_open": false
+          },
+          "unknown_fields": []
+        }
+      ]
+    }
+  ]
+}

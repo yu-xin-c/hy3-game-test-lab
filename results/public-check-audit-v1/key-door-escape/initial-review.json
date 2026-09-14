@@ -1,0 +1,364 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "公开要求默认玩家为 primary，START 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "\"action_id\": \"START\", \"actor\": \"primary\", \"device\": \"mouse\", \"key_event\": \"press\", \"selector\": \"#start-btn\"",
+      "reason": "公开 manifest 示例中 START 控件 device 即为 mouse。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"action_id\": \"START\", \"actor\": \"primary\", \"device\": \"mouse\", \"key_event\": \"press\", \"selector\": \"#start-btn\"",
+      "reason": "公开 manifest 示例中 START 控件 key_event 即为 press。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "#start-btn、`#restart-btn`；`#board`",
+      "reason": "自动测试接口明文规定 #start-btn 为开始按钮，START 对应此 selector。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "UP 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "方向键即键盘设备，UP 用 keyboard 受此支持。"
+    },
+    {
+      "id": "A7",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开要求只规定方向键用键盘及 code 字段，未规定 key_event 取 press 还是 down（示例分别出现 press 与 down），无法唯一推出 UP.key_event=press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "方向键含上方向键，结合键盘控件使用 code 的约定，上键 code 为 ArrowUp。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "DOWN 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "方向键为键盘设备，DOWN 用 keyboard 受此支持。"
+    },
+    {
+      "id": "A11",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 DOWN 的 key_event 类型，press/down 均可，无法唯一推出 press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "下方向键 code 为 ArrowDown，受方向键要求与 code 约定支持。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "LEFT 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "方向键为键盘设备，LEFT 用 keyboard 受此支持。"
+    },
+    {
+      "id": "A15",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 LEFT 的 key_event 类型，无法唯一推出 press。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "左方向键 code 为 ArrowLeft，受方向键要求与 code 约定支持。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "RIGHT 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "方向键为键盘设备，RIGHT 用 keyboard 受此支持。"
+    },
+    {
+      "id": "A19",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开未规定 RIGHT 的 key_event 类型，无法唯一推出 press。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "玩家用方向键逐格移动。",
+      "reason": "右方向键 code 为 ArrowRight，受方向键要求与 code 约定支持。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "RESTART 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "#start-btn、`#restart-btn`；`#board`",
+      "reason": "RESTART 对应 #restart-btn 按钮，鼠标+selector 控件约定适用于按钮，device=mouse 成立。"
+    },
+    {
+      "id": "A23",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开仅对 START 示例给出 key_event=press，未规定 RESTART 鼠标控件的 key_event 类型，无法唯一推出 press。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "#start-btn、`#restart-btn`；`#board`",
+      "reason": "自动测试接口规定 #restart-btn，RESTART 对应此 selector。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "RESTART_KEY 属默认玩家，actor=primary 成立。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "键盘 R 返回菜单，RESTART_KEY 用 keyboard 受此支持。"
+    },
+    {
+      "id": "A27",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开仅说明键盘 R 返回菜单，未规定 RESTART_KEY 的 key_event 类型，无法唯一推出 press。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "键盘 R 键，结合键盘控件使用 code 的约定，R 键 code 为 KeyR。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "status 只能是 menu、playing、won、lost",
+      "reason": "开始且未分胜负时状态为 playing，该枚举包含 playing 并覆盖进行中状态。"
+    },
+    {
+      "id": "A30",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "event_scope=since_previous_checkpoint 是评测器在检查点之间采样事件的内部约定，公开要求未规定事件按检查点分域。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 game_started",
+      "reason": "点击 Start 后必须记录 game_started，启动检查点出现该事件受此支持。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "#S..D.E#",
+      "reason": "地图中 D 在列4，无钥匙时门阻挡，玩家停在列3，player.x=3 由地图几何推出。"
+    },
+    {
+      "id": "A33",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "地图将门/出口/起点置于第1行（y=1），仅钥匙/陷阱在第3行（y=3）；对所列 door-blocked/door-open/won/reset 检查点公开推出 y=1，无法唯一推出 y=3。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "没有钥匙时门会阻挡玩家",
+      "reason": "取钥匙前及复活/重开后钥匙复位，has_key=false 受此支持。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "拿到钥匙后，再次进入门格会把门永久打开",
+      "reason": "进入门格前门未开，door_open=false 受此支持。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "没有钥匙时门会阻挡玩家",
+      "reason": "无钥匙撞门触发 door_blocked，事件列表亦含 door_blocked。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "#K..T..#",
+      "reason": "K 在列1行3，取钥匙点、复活回起点(1,1)及重开均使 player.x=1，由地图与规则推出。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "#K..T..#",
+      "reason": "K 在行3，取钥匙时 player.y=3 由地图推出。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "玩家初始有 2 条生命",
+      "reason": "初始及未踩陷阱的胜利路径、重开均恢复 2 条生命，lives=2 受此支持。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "K 是钥匙",
+      "reason": "取得钥匙后 has_key=true，直至本局结束，所列检查点均持钥。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "player_moved",
+      "reason": "玩家逐格移动产生 player_moved，事件列表含该类型。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "key_collected",
+      "reason": "拾取钥匙触发 key_collected，事件列表含该类型。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "#S..D.E#",
+      "reason": "持钥进入门格 D 位于列4，player.x=4 由地图推出。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "拿到钥匙后，再次进入门格会把门永久打开",
+      "reason": "持钥进入门格门永久打开，door_open=true 受此支持。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "door_opened",
+      "reason": "开门触发 door_opened，事件列表含该类型。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "打开门并进入出口：`won`",
+      "reason": "开门到达出口即 won，状态值受此支持。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "#S..D.E#",
+      "reason": "E 在列6，到达出口 player.x=6 由地图推出。"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "public_quote": "game_won",
+      "reason": "胜利触发 game_won，事件列表含该类型。"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "public_quote": "[data-testid=\"score\"] 显示生命与钥匙；[data-testid=\"status\"] 显示状态",
+      "reason": "score 选择器必须存在并显示内容，visible=true 受此支持。"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "public_quote": "[data-testid=\"score\"] 显示生命与钥匙；[data-testid=\"status\"] 显示状态",
+      "reason": "status 选择器必须存在并显示内容，visible=true 受此支持。"
+    },
+    {
+      "id": "A51",
+      "verdict": "supported",
+      "public_quote": "HUD 显示 `Lives: n/2`、是否持有钥匙、门的状态和当前状态",
+      "reason": "score 需显示生命与钥匙，内容非空受此支持。"
+    },
+    {
+      "id": "A52",
+      "verdict": "supported",
+      "public_quote": "状态文字忽略大小写及连续空白",
+      "reason": "状态文案忽略大小写，且 won 为合法状态值，Won(ignore_case) 受此支持。"
+    },
+    {
+      "id": "A53",
+      "verdict": "supported",
+      "public_quote": "踩到陷阱损失 1 条生命",
+      "reason": "初始 2 条生命，踩一次陷阱后 lives=1 受此支持。"
+    },
+    {
+      "id": "A54",
+      "verdict": "supported",
+      "public_quote": "trap_hit",
+      "reason": "踩陷阱触发 trap_hit，事件列表含该类型。"
+    },
+    {
+      "id": "A55",
+      "verdict": "supported",
+      "public_quote": "player_respawned",
+      "reason": "陷阱后回到起点触发 player_respawned，事件列表含该类型。"
+    },
+    {
+      "id": "A56",
+      "verdict": "supported",
+      "public_quote": "生命归零：`lost`",
+      "reason": "生命归零状态为 lost，受此支持。"
+    },
+    {
+      "id": "A57",
+      "verdict": "supported",
+      "public_quote": "生命归零立即失败",
+      "reason": "两次陷阱后生命归零 lives=0 受此支持。"
+    },
+    {
+      "id": "A58",
+      "verdict": "supported",
+      "public_quote": "game_lost",
+      "reason": "失败触发 game_lost，事件列表含该类型。"
+    },
+    {
+      "id": "A59",
+      "verdict": "supported",
+      "public_quote": "返回菜单",
+      "reason": "Restart 返回菜单，重开后 status=menu 受此支持。"
+    },
+    {
+      "id": "A60",
+      "verdict": "supported",
+      "public_quote": "重新从 seq=1 记录 game_reset",
+      "reason": "reset/重开记录 game_reset，事件列表含该类型。"
+    }
+  ]
+}

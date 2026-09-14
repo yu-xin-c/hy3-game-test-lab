@@ -17,3 +17,5 @@ pnpm exec tsx scripts/audit-public-checks.ts --out results/public-check-audit-v1
 首题 target-rush 的首次输出覆盖了 46 项，但有 5 项引文不在公开原文中，原结果被拒绝，未计为完成。此类错误属于核对模型的证据引用问题，不是游戏缺陷，也不能用于修订判据。
 
 纠正后 target-rush 的 46 项均通过覆盖与引用校验：模型标记 36 项 supported、7 项 ambiguous、3 项 test_mechanics。这些是模型标签，不是确认数量。继续核对发现 A31 的 supported 不应直接采纳：引文“目标立即移动到由 seed 决定的下一个位置”没有明确规定终局 target_index 必须为 5；它可以表示当前目标编号，也可以表示已完成数量，公开题面只要求该字段存在。原判断保留，不用真实引文掩盖语义跳步，也不据此认证该检查。
+
+key-door-escape 首次输出对 A33 的解释读错了期望值：原检查为 player.y=1，解释却声称要求 y=3。独立网格路径核验确认相关 y=1 检查成立，见[参考计算](../grid-oracle-reference-v1/README.md)。该题的引文纠正仍有无效引用，当前批次停止，尚未计入完成数量；初次输出保留为失败证据。
