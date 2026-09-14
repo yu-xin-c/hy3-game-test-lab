@@ -1,0 +1,32 @@
+[
+  {
+    "task_id": "target-rush",
+    "reviewer": null,
+    "actual_game_defect": null,
+    "code_location_correct": null,
+    "tool_step_attribution_correct": null,
+    "first_reasoning_error_step": null,
+    "false_positive": null,
+    "notes": null
+  },
+  {
+    "task_id": "platform-rescue",
+    "reviewer": null,
+    "actual_game_defect": null,
+    "code_location_correct": null,
+    "tool_step_attribution_correct": null,
+    "first_reasoning_error_step": null,
+    "false_positive": null,
+    "notes": null
+  },
+  {
+    "task_id": "signal-memory",
+    "reviewer": null,
+    "actual_game_defect": null,
+    "code_location_correct": null,
+    "tool_step_attribution_correct": null,
+    "first_reasoning_error_step": null,
+    "false_positive": null,
+    "notes": null
+  }
+]

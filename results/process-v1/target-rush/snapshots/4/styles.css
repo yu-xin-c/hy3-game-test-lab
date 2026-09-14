@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #1a1a2e;
+  color: #eeeeee;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#game {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  background: #16213e;
+  overflow: hidden;
+  border: 2px solid #0f3460;
+}
+
+#hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 12px;
+  background: #0f3460;
+  z-index: 20;
+  font-size: 14px;
+}
+
+#hud button {
+  margin-left: auto;
+}
+
+#playfield {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+#target {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(15, 52, 96, 0.92);
+  text-align: center;
+  z-index: 10;
+  padding: 24px;
+}
+
+#endscreen {
+  z-index: 9;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  background: #e94560;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff5c77;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+p {
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.5;
+}

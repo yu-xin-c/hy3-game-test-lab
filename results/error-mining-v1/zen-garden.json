@@ -1,0 +1,247 @@
+{
+  "id": "zen-garden",
+  "kind": "stale_terminal_hud",
+  "rule": "第二次错误操作时立即失败，HUD 应显示 Lost。",
+  "excerpt": "function wrongAction() {",
+  "source": "results/full-96/evidence/zen-garden",
+  "difficulty": "D3",
+  "generator": "hy3",
+  "game_sha256": "c820e98fe07734f95c738c8858696a161b6aaa908f6ea56575f25ef8c62f954a",
+  "history_complete": true,
+  "history_issues": [],
+  "code_provenance": {
+    "file": "game.js",
+    "line": 128,
+    "contributing_tool_steps": [
+      3
+    ],
+    "meaning": "code provenance only; not proof of earliest reasoning error"
+  },
+  "first_reasoning_error": null,
+  "human_review": null,
+  "runs": [
+    {
+      "repeat": 0,
+      "reproduced": true,
+      "restartVisible": true,
+      "trace": [
+        {
+          "action": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Menu",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "START + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 1,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "wait 1000ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        }
+      ],
+      "errors": [],
+      "external_requests": []
+    },
+    {
+      "repeat": 1,
+      "reproduced": true,
+      "restartVisible": true,
+      "trace": [
+        {
+          "action": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Menu",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "START + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 1,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "wait 1000ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        }
+      ],
+      "errors": [],
+      "external_requests": []
+    },
+    {
+      "repeat": 2,
+      "reproduced": true,
+      "restartVisible": true,
+      "trace": [
+        {
+          "action": "menu",
+          "state": {
+            "status": "menu",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Menu",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "START + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 2,
+            "last_action": "",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "playing",
+            "progress": 0,
+            "score": 0,
+            "lives": 1,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "WRONG + 100ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        },
+        {
+          "action": "wait 1000ms",
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+        }
+      ],
+      "errors": [],
+      "external_requests": []
+    }
+  ],
+  "scope": "Browser-reproduced candidate; source provenance is not an independently confirmed reasoning-error step"
+}

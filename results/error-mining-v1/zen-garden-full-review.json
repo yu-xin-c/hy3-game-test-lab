@@ -1,0 +1,27 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "receipt_directory": "zen-garden-full-review-call",
+  "requirements_scope": "original_public_generation_prompt",
+  "verdict": {
+    "defect_supported": true,
+    "error_type": "HUD与游戏状态不同步",
+    "first_observed_action": "WRONG + 100ms",
+    "explanation": "执行记录在第一次 WRONG 后 observe() 返回 state.lives=1，但 HUD 文本仍为 '分数 0 · 进度 0/3 · 生命 2'（生命显示 2）；第二次 WRONG 后 state.status='lost'、lives=0，而 HUD 仍显示 'Playing' 与 '生命 2'，且末尾又等待 1000ms 仍不变。说明 HUD 文本从未随状态更新（非未刷一帧，而是根本未调用刷新）。根因是 game.js 的 wrongAction() 在修改 state 后未调用 updateHUD()/updateOverlay()（对比 stage() 末尾会调用），致使 HUD 状态/生命与终局界面均不反映真实状态，违反 'HUD 始终显示分数或进度以及状态 Menu/Playing/Won/Lost' 且终局界面未可见。",
+    "file": "game.js",
+    "excerpt": "  function wrongAction() {\n    if (state.status !== 'playing') return;\n    emit('action_rejected', {});\n    state.progress = 0;\n    emit('progress_reset', {});\n    state.lives -= 1;\n    state.last_action = 'wrong';\n    if (state.lives <= 0) {\n      state.lives = 0;\n      saveState();\n      state.status = 'lost';\n      emit('game_lost', {});\n    } else {\n      saveState();\n    }\n  }",
+    "limits": [
+      "执行记录仅覆盖 WRONG 错误操作路径，未验证 STAGE_1/2/3 正常完成计分、胜利判定及刷新后 localStorage 恢复等路径",
+      "仅能依据 HUD 文本与 observe() 返回状态对比确认界面未刷新，不能凭此记录断言阶段完成、存档恢复等其他功能是否正确"
+    ]
+  },
+  "code_provenance": {
+    "file": "game.js",
+    "line": 128,
+    "contributing_tool_steps": [
+      3
+    ],
+    "meaning": "code provenance only; not proof of earliest reasoning error"
+  },
+  "human_review": null
+}

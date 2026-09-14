@@ -1,0 +1,4127 @@
+{
+  "schema_version": "gametestlab.formal-task-result.v1",
+  "task_id": "target-rush",
+  "title": "Target Rush",
+  "category": "action",
+  "features": [],
+  "difficulty": {
+    "level": "D1",
+    "rationale": "单一点击循环，状态少，但同时覆盖倒计时、错误点击和重开。"
+  },
+  "generator": "codebuddy-hy3",
+  "evaluation_context": "frozen_task_evaluation",
+  "checking_policy_version": "2026-09-12.3",
+  "status": "evaluated_with_contract_findings",
+  "started_at": "2026-09-14T14:13:18.734Z",
+  "finished_at": "2026-09-14T14:13:39.609Z",
+  "replay_count": 3,
+  "browser": {
+    "name": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "input_hashes": {
+    "test_plan_sha256": "0b2655ac715ad989731d24971aead22ee3d45c6251ebd49b06f8963659a14427",
+    "oracle_sha256": "148c0e8d096844731e5ab120fba4478801049f4a910fd13d2fba9a4d7e9a3419",
+    "evaluator_sha256": "26ea156c2d9354946afcbd40d1edf77066e47b2f267b750d6f331c4967f1da80",
+    "runner_sha256": "64458f4bbf237000a7ce33b24c5af1171741da8f3c5de26f6f9540d26b30b207",
+    "frozen_task_sha256": "c0608d7078279cfdefa5b17571b341b2b730fed0c9e506042268d6bbf089f2c5",
+    "game_directory_sha256": "8724f973c7dc5adceac574b3687fed2e442b0410cd50649359d9641aafd864a0",
+    "game_manifest_sha256": "1d359e69c811b71e47d29ab768e68dc2f192274cb94e6826245d00d948b7d8e1"
+  },
+  "aggregate": {
+    "contract_pass": false,
+    "scenario_runs": 12,
+    "process_passes": 12,
+    "final_passes": 12,
+    "lucky_passes": 0,
+    "L1_passes": 12,
+    "L2_passes": 12,
+    "L3_passes": 3
+  },
+  "contract": {
+    "conformant": false,
+    "findings": [
+      {
+        "path": "game.manifest.json",
+        "message": "Generated game does not match task target-rush:\n- control MISS.selector does not match\n- control MISS.x_ratio does not match\n- control MISS.y_ratio does not match\n- control RESTART_KEY.key_event does not match"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "replay_index": 0,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "pass"
+        },
+        "highest_certified_level": "L3",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "TR-CP-START",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-HIT-1",
+          "state": {
+            "status": "playing",
+            "score": 1,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 1
+          },
+          "ui": {
+            "scoreText": "Score: 1/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 1/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 64.15625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 268.125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/target-rush-action-01.png",
+            "state_hash": "a2b77d83317f6ed1521a04403fa2cd2cef3366b6476b361a23251b165d9e3208"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "TR-CP-WON",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/target-rush-action-05.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "TR-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/target-rush-action-06.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-loss-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "TR-CP-MISS-LOST",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 3,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.125,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_missed",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "target_missed",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 1,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 2,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 3,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/target-rush-action-03.png",
+            "state_hash": "40336fa008d8716091b28afca635c6caf7ee91be33a3ba828d62b158af96b60f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "timeout-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-timeout-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/timeout-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-TIMEOUT",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.15625,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 20032,
+              "tick": 1252,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/timeout-path/target-rush-action-01.png",
+            "state_hash": "f1564bbab6f5c933d03c334a824d057e497160d4c920bde71b663a355f300e60"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-restart-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "TR-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/target-rush-action-02.png",
+            "state_hash": "7dabba77648f8789300fba6b8d55b109432c8dbb45e7e42740a7c21e3ecfad8d"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "pass"
+        },
+        "highest_certified_level": "L3",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "TR-CP-START",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-HIT-1",
+          "state": {
+            "status": "playing",
+            "score": 1,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 1
+          },
+          "ui": {
+            "scoreText": "Score: 1/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 1/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 64.15625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 268.125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/target-rush-action-01.png",
+            "state_hash": "a2b77d83317f6ed1521a04403fa2cd2cef3366b6476b361a23251b165d9e3208"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "TR-CP-WON",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/target-rush-action-05.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "TR-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/target-rush-action-06.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-loss-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "TR-CP-MISS-LOST",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 3,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.125,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_missed",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "target_missed",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 1,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 2,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 3,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/target-rush-action-03.png",
+            "state_hash": "40336fa008d8716091b28afca635c6caf7ee91be33a3ba828d62b158af96b60f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "timeout-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-timeout-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/timeout-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-TIMEOUT",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.15625,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 20032,
+              "tick": 1252,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/timeout-path/target-rush-action-01.png",
+            "state_hash": "f1564bbab6f5c933d03c334a824d057e497160d4c920bde71b663a355f300e60"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-restart-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "TR-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/target-rush-action-02.png",
+            "state_hash": "7dabba77648f8789300fba6b8d55b109432c8dbb45e7e42740a7c21e3ecfad8d"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "pass"
+        },
+        "highest_certified_level": "L3",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "TR-CP-START",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-HIT-1",
+          "state": {
+            "status": "playing",
+            "score": 1,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 1
+          },
+          "ui": {
+            "scoreText": "Score: 1/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 1/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 64.15625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 268.125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/target-rush-action-01.png",
+            "state_hash": "a2b77d83317f6ed1521a04403fa2cd2cef3366b6476b361a23251b165d9e3208"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "TR-CP-WON",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_hit",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "target_hit",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/target-rush-action-05.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "TR-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "score": 5,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 5
+          },
+          "ui": {
+            "scoreText": "Score: 5/5",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 5/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.328125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 270.296875,
+                  "y": 17.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 2,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 2
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 3,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 3
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 4,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 4
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": [
+                "target_hit",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "score": 5,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/target-rush-action-06.png",
+            "state_hash": "822301b20d1580374a045cec5b95c0718bb000ac7e6e11371f497af318d40f3b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-loss-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "TR-CP-MISS-LOST",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 3,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.125,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "target_missed",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "target_missed",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 1,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 2,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 3,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "target_missed",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/target-rush-action-03.png",
+            "state_hash": "40336fa008d8716091b28afca635c6caf7ee91be33a3ba828d62b158af96b60f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "timeout-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-timeout-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/timeout-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "TR-CP-TIMEOUT",
+          "state": {
+            "status": "lost",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 0,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 262.15625,
+                  "y": 17.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 20032,
+              "tick": 1252,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 0,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/timeout-path/target-rush-action-01.png",
+            "state_hash": "f1564bbab6f5c933d03c334a824d057e497160d4c920bde71b663a355f300e60"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "target-rush",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "target-rush-restart-path-started",
+          "state": {
+            "status": "playing",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/target-rush-action-00.png",
+            "state_hash": "6dc5415168adf9769549a3983e37262fc5e39968127bf76a32e5358690af159a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "TR-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "misses": 0,
+            "remaining_ms": 20000,
+            "target_index": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0/5",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0/5",
+                "visible": true,
+                "rect": {
+                  "x": 14,
+                  "y": 17.5,
+                  "width": 66.484375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 270.453125,
+                  "y": 17.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 796,
+              "client_height": 596
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "score": 1,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 1
+              },
+              "event_types": [
+                "target_hit"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "misses": 0,
+                "remaining_ms": 20000,
+                "target_index": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/target-rush-action-02.png",
+            "state_hash": "7dabba77648f8789300fba6b8d55b109432c8dbb45e7e42740a7c21e3ecfad8d"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:53627/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "files": {
+    "result": "result.json",
+    "trace": "events.jsonl"
+  }
+}

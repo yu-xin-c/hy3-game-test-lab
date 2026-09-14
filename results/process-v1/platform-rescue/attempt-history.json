@@ -1,0 +1,24 @@
+{
+  "generation_attempts": [
+    {
+      "attempt": 1,
+      "requested_model": "hy3",
+      "model_verified": false,
+      "outcome": "empty_response_after_wait",
+      "response_bytes": 0,
+      "generated_files": 0,
+      "retained_directory": "generation-call-attempt-1",
+      "note": "The request did not yield a parseable response or game files. It is an infrastructure failure, not a game score. The complete original call directory is retained."
+    },
+    {
+      "attempt": 2,
+      "requested_model": "hy3",
+      "model_verified": false,
+      "outcome": "empty_response_after_wait",
+      "response_bytes": 0,
+      "generated_files": 0,
+      "retained_directory": "generation-call-attempt-2",
+      "note": "The process had already exited before a manual termination was attempted. No parseable response or game files were produced; this is not a game score."
+    }
+  ]
+}

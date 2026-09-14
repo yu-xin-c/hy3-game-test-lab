@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800, height=600">
+  <title>Target Rush</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game">
+    <div id="hud">
+      <span data-testid="score" id="score">Score: 0/5</span>
+      <span data-testid="misses" id="misses">Misses: 0/3</span>
+      <span data-testid="time" id="time">Time: 20.0</span>
+      <span data-testid="status" id="status">Menu</span>
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+
+    <div id="playfield">
+      <div id="target" style="display:none"></div>
+    </div>
+
+    <div id="menu" class="overlay">
+      <h1>Target Rush</h1>
+      <p>在 20 秒内连续击中 5 个移动目标即可获胜。</p>
+      <p>点错 3 次，或倒计时归零，则失败。</p>
+      <button id="start-btn" type="button">Start</button>
+    </div>
+
+    <div id="endscreen" class="overlay" style="display:none">
+      <h1 id="end-title"></h1>
+      <p id="end-msg"></p>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

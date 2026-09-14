@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=600" />
+  <title>Platform Rescue</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="hud">
+      <span data-testid="score">Lives: 3/3  Key: No</span>
+      <span data-testid="status">Menu</span>
+    </div>
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+    <div class="controls">
+      <button id="start-btn" type="button">Start</button>
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+    <p class="hint">Move: ← / → &nbsp; Jump: Space &nbsp; Restart: R</p>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

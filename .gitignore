@@ -10,3 +10,8 @@ test-results/
 *.log
 .DS_Store
 results/full-96/demo/
+results/process-localization-pilot/*/judge-response.raw.json
+results/process-v1/**/*.raw.json
+results/process-v1/**/*.raw.jsonl
+results/error-mining-v1/**/*.raw.json
+results/error-mining-v1/**/*.raw.jsonl

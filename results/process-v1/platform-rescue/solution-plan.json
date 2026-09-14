@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "固定步长物理与确定性：相同 seed、相同输入序列和相同虚拟时间必须产生完全相同的 tick、玩家位置与事件。",
+      "implementation": "采用累加器固定步长 dt=16ms（每 tick=16ms），物理与事件只在整数 tick 更新；PRNG 用 mulberry32(seed) 驱动任何随机量。player.sim_time_ms = tick*16。所有时间由 requestAnimationFrame/performance 驱动以兼容虚拟时间重放。",
+      "verification": "同一 seed 连续调用 reset 两次，施加完全相同输入序列后，对 observe() 返回的 player.x/y/vx/vy 与 latest_event_seq 做深比较，结果必须完全一致。"
+    },
+    {
+      "id": 2,
+      "requirement": "关卡布局与测试路径可行：按住右键并连续完成三次跳跃，可依次稳定落在 platform-1、platform-2、终点平台（end），且物体不穿模、不悬空、不越界。",
+      "implementation": "世界 800×600。地面 y=560,h=40；spawn(40,520,24,32)。platform-1(200,440,140,20)、platform-2(400,320,140,20)、end(620,200,140,20)，id 分别为 'ground','platform-1','platform-2','end'。尖刺(80,540,40,20)；钥匙(450,290)；门(650,140,30,60)。物理常量 gravity=0.6、moveSpeed=3、jumpVy=-11、maxFall=12。碰撞用 AABB 顶端吸附，仅当 vy>=0 且上一帧在台面之上才设 grounded 与 support_id。",
+      "verification": "tick0 发 RIGHT_DOWN，于 tick0/20/40 各发一次 JUMP，观察 player_landed 事件 support_id 依次为 'platform-1'、'platform-2'、'end'，随后 key_collected 与 game_won 依次触发，且全程无穿模（player 中心始终在台面顶 32px 容差内）。"
+    },
+    {
+      "id": 3,
+      "requirement": "输入映射与状态机：左右键改 vx，Space 仅当 grounded 跳跃；状态只能在 Menu/Playing/Won/Lost 间转换，终局停止物理与计分。",
+      "implementation": "控件 LEFT_DOWN/LEFT_UP/RIGHT_DOWN/RIGHT_UP 改 vx 符号（同按右优先）；JUMP 仅当 player.grounded 设 vy=jumpVy 并派 player_jumped（防止空中连跳）。START->playing 派 game_started；Won/Lost 后停下 tick 累加。RESTART/RESTART_KEY 调 reset 回菜单并恢复 3 命、钥匙归位、状态 menu。",
+      "verification": "非 grounded 时连发 3 次 JUMP 只产生 1 次 player_jumped；game_won 后 observe().status==='won' 且 sim_time_ms 不再增长；按 RESTART 后 lives===3、has_key===false、status==='menu'。"
+    },
+    {
+      "id": 4,
+      "requirement": "危险与生命：碰到尖刺或掉出世界（player.y>600）损失 1 命并回到出生点；生命归零判负；无钥匙触门不通关。",
+      "implementation": "每 tick AABB 检测尖刺重叠或 player.y>600 触发 hazard_hit，lives-1 并 player_respawned 回 spawn（清空 vx/vy、grounded=true、support_id='ground'）。lives===0 派 game_lost 且 status='lost'。门碰撞若 has_key===false 派 door_blocked 且不获胜。",
+      "verification": "将玩家坐标强行置入尖刺重叠区 1 tick，hazard_hit 与 lives 减 1 出现且位置复位；重复 3 次后 status==='lost'；无钥匙时移到门重叠区只产生 door_blocked 而非 game_won。"
+    },
+    {
+      "id": 5,
+      "requirement": "界面与反馈：Canvas2D 绘制且各元素明显区分；HUD 用 DOM 显示 Lives 与 Key 及状态。",
+      "implementation": "Canvas #game-canvas（800×600）以不同颜色绘制玩家（蓝）、平台（灰）、尖刺（红）、钥匙（黄）、门（绿）。DOM [data-testid='score'] 文本含 'Lives: n/3' 与 'Key: Yes/No'；[data-testid='status'] 显示 Menu/Playing/Won/Lost；按钮 #start-btn、#restart-btn 始终可见可用。",
+      "verification": "document.querySelector('#game-canvas').width===800；score 文本匹配 /Lives:\\s*\\d\\/3/ 与 /Key:\\s*(Yes|No)/；status 文本去大小写与连续空白后属于四态之一；restart 按钮在终局仍可 click。"
+    },
+    {
+      "id": 6,
+      "requirement": "只读观察桥与事件/清单：暴露 window.__GAMETESTLAB__（协议 gametestlab/2）及合规 game.manifest.json。",
+      "implementation": "桥含 protocol、isReady()、reset({seed})（每次 event_epoch+1、seq 从 1、首事件 game_reset）、observe()（tick/status/state/event_epoch/latest_event_seq）、getEvents({afterSeq})。state 含 status,lives,has_key,player(含w,h,vx,vy,grounded,support_id),platforms[],world,sim_time_ms。事件含 game_started/player_jumped/player_landed/key_collected/hazard_hit/player_respawned/door_blocked/game_won/game_lost/game_reset。manifest 按 v3 填 surface='canvas2d'、controls、hud_selectors、state_schema、event_schema、bridge。",
+      "verification": "isReady()===true；observe() 字段齐全且 latest_event_seq 等于 getEvents({afterSeq:0}) 长度；reset 后 event_epoch 增 1 且 getEvents({afterSeq:0})[0] 为 game_reset 且 seq===1；manifest JSON 可被解析且 controls 覆盖全部 8 个 action_id。"
+    }
+  ]
+}

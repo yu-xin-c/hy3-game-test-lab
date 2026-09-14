@@ -1,0 +1,20 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "receipt_directory": "particle-orchestra-full-review-call",
+  "requirements_scope": "original_public_generation_prompt",
+  "verdict": {
+    "defect_supported": false,
+    "error_type": "无需求违反",
+    "first_observed_action": null,
+    "explanation": "逐条核对需求与代码及三遍真实 Chromium 执行记录，未发现需求违反。控件映射（Digit1→A、Digit2→B、Digit3→C、Digit4→D）与顺序 A→C→D→B 一致；状态字段 status/sequence/progress/score/attempts/active_cluster 与事件 game_started/cluster_triggered/note_correct/note_wrong/progress_reset/game_won/game_lost/game_reset 均齐备；restart 在 playing 与终局可见、点击后 doReset 经 resetToMenu 清空进度分数并恢复 3 次机会回到菜单；handleKey 在非 playing 状态直接 return，满足'游戏结束后输入不能再改变分数/进度/胜负'；reset 递增 event_epoch 并从 seq=1 记录 game_reset。计分逻辑严格实现题面两条显式规则：每正确输入 +25（4 次共 100），通关'得到100分'作为获胜奖励再 +100，终局 score=200 与各记录一致且无 errors。相同 seed 经 mulberry32 决定粒子布局，确定性成立；WebGL 本地纹理、无网络资源、800×600 视口均满足。",
+    "file": null,
+    "excerpt": null,
+    "limits": [
+      "执行记录仅覆盖 A→C→D→B 通关路径，未触发错误输入、progress_reset、game_lost 与失败路径，故这些分支行为仅由代码推断，未在记录中实证",
+      "score=200 的解读采用'获胜额外获得100分'的奖励式语义；若将'得到100分'理解为终局总分恰好为100，则结论会相反，但题面无'终局总分=100'的显式陈述"
+    ]
+  },
+  "code_provenance": null,
+  "human_review": null
+}

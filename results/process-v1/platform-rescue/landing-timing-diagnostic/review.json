@@ -1,0 +1,17 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "playability_supported": true,
+    "assessment": "新增的 grounded-input 对照（真实无头 Chromium + 真键盘 keydown 注入 + page.clock 虚拟时间驱动，仅只读 observe().player.grounded 决定起跳，未改代码/未写状态）在 seed=404 下 3/3 稳定通关：出生自由落体 tick4 落地 grounded，于 tick5/28/51 三次落地即起跳，依次落 platform-1(tick27)、platform-2(tick50)、end(tick73)，tick45 拾钥匙、tick137 触门获胜，3 次重复 observe/事件序列完全一致，确定性成立。这证明游戏核心通关路径真实可行，原评审'落点未经验证、final_correct=null'的不确定性被关闭。但'找到一条通路'≠方案所有需求正确：验证的是 grounded 自适应起跳策略，而非 plan step2 宣称的固定盲定时序(tick0/20/40)。实际可行起跳点为 tick5/28/51——因 spawn y=520 需先落体至 tick4 才 grounded，tick0 盲跳在无 grounded 时被 jumpQueued 直接消费而无效；immediate 模式（frame0/20/40 盲跳）3/3 稳定 lost、仅 1 次 Space 被记录且全程无 player_jumped 事件、每 ~6 tick 撞 spike 扣命致 3 命全失，从反面坐实盲时序不可行。故方案声称的确定性盲时序仍不成立。\n\n运行环境独立核对：原补充评审末条称'本对照为桥接/headless 仿真，非 Playwright Chromium 真实浏览器认证'有误。脚本实际 chromium.launch() 启动真实无头 Chromium，键盘经真实 keydown 注入、虚拟时间由 page.clock 驱动，属仓库规则要求的 Playwright Chromium 真实浏览器认证（非 jsdom、非自写物理仿真），该条限制应修正。",
+    "process_implication": "1) 坐实原评审对 win/loss-path 的定性：同种子同物理下，immediate（盲时序→lost）与 grounded（自适应→won）唯一差异是起跳时机，从而证明危险/碰撞/拾取/门逻辑可用，原 'test_problem/insufficient_evidence' 中'失败源于回放输入时序而非游戏逻辑'结论被证实。2) 原 limits 中'关卡落点未经验证、final 层不可下结论'被本数据关闭：seed=404 真实浏览器下可通关，通关可行性不确定性消解。3) 方案坐标(platform-1@200,440 等)与时序(tick0/20/40)与实际代码(platform-1@70,470 等 / 成功时序 tick5/28/51)系统性不符——属'方案原错误已被实现修正'：修正前=方案文档给出的坐标与盲定时序，开发者自认不可行；修正后=代码偏离采用新坐标且 grounded 时序可跑通。故这是计划文档/验证描述错误（首错 step 仍不应填，原评审已据此处理），而非代码缺陷。4) 原两条 test_problem（loss-path 左移误报、manifest key_event 私有规则误报）维持不变。5) 运行环境结论修正：原补充评审末条'非 Playwright Chromium'不成立，本对照即真实无头 Chromium，满足仓库 real-browser gate；此修正不影响上述其他判断。",
+    "remaining_limits": [
+      "仅验证 grounded 自适应起跳策略；plan step2 宣称的盲定时序(tick0/20/40)仍未被证实可行，反而由 immediate 模式 3/3 失败（tick0 起跳无 grounded 被消费、无 player_jumped 事件）可推断其会失败。",
+      "仅用 seed=404 单一种子跑通 3 次；PRD 要求的'相同 seed 确定性'在单一种子内成立，但跨种子可通关性与确定性未测。",
+      "immediate（盲时序）模式稳定失败，说明游戏对起跳时机敏感，plan 字面'按住右键连续三次跳跃稳定落三台'在固定盲输入下未必成立，需依赖 grounded 反馈，方案字面要求未被充分满足。",
+      "方案文档坐标与实际代码坐标仍系统性偏离且方案未修订，计划与实现对齐性错误未修复，仅实现侧可通关（属文档错误非代码缺陷）。",
+      "原评审 L1 'missing or invalid player/world bounds geometry' 在 tick0 即报的疑点、以及 loss-path/manifest 两条 test_problem 仍维持原复核结论，未见新证据推翻或额外证实其为误报。",
+      "运行环境限制已修正移除：原补充评审'非 Playwright Chromium'说法不成立，本对照即真实无头 Chromium，故此条不再作为限制。"
+    ]
+  }
+}

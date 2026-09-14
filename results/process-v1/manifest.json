@@ -1,0 +1,12 @@
+{
+  "version": "process-v1",
+  "tasks": [
+    "target-rush",
+    "platform-rescue",
+    "signal-memory"
+  ],
+  "generator": "hy3",
+  "reviewer": "hy3",
+  "public_process": "numbered pre-implementation plan plus recorded code mutations",
+  "human_validation": "required"
+}

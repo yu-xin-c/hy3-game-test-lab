@@ -1,0 +1,21 @@
+import { afterEach, expect, it } from "vitest";
+import { mkdtemp, mkdir, writeFile, readdir, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { startReviewServer } from "../../src/runtime/review-server";
+const cleanup: (() => Promise<unknown>)[] = [];
+afterEach(async () => { for (const f of cleanup.reverse()) await f(); cleanup.length = 0; });
+it("serves evidence read-only and rejects writes", async () => {
+  const root = await mkdtemp(join(tmpdir(), "game-review-test-"));
+  cleanup.push(() => rm(root, { recursive: true, force: true }));
+  await mkdir(join(root, "case-one"));
+  await writeFile(join(root, "manifest.json"), JSON.stringify({ tasks: ["case-one"] }));
+  await writeFile(join(root, "case-one", "solution-plan.json"), JSON.stringify({ steps: [{ id: 1 }] }));
+  await writeFile(join(root, "case-one", "review.json"), JSON.stringify({ verdict: { final_correct: true, process_correct: false, first_error_step: 1, apparent_pass_with_flaw: false, findings: [], limits: [] } }));
+  const server = await startReviewServer(root, 0); cleanup.push(server.close);
+  const data = await (await fetch(server.origin + "/api/cases")).json();
+  expect(data.cases).toHaveLength(1);
+  expect((await fetch(server.origin + "/api/cases/case-one/review", { method: "POST" })).status).toBe(404);
+  expect((await fetch(server.origin + "/artifact/case-one/solution-plan.json")).status).toBe(404);
+  expect((await fetch(server.origin + "/")).status).toBe(200);
+});

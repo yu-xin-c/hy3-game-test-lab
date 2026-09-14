@@ -1,0 +1,6829 @@
+{
+  "startInput": {
+    "selector": "#start-btn",
+    "x": 42.8984375,
+    "y": 660,
+    "hit": {
+      "id": "start-btn",
+      "tag": "BUTTON",
+      "text": "Start"
+    }
+  },
+  "trace": [
+    {
+      "label": "menu",
+      "observation": {
+        "tick": 0,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        }
+      ]
+    },
+    {
+      "label": "after_start",
+      "observation": {
+        "tick": 0,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 2
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "before_jump",
+      "observation": {
+        "tick": 0,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 2
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "after_jump",
+      "observation": {
+        "tick": 0,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 2
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_1",
+      "observation": {
+        "tick": 0,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 2
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_2",
+      "observation": {
+        "tick": 1,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 43.666666666666664,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 16.666666666666668
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_3",
+      "observation": {
+        "tick": 2,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 47.33333333333333,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 33.333333333333336
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_4",
+      "observation": {
+        "tick": 3,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 50.99999999999999,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 50
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_5",
+      "observation": {
+        "tick": 4,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 54.66666666666666,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 66.66666666666667
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_6",
+      "observation": {
+        "tick": 5,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 58.33333333333332,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 83.33333333333334
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_7",
+      "observation": {
+        "tick": 6,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 100.00000000000001
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 5
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_8",
+      "observation": {
+        "tick": 7,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 43.666666666666664,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 116.66666666666669
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_9",
+      "observation": {
+        "tick": 8,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 47.33333333333333,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 133.33333333333334
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_10",
+      "observation": {
+        "tick": 9,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 50.99999999999999,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 150
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_11",
+      "observation": {
+        "tick": 10,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 54.66666666666666,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 166.66666666666666
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_12",
+      "observation": {
+        "tick": 11,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 2,
+          "has_key": false,
+          "player": {
+            "x": 58.33333333333332,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 183.33333333333331
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 6
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_13",
+      "observation": {
+        "tick": 12,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 40,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support_id": null
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 199.99999999999997
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 8
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_14",
+      "observation": {
+        "tick": 13,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 43.666666666666664,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 216.66666666666663
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_15",
+      "observation": {
+        "tick": 14,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 47.33333333333333,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 233.3333333333333
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_16",
+      "observation": {
+        "tick": 15,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 50.99999999999999,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 249.99999999999994
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_17",
+      "observation": {
+        "tick": 16,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 54.66666666666666,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 266.66666666666663
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_18",
+      "observation": {
+        "tick": 17,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "lives": 1,
+          "has_key": false,
+          "player": {
+            "x": 58.33333333333332,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 283.3333333333333
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        }
+      ]
+    },
+    {
+      "label": "frame_19",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_20",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_21",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_22",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_23",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_24",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_25",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_26",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_27",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_28",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_29",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_30",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_31",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_32",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_33",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_34",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_35",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_36",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_37",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_38",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_39",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_40",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_41",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_42",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_43",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_44",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_45",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_46",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_47",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_48",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_49",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "frame_50",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "final",
+      "observation": {
+        "tick": 18,
+        "status": "lost",
+        "state": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 0,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 1,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 6,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 6,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 6,
+          "tick": 7,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 12,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 12,
+          "type": "player_respawned",
+          "payload": {}
+        },
+        {
+          "seq": 9,
+          "tick": 13,
+          "type": "player_landed",
+          "payload": {
+            "support_id": "ground"
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 18,
+          "type": "hazard_hit",
+          "payload": {
+            "reason": "spike"
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 18,
+          "type": "game_lost",
+          "payload": {}
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

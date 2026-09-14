@@ -1,0 +1,2 @@
+# Model prompts are immutable, hash-verified experiment inputs.
+results/**/prompt.txt whitespace=-blank-at-eol

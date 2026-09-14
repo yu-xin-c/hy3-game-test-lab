@@ -1,0 +1,16 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "playability_supported": true,
+    "assessment": "新增的 grounded-input（只读 grounded 状态、落地即起跳）对照在 seed=404 下 3/3 稳定通关：按住右键，于 tick5/28/51（三次落地后立即起跳）依次落在 platform-1(tick27)、platform-2(tick50)、end(tick73)，tick45 拾取钥匙、tick137 触门获胜，且 3 次重复 observe/事件序列完全一致，确定性成立。这证明游戏核心通关路径确实可行，消解了原评审中'落点为手算、未经验证、final_correct=null'的不确定性。但'找到一条通路'不等于方案所有需求正确：本对照验证的是 grounded 自适应起跳策略，而非方案 step2 宣称的固定盲定时序（tick0/20/40 各跳一次）。实际可行起跳点为 tick5/28/51——因出生点 y=520 需先自由落体至 tick4 落地 grounded 后才能起跳，tick0 的盲跳会被 jumpQueued 在无 grounded 时直接消费而无效，故方案声称的确定性时序本身仍不成立。",
+    "process_implication": "1) 直接坐实原评审对 win/loss-path 的定性：失败源于回放输入时序，而非游戏逻辑——immediate 模式（仅 frame0 一次盲跳→3 命全失、lost）与 grounded 模式（自适应跳→won）同种子同物理，唯一差异是起跳时机，从而证实危险/碰撞/拾取/门逻辑可用，原 'test_problem/insufficient_evidence' 结论成立。2) 原评审 limits 中'关卡落点未经验证、final 层不可下结论'已被本数据关闭：游戏可通关，通关可行性不确定性应消解。3) 方案文字坐标(platform-1@200,440 等)与代码实际坐标(platform-1@70,470 等)系统性不符，验证时序(tick0/20/40)与成功时序(tick5/28/51)亦不符——属'方案原错误已被实现修正'：修正前=方案文档给出的坐标与时序，开发者自认不可行；修正后=代码偏离采用新坐标且 grounded 时序可跑通。故这是计划文档/验证描述错误（首错 step 仍不应填，原评审已据此处理），而非代码缺陷。4) 原两条 'test_problem'（loss-path 左移误报、manifest key_event 私有规则误报）维持不变。",
+    "remaining_limits": [
+      "仅验证 grounded 自适应起跳策略；方案 step2 宣称的盲定时序(tick0/20/40)仍未被证实可行，反而可推断会失败（tick0 起跳无 grounded 被消费）。",
+      "仅用 seed=404 单一种子跑通 3 次；PRD 要求的'相同 seed 确定性'在单一种子内成立，但跨种子可通关性与确定性未测。",
+      "immediate（盲时序）模式仍稳定失败（3 命全失），说明游戏对起跳时机敏感，方案承诺的'稳定'落在固定盲输入下未必成立，需依赖 grounded 反馈，方案字面要求未被充分满足。",
+      "本对照为桥接/headless 仿真（键码经 keydown 注入、虚拟时间由步长累加驱动），非 Playwright Chromium 真实浏览器认证；按仓库规则不能等同于浏览器渲染/可玩证据。",
+      "方案文档坐标与实际代码坐标存在系统性偏离且方案未修订，计划与实现对齐性错误未修复，仅实现侧可通关。"
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "task_id": "signal-memory",
+  "source": "../full-96/evidence/signal-memory",
+  "game_sha256": "1094f47f2955a5c6d00484186d1b05719a4b6b6d2874f3f24cb0e3713c833986",
+  "source_kind": "historical_hy3_generated_game",
+  "browser": "151.0.7922.34",
+  "spec": {
+    "id": "memory-reset",
+    "game": "signal-memory",
+    "rule": "播放序列时重开，旧定时器不得在之后改变菜单状态；新一局仍应能完成三轮。",
+    "intervention": "无代码修改；推进旧定时器截止时间后检查菜单，再走完整通关路径。"
+  },
+  "provenance": {
+    "complete": false,
+    "steps": [],
+    "issues": [],
+    "verified_files": {
+      "index.html": false,
+      "styles.css": false,
+      "game.js": false,
+      "game.manifest.json": false
+    },
+    "telemetry_available": false,
+    "tools_sha256": "7036e34bafb84e59d64a9ffc755744822062c0244623ea26f55c47abb285becb"
+  },
+  "runs": [
+    {
+      "condition": "original",
+      "repeat": 1,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 400,
+        "y": 340,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "reset_menu_preserved": true,
+        "final": {
+          "status": "won",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 90,
+          "progress": 4,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        }
+      },
+      "screenshot": "original-1.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "original",
+      "repeat": 2,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 400,
+        "y": 340,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "reset_menu_preserved": true,
+        "final": {
+          "status": "won",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 90,
+          "progress": 4,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        }
+      },
+      "screenshot": "original-2.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "original",
+      "repeat": 3,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 400,
+        "y": 340,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "reset_menu_preserved": true,
+        "final": {
+          "status": "won",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 90,
+          "progress": 4,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        }
+      },
+      "screenshot": "original-3.png",
+      "errors": [],
+      "externalRequests": []
+    }
+  ]
+}

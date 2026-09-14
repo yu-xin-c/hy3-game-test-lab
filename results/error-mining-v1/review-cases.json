@@ -1,0 +1,957 @@
+{
+  "cases": [
+    {
+      "id": "particle-orchestra",
+      "difficulty": "D3",
+      "code": {
+        "game.js": "(function () {\n  'use strict';\n\n  // ---------------- PRNG ----------------\n  function mulberry32(a) {\n    return function () {\n      a |= 0; a = (a + 0x6D2B79F5) | 0;\n      let t = Math.imul(a ^ (a >>> 15), 1 | a);\n      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;\n      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;\n    };\n  }\n\n  // ---------------- Constants ----------------\n  var SEQUENCE = ['A', 'C', 'D', 'B'];\n  var KEY_MAP = { Digit1: 'A', Digit2: 'B', Digit3: 'C', Digit4: 'D' };\n  var CLUSTER_INDEX = { A: 0, B: 1, C: 2, D: 3 };\n  var CLUSTER_COLORS = {\n    0: [1.0, 0.35, 0.35],\n    1: [0.35, 1.0, 0.45],\n    2: [0.45, 0.65, 1.0],\n    3: [1.0, 0.9, 0.30]\n  };\n\n  // ---------------- State ----------------\n  var currentSeed = 1;\n  var state = {\n    status: 'menu',\n    sequence: SEQUENCE.slice(),\n    progress: 0,\n    score: 0,\n    attempts: 3,\n    active_cluster: null\n  };\n\n  var tick = 0;\n  var event_epoch = 0;\n  var events = [];\n  var latest_event_seq = 0;\n  var ready = false;\n\n  function emit(type, payload) {\n    var seq = events.length + 1;\n    var ev = { seq: seq, tick: tick, type: type, payload: payload || {} };\n    events.push(ev);\n    latest_event_seq = seq;\n  }\n\n  function applySeed(s) {\n    if (typeof s === 'number' && isFinite(s)) {\n      currentSeed = s >>> 0;\n    }\n  }\n\n  function resetToMenu() {\n    state.status = 'menu';\n    state.sequence = SEQUENCE.slice();\n    state.progress = 0;\n    state.score = 0;\n    state.attempts = 3;\n    state.active_cluster = null;\n  }\n\n  function doReset(seedVal) {\n    event_epoch += 1;\n    events = [];\n    latest_event_seq = 0;\n    applySeed(seedVal);\n    resetToMenu();\n    buildParticles();\n    emit('game_reset', { seed: currentSeed });\n  }\n\n  function startGame() {\n    if (state.status !== 'menu') return;\n    resetToMenu();\n    state.status = 'playing';\n    emit('game_started', {});\n  }\n\n  function handleKey(code) {\n    if (state.status !== 'playing') return;\n    var cluster = KEY_MAP[code];\n    if (!cluster) return;\n    state.active_cluster = cluster;\n    emit('cluster_triggered', { cluster: cluster });\n    var expected = state.sequence[state.progress];\n    if (cluster === expected) {\n      state.progress += 1;\n      state.score += 25;\n      emit('note_correct', { cluster: cluster, progress: state.progress });\n      if (state.progress >= state.sequence.length) {\n        state.score += 100;\n        state.status = 'won';\n        emit('game_won', { score: state.score });\n      }\n    } else {\n      var hadProgress = state.progress > 0;\n      state.progress = 0;\n      state.attempts -= 1;\n      emit('note_wrong', { cluster: cluster });\n      if (hadProgress) emit('progress_reset', {});\n      if (state.attempts <= 0) {\n        state.status = 'lost';\n        emit('game_lost', { attempts: state.attempts });\n      }\n    }\n  }\n\n  // ---------------- WebGL ----------------\n  var canvas = document.getElementById('game-canvas');\n  var gl = null;\n  try {\n    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');\n  } catch (e) { gl = null; }\n\n  var program = null;\n  var u_mvp = null, u_time = null, u_active = null, u_tex = null;\n  var posBuf = null, colBuf = null, cluBuf = null, particleCount = 0;\n  var tex = null;\n  var mvp = null;\n\n  var VERT = [\n    'attribute vec3 a_position;',\n    'attribute vec3 a_color;',\n    'attribute float a_cluster;',\n    'uniform mat4 u_mvp;',\n    'uniform float u_active;',\n    'uniform float u_time;',\n    'varying vec3 v_color;',\n    'varying float v_bright;',\n    'void main() {',\n    '  vec3 p = a_position;',\n    '  float a = u_time * 0.0004;',\n    '  mat3 rot = mat3(cos(a), 0.0, sin(a), 0.0, 1.0, 0.0, -sin(a), 0.0, cos(a));',\n    '  p = rot * p;',\n    '  gl_Position = u_mvp * vec4(p, 1.0);',\n    '  float isActive = (abs(a_cluster - u_active) < 0.5) ? 1.0 : 0.0;',\n    '  v_bright = mix(0.30, 1.0, isActive);',\n    '  gl_PointSize = mix(9.0, 20.0, isActive);',\n    '  v_color = a_color;',\n    '}'\n  ].join('\\n');\n\n  var FRAG = [\n    'precision mediump float;',\n    'varying vec3 v_color;',\n    'varying float v_bright;',\n    'uniform sampler2D u_tex;',\n    'void main() {',\n    '  vec4 t = texture2D(u_tex, gl_PointCoord);',\n    '  gl_FragColor = vec4(v_color * v_bright, 1.0) * t;',\n    '}'\n  ].join('\\n');\n\n  function compile(type, src) {\n    var sh = gl.createShader(type);\n    gl.shaderSource(sh, src);\n    gl.compileShader(sh);\n    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {\n      console.error(gl.getShaderInfoLog(sh));\n      return null;\n    }\n    return sh;\n  }\n\n  function buildProgram() {\n    if (!gl) return;\n    var vs = compile(gl.VERTEX_SHADER, VERT);\n    var fs = compile(gl.FRAGMENT_SHADER, FRAG);\n    if (!vs || !fs) return;\n    program = gl.createProgram();\n    gl.attachShader(program, vs);\n    gl.attachShader(program, fs);\n    gl.linkProgram(program);\n    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {\n      console.error(gl.getProgramInfoLog(program));\n      program = null;\n      return;\n    }\n    u_mvp = gl.getUniformLocation(program, 'u_mvp');\n    u_time = gl.getUniformLocation(program, 'u_time');\n    u_active = gl.getUniformLocation(program, 'u_active');\n    u_tex = gl.getUniformLocation(program, 'u_tex');\n  }\n\n  function matPerspective(fovy, aspect, near, far) {\n    var f = 1.0 / Math.tan(fovy / 2);\n    var nf = 1 / (near - far);\n    return [\n      f / aspect, 0, 0, 0,\n      0, f, 0, 0,\n      0, 0, (far + near) * nf, -1,\n      0, 0, 2 * far * near * nf, 0\n    ];\n  }\n\n  function matTranslate(x, y, z) {\n    return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1];\n  }\n\n  function matMultiply(a, b) {\n    var o = new Array(16);\n    for (var c = 0; c < 4; c++) {\n      for (var r = 0; r < 4; r++) {\n        o[c * 4 + r] =\n          a[0 * 4 + r] * b[c * 4 + 0] +\n          a[1 * 4 + r] * b[c * 4 + 1] +\n          a[2 * 4 + r] * b[c * 4 + 2] +\n          a[3 * 4 + r] * b[c * 4 + 3];\n      }\n    }\n    return o;\n  }\n\n  function makeTexture() {\n    if (!gl) return;\n    var size = 64;\n    var c = document.createElement('canvas');\n    c.width = size; c.height = size;\n    var ctx = c.getContext('2d');\n    var g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);\n    g.addColorStop(0.0, 'rgba(255,255,255,1.0)');\n    g.addColorStop(0.3, 'rgba(255,255,255,0.85)');\n    g.addColorStop(0.7, 'rgba(255,255,255,0.25)');\n    g.addColorStop(1.0, 'rgba(255,255,255,0.0)');\n    ctx.fillStyle = g;\n    ctx.fillRect(0, 0, size, size);\n    tex = gl.createTexture();\n    gl.bindTexture(gl.TEXTURE_2D, tex);\n    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, c);\n    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);\n    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);\n    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);\n    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);\n  }\n\n  function buildParticles() {\n    if (!gl) return;\n    var rng = mulberry32(currentSeed);\n    var perCluster = 150;\n    var pos = [], col = [], clu = [];\n    for (var i = 0; i < 4; i++) {\n      var theta = i * Math.PI / 2 + Math.PI / 4;\n      var cx = Math.cos(theta) * 2.3;\n      var cy = Math.sin(theta) * 2.3;\n      var c = CLUSTER_COLORS[i];\n      for (var j = 0; j < perCluster; j++) {\n        var r = 0.95 * Math.cbrt(rng());\n        var u = rng() * 2 - 1;\n        var phi = rng() * Math.PI * 2;\n        var s = Math.sqrt(1 - u * u);\n        pos.push(cx + r * s * Math.cos(phi), cy + r * s * Math.sin(phi), r * u);\n        col.push(c[0], c[1], c[2]);\n        clu.push(i);\n      }\n    }\n    particleCount = pos.length / 3;\n    if (posBuf) gl.deleteBuffer(posBuf);\n    if (colBuf) gl.deleteBuffer(colBuf);\n    if (cluBuf) gl.deleteBuffer(cluBuf);\n    posBuf = gl.createBuffer();\n    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);\n    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pos), gl.STATIC_DRAW);\n    colBuf = gl.createBuffer();\n    gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);\n    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(col), gl.STATIC_DRAW);\n    cluBuf = gl.createBuffer();\n    gl.bindBuffer(gl.ARRAY_BUFFER, cluBuf);\n    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(clu), gl.STATIC_DRAW);\n  }\n\n  function render(now) {\n    tick++;\n    if (gl && program) {\n      gl.viewport(0, 0, 800, 600);\n      gl.clearColor(0.02, 0.03, 0.07, 1.0);\n      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);\n      gl.disable(gl.DEPTH_TEST);\n      gl.enable(gl.BLEND);\n      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);\n      gl.useProgram(program);\n      gl.uniformMatrix4fv(u_mvp, false, new Float32Array(mvp));\n      gl.uniform1f(u_time, now || 0);\n      var act = state.active_cluster ? CLUSTER_INDEX[state.active_cluster] : -1;\n      gl.uniform1f(u_active, act);\n      gl.activeTexture(gl.TEXTURE0);\n      gl.bindTexture(gl.TEXTURE_2D, tex);\n      gl.uniform1i(u_tex, 0);\n\n      var stride = 3 * 4;\n      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);\n      var aPos = gl.getAttribLocation(program, 'a_position');\n      gl.enableVertexAttribArray(aPos);\n      gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, stride, 0);\n\n      gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);\n      var aCol = gl.getAttribLocation(program, 'a_color');\n      gl.enableVertexAttribArray(aCol);\n      gl.vertexAttribPointer(aCol, 3, gl.FLOAT, false, stride, 0);\n\n      gl.bindBuffer(gl.ARRAY_BUFFER, cluBuf);\n      var aClu = gl.getAttribLocation(program, 'a_cluster');\n      gl.enableVertexAttribArray(aClu);\n      gl.vertexAttribPointer(aClu, 1, gl.FLOAT, false, 4, 0);\n\n      gl.drawArrays(gl.POINTS, 0, particleCount);\n    }\n    updateHud();\n    requestAnimationFrame(render);\n  }\n\n  // ---------------- HUD ----------------\n  var scoreEl = document.getElementById('score');\n  var statusEl = document.getElementById('status');\n  var startBtn = document.getElementById('start-btn');\n  var restartBtn = document.getElementById('restart-btn');\n\n  var STATUS_TEXT = { menu: 'Menu', playing: 'Playing', won: 'Won', lost: 'Lost' };\n\n  function updateHud() {\n    if (scoreEl) {\n      scoreEl.textContent =\n        'Score: ' + state.score +\n        '  Progress: ' + state.progress + '/' + state.sequence.length +\n        '  Attempts: ' + state.attempts;\n    }\n    if (statusEl) {\n      statusEl.textContent = STATUS_TEXT[state.status] || 'Menu';\n    }\n    if (startBtn) {\n      if (state.status === 'menu') startBtn.classList.remove('hidden');\n      else startBtn.classList.add('hidden');\n    }\n    if (restartBtn) {\n      if (state.status === 'menu') restartBtn.classList.add('hidden');\n      else restartBtn.classList.remove('hidden');\n    }\n  }\n\n  // ---------------- Input ----------------\n  if (startBtn) {\n    startBtn.addEventListener('click', function () { startGame(); });\n  }\n  if (restartBtn) {\n    restartBtn.addEventListener('click', function () { doReset(currentSeed); });\n  }\n  window.addEventListener('keydown', function (e) {\n    if (e && e.code) {\n      if (KEY_MAP[e.code]) {\n        e.preventDefault();\n        handleKey(e.code);\n      }\n    }\n  });\n\n  // ---------------- Test bridge ----------------\n  window.__GAMETESTLAB__ = {\n    protocol: 'gametestlab/2',\n    isReady: function () { return ready; },\n    reset: function (opts) {\n      var s = (opts && typeof opts.seed === 'number') ? opts.seed : currentSeed;\n      doReset(s);\n      return true;\n    },\n    observe: function () {\n      return {\n        tick: tick,\n        status: state.status,\n        state: JSON.parse(JSON.stringify(state)),\n        event_epoch: event_epoch,\n        latest_event_seq: latest_event_seq\n      };\n    },\n    getEvents: function (opts) {\n      var after = (opts && typeof opts.afterSeq === 'number') ? opts.afterSeq : 0;\n      var out = [];\n      for (var i = 0; i < events.length; i++) {\n        if (events[i].seq > after) out.push(events[i]);\n      }\n      return out;\n    }\n  };\n\n  // ---------------- Init ----------------\n  function init() {\n    buildProgram();\n    makeTexture();\n    var proj = matPerspective(50 * Math.PI / 180, 800 / 600, 0.1, 100);\n    var view = matTranslate(0, 0, -7);\n    mvp = matMultiply(proj, view);\n    buildParticles();\n    resetToMenu();\n    updateHud();\n    ready = true;\n    requestAnimationFrame(render);\n  }\n\n  init();\n})();\n",
+        "game.manifest.json": "{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"webgl\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    },\n    {\n      \"action_id\": \"A\",\n      \"actor\": \"primary\",\n      \"device\": \"keyboard\",\n      \"key_event\": \"press\",\n      \"code\": \"Digit1\",\n      \"description\": \"触发 A 粒子簇\"\n    },\n    {\n      \"action_id\": \"B\",\n      \"actor\": \"primary\",\n      \"device\": \"keyboard\",\n      \"key_event\": \"press\",\n      \"code\": \"Digit2\",\n      \"description\": \"触发 B 粒子簇\"\n    },\n    {\n      \"action_id\": \"C\",\n      \"actor\": \"primary\",\n      \"device\": \"keyboard\",\n      \"key_event\": \"press\",\n      \"code\": \"Digit3\",\n      \"description\": \"触发 C 粒子簇\"\n    },\n    {\n      \"action_id\": \"D\",\n      \"actor\": \"primary\",\n      \"device\": \"keyboard\",\n      \"key_event\": \"press\",\n      \"code\": \"Digit4\",\n      \"description\": \"触发 D 粒子簇\"\n    },\n    {\n      \"action_id\": \"RESTART\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#restart-btn\",\n      \"description\": \"重开游戏\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态\" },\n      \"sequence\": { \"type\": \"array\", \"description\": \"目标音轨顺序\" },\n      \"progress\": { \"type\": \"integer\", \"description\": \"已正确点亮的音轨数\" },\n      \"score\": { \"type\": \"integer\", \"description\": \"当前分数\" },\n      \"attempts\": { \"type\": \"integer\", \"description\": \"剩余尝试机会\" },\n      \"active_cluster\": { \"type\": \"string\", \"description\": \"当前激活的粒子簇\" }\n    },\n    \"required\": [\"status\", \"sequence\", \"progress\", \"score\", \"attempts\", \"active_cluster\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"cluster_triggered\",\n      \"description\": \"触发某粒子簇\",\n      \"payload_fields\": {\n        \"cluster\": { \"type\": \"string\", \"description\": \"粒子簇标识\" }\n      }\n    },\n    {\n      \"type\": \"note_correct\",\n      \"description\": \"输入正确音轨\",\n      \"payload_fields\": {\n        \"cluster\": { \"type\": \"string\", \"description\": \"粒子簇标识\" },\n        \"progress\": { \"type\": \"integer\", \"description\": \"当前进度\" }\n      }\n    },\n    {\n      \"type\": \"note_wrong\",\n      \"description\": \"输入错误音轨\",\n      \"payload_fields\": {\n        \"cluster\": { \"type\": \"string\", \"description\": \"粒子簇标识\" }\n      }\n    },\n    {\n      \"type\": \"progress_reset\",\n      \"description\": \"进度被清空\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"game_won\",\n      \"description\": \"通关获胜\",\n      \"payload_fields\": {\n        \"score\": { \"type\": \"integer\", \"description\": \"最终分数\" }\n      }\n    },\n    {\n      \"type\": \"game_lost\",\n      \"description\": \"机会耗尽失败\",\n      \"payload_fields\": {\n        \"attempts\": { \"type\": \"integer\", \"description\": \"剩余机会\" }\n      }\n    },\n    {\n      \"type\": \"game_reset\",\n      \"description\": \"游戏重置到菜单\",\n      \"payload_fields\": {\n        \"seed\": { \"type\": \"integer\", \"description\": \"使用的随机种子\" }\n      }\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n",
+        "index.html": "<!DOCTYPE html>\n<html lang=\"zh\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Particle Orchestra</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n<div id=\"app\">\n  <canvas id=\"game-canvas\" width=\"800\" height=\"600\"></canvas>\n  <div id=\"hud\">\n    <div id=\"score\" data-testid=\"score\">Score: 0  Progress: 0/4  Attempts: 3</div>\n    <div id=\"status\" data-testid=\"status\">Menu</div>\n  </div>\n  <div id=\"controls\">\n    <button id=\"start-btn\" type=\"button\">Start</button>\n    <button id=\"restart-btn\" type=\"button\">Restart</button>\n  </div>\n  <div id=\"hint\">按 1 / 2 / 3 / 4 触发 A / B / C / D 粒子簇，顺序为 A → C → D → B</div>\n</div>\n<script src=\"game.js\"></script>\n</body>\n</html>\n",
+        "styles.css": "* { box-sizing: border-box; margin: 0; padding: 0; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  background: #05060c;\n  color: #e8ecff;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n#app {\n  position: relative;\n  width: 800px;\n  height: 600px;\n  overflow: hidden;\n  border: 1px solid #1b2350;\n  box-shadow: 0 0 40px rgba(40, 80, 200, 0.25);\n  background: #02030a;\n}\n\n#game-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  height: 600px;\n  display: block;\n}\n\n#hud {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  padding: 10px 14px;\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  pointer-events: none;\n  font-size: 15px;\n  letter-spacing: 0.5px;\n  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);\n}\n\n#score {\n  background: rgba(8, 12, 30, 0.55);\n  padding: 6px 10px;\n  border-radius: 6px;\n  border: 1px solid #2a356a;\n}\n\n#status {\n  background: rgba(8, 12, 30, 0.55);\n  padding: 6px 12px;\n  border-radius: 6px;\n  border: 1px solid #2a356a;\n  font-weight: 700;\n  color: #9fd0ff;\n}\n\n#controls {\n  position: absolute;\n  bottom: 16px;\n  left: 0;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  gap: 16px;\n}\n\nbutton {\n  font-size: 16px;\n  padding: 10px 26px;\n  border-radius: 8px;\n  border: 1px solid #3a4aa0;\n  background: linear-gradient(180deg, #2a3aa0, #16206a);\n  color: #eaf0ff;\n  cursor: pointer;\n  transition: transform 0.05s ease, filter 0.1s ease;\n}\n\nbutton:hover { filter: brightness(1.15); }\nbutton:active { transform: translateY(1px); }\n\n#start-btn { background: linear-gradient(180deg, #2aa55a, #0f6a35); border-color: #2faa66; }\n#restart-btn { background: linear-gradient(180deg, #a54242, #6a1f1f); border-color: #aa4a4a; }\n\n.hidden { display: none !important; }\n\n#hint {\n  position: absolute;\n  bottom: 64px;\n  left: 0;\n  width: 100%;\n  text-align: center;\n  font-size: 13px;\n  color: #7c87c0;\n  pointer-events: none;\n  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);\n}\n"
+      },
+      "public_prompt": "请在当前空目录中实现一个完整浏览器游戏。不要解释，不要创建说明文档，只创建生成要求指定的四个文件。完成后先检查文件名、JSON格式和浏览器运行错误；不要读取当前目录之外的文件，也不要修改任务要求。\n\n# 生成要求\n\n每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：\n\n- `index.html`\n- `styles.css`\n- `game.js`\n- `game.manifest.json`\n\n游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。\n\n带复杂环境的题目遵守以下约定：\n\n- 3D 题使用原生 WebGL 和本地生成纹理。\n- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。\n- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。\n- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。\n\n`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。\n\n```json\n{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"dom\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态\" }\n    },\n    \"required\": [\"status\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n```\n\n`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。\n\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n\n每个状态字段和非空事件字段都使用对象定义，例如 `\"temperature\":{\"type\":\"number\",\"description\":\"温度，摄氏度\"}`，不能写成 `\"temperature\":\"number\"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{\"type\":\"temperature_changed\",\"description\":\"温度变化\",\"payload_fields\":{\"temperature\":{\"type\":\"number\",\"description\":\"温度\"}}}`。\n\n游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：\n\n- 对象必须有 `protocol: \"gametestlab/2\"` 字段，不能只在 manifest 中声明。\n- `isReady()`：游戏是否完成初始化。\n- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。\n- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。\n- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。\n\n`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。\n\n检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。\n\n# Particle Orchestra\n\n## 游戏目标\n\n按 A、C、D、B 的顺序点亮四组粒子音轨。\n\n## 完整玩法\n\n数字键1/2/3/4分别触发 A/B/C/D 粒子簇。正确输入推进 progress 并增加25分；错误输入清空 progress、扣一次 attempts，但继续当前局。\n\n三维画面使用原生 WebGL，不加载 Three.js 或任何远程资源。\n\n## 胜负与重开\n\n- 完整输入 A、C、D、B 时获胜并得到100分。\n- 初始3次 attempts，第三次错误后失败。\n- Restart 清空进度和分数，恢复3次机会并回到菜单。\n\n## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。\n\n## 固定规则\n\n相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。\n\n## 自动测试接口\n\n- 界面类型：webgl；主要区域：`#game-canvas`。\n- HUD：`[data-testid=\"score\"]` 和 `[data-testid=\"status\"]`。\n- state 至少包含：`status`、`sequence`、`progress`、`score`、`attempts`、`active_cluster`。\n- 事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。\n- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `A`：键盘 Digit1 press\n  - `B`：键盘 Digit2 press\n  - `C`：键盘 Digit3 press\n  - `D`：键盘 Digit4 press\n  - `RESTART`：mouse 操作 #restart-btn\n",
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "history": {
+        "complete": true,
+        "steps": [
+          {
+            "step": 1,
+            "call_id": "chatcmpl-tool-812ac22803399db6",
+            "tool": "Write",
+            "file": "index.html",
+            "sha256": "f610417b01d777e606bed988bb0d5dcce6f7e6703374ab1138e0352c33461f98"
+          },
+          {
+            "step": 2,
+            "call_id": "chatcmpl-tool-ac83053c355211fe",
+            "tool": "Write",
+            "file": "styles.css",
+            "sha256": "43062746806f0f09a3d2e80669af690806ac91d63543faf31a47a9091ba6e506"
+          },
+          {
+            "step": 3,
+            "call_id": "chatcmpl-tool-ac647330edc5ce53",
+            "tool": "Write",
+            "file": "game.js",
+            "sha256": "23a003a22a80d3b4635b3c420ba28fabfd46f5e2bafd6396f0cd45b41313220d"
+          },
+          {
+            "step": 4,
+            "call_id": "chatcmpl-tool-a1489b94b8649689",
+            "tool": "Write",
+            "file": "game.manifest.json",
+            "sha256": "327f8be4ea48696ea326db039be997960916f599c01eddcfd0316a878148a57d"
+          }
+        ]
+      },
+      "game_sha256": "c1878db5242b10b350ed47bd54f0d2e3322359ec879639ec602ccb1eb4f13ae1"
+    },
+    {
+      "id": "zen-garden",
+      "difficulty": "D3",
+      "code": {
+        "game.js": "(function () {\n  'use strict';\n\n  var SAVE_KEY = 'zen-garden-save-v1';\n\n  // ---------- state ----------\n  var state = freshState();\n  var seed = 1;\n  var tick = 0;\n  var event_epoch = 0;\n  var events = [];\n  var seq = 0;\n  var started = false;\n  var rockTransforms = [];\n\n  function freshState() {\n    return { status: 'menu', progress: 0, score: 0, lives: 2, last_action: '', saved: false };\n  }\n\n  // ---------- events ----------\n  function emit(type, payload) {\n    seq++;\n    var ev = { seq: seq, tick: tick, type: type, payload: payload || {} };\n    events.push(ev);\n    return seq;\n  }\n\n  // ---------- persistence ----------\n  function saveState() {\n    try {\n      localStorage.setItem(SAVE_KEY, JSON.stringify({\n        status: state.status,\n        progress: state.progress,\n        score: state.score,\n        lives: state.lives,\n        last_action: state.last_action,\n        saved: state.saved,\n        seed: seed\n      }));\n    } catch (e) {}\n    emit('state_saved', { progress: state.progress, score: state.score, lives: state.lives });\n  }\n\n  function loadState() {\n    try {\n      var raw = localStorage.getItem(SAVE_KEY);\n      if (!raw) return false;\n      var o = JSON.parse(raw);\n      state = {\n        status: o.status || 'menu',\n        progress: o.progress || 0,\n        score: o.score || 0,\n        lives: (typeof o.lives === 'number') ? o.lives : 2,\n        last_action: o.last_action || '',\n        saved: !!o.saved\n      };\n      if (typeof o.seed === 'number') seed = o.seed;\n      emit('state_loaded', {\n        progress: state.progress, score: state.score,\n        lives: state.lives, last_action: state.last_action\n      });\n      return true;\n    } catch (e) { return false; }\n  }\n\n  function clearState() {\n    try { localStorage.removeItem(SAVE_KEY); } catch (e) {}\n  }\n\n  // ---------- seeded rng ----------\n  function mulberry32(a) {\n    return function () {\n      a |= 0; a = (a + 0x6D2B79F5) | 0;\n      var t = Math.imul(a ^ (a >>> 15), 1 | a);\n      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;\n      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;\n    };\n  }\n\n  function computeRocks() {\n    var rng = mulberry32(seed);\n    var arr = [];\n    for (var i = 0; i < 3; i++) {\n      var sx = 0.6 + rng() * 0.6;\n      var sy = 0.5 + rng() * 0.8;\n      var sz = 0.6 + rng() * 0.6;\n      var x = (rng() - 0.5) * 5.0;\n      var z = (rng() - 0.5) * 3.0 - 0.5;\n      var ry = rng() * Math.PI;\n      arr.push({ sx: sx, sy: sy, sz: sz, x: x, y: sy / 2, z: z, ry: ry });\n    }\n    rockTransforms = arr;\n  }\n\n  // ---------- game actions ----------\n  function start() {\n    if (state.status !== 'menu') return;\n    state.status = 'playing';\n    emit('game_started', {});\n    saveState();\n    updateHUD();\n    updateOverlay();\n  }\n\n  function stage(n) {\n    if (state.status !== 'playing') return;\n    var expected = state.progress + 1;\n    if (n === expected) {\n      state.progress = n;\n      state.score += 10;\n      state.last_action = 'stage_' + n;\n      emit('stage_completed', { stage: n });\n      if (state.progress === 3) {\n        state.saved = true;\n        saveState();\n        state.status = 'won';\n        emit('game_won', {});\n      } else {\n        saveState();\n      }\n    } else {\n      wrongAction();\n    }\n    updateHUD();\n    updateOverlay();\n  }\n\n  function wrongAction() {\n    if (state.status !== 'playing') return;\n    emit('action_rejected', {});\n    state.progress = 0;\n    emit('progress_reset', {});\n    state.lives -= 1;\n    state.last_action = 'wrong';\n    if (state.lives <= 0) {\n      state.lives = 0;\n      saveState();\n      state.status = 'lost';\n      emit('game_lost', {});\n    } else {\n      saveState();\n    }\n  }\n\n  function doReset(s) {\n    event_epoch++;\n    events = [];\n    seq = 0;\n    if (typeof s === 'number') seed = s;\n    clearState();\n    state = freshState();\n    computeRocks();\n    emit('game_reset', { seed: seed });\n    updateHUD();\n    updateOverlay();\n  }\n\n  // ---------- HUD / overlay ----------\n  function updateHUD() {\n    var sc = document.getElementById('score');\n    if (sc) sc.textContent = '分数 ' + state.score + ' · 进度 ' + state.progress + '/3 · 生命 ' + state.lives;\n    var st = document.getElementById('status');\n    if (st) {\n      var map = { menu: 'Menu', playing: 'Playing', won: 'Won', lost: 'Lost' };\n      st.textContent = map[state.status] || state.status;\n    }\n    for (var i = 1; i <= 3; i++) {\n      var g = document.getElementById('goal-' + i);\n      if (g) g.classList.toggle('done', state.progress >= i);\n    }\n  }\n\n  function updateOverlay() {\n    var ov = document.getElementById('overlay');\n    var title = document.getElementById('overlay-title');\n    var msg = document.getElementById('overlay-msg');\n    var startB = document.getElementById('start-btn');\n    var restartO = document.getElementById('restart-btn-overlay');\n    if (!ov) return;\n    if (state.status === 'menu') {\n      ov.classList.remove('hidden');\n      title.textContent = 'Zen Garden';\n      msg.textContent = '完成三段目标：摆放岩石 → 画出沙纹 → 保存庭院';\n      startB.style.display = '';\n      restartO.style.display = 'none';\n    } else if (state.status === 'won') {\n      ov.classList.remove('hidden');\n      title.textContent = '庭院已完成';\n      msg.textContent = '你完成了禅意庭院！分数 ' + state.score;\n      startB.style.display = 'none';\n      restartO.style.display = '';\n    } else if (state.status === 'lost') {\n      ov.classList.remove('hidden');\n      title.textContent = '庭院已逝';\n      msg.textContent = '你失去了庭院。再试一次吧。';\n      startB.style.display = 'none';\n      restartO.style.display = '';\n    } else {\n      ov.classList.add('hidden');\n    }\n  }\n\n  // ---------- WebGL ----------\n  var gl = null;\n  var program = null;\n  var aPosLoc = 0, aNrmLoc = 0, uMVPLoc = 0, uModelLoc = 0, uColorLoc = 0, uUnlitLoc = 0;\n  var groundMesh = null, rockMesh = null, octMesh = null, sandMeshes = [];\n\n  // matrix helpers (column-major)\n  function identity() {\n    return new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);\n  }\n  function translation(x, y, z) {\n    var m = identity(); m[12] = x; m[13] = y; m[14] = z; return m;\n  }\n  function scaling(x, y, z) {\n    var m = identity(); m[0] = x; m[5] = y; m[10] = z; return m;\n  }\n  function rotationX(a) {\n    var c = Math.cos(a), s = Math.sin(a), m = identity();\n    m[5] = c; m[6] = s; m[9] = -s; m[10] = c; return m;\n  }\n  function rotationY(a) {\n    var c = Math.cos(a), s = Math.sin(a), m = identity();\n    m[0] = c; m[2] = -s; m[8] = s; m[10] = c; return m;\n  }\n  function mul(a, b) {\n    var o = new Float32Array(16);\n    for (var c = 0; c < 4; c++) {\n      for (var r = 0; r < 4; r++) {\n        o[c*4+r] = a[0*4+r]*b[c*4+0] + a[1*4+r]*b[c*4+1] + a[2*4+r]*b[c*4+2] + a[3*4+r]*b[c*4+3];\n      }\n    }\n    return o;\n  }\n  function perspective(fovy, aspect, near, far) {\n    var f = 1 / Math.tan(fovy / 2);\n    var nf = 1 / (near - far);\n    return new Float32Array([\n      f / aspect, 0, 0, 0,\n      0, f, 0, 0,\n      0, 0, (far + near) * nf, -1,\n      0, 0, 2 * far * near * nf, 0\n    ]);\n  }\n  function lookAt(eye, center, up) {\n    var z0 = eye[0]-center[0], z1 = eye[1]-center[1], z2 = eye[2]-center[2];\n    var len = 1 / Math.hypot(z0, z1, z2); z0*=len; z1*=len; z2*=len;\n    var x0 = up[1]*z2 - up[2]*z1, x1 = up[2]*z0 - up[0]*z2, x2 = up[0]*z1 - up[1]*z0;\n    len = Math.hypot(x0, x1, x2);\n    if (!len) { x0=0; x1=0; x2=0; } else { len = 1/len; x0*=len; x1*=len; x2*=len; }\n    var y0 = z1*x2 - z2*x1, y1 = z2*x0 - z0*x2, y2 = z0*x1 - z1*x0;\n    return new Float32Array([\n      x0, y0, z0, 0,\n      x1, y1, z1, 0,\n      x2, y2, z2, 0,\n      -(x0*eye[0]+x1*eye[1]+x2*eye[2]),\n      -(y0*eye[0]+y1*eye[1]+y2*eye[2]),\n      -(z0*eye[0]+z1*eye[1]+z2*eye[2]),\n      1\n    ]);\n  }\n\n  function compile(type, src) {\n    var sh = gl.createShader(type);\n    gl.shaderSource(sh, src);\n    gl.compileShader(sh);\n    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {\n      console.error(gl.getShaderInfoLog(sh));\n      return null;\n    }\n    return sh;\n  }\n\n  var VS = [\n    'attribute vec3 aPos;',\n    'attribute vec3 aNormal;',\n    'uniform mat4 uMVP;',\n    'uniform mat4 uModel;',\n    'varying vec3 vNormal;',\n    'void main(){',\n    '  gl_Position = uMVP * vec4(aPos,1.0);',\n    '  vNormal = normalize((uModel * vec4(aNormal,0.0)).xyz);',\n    '}'\n  ].join('\\n');\n\n  var FS = [\n    'precision mediump float;',\n    'varying vec3 vNormal;',\n    'uniform vec3 uColor;',\n    'uniform float uUnlit;',\n    'void main(){',\n    '  if(uUnlit > 0.5){',\n    '    gl_FragColor = vec4(uColor,1.0);',\n    '  } else {',\n    '    vec3 L = normalize(vec3(0.4,0.85,0.5));',\n    '    float d = max(dot(normalize(vNormal), L), 0.0);',\n    '    float amb = 0.35;',\n    '    gl_FragColor = vec4(uColor*(amb + d*0.75), 1.0);',\n    '  }',\n    '}'\n  ].join('\\n');\n\n  function buildProgram() {\n    var vs = compile(gl.VERTEX_SHADER, VS);\n    var fs = compile(gl.FRAGMENT_SHADER, FS);\n    if (!vs || !fs) return false;\n    program = gl.createProgram();\n    gl.attachShader(program, vs);\n    gl.attachShader(program, fs);\n    gl.linkProgram(program);\n    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {\n      console.error(gl.getProgramInfoLog(program));\n      return false;\n    }\n    aPosLoc = gl.getAttribLocation(program, 'aPos');\n    aNrmLoc = gl.getAttribLocation(program, 'aNormal');\n    uMVPLoc = gl.getUniformLocation(program, 'uMVP');\n    uModelLoc = gl.getUniformLocation(program, 'uModel');\n    uColorLoc = gl.getUniformLocation(program, 'uColor');\n    uUnlitLoc = gl.getUniformLocation(program, 'uUnlit');\n    return true;\n  }\n\n  // ---- geometry ----\n  function makeBox() {\n    var pos = [], nrm = [], idx = [];\n    function quad(p0, p1, p2, p3, n) {\n      var base = pos.length / 3;\n      [p0, p1, p2, p3].forEach(function (p) { pos.push(p[0], p[1], p[2]); nrm.push(n[0], n[1], n[2]); });\n      idx.push(base, base+1, base+2, base, base+2, base+3);\n    }\n    quad([-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5],[0,0,1]);\n    quad([0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5],[0,0,-1]);\n    quad([-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5],[-1,0,0]);\n    quad([0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5],[1,0,0]);\n    quad([-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],[0,1,0]);\n    quad([-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0,-1,0]);\n    return {\n      pos: new Float32Array(pos), nrm: new Float32Array(nrm),\n      idx: new Uint16Array(idx), mode: gl.TRIANGLES\n    };\n  }\n\n  function makeOcta() {\n    var t = [[0,1,0],[0,-1,0],[1,0,0],[-1,0,0],[0,0,1],[0,0,-1]];\n    var faces = [[0,2,4],[0,4,3],[0,3,5],[0,5,2],[1,4,2],[1,3,4],[1,5,3],[1,2,5]];\n    var pos = [], nrm = [];\n    for (var f = 0; f < faces.length; f++) {\n      for (var k = 0; k < 3; k++) {\n        var v = t[faces[f][k]];\n        var l = Math.hypot(v[0], v[1], v[2]) || 1;\n        pos.push(v[0], v[1], v[2]);\n        nrm.push(v[0]/l, v[1]/l, v[2]/l);\n      }\n    }\n    return { pos: new Float32Array(pos), nrm: new Float32Array(nrm), idx: null, mode: gl.TRIANGLES };\n  }\n\n  function makeCircle(radius, segs) {\n    var pos = [], nrm = [];\n    for (var i = 0; i < segs; i++) {\n      var a = i / segs * Math.PI * 2;\n      pos.push(Math.cos(a) * radius, 0, Math.sin(a) * radius);\n      nrm.push(0, 1, 0);\n    }\n    return { pos: new Float32Array(pos), nrm: new Float32Array(nrm), idx: null, mode: gl.LINE_LOOP };\n  }\n\n  function createMesh(geo) {\n    var vbo = gl.createBuffer();\n    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);\n    gl.bufferData(gl.ARRAY_BUFFER, geo.pos, gl.STATIC_DRAW);\n    var nbo = gl.createBuffer();\n    gl.bindBuffer(gl.ARRAY_BUFFER, nbo);\n    gl.bufferData(gl.ARRAY_BUFFER, geo.nrm, gl.STATIC_DRAW);\n    var ibo = null, indexed = false, count;\n    if (geo.idx) {\n      ibo = gl.createBuffer();\n      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);\n      gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, geo.idx, gl.STATIC_DRAW);\n      indexed = true; count = geo.idx.length;\n    } else {\n      count = geo.pos.length / 3;\n    }\n    return { vbo: vbo, nbo: nbo, ibo: ibo, indexed: indexed, count: count, mode: geo.mode || gl.TRIANGLES };\n  }\n\n  function drawObject(mesh, model, color, unlit) {\n    gl.useProgram(program);\n    gl.bindBuffer(gl.ARRAY_BUFFER, mesh.vbo);\n    gl.enableVertexAttribArray(aPosLoc);\n    gl.vertexAttribPointer(aPosLoc, 3, gl.FLOAT, false, 0, 0);\n    gl.bindBuffer(gl.ARRAY_BUFFER, mesh.nbo);\n    gl.enableVertexAttribArray(aNrmLoc);\n    gl.vertexAttribPointer(aNrmLoc, 3, gl.FLOAT, false, 0, 0);\n    var mvp = mul(proj, mul(view, model));\n    gl.uniformMatrix4fv(uMVPLoc, false, mvp);\n    gl.uniformMatrix4fv(uModelLoc, false, model);\n    gl.uniform3fv(uColorLoc, color);\n    gl.uniform1f(uUnlitLoc, unlit ? 1 : 0);\n    if (mesh.indexed) {\n      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.ibo);\n      gl.drawElements(mesh.mode, mesh.count, gl.UNSIGNED_SHORT, 0);\n    } else {\n      gl.drawArrays(mesh.mode, 0, mesh.count);\n    }\n  }\n\n  var proj = identity(), view = identity();\n\n  function renderScene(progress, t) {\n    if (!gl) return;\n    gl.viewport(0, 0, 800, 600);\n    gl.clearColor(0.86, 0.90, 0.93, 1.0);\n    gl.enable(gl.DEPTH_TEST);\n    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);\n\n    var eye = [Math.sin(t * 0.15) * 2.0, 4.0, 8.0];\n    var center = [0, 0.6, 0];\n    proj = perspective(45 * Math.PI / 180, 800 / 600, 0.1, 100);\n    view = lookAt(eye, center, [0, 1, 0]);\n\n    var ground = mul(translation(0, -0.2, 0), scaling(12, 0.4, 12));\n    drawObject(groundMesh, ground, [0.82, 0.74, 0.55], false);\n\n    if (progress >= 1) {\n      for (var i = 0; i < rockTransforms.length; i++) {\n        var r = rockTransforms[i];\n        var m = mul(mul(translation(r.x, r.y, r.z), rotationY(r.ry)), scaling(r.sx, r.sy, r.sz));\n        drawObject(rockMesh, m, [0.55, 0.55, 0.58], false);\n      }\n    }\n\n    if (progress >= 2) {\n      for (var s = 0; s < sandMeshes.length; s++) {\n        drawObject(sandMeshes[s], identity(), [0.55, 0.45, 0.30], true);\n      }\n    }\n\n    if (progress >= 3) {\n      var om = mul(mul(translation(0, 1.3, 0), rotationY(t * 1.2)), scaling(0.6, 0.6, 0.6));\n      drawObject(octMesh, om, [0.95, 0.78, 0.25], false);\n    }\n  }\n\n  function frame() {\n    tick++;\n    var t = (typeof performance !== 'undefined' ? performance.now() : Date.now()) / 1000;\n    renderScene(state.progress, t);\n    requestAnimationFrame(frame);\n  }\n\n  // ---------- init ----------\n  function init() {\n    var canvas = document.getElementById('game-canvas');\n    try {\n      gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');\n    } catch (e) { gl = null; }\n\n    if (gl) {\n      if (!buildProgram()) gl = null;\n    }\n\n    computeRocks();\n\n    if (gl) {\n      groundMesh = createMesh(makeBox());\n      rockMesh = createMesh(makeBox());\n      octMesh = createMesh(makeOcta());\n      sandMeshes = [];\n      var radii = [1.0, 1.8, 2.6, 3.4];\n      for (var i = 0; i < radii.length; i++) {\n        sandMeshes.push(createMesh(makeCircle(radii[i], 48)));\n      }\n    }\n\n    // restore from local save if present\n    loadState();\n\n    // listeners\n    document.getElementById('start-btn').addEventListener('click', start);\n    document.getElementById('restart-btn').addEventListener('click', function () { doReset(seed); });\n    document.getElementById('restart-btn-overlay').addEventListener('click', function () { doReset(seed); });\n    document.getElementById('stage-1').addEventListener('click', function () { stage(1); });\n    document.getElementById('stage-2').addEventListener('click', function () { stage(2); });\n    document.getElementById('stage-3').addEventListener('click', function () { stage(3); });\n    document.getElementById('wrong-action').addEventListener('click', function () { wrongAction(); });\n\n    updateHUD();\n    updateOverlay();\n\n    started = true;\n    requestAnimationFrame(frame);\n  }\n\n  // ---------- bridge ----------\n  window.__GAMETESTLAB__ = {\n    protocol: 'gametestlab/2',\n    isReady: function () { return started; },\n    reset: function (opts) { doReset(opts && opts.seed); return true; },\n    observe: function () {\n      return {\n        tick: tick,\n        status: state.status,\n        state: JSON.parse(JSON.stringify(state)),\n        event_epoch: event_epoch,\n        latest_event_seq: seq\n      };\n    },\n    getEvents: function (opts) {\n      var after = (opts && opts.afterSeq) || 0;\n      var out = [];\n      for (var i = 0; i < events.length; i++) {\n        if (events[i].seq > after) out.push(JSON.parse(JSON.stringify(events[i])));\n      }\n      return out;\n    }\n  };\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', init);\n  } else {\n    init();\n  }\n})();\n",
+        "game.manifest.json": "{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"webgl\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    },\n    {\n      \"action_id\": \"STAGE_1\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-1\",\n      \"description\": \"摆放岩石\"\n    },\n    {\n      \"action_id\": \"STAGE_2\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-2\",\n      \"description\": \"画出沙纹\"\n    },\n    {\n      \"action_id\": \"STAGE_3\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-3\",\n      \"description\": \"保存庭院\"\n    },\n    {\n      \"action_id\": \"WRONG\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#wrong-action\",\n      \"description\": \"错误操作\"\n    },\n    {\n      \"action_id\": \"RESTART\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#restart-btn\",\n      \"description\": \"重新开始\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态\" },\n      \"progress\": { \"type\": \"integer\", \"description\": \"已完成阶段数 0-3\" },\n      \"score\": { \"type\": \"integer\", \"description\": \"分数\" },\n      \"lives\": { \"type\": \"integer\", \"description\": \"剩余生命\" },\n      \"last_action\": { \"type\": \"string\", \"description\": \"最近一次动作\" },\n      \"saved\": { \"type\": \"boolean\", \"description\": \"庭院是否已保存\" }\n    },\n    \"required\": [\"status\", \"progress\", \"score\", \"lives\", \"last_action\", \"saved\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"stage_completed\",\n      \"description\": \"完成一个阶段\",\n      \"payload_fields\": {\n        \"stage\": { \"type\": \"integer\", \"description\": \"阶段编号 1-3\" }\n      }\n    },\n    {\n      \"type\": \"action_rejected\",\n      \"description\": \"错误顺序的操作被拒绝\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"progress_reset\",\n      \"description\": \"进度被清空\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"state_saved\",\n      \"description\": \"状态已保存到本地\",\n      \"payload_fields\": {\n        \"progress\": { \"type\": \"integer\", \"description\": \"进度\" },\n        \"score\": { \"type\": \"integer\", \"description\": \"分数\" },\n        \"lives\": { \"type\": \"integer\", \"description\": \"生命\" }\n      }\n    },\n    {\n      \"type\": \"state_loaded\",\n      \"description\": \"从本地存档恢复状态\",\n      \"payload_fields\": {\n        \"progress\": { \"type\": \"integer\", \"description\": \"进度\" },\n        \"score\": { \"type\": \"integer\", \"description\": \"分数\" },\n        \"lives\": { \"type\": \"integer\", \"description\": \"生命\" },\n        \"last_action\": { \"type\": \"string\", \"description\": \"最近动作\" }\n      }\n    },\n    {\n      \"type\": \"game_won\",\n      \"description\": \"游戏胜利\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"game_lost\",\n      \"description\": \"游戏失败\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"game_reset\",\n      \"description\": \"游戏重置到菜单\",\n      \"payload_fields\": {\n        \"seed\": { \"type\": \"integer\", \"description\": \"随机种子\" }\n      }\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n",
+        "index.html": "<!DOCTYPE html>\n<html lang=\"zh\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Zen Garden</title>\n<link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n<div id=\"app\">\n  <canvas id=\"game-canvas\" width=\"800\" height=\"600\"></canvas>\n\n  <div id=\"hud\">\n    <div id=\"score\" data-testid=\"score\">分数 0 · 进度 0/3 · 生命 2</div>\n    <div id=\"status\" data-testid=\"status\">Menu</div>\n  </div>\n\n  <div id=\"goals\">\n    <div class=\"goal\" id=\"goal-1\">1. 摆放岩石</div>\n    <div class=\"goal\" id=\"goal-2\">2. 画出沙纹</div>\n    <div class=\"goal\" id=\"goal-3\">3. 保存庭院</div>\n  </div>\n\n  <div id=\"overlay\">\n    <div id=\"overlay-title\">Zen Garden</div>\n    <div id=\"overlay-msg\">完成三段目标：摆放岩石 → 画出沙纹 → 保存庭院</div>\n    <button id=\"start-btn\">开始游戏</button>\n    <button id=\"restart-btn-overlay\" style=\"display:none\">重新开始</button>\n  </div>\n\n  <div id=\"controls\">\n    <button id=\"stage-1\">摆放岩石 (Stage 1)</button>\n    <button id=\"stage-2\">画出沙纹 (Stage 2)</button>\n    <button id=\"stage-3\">保存庭院 (Stage 3)</button>\n    <button id=\"wrong-action\">错误操作</button>\n    <button id=\"restart-btn\">Restart</button>\n  </div>\n</div>\n<script src=\"game.js\"></script>\n</body>\n</html>\n",
+        "styles.css": "* { box-sizing: border-box; margin: 0; padding: 0; }\n\nhtml, body {\n  width: 800px;\n  height: 600px;\n  background: #20222b;\n  font-family: -apple-system, \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif;\n  overflow: hidden;\n}\n\n#app {\n  position: relative;\n  width: 800px;\n  height: 600px;\n  overflow: hidden;\n}\n\n#game-canvas {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  height: 600px;\n  display: block;\n}\n\n#hud {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  padding: 8px 12px;\n  display: flex;\n  justify-content: space-between;\n  color: #fff;\n  font-size: 15px;\n  font-weight: 600;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n  pointer-events: none;\n  z-index: 5;\n}\n\n#goals {\n  position: absolute;\n  top: 40px;\n  left: 0;\n  width: 800px;\n  display: flex;\n  justify-content: center;\n  gap: 18px;\n  color: #fff;\n  font-size: 13px;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n  pointer-events: none;\n  z-index: 5;\n}\n\n.goal {\n  background: rgba(0, 0, 0, 0.25);\n  padding: 4px 10px;\n  border-radius: 12px;\n  transition: background 0.2s;\n}\n\n.goal.done {\n  background: rgba(80, 180, 120, 0.9);\n}\n\n#overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 800px;\n  height: 600px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 16px;\n  background: rgba(20, 22, 30, 0.55);\n  color: #fff;\n  text-align: center;\n  z-index: 10;\n}\n\n#overlay.hidden {\n  display: none;\n}\n\n#overlay-title {\n  font-size: 34px;\n  font-weight: 700;\n  letter-spacing: 2px;\n  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);\n}\n\n#overlay-msg {\n  font-size: 15px;\n  max-width: 520px;\n  line-height: 1.5;\n}\n\n#overlay button, #controls button {\n  font-size: 15px;\n  padding: 10px 18px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  background: #4a8c74;\n  color: #fff;\n  font-weight: 600;\n}\n\n#overlay button:hover, #controls button:hover {\n  background: #5bae8e;\n}\n\n#controls {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 800px;\n  padding: 10px 12px;\n  display: flex;\n  gap: 8px;\n  justify-content: center;\n  flex-wrap: wrap;\n  background: rgba(20, 22, 30, 0.6);\n  z-index: 20;\n}\n\n#controls button {\n  background: #3a6e5c;\n}\n\n#controls button:hover {\n  background: #4b8b73;\n}\n"
+      },
+      "public_prompt": "请在当前空目录中实现一个完整浏览器游戏。不要解释，不要创建说明文档，只创建生成要求指定的四个文件。完成后先检查文件名、JSON格式和浏览器运行错误；不要读取当前目录之外的文件，也不要修改任务要求。\n\n# 生成要求\n\n每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：\n\n- `index.html`\n- `styles.css`\n- `game.js`\n- `game.manifest.json`\n\n游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。\n\n带复杂环境的题目遵守以下约定：\n\n- 3D 题使用原生 WebGL 和本地生成纹理。\n- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。\n- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。\n- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。\n\n`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。\n\n```json\n{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"dom\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态\" }\n    },\n    \"required\": [\"status\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n```\n\n`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。\n\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n\n每个状态字段和非空事件字段都使用对象定义，例如 `\"temperature\":{\"type\":\"number\",\"description\":\"温度，摄氏度\"}`，不能写成 `\"temperature\":\"number\"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{\"type\":\"temperature_changed\",\"description\":\"温度变化\",\"payload_fields\":{\"temperature\":{\"type\":\"number\",\"description\":\"温度\"}}}`。\n\n游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：\n\n- 对象必须有 `protocol: \"gametestlab/2\"` 字段，不能只在 manifest 中声明。\n- `isReady()`：游戏是否完成初始化。\n- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。\n- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。\n- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。\n\n`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。\n\n检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。\n\n# Zen Garden\n\n## 游戏目标\n\n完成三维禅意庭院的三段目标：摆放岩石、画出沙纹、保存庭院。\n\n## 完整玩法\n\nStart 后从第一阶段开始。正确顺序固定为“摆放岩石 → 画出沙纹 → 保存庭院”。每完成一段增加10分并推进 progress；顺序错误会清空 progress 并扣1条生命。主要场景必须用原生 WebGL 绘制可辨认的三维对象。 第一阶段后评测器会刷新页面，progress、score、lives 和 last_action 必须从本地存档恢复。\n\n存档使用 localStorage 或 IndexedDB；页面刷新后必须恢复，Restart 按题目要求清理。\n\n三维画面使用原生 WebGL，不加载 Three.js 或任何远程资源。\n\n## 胜负与重开\n\n- 依次完成三个阶段时立即获胜，progress=3、score=30。\n- 初始2条生命，第二次错误操作时立即失败。\n- Restart 恢复0进度、0分、2条生命、空 last_action 和菜单，并清除当前存档。\n\n## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。\n\n界面要直接写出三段目标：摆放岩石、画出沙纹、保存庭院。\n\n## 固定规则\n\n相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。\n\n## 自动测试接口\n\n- 界面类型：webgl；主要区域：`#game-canvas`。\n- HUD：`[data-testid=\"score\"]` 和 `[data-testid=\"status\"]`。\n- state 至少包含：`status`、`progress`、`score`、`lives`、`last_action`、`saved`。\n- 事件：`game_started`、`stage_completed`、`action_rejected`、`progress_reset`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。\n- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `STAGE_1`：mouse 操作 #stage-1\n  - `STAGE_2`：mouse 操作 #stage-2\n  - `STAGE_3`：mouse 操作 #stage-3\n  - `WRONG`：mouse 操作 #wrong-action\n  - `RESTART`：mouse 操作 #restart-btn\n",
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "history": {
+        "complete": true,
+        "steps": [
+          {
+            "step": 1,
+            "call_id": "chatcmpl-tool-9f42147e41ff68f7",
+            "tool": "Write",
+            "file": "index.html",
+            "sha256": "73466cef76c438d0632aad305b7bef76d84bf87b8c82f0e66bef77447c625c39"
+          },
+          {
+            "step": 2,
+            "call_id": "chatcmpl-tool-bfe27c344ac6b77d",
+            "tool": "Write",
+            "file": "styles.css",
+            "sha256": "c57adb81a2f88c993224ea64d2820b08211751781f47f492006fa356bb8a9fbd"
+          },
+          {
+            "step": 3,
+            "call_id": "chatcmpl-tool-a897bb32823043ab",
+            "tool": "Write",
+            "file": "game.js",
+            "sha256": "bb5eba271b25621b87d57bf2edfa157c38f125675932075a438bf8492f19d41c"
+          },
+          {
+            "step": 4,
+            "call_id": "chatcmpl-tool-87ad22ade82e7de3",
+            "tool": "Write",
+            "file": "game.manifest.json",
+            "sha256": "b898f4c0e106e9e6cb1ad08212c77be12e1484899cbcb249a3235a4557087c33"
+          }
+        ]
+      },
+      "game_sha256": "c820e98fe07734f95c738c8858696a161b6aaa908f6ea56575f25ef8c62f954a"
+    },
+    {
+      "id": "science-circuit",
+      "difficulty": "D1",
+      "code": {
+        "game.js": "(function () {\n  \"use strict\";\n\n  // ---- core state ----\n  var ready = false;\n  var tick = 0;\n  var eventEpoch = 0;\n  var eventSeq = 0;\n  var events = [];\n\n  var state = {\n    status: \"menu\",      // menu | playing | won | lost\n    progress: 0,         // 0..3\n    score: 0,\n    lives: 2,\n    last_action: \"\"\n  };\n\n  // ---- DOM refs ----\n  var scoreEl = document.getElementById(\"score\");\n  var statusEl = document.getElementById(\"status\");\n  var menuPanel = document.getElementById(\"menu\");\n  var playingPanel = document.getElementById(\"playing\");\n  var endPanel = document.getElementById(\"end\");\n  var endTitle = document.getElementById(\"end-title\");\n\n  // ---- helpers ----\n  function clone(obj) {\n    return JSON.parse(JSON.stringify(obj));\n  }\n\n  function getState() {\n    return clone(state);\n  }\n\n  function emit(type, payload) {\n    eventSeq += 1;\n    var ev = { seq: eventSeq, tick: tick, type: type };\n    if (payload !== undefined) ev.payload = clone(payload);\n    events.push(ev);\n    return ev;\n  }\n\n  function render() {\n    var label = {\n      menu: \"Menu\",\n      playing: \"Playing\",\n      won: \"Won\",\n      lost: \"Lost\"\n    };\n    scoreEl.textContent =\n      \"Score: \" + state.score +\n      \" | Progress: \" + state.progress + \"/3\" +\n      \" | Lives: \" + state.lives;\n    statusEl.textContent = label[state.status] || state.status;\n\n    menuPanel.classList.toggle(\"hidden\", state.status !== \"menu\");\n    playingPanel.classList.toggle(\"hidden\", state.status !== \"playing\");\n    endPanel.classList.toggle(\"hidden\", !(state.status === \"won\" || state.status === \"lost\"));\n    if (state.status === \"won\") endTitle.textContent = \"Won!\";\n    if (state.status === \"lost\") endTitle.textContent = \"Lost!\";\n  }\n\n  function resetToMenu(seed) {\n    // restore menu state deterministically\n    var s = (typeof seed === \"number\" && isFinite(seed)) ? seed : 0;\n    state.status = \"menu\";\n    state.progress = 0;\n    state.score = 0;\n    state.lives = 2;\n    state.last_action = \"\";\n    eventEpoch += 1;\n    eventSeq = 0;\n    events = [];\n    emit(\"game_reset\", { seed: s });\n    render();\n  }\n\n  // ---- gameplay ----\n  function startGame() {\n    if (state.status !== \"menu\") return;\n    state.status = \"playing\";\n    state.progress = 0;\n    state.score = 0;\n    state.lives = 2;\n    state.last_action = \"\";\n    emit(\"game_started\", {});\n    render();\n  }\n\n  function doWrong() {\n    if (state.status !== \"playing\") return;\n    state.last_action = \"wrong\";\n    emit(\"action_rejected\", { action: \"wrong\" });\n    state.progress = 0;\n    emit(\"progress_reset\", { reason: \"wrong\" });\n    state.lives -= 1;\n    if (state.lives <= 0) {\n      state.lives = 0;\n      state.status = \"lost\";\n      emit(\"game_lost\", {});\n    }\n    render();\n  }\n\n  function doStage(n) {\n    if (state.status !== \"playing\") return;\n    state.last_action = \"stage-\" + n;\n    var expected = state.progress + 1; // correct order: 1,2,3\n    if (n === expected) {\n      state.progress += 1;\n      state.score += 10;\n      emit(\"stage_completed\", { stage: n, progress: state.progress });\n      if (state.progress >= 3) {\n        state.status = \"won\";\n        emit(\"game_won\", { score: state.score, progress: state.progress });\n      }\n    } else {\n      emit(\"action_rejected\", { action: \"stage-\" + n });\n      state.progress = 0;\n      emit(\"progress_reset\", { reason: \"wrong-order\" });\n      state.lives -= 1;\n      if (state.lives <= 0) {\n        state.lives = 0;\n        state.status = \"lost\";\n        emit(\"game_lost\", {});\n      }\n    }\n    render();\n  }\n\n  // ---- input wiring (real input only) ----\n  document.getElementById(\"start-btn\").addEventListener(\"click\", startGame);\n  document.getElementById(\"restart-btn\").addEventListener(\"click\", function () {\n    resetToMenu(null);\n  });\n  document.getElementById(\"stage-1\").addEventListener(\"click\", function () { doStage(1); });\n  document.getElementById(\"stage-2\").addEventListener(\"click\", function () { doStage(2); });\n  document.getElementById(\"stage-3\").addEventListener(\"click\", function () { doStage(3); });\n  document.getElementById(\"wrong-action\").addEventListener(\"click\", doWrong);\n\n  // ---- tick loop (virtual-time friendly) ----\n  function loop() {\n    tick += 1;\n    requestAnimationFrame(loop);\n  }\n  requestAnimationFrame(loop);\n\n  // ---- bridge / observation interface ----\n  window.__GAMETESTLAB__ = {\n    protocol: \"gametestlab/2\",\n    isReady: function () { return ready; },\n    reset: function (opts) {\n      var seed = opts && typeof opts.seed === \"number\" ? opts.seed : null;\n      resetToMenu(seed);\n    },\n    observe: function () {\n      return {\n        tick: tick,\n        status: state.status,\n        state: getState(),\n        event_epoch: eventEpoch,\n        latest_event_seq: eventSeq\n      };\n    },\n    getEvents: function (opts) {\n      var after = (opts && typeof opts.afterSeq === \"number\") ? opts.afterSeq : 0;\n      return events.filter(function (e) { return e.seq > after; });\n    }\n  };\n\n  ready = true;\n  resetToMenu(null); // initial menu state, epoch 1, game_reset seq 1\n})();\n",
+        "game.manifest.json": "{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"dom\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    },\n    {\n      \"action_id\": \"STAGE_1\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-1\",\n      \"description\": \"连接电池（第一阶段）\"\n    },\n    {\n      \"action_id\": \"STAGE_2\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-2\",\n      \"description\": \"接入开关（第二阶段）\"\n    },\n    {\n      \"action_id\": \"STAGE_3\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#stage-3\",\n      \"description\": \"点亮灯泡（第三阶段）\"\n    },\n    {\n      \"action_id\": \"WRONG\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#wrong-action\",\n      \"description\": \"执行错误操作\"\n    },\n    {\n      \"action_id\": \"RESTART\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#restart-btn\",\n      \"description\": \"重新开始\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态：menu/playing/won/lost\" },\n      \"progress\": { \"type\": \"integer\", \"description\": \"已完成阶段数 0~3\" },\n      \"score\": { \"type\": \"integer\", \"description\": \"分数\" },\n      \"lives\": { \"type\": \"integer\", \"description\": \"剩余生命数\" },\n      \"last_action\": { \"type\": \"string\", \"description\": \"最近一次操作\" }\n    },\n    \"required\": [\"status\", \"progress\", \"score\", \"lives\", \"last_action\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"stage_completed\",\n      \"description\": \"完成一个阶段\",\n      \"payload_fields\": {\n        \"stage\": { \"type\": \"integer\", \"description\": \"完成的阶段编号 1~3\" },\n        \"progress\": { \"type\": \"integer\", \"description\": \"当前进度\" }\n      }\n    },\n    {\n      \"type\": \"action_rejected\",\n      \"description\": \"操作被拒绝（顺序错误或错误操作）\",\n      \"payload_fields\": {\n        \"action\": { \"type\": \"string\", \"description\": \"被拒绝的操作\" }\n      }\n    },\n    {\n      \"type\": \"progress_reset\",\n      \"description\": \"进度被清空\",\n      \"payload_fields\": {\n        \"reason\": { \"type\": \"string\", \"description\": \"清空原因\" }\n      }\n    },\n    {\n      \"type\": \"game_won\",\n      \"description\": \"游戏胜利\",\n      \"payload_fields\": {\n        \"score\": { \"type\": \"integer\", \"description\": \"最终分数\" },\n        \"progress\": { \"type\": \"integer\", \"description\": \"最终进度\" }\n      }\n    },\n    {\n      \"type\": \"game_lost\",\n      \"description\": \"游戏失败\",\n      \"payload_fields\": {}\n    },\n    {\n      \"type\": \"game_reset\",\n      \"description\": \"游戏重置到菜单\",\n      \"payload_fields\": {\n        \"seed\": { \"type\": \"integer\", \"description\": \"重置使用的种子\" }\n      }\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n",
+        "index.html": "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=800, height=600\" />\n  <title>Science Circuit</title>\n  <link rel=\"stylesheet\" href=\"styles.css\" />\n</head>\n<body>\n  <div id=\"viewport\">\n    <header id=\"hud\">\n      <div data-testid=\"score\" id=\"score\">Score: 0 | Progress: 0/3 | Lives: 2</div>\n      <div data-testid=\"status\" id=\"status\">Menu</div>\n    </header>\n\n    <main id=\"game-board\">\n      <section id=\"menu\" class=\"panel\">\n        <h1>Science Circuit</h1>\n        <p>完成三段科学电路目标：</p>\n        <ol>\n          <li>连接电池</li>\n          <li>接入开关</li>\n          <li>点亮灯泡</li>\n        </ol>\n        <button id=\"start-btn\">Start</button>\n      </section>\n\n      <section id=\"playing\" class=\"panel hidden\">\n        <h2>实验室</h2>\n        <p>目标顺序：连接电池 → 接入开关 → 点亮灯泡</p>\n        <div class=\"stages\">\n          <button id=\"stage-1\" class=\"stage\">连接电池</button>\n          <button id=\"stage-2\" class=\"stage\">接入开关</button>\n          <button id=\"stage-3\" class=\"stage\">点亮灯泡</button>\n        </div>\n        <button id=\"wrong-action\" class=\"wrong\">错误操作</button>\n      </section>\n\n      <section id=\"end\" class=\"panel hidden\">\n        <h2 id=\"end-title\">结果</h2>\n        <button id=\"restart-btn\">Restart</button>\n      </section>\n    </main>\n  </div>\n  <script src=\"game.js\"></script>\n</body>\n</html>\n",
+        "styles.css": "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\nhtml, body {\n  background: #0b1020;\n  color: #e8eefc;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n}\n\n#viewport {\n  width: 800px;\n  height: 600px;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: column;\n  background: #11182e;\n  border: 1px solid #2a3a66;\n}\n\n#hud {\n  height: 48px;\n  flex: 0 0 48px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0 16px;\n  background: #1a2547;\n  border-bottom: 1px solid #2a3a66;\n  font-size: 15px;\n  font-weight: 600;\n}\n\n#game-board {\n  flex: 1 1 auto;\n  position: relative;\n}\n\n.panel {\n  position: absolute;\n  inset: 0;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 16px;\n  padding: 24px;\n  text-align: center;\n}\n\n.panel.hidden {\n  display: none;\n}\n\nh1 { font-size: 32px; }\nh2 { font-size: 24px; }\n\nol {\n  text-align: left;\n  font-size: 17px;\n  line-height: 1.8;\n}\n\n.stages {\n  display: flex;\n  gap: 12px;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\nbutton {\n  cursor: pointer;\n  border: none;\n  border-radius: 8px;\n  padding: 12px 20px;\n  font-size: 16px;\n  font-weight: 600;\n  background: #3b82f6;\n  color: #fff;\n  transition: transform 0.05s ease, background 0.15s ease;\n}\n\nbutton:active {\n  transform: scale(0.96);\n}\n\n.stage {\n  background: #16a34a;\n}\n\n.wrong {\n  background: #dc2626;\n  margin-top: 8px;\n}\n\n#start-btn {\n  background: #6366f1;\n  font-size: 18px;\n  padding: 14px 32px;\n}\n\n#restart-btn {\n  background: #6366f1;\n  font-size: 18px;\n  padding: 14px 32px;\n}\n"
+      },
+      "public_prompt": "请在当前空目录中实现一个完整浏览器游戏。不要解释，不要创建说明文档，只创建生成要求指定的四个文件。完成后先检查文件名、JSON格式和浏览器运行错误；不要读取当前目录之外的文件，也不要修改任务要求。\n\n# 生成要求\n\n每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：\n\n- `index.html`\n- `styles.css`\n- `game.js`\n- `game.manifest.json`\n\n游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。\n\n带复杂环境的题目遵守以下约定：\n\n- 3D 题使用原生 WebGL 和本地生成纹理。\n- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。\n- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。\n- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。\n\n`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。\n\n```json\n{\n  \"schema_version\": \"gametestlab.game-manifest.v3\",\n  \"entry_path\": \"index.html\",\n  \"surface\": \"dom\",\n  \"viewport\": { \"width\": 800, \"height\": 600 },\n  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],\n  \"hud_selectors\": {\n    \"score\": \"[data-testid=\\\"score\\\"]\",\n    \"status\": \"[data-testid=\\\"status\\\"]\"\n  },\n  \"state_schema\": {\n    \"fields\": {\n      \"status\": { \"type\": \"string\", \"description\": \"当前状态\" }\n    },\n    \"required\": [\"status\"]\n  },\n  \"event_schema\": [\n    {\n      \"type\": \"game_started\",\n      \"description\": \"游戏开始\",\n      \"payload_fields\": {}\n    }\n  ],\n  \"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }\n}\n```\n\n`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。\n\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n\n每个状态字段和非空事件字段都使用对象定义，例如 `\"temperature\":{\"type\":\"number\",\"description\":\"温度，摄氏度\"}`，不能写成 `\"temperature\":\"number\"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{\"type\":\"temperature_changed\",\"description\":\"温度变化\",\"payload_fields\":{\"temperature\":{\"type\":\"number\",\"description\":\"温度\"}}}`。\n\n游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：\n\n- 对象必须有 `protocol: \"gametestlab/2\"` 字段，不能只在 manifest 中声明。\n- `isReady()`：游戏是否完成初始化。\n- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。\n- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。\n- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。\n\n`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。\n\n检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。\n\n# Science Circuit\n\n## 游戏目标\n\n完成科学电路课的三段目标：连接电池、接入开关、点亮灯泡。\n\n## 完整玩法\n\nStart 后从第一阶段开始。正确顺序固定为“连接电池 → 接入开关 → 点亮灯泡”。每完成一段增加10分并推进 progress；顺序错误会清空 progress 并扣1条生命。\n\n## 胜负与重开\n\n- 依次完成三个阶段时立即获胜，progress=3、score=30。\n- 初始2条生命，第二次错误操作时立即失败。\n- Restart 恢复0进度、0分、2条生命、空 last_action 和菜单。\n\n## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。\n\n界面要直接写出三段目标：连接电池、接入开关、点亮灯泡。\n\n## 固定规则\n\n相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。\n\n## 自动测试接口\n\n- 界面类型：dom；主要区域：`#game-board`。\n- HUD：`[data-testid=\"score\"]` 和 `[data-testid=\"status\"]`。\n- state 至少包含：`status`、`progress`、`score`、`lives`、`last_action`。\n- 事件：`game_started`、`stage_completed`、`action_rejected`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。\n- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `STAGE_1`：mouse 操作 #stage-1\n  - `STAGE_2`：mouse 操作 #stage-2\n  - `STAGE_3`：mouse 操作 #stage-3\n  - `WRONG`：mouse 操作 #wrong-action\n  - `RESTART`：mouse 操作 #restart-btn\n",
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "history": {
+        "complete": true,
+        "steps": [
+          {
+            "step": 1,
+            "call_id": "chatcmpl-tool-8b94326548119cd8",
+            "tool": "Write",
+            "file": "index.html",
+            "sha256": "96bf60b345ec0a58460274f64a54b427b7d90c966eba1c1dd81584b538d10a56"
+          },
+          {
+            "step": 2,
+            "call_id": "chatcmpl-tool-b9440cea95ac7d26",
+            "tool": "Write",
+            "file": "styles.css",
+            "sha256": "1ab657c8102b46ef80701bf94125937e47cef194f97975fc8fb9781661b00205"
+          },
+          {
+            "step": 3,
+            "call_id": "chatcmpl-tool-aa6beb7c1daa9c3c",
+            "tool": "Write",
+            "file": "game.js",
+            "sha256": "faffc5bc4ca370e33e0d5e6b6ae628ec7be52c38fe471e9c9de01654401ab597"
+          },
+          {
+            "step": 4,
+            "call_id": "chatcmpl-tool-9e356c05f458ef86",
+            "tool": "Write",
+            "file": "game.manifest.json",
+            "sha256": "d1a0f78896695b29c6c720ec79bd0acbf79ec14d3dde2067b398ac2f3a26358c"
+          },
+          {
+            "step": 5,
+            "call_id": "chatcmpl-tool-966d8007cb6b0d3b",
+            "tool": "Edit",
+            "file": "game.js",
+            "sha256": "d073a3e6bf624d06d94f05d66ee9199088e2b331e9d093b5e4b139e55854354f"
+          },
+          {
+            "step": 6,
+            "call_id": "chatcmpl-tool-a686993cb712fd5e",
+            "tool": "Edit",
+            "file": "game.manifest.json",
+            "sha256": "bd76295fc98ac2a1724c9c2aeb215d3cbcca85e60f01f3dea66258c866f219a5"
+          }
+        ]
+      },
+      "game_sha256": "cc4ab56b24bda8e666e0fa4d81b7c72d1f76a509d67176ed141b14d0969e8f75"
+    }
+  ]
+}

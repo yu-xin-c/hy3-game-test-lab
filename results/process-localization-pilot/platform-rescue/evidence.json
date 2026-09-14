@@ -1,0 +1,501 @@
+{
+  "task_id": "platform-rescue",
+  "source": "../infra-recovery/evidence/platform-rescue",
+  "game_sha256": "e8a458a5ed8ccbc133bcfe22e85a93282af93f5047c73b7ecaa7970a29820d69",
+  "source_kind": "historical_hy3_generated_game",
+  "browser": "151.0.7922.34",
+  "spec": {
+    "id": "platform-jump",
+    "game": "platform-rescue",
+    "rule": "角色实际落地后，真实方向键和跳跃应能落在第一平台。",
+    "intervention": "对照开始后立即跳跃与等待32ms后跳跃。输入时机变化不能证明游戏代码有错。"
+  },
+  "provenance": {
+    "complete": true,
+    "steps": [
+      {
+        "step": 1,
+        "call_id": "chatcmpl-tool-b3f89307b5a50964",
+        "tool": "Write",
+        "file": "index.html",
+        "sha256": "5773c9c7030d9e53d86ac5c316c57457c93166f2659c6cf344c8c986e7db5ee7"
+      },
+      {
+        "step": 2,
+        "call_id": "chatcmpl-tool-beed1315785dd732",
+        "tool": "Write",
+        "file": "styles.css",
+        "sha256": "583caa3d5c1f183d5937fc0915a41218ba5a42eb7b17aa5d1c56b7284c9d1fa4"
+      },
+      {
+        "step": 3,
+        "call_id": "chatcmpl-tool-b7485cd54b003191",
+        "tool": "Write",
+        "file": "game.js",
+        "sha256": "b4f016d0868c905ed171dcabb8e178ef0b67694aa694e581f5f000e3e2d52f1e"
+      },
+      {
+        "step": 4,
+        "call_id": "chatcmpl-tool-8c4e3740705fba97",
+        "tool": "Write",
+        "file": "game.manifest.json",
+        "sha256": "4a5d038614f7866acc1bbe7399e0b88a2427af64ac8864703696a80ccf76fc1a"
+      }
+    ],
+    "issues": [],
+    "verified_files": {
+      "index.html": true,
+      "styles.css": true,
+      "game.js": true,
+      "game.manifest.json": true
+    },
+    "telemetry_available": true,
+    "tools_sha256": "26bbde78da00d79fabc8d86fa0196368a9a6ef64943c59972310ee6a3954f361"
+  },
+  "runs": [
+    {
+      "condition": "immediate-jump",
+      "repeat": 1,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": false,
+        "jump_registered": false,
+        "landed_on_platform_1": false,
+        "minimum_player_y": 520,
+        "final": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "immediate-jump-1.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "immediate-jump",
+      "repeat": 2,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": false,
+        "jump_registered": false,
+        "landed_on_platform_1": false,
+        "minimum_player_y": 520,
+        "final": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "immediate-jump-2.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "immediate-jump",
+      "repeat": 3,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": false,
+        "jump_registered": false,
+        "landed_on_platform_1": false,
+        "minimum_player_y": 520,
+        "final": {
+          "status": "lost",
+          "lives": 0,
+          "has_key": false,
+          "player": {
+            "x": 61.999999999999986,
+            "y": 520,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "ground"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 300
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "immediate-jump-3.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "settled-jump",
+      "repeat": 1,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": true,
+        "jump_registered": true,
+        "landed_on_platform_1": true,
+        "minimum_player_y": 425.5,
+        "final": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 215.99999999999983,
+            "y": 440,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "platform-1"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 816.6666666666662
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "settled-jump-1.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "settled-jump",
+      "repeat": 2,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": true,
+        "jump_registered": true,
+        "landed_on_platform_1": true,
+        "minimum_player_y": 425.5,
+        "final": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 215.99999999999983,
+            "y": 440,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "platform-1"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 816.6666666666662
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "settled-jump-2.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "settled-jump",
+      "repeat": 3,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 42.8984375,
+        "y": 660,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "grounded_before_jump": true,
+        "jump_registered": true,
+        "landed_on_platform_1": true,
+        "minimum_player_y": 425.5,
+        "final": {
+          "status": "playing",
+          "lives": 3,
+          "has_key": false,
+          "player": {
+            "x": 215.99999999999983,
+            "y": 440,
+            "width": 30,
+            "height": 40,
+            "vx": 220,
+            "vy": 0,
+            "grounded": true,
+            "support_id": "platform-1"
+          },
+          "platforms": [
+            {
+              "id": "ground",
+              "x": 0,
+              "y": 560,
+              "width": 800,
+              "height": 40
+            },
+            {
+              "id": "platform-1",
+              "x": 150,
+              "y": 480,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "platform-2",
+              "x": 330,
+              "y": 400,
+              "width": 240,
+              "height": 20
+            },
+            {
+              "id": "end",
+              "x": 510,
+              "y": 320,
+              "width": 290,
+              "height": 20
+            }
+          ],
+          "world": {
+            "width": 800,
+            "height": 600
+          },
+          "sim_time_ms": 816.6666666666662
+        },
+        "scope": "one approach to first platform; failure alone does not prove platform unreachable"
+      },
+      "screenshot": "settled-jump-3.png",
+      "errors": [],
+      "externalRequests": []
+    }
+  ]
+}

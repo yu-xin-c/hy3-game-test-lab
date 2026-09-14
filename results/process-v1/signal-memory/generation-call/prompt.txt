@@ -1,0 +1,129 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Signal Memory
+
+## 游戏目标
+
+做一个三回合的颜色序列记忆游戏。游戏先播放颜色序列，玩家随后按相同顺序点击四个颜色区域。
+
+## 完整玩法
+
+Canvas 分成红、绿、蓝、黄四个区域。每回合开始时先播放序列：每个颜色高亮 400ms，间隔 200ms。播放期间玩家输入必须被忽略。播放结束后进入输入阶段。
+
+固定 seed 的三回合序列为：
+
+1. 红、蓝
+2. 绿、黄、红
+3. 蓝、红、黄、绿
+
+每次正确输入增加 10 分并推进进度。完成当前序列后自动进入下一回合的播放阶段。错误输入损失 1 条生命、清空本回合进度，并重新播放同一回合。初始 3 条生命。
+
+## 胜负与重开
+
+- 完成第三回合全部输入：`won`，最终分数 90。
+- 生命归零：`lost`。
+- 胜负后颜色输入不再改变状态。
+- Restart 按钮或键盘 `R` 返回菜单，恢复分数、生命、回合和序列。
+
+## 界面与反馈
+
+HUD 显示 `Round: n/3`、`Lives: n/3`、`Score: n`、当前阶段和状态。播放阶段显示 `Watch`，输入阶段显示 `Repeat`。正确输入短暂显示 `Correct`，错误输入显示 `Wrong — try this round again`。状态固定为 `Menu`、`Playing`、`Won`、`Lost`。
+
+## 固定规则
+
+所有播放和反馈时间都由游戏时钟驱动。seed 相同必须得到相同序列。每个输入只能对应一次颜色判断。
+
+## 自动测试接口
+
+- 界面：Canvas2D，`#signal-canvas` 为游戏区域。
+- `#start-btn`、`#restart-btn`。
+- `[data-testid="score"]` 显示分数；`[data-testid="status"]` 显示状态。
+- 控件名称：`START`、`RED`、`GREEN`、`BLUE`、`YELLOW`、`RESTART`、`RESTART_KEY`。
+- state 至少包含：`status`、`phase`、`round`、`lives`、`score`、`progress`、`sequence`、`last_feedback`。
+- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"搭建 800×600 的 DOM+Canvas2D 界面，含 #signal-canvas、#start-btn、#restart-btn 与 HUD（Round/Lives/Score/phase/status），并提供 [data-testid=\"score\"] 与 [data-testid=\"status\"]。","implementation":"index.html 放置固定 800×600 容器，canvas 宽高属性 800×600，四区域各 400×300（红左上、绿右上、蓝左下、黄右下）。styles.css 不加载任何网络/字体/CDN 资源。HUD 文本节点显示 Round: n/3、Lives: n/3、Score: n、phase 文案（Watch/Repeat）与 status；status 节点 data-testid=\"status\" 仅显示 Menu/Playing/Won/Lost 之一，score 节点 data-testid=\"score\" 显示整数。","verification":"运行后用 DOM 选择器确认 #signal-canvas、#start-btn、#restart-btn、[data-testid=\"score\"]、[data-testid=\"status\"] 均存在，且 #signal-canvas 的 width/height 为 800/600。"},{"id":2,"requirement":"基于固定 seed 生成三回合序列，保证 seed 相同序列相同，且每个输入只对应一次颜色判断。","implementation":"序列由 round 固定查表：round1=[RED,BLUE]、round2=[GREEN,YELLOW,RED]、round3=[BLUE,RED,YELLOW,GREEN]；reset({seed}) 采用 mulberry32(seed) 保证确定性（本题序列为常量，seed 仅用于确定性契约）。state.sequence 为当前回合颜色数组，state.progress 为已正确输入索引（0 起）。区域点击只取单击位置所在象限一次，与 sequence[progress] 比较一次。","verification":"调用 reset({seed:1}) 后 observe().state.sequence 等于 [\"RED\",\"BLUE\"] 且 progress=0；再次 reset 相同 seed 得到相同 sequence；不同 seed 也得到相同三回合序列（确定性满足）。"},{"id":3,"requirement":"播放阶段逐色高亮 400ms、间隔 200ms，播放期间忽略玩家输入并发 input_ignored；播放结束进入输入阶段。","implementation":"phase='playback' 时用计时驱动：对 sequence 每色高亮 400ms（填充亮色变体），随后熄灭 200ms，全部用 setTimeout/requestAnimationFrame 累计。phase!=='input' 时四区域点击直接 emit input_ignored 且不改 state。播放开始 emit playback_started、HUD 显示 Watch；播放结束 emit input_phase_started、置 phase='input'、HUD 显示 Repeat。","verification":"start 后 getEvents 含 playback_started；在播放前 600ms 内点击任意区域，getEvents 含 input_ignored 且 state.progress 不变；round1 播放总时长应为 2*(400+200)=1200ms（±32ms 边界容差），结束后 observe().state.phase==='input'。"},{"id":4,"requirement":"输入阶段逐色判断：正确 +10 分并推进，错误 -1 生命并清空进度重播本回合；完成当前序列自动进入下一回合播放；终局判定分数与胜负。","implementation":"phase='input' 点击区域：等于 sequence[progress] 则 score+=10、progress++、emit signal_correct、last_feedback='Correct'，progress 达到 length 时 emit round_completed、round++，round>3 则 emit game_won、status='won'（正确 9 次×10=90）；否则重播本回合。不等于则 lives-=1、progress=0、emit signal_wrong、last_feedback='Wrong — try this round again' 并重播本回合；lives<=0 则 emit game_lost、status='lost'。","verification":"按 RED、BLUE 点击，getEvents 连续含 signal_correct×2 与 round_completed，score=20、round=2；连续点错 3 次使 lives 3→0，最终 status='lost'、lives=0；走完整正确路径最终 status='won'、score=90（无数值容差）。"},{"id":5,"requirement":"终局后输入不再改变状态；Restart 按钮与键盘 R 均恢复菜单状态（分数、生命、回合、序列）。","implementation":"status 为 won/lost 时四区域点击不产生 signal_correct/signal_wrong，不修改 score/lives/round/progress。RESTART 控件(#restart-btn) 与 RESTART_KEY 控件(code='KeyR') 均调用 reset 逻辑：score=0、lives=3、round=1、progress=0、status='menu'、phase='menu'、event_epoch++、并从 seq=1 重新记录、emit game_reset。","verification":"won 后点击黄色区域，getEvents 无新 signal_* 且 score 不变；按 KeyR 后 observe().state.status==='menu'、score=0、lives=3、round=1，且 event_epoch 较上次增大、含 game_reset(seq=1)。"},{"id":6,"requirement":"暴露只读观察接口 window.__GAMETESTLAB__（gametestlab/2），并产出合规的 game.manifest.json。","implementation":"window.__GAMETESTLAB__ 含 protocol:'gametestlab/2'、isReady()、reset({seed})、observe() 返回 tick/status/state/event_epoch/latest_event_seq、getEvents({afterSeq})。事件 seq 从 1 连续递增、可序列化。game.manifest.json：schema_version='gametestlab.game-manifest.v3'、surface='canvas2d'、controls 含 START(#start-btn)、RED/GREEN/BLUE/YELLOW(#signal-canvas 加 x_ratio/y_ratio 象限)、RESTART(#restart-btn)、RESTART_KEY(code KeyR)，hud_selectors 含 score/status，state_schema.fields 含 status/phase/round/lives/score/progress/sequence/last_feedback，event_schema 覆盖全部 10 个事件。","verification":"校验 typeof window.__GAMETESTLAB__.observe==='function' 且对象 protocol==='gametestlab/2'；解析 game.manifest.json 校验 schema_version、controls、state_schema.fields、event_schema 完整覆盖题目要求；用虚拟时间重复执行后 observe 返回的状态与事件一致可复现。"}]}

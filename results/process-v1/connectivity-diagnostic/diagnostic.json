@@ -1,0 +1,17 @@
+{
+  "requested_model": "hy3",
+  "output_format": "stream-json",
+  "timeout_ms": 90000,
+  "timed_out": false,
+  "exit_code": 0,
+  "response_bytes": 5882,
+  "message_types": [
+    "system",
+    "system",
+    "assistant",
+    "assistant",
+    "result"
+  ],
+  "rate_limit_in_stderr": false,
+  "purpose": "connectivity diagnostic only, not an evaluation sample"
+}

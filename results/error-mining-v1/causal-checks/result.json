@@ -1,0 +1,223 @@
+{
+  "kind": "Assistant-designed controlled browser intervention, not Hy3 generation or a replacement benchmark score",
+  "original_files_unchanged": true,
+  "human_validation": null,
+  "results": [
+    {
+      "id": "particle-orchestra",
+      "original_sha256": "23a003a22a80d3b4635b3c420ba28fabfd46f5e2bafd6396f0cd45b41313220d",
+      "intervention_sha256": "40a0285d00437037b88bec74f7df8bbd5ae88910b72e564cb2e1f408e67e55c2",
+      "before": "state.score += 100;",
+      "after": "/* diagnostic: suppress duplicate victory bonus */",
+      "runs": [
+        {
+          "condition": "original",
+          "repeat": 0,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        },
+        {
+          "condition": "original",
+          "repeat": 1,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        },
+        {
+          "condition": "original",
+          "repeat": 2,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 0,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 100,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 1,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 100,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 2,
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 100,
+            "attempts": 3,
+            "active_cluster": "B"
+          },
+          "hud": "Won",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "id": "zen-garden",
+      "original_sha256": "bb5eba271b25621b87d57bf2edfa157c38f125675932075a438bf8492f19d41c",
+      "intervention_sha256": "25c942db5cefaedabd1725b4826ca0f395be80a51f4b2975250cee76267323f6",
+      "before": "function wrongAction() {",
+      "after": "function wrongAction() {\n    try { return diagnosticOriginalWrongAction(); } finally { updateHUD(); updateOverlay(); }\n  }\n  function diagnosticOriginalWrongAction() {",
+      "runs": [
+        {
+          "condition": "original",
+          "repeat": 0,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "errors": []
+        },
+        {
+          "condition": "original",
+          "repeat": 1,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "errors": []
+        },
+        {
+          "condition": "original",
+          "repeat": 2,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Playing",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 0,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Lost",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 1,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Lost",
+          "errors": []
+        },
+        {
+          "condition": "diagnostic-intervention",
+          "repeat": 2,
+          "state": {
+            "status": "lost",
+            "progress": 0,
+            "score": 0,
+            "lives": 0,
+            "last_action": "wrong",
+            "saved": false
+          },
+          "hud": "Lost",
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

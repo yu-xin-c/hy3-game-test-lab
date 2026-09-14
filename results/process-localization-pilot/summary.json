@@ -1,0 +1,186 @@
+{
+  "game_count": 3,
+  "browser_runs": 15,
+  "hy3_review_count": 3,
+  "deterministic_replays": false,
+  "identical_outcomes": true,
+  "scope": "diagnostic pilot; code locations and tool provenance, not complete reasoning evaluation",
+  "human_review_completed": 0,
+  "localization_accuracy": null,
+  "false_positive_rate": null,
+  "results": [
+    {
+      "task_id": "target-rush",
+      "diagnosis": "game_defect",
+      "provenance_complete": false,
+      "conditions": [
+        {
+          "condition": "original",
+          "repeats": 3,
+          "identical_trace": true,
+          "identical_result": true,
+          "first_differing_sample": [
+            {
+              "repeat": 2,
+              "label": null
+            },
+            {
+              "repeat": 3,
+              "label": null
+            }
+          ],
+          "trace_sha256": [
+            "13f7b3460019ffc76a37de8c7f0b022b8b084fd321f7e18677cbb4b55d5059bf",
+            "13f7b3460019ffc76a37de8c7f0b022b8b084fd321f7e18677cbb4b55d5059bf",
+            "13f7b3460019ffc76a37de8c7f0b022b8b084fd321f7e18677cbb4b55d5059bf"
+          ],
+          "browser_errors": [],
+          "blocked_external_requests": []
+        },
+        {
+          "condition": "hidden-css-intervention",
+          "repeats": 3,
+          "identical_trace": true,
+          "identical_result": true,
+          "first_differing_sample": [
+            {
+              "repeat": 2,
+              "label": null
+            },
+            {
+              "repeat": 3,
+              "label": null
+            }
+          ],
+          "trace_sha256": [
+            "5c113751adb30a71916ef58e73f959bdcab546201b1ccd926f17d3b6edbc729b",
+            "5c113751adb30a71916ef58e73f959bdcab546201b1ccd926f17d3b6edbc729b",
+            "5c113751adb30a71916ef58e73f959bdcab546201b1ccd926f17d3b6edbc729b"
+          ],
+          "browser_errors": [],
+          "blocked_external_requests": []
+        }
+      ],
+      "locations": [
+        {
+          "file": "styles.css",
+          "line": 67,
+          "exact_quote_verified": true,
+          "provenance": null
+        }
+      ]
+    },
+    {
+      "task_id": "platform-rescue",
+      "diagnosis": "test_timing",
+      "provenance_complete": true,
+      "conditions": [
+        {
+          "condition": "immediate-jump",
+          "repeats": 3,
+          "identical_trace": true,
+          "identical_result": true,
+          "first_differing_sample": [
+            {
+              "repeat": 2,
+              "label": null
+            },
+            {
+              "repeat": 3,
+              "label": null
+            }
+          ],
+          "trace_sha256": [
+            "78641ed4b655fc9d7610cd44205fb42ea34ad77496b943f9346e61122b0290af",
+            "78641ed4b655fc9d7610cd44205fb42ea34ad77496b943f9346e61122b0290af",
+            "78641ed4b655fc9d7610cd44205fb42ea34ad77496b943f9346e61122b0290af"
+          ],
+          "browser_errors": [],
+          "blocked_external_requests": []
+        },
+        {
+          "condition": "settled-jump",
+          "repeats": 3,
+          "identical_trace": false,
+          "identical_result": true,
+          "first_differing_sample": [
+            {
+              "repeat": 2,
+              "label": "frame_22"
+            },
+            {
+              "repeat": 3,
+              "label": "frame_22"
+            }
+          ],
+          "trace_sha256": [
+            "2434068a5c19a9847442071af57a6e80d135606eb1e2e5a6c2a98a42f0782a78",
+            "40a4ed523b1278b9e97cdb712278810c09a285124823494481c5fd6b66c7fe5b",
+            "40a4ed523b1278b9e97cdb712278810c09a285124823494481c5fd6b66c7fe5b"
+          ],
+          "browser_errors": [],
+          "blocked_external_requests": []
+        }
+      ],
+      "locations": [
+        {
+          "file": "game.js",
+          "line": 118,
+          "exact_quote_verified": true,
+          "provenance": {
+            "file": "game.js",
+            "line": 118,
+            "contributing_tool_steps": [
+              3
+            ],
+            "meaning": "code provenance only; not proof of earliest reasoning error"
+          }
+        }
+      ]
+    },
+    {
+      "task_id": "signal-memory",
+      "diagnosis": "no_defect_observed",
+      "provenance_complete": false,
+      "conditions": [
+        {
+          "condition": "original",
+          "repeats": 3,
+          "identical_trace": true,
+          "identical_result": true,
+          "first_differing_sample": [
+            {
+              "repeat": 2,
+              "label": null
+            },
+            {
+              "repeat": 3,
+              "label": null
+            }
+          ],
+          "trace_sha256": [
+            "ededc9f826508d1f9c3d1360556222f847d6e94641a9ec7532a104ad7c6a983c",
+            "ededc9f826508d1f9c3d1360556222f847d6e94641a9ec7532a104ad7c6a983c",
+            "ededc9f826508d1f9c3d1360556222f847d6e94641a9ec7532a104ad7c6a983c"
+          ],
+          "browser_errors": [],
+          "blocked_external_requests": []
+        }
+      ],
+      "locations": [
+        {
+          "file": "game.js",
+          "line": 111,
+          "exact_quote_verified": true,
+          "provenance": null
+        },
+        {
+          "file": "game.js",
+          "line": 146,
+          "exact_quote_verified": true,
+          "provenance": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "seed": 404,
+  "repetitions": 3,
+  "specs": [
+    {
+      "id": "target-start",
+      "game": "target-rush",
+      "rule": "菜单中的 Start 按钮能被真实鼠标点击，进入 playing。",
+      "intervention": "仅在诊断副本追加 [hidden] { display: none !important; }；随后检查开始和五次命中。"
+    },
+    {
+      "id": "platform-jump",
+      "game": "platform-rescue",
+      "rule": "角色实际落地后，真实方向键和跳跃应能落在第一平台。",
+      "intervention": "对照开始后立即跳跃与等待32ms后跳跃。输入时机变化不能证明游戏代码有错。"
+    },
+    {
+      "id": "memory-reset",
+      "game": "signal-memory",
+      "rule": "播放序列时重开，旧定时器不得在之后改变菜单状态；新一局仍应能完成三轮。",
+      "intervention": "无代码修改；推进旧定时器截止时间后检查菜单，再走完整通关路径。"
+    }
+  ],
+  "sampling": "purposefully selected diagnostic cases, not a representative benchmark",
+  "generation": "reuse unchanged historical Hy3 outputs; no new game generation",
+  "human_validation": "pending",
+  "first_reasoning_error_accuracy": null,
+  "distinction": "source provenance is not a confirmed earliest reasoning error"
+}

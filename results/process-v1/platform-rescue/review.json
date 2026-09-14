@@ -1,0 +1,103 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": null,
+    "process_correct": null,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "loss-path 回放使玩家向左移动（vx=-3）被左墙夹在 x=0，从未接近右侧尖刺（x=80-120），游戏正确地未触发危险、未扣命。裁判期望 lives 由 3 减到 2/1/0 属回放输入方向错误导致的私有规则误报，非游戏逻辑缺陷；win-path 中 spike 命中、hazard_hit、扣命、game_lost 均正确产生，证明危险逻辑本身可用。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "loss-path",
+        "action_index": 2
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "win-path 玩家在 tick5 即撞上尖刺、3 次扣命后 lost，未见成功越障。但尖刺位于出生点右侧地面、紧贴 platform-1 下方，按代码物理（jumpVy=-11, gravity=0.6, moveSpeed=3，滞空约 34 tick、水平约 102px）只需在触刺前（约 5 tick/80ms 内）起跳即可越障落到 platform-1，回放似乎未及时起跳。痕迹显示跳跃/落地/危险/拾取/门碰撞逻辑均正常运作，无法据此判定游戏不可通关；开发者亦自承落点为手算、未实跑验证。属验证输入时序问题，证据不足以断言代码缺陷。",
+        "file": "game.js",
+        "excerpt": "function step() { ... if (player.vy >= 0 && oldBottom <= p.y + 1 && newBottom >= p.y && player.x + player.w > p.x && player.x < p.x + p.width) { ... } }",
+        "scenario_id": "win-path",
+        "action_index": 3
+      },
+      {
+        "step_id": 6,
+        "kind": "implementation_mismatch",
+        "status": "test_problem",
+        "explanation": "合约检查器报 JUMP/RESTART_KEY 的 key_event 与预期不符。但公开需求仅列出控件名称，未规定 key_event 取值；游戏实现中 JUMP(Space)、RESTART_KEY(KeyR) 均经 keydown 处理器触发（jumpQueued=true / restartGame()），manifest 标 key_event='down' 与实现一致，属私有规则误报，非真实缺陷。",
+        "file": "game.manifest.json",
+        "excerpt": "\"key_event\": \"down\",\n      \"code\": \"Space\"",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "开发者明确未运行 Playwright/真实浏览器测试，关卡落点为手算、未经验证，无法对'通关路径可行'给出确定结论（final_correct=null）。",
+      "win-path 与 loss-path 失败更可能源于回放输入（移动方向/起跳时序）而非游戏逻辑缺陷；已按'私有规则可能误报、先核对公开要求'原则复核。",
+      "restart-path 干净通过（L1/L2 pass），证明 reset/状态机/出生/菜单恢复逻辑正确，但不足以证明核心通关路径可行。",
+      "方案 step2 平台坐标被开发者有意偏离（称原时序不可行），但属有据可查的主动调整且原验证从未实跑，故不填首错 step。",
+      "L1 层级 'missing or invalid player/world bounds geometry' 在 tick0 即报，但 observe() 实际含完整 player/platforms/world，疑为裁判解析误报。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "loss-path 回放使玩家向左移动（vx=-3）被左墙夹在 x=0，从未接近右侧尖刺（x=80-120），游戏正确地未触发危险、未扣命。裁判期望 lives 由 3 减到 2/1/0 属回放输入方向错误导致的私有规则误报，非游戏逻辑缺陷；win-path 中 spike 命中、hazard_hit、扣命、game_lost 均正确产生，证明危险逻辑本身可用。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "loss-path",
+      "action_index": 2,
+      "code_provenance": null,
+      "quote_verified": null
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "win-path 玩家在 tick5 即撞上尖刺、3 次扣命后 lost，未见成功越障。但尖刺位于出生点右侧地面、紧贴 platform-1 下方，按代码物理（jumpVy=-11, gravity=0.6, moveSpeed=3，滞空约 34 tick、水平约 102px）只需在触刺前（约 5 tick/80ms 内）起跳即可越障落到 platform-1，回放似乎未及时起跳。痕迹显示跳跃/落地/危险/拾取/门碰撞逻辑均正常运作，无法据此判定游戏不可通关；开发者亦自承落点为手算、未实跑验证。属验证输入时序问题，证据不足以断言代码缺陷。",
+      "file": "game.js",
+      "excerpt": "      if (player.vy >= 0 && oldBottom <= p.y + 1 && newBottom >= p.y &&\n          player.x + player.w > p.x && player.x < p.x + p.width) {",
+      "scenario_id": "win-path",
+      "action_index": 3,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 150,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true,
+      "original_excerpt": "function step() { ... if (player.vy >= 0 && oldBottom <= p.y + 1 && newBottom >= p.y && player.x + player.w > p.x && player.x < p.x + p.width) { ... } }",
+      "reference_repaired_by": "hy3"
+    },
+    {
+      "step_id": 6,
+      "kind": "implementation_mismatch",
+      "status": "test_problem",
+      "explanation": "合约检查器报 JUMP/RESTART_KEY 的 key_event 与预期不符。但公开需求仅列出控件名称，未规定 key_event 取值；游戏实现中 JUMP(Space)、RESTART_KEY(KeyR) 均经 keydown 处理器触发（jumpQueued=true / restartGame()），manifest 标 key_event='down' 与实现一致，属私有规则误报，非真实缺陷。",
+      "file": "game.manifest.json",
+      "excerpt": "\"key_event\": \"down\",\n      \"code\": \"Space\"",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 51,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "canvas2d",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "RED",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#signal-canvas",
+      "x_ratio": 0.25,
+      "y_ratio": 0.25,
+      "description": "点击红色区域"
+    },
+    {
+      "action_id": "GREEN",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#signal-canvas",
+      "x_ratio": 0.75,
+      "y_ratio": 0.25,
+      "description": "点击绿色区域"
+    },
+    {
+      "action_id": "BLUE",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#signal-canvas",
+      "x_ratio": 0.25,
+      "y_ratio": 0.75,
+      "description": "点击蓝色区域"
+    },
+    {
+      "action_id": "YELLOW",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#signal-canvas",
+      "x_ratio": 0.75,
+      "y_ratio": 0.75,
+      "description": "点击黄色区域"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始并回到菜单"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyR",
+      "description": "键盘 R 回到菜单"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态：menu/playing/won/lost" },
+      "phase": { "type": "string", "description": "当前阶段：menu/playback/input" },
+      "round": { "type": "integer", "description": "当前回合 1-3" },
+      "lives": { "type": "integer", "description": "剩余生命 0-3" },
+      "score": { "type": "integer", "description": "当前分数" },
+      "progress": { "type": "integer", "description": "本回合已正确输入的颜色数" },
+      "sequence": { "type": "array", "description": "当前回合的颜色序列，元素为 RED/GREEN/BLUE/YELLOW" },
+      "last_feedback": { "type": "string", "description": "最近一次反馈文案" }
+    },
+    "required": ["status", "phase", "round", "lives", "score", "progress", "sequence", "last_feedback"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    { "type": "playback_started", "description": "序列播放开始", "payload_fields": {} },
+    { "type": "input_phase_started", "description": "输入阶段开始", "payload_fields": {} },
+    { "type": "input_ignored", "description": "播放阶段输入被忽略", "payload_fields": {} },
+    { "type": "signal_correct", "description": "输入正确", "payload_fields": { "color": { "type": "string", "description": "正确的颜色" } } },
+    { "type": "signal_wrong", "description": "输入错误", "payload_fields": { "color": { "type": "string", "description": "点击的颜色" }, "expected": { "type": "string", "description": "期望的颜色" } } },
+    { "type": "round_completed", "description": "回合完成", "payload_fields": { "round": { "type": "integer", "description": "完成的回合" } } },
+    { "type": "game_won", "description": "游戏胜利", "payload_fields": { "score": { "type": "integer", "description": "最终分数" } } },
+    { "type": "game_lost", "description": "游戏失败", "payload_fields": {} },
+    { "type": "game_reset", "description": "重置为菜单状态", "payload_fields": {} }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

@@ -1,0 +1,874 @@
+{
+  "scanned_games": 96,
+  "historical_candidates": 54,
+  "tested_games": 3,
+  "browser_runs": 9,
+  "findings": [
+    {
+      "id": "particle-orchestra",
+      "kind": "score_double_count",
+      "rule": "完整输入 A、C、D、B 时获胜并得到100分。",
+      "excerpt": "state.score += 100;",
+      "source": "results/full-96/evidence/particle-orchestra",
+      "difficulty": "D3",
+      "generator": "hy3",
+      "game_sha256": "c1878db5242b10b350ed47bd54f0d2e3322359ec879639ec602ccb1eb4f13ae1",
+      "history_complete": true,
+      "history_issues": [],
+      "code_provenance": {
+        "file": "game.js",
+        "line": 93,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "first_reasoning_error": null,
+      "human_review": null,
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0  Progress: 0/4  Attempts: 3"
+            },
+            {
+              "action": "Digit1 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 25  Progress: 1/4  Attempts: 3"
+            },
+            {
+              "action": "Digit3 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 50  Progress: 2/4  Attempts: 3"
+            },
+            {
+              "action": "Digit4 + 100ms",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 75  Progress: 3/4  Attempts: 3"
+            },
+            {
+              "action": "Digit2 + 100ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": "B"
+              },
+              "hud": "Won",
+              "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "scope": "Browser-reproduced candidate; source provenance is not an independently confirmed reasoning-error step"
+    },
+    {
+      "id": "zen-garden",
+      "kind": "stale_terminal_hud",
+      "rule": "第二次错误操作时立即失败，HUD 应显示 Lost。",
+      "excerpt": "function wrongAction() {",
+      "source": "results/full-96/evidence/zen-garden",
+      "difficulty": "D3",
+      "generator": "hy3",
+      "game_sha256": "c820e98fe07734f95c738c8858696a161b6aaa908f6ea56575f25ef8c62f954a",
+      "history_complete": true,
+      "history_issues": [],
+      "code_provenance": {
+        "file": "game.js",
+        "line": 128,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "first_reasoning_error": null,
+      "human_review": null,
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": true,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Menu",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": "",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 1,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "WRONG + 100ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "lost",
+                "progress": 0,
+                "score": 0,
+                "lives": 0,
+                "last_action": "wrong",
+                "saved": false
+              },
+              "hud": "Playing",
+              "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "scope": "Browser-reproduced candidate; source provenance is not an independently confirmed reasoning-error step"
+    },
+    {
+      "id": "science-circuit",
+      "kind": "restart_unavailable",
+      "rule": "局内重开入口应可见可用。",
+      "excerpt": null,
+      "source": "results/quota-recovery/evidence/science-circuit",
+      "difficulty": "D1",
+      "generator": "hy3",
+      "game_sha256": "cc4ab56b24bda8e666e0fa4d81b7c72d1f76a509d67176ed141b14d0969e8f75",
+      "history_complete": true,
+      "history_issues": [],
+      "code_provenance": null,
+      "first_reasoning_error": null,
+      "human_review": null,
+      "runs": [
+        {
+          "repeat": 0,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 1,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        },
+        {
+          "repeat": 2,
+          "reproduced": true,
+          "restartVisible": false,
+          "trace": [
+            {
+              "action": "menu",
+              "state": {
+                "status": "menu",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Menu",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "START + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 0,
+                "score": 0,
+                "lives": 2,
+                "last_action": ""
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 0 | Progress: 0/3 | Lives: 2"
+            },
+            {
+              "action": "STAGE_1 + 100ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            },
+            {
+              "action": "wait 1000ms",
+              "state": {
+                "status": "playing",
+                "progress": 1,
+                "score": 10,
+                "lives": 2,
+                "last_action": "stage-1"
+              },
+              "hud": "Playing",
+              "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+            }
+          ],
+          "errors": [],
+          "external_requests": []
+        }
+      ],
+      "scope": "Browser-reproduced candidate; source provenance is not an independently confirmed reasoning-error step"
+    }
+  ]
+}

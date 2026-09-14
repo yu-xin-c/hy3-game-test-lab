@@ -1,0 +1,125 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Platform Rescue
+
+## 游戏目标
+
+做一个单屏平台跳跃游戏。玩家要跨过两段高台，取得钥匙，再到达右上方的救援门。
+
+## 完整玩法
+
+游戏区域为 800×600。玩家从左下方地面出生，使用左右方向键移动，使用 Space 跳跃。关卡包含地面、`platform-1`、`platform-2` 和终点平台。钥匙位于 `platform-2`，救援门位于终点平台。没有钥匙接触救援门时不能通关。
+
+左侧起点旁放置一段尖刺。玩家碰到尖刺或掉出世界边界会损失 1 条生命并回到出生点。初始 3 条生命，生命归零则失败。取得钥匙后接触救援门立即获胜。
+
+关卡需要保证测试路径可行：玩家按住右键并连续完成三次跳跃，可以依次稳定落在 `platform-1`、`platform-2` 和终点平台。物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界。
+
+## 胜负与重开
+
+- 取得钥匙后接触救援门：`won`。
+- 生命归零：`lost`。
+- 胜负后停止物理更新和计分。
+- Restart 按钮或键盘 `R` 返回菜单，恢复关卡、钥匙和 3 条生命。
+
+## 界面与反馈
+
+Canvas 绘制游戏，HUD 使用普通 DOM 显示 `Lives: n/3`、`Key: Yes/No` 和状态。玩家、平台、尖刺、钥匙和门必须有明显区别。状态固定使用 `Menu`、`Playing`、`Won`、`Lost`。
+
+## 固定规则
+
+物理采用固定步长更新。相同 seed、相同输入和相同虚拟时间必须产生相同 tick、位置和事件。玩家状态使用左上角坐标，并公开宽高、水平/垂直速度、grounded 和 support_id。平台公开 id、x、y、width、height。
+
+## 自动测试接口
+
+- 界面：Canvas2D，`#game-canvas` 为游戏区域。
+- `#start-btn`、`#restart-btn`。
+- `[data-testid="score"]` 显示生命和钥匙；`[data-testid="status"]` 显示状态。
+- 控件名称：`START`、`LEFT_DOWN`、`LEFT_UP`、`RIGHT_DOWN`、`RIGHT_UP`、`JUMP`、`RESTART`、`RESTART_KEY`。
+- state 至少包含：`status`、`lives`、`has_key`、`player`、`platforms`、`world`、`sim_time_ms`。
+- 事件：`game_started`、`player_jumped`、`player_landed`、`key_collected`、`hazard_hit`、`player_respawned`、`door_blocked`、`game_won`、`game_lost`、`game_reset`。
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"固定步长物理与确定性：相同 seed、相同输入序列和相同虚拟时间必须产生完全相同的 tick、玩家位置与事件。","implementation":"采用累加器固定步长 dt=16ms（每 tick=16ms），物理与事件只在整数 tick 更新；PRNG 用 mulberry32(seed) 驱动任何随机量。player.sim_time_ms = tick*16。所有时间由 requestAnimationFrame/performance 驱动以兼容虚拟时间重放。","verification":"同一 seed 连续调用 reset 两次，施加完全相同输入序列后，对 observe() 返回的 player.x/y/vx/vy 与 latest_event_seq 做深比较，结果必须完全一致。"},{"id":2,"requirement":"关卡布局与测试路径可行：按住右键并连续完成三次跳跃，可依次稳定落在 platform-1、platform-2、终点平台（end），且物体不穿模、不悬空、不越界。","implementation":"世界 800×600。地面 y=560,h=40；spawn(40,520,24,32)。platform-1(200,440,140,20)、platform-2(400,320,140,20)、end(620,200,140,20)，id 分别为 'ground','platform-1','platform-2','end'。尖刺(80,540,40,20)；钥匙(450,290)；门(650,140,30,60)。物理常量 gravity=0.6、moveSpeed=3、jumpVy=-11、maxFall=12。碰撞用 AABB 顶端吸附，仅当 vy>=0 且上一帧在台面之上才设 grounded 与 support_id。","verification":"tick0 发 RIGHT_DOWN，于 tick0/20/40 各发一次 JUMP，观察 player_landed 事件 support_id 依次为 'platform-1'、'platform-2'、'end'，随后 key_collected 与 game_won 依次触发，且全程无穿模（player 中心始终在台面顶 32px 容差内）。"},{"id":3,"requirement":"输入映射与状态机：左右键改 vx，Space 仅当 grounded 跳跃；状态只能在 Menu/Playing/Won/Lost 间转换，终局停止物理与计分。","implementation":"控件 LEFT_DOWN/LEFT_UP/RIGHT_DOWN/RIGHT_UP 改 vx 符号（同按右优先）；JUMP 仅当 player.grounded 设 vy=jumpVy 并派 player_jumped（防止空中连跳）。START->playing 派 game_started；Won/Lost 后停下 tick 累加。RESTART/RESTART_KEY 调 reset 回菜单并恢复 3 命、钥匙归位、状态 menu。","verification":"非 grounded 时连发 3 次 JUMP 只产生 1 次 player_jumped；game_won 后 observe().status==='won' 且 sim_time_ms 不再增长；按 RESTART 后 lives===3、has_key===false、status==='menu'。"},{"id":4,"requirement":"危险与生命：碰到尖刺或掉出世界（player.y>600）损失 1 命并回到出生点；生命归零判负；无钥匙触门不通关。","implementation":"每 tick AABB 检测尖刺重叠或 player.y>600 触发 hazard_hit，lives-1 并 player_respawned 回 spawn（清空 vx/vy、grounded=true、support_id='ground'）。lives===0 派 game_lost 且 status='lost'。门碰撞若 has_key===false 派 door_blocked 且不获胜。","verification":"将玩家坐标强行置入尖刺重叠区 1 tick，hazard_hit 与 lives 减 1 出现且位置复位；重复 3 次后 status==='lost'；无钥匙时移到门重叠区只产生 door_blocked 而非 game_won。"},{"id":5,"requirement":"界面与反馈：Canvas2D 绘制且各元素明显区分；HUD 用 DOM 显示 Lives 与 Key 及状态。","implementation":"Canvas #game-canvas（800×600）以不同颜色绘制玩家（蓝）、平台（灰）、尖刺（红）、钥匙（黄）、门（绿）。DOM [data-testid='score'] 文本含 'Lives: n/3' 与 'Key: Yes/No'；[data-testid='status'] 显示 Menu/Playing/Won/Lost；按钮 #start-btn、#restart-btn 始终可见可用。","verification":"document.querySelector('#game-canvas').width===800；score 文本匹配 /Lives:\\s*\\d\\/3/ 与 /Key:\\s*(Yes|No)/；status 文本去大小写与连续空白后属于四态之一；restart 按钮在终局仍可 click。"},{"id":6,"requirement":"只读观察桥与事件/清单：暴露 window.__GAMETESTLAB__（协议 gametestlab/2）及合规 game.manifest.json。","implementation":"桥含 protocol、isReady()、reset({seed})（每次 event_epoch+1、seq 从 1、首事件 game_reset）、observe()（tick/status/state/event_epoch/latest_event_seq）、getEvents({afterSeq})。state 含 status,lives,has_key,player(含w,h,vx,vy,grounded,support_id),platforms[],world,sim_time_ms。事件含 game_started/player_jumped/player_landed/key_collected/hazard_hit/player_respawned/door_blocked/game_won/game_lost/game_reset。manifest 按 v3 填 surface='canvas2d'、controls、hud_selectors、state_schema、event_schema、bridge。","verification":"isReady()===true；observe() 字段齐全且 latest_event_seq 等于 getEvents({afterSeq:0}) 长度；reset 后 event_epoch 增 1 且 getEvents({afterSeq:0})[0] 为 game_reset 且 seq===1；manifest JSON 可被解析且 controls 覆盖全部 8 个 action_id。"}]}

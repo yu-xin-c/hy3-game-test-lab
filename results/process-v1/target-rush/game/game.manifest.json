@@ -1,0 +1,103 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "HIT",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#target",
+      "description": "击中当前目标"
+    },
+    {
+      "action_id": "MISS",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#playfield",
+      "description": "点击空白区域计为 miss"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重开并返回菜单"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "KeyR",
+      "description": "键盘 R 重开"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" },
+      "score": { "type": "integer", "description": "已击中目标数" },
+      "misses": { "type": "integer", "description": "失误次数" },
+      "remaining_ms": { "type": "number", "description": "剩余毫秒" },
+      "target_index": { "type": "integer", "description": "当前目标序号" }
+    },
+    "required": ["status", "score", "misses", "remaining_ms", "target_index"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "target_hit",
+      "description": "击中目标",
+      "payload_fields": {
+        "target_index": { "type": "integer", "description": "被击中的目标序号" }
+      }
+    },
+    {
+      "type": "target_missed",
+      "description": "点击空白",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_won",
+      "description": "胜利",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_lost",
+      "description": "失败",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_reset",
+      "description": "重置到菜单",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "使用的随机种子" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

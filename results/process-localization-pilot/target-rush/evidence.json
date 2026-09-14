@@ -1,0 +1,214 @@
+{
+  "task_id": "target-rush",
+  "source": "../full-96/evidence/target-rush",
+  "game_sha256": "f2450b7527fbb09b8e7fb1b2678723c058e3c85c24b2f7ffca762bb2c14264d0",
+  "source_kind": "historical_hy3_generated_game",
+  "browser": "151.0.7922.34",
+  "spec": {
+    "id": "target-start",
+    "game": "target-rush",
+    "rule": "菜单中的 Start 按钮能被真实鼠标点击，进入 playing。",
+    "intervention": "仅在诊断副本追加 [hidden] { display: none !important; }；随后检查开始和五次命中。"
+  },
+  "provenance": {
+    "complete": false,
+    "steps": [],
+    "issues": [],
+    "verified_files": {
+      "index.html": false,
+      "styles.css": false,
+      "game.js": false,
+      "game.manifest.json": false
+    },
+    "telemetry_available": false,
+    "tools_sha256": "7036e34bafb84e59d64a9ffc755744822062c0244623ea26f55c47abb285becb"
+  },
+  "runs": [
+    {
+      "condition": "original",
+      "repeat": 1,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "end-overlay",
+          "tag": "DIV",
+          "text": "\n    Won\n    \n  "
+        }
+      },
+      "result": {
+        "start_works": false,
+        "end_overlay": {
+          "hidden": true,
+          "display": "flex"
+        },
+        "final": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        }
+      },
+      "screenshot": "original-1.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "original",
+      "repeat": 2,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "end-overlay",
+          "tag": "DIV",
+          "text": "\n    Won\n    \n  "
+        }
+      },
+      "result": {
+        "start_works": false,
+        "end_overlay": {
+          "hidden": true,
+          "display": "flex"
+        },
+        "final": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        }
+      },
+      "screenshot": "original-2.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "original",
+      "repeat": 3,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "end-overlay",
+          "tag": "DIV",
+          "text": "\n    Won\n    \n  "
+        }
+      },
+      "result": {
+        "start_works": false,
+        "end_overlay": {
+          "hidden": true,
+          "display": "flex"
+        },
+        "final": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        }
+      },
+      "screenshot": "original-3.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "hidden-css-intervention",
+      "repeat": 1,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "start_works": true,
+        "end_overlay": {
+          "hidden": true,
+          "display": "none"
+        },
+        "final": {
+          "status": "won",
+          "score": 5,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 4
+        }
+      },
+      "screenshot": "hidden-css-intervention-1.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "hidden-css-intervention",
+      "repeat": 2,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "start_works": true,
+        "end_overlay": {
+          "hidden": true,
+          "display": "none"
+        },
+        "final": {
+          "status": "won",
+          "score": 5,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 4
+        }
+      },
+      "screenshot": "hidden-css-intervention-2.png",
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "condition": "hidden-css-intervention",
+      "repeat": 3,
+      "startInput": {
+        "selector": "#start-btn",
+        "x": 399.9921875,
+        "y": 431,
+        "hit": {
+          "id": "start-btn",
+          "tag": "BUTTON",
+          "text": "Start"
+        }
+      },
+      "result": {
+        "start_works": true,
+        "end_overlay": {
+          "hidden": true,
+          "display": "none"
+        },
+        "final": {
+          "status": "won",
+          "score": 5,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 4
+        }
+      },
+      "screenshot": "hidden-css-intervention-3.png",
+      "errors": [],
+      "externalRequests": []
+    }
+  ]
+}

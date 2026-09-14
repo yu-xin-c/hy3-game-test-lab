@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>真实错误 · 自动评测证据</title>
+<style>body{font:15px/1.7 system-ui,sans-serif;background:#f4f6f1;color:#21302c;max-width:1050px;margin:32px auto;padding:0 20px}section{background:white;border:1px solid #dae2d6;border-radius:12px;padding:24px;margin:20px 0}h1{font-size:24px}h2{font-size:19px}pre{white-space:pre-wrap;word-break:break-word;background:#f1f4ee;padding:16px;max-height:440px;overflow:auto}button,input,select,textarea{font:inherit;padding:9px;border:1px solid #bdccba;border-radius:6px}button{cursor:pointer;background:#254e3b;color:white}label{display:block;margin-top:14px}input,select,textarea{box-sizing:border-box;width:100%}textarea{min-height:110px}summary{cursor:pointer;padding:8px 0}img{max-width:100%;border:1px solid #ddd}a{color:#285c43}.muted{color:#65736a}#message{position:sticky;bottom:0;background:#edf3e8}</style>
+<h1>真实错误 · 自动评测证据</h1><p><a href="/">返回生成过程页</a> · 请先看要求和观测，再展开模型判断。</p><p class="muted">写入步骤只代表实现来源，不是内部推理步骤。题意歧义与执行差异分开记录。</p><select id="pick" aria-label="选择案例"></select><main id="content"></main><p id="message" role="status"></p>
+<script>
+const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e};let data;
+const panel=title=>{const s=el('section');s.append(el('h2',title));document.getElementById('content').append(s);return s};
+const detail=(parent,title,content)=>{const d=el('details');d.append(el('summary',title),el('pre',content));parent.append(d)};
+function show(id){const item=data.cases.find(c=>c.id===id);document.getElementById('content').replaceChildren();let p=panel(item.id+' · '+item.difficulty);detail(p,'完整公开要求',item.public_prompt);
+p=panel('真实浏览器观测');for(const run of item.runs){detail(p,'重放 '+(run.repeat+1)+'：操作、状态和 HUD',JSON.stringify(run.trace,null,2));const d=el('details');d.append(el('summary','查看重放 '+(run.repeat+1)+' 截图'));const img=el('img');img.src='/mined-artifact/'+item.id+'-'+run.repeat+'.png';img.alt='末次操作并等待一秒后的游戏截图';d.append(img);p.append(d)}
+p=panel('实现与写入记录');p.append(el('p','历史重建：'+(item.history.complete?'与最终代码一致':'不完整，不能确定写入步骤')));detail(p,'工具步骤',JSON.stringify(item.history.steps,null,2));for(const [file,text]of Object.entries(item.code))detail(p,file,text);
+p=panel('Hy3 独立判断');detail(p,'展开模型结果（非标准答案）',item.review?JSON.stringify(item.review,null,2):'尚未完成');
+}
+
+fetch('/api/mined').then(r=>r.json()).then(d=>{data=d;const pick=document.getElementById('pick');for(const c of data.cases){const o=el('option',c.id);o.value=c.id;pick.append(o)}pick.onchange=()=>show(pick.value);if(data.cases.length)show(data.cases[0].id)}).catch(e=>document.getElementById('message').textContent=e.message);
+</script></html>

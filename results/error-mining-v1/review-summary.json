@@ -1,0 +1,105 @@
+{
+  "rows": [
+    {
+      "id": "particle-orchestra",
+      "difficulty": "D3",
+      "reproduced": 3,
+      "repetitions": 3,
+      "model_supports_defect": false,
+      "predicted_first_observed_action": null,
+      "code_provenance": null,
+      "final_observation": {
+        "action": "wait 1000ms",
+        "state": {
+          "status": "won",
+          "sequence": [
+            "A",
+            "C",
+            "D",
+            "B"
+          ],
+          "progress": 4,
+          "score": 200,
+          "attempts": 3,
+          "active_cluster": "B"
+        },
+        "hud": "Won",
+        "scoreHud": "Score: 200  Progress: 4/4  Attempts: 3"
+      },
+      "source": "../full-96/evidence/particle-orchestra",
+      "limits": [
+        "执行记录仅覆盖 A→C→D→B 通关路径，未触发错误输入、progress_reset、game_lost 与失败路径，故这些分支行为仅由代码推断，未在记录中实证",
+        "score=200 的解读采用'获胜额外获得100分'的奖励式语义；若将'得到100分'理解为终局总分恰好为100，则结论会相反，但题面无'终局总分=100'的显式陈述"
+      ]
+    },
+    {
+      "id": "zen-garden",
+      "difficulty": "D3",
+      "reproduced": 3,
+      "repetitions": 3,
+      "model_supports_defect": true,
+      "predicted_first_observed_action": "WRONG + 100ms",
+      "code_provenance": {
+        "file": "game.js",
+        "line": 128,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "final_observation": {
+        "action": "wait 1000ms",
+        "state": {
+          "status": "lost",
+          "progress": 0,
+          "score": 0,
+          "lives": 0,
+          "last_action": "wrong",
+          "saved": false
+        },
+        "hud": "Playing",
+        "scoreHud": "分数 0 · 进度 0/3 · 生命 2"
+      },
+      "source": "../full-96/evidence/zen-garden",
+      "limits": [
+        "执行记录仅覆盖 WRONG 错误操作路径，未验证 STAGE_1/2/3 正常完成计分、胜利判定及刷新后 localStorage 恢复等路径",
+        "仅能依据 HUD 文本与 observe() 返回状态对比确认界面未刷新，不能凭此记录断言阶段完成、存档恢复等其他功能是否正确"
+      ]
+    },
+    {
+      "id": "science-circuit",
+      "difficulty": "D1",
+      "reproduced": 3,
+      "repetitions": 3,
+      "model_supports_defect": true,
+      "predicted_first_observed_action": "START + 100ms",
+      "code_provenance": {
+        "file": "game.js",
+        "line": 59,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "final_observation": {
+        "action": "wait 1000ms",
+        "state": {
+          "status": "playing",
+          "progress": 1,
+          "score": 10,
+          "lives": 2,
+          "last_action": "stage-1"
+        },
+        "hud": "Playing",
+        "scoreHud": "Score: 10 | Progress: 1/3 | Lives: 2"
+      },
+      "source": "../quota-recovery/evidence/science-circuit",
+      "limits": [
+        "Restart 按钮在 index.html 中仅位于 #end 面板，playing 状态无独立入口",
+        "本次执行未到达 won/lost，仅证明局内不可见，未验证终局可见性"
+      ]
+    }
+  ],
+  "review_count": 3,
+  "note": "Reproduction and byte-matched provenance are not causal proof. Historical samples lack numbered public plans."
+}

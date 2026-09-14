@@ -1,0 +1,88 @@
+{
+  "startInput": {
+    "selector": "#start-btn",
+    "x": 399.9921875,
+    "y": 431,
+    "hit": {
+      "id": "end-overlay",
+      "tag": "DIV",
+      "text": "\n    Won\n    \n  "
+    }
+  },
+  "trace": [
+    {
+      "label": "menu",
+      "observation": {
+        "tick": 0,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "after_start",
+      "observation": {
+        "tick": 0,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {}
+        }
+      ]
+    },
+    {
+      "label": "final",
+      "observation": {
+        "tick": 0,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "score": 0,
+          "misses": 0,
+          "remaining_ms": 20000,
+          "target_index": 0
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 0,
+          "type": "game_reset",
+          "payload": {}
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

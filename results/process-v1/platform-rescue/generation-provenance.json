@@ -1,0 +1,40 @@
+{
+  "complete": true,
+  "issues": [],
+  "steps": [
+    {
+      "step": 1,
+      "call_id": "chatcmpl-tool-ac485e30debb27e8",
+      "tool": "Write",
+      "file": "index.html",
+      "sha256": "a8908f5a4a545f1e7be3d70b808309834d2b7d15aaaf918751a391741dc0c11c"
+    },
+    {
+      "step": 2,
+      "call_id": "chatcmpl-tool-846727ebadda13f1",
+      "tool": "Write",
+      "file": "styles.css",
+      "sha256": "36234dba92461f636abca1184386859977bbc71cdc3ee6bb74023e67960ddd33"
+    },
+    {
+      "step": 3,
+      "call_id": "chatcmpl-tool-ae45794d5a6c0c9f",
+      "tool": "Write",
+      "file": "game.js",
+      "sha256": "a3ce40295fb13641649cfa7aa1fa69c075706953c4ca2cba6c51644e66550444"
+    },
+    {
+      "step": 4,
+      "call_id": "chatcmpl-tool-9b03c556474598f4",
+      "tool": "Write",
+      "file": "game.manifest.json",
+      "sha256": "6b084b86ce613338f93cf4584645e2632789ff382bdcba56839dc2af58b695c9"
+    }
+  ],
+  "verified_files": {
+    "game.js": true,
+    "game.manifest.json": true,
+    "index.html": true,
+    "styles.css": true
+  }
+}

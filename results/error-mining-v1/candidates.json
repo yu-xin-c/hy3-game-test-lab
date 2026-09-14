@@ -1,0 +1,731 @@
+{
+  "scanned_games": 96,
+  "selection": "Historical Hy3 process=false; candidates, not confirmed defects",
+  "candidates": [
+    {
+      "task_id": "target-rush",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "click_interception_by_hidden_overlay",
+      "evidence": "操作0(START)：first_replay_trace 记录 runner: Step START failed: locator.click: Timeout 5000ms exceeded，日志明确 '<div hidden=\"\" id=\"end-overlay\">…</div> intercepts pointer events'。状态保持 status='menu'、score=0、target_index=0，无 game_started 事件。根因在代码：styles.css 中 '#end-overlay { display: flex }' 覆盖了浏览器 UA 样式 [hidden]{display:none}，使带 hidden 属性的 #end-overlay 仍以 z-index:50 全屏覆盖并拦截 #start-btn 点击，导致后续全部 HIT 步骤(#target 始终未可见)均超时。该 runtime 错误为真实现察，非误报。",
+      "oracle_issues": [
+        "oracle 检查点 TR-CP-WON 期望胜利时 target_index=5，但公开题面仅要求 state 至少包含 target_index 字段，未声明胜利瞬间其值必须为5；该私有编号期望缺乏公开依据，若游戏正常启动，代码使 target_index 停留于4会被误判为错误。"
+      ]
+    },
+    {
+      "task_id": "target-rush",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "click_interception_by_hidden_overlay",
+      "evidence": "操作0(START)：trace 显示 Step START 点击超时，'#end-overlay intercepts pointer events'，status 始终 'menu'、无 game_started 事件。根因同 win-path：CSS '#end-overlay{display:flex}' 覆盖 hidden，挡住 #start-btn。因此三次 MISS 与 TR-CP-MISS-LOST 检查点从未执行（status 仍为 menu、misses=0）。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "target-rush",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "timeout-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "click_interception_by_hidden_overlay",
+      "evidence": "操作0(START)：trace 显示 Step START 点击超时，'#end-overlay intercepts pointer events'，status 仍为 'menu'、remaining_ms=20000、无 game_started 事件。根因同 win-path：CSS 使隐藏的 #end-overlay 实际可见并拦截点击。advance_time 20032ms 后状态未变化，TR-CP-TIMEOUT 检查点从未执行。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "target-rush",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "click_interception_by_hidden_overlay",
+      "evidence": "操作0(START)：trace 显示 Step START 点击超时，'#end-overlay intercepts pointer events'，status 仍为 'menu'、无 game_started 事件。根因同 win-path。后续 HIT(#target 不可见超时)与 RESTART_KEY 均未使游戏进入 playing，TR-CP-RESET 检查点从未执行。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "platform-rescue",
+      "source": "../infra-recovery",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 3,
+      "error_type": "unexpected_loss_during_traversal",
+      "evidence": "Trace action 0 START -> status='playing', game_started event present (ok). action 2 JUMP at elapsed 0: state.player.vy=0, grounded=false -> jump silently dropped because no physics step ran after START (player rests on ground at y=520/bottom 560 but 'grounded' is only set inside step()). action 3 ADVANCE_FRAMES(50, 800ms): status='lost', lives=0, player.x≈62, support_id='ground'; events show hazard_hit(reason='spike') at tick 6/12/18 plus game_lost. Expected PR-CP-LAND-1: status='playing', lives=3, support_id='platform-1'. The spike rect x:90-130 sits between spawn x:40 and platform-1 x:150; holding RIGHT walks the player into spikes before any jump lifts it, so the platform-1 landing never happens. The rule evaluator's L1 artifact_failure (PR-BOUNDS-1/2/3 'missing player/world bounds geometry') is a false positive: observe() returns state.player{width,height,...} and state.world{width,height}, geometry is valid; the real divergence is the terminal state error at action 3.",
+      "oracle_issues": [
+        "win-path L1 gate reported 'artifact_failure / PR-BOUNDS-1/2/3 missing or invalid player/world bounds geometry' at action 0 — false positive; the observation bridge exposes valid player and world bounds.",
+        "physics_jump_apex (PR-APEX-1) and physics_support_timeout (PR-LAND-STABLE-1) failures at action 3 are downstream symptoms of the premature death, not independent defects."
+      ]
+    },
+    {
+      "task_id": "platform-rescue",
+      "source": "../infra-recovery",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "hazard_not_triggered_spikes_misplaced",
+      "evidence": "Trace action 0 START -> status='playing', game_started present (ok). action 1 LEFT_DOWN, action 2 ADVANCE_FRAMES(20, ~320ms): player.x=0 (clamped at left wall), vx=-220, status='playing', lives=3; events only 'player_landed'. Expected PR-CP-HIT-1: lives=2 with hazard_hit+player_respawned. Spikes are defined at x:90,y:540,w:40 (x:90-130) — to the RIGHT of spawn x:40 — so moving LEFT never overlaps them. Public requirement: '左侧起点旁放置一段尖刺' (spikes beside the start on the left) and the loss-path scenario description '向左进入尖刺三次' (move left into spikes three times); the code placement contradicts the requirement, so the left-spike death path cannot trigger. The rule evaluator's L2 first_failure at action 2 (state_effect_error, lives stayed 3) correctly reflects this.",
+      "oracle_issues": [
+        "loss-path L1 gate passed and L2 first_failure at action 2 is a legitimate state_effect_error, not a checker false positive."
+      ]
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "terminal_condition_error",
+      "evidence": "first_replay_trace win-path action_index=0 (START, #start-btn): observed state.status='menu', events=[]; expected by FS-CP-START status='playing' + event 'game_started' present. #start-btn was visible (no 'target not visible' error for START), so the touch was delivered but produced no state change. Likely root cause in game.js guarded(): `if (now - lastActionAt < 60) return;` with module-level lastActionAt=0 — the first real input within 60ms of page load is silently dropped, so startGame() never runs. Downstream actions 1-5 all report 'runner: Step SLICE failed: Touch target is not visible: #fruit' because #playfield was never shown. Earliest OBSERVED error = action 0 (state mismatch + missing event), not a guessed step.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "terminal_condition_error",
+      "evidence": "first_replay_trace loss-path action_index=0 (START): observed state.status='menu', events=[]; expected status='playing' + 'game_started'. No 'target not visible' error for #start-btn, so touch delivered but ignored (same first-input 60ms guard bug as win-path). Actions 1-3 (BOMB) report 'Touch target is not visible: #bomb' because playfield/bomb never shown. Earliest observed error = action 0.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "terminal_condition_error",
+      "evidence": "first_replay_trace restart-path action_index=0 (START): observed state.status='menu', events=[]; expected status='playing' + 'game_started'. Same first-input guard bug. Action 1 SLICE -> 'Touch target is not visible: #fruit'. Action 2 RESTART -> 'Touch target is not visible: #restart-btn'. Note: even with a working start, #restart-btn lives only inside #end screen (index.html) and is hidden during 'playing', so it would be unavailable in-game (public requirement: Restart visible in-game AND at end) — but this path was not reached because START failed. Earliest observed error = action 0.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "meteor-survivor",
+      "source": "../infra-recovery",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "restart_button_not_visible",
+      "evidence": "trace action2(RESTART) 报运行时错误：locator('#restart-btn') 不可见、超时。action0 START 后 state.status=playing，但 DOM 中 #restart-btn 仍带 class=\"hidden\"（display:none），ui.statusText 仍为 Menu。代码确认：updateHud()（负责切换 startBtn/restartBtn 的 hidden 类）仅在 rAF 帧循环 frame() 内调用，startGame()/reset() 均不调用 updateHud；restart-path 连续 START→RIGHT→RESTART 且各步 advance_ms=0，harness 未在输入间泵帧，故按钮可见性未刷新，违反题面“Restart 在局内和终局都必须可见、可用”。若按钮可见，reset() 逻辑本身正确（event_epoch+1、seq 从1、state 回 menu、发 game_reset）。",
+      "oracle_issues": [
+        "规则检查器将 restart 失败归类为 runtime_error/terminal_condition_error 正确，但根因是 UI 可见性仅在 rAF 内更新、未随状态切换即时刷新，属游戏实现缺陷（应在 startGame/reset 中同步调用 updateHud 或显式切换按钮类）。"
+      ]
+    },
+    {
+      "task_id": "particle-orchestra",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 4,
+      "error_type": "scoring_error",
+      "evidence": "公开题面明确：'完整输入 A、C、D、B 时获胜并得到100分'（胜利总分=100）。回放 trace action_index=4（按键 B）：state.score=200，应为 100。根因在 game.js handleKey()：4 次正确输入已累计 25×4=100，胜利分支又执行 `state.score += 100`（额外 +100）。status=won、progress=4、active_cluster=B 均正确，仅分数错误。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "particle-orchestra",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "ui_interaction_error",
+      "evidence": "公开题面要求 'Restart 在局内和终局都必须可见、可用'。回放 trace action_index=2（RESTART 点击 #restart-btn）：runtime error 'locator.click: Timeout 5000ms exceeded ... element is not visible'，按钮解析为 '<button class=\"hidden\" id=\"restart-btn\">' 处于隐藏态。根因：updateHud()（依据 status 切换 #restart-btn 的 'hidden' 类）只在 requestAnimationFrame 的 render() 循环内及 init() 中调用，startGame() 等状态变更后并未同步调用；在同步逐步执行的虚拟时间测试里没有帧触发，按钮自 init() 的 menu 状态起一直隐藏。action2 后 state 仍为 status=playing、progress=1、score=25（未重置），Reset 未执行。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "mini-farm",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "真实浏览器记录 win-path：action_index=0(START) 成功，state.status='playing' 且发出 game_started，但同帧 statusText 仍为 'Menu'（UI 未即时刷新）。action_index=1(PLOT1) 的 runtime_errors 为 'locator.click: Timeout 5000ms exceeded ... element is not visible'（#plot-1 仍为 display:none）；action_index=2(PLANT)、3(WATER) 同样因按钮不可见超时。根因在 game.js：startGame() 仅置 state.status='playing' 并依赖 rAF 帧循环里的 updateUI() 显示 #controls，未在点击处理函数内同步调用 updateUI()，故 START 后同帧内控件不可见。action_index=4 页面 reload 后（重新 init 调了 updateUI）控件才可见，PLOT2 起可点击，但 PLOT1 已遗漏；最终 action_index=17 状态为 status='playing'、harvested=2、coins=20，未达成 won/30。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "mini-farm",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "真实浏览器记录 restart-path：action_index=1(PLOT1) runtime_errors 'element is not visible'（#plot-1），action_index=2(PLANT) 同样超时，action_index=3(RESTART) #restart-btn 'element is not visible' 点击失败，状态维持 status='playing'、saved=true。与 win-path 同源缺陷：START 后控件未在点击处理函数内同步显示，#restart-btn 在 playing 态本应可见（updateUI 中 showPlaying||showEnd 时显示）却因同帧未执行 updateUI 而不可见，导致 Restart 从未被成功触发。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "cooperative-city",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "ui_interaction_blocked_by_role_gating",
+      "evidence": "Trace action1 JOIN: runtime error 'locator.click Timeout 5000ms ... #join-btn ... element is not visible'. render() shows #join-btn only when role==='joiner'; the driven primary/host page hides it, so JOIN cannot run on that page (this is correct per the role design, but the harness drove a secondary-actor action on the primary page). Core host logic is otherwise reachable: action0 START ok (status=playing, events game_started+city_created), actions2-3 BUILD_POWER ok (power 0->2), action6 APPROVE_P1 ok (approvals=1). Final action8 status=playing (not won): water was never built (water-btn hidden on host) and APPROVE_P2 (action7) failed (#approve-btn not visible because the joiner page stayed in menu). The cooperative win path was not completed.",
+      "oracle_issues": [
+        "Checkpoints CC-CP-MID and CC-CP-WON expect state.connected=2 (integer player count), but the public prompt only requires a 'connected' field to exist; game.manifest declares connected as boolean and the code sets it true/false. connected=2 is an undeclared private over-specification, not a player-visible logic error."
+      ]
+    },
+    {
+      "task_id": "cooperative-city",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "ui_interaction_blocked_by_role_gating",
+      "evidence": "Trace action0 START: runtime error 'locator.click Timeout 5000ms ... #start-btn ... element is not visible'. #start-btn is shown only when role==='host'; the driven primary page resolved to joiner via the probe mechanism, so START was impossible. Status stayed 'menu' through action2 (elapsed_ms=0, no game_lost event). The loss-by-timeout path was never executed.",
+      "oracle_issues": [
+        "Checkpoint CC-CP-LOST expects connected=2 (integer) and elapsed_ms=10000; the connected type mismatch (boolean in game) is an undeclared private over-specification."
+      ]
+    },
+    {
+      "task_id": "cooperative-city",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "ui_interaction_blocked_by_role_gating",
+      "evidence": "Trace action0 START: #start-btn not visible (runtime timeout) because the driven primary page became joiner. The game never started (status 'menu' at action3), so RESTART (action3) and the game_reset event could not be exercised; CC-CP-RESET was not reached.",
+      "oracle_issues": [
+        "CC-CP-RESET expects connected=0 (count); the game uses boolean connected (false on reset). The type mismatch is an undeclared private over-specification."
+      ]
+    },
+    {
+      "task_id": "sky-jump",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_not_handled",
+      "evidence": "Replay trace win-path action_index=1 (STAGE_1 touch): state stayed {status:playing,progress:0,score:0,lives:2,last_action:\"\"} with events [] (no stage_completed). Expected per X002-CP-MID: progress=1, score=10, last_action='起跳', stage_completed emitted. Mouse START at action 0 worked (game_started emitted, status=playing). Actions 2 (STAGE_2) and 3 (STAGE_3) likewise produced no state change; final status remained playing (expected won, progress=3, score=30).",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "sky-jump",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_not_handled",
+      "evidence": "Replay trace loss-path action_index=1 (first WRONG touch): state stayed {status:playing,progress:0,score:0,lives:2,last_action:\"\"} with events [] — no action_rejected/progress_reset and lives not decremented (expected lives=1, last_action='wrong', action_rejected). action_index=2 (second WRONG) likewise no effect; final status remained playing (expected lost, lives=0). Mouse START at action 0 worked.",
+      "oracle_issues": [
+        "Rules checker reported first_failure at action_index=2 (checkpoint X002-CP-LOST), but the recorded trace shows the earliest erroneous operation is action_index=1: the first WRONG touch already produced no state change/events. Oracle under-reports the earliest error due to the missing checkpoint at action 1."
+      ]
+    },
+    {
+      "task_id": "sky-jump",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_not_handled",
+      "evidence": "Replay trace restart-path action_index=1 (STAGE_1 touch): state stayed {progress:0,score:0,lives:2,last_action:\"\"}, events [] — stage progression ineffective. action_index=2 (RESTART mouse): state {status:menu,progress:0,score:0,lives:2,last_action:\"\"}, game_reset event emitted — restart restored menu/0/0/2 as required by public prompt. Only divergence from oracle is last_action \"\" vs expected null.",
+      "oracle_issues": [
+        "Oracle expects last_action=null after restart, but public prompt only requires '空 last_action' (empty); the game's \"\" is empty, an internal representation detail not declared in the public prompt, so not a player-visible logic error. Also, rules checker first_failure at action_index=2 under-reports the earliest erroneous operation (action_index=1, STAGE_1 ineffective)."
+      ]
+    },
+    {
+      "task_id": "boxing-duel",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 3,
+      "error_type": "secondary_action_not_processed",
+      "evidence": "Trace action2 STAGE_1 (primary KeyA) correctly advanced progress 0→1, score 0→10 and emitted stage_completed. Trace action3 STAGE_2 (secondary KeyS) showed NO state change (progress stayed 1, score 10) and empty events[]; public rule requires P2格挡 after P1直拳 to advance progress to 2 and emit stage_completed. Consequently action4 STAGE_3 was rejected (progress reset 0, lives 2→1) and final state (action5) was status=playing, progress=0, score=0, lives=1 — never reached won (progress=3, score=30).",
+      "oracle_issues": [
+        "X005-CP-MID expected last_action='P1直拳' but code stores the action id 'STAGE_1'; the public prompt only defines last_action as '最近一次动作' with no mandated text/format, so this is a private oracle expectation, not a public-spec violation.",
+        "X005-CP-MID / X005-CP-WON expected connected=2 (numeric); the public prompt and the game's own manifest declare connected as boolean and no public requirement defines a numeric connection count. False positive."
+      ]
+    },
+    {
+      "task_id": "boxing-duel",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "secondary_action_not_processed",
+      "evidence": "Trace actions 2 and 3 (WRONG, secondary KeyX) produced no state change (lives stayed 2, progress 0, score 0) and empty events[]; public rule requires a wrong-order action to clear progress, deduct 1 life, and emit action_rejected+progress_reset, with the second wrong action emitting game_lost (lives→0). Final state (action3) remained status=playing, never lost.",
+      "oracle_issues": [
+        "X005-CP-LOST expected last_action='wrong' (specific text) and connected=2; the public prompt does not mandate a last_action text format nor a numeric connected value (manifest declares connected boolean). Private oracle expectations, false positives."
+      ]
+    },
+    {
+      "task_id": "whack-mole",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "double_event_trigger",
+      "evidence": "操作序号1(STAGE_1)单次触控后 observe 状态为 {status:'playing',progress:0,score:10,lives:1,last_action:'wrong'}，事件序列为 stage_completed(stage:1,progress:1,score:10) + action_rejected + progress_reset。一次 STAGE_1 触控先后产生 stage_completed 与 action_rejected，表明 stageTouch(1) 被调用两次：addTouch 同时监听 touchstart 与 pointerdown，真实触控两者均触发。公开题面要求正确顺序 左→中→右，首次正确触控应得 progress:1,score:10,lives:2；实际 progress 回退为0、lives 降为1。下游操作2、3 因此已 lives:0/lost 而无法推进，终局 status='lost' 而非 'won'，progress:0/score:10 而非 3/30。",
+      "oracle_issues": [
+        "私有 oracle 在 X007-CP-MID 期望 last_action='击中左洞'，但公开题面仅要求 state 包含 last_action 字段，未声明其文案格式。该字段值不匹配属未声明的私有内部文案，非玩家可见逻辑错误，不计入缺陷。"
+      ]
+    },
+    {
+      "task_id": "whack-mole",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "control_unreachable_overlap",
+      "evidence": "操作序号1(WRONG)单次触控后 observe 状态为 {status:'menu',progress:0,score:0,lives:2,last_action:null}，事件为 game_reset(seed:0)。game_reset 仅由 restartGame 发出，说明本次对 #wrong-action 的触控实际命中了叠放在其上方的 #restart-btn。#wrong-action(left:320,top:500,w160,h50) 完全位于 #restart-btn(left:290,top:500,w220,h56,z-index:10 > wrong:z-index:8) 之内，playing 状态下后者始终覆盖前者，使 WRONG 控件不可达。公开题面要求 WRONG 触发清空进度+扣命、第二次错误即 lost；实际首次错误即被重启回 menu，终局 status='menu' 而非 'lost'，lives=2 而非 0，action_rejected/progress_reset/game_lost 均缺失。操作2 的运行时报错 'Touch target is not visible: #wrong-action' 是该重叠导致的下游后果，非独立错误。",
+      "oracle_issues": [
+        "私有 oracle 期望终局 last_action='wrong' 为未声明内部文案，公开题面只要求 last_action 字段存在，不构成玩家可见逻辑错误。",
+        "本场景真实缺陷为 #wrong-action 与 #restart-btn 布局重叠使错误动作控件不可达，属真实实现错误，并非 oracle 误报。"
+      ]
+    },
+    {
+      "task_id": "whack-mole",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "double_event_trigger",
+      "evidence": "终局操作序号2(RESTART)状态为 {status:'menu',progress:0,score:0,lives:2,last_action:null}，事件 game_reset(seed:0)，与 X007-CP-RESET 完全一致，重置正确。但操作序号1(STAGE_1)单次触控后状态为 {progress:0,score:10,lives:1,last_action:'wrong'}，事件 stage_completed+action_rejected+progress_reset，与 win-path 同为舞台按钮同时监听 touchstart 与 pointerdown 导致一次触控双次调用的缺陷，使一次本应使 progress=1/score=10/lives=2 的正确阶段被立即回退并扣命。因随后 RESTART 完整重置，终局正确，但中间过程存在真实逻辑错误。",
+      "oracle_issues": [
+        "私有 oracle 在中间步期望 last_action='击中左洞' 为未声明内部文案，公开题面只要求字段存在，不计为逻辑错误。"
+      ]
+    },
+    {
+      "task_id": "fruit-combo",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "state_transition_failed",
+      "evidence": "Replay trace action_index 0 (START): expected status='playing' and event 'game_started' present; observed state {status:'menu',progress:0,score:0,lives:2,last_action:'',best_score:0} with events=[]. All subsequent inputs (STAGE_1 at idx1, STAGE_2 idx2, STAGE_3 idx3) also leave state unchanged (status='menu', progress=0, score:0, events=[]). Final advance (idx4) shows statusText 'Menu' not 'Won'. No runtime/page errors recorded, so failure is functional (inputs not affecting state), not a crash.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "fruit-combo",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "state_transition_failed",
+      "evidence": "Replay trace action_index 0 (START): expected status='playing' and event 'game_started'; observed status='menu', events=[]. Actions 1 (WRONG) and 2 (WRONG) leave state at menu (lives=2, not decremented to 0), no action_rejected/progress_reset/game_lost events emitted. Final state status='menu' not 'lost'; expected lives=0, last_action='wrong', events [action_rejected,progress_reset,game_lost] all missing.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "fruit-combo",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "state_transition_failed",
+      "evidence": "Replay trace action_index 0 (START): expected status='playing'; observed status='menu', events=[]. Actions 1 (STAGE_1) and 2 (RESTART) leave state unchanged (status='menu',progress:0,score:0,lives:2,best_score:0). Terminal state matches the public Restart requirement (menu, 0 progress, 0 score, 2 lives, empty last_action, best 0): last_action='' is an empty string satisfying public '空 last_action'. game_reset event is absent (events=[]) and START/RESTART behavior was never genuinely exercised because every input was inert.",
+      "oracle_issues": [
+        "Checkpoint X008-CP-RESET expects last_action=null, but the public prompt only requires '空 last_action' (empty) and the manifest types last_action as string; the game's '' is a valid empty string satisfying the public requirement. The null expectation is an over-constraint not grounded in the public prompt (likely checker false positive on that field)."
+      ]
+    },
+    {
+      "task_id": "volcano-survival",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "restart_button_not_visible_during_playing",
+      "evidence": "Public prompt explicitly requires 'Restart 在局内和终局都必须可见、可用'. In game.js updatePanels(), while status==='playing' the #end-panel (containing #restart-btn) keeps class 'hidden' (display:none), so the Restart button is not visible/clickable during gameplay. Trace action2 RESTART click failed: 'locator.click: Timeout 5000ms exceeded ... element is not visible (#restart-btn)'. Resulting state stayed status=playing, progress=1, score=10, last_action='STAGE_1' with no game_reset event. This is a genuine public-requirement violation (not a private-oracle false positive). first_error_action_index=2 is the earliest actually-observed failed step.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "rhythm-dash",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "runtime_error",
+      "evidence": "Trace action_index=2 (RESTART): runtime error 'locator.click: Timeout 5000ms exceeded ... element is not visible' on #restart-btn; state unchanged status='playing',progress=1,score=10,last_action='STAGE_1'; no game_reset event emitted. Violates public 'Restart 在局内和终局都必须可见、可用'. Root cause: #restart-btn CSS display:none, only set 'block' inside updateUI's status-change branch which runs on the requestAnimationFrame loop; with inputs at advance_ms=0 the rAF loop never ran updateUI before the click, so the button stayed hidden/unclickable.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "submarine-dodge",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "ui_visibility_error",
+      "evidence": "Trace restart-path: action0 START→playing; action1 STAGE_1→progress=1,score=10; action2 RESTART→点击 #restart-btn 超时 'element is not visible'(locator 解析到 button 但不可见)。公开题面明确要求'Restart 在局内和终局都必须可见、可用',而 #restart-btn 仅位于 #end-overlay 内,game.js 的 syncUI 在 status 非 won/lost 时对该 overlay 加 hidden(display:none),故 playing 局内按钮不可见、不可点击。失败后的实际状态仍为 status='playing',progress=1,score=10,last_action='dive'(未重置为菜单)。此为真实开发者错误,非 oracle 误报。",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "island-survival",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "missing_event",
+      "evidence": "操作0 START: status=playing, events=[game_started]; 操作1 WRONG: state={progress:0,score:0,lives:1,last_action:wrong}, events=[action_rejected] —— 缺失 progress_reset; 操作2 WRONG: state={status:lost,progress:0,score:0,lives:0,last_action:wrong}, events=[action_rejected, game_lost] —— 仍缺失 progress_reset. 公开题面'自动测试接口'事件列表明确含 progress_reset, 且'顺序错误会清空 progress'; game.js wrongAction 仅在 state.progress>0 时记录 progress_reset(代码: var hadProgress = state.progress>0; if(hadProgress){recordEvent('progress_reset'...)}), 导致进度为0的错误操作不发出该公开要求的事件, 违反事件契约. 最终状态 lost/progress0/score0/lives0 符合'第二次错误操作时立即失败', 故最终状态正确但过程缺事件.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "chess-endgame",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Replay trace action_index=1 (JOIN): runtime error 'runner: Step JOIN failed: locator.click: Timeout 5000ms exceeded ... waiting for locator(\"#join-btn\")'. Per game.js buildControls(), #join-btn/#stage-2/#wrong-action are only created when isSecondary()===true, so on the operated page these elements do not exist and the click times out. Downstream: STAGE_2 (action_index=3) also times out (#stage-2 missing); STAGE_3 (action_index=4) then runs on primary with progress=1 and correctly triggers wrong_order (lives 2->1, progress/score reset, last_action='wrong') — primary order-enforcement logic is sound, but the win path cannot complete because the secondary stage never executes.",
+      "oracle_issues": [
+        "X037-CP-MID expects connected=2 (integer). Public prompt only requires 'connected' in state; game.manifest.json declares connected as boolean and the game sets it false. No public basis for a numeric connected count; this mismatch is an oracle artifact, not a player-visible error.",
+        "X037-CP-MID / X037-CP-WON expect last_action='白王逼近' / '白车将死' exact strings. Public prompt does not define last_action value semantics; the game uses 'stage_1'/'stage_3'. Expectation not grounded in public prompt."
+      ]
+    },
+    {
+      "task_id": "chess-endgame",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Replay trace action_index=1 (JOIN): runtime error 'Step JOIN failed: locator.click: Timeout 5000ms exceeded ... waiting for locator(\"#join-btn\")'. WRONG clicks at action_index=2 and 3 also time out waiting for '#wrong-action', which only exists on the secondary page. No action_rejected/progress_reset/game_lost events were emitted and lives remained 2, so the loss condition was never reached.",
+      "oracle_issues": [
+        "X037-CP-LOST expects connected=2 and last_action='wrong'. Public prompt does not define connected as integer nor last_action exact values; the WRONG action never executed because '#wrong-action' was absent. Expectations not grounded in public prompt."
+      ]
+    },
+    {
+      "task_id": "chess-endgame",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": null,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Replay trace action_index=1 (JOIN): runtime error 'Step JOIN failed: locator.click: Timeout 5000ms exceeded ... waiting for locator(\"#join-btn\")'. STAGE_1 (action_index=2) succeeded (progress=1, score=10). The Restart step (action_index=3) produced a harness/bridge error 'bridge latest_event_seq does not match the complete event stream' with no state/events captured, so the expected terminal menu state could not be observed (insufficient evidence to confirm correctness). The bridge mismatch is consistent with a secondary-side defect: on 'reset_notify' game.js clears eventLog and sets seq=0 but does NOT reset latestEventSeq, so after reset observe().latest_event_seq (stale, e.g. 3) disagrees with the short/empty event stream — a genuine secondary-side bug surfaced via the restart step.",
+      "oracle_issues": [
+        "X037-CP-RESET expects connected=0 and last_action=null. Public prompt says Restart restores '空 last_action' (empty) and the game sets last_action='' (empty string), which matches the public wording; oracle's null is unsupported. The connected type (boolean vs 0) is also not grounded in public prompt."
+      ]
+    },
+    {
+      "task_id": "escape-room",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "ui_visibility_violation",
+      "evidence": "实际回放 restart-path action_index 2 (RESTART): runtime_errors='locator.click: Timeout 5000ms exceeded ... element is not visible'（目标 #restart-btn）；点击时 status=playing。代码 render() 中 el.end.classList.toggle('hidden', !(state.status==='won'||state.status==='lost')) 使 #restart-btn（位于 #end 面板）在游玩期间被隐藏，无法点击。公开题面明确要求'Restart 在局内和终局都必须可见、可用'，此处违反。最终状态停留在 playing/progress=1/score=10/last_action=stage_1，未恢复到 menu/0/0/2 与空 last_action。",
+      "oracle_issues": [
+        "oracle 期望 reset 后 last_action=null，而代码 doReset 置为 ''（空）；公开题面仅要求'空 last_action'，'' 即空，且本场景因按钮不可见根本未执行到 reset，非主因"
+      ]
+    },
+    {
+      "task_id": "logic-circuit",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "missing_event",
+      "evidence": "Replay restart-path action_index 2 (RESTART): resulting state is correct {status:menu,progress:0,score:0,lives:2,last_action:''}, satisfying the public 'Restart 恢复0进度、0分、2条生命、空 last_action 和菜单'. However events=[] — no game_reset was emitted. The public prompt declares game_reset as a required event type and Restart is the reset-to-menu action; in game.js the restart() function (bound to #restart-btn) does NOT call emit('game_reset'), whereas the programmatic reset() does. Thus the player Restart omits the mandated game_reset event — a real gap in the public event contract, observed in the trace.",
+      "oracle_issues": [
+        "X040-CP-RESET expected last_action=null but game sets '' (empty string): public prompt states '空 last_action' and '' is empty, so the null-vs-empty distinction is a private-oracle misreport."
+      ]
+    },
+    {
+      "task_id": "tower-of-hanoi",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "restart_not_visible_in_game",
+      "evidence": "重放 trace action_index=2 (RESTART)：runtime_errors 记录 'locator.click: Timeout 5000ms exceeded ... element is not visible' 针对 #restart-btn；点击后 state 仍为 {status:playing,progress:1,score:10,lives:2,last_action:'stage_1'}，未触发 game_reset，也未恢复菜单。根因：#restart-btn 位于 #end 屏（class hidden），showScreen 仅在 status=won/lost 时显示 #end，playing 时 #end 隐藏，故局内不可见不可用，违反公开题面'Restart 在局内和终局都必须可见、可用'。",
+      "oracle_issues": [
+        "private_oracle 期望 last_action=null 及 terminal status=menu，但其 terminal 失败由真实的重开按钮局内不可见导致；oracle 的 last_action=null 期望值同样未在公开题面声明（公开题面仅要求重开时'空 last_action'，代码 freshState 置 '' 即满足），不过本场景根因是真实的公开 UI 违规而非仅文案差异"
+      ]
+    },
+    {
+      "task_id": "number-link",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "bridge_event_epoch_not_incremented",
+      "evidence": "Action index 2 (RESTART) produced observed runtime_errors: ['runner: Timeline sample failed: bridge event log changed without incrementing event_epoch', 'runner: Evidence capture failed: bridge event log changed without incrementing event_epoch']. Code root cause: restart() (the #restart-btn handler) sets events=[]; seq=0; emit('game_reset') but does NOT increment eventEpoch, whereas the public reset() bridge method apiReset() does increment eventEpoch (public prompt: 'reset({seed}) 每次调用增加 event_epoch'). This inconsistency breaks the event_epoch observation contract. The reset STATE itself is correct per public prompt (menu/0/0/2/empty last_action) by code logic; the capture failure prevented trace confirmation of the final state.",
+      "oracle_issues": [
+        "L2 terminal_condition_error reporting status/progress/score/lives/last_action as 'missing' and game_reset 'missing' is a capture artifact caused by the runtime/bridge error at action 2, not an independent logic error.",
+        "oracle expected last_action=null; public prompt only requires '空 last_action' (empty). The code's last_action='' satisfies 'empty', so this is a private-oracle spec, not a public-requirement violation.",
+        "The core defect is the event_epoch inconsistency of the Restart path, which is a real observed bridge-contract issue (observation layer), not a player-visible gameplay error."
+      ]
+    },
+    {
+      "task_id": "touch-jigsaw",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_blocked_by_overlay",
+      "evidence": "action0 START: observe status='playing', event game_started present (L1 OK). action1 STAGE_1 (touch #stage-1): trace state unchanged progress=0 score=0 last_action='START', events=[] (no stage_completed), and statusText still 'Menu' — the #menu overlay (z-index:20, full coverage) was still displayed and intercepted the touch, so doStage never ran. Expected per X051-CP-MID: progress=1, score=10, stage_completed. Subsequent STAGE_2/STAGE_3 same overlay block. action4 after 32ms advance shows statusText='Playing', i.e. rAF render finally hid the overlay, but inputs had already failed. First observed error at index 1.",
+      "oracle_issues": [
+        "Private oracle expects last_action='拖入左上角'/'放下最后一块' (Chinese), but the public prompt only requires the field last_action to exist and never declares its value/format. This value mismatch is not grounded in the public spec and must not be treated as a player-visible logic error; the real error is the missing state change because the handler never fired."
+      ]
+    },
+    {
+      "task_id": "touch-jigsaw",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_blocked_by_overlay",
+      "evidence": "action0 START: status='playing', game_started present (L1 OK). action1 WRONG (touch #wrong-action): trace state unchanged lives=2, events=[] (no action_rejected), statusText still 'Menu' — #menu overlay intercepted the touch, doWrong never ran. Expected: action_rejected + lives=1. action2 WRONG: same, no game_lost emitted; final status 'playing' not 'lost'. First observed error (gameplay touch had no effect) at index 1.",
+      "oracle_issues": [
+        "Oracle expects last_action='wrong' and loss status values; the last_action value format is undeclared in the public prompt. The genuine failure is the WRONG touch being intercepted by the overlay (no action_rejected/game_lost), not a last_action content mismatch."
+      ]
+    },
+    {
+      "task_id": "touch-jigsaw",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "input_blocked_by_overlay",
+      "evidence": "action0 START: status='playing', game_started present (L1 OK). action1 STAGE_1 (touch): trace unchanged, events=[], statusText 'Menu' — overlay intercept, no effect. action2 RESTART (mouse #restart-btn): runtime error 'menu overlay intercepts pointer events' on #restart-btn; game_reset never emitted, status stayed 'playing' not 'menu'. Confirmed the #menu overlay (still display:flex because its visibility is only updated by the requestAnimationFrame render loop, which did not run before the taps) blocks both touch and mouse input. First observed error at index 1.",
+      "oracle_issues": [
+        "Oracle expects last_action=null on reset; public prompt says '空 last_action' which the code satisfies with '' (empty string). The null expectation is not clearly grounded in the public prompt. The reset code path was never executed in this trace (RESTART was intercepted)."
+      ]
+    },
+    {
+      "task_id": "collaborative-mural",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Action index 1 (JOIN) failed: Playwright click on selector #join-btn timed out at 5000ms because the element was not visible. CSS rule `body.role-primary #join-btn{display:none}` hides the join control on the primary page. Actions 0 (START) and 2 (STAGE_1) succeeded on this same page (state.status=playing after START; progress=1, score=10, stage_completed after STAGE_1), confirming it is the primary page where secondary-only controls are hidden. Action 3 (STAGE_2) also hit a hidden element, and STAGE_3 was rejected because progress was not 2, resetting progress to 0 and lives to 1. Final observe shows status=playing, progress=0, score=0, lives=1. The fixed win sequence could not be completed on a single page.",
+      "oracle_issues": [
+        "Private oracle expected connected=2 and last_action='P1画蓝色背景' (X054-CP-MID) and last_action='P1补上白色云朵' (X054-CP-WON). Public prompt only requires state to contain the fields connected and last_action without prescribing values or types, so these expected values are private-standard artifacts, not player-visible logic errors (actual connected=false, last_action='stage1'/'stage3' are valid).",
+        "Terminal-condition diffs (status='won', progress=3, score=30, game_won missing) are downstream consequences of the action-1 interaction failure, not independent logic errors."
+      ]
+    },
+    {
+      "task_id": "collaborative-mural",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Action index 1 (JOIN) failed: click on #join-btn timed out, element not visible on the primary page (CSS hidden). Actions 2 and 3 (WRONG) also failed: #wrong-action not visible (CSS hidden on primary). No action_rejected, progress_reset, or game_lost events were emitted; lives stayed 2 and status stayed playing. The loss path requires the secondary page's WRONG control, which is hidden on the primary page being driven.",
+      "oracle_issues": [
+        "Private oracle expected connected=2 and last_action='wrong' at X054-CP-LOST — not declared in the public prompt; value mismatches are false positives.",
+        "Terminal diffs (status='lost', lives=0, action_rejected/progress_reset/game_lost missing) are downstream of the action-1 interaction failure."
+      ]
+    },
+    {
+      "task_id": "zen-garden",
+      "source": "../full-96",
+      "difficulty": "D3",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "hud_display_not_updated",
+      "evidence": "Trace: action0 START->playing; action1 WRONG->state.lives=1 but HUD scoreText shows '分数 0 · 进度 0/3 · 生命 2' (lives display stale, true lives=1); action2 WRONG->state.status='lost',lives=0 but HUD statusText='Playing' and scoreText still '生命 2', violating public X061-HUD '胜负状态文字正确'. Root cause observed in code: wrongAction() does not call updateHUD()/updateOverlay() (unlike stage()/start()/doReset()), and the rAF frame() only renders the canvas, so the HUD never refreshes after a wrong action. This is an observed trace discrepancy, not merely inferred. The logical loss outcome (status=lost, lives=0 after second wrong) matches public requirement, so final_outcome_correct=true; the player-visible HUD feedback is wrong, so process_correct=false. Oracle's flagged saved=true is ungrounded.",
+      "oracle_issues": [
+        "X061-CP-LOST expects saved=true; public prompt has no requirement that saved be true on loss (saved = garden saved at stage3). Ungrounded false positive; the real defect is the HUD not updating, which the oracle missed."
+      ]
+    },
+    {
+      "task_id": "life-simulator",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 3,
+      "error_type": "runtime_error",
+      "evidence": "First actually-observed error is at action_index=3 (STAGE_2 click). Trace records runtime error: 'locator.click: Timeout 5000ms exceeded ... #stage-2 ... element is not visible'. After RELOAD (action_index=2) loadState() restored status='playing',progress=1,score=10,saved=true, but updateUI() is never called synchronously in init() (it early-returns while !ready and is only invoked inside the rAF loop). Under frozen virtual time (advance_ms=0 between steps) rAF never fires, so #stage-2/#stage-3 stay display:none and clicks time out, preventing win. The rule checker's action_index=2 flag (last_action 'stage_1' vs expected '完成学习') is a FALSE POSITIVE: the public prompt only requires the state to contain last_action and never declares its value format, so 'stage_1' satisfies the public spec.",
+      "oracle_issues": [
+        "X076-CP-MID (action 2): expected last_action='完成学习' but code sets 'stage_1'. Public prompt does not declare a last_action value format (only that the field exists, and that UI text shows '完成学习'); false positive.",
+        "X076-CP-WON (action 4): expected last_action='保存人生节点'; same undeclared-format issue (not reached because buttons were invisible)."
+      ]
+    },
+    {
+      "task_id": "life-simulator",
+      "source": "../full-96",
+      "difficulty": "D2",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 3,
+      "error_type": "runtime_error",
+      "evidence": "First actually-observed error is at action_index=3 (RESTART click). Trace records runtime error: 'locator.click: Timeout 5000ms exceeded ... #restart-btn ... element is not visible'. After RELOAD (action 2) loadState() restored status='playing',progress=1,score=10 but buttons stayed hidden via the same rAF-gating issue as win-path, so #restart-btn never became visible and could not be clicked; reset was never executed.",
+      "oracle_issues": [
+        "X076-CP-RESET (action 3): rule checker expected last_action=null; public prompt requires '空 last_action' and the manifest declares last_action as type string, so resetToMenu setting '' is acceptable. Not an observed error since the RESTART click never succeeded."
+      ]
+    },
+    {
+      "task_id": "history-timeline",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Action 0 START succeeded (status=playing, game_started event, no runtime error). Action 1 STAGE_1 click timed out; trace runtime_errors: '<div id=\"end\" class=\"panel\">…</div> from <div id=\"overlay\">…</div> subtree intercepts pointer events'. Root cause: game.js render() sets end panel display:flex for every non-menu status including 'playing'; CSS .panel{pointer-events:auto} and #overlay covers the 800x552 board, so #stage buttons are unclickable. State never advanced (progress 0/score 0/last_action '').",
+      "oracle_issues": [
+        "X080-CP-MID expects last_action=='放置古代事件'; public prompt only requires the field last_action to exist, not this specific value. Private oracle standard, not a player-visible error; moot because the click never registered."
+      ]
+    },
+    {
+      "task_id": "history-timeline",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Action 0 START succeeded. Action 1 WRONG click timed out (same overlay interception: '#end' panel from '#overlay' subtree intercepts pointer events). Actions 1 and 2 both failed, so wrongAction() never ran; status stayed 'playing', game_lost never emitted. Public loss condition unverifiable due to blocked clicks.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "history-timeline",
+      "source": "../full-96",
+      "difficulty": "D1",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 1,
+      "error_type": "runtime_error",
+      "evidence": "Action 0 START succeeded. Action 1 STAGE_1 click timed out (overlay interception). Action 2 RESTART succeeded (no runtime error; state status=menu, progress=0, score=0, lives=2, last_action='', game_reset emitted). Final state matches public Restart requirement (0 progress/score, 2 lives, empty last_action, menu). Process broken because stage clicks are blocked during play.",
+      "oracle_issues": [
+        "X080-CP-RESET expects last_action==null; public prompt requires '空 last_action' (empty), which '' satisfies. null is a private oracle value not declared in the public prompt — not a player-visible error."
+      ]
+    },
+    {
+      "task_id": "science-circuit",
+      "source": "../quota-recovery",
+      "difficulty": "D1",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 2,
+      "error_type": "runtime_error",
+      "evidence": "Trace: action0 START→playing; action1 STAGE_1→progress=1,score=10; action2 RESTART→runtime error: locator.click on #restart-btn timed out with 'element is not visible'. Root cause in game.js render(): endPanel (which contains #restart-btn) is shown only when status==='won'||'lost' (endPanel.classList.toggle('hidden', !(status==='won'||status==='lost'))), so during 'playing' the button is display:none and unclickable. Public prompt mandates 'Restart 在局内和终局都必须可见、可用'. State never reset: remained status=playing, progress=1, score=10, last_action='stage-1', no game_reset emitted.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "coding-maze",
+      "source": "../quota-recovery",
+      "difficulty": "D1",
+      "scenario_id": "win-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "ui_pointer_interception",
+      "evidence": "Action 0 (START, #start-btn) failed in the real browser: locator.click timed out at 5000ms; Playwright log shows '<button disabled type=\"button\" class=\"wrong\" id=\"wrong-action\"> from <section id=\"play\" class=\"screen\"> subtree intercepts pointer events'. Observed state stayed {status:menu,progress:0,score:0,lives:2,last_action:''} with no game_started event. Code root cause: both #menu and #play are '.screen{position:absolute;inset:0}' and always displayed; only #end has 'display:none'. render() toggles only #start-btn display and disables stage buttons but never hides #play, so #play (later in DOM) paints over #menu and its #wrong-action captures the Start click. Consequently STAGE_1/2/3 at actions 1-3 also timed out (buttons disabled, status stayed menu) and the game never reached won.",
+      "oracle_issues": [
+        "Private oracle X084-CP-MID expects last_action='执行前进一步' and X084-CP-WON expects last_action='执行循环到终点'. Public prompt only requires last_action to exist as 'last operation' and to be cleared on reset; it does not declare the Chinese goal phrases as the field's value. Game stores 'stage_1'/'stage_3' identifiers, a valid implementation. This mismatch is a private-oracle detail with no basis in the public spec and is not a player-visible logic error."
+      ]
+    },
+    {
+      "task_id": "coding-maze",
+      "source": "../quota-recovery",
+      "difficulty": "D1",
+      "scenario_id": "loss-path",
+      "final_outcome_correct": false,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "ui_pointer_interception",
+      "evidence": "Action 0 (START, #start-btn) failed identically: locator.click timeout 5000ms with 'wrong-action ... subtree intercepts pointer events'. State remained {status:menu,...} and game_started missing. WRONG at actions 1-2 also timed out (button disabled, 'element is not enabled'). The game never entered playing, so the two-wrong-ops → lost path (lives 2→0, status lost, action_rejected/progress_reset/game_lost events) was never executed.",
+      "oracle_issues": []
+    },
+    {
+      "task_id": "coding-maze",
+      "source": "../quota-recovery",
+      "difficulty": "D1",
+      "scenario_id": "restart-path",
+      "final_outcome_correct": true,
+      "process_correct": false,
+      "first_error_action_index": 0,
+      "error_type": "ui_pointer_interception",
+      "evidence": "Action 0 (START) failed with the same #wrong-action pointer interception, so the intended 'start → change in-game state → restart' flow was broken from the first input (state stayed menu, game_started missing). However action 2 (RESTART, #restart-btn) click succeeded (no runtime error) and emitted {seq:1,type:game_reset,payload:{seed:783}}; final observed state = {status:menu,progress:0,score:0,lives:2,last_action:''}, matching the public reset requirement (0 progress, 0 score, 2 lives, empty last_action, menu). The only terminal checkpoint mismatch flagged by the private oracle is last_action expected null vs actual '' — public prompt requires '空 last_action' (empty), so '' satisfies it. The reset-from-menu state is therefore correct per the public spec; reset-from-playing/end was not exercised because the game never started.",
+      "oracle_issues": [
+        "Private oracle X084-CP-RESET expects last_action=null. Public prompt requires '空 last_action' (empty last_action); game sets '' which satisfies 'empty'. The null expectation is a private internal detail not declared in the public prompt and must not be treated as a player-visible logic error."
+      ]
+    }
+  ]
+}

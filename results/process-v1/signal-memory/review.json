@@ -1,0 +1,122 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": true,
+    "process_correct": true,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": 4,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "评测器在 SM-CP-WON 期望 phase='complete'、round=3，但公开需求仅要求完成第三回合后 status='won' 且最终分数 90。证据中 state.status='won'、score=90 已正确达成。phase='menu' 与 round=4 为内部值，符合方案 step4 的 round++ 后 round>3→won 逻辑；公开需求未规定终局 phase 必须为 'complete' 或 round 必须为 3。属私密 oracle 误报，非实现缺陷。",
+        "file": "game.js",
+        "excerpt": "emit(\"round_completed\", { round: state.round });\n        state.round += 1;\n        if (state.round > 3) {\n          state.status = \"won\";\n          state.phase = \"menu\";",
+        "scenario_id": "win-path",
+        "action_index": 12
+      },
+      {
+        "step_id": 4,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "评测器在 SM-CP-LOST 期望 phase='complete'，但公开需求仅要求生命归零时 status='lost'。证据中 state.status='lost'、lives=0 已正确达成。捕获瞬间 HUD 文本 statusText='Playing' 是渲染循环（requestAnimationFrame）滞后一帧的时序假象，桥接 state 正确；win-path 末帧已证明 HUD 会更新为 'Won'。非逻辑缺陷。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "loss-path",
+        "action_index": 6
+      },
+      {
+        "step_id": 5,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "评测器在 SM-CP-RESET 期望 phase='idle'，但公开需求仅要求 Restart/键盘 R 返回菜单（status='menu'）。代码 doReset 设置 status='menu'、score=0、lives=3、round=1、sequence=[]，符合需求。phase='menu' 为内部值，公开需求未定义 'idle' 阶段。属私密 oracle 误报。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "restart-path",
+        "action_index": 3
+      },
+      {
+        "step_id": 6,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "contract 报告 control RED/GREEN/BLUE/YELLOW 的 selector 不匹配。manifest 使用 selector='#signal-canvas' 配合 x_ratio/y_ratio 表示四个画布象限，与公开需求 '#signal-canvas 为游戏区域' 及控件名称映射画布象限完全一致。此 contract 检查为私密规则误报，不违反公开需求。",
+        "file": "game.manifest.json",
+        "excerpt": "\"selector\": \"#signal-canvas\",\n      \"x_ratio\": 0.25,\n      \"y_ratio\": 0.25,",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "L3 真实浏览器认证未达成（所有场景 L3 为 unverified / observed_not_certified），仅 L1/L2 有证据；win/loss/restart 的 L2 '失败' 源于私密 oracle 期望 phase='complete'/round=3/phase='idle'，不在公开需求中，属误报。",
+      "HUD 的 DOM 文本（scoreText/statusText）在点击事件后立即读取会滞后一帧，属渲染时序假象；桥接 observe() 返回的 state 始终正确。",
+      "胜利后 round 计数增至 4（方案 step4 的 round++ 逻辑），HUD 可能显示 'Round: 4/3'，为轻微展示问题，不违反公开需求；终局 status 正确为 Won。",
+      "manifest 的 RED/GREEN/BLUE/YELLOW 使用 selector '#signal-canvas' + x_ratio/y_ratio，符合公开需求（canvas 区域），contract 的 selector 不匹配为私密规则误报。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": 4,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "评测器在 SM-CP-WON 期望 phase='complete'、round=3，但公开需求仅要求完成第三回合后 status='won' 且最终分数 90。证据中 state.status='won'、score=90 已正确达成。phase='menu' 与 round=4 为内部值，符合方案 step4 的 round++ 后 round>3→won 逻辑；公开需求未规定终局 phase 必须为 'complete' 或 round 必须为 3。属私密 oracle 误报，非实现缺陷。",
+      "file": "game.js",
+      "excerpt": "emit(\"round_completed\", { round: state.round });\n        state.round += 1;\n        if (state.round > 3) {\n          state.status = \"won\";\n          state.phase = \"menu\";",
+      "scenario_id": "win-path",
+      "action_index": 12,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 159,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": 4,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "评测器在 SM-CP-LOST 期望 phase='complete'，但公开需求仅要求生命归零时 status='lost'。证据中 state.status='lost'、lives=0 已正确达成。捕获瞬间 HUD 文本 statusText='Playing' 是渲染循环（requestAnimationFrame）滞后一帧的时序假象，桥接 state 正确；win-path 末帧已证明 HUD 会更新为 'Won'。非逻辑缺陷。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "loss-path",
+      "action_index": 6,
+      "code_provenance": null,
+      "quote_verified": null
+    },
+    {
+      "step_id": 5,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "评测器在 SM-CP-RESET 期望 phase='idle'，但公开需求仅要求 Restart/键盘 R 返回菜单（status='menu'）。代码 doReset 设置 status='menu'、score=0、lives=3、round=1、sequence=[]，符合需求。phase='menu' 为内部值，公开需求未定义 'idle' 阶段。属私密 oracle 误报。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "restart-path",
+      "action_index": 3,
+      "code_provenance": null,
+      "quote_verified": null
+    },
+    {
+      "step_id": 6,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "contract 报告 control RED/GREEN/BLUE/YELLOW 的 selector 不匹配。manifest 使用 selector='#signal-canvas' 配合 x_ratio/y_ratio 表示四个画布象限，与公开需求 '#signal-canvas 为游戏区域' 及控件名称映射画布象限完全一致。此 contract 检查为私密规则误报，不违反公开需求。",
+      "file": "game.manifest.json",
+      "excerpt": "\"selector\": \"#signal-canvas\",\n      \"x_ratio\": 0.25,\n      \"y_ratio\": 0.25,",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 20,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

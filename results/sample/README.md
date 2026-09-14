@@ -14,7 +14,6 @@ pnpm run eval:sample
 - `cases.json`：逐例 evaluation、observation 与浏览器诊断；
 - `events.jsonl`：逐动作 trace；
 - `screenshots/<case>/*.png`：必要的已脱敏画面证据；
-- 若声称人工验证，提供匿名 `human-review.csv`。
 
 ## 已提交 snapshot
 
@@ -24,7 +23,6 @@ pnpm run eval:sample
 | 数据 | `GameTestLab Pilot` v0.1.0，5 个项目自建故障/对照变体 |
 | 浏览器 | Chromium `151.0.7922.34`，headless |
 | Hy3 API | **未使用**（`hy3_api_used=false`） |
-| 人工审核 | **未完成**；`human-review.csv` 所有行均为 `pending_human` |
 | 来源说明 | `snapshot-provenance.json` |
 
 机器产物中的 pilot 指标如下：
@@ -38,9 +36,8 @@ pnpm run eval:sample
 | False-positive rate | 0 / 1 个 clean 变体 | 0.0 |
 | Lucky-pass recall | 2 / 2 个预设 lucky-pass 变体 | 1.0 |
 
-这些数字是对**人工注入且 oracle 已知的同一极小游戏变体**进行的管线校准。它们表明 evaluator 复现了设计好的故障，不代表 Hy3 在未知真实游戏上的准确率；尤其 `0/1` 的误报率没有统计外推意义。错误分类 macro-F1 也是在 4 个预设故障、2 个标签上得到，不能当作正式 benchmark 结论。
+这些数字是对**预设且 oracle 已知的同一极小游戏变体**进行的管线校准。它们表明 evaluator 复现了设计好的故障，不代表 Hy3 在未知真实游戏上的准确率；尤其 `0/1` 的误报率没有统计外推意义。错误分类 macro-F1 也是在 4 个预设故障、2 个标签上得到，不能当作正式 benchmark 结论。
 
-`human-review.csv` 目前只是待办清单，不是验证记录。完成盲态复核前，不得声称首错定位率和误报率已被人工验证。
 
 不得手工编造或“修漂亮” JSON 数字。每个后续 snapshot 都应记录 run ID、commit、生成命令和 SHA-256 清单；当前 `snapshot-provenance.json` 未记录 Git commit，这是 pilot provenance 的已知缺口，正式 release 必须补齐。
 

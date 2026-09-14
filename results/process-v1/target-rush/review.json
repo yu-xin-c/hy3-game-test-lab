@@ -1,0 +1,50 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": true,
+    "process_correct": true,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": 6,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "浏览器合同检查（私有 frozen-task 规则）报告 4 处不符：control MISS.selector / MISS.x_ratio / MISS.y_ratio 与 RESTART_KEY.key_event 不匹配。但公开需求只要求 #playfield 作为游戏区域且 MISS=点击空白、控件名为 RESTART_KEY（键盘 R），并未定义 x_ratio/y_ratio，也未规定 key_event 取 'down' 还是 'press'。manifest 中 MISS.selector=\"#playfield\" 与公开需求一致，RESTART_KEY.key_event=\"down\" 与\"键盘 R\"语义一致。因此这 4 项是私有规则的误报，不是对公开需求的违反，也不影响玩法功能（loss-path 已实测产生 target_missed/game_lost）。",
+        "file": "game.manifest.json",
+        "excerpt": "\"MISS\":{\"selector\":\"#playfield\"...},\"RESTART_KEY\":{\"code\":\"KeyR\",\"key_event\":\"down\"...}",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "seed 相同→目标位置/顺序一致（公开需求固定规则）由 mulberry32 确定性 PRNG 在代码中保证，但浏览器未直接执行 reset(seed:42) 复现对比，仅由代码逻辑确认。",
+      "点击 HUD/按钮/区域外不计 miss 由各监听器的 e.target 判定保证，未在专项场景实测，但 loss-path 空白点击已验证 MISS 正常计数。",
+      "所有 12 个胜负/超时/重开场景运行通过（final_outcome_correct=true、process_correct=true），合同 contract_pass=false 仅来自上述 manifest 私有规则误报，不证明游戏不可玩。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": 6,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "浏览器合同检查（私有 frozen-task 规则）报告 4 处不符：control MISS.selector / MISS.x_ratio / MISS.y_ratio 与 RESTART_KEY.key_event 不匹配。但公开需求只要求 #playfield 作为游戏区域且 MISS=点击空白、控件名为 RESTART_KEY（键盘 R），并未定义 x_ratio/y_ratio，也未规定 key_event 取 'down' 还是 'press'。manifest 中 MISS.selector=\"#playfield\" 与公开需求一致，RESTART_KEY.key_event=\"down\" 与\"键盘 R\"语义一致。因此这 4 项是私有规则的误报，不是对公开需求的违反，也不影响玩法功能（loss-path 已实测产生 target_missed/game_lost）。",
+      "file": "game.manifest.json",
+      "excerpt": "    {\n      \"action_id\": \"MISS\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#playfield\",\n      \"description\": \"点击空白区域计为 miss\"\n    },\n    {\n      \"action_id\": \"RESTART\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#restart-btn\",\n      \"description\": \"重开并返回菜单\"\n    },\n    {\n      \"action_id\": \"RESTART_KEY\",\n      \"actor\": \"primary\",\n      \"device\": \"keyboard\",\n      \"key_event\": \"down\",\n      \"code\": \"KeyR\",\n      \"description\": \"键盘 R 重开\"\n    }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 23,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true,
+      "original_excerpt": "\"MISS\":{\"selector\":\"#playfield\"...},\"RESTART_KEY\":{\"code\":\"KeyR\",\"key_event\":\"down\"...}",
+      "reference_repaired_by": "hy3"
+    }
+  ]
+}

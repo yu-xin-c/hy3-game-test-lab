@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "steps": [
+    {
+      "step": 1,
+      "call_id": "chatcmpl-tool-b3f89307b5a50964",
+      "tool": "Write",
+      "file": "index.html",
+      "sha256": "5773c9c7030d9e53d86ac5c316c57457c93166f2659c6cf344c8c986e7db5ee7"
+    },
+    {
+      "step": 2,
+      "call_id": "chatcmpl-tool-beed1315785dd732",
+      "tool": "Write",
+      "file": "styles.css",
+      "sha256": "583caa3d5c1f183d5937fc0915a41218ba5a42eb7b17aa5d1c56b7284c9d1fa4"
+    },
+    {
+      "step": 3,
+      "call_id": "chatcmpl-tool-b7485cd54b003191",
+      "tool": "Write",
+      "file": "game.js",
+      "sha256": "b4f016d0868c905ed171dcabb8e178ef0b67694aa694e581f5f000e3e2d52f1e"
+    },
+    {
+      "step": 4,
+      "call_id": "chatcmpl-tool-8c4e3740705fba97",
+      "tool": "Write",
+      "file": "game.manifest.json",
+      "sha256": "4a5d038614f7866acc1bbe7399e0b88a2427af64ac8864703696a80ccf76fc1a"
+    }
+  ],
+  "issues": [],
+  "verified_files": {
+    "index.html": true,
+    "styles.css": true,
+    "game.js": true,
+    "game.manifest.json": true
+  },
+  "telemetry_available": true,
+  "tools_sha256": "26bbde78da00d79fabc8d86fa0196368a9a6ef64943c59972310ee6a3954f361"
+}

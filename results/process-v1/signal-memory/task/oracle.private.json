@@ -1,0 +1,372 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "signal-memory",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "SM-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SM-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started",
+              "playback_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-INPUT-1",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-PLAYBACK"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "input",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "input_phase_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-ROUND-2",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-SEQUENCE"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "playback",
+              "round": 2,
+              "lives": 3,
+              "score": 20,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_correct",
+              "round_completed",
+              "playback_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-ROUND-3",
+          "action_index": 7,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-SEQUENCE"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "playback",
+              "round": 3,
+              "lives": 3,
+              "score": 50,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_correct",
+              "round_completed",
+              "playback_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-WON",
+          "action_index": 12,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-SEQUENCE",
+            "SM-WIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "phase": "complete",
+              "round": 3,
+              "lives": 3,
+              "score": 90,
+              "progress": 4
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_correct",
+              "round_completed",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-WON-UI",
+          "action_index": 13,
+          "layer": "L3",
+          "requirement_ids": [
+            "SM-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "signal-memory-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SM-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-WRONG-1",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-WRONG"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "playback",
+              "round": 1,
+              "lives": 2,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_wrong",
+              "playback_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-WRONG-2",
+          "action_index": 4,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-WRONG"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "playback",
+              "round": 1,
+              "lives": 1,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_wrong",
+              "playback_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-LOST",
+          "action_index": 6,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-WRONG",
+            "SM-WIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "phase": "complete",
+              "round": 1,
+              "lives": 0,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "signal_wrong",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "signal-memory-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SM-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-RESET",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "phase": "idle",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "playback-input-path",
+      "checkpoints": [
+        {
+          "id": "signal-memory-playback-input-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "SM-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "SM-CP-IGNORED",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "SM-PLAYBACK"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "phase": "playback",
+              "round": 1,
+              "lives": 3,
+              "score": 0,
+              "progress": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "input_ignored"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

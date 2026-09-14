@@ -1,0 +1,2100 @@
+{
+  "startInput": {
+    "selector": "#start-btn",
+    "x": 400,
+    "y": 340,
+    "hit": {
+      "id": "start-btn",
+      "tag": "BUTTON",
+      "text": "Start"
+    }
+  },
+  "trace": [
+    {
+      "label": "menu",
+      "observation": {
+        "tick": 2,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "phase": "menu",
+          "round": 1,
+          "lives": 3,
+          "score": 0,
+          "progress": 0,
+          "sequence": [],
+          "last_feedback": ""
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 2,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        }
+      ]
+    },
+    {
+      "label": "after_start",
+      "observation": {
+        "tick": 4,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "playback",
+          "round": 1,
+          "lives": 3,
+          "score": 0,
+          "progress": 0,
+          "sequence": [
+            "red",
+            "blue"
+          ],
+          "last_feedback": ""
+        },
+        "event_epoch": 2,
+        "latest_event_seq": 3
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 2,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 3,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 4,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "reset_during_playback",
+      "observation": {
+        "tick": 17,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "phase": "menu",
+          "round": 1,
+          "lives": 3,
+          "score": 0,
+          "progress": 0,
+          "sequence": [],
+          "last_feedback": ""
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        }
+      ]
+    },
+    {
+      "label": "after_old_timer_deadlines",
+      "observation": {
+        "tick": 167,
+        "status": "menu",
+        "state": {
+          "status": "menu",
+          "phase": "menu",
+          "round": 1,
+          "lives": 3,
+          "score": 0,
+          "progress": 0,
+          "sequence": [],
+          "last_feedback": ""
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 1
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_1_input",
+      "observation": {
+        "tick": 247,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 1,
+          "lives": 3,
+          "score": 0,
+          "progress": 0,
+          "sequence": [
+            "red",
+            "blue"
+          ],
+          "last_feedback": ""
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 4
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_1_red",
+      "observation": {
+        "tick": 248,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 1,
+          "lives": 3,
+          "score": 10,
+          "progress": 1,
+          "sequence": [
+            "red",
+            "blue"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 5
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_1_blue",
+      "observation": {
+        "tick": 251,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "playback",
+          "round": 2,
+          "lives": 3,
+          "score": 20,
+          "progress": 0,
+          "sequence": [
+            "green",
+            "yellow",
+            "red"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 8
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_2_input",
+      "observation": {
+        "tick": 367,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 2,
+          "lives": 3,
+          "score": 20,
+          "progress": 0,
+          "sequence": [
+            "green",
+            "yellow",
+            "red"
+          ],
+          "last_feedback": ""
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 9
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_2_green",
+      "observation": {
+        "tick": 368,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 2,
+          "lives": 3,
+          "score": 30,
+          "progress": 1,
+          "sequence": [
+            "green",
+            "yellow",
+            "red"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 10
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_2_yellow",
+      "observation": {
+        "tick": 369,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 2,
+          "lives": 3,
+          "score": 40,
+          "progress": 2,
+          "sequence": [
+            "green",
+            "yellow",
+            "red"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 11
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_2_red",
+      "observation": {
+        "tick": 372,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "playback",
+          "round": 3,
+          "lives": 3,
+          "score": 50,
+          "progress": 0,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 14
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_3_input",
+      "observation": {
+        "tick": 525,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 50,
+          "progress": 0,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": ""
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 15
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_3_blue",
+      "observation": {
+        "tick": 526,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 60,
+          "progress": 1,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 16
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        },
+        {
+          "seq": 16,
+          "tick": 526,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 1,
+            "score": 60
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_3_red",
+      "observation": {
+        "tick": 527,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 70,
+          "progress": 2,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 17
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        },
+        {
+          "seq": 16,
+          "tick": 526,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 1,
+            "score": 60
+          }
+        },
+        {
+          "seq": 17,
+          "tick": 527,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 2,
+            "score": 70
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_3_yellow",
+      "observation": {
+        "tick": 528,
+        "status": "playing",
+        "state": {
+          "status": "playing",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 80,
+          "progress": 3,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 18
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        },
+        {
+          "seq": 16,
+          "tick": 526,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 1,
+            "score": 60
+          }
+        },
+        {
+          "seq": 17,
+          "tick": 527,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 2,
+            "score": 70
+          }
+        },
+        {
+          "seq": 18,
+          "tick": 528,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 3,
+            "score": 80
+          }
+        }
+      ]
+    },
+    {
+      "label": "round_3_green",
+      "observation": {
+        "tick": 531,
+        "status": "won",
+        "state": {
+          "status": "won",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 90,
+          "progress": 4,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 21
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        },
+        {
+          "seq": 16,
+          "tick": 526,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 1,
+            "score": 60
+          }
+        },
+        {
+          "seq": 17,
+          "tick": 527,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 2,
+            "score": 70
+          }
+        },
+        {
+          "seq": 18,
+          "tick": 528,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 3,
+            "score": 80
+          }
+        },
+        {
+          "seq": 19,
+          "tick": 529,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 4,
+            "score": 90
+          }
+        },
+        {
+          "seq": 20,
+          "tick": 530,
+          "type": "round_completed",
+          "payload": {
+            "round": 3,
+            "score": 90
+          }
+        },
+        {
+          "seq": 21,
+          "tick": 531,
+          "type": "game_won",
+          "payload": {
+            "score": 90
+          }
+        }
+      ]
+    },
+    {
+      "label": "final",
+      "observation": {
+        "tick": 531,
+        "status": "won",
+        "state": {
+          "status": "won",
+          "phase": "input",
+          "round": 3,
+          "lives": 3,
+          "score": 90,
+          "progress": 4,
+          "sequence": [
+            "blue",
+            "red",
+            "yellow",
+            "green"
+          ],
+          "last_feedback": "Correct"
+        },
+        "event_epoch": 3,
+        "latest_event_seq": 21
+      },
+      "events": [
+        {
+          "seq": 1,
+          "tick": 17,
+          "type": "game_reset",
+          "payload": {
+            "seed": 404
+          }
+        },
+        {
+          "seq": 2,
+          "tick": 168,
+          "type": "game_started",
+          "payload": {}
+        },
+        {
+          "seq": 3,
+          "tick": 169,
+          "type": "playback_started",
+          "payload": {
+            "round": 1,
+            "sequence": [
+              "red",
+              "blue"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "tick": 245,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 1
+          }
+        },
+        {
+          "seq": 5,
+          "tick": 248,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 1,
+            "score": 10
+          }
+        },
+        {
+          "seq": 6,
+          "tick": 249,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 2,
+            "score": 20
+          }
+        },
+        {
+          "seq": 7,
+          "tick": 250,
+          "type": "round_completed",
+          "payload": {
+            "round": 1,
+            "score": 20
+          }
+        },
+        {
+          "seq": 8,
+          "tick": 251,
+          "type": "playback_started",
+          "payload": {
+            "round": 2,
+            "sequence": [
+              "green",
+              "yellow",
+              "red"
+            ]
+          }
+        },
+        {
+          "seq": 9,
+          "tick": 364,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 2
+          }
+        },
+        {
+          "seq": 10,
+          "tick": 368,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 1,
+            "score": 30
+          }
+        },
+        {
+          "seq": 11,
+          "tick": 369,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 2,
+            "score": 40
+          }
+        },
+        {
+          "seq": 12,
+          "tick": 370,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 3,
+            "score": 50
+          }
+        },
+        {
+          "seq": 13,
+          "tick": 371,
+          "type": "round_completed",
+          "payload": {
+            "round": 2,
+            "score": 50
+          }
+        },
+        {
+          "seq": 14,
+          "tick": 372,
+          "type": "playback_started",
+          "payload": {
+            "round": 3,
+            "sequence": [
+              "blue",
+              "red",
+              "yellow",
+              "green"
+            ]
+          }
+        },
+        {
+          "seq": 15,
+          "tick": 522,
+          "type": "input_phase_started",
+          "payload": {
+            "round": 3
+          }
+        },
+        {
+          "seq": 16,
+          "tick": 526,
+          "type": "signal_correct",
+          "payload": {
+            "color": "blue",
+            "progress": 1,
+            "score": 60
+          }
+        },
+        {
+          "seq": 17,
+          "tick": 527,
+          "type": "signal_correct",
+          "payload": {
+            "color": "red",
+            "progress": 2,
+            "score": 70
+          }
+        },
+        {
+          "seq": 18,
+          "tick": 528,
+          "type": "signal_correct",
+          "payload": {
+            "color": "yellow",
+            "progress": 3,
+            "score": 80
+          }
+        },
+        {
+          "seq": 19,
+          "tick": 529,
+          "type": "signal_correct",
+          "payload": {
+            "color": "green",
+            "progress": 4,
+            "score": 90
+          }
+        },
+        {
+          "seq": 20,
+          "tick": 530,
+          "type": "round_completed",
+          "payload": {
+            "round": 3,
+            "score": 90
+          }
+        },
+        {
+          "seq": 21,
+          "tick": 531,
+          "type": "game_won",
+          "payload": {
+            "score": 90
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

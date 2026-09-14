@@ -1,0 +1,394 @@
+{
+  "checking_policy_version": "2026-09-12.3",
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "platform-rescue",
+  "title": "Platform Rescue",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "需要持续按键、虚拟时间和连续碰撞检测，并同时维护生命、钥匙和终局。"
+  },
+  "category": "action",
+  "features": [],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "LEFT_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "LEFT_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "RIGHT_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "RIGHT_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "JUMP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Space"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyR"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "PR-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以进入 playing 状态且无运行错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "PR-MOTION",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "持续方向键和跳跃会按固定物理更新玩家。",
+      "depends_on": [
+        "PR-RUN"
+      ],
+      "observable": [
+        "player",
+        "tick",
+        "player_jumped"
+      ]
+    },
+    {
+      "id": "PR-PHYSICS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "玩家不能穿透、嵌入、悬空落地或越界，并能稳定落台。",
+      "depends_on": [
+        "PR-MOTION"
+      ],
+      "observable": [
+        "player",
+        "platforms",
+        "world"
+      ]
+    },
+    {
+      "id": "PR-KEY-WIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "取得钥匙后到达救援门获胜。",
+      "depends_on": [
+        "PR-PHYSICS"
+      ],
+      "observable": [
+        "has_key",
+        "status",
+        "events"
+      ]
+    },
+    {
+      "id": "PR-HAZARD",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "尖刺扣生命并复活，生命归零失败。",
+      "depends_on": [
+        "PR-MOTION"
+      ],
+      "observable": [
+        "lives",
+        "hazard_hit",
+        "game_lost"
+      ]
+    },
+    {
+      "id": "PR-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "重开恢复关卡、生命、钥匙和玩家位置。",
+      "depends_on": [
+        "PR-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "PR-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
+      "depends_on": [
+        "PR-KEY-WIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按住右键完成三次跳跃，取得钥匙并到达救援门。",
+      "seed": 404,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PR-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "JUMP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 50,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-LAND-1"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "JUMP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 60,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-KEY"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "JUMP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 75,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-WON",
+            "PR-CP-WON-UI"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT_UP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PR-CP-WIN-FINAL"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "向左进入尖刺三次，验证复活和生命归零。",
+      "seed": 404,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "platform-rescue-loss-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 20,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-HIT-1"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 20,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-HIT-2"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 20,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": [
+            "PR-CP-LOST"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT_UP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PR-CP-LOSS-FINAL"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "移动一小段后返回菜单。",
+      "seed": 404,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "platform-rescue-restart-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT_DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_frames",
+          "frames": 10,
+          "frame_ms": 16,
+          "sample_every": 1,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT_UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "PR-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "canvas2d",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "LEFT_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "ArrowLeft",
+      "description": "向左移动按下"
+    },
+    {
+      "action_id": "LEFT_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "ArrowLeft",
+      "description": "向左移动抬起"
+    },
+    {
+      "action_id": "RIGHT_DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "ArrowRight",
+      "description": "向右移动按下"
+    },
+    {
+      "action_id": "RIGHT_UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "up",
+      "code": "ArrowRight",
+      "description": "向右移动抬起"
+    },
+    {
+      "action_id": "JUMP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "Space",
+      "description": "跳跃"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重开返回菜单"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "down",
+      "code": "KeyR",
+      "description": "键盘重开返回菜单"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "lives": { "type": "integer", "description": "剩余生命数" },
+      "has_key": { "type": "boolean", "description": "是否已取得钥匙" },
+      "player": {
+        "type": "object",
+        "description": "玩家状态，含左上角坐标 x/y、宽高 w/h、水平/垂直速度 vx/vy、grounded 与 support_id"
+      },
+      "platforms": { "type": "array", "description": "平台列表，每项含 id/x/y/width/height" },
+      "world": { "type": "object", "description": "世界尺寸 width/height" },
+      "sim_time_ms": { "type": "integer", "description": "模拟时间，tick*16" }
+    },
+    "required": ["status", "lives", "has_key", "player", "platforms", "world", "sim_time_ms"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    {
+      "type": "player_jumped",
+      "description": "玩家起跳",
+      "payload_fields": {
+        "x": { "type": "number", "description": "起跳时玩家左上角 x" },
+        "y": { "type": "number", "description": "起跳时玩家左上角 y" }
+      }
+    },
+    {
+      "type": "player_landed",
+      "description": "玩家落地",
+      "payload_fields": {
+        "support_id": { "type": "string", "description": "所落平台 id" },
+        "x": { "type": "number", "description": "落地时玩家左上角 x" },
+        "y": { "type": "number", "description": "落地时玩家左上角 y" }
+      }
+    },
+    {
+      "type": "key_collected",
+      "description": "取得钥匙",
+      "payload_fields": {
+        "x": { "type": "number", "description": "钥匙左上角 x" },
+        "y": { "type": "number", "description": "钥匙左上角 y" }
+      }
+    },
+    {
+      "type": "hazard_hit",
+      "description": "碰到尖刺或掉出世界",
+      "payload_fields": {
+        "cause": { "type": "string", "description": "原因 spike 或 fall" },
+        "x": { "type": "number", "description": "触发时玩家左上角 x" },
+        "y": { "type": "number", "description": "触发时玩家左上角 y" }
+      }
+    },
+    {
+      "type": "player_respawned",
+      "description": "玩家回到出生点",
+      "payload_fields": {
+        "x": { "type": "number", "description": "出生点左上角 x" },
+        "y": { "type": "number", "description": "出生点左上角 y" }
+      }
+    },
+    {
+      "type": "door_blocked",
+      "description": "无钥匙接触救援门被阻挡",
+      "payload_fields": {
+        "x": { "type": "number", "description": "门左上角 x" },
+        "y": { "type": "number", "description": "门左上角 y" }
+      }
+    },
+    { "type": "game_won", "description": "救援成功获胜", "payload_fields": {} },
+    { "type": "game_lost", "description": "生命归零失败", "payload_fields": {} },
+    {
+      "type": "game_reset",
+      "description": "重置回菜单状态",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "用于重置的固定 seed" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
