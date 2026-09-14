@@ -11,7 +11,7 @@ GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 
 [项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [96 题去重结果](results/consolidated/README.md) · [逐批证据](results/full-96/README.md) · [校准集结果](results/sample/README.md)
 
 
-本轮已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。结果按最新有效尝试去重汇总，原始失败尝试仍保留。原始规则包含误报，混元复核也不是独立真值，因此暂不把任一列称为最终模型准确率。[执行状态](docs/full-run-status.md)说明三个批次的关系。[汇报 PPT](docs/evaluation-slides.pptx)使用去重后的结果。
+本轮已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。结果按最新有效尝试去重汇总，原始失败尝试仍保留。原始规则包含误报，混元复核也不是独立真值，因此暂不把任一列称为最终模型准确率。[执行状态](docs/full-run-status.md)说明三个批次的关系。[六页汇报 PPT](docs/evaluation-slides-v2.pptx)包含去重结果、自主探索和自动定位验证。
 
 新增[玩法故障与生成记录追溯实验](results/process-localization-pilot/README.md)：复用 3 个 Hy3 游戏，执行 15 次浏览器对照，再由 Hy3 复核并引用具体代码；有完整历史时，可追溯到写入该代码的工具步骤。现有 96 题的“过程”指标指试玩过程，不等于生成推理过程的正确率。自动定位、复现和误报的口径见分析报告。
 
