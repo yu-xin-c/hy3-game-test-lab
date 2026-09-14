@@ -1,0 +1,144 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "line_start": 29,
+      "line_end": 38,
+      "reason": "模板中 START 控件 actor 为 primary（行32）"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 29,
+      "line_end": 38,
+      "reason": "模板中 START device 为 mouse（行33）"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "line_start": 29,
+      "line_end": 38,
+      "reason": "模板中 START key_event 为 press（行34）"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 29,
+      "line_end": 38,
+      "reason": "模板中 START selector 为 #start-btn（行35）"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，UP 非次要玩家"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，DOWN 非次要玩家"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，LEFT 非次要玩家"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，RIGHT 非次要玩家"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，RESTART 非次要玩家"
+    },
+    {
+      "id": "A22",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "#restart-btn 仅说明 selector；行66 规定 selector 对应鼠标或触控，device=mouse 不能唯一推出"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "自动测试接口规定 #restart-btn（行124）"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "行66 规定默认玩家为 primary，RESTART_KEY 非次要玩家"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 111,
+      "line_end": 111,
+      "reason": "行111 规定 Restart 可通过键盘 R，RESTART_KEY 即键盘控制"
+    },
+    {
+      "id": "A28",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行111 仅说键盘 R；KeyR 需由行66 的 KeyX 命名约定推断，无连续原文唯一规定"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "line_start": 78,
+      "line_end": 78,
+      "reason": "行78 规定 status 含 playing；所检上下文均为进行中（非菜单/胜负），唯一适用值为 playing"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "line_start": 80,
+      "line_end": 80,
+      "reason": "行80 规定所有游戏点击 Start 后记录 game_started"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "line_start": 102,
+      "line_end": 102,
+      "reason": "行102 规定拿到钥匙后钥匙不消耗，has_key 置真"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "line_start": 125,
+      "line_end": 125,
+      "reason": "行125 规定 [data-testid=score] 显示内容，故可见"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "line_start": 125,
+      "line_end": 125,
+      "reason": "行125 规定 [data-testid=status] 显示状态，故可见"
+    },
+    {
+      "id": "A60",
+      "verdict": "supported",
+      "line_start": 74,
+      "line_end": 74,
+      "reason": "行74 规定 reset 重新从 seq=1 记录 game_reset"
+    }
+  ]
+}

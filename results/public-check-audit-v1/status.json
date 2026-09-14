@@ -5,17 +5,17 @@
     {
       "task_id": "target-rush",
       "status": "reviewed",
-      "assertions": 46
+      "cached": true
     },
     {
       "task_id": "maze-collector",
       "status": "reviewed",
-      "assertions": 68
+      "cached": true
     },
     {
       "task_id": "key-door-escape",
-      "status": "failed",
-      "error": "Error: Unmatched public quote A24"
+      "status": "reviewed",
+      "assertions": 60
     }
   ]
 }

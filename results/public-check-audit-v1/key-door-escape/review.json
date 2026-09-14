@@ -1,0 +1,371 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "5b1e7a457bed960de3b8c35f0553097030b2c39a67870f7f117a38d79cd3736e",
+  "review": {
+    "assertions": [
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "方向键即键盘设备，UP 用 keyboard 受此支持。"
+      },
+      {
+        "id": "A7",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求只规定方向键用键盘及 code 字段，未规定 key_event 取 press 还是 down（示例分别出现 press 与 down），无法唯一推出 UP.key_event=press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "方向键含上方向键，结合键盘控件使用 code 的约定，上键 code 为 ArrowUp。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "方向键为键盘设备，DOWN 用 keyboard 受此支持。"
+      },
+      {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 DOWN 的 key_event 类型，press/down 均可，无法唯一推出 press。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "下方向键 code 为 ArrowDown，受方向键要求与 code 约定支持。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "方向键为键盘设备，LEFT 用 keyboard 受此支持。"
+      },
+      {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 LEFT 的 key_event 类型，无法唯一推出 press。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "左方向键 code 为 ArrowLeft，受方向键要求与 code 约定支持。"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "方向键为键盘设备，RIGHT 用 keyboard 受此支持。"
+      },
+      {
+        "id": "A19",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 RIGHT 的 key_event 类型，无法唯一推出 press。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "玩家用方向键逐格移动。",
+        "reason": "右方向键 code 为 ArrowRight，受方向键要求与 code 约定支持。"
+      },
+      {
+        "id": "A23",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅对 START 示例给出 key_event=press，未规定 RESTART 鼠标控件的 key_event 类型，无法唯一推出 press。"
+      },
+      {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅说明键盘 R 返回菜单，未规定 RESTART_KEY 的 key_event 类型，无法唯一推出 press。"
+      },
+      {
+        "id": "A30",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint 是评测器在检查点之间采样事件的内部约定，公开要求未规定事件按检查点分域。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "#S..D.E#",
+        "reason": "地图中 D 在列4，无钥匙时门阻挡，玩家停在列3，player.x=3 由地图几何推出。"
+      },
+      {
+        "id": "A33",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "地图将门/出口/起点置于第1行（y=1），仅钥匙/陷阱在第3行（y=3）；对所列 door-blocked/door-open/won/reset 检查点公开推出 y=1，无法唯一推出 y=3。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "没有钥匙时门会阻挡玩家",
+        "reason": "取钥匙前及复活/重开后钥匙复位，has_key=false 受此支持。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "拿到钥匙后，再次进入门格会把门永久打开",
+        "reason": "进入门格前门未开，door_open=false 受此支持。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "没有钥匙时门会阻挡玩家",
+        "reason": "无钥匙撞门触发 door_blocked，事件列表亦含 door_blocked。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "#K..T..#",
+        "reason": "K 在列1行3，取钥匙点、复活回起点(1,1)及重开均使 player.x=1，由地图与规则推出。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "#K..T..#",
+        "reason": "K 在行3，取钥匙时 player.y=3 由地图推出。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "玩家初始有 2 条生命",
+        "reason": "初始及未踩陷阱的胜利路径、重开均恢复 2 条生命，lives=2 受此支持。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "player_moved",
+        "reason": "玩家逐格移动产生 player_moved，事件列表含该类型。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "key_collected",
+        "reason": "拾取钥匙触发 key_collected，事件列表含该类型。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "#S..D.E#",
+        "reason": "持钥进入门格 D 位于列4，player.x=4 由地图推出。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "拿到钥匙后，再次进入门格会把门永久打开",
+        "reason": "持钥进入门格门永久打开，door_open=true 受此支持。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "door_opened",
+        "reason": "开门触发 door_opened，事件列表含该类型。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "打开门并进入出口：`won`",
+        "reason": "开门到达出口即 won，状态值受此支持。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "#S..D.E#",
+        "reason": "E 在列6，到达出口 player.x=6 由地图推出。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "game_won",
+        "reason": "胜利触发 game_won，事件列表含该类型。"
+      },
+      {
+        "id": "A51",
+        "verdict": "supported",
+        "public_quote": "HUD 显示 `Lives: n/2`、是否持有钥匙、门的状态和当前状态",
+        "reason": "score 需显示生命与钥匙，内容非空受此支持。"
+      },
+      {
+        "id": "A52",
+        "verdict": "supported",
+        "public_quote": "状态文字忽略大小写及连续空白",
+        "reason": "状态文案忽略大小写，且 won 为合法状态值，Won(ignore_case) 受此支持。"
+      },
+      {
+        "id": "A53",
+        "verdict": "supported",
+        "public_quote": "踩到陷阱损失 1 条生命",
+        "reason": "初始 2 条生命，踩一次陷阱后 lives=1 受此支持。"
+      },
+      {
+        "id": "A54",
+        "verdict": "supported",
+        "public_quote": "trap_hit",
+        "reason": "踩陷阱触发 trap_hit，事件列表含该类型。"
+      },
+      {
+        "id": "A55",
+        "verdict": "supported",
+        "public_quote": "player_respawned",
+        "reason": "陷阱后回到起点触发 player_respawned，事件列表含该类型。"
+      },
+      {
+        "id": "A56",
+        "verdict": "supported",
+        "public_quote": "生命归零：`lost`",
+        "reason": "生命归零状态为 lost，受此支持。"
+      },
+      {
+        "id": "A57",
+        "verdict": "supported",
+        "public_quote": "生命归零立即失败",
+        "reason": "两次陷阱后生命归零 lives=0 受此支持。"
+      },
+      {
+        "id": "A58",
+        "verdict": "supported",
+        "public_quote": "game_lost",
+        "reason": "失败触发 game_lost，事件列表含该类型。"
+      },
+      {
+        "id": "A59",
+        "verdict": "supported",
+        "public_quote": "返回菜单",
+        "reason": "Restart 返回菜单，重开后 status=menu 受此支持。"
+      },
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],",
+        "reason": "模板中 START 控件 actor 为 primary（行32）"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],",
+        "reason": "模板中 START device 为 mouse（行33）"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],",
+        "reason": "模板中 START key_event 为 press（行34）"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "  \"controls\": [\n    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }\n  ],",
+        "reason": "模板中 START selector 为 #start-btn（行35）"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，UP 非次要玩家"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，DOWN 非次要玩家"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，LEFT 非次要玩家"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，RIGHT 非次要玩家"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，RESTART 非次要玩家"
+      },
+      {
+        "id": "A22",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "#restart-btn 仅说明 selector；行66 规定 selector 对应鼠标或触控，device=mouse 不能唯一推出"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "- `#start-btn`、`#restart-btn`；`#board` 为游戏区域。",
+        "reason": "自动测试接口规定 #restart-btn（行124）"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "行66 规定默认玩家为 primary，RESTART_KEY 非次要玩家"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "- Restart 按钮或键盘 `R` 返回菜单，恢复 2 条生命、钥匙、门和玩家位置。",
+        "reason": "行111 规定 Restart 可通过键盘 R，RESTART_KEY 即键盘控制"
+      },
+      {
+        "id": "A28",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "行111 仅说键盘 R；KeyR 需由行66 的 KeyX 命名约定推断，无连续原文唯一规定"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。",
+        "reason": "行78 规定 status 含 playing；所检上下文均为进行中（非菜单/胜负），唯一适用值为 playing"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "行80 规定所有游戏点击 Start 后记录 game_started"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "`S` 是起点 `(1,1)`，`K` 是钥匙，`D` 是门，`T` 是陷阱，`E` 是出口。玩家用方向键逐格移动。没有钥匙时门会阻挡玩家；拿到钥匙后，再次进入门格会把门永久打开。钥匙不消耗，直到本局结束。",
+        "reason": "行102 规定拿到钥匙后钥匙不消耗，has_key 置真"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "- `[data-testid=\"score\"]` 显示生命与钥匙；`[data-testid=\"status\"]` 显示状态。",
+        "reason": "行125 规定 [data-testid=score] 显示内容，故可见"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "- `[data-testid=\"score\"]` 显示生命与钥匙；`[data-testid=\"status\"]` 显示状态。",
+        "reason": "行125 规定 [data-testid=status] 显示状态，故可见"
+      },
+      {
+        "id": "A60",
+        "verdict": "supported",
+        "public_quote": "- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。",
+        "reason": "行74 规定 reset 重新从 seq=1 记录 game_reset"
+      }
+    ]
+  },
+  "quote_repair_applied": true,
+  "line_repair_applied": true,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

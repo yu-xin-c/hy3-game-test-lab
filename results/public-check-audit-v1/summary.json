@@ -2,16 +2,16 @@
   "scope": "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality",
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "total_tasks": 96,
-  "reviewed_tasks": 2,
+  "reviewed_tasks": 3,
   "total_predicates": 5182,
-  "reviewed_predicates": 114,
-  "remaining_tasks": 94,
-  "remaining_predicates": 5068,
+  "reviewed_predicates": 174,
+  "remaining_tasks": 93,
+  "remaining_predicates": 5008,
   "model_labels": {
-    "supported": 97,
+    "supported": 147,
     "unsupported": 1,
-    "ambiguous": 12,
-    "test_mechanics": 4
+    "ambiguous": 21,
+    "test_mechanics": 5
   },
   "rows": [
     {
@@ -33,6 +33,17 @@
         "supported": 61,
         "unsupported": 1,
         "ambiguous": 5,
+        "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "key-door-escape",
+      "predicates": 60,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 50,
+        "unsupported": 0,
+        "ambiguous": 9,
         "test_mechanics": 1
       }
     }

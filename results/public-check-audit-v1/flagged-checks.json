@@ -247,6 +247,181 @@
         "reason": "公开文本仅在 START 鼠标按钮示例中给出 key_event 为 press，未陈述 RESTART 按钮使用 press，无法据引文支持该具体取值。"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A7",
+        "kind": "control",
+        "path": "UP.key_event",
+        "expected": "press",
+        "contexts": [
+          "UP"
+        ]
+      },
+      "decision": {
+        "id": "A7",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求只规定方向键用键盘及 code 字段，未规定 key_event 取 press 还是 down（示例分别出现 press 与 down），无法唯一推出 UP.key_event=press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A11",
+        "kind": "control",
+        "path": "DOWN.key_event",
+        "expected": "press",
+        "contexts": [
+          "DOWN"
+        ]
+      },
+      "decision": {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 DOWN 的 key_event 类型，press/down 均可，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A15",
+        "kind": "control",
+        "path": "LEFT.key_event",
+        "expected": "press",
+        "contexts": [
+          "LEFT"
+        ]
+      },
+      "decision": {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 LEFT 的 key_event 类型，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A19",
+        "kind": "control",
+        "path": "RIGHT.key_event",
+        "expected": "press",
+        "contexts": [
+          "RIGHT"
+        ]
+      },
+      "decision": {
+        "id": "A19",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开未规定 RIGHT 的 key_event 类型，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A23",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A23",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅对 START 示例给出 key_event=press，未规定 RESTART 鼠标控件的 key_event 类型，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A27",
+        "kind": "control",
+        "path": "RESTART_KEY.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART_KEY"
+        ]
+      },
+      "decision": {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开仅说明键盘 R 返回菜单，未规定 RESTART_KEY 的 key_event 类型，无法唯一推出 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A33",
+        "kind": "state",
+        "path": "player.y",
+        "expected": 1,
+        "contexts": [
+          "win-path/KD-CP-DOOR-BLOCKED",
+          "win-path/KD-CP-DOOR-OPEN",
+          "win-path/KD-CP-WON",
+          "loss-path/KD-CP-TRAP-1",
+          "restart-path/KD-CP-RESET"
+        ]
+      },
+      "decision": {
+        "id": "A33",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "地图将门/出口/起点置于第1行（y=1），仅钥匙/陷阱在第3行（y=3）；对所列 door-blocked/door-open/won/reset 检查点公开推出 y=1，无法唯一推出 y=3。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A22",
+        "kind": "control",
+        "path": "RESTART.device",
+        "expected": "mouse",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A22",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "#restart-btn 仅说明 selector；行66 规定 selector 对应鼠标或触控，device=mouse 不能唯一推出"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion": {
+        "id": "A28",
+        "kind": "control",
+        "path": "RESTART_KEY.code",
+        "expected": "KeyR",
+        "contexts": [
+          "RESTART_KEY"
+        ]
+      },
+      "decision": {
+        "id": "A28",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "行111 仅说键盘 R；KeyR 需由行66 的 KeyX 命名约定推断，无连续原文唯一规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }
