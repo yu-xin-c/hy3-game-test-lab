@@ -1,0 +1,322 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "START 为主页面动作，默认玩家 actor 为 primary。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "START（主页面）：mouse 操作 #start-btn",
+      "reason": "控件规定 START 用鼠标操作 #start-btn，device=mouse。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "清单示例的鼠标控件使用 key_event=press，结构须严格遵循。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "START（主页面）：mouse 操作 #start-btn",
+      "reason": "selector 为 #start-btn。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`",
+      "reason": "JOIN 为副页面动作，actor 应为 secondary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "JOIN（副页面）：mouse 操作 #join-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件依示例 key_event=press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "JOIN（副页面）：mouse 操作 #join-btn",
+      "reason": "selector=#join-btn。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "BUILD_POWER 为主页面动作，actor=primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "BUILD_POWER（主页面）：mouse 操作 #power-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件 key_event=press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "BUILD_POWER（主页面）：mouse 操作 #power-btn",
+      "reason": "selector=#power-btn。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`",
+      "reason": "BUILD_WATER 为副页面动作，actor=secondary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "BUILD_WATER（副页面）：mouse 操作 #water-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件 key_event=press。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "BUILD_WATER（副页面）：mouse 操作 #water-btn",
+      "reason": "selector=#water-btn。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "APPROVE_P1 为主页面动作，actor=primary。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "APPROVE_P1（主页面）：mouse 操作 #approve-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件 key_event=press。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "APPROVE_P1（主页面）：mouse 操作 #approve-btn",
+      "reason": "selector=#approve-btn。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`",
+      "reason": "APPROVE_P2 为副页面动作，actor=secondary。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "APPROVE_P2（副页面）：mouse 操作 #approve-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件 key_event=press。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "APPROVE_P2（副页面）：mouse 操作 #approve-btn",
+      "reason": "selector=#approve-btn。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "RESTART 为主页面动作，actor=primary。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "RESTART（主页面）：mouse 操作 #restart-btn",
+      "reason": "device=mouse。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "鼠标控件 key_event=press。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "RESTART（主页面）：mouse 操作 #restart-btn",
+      "reason": "selector=#restart-btn。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "status 只能是 `menu`、`playing`、`won`、`lost`",
+      "reason": "START 后进入对局，playing 为合法且对应的进行中状态。"
+    },
+    {
+      "id": "A30",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "event_scope 为执行器事件采样区间约定，非游戏公开需求。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 `game_started`",
+      "reason": "点击 Start 后必须记录 game_started 事件。"
+    },
+    {
+      "id": "A32",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开要求仅列出 connected 字段，未规定其取值为主/副页连接数 2，无法唯一推出。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "达到 power=2、water=2 后",
+      "reason": "胜利条件要求 power=2，对应状态值。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "P2 只能建 Water，每次加1",
+      "reason": "water 自 0 递增；MID/失败路径未建水→0，重开清空资源→0。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "approvals 为2时获胜",
+      "reason": "approvals 自 0 递增到 2；MID 未确认→0，重开清空确认→0。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "所有时间规则使用毫秒",
+      "reason": "elapsed_ms 以毫秒计且从 0 起；MID/WON 未推进虚拟时间→0，重开清空计时→0。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "事件：`city_created`、`player_joined`、`power_built`、`water_built`、`plan_approved`、`city_completed`、`game_lost`、`game_reset`",
+      "reason": "事件清单含 power_built，建电后产生。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "两项资源都为2且 approvals 为2时获胜",
+      "reason": "满足胜负条件时 status=won。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "达到 power=2、water=2 后",
+      "reason": "胜利需 water=2。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "approvals 为2时获胜",
+      "reason": "两页各确认一次后 approvals=2。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "事件：`city_created`、`player_joined`、`power_built`、`water_built`、`plan_approved`、`city_completed`、`game_lost`、`game_reset`",
+      "reason": "事件清单含 plan_approved，确认后产生。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "事件：`city_created`、`player_joined`、`power_built`、`water_built`、`plan_approved`、`city_completed`、`game_lost`、`game_reset`",
+      "reason": "事件清单含 city_completed，城市建成产生。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度",
+      "reason": "分数 HUD 须始终可见。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "reason": "状态 HUD 须始终可见。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "不能省略分数或进度",
+      "reason": "分数文本不可省略，故非空。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "状态文字忽略大小写及连续空白",
+      "reason": "状态文案比较忽略大小写，预期 Won 合理。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "虚拟时间到10000ms仍未满足条件时，两页同时失败",
+      "reason": "超时未达成则 status=lost。"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "public_quote": "P1 只能建 Power，每次加1",
+      "reason": "失败路径未建电→0；重开清空资源→0。"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "public_quote": "虚拟时间到10000ms仍未满足条件时，两页同时失败",
+      "reason": "失败发生在虚拟时间 10000ms，elapsed_ms=10000。"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "public_quote": "事件：`city_created`、`player_joined`、`power_built`、`water_built`、`plan_approved`、`city_completed`、`game_lost`、`game_reset`",
+      "reason": "事件清单含 game_lost，失败时产生。"
+    },
+    {
+      "id": "A51",
+      "verdict": "supported",
+      "public_quote": "主页面 Restart 同步清空资源、确认、计时和连接并回到菜单",
+      "reason": "重开恢复菜单状态 status=menu。"
+    },
+    {
+      "id": "A52",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开仅要求 connected 字段且重开清空“连接”，未定义其为数值 0，取值无法唯一推出。"
+    },
+    {
+      "id": "A53",
+      "verdict": "supported",
+      "public_quote": "事件：`city_created`、`player_joined`、`power_built`、`water_built`、`plan_approved`、`city_completed`、`game_lost`、`game_reset`",
+      "reason": "事件清单含 game_reset，重开后产生。"
+    }
+  ]
+}

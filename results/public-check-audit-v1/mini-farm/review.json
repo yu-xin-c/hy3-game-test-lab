@@ -1,0 +1,378 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "576256a130c0d09747a071c8105732eab240977495175fd4d8abdaa541708de0",
+  "review": {
+    "assertions": [
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 示例控件对象以 key_event:\"press\" 表示鼠标点击，Mini Farm 控件为 mouse 操作。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击控件示例 key_event 为 press。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标点击 key_event 为 press。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`",
+        "reason": "开始后处于进行中，状态枚举含 playing，且 HUD 显示 Playing。"
+      },
+      {
+        "id": "A34",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint 是评测器按检查点收集事件的执行约定，publicText 未规定该概念。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "从 Start 起15000ms",
+        "reason": "elapsed_ms 自 Start 起计；该检查点前虚拟时间未推进(advance_ms=0)，故为 0，字段本身在 state 列表中要求。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "Harvest 得10金币",
+        "reason": "收获前无 Harvest，harvested 与 coins 均为 0；收获才得金币。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "Harvest 得10金币",
+        "reason": "收获前 coins=0，Harvest 才得 10 金币。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "coins 和 best_coins 都为30",
+        "reason": "胜利时二者为 30，逆向推得收获前 best_coins=0。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "每次状态变化立即保存",
+        "reason": "Water 为状态变化，须立即保存，故 saved=true。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "Plant 后变为 planted，Water 后变为 growing",
+        "reason": "PLOT1 Plant 后 Water，状态变为 growing，plots[0].state=growing。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "页面刷新后必须恢复",
+        "reason": "重载后必须恢复状态，触发 state_loaded 事件（事件列表含 state_loaded）。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "三块田各收获一次后获胜",
+        "reason": "三块田各收获一次后获胜，status=won。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "虚拟时间累计3000ms后变为 ready",
+        "reason": "每块田 Water 后需累计 3000ms(测试留 32ms 容差取 3032)，三次共 3×(3000+32)=9096。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "三块田各收获一次后获胜",
+        "reason": "三块田各收获一次，harvested=3。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "coins 和 best_coins 都为30",
+        "reason": "三块田各收获一次得 3×10=30 金币，coins=30（金币无容差）。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "coins 和 best_coins 都为30",
+        "reason": "胜利时 best_coins=30，与引文一致。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "农场计时读数误差为 32ms",
+        "reason": "农场计时读数误差为 32ms，elapsed_ms 容差 32 直接对应。"
+      },
+      {
+        "id": "A51",
+        "verdict": "supported",
+        "public_quote": "三块田各收获一次后获胜",
+        "reason": "胜利触发 game_won 事件，事件列表含 game_won。"
+      },
+      {
+        "id": "A52",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态",
+        "reason": "HUD 始终显示分数或进度及状态，score 必须可见。"
+      },
+      {
+        "id": "A53",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态",
+        "reason": "HUD 始终显示状态，status 必须可见。"
+      },
+      {
+        "id": "A54",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度",
+        "reason": "不能省略分数或进度，故 scoreText 非空。"
+      },
+      {
+        "id": "A55",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "胜利时状态显示 Won；另状态文字忽略大小写及连续空白，支持 ignore_case。"
+      },
+      {
+        "id": "A56",
+        "verdict": "supported",
+        "public_quote": "从 Start 起15000ms仍未收获三块田则失败",
+        "reason": "超时未收获三块田则失败，status=lost。"
+      },
+      {
+        "id": "A57",
+        "verdict": "supported",
+        "public_quote": "从 Start 起15000ms仍未收获三块田则失败",
+        "reason": "失败边界 15000ms，测试多等 32ms 取 15032，符合计时边界可多等 32ms。"
+      },
+      {
+        "id": "A59",
+        "verdict": "supported",
+        "public_quote": "按固定 seed 恢复菜单状态",
+        "reason": "restart 对应 reset，按固定 seed 恢复菜单状态，故 status=menu。"
+      },
+      {
+        "id": "A60",
+        "verdict": "ambiguous",
+        "public_quote": "state 至少包含：`status`、`selected_plot`、`plots`、`elapsed_ms`、`harvested`、`coins`、`best_coins`、`saved`",
+        "reason": "state 列表要求 saved 字段，但公开要求未规定 Restart 后 saved 的具体取值，无法唯一推出为 false。"
+      },
+      {
+        "id": "A61",
+        "verdict": "supported",
+        "public_quote": "重新从 `seq=1` 记录 `game_reset`",
+        "reason": "reset 调用重新记录 game_reset 事件，Restart 对应 reset。"
+      },
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，START未指定secondary"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "  - `START`：mouse 操作 #start-btn",
+        "reason": "控件START为mouse操作"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "  - `START`：mouse 操作 #start-btn",
+        "reason": "控件START操作#start-btn"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，PLOT1未指定secondary"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT1`：mouse 操作 #plot-1",
+        "reason": "控件PLOT1为mouse操作"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT1`：mouse 操作 #plot-1",
+        "reason": "控件PLOT1操作#plot-1"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，PLOT2未指定secondary"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT2`：mouse 操作 #plot-2",
+        "reason": "控件PLOT2为mouse操作"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT2`：mouse 操作 #plot-2",
+        "reason": "控件PLOT2操作#plot-2"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，PLOT3未指定secondary"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT3`：mouse 操作 #plot-3",
+        "reason": "控件PLOT3为mouse操作"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "  - `PLOT3`：mouse 操作 #plot-3",
+        "reason": "控件PLOT3操作#plot-3"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，PLANT未指定secondary"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "  - `PLANT`：mouse 操作 #plant-btn",
+        "reason": "控件PLANT为mouse操作"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "  - `PLANT`：mouse 操作 #plant-btn",
+        "reason": "控件PLANT操作#plant-btn"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，WATER未指定secondary"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "  - `WATER`：mouse 操作 #water-btn",
+        "reason": "控件WATER为mouse操作"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "  - `WATER`：mouse 操作 #water-btn",
+        "reason": "控件WATER操作#water-btn"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，HARVEST未指定secondary"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "  - `HARVEST`：mouse 操作 #harvest-btn",
+        "reason": "控件HARVEST为mouse操作"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "  - `HARVEST`：mouse 操作 #harvest-btn",
+        "reason": "控件HARVEST操作#harvest-btn"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，RESTART未指定secondary"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "控件RESTART为mouse操作"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "控件RESTART操作#restart-btn"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`plot_selected`、`crop_planted`、`crop_watered`、`crop_ready`、`crop_harvested`、`state_saved`、`state_loaded`、`leaderboard_updated`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "Mini Farm事件枚举含game_started"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`plot_selected`、`crop_planted`、`crop_watered`、`crop_ready`、`crop_harvested`、`state_saved`、`state_loaded`、`leaderboard_updated`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "Mini Farm事件枚举含crop_harvested"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`plot_selected`、`crop_planted`、`crop_watered`、`crop_ready`、`crop_harvested`、`state_saved`、`state_loaded`、`leaderboard_updated`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "Mini Farm事件枚举含leaderboard_updated"
+      },
+      {
+        "id": "A58",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`plot_selected`、`crop_planted`、`crop_watered`、`crop_ready`、`crop_harvested`、`state_saved`、`state_loaded`、`leaderboard_updated`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "Mini Farm事件枚举含game_lost"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

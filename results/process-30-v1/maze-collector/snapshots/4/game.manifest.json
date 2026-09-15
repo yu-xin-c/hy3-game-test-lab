@@ -1,0 +1,44 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    { "action_id": "START", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#start-btn", "description": "开始游戏" },
+    { "action_id": "UP", "actor": "primary", "device": "keyboard", "key_event": "down", "code": "ArrowUp", "description": "向上移动" },
+    { "action_id": "DOWN", "actor": "primary", "device": "keyboard", "key_event": "down", "code": "ArrowDown", "description": "向下移动" },
+    { "action_id": "LEFT", "actor": "primary", "device": "keyboard", "key_event": "down", "code": "ArrowLeft", "description": "向左移动" },
+    { "action_id": "RIGHT", "actor": "primary", "device": "keyboard", "key_event": "down", "code": "ArrowRight", "description": "向右移动" },
+    { "action_id": "RESTART", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#restart-btn", "description": "重新开始" },
+    { "action_id": "RESTART_KEY", "actor": "primary", "device": "keyboard", "key_event": "down", "code": "KeyR", "description": "按 R 重新开始" }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" },
+      "player": { "type": "object", "description": "玩家坐标", "properties": { "x": { "type": "integer", "description": "x 坐标" }, "y": { "type": "integer", "description": "y 坐标" } } },
+      "coins_collected": { "type": "integer", "description": "已收集金币数" },
+      "moves_used": { "type": "integer", "description": "已使用有效移动数" },
+      "moves_remaining": { "type": "integer", "description": "剩余有效移动数" }
+    },
+    "required": ["status", "player", "coins_collected", "moves_used", "moves_remaining"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    { "type": "player_moved", "description": "玩家移动", "payload_fields": { "x": { "type": "integer", "description": "目标 x" }, "y": { "type": "integer", "description": "目标 y" } } },
+    { "type": "wall_blocked", "description": "撞墙被阻挡", "payload_fields": { "x": { "type": "integer", "description": "目标 x" }, "y": { "type": "integer", "description": "目标 y" } } },
+    { "type": "coin_collected", "description": "收集金币", "payload_fields": { "x": { "type": "integer", "description": "金币 x" }, "y": { "type": "integer", "description": "金币 y" } } },
+    { "type": "exit_locked", "description": "金币不足时碰出口", "payload_fields": {} },
+    { "type": "game_won", "description": "获胜", "payload_fields": {} },
+    { "type": "game_lost", "description": "失败", "payload_fields": {} },
+    { "type": "game_reset", "description": "复位到菜单", "payload_fields": {} }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

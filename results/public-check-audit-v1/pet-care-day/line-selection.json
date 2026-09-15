@@ -1,0 +1,18 @@
+{
+  "assertions": [
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "line_start": 30,
+      "line_end": 37,
+      "reason": "Manifest template's START control object defines \"key_event\": \"press\" (line 34) within the action_id START block."
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "line_start": 78,
+      "line_end": 80,
+      "reason": "Line 78 enumerates valid status values including 'playing'; line 80 establishes clicking Start enters the active game (game_started), so post-Start non-terminal status must be 'playing'."
+    }
+  ]
+}

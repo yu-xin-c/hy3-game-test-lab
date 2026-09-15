@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=600" />
+  <title>Maze Collector</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Maze Collector</h1>
+    <div id="hud">
+      <span id="moves" class="hud-item">Moves: 0/18</span>
+      <span data-testid="score" class="hud-item">Coins: 0/3</span>
+      <span data-testid="status" class="hud-item">menu</span>
+    </div>
+    <div id="message"></div>
+    <div id="board"></div>
+    <div id="controls">
+      <button id="start-btn">Start</button>
+      <button id="restart-btn">Restart</button>
+    </div>
+    <p class="hint">Use Arrow keys to move. Collect 3 coins then reach the exit within 18 moves.</p>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

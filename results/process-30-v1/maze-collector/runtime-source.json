@@ -1,0 +1,54 @@
+{
+  "scope": "first real-browser failure frame per scenario; not a plan-step judgment or proven root cause",
+  "task_id": "maze-collector",
+  "game_directory_sha256": "8ef06ef8f3576216cc0639ca8ac49ba8a2d4da2b3497d76e2a82f23b65c2548c",
+  "generation_reconstructed": true,
+  "located_runtime_scenarios": 3,
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "runtime_error",
+      "executed_runtime_frame": {
+        "file": "game.js",
+        "line": 206,
+        "column": 43,
+        "source_line": "    reset: function (opts) { reset(opts); return observe(); },",
+        "source_line_sha256": "fdba511c359e1dad6a376265bb1397a2cfa949455b103a7bc3c3f05d1e3c851c",
+        "contributing_tool_step": 3,
+        "meaning": "executed stack frame and code provenance; first observable divergence and reasoning root cause are separate"
+      },
+      "runtime_error_present": true
+    },
+    {
+      "scenario_id": "loss-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "runtime_error",
+      "executed_runtime_frame": {
+        "file": "game.js",
+        "line": 206,
+        "column": 43,
+        "source_line": "    reset: function (opts) { reset(opts); return observe(); },",
+        "source_line_sha256": "fdba511c359e1dad6a376265bb1397a2cfa949455b103a7bc3c3f05d1e3c851c",
+        "contributing_tool_step": 3,
+        "meaning": "executed stack frame and code provenance; first observable divergence and reasoning root cause are separate"
+      },
+      "runtime_error_present": true
+    },
+    {
+      "scenario_id": "restart-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "runtime_error",
+      "executed_runtime_frame": {
+        "file": "game.js",
+        "line": 206,
+        "column": 43,
+        "source_line": "    reset: function (opts) { reset(opts); return observe(); },",
+        "source_line_sha256": "fdba511c359e1dad6a376265bb1397a2cfa949455b103a7bc3c3f05d1e3c851c",
+        "contributing_tool_step": 3,
+        "meaning": "executed stack frame and code provenance; first observable divergence and reasoning root cause are separate"
+      },
+      "runtime_error_present": true
+    }
+  ]
+}

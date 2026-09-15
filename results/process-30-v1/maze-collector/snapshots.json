@@ -1,0 +1,36 @@
+[
+  {
+    "tool_step": 1,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "8e2f41f1dc2c4c0b91cb802853a788b2df3b05a5615bdeb83efcb9ce88d9d166"
+    }
+  },
+  {
+    "tool_step": 2,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "8e2f41f1dc2c4c0b91cb802853a788b2df3b05a5615bdeb83efcb9ce88d9d166",
+      "styles.css": "932d1add3c741e546cbe59b262b40daddcae08fe5c8d83f2fad3e36a27cbac8d"
+    }
+  },
+  {
+    "tool_step": 3,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "8e2f41f1dc2c4c0b91cb802853a788b2df3b05a5615bdeb83efcb9ce88d9d166",
+      "styles.css": "932d1add3c741e546cbe59b262b40daddcae08fe5c8d83f2fad3e36a27cbac8d",
+      "game.js": "94e40588ebfae9d76ba1b6fc0fa277301d58116457eeea802925447620ffafc7"
+    }
+  },
+  {
+    "tool_step": 4,
+    "bundle_complete": true,
+    "files": {
+      "index.html": "8e2f41f1dc2c4c0b91cb802853a788b2df3b05a5615bdeb83efcb9ce88d9d166",
+      "styles.css": "932d1add3c741e546cbe59b262b40daddcae08fe5c8d83f2fad3e36a27cbac8d",
+      "game.js": "94e40588ebfae9d76ba1b6fc0fa277301d58116457eeea802925447620ffafc7",
+      "game.manifest.json": "639c5e746108581d19794fc57f2c794253eaca5044836ca0bd719526d473fc81"
+    }
+  }
+]

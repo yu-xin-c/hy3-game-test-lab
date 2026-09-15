@@ -1,0 +1,300 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "d69c765e95b0d9a8cd176120d7b09388fd1329473fa3ebaedf32e7d5cac5c251",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "公开要求规定默认玩家为 primary，未指定 actor 时适用。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "`START`：mouse 操作 #start-btn",
+        "reason": "Math Quest 控件明确 START 为 mouse。"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 示例中鼠标控件使用 key_event press，Math Quest 控件为 mouse，沿用该约定。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "#start-btn",
+        "reason": "Math Quest 控件 START 指定 selector #start-btn。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "未指定 actor，默认 primary。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "`ANSWER_A`：mouse 操作 #answer-a",
+        "reason": "Math Quest 控件 ANSWER_A 为 mouse。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标控件沿用示例 key_event press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "#answer-a",
+        "reason": "ANSWER_A selector #answer-a。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "未指定 actor，默认 primary。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "`ANSWER_B`：mouse 操作 #answer-b",
+        "reason": "ANSWER_B 为 mouse。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标控件沿用示例 key_event press。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "#answer-b",
+        "reason": "ANSWER_B selector #answer-b。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "未指定 actor，默认 primary。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "`ANSWER_C`：mouse 操作 #answer-c",
+        "reason": "ANSWER_C 为 mouse。"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标控件沿用示例 key_event press。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "#answer-c",
+        "reason": "ANSWER_C selector #answer-c。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "未指定 actor，默认 primary。"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+        "reason": "RESTART 为 mouse。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "鼠标控件沿用示例 key_event press。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "#restart-btn",
+        "reason": "RESTART selector #restart-btn。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "点击 Start 后进入游玩态，公开状态枚举含 Playing，游戏中状态为 playing。"
+      },
+      {
+        "id": "A22",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint 是评测器按检查点采样事件的执行器内部约定，并非游戏公开需求。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`",
+        "reason": "公开要求所有游戏点击 Start 后记录 game_started，且事件列表含之。"
+      },
+      {
+        "id": "A24",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求含 question_index 字段但未定义其数值编码（如 0 基/1 基及终局取值），无法唯一推出具体值 1。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "答对加10分并进入下一题",
+        "reason": "首题答对加 10 分，mid 检查点 score=10。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "答错增加 mistakes",
+        "reason": "仅答错才增加 mistakes，路径中无错答故保持初始 0；reset 上下文另有“0次错误”明确定义。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "7+5（A=11/B=12/C=13）",
+        "reason": "首题正确选项为 B，win 路径点 ANSWER_B，last_answer 应为 B。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "answer_correct",
+        "reason": "事件列表含 answer_correct，答对触发。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "question_changed",
+        "reason": "事件列表含 question_changed，进入下一题触发。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "三题全部答对时获胜",
+        "reason": "全部答对即 won，状态为 won。"
+      },
+      {
+        "id": "A31",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "question_index 数值编码未由公开要求规定，终局具体取值 3 无法唯一推出。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "三题全部答对时获胜，score 为30",
+        "reason": "全对获胜且 score 为 30，明确对应。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "18÷3（A=6/B=7/C=8）",
+        "reason": "WON 末题正确选项 A；LOST 上下文末次点 ANSWER_A 对应 9×3（A=18）亦为 A，两处 last_answer 均为 A。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "game_won",
+        "reason": "事件列表含 game_won，获胜触发。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "HUD 须始终显示分数，终局 score 可见。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "HUD 含 status 且终局须完整可见，状态可见。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度",
+        "reason": "要求分数/进度不可省略，score 文案非空。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "状态枚举含 Won，且“状态文字忽略大小写及连续空白”支持 ignore_case 匹配 Won。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "第二次答错时立即失败",
+        "reason": "两次答错立即失败，LOST 检查点 status=lost。"
+      },
+      {
+        "id": "A40",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "question_index 数值编码未规定，失败局具体取值 2 无法唯一推出。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "Restart 恢复第一题、0分和0次错误",
+        "reason": "reset 上下文 score=0 由“0分”明确；lost 上下文无正确答，按“答对加10分”score 仍为 0。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "答错增加 mistakes",
+        "reason": "两次答错 mistakes=2，与“第二次答错时立即失败”一致。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "answer_wrong",
+        "reason": "事件列表含 answer_wrong，答错触发。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "game_lost",
+        "reason": "事件列表含 game_lost，失败触发。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "恢复题目规定的菜单状态",
+        "reason": "Restart 须恢复菜单状态，reset 后 status=menu。"
+      },
+      {
+        "id": "A46",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "question_index 数值编码未规定，“恢复第一题”不唯一定义索引为 0。"
+      },
+      {
+        "id": "A47",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅列 last_answer 字段并规定恢复菜单状态，但未明确重置后该字段取值为 null，具体值无法唯一推出。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "重新从 `seq=1` 记录 `game_reset`",
+        "reason": "reset 记录 game_reset，事件列表亦含 game_reset。"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": false,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

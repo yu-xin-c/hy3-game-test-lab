@@ -78,3 +78,23 @@ export function locateExcerpt(reconstruction: ReturnType<typeof reconstructGener
     meaning: "code provenance only; not proof of earliest reasoning error"
   };
 }
+
+/** Match the first executed frame in a verified generated file, not an inferred root cause. */
+export function locateRuntimeFrame(reconstruction: ReturnType<typeof reconstructGeneration>, stack: string) {
+  if (!reconstruction.complete || !stack) return null;
+  const frames = stack.matchAll(/(?:https?:\/\/[^\s)]*\/)?([A-Za-z0-9._-]+\.(?:js|mjs|html)):([1-9]\d*):([1-9]\d*)/g);
+  for (const frame of frames) {
+    const file = frame[1]!, line = Number(frame[2]), column = Number(frame[3]);
+    const source = reconstruction.files[file];
+    if (source === undefined) continue;
+    const lines = source.split("\n"), sourceLine = lines[line - 1];
+    if (sourceLine === undefined || column > sourceLine.length || sourceLine.length === 0) continue;
+    let offset = column - 1;
+    for (let i = 0; i < line - 1; i++) offset += lines[i]!.length + 1;
+    const owner = reconstruction.owners[file]?.[offset];
+    if (!owner) continue;
+    return { file, line, column, source_line: sourceLine, source_line_sha256: contentHash(sourceLine), contributing_tool_step: owner,
+      meaning: "executed stack frame and code provenance; first observable divergence and reasoning root cause are separate" };
+  }
+  return null;
+}

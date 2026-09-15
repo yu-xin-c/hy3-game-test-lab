@@ -1,0 +1,200 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，START未指定secondary"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "控件START为mouse操作"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "控件START操作#start-btn"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，PLOT1未指定secondary"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "控件PLOT1为mouse操作"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "控件PLOT1操作#plot-1"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，PLOT2未指定secondary"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "控件PLOT2为mouse操作"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "控件PLOT2操作#plot-2"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，PLOT3未指定secondary"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "控件PLOT3为mouse操作"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "控件PLOT3操作#plot-3"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，PLANT未指定secondary"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "控件PLANT为mouse操作"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "控件PLANT操作#plant-btn"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，WATER未指定secondary"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "控件WATER为mouse操作"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "控件WATER操作#water-btn"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，HARVEST未指定secondary"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "控件HARVEST为mouse操作"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "控件HARVEST操作#harvest-btn"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为primary，RESTART未指定secondary"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "控件RESTART为mouse操作"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "控件RESTART操作#restart-btn"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "Mini Farm事件枚举含game_started"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "Mini Farm事件枚举含crop_harvested"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "Mini Farm事件枚举含leaderboard_updated"
+    },
+    {
+      "id": "A58",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "Mini Farm事件枚举含game_lost"
+    }
+  ]
+}

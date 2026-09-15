@@ -1,0 +1,310 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "Pet Care Day 未指定第二位玩家，控件默认 actor 为 primary，START 适用默认玩家。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "`START`：mouse 操作 #start-btn",
+      "reason": "控件说明 START 为 mouse 操作，device=mouse 由公开要求直接规定。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "{\"action_id\": \"START\", \"actor\": \"primary\", \"device\": \"mouse\", \"key_event\": \"press\", \"selector\": \"#start-btn\", \"description\": \"开始游戏\"}",
+      "reason": "公开要求强制使用的 manifest 结构中 START 控件示例明确使用 key_event=press。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "`START`：mouse 操作 #start-btn",
+      "reason": "控件说明给出 selector #start-btn，device=mouse 用 selector 定位。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "FEED 未指定第二位玩家，默认 actor=primary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "`FEED`：mouse 操作 #feed-btn",
+      "reason": "控件说明 FEED 为 mouse 操作，device=mouse 直接规定。"
+    },
+    {
+      "id": "A7",
+      "verdict": "ambiguous",
+      "public_quote": "`FEED`：mouse 操作 #feed-btn",
+      "reason": "公开要求仅描述 FEED 为 mouse 操作并给出 selector，未规定 key_event 取值；press 无法从公开要求唯一推出（模板示例仅覆盖 START）。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "`FEED`：mouse 操作 #feed-btn",
+      "reason": "selector #feed-btn 由控件说明直接规定。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "PLAY 未指定第二位玩家，默认 actor=primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "`PLAY`：mouse 操作 #play-btn",
+      "reason": "控件说明 PLAY 为 mouse 操作，device=mouse 直接规定。"
+    },
+    {
+      "id": "A11",
+      "verdict": "ambiguous",
+      "public_quote": "`PLAY`：mouse 操作 #play-btn",
+      "reason": "公开要求未规定 PLAY 的 key_event 取值，press 无法唯一推出。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "`PLAY`：mouse 操作 #play-btn",
+      "reason": "selector #play-btn 由控件说明直接规定。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "SLEEP 未指定第二位玩家，默认 actor=primary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "`SLEEP`：mouse 操作 #sleep-btn",
+      "reason": "控件说明 SLEEP 为 mouse 操作，device=mouse 直接规定。"
+    },
+    {
+      "id": "A15",
+      "verdict": "ambiguous",
+      "public_quote": "`SLEEP`：mouse 操作 #sleep-btn",
+      "reason": "公开要求未规定 SLEEP 的 key_event 取值，press 无法唯一推出。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "`SLEEP`：mouse 操作 #sleep-btn",
+      "reason": "selector #sleep-btn 由控件说明直接规定。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "RESTART 未指定第二位玩家，默认 actor=primary。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+      "reason": "控件说明 RESTART 为 mouse 操作，device=mouse 直接规定。"
+    },
+    {
+      "id": "A19",
+      "verdict": "ambiguous",
+      "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+      "reason": "公开要求未规定 RESTART 的 key_event 取值，press 无法唯一推出。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+      "reason": "selector #restart-btn 由控件说明直接规定。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "status 只能是 `menu`、`playing`、`won`、`lost`。",
+      "reason": "上述检查点均为点击 Start 后、未满足获胜/失败条件前的进行中状态，依据枚举只能为 playing。"
+    },
+    {
+      "id": "A22",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "event_scope=since_previous_checkpoint 是评测器按检查点采样事件的内部约定，并非游戏公开需求。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+      "reason": "公开要求规定点击 Start 后必须记录 game_started 事件。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "初始 hunger、happiness、energy 都是2。Feed、Play、Sleep 分别把对应值加1，最大为3，并立即写入 localStorage。",
+      "reason": "初始 hunger=2，FEED 将其加1至3（封顶3），故 MID/WON 时 hunger=3。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "Feed、Play、Sleep 分别把对应值加1，最大为3",
+      "reason": "FEED 只改变对应值 hunger，happiness 在 MID 时仍为其初始值2。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "Feed、Play、Sleep 分别把对应值加1，最大为3",
+      "reason": "MID 时尚未 SLEEP，energy 仍为初始值2。"
+    },
+    {
+      "id": "A27",
+      "verdict": "unsupported",
+      "public_quote": "state 至少包含：`status`、`hunger`、`happiness`、`energy`、`actions`、`saved`。",
+      "reason": "公开要求仅规定 actions 字段存在，未定义其语义与取值，断言期望 actions=1 是公开要求未规定的限制。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "Feed、Play、Sleep 分别把对应值加1，最大为3，并立即写入 localStorage。",
+      "reason": "FEED 后应立即写入 localStorage，saved 反映已保存状态，故为 true。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "state_loaded 在事件列表中，且刷新后恢复进度，MID  reload 后应产生该事件。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "三个值都到3时立即完成一天并获胜。",
+      "reason": "win 路径三项均达3，触发获胜，status=won。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "初始 hunger、happiness、energy 都是2。Feed、Play、Sleep 分别把对应值加1，最大为3",
+      "reason": "PLAY 将 happiness 由2加1至3，WON 时 happiness=3。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "初始 hunger、happiness、energy 都是2。Feed、Play、Sleep 分别把对应值加1，最大为3",
+      "reason": "SLEEP 将 energy 由2加1至3，WON 时 energy=3。"
+    },
+    {
+      "id": "A33",
+      "verdict": "unsupported",
+      "public_quote": "state 至少包含：`status`、`hunger`、`happiness`、`energy`、`actions`、`saved`。",
+      "reason": "公开要求仅规定 actions 字段存在，未定义其计数语义与取值，断言期望 actions=3 是公开要求未规定的限制。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "pet_slept 在事件列表中，SLEEP 操作触发该事件。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "state_saved 在事件列表中，FEED/PLAY/SLEEP 均立即写入 localStorage 应产生该事件。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "game_won 在事件列表中，三项达3获胜时触发。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "公开要求 HUD 始终显示分数/进度，score 在终局须可见。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "公开要求 HUD 始终显示状态，status 在终局须可见。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "不能省略分数或进度。",
+      "reason": "公开要求分数/进度不可省略，scoreText 必须非空。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "reason": "终局状态文字应为 Won；ignore_case 另由“状态文字忽略大小写及连续空白”支持。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "任一项降到0时失败。",
+      "reason": "loss 路径三项降至0触发失败，status=lost。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "游戏中每2000ms三项各减1；任一项降到0时失败。",
+      "reason": "初始均为2，经衰减任一项降至0，hunger 在 LOST 时为0。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "游戏中每2000ms三项各减1；任一项降到0时失败。",
+      "reason": "同理 happiness 衰减至0。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "游戏中每2000ms三项各减1；任一项降到0时失败。",
+      "reason": "同理 energy 衰减至0。"
+    },
+    {
+      "id": "A45",
+      "verdict": "unsupported",
+      "public_quote": "state 至少包含：`status`、`hunger`、`happiness`、`energy`、`actions`、`saved`。",
+      "reason": "公开要求仅规定 actions 字段存在，未定义其语义与取值，断言期望 actions=0 是公开要求未规定的限制。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "need_decayed 在事件列表中，衰减每2000ms发生应产生该事件。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "任一项降到0时失败。",
+      "reason": "game_lost 在事件列表中且失败条件触发时应记录。"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "public_quote": "Restart 清除当前存档，恢复三项为2并回到菜单。",
+      "reason": "Restart 后回到菜单，status=menu。"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "public_quote": "Restart 清除当前存档，恢复三项为2并回到菜单。",
+      "reason": "Restart 恢复三项为2，hunger=2。"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "public_quote": "Restart 清除当前存档，恢复三项为2并回到菜单。",
+      "reason": "Restart 清除存档，saved 应为 false。"
+    },
+    {
+      "id": "A51",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`pet_fed`、`pet_played`、`pet_slept`、`need_decayed`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "game_reset 在事件列表中，Restart 应记录该事件。"
+    }
+  ]
+}

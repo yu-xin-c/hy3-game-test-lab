@@ -1,0 +1,274 @@
+{
+  "scope": "30 chosen tasks; all generated plans are public pre-implementation outputs; progress not final benchmark accuracy",
+  "selected_games": 30,
+  "completed_games": 4,
+  "pending": [
+    {
+      "id": "key-door-escape",
+      "stage": "not_started"
+    },
+    {
+      "id": "fruit-slice-touch",
+      "stage": "not_started"
+    },
+    {
+      "id": "neon-lane-racer",
+      "stage": "not_started"
+    },
+    {
+      "id": "dual-arena",
+      "stage": "not_started"
+    },
+    {
+      "id": "meteor-survivor",
+      "stage": "not_started"
+    },
+    {
+      "id": "room-five-in-row",
+      "stage": "not_started"
+    },
+    {
+      "id": "persistent-2048",
+      "stage": "not_started"
+    },
+    {
+      "id": "particle-orchestra",
+      "stage": "not_started"
+    },
+    {
+      "id": "photo-orbit-gallery",
+      "stage": "not_started"
+    },
+    {
+      "id": "pet-care-day",
+      "stage": "not_started"
+    },
+    {
+      "id": "mini-farm",
+      "stage": "not_started"
+    },
+    {
+      "id": "cooperative-city",
+      "stage": "not_started"
+    },
+    {
+      "id": "math-quest",
+      "stage": "not_started"
+    },
+    {
+      "id": "science-lab",
+      "stage": "not_started"
+    },
+    {
+      "id": "ocean-hunter",
+      "stage": "not_started"
+    },
+    {
+      "id": "sky-jump",
+      "stage": "not_started"
+    },
+    {
+      "id": "rooftop-runner",
+      "stage": "not_started"
+    },
+    {
+      "id": "asteroid-shooter",
+      "stage": "not_started"
+    },
+    {
+      "id": "boxing-duel",
+      "stage": "not_started"
+    },
+    {
+      "id": "circuit-race",
+      "stage": "not_started"
+    },
+    {
+      "id": "whack-mole",
+      "stage": "not_started"
+    },
+    {
+      "id": "fruit-combo",
+      "stage": "not_started"
+    },
+    {
+      "id": "volcano-survival",
+      "stage": "not_started"
+    },
+    {
+      "id": "snowball-arena",
+      "stage": "not_started"
+    },
+    {
+      "id": "rhythm-dash",
+      "stage": "not_started"
+    },
+    {
+      "id": "helicopter-rescue",
+      "stage": "not_started"
+    }
+  ],
+  "counts": {
+    "completed_games": 4,
+    "raw_browser_final_paths_passed": 6,
+    "raw_browser_paths": 14,
+    "hy3_final_true": 2,
+    "hy3_final_known": 3,
+    "hy3_process_true": 2,
+    "hy3_process_known": 3
+  },
+  "by_difficulty": {
+    "D1": {
+      "completed_games": 2,
+      "raw_browser_final_paths_passed": 4,
+      "raw_browser_paths": 7,
+      "hy3_final_true": 1,
+      "hy3_final_known": 2,
+      "hy3_process_true": 1,
+      "hy3_process_known": 2
+    },
+    "D2": {
+      "completed_games": 1,
+      "raw_browser_final_paths_passed": 1,
+      "raw_browser_paths": 3,
+      "hy3_final_true": 0,
+      "hy3_final_known": 0,
+      "hy3_process_true": 0,
+      "hy3_process_known": 0
+    },
+    "D3": {
+      "completed_games": 1,
+      "raw_browser_final_paths_passed": 1,
+      "raw_browser_paths": 4,
+      "hy3_final_true": 1,
+      "hy3_final_known": 1,
+      "hy3_process_true": 1,
+      "hy3_process_known": 1
+    }
+  },
+  "by_category": {
+    "action": {
+      "completed_games": 2,
+      "raw_browser_final_paths_passed": 5,
+      "raw_browser_paths": 7,
+      "hy3_final_true": 1,
+      "hy3_final_known": 1,
+      "hy3_process_true": 1,
+      "hy3_process_known": 1
+    },
+    "puzzle": {
+      "completed_games": 2,
+      "raw_browser_final_paths_passed": 1,
+      "raw_browser_paths": 7,
+      "hy3_final_true": 1,
+      "hy3_final_known": 2,
+      "hy3_process_true": 1,
+      "hy3_process_known": 2
+    },
+    "creative": {
+      "completed_games": 0,
+      "raw_browser_final_paths_passed": 0,
+      "raw_browser_paths": 0,
+      "hy3_final_true": 0,
+      "hy3_final_known": 0,
+      "hy3_process_true": 0,
+      "hy3_process_known": 0
+    },
+    "simulation": {
+      "completed_games": 0,
+      "raw_browser_final_paths_passed": 0,
+      "raw_browser_paths": 0,
+      "hy3_final_true": 0,
+      "hy3_final_known": 0,
+      "hy3_process_true": 0,
+      "hy3_process_known": 0
+    },
+    "education": {
+      "completed_games": 0,
+      "raw_browser_final_paths_passed": 0,
+      "raw_browser_paths": 0,
+      "hy3_final_true": 0,
+      "hy3_final_known": 0,
+      "hy3_process_true": 0,
+      "hy3_process_known": 0
+    }
+  },
+  "hy3_supported_defect_types": {
+    "implementation_mismatch": 2
+  },
+  "rows": [
+    {
+      "id": "target-rush",
+      "difficulty": "D1",
+      "category": "action",
+      "original_plan_steps": 6,
+      "browser_paths": 4,
+      "replayed_runs": 12,
+      "raw_browser_final_paths_passed": 4,
+      "raw_browser_process_paths_passed": 4,
+      "hy3_final_correct": true,
+      "hy3_process_correct": true,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "supported_defect_types": [],
+      "code_history_complete": true,
+      "baseline_reused": true
+    },
+    {
+      "id": "maze-collector",
+      "difficulty": "D1",
+      "category": "puzzle",
+      "original_plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "raw_browser_final_paths_passed": 0,
+      "raw_browser_process_paths_passed": 0,
+      "hy3_final_correct": false,
+      "hy3_process_correct": false,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "supported_defect_types": [
+        "implementation_mismatch",
+        "implementation_mismatch"
+      ],
+      "code_history_complete": true,
+      "baseline_reused": false
+    },
+    {
+      "id": "platform-rescue",
+      "difficulty": "D2",
+      "category": "action",
+      "original_plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "raw_browser_final_paths_passed": 1,
+      "raw_browser_process_paths_passed": 1,
+      "hy3_final_correct": null,
+      "hy3_process_correct": null,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "supported_defect_types": [],
+      "code_history_complete": true,
+      "baseline_reused": true
+    },
+    {
+      "id": "signal-memory",
+      "difficulty": "D3",
+      "category": "puzzle",
+      "original_plan_steps": 6,
+      "browser_paths": 4,
+      "replayed_runs": 12,
+      "raw_browser_final_paths_passed": 1,
+      "raw_browser_process_paths_passed": 1,
+      "hy3_final_correct": true,
+      "hy3_process_correct": true,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "supported_defect_types": [],
+      "code_history_complete": true,
+      "baseline_reused": true
+    }
+  ],
+  "source_standard_status": "The public-check audit of these 30 tasks is separate and ongoing; raw browser pass and Hy3 opinions are not independently certified full answers.",
+  "plan_validity_status": "Independent selected-claim evidence currently covers only three original games, with unequal step depth; code Write/Edit source and operation divergence are separately recorded."
+}

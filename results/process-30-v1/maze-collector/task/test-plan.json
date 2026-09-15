@@ -1,0 +1,472 @@
+{
+  "checking_policy_version": "2026-09-12.3",
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "maze-collector",
+  "title": "Maze Collector",
+  "difficulty": {
+    "level": "D1",
+    "rationale": "离散网格和固定地图便于复现，同时覆盖墙、金币、出口和步数限制。"
+  },
+  "category": "puzzle",
+  "features": [],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "dom",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#board"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowUp"
+    },
+    {
+      "action_id": "DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowDown"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyR"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MC-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以进入 playing 状态且无运行错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "MC-MOVE",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "玩家逐格移动，墙和锁定出口不消耗移动次数。",
+      "depends_on": [
+        "MC-RUN"
+      ],
+      "observable": [
+        "player",
+        "moves_used",
+        "events"
+      ]
+    },
+    {
+      "id": "MC-COIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "三枚金币各自只能收集一次。",
+      "depends_on": [
+        "MC-MOVE"
+      ],
+      "observable": [
+        "coins_collected",
+        "coin_collected"
+      ]
+    },
+    {
+      "id": "MC-EXIT",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "金币不足时出口阻挡，收齐后进入出口获胜。",
+      "depends_on": [
+        "MC-COIN"
+      ],
+      "observable": [
+        "status",
+        "exit_locked",
+        "game_won"
+      ]
+    },
+    {
+      "id": "MC-LOSE",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "用完 18 次有效移动会失败。",
+      "depends_on": [
+        "MC-MOVE"
+      ],
+      "observable": [
+        "moves_remaining",
+        "game_lost"
+      ]
+    },
+    {
+      "id": "MC-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "重开恢复玩家、金币和移动次数。",
+      "depends_on": [
+        "MC-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "MC-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
+      "depends_on": [
+        "MC-COIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "验证墙、锁定出口、三枚金币和正常通关。",
+      "seed": 202,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "UP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-WALL"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-COIN-1"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-EXIT-LOCKED"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "DOWN",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "DOWN",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-COIN-2"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-COIN-3"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "UP",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "UP",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
+            "MC-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "在起点附近往返，耗尽 18 次有效移动。",
+      "seed": 202,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "maze-collector-loss-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "移动一步后用键盘重开。",
+      "seed": 202,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "maze-collector-restart-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART_KEY",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MC-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

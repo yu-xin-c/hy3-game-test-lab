@@ -1,0 +1,103 @@
+{
+  "schema_version": "hy3-process-30-scope.v1",
+  "selection": "first 30 in frozen 96-task inventory",
+  "selected_ids": [
+    "target-rush",
+    "maze-collector",
+    "key-door-escape",
+    "platform-rescue",
+    "signal-memory",
+    "fruit-slice-touch",
+    "neon-lane-racer",
+    "dual-arena",
+    "meteor-survivor",
+    "room-five-in-row",
+    "persistent-2048",
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm",
+    "cooperative-city",
+    "math-quest",
+    "science-lab",
+    "ocean-hunter",
+    "sky-jump",
+    "rooftop-runner",
+    "asteroid-shooter",
+    "boxing-duel",
+    "circuit-race",
+    "whack-mole",
+    "fruit-combo",
+    "volcano-survival",
+    "snowball-arena",
+    "rhythm-dash",
+    "helicopter-rescue"
+  ],
+  "existing_public_plan_games": [
+    {
+      "id": "target-rush",
+      "source": "results/process-v1/target-rush",
+      "plan_sha256": "b2c591aa962d957c6bfb9b0f63a1f50defee067816ffddd531c7ad762027b4a1",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "platform-rescue",
+      "source": "results/process-v1/platform-rescue",
+      "plan_sha256": "8232713250c3575fd6cffe799b802200dc3125beb4ad318e3e057ada47dfd1eb",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "signal-memory",
+      "source": "results/process-v1/signal-memory",
+      "plan_sha256": "89864026d1c0ca71f36ef69ed8646dd351bd44d8176f9c1b4db464c682b2c056",
+      "generation_reconstructed": true
+    }
+  ],
+  "new_public_plan_game_ids": [
+    "maze-collector",
+    "key-door-escape",
+    "fruit-slice-touch",
+    "neon-lane-racer",
+    "dual-arena",
+    "meteor-survivor",
+    "room-five-in-row",
+    "persistent-2048",
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm",
+    "cooperative-city",
+    "math-quest",
+    "science-lab",
+    "ocean-hunter",
+    "sky-jump",
+    "rooftop-runner",
+    "asteroid-shooter",
+    "boxing-duel",
+    "circuit-race",
+    "whack-mole",
+    "fruit-combo",
+    "volcano-survival",
+    "snowball-arena",
+    "rhythm-dash",
+    "helicopter-rescue"
+  ],
+  "total": 30,
+  "reused": 3,
+  "to_generate": 27,
+  "difficulty": {
+    "D1": 5,
+    "D2": 14,
+    "D3": 11
+  },
+  "category": {
+    "action": 18,
+    "creative": 2,
+    "education": 2,
+    "puzzle": 5,
+    "simulation": 3
+  },
+  "consolidated_sha256": "8b7be3d455f80b6b90210dffe1dd87d17000d5162681375450a8f13da0431efc",
+  "public_check_inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
+  "representativeness_limit": "This fixed first-30 subset is action-heavy; report its exact composition, do not claim stratified representativeness of all 96 tasks."
+}

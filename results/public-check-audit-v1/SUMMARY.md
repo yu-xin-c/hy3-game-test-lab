@@ -2,7 +2,7 @@
 
 本轮范围为冻结清单按原顺序的前 30 题；原始清单仍保留 96 题，不修改历史游戏运行成绩。
 
-已核对 13/30 题、721/1654 个去重检查项；其余 17 题没有完整且凭据有效的核对结果。此文件反映已保存产物，不判断后台进程是否运行。
+已核对 17/30 题、934/1654 个去重检查项；其余 13 题没有完整且凭据有效的核对结果。此文件反映已保存产物，不判断后台进程是否运行。
 
 | 题目 | 检查项 | 有依据（模型） | 缺依据（模型） | 歧义（模型） | 执行约定 | 引用纠正 |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
@@ -19,6 +19,10 @@
 | [persistent-2048](persistent-2048/review.json) | 50 | 48 | 0 | 0 | 2 | 有，原输出保留 |
 | [particle-orchestra](particle-orchestra/review.json) | 52 | 47 | 0 | 3 | 2 | 有，原输出保留 |
 | [photo-orbit-gallery](photo-orbit-gallery/review.json) | 49 | 46 | 0 | 0 | 3 | 有，原输出保留 |
+| [pet-care-day](pet-care-day/review.json) | 51 | 43 | 3 | 4 | 1 | 有，原输出保留 |
+| [mini-farm](mini-farm/review.json) | 61 | 59 | 0 | 1 | 1 | 有，原输出保留 |
+| [cooperative-city](cooperative-city/review.json) | 53 | 42 | 0 | 3 | 8 | 有，原输出保留 |
+| [math-quest](math-quest/review.json) | 48 | 42 | 0 | 5 | 1 | 无 |
 
 模型标记的问题保存在 flagged-checks.json，包含原始取值、全部场景位置、模型理由和引文。这里的‘有依据’也不是独立认证；例如 target-rush A31 用真实引文推出未规定的终局编号，不能直接采纳，说明见 README。没有自动修改标准或评测成绩。
 

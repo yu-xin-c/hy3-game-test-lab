@@ -1,0 +1,158 @@
+{
+  "assertions": [
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "行117写明 START 用 mouse 操作 #start-btn，device=mouse 直接规定"
+    },
+    {
+      "id": "A3",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行117只规定 mouse 与 selector，未规定 key_event；press 由执行器 test_mechanics 约定"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "行117写明 selector #start-btn"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "行118写明 JOIN 用 mouse 操作 #join-btn"
+    },
+    {
+      "id": "A7",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行118只规定 mouse 与 selector，key_event=press 由执行器约定"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "行118写明 selector #join-btn"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "行119写明 BUILD_POWER 用 mouse 操作 #power-btn"
+    },
+    {
+      "id": "A11",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行119未规定 key_event，press 由执行器约定"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "行119写明 selector #power-btn"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "行120写明 BUILD_WATER 用 mouse 操作 #water-btn"
+    },
+    {
+      "id": "A15",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行120未规定 key_event，press 由执行器约定"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "行120写明 selector #water-btn"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "行121写明 APPROVE_P1 用 mouse 操作 #approve-btn"
+    },
+    {
+      "id": "A19",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行121未规定 key_event，press 由执行器约定"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "行121写明 selector #approve-btn（APPROVE_P1）"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "行122写明 APPROVE_P2 用 mouse 操作 #approve-btn"
+    },
+    {
+      "id": "A23",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行122未规定 key_event，press 由执行器约定"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "行122写明 selector #approve-btn（APPROVE_P2）"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "行123写明 RESTART 用 mouse 操作 #restart-btn"
+    },
+    {
+      "id": "A27",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "行123未规定 key_event，press 由执行器约定"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "行123写明 selector #restart-btn"
+    },
+    {
+      "id": "A29",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开原文仅定义 status 取值集合(行78/104)与胜负流程，未将给定 checkpoint 上下文唯一映射到 playing，且未明文写 START 后 status=playing"
+    }
+  ]
+}

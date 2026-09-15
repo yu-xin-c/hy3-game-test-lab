@@ -1,0 +1,77 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": false,
+    "process_correct": false,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": 5,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "观察桥 reset 方法调用自由变量 observe()，但 observe 仅作为 window.__GAMETESTLAB__ 对象的方法存在，作用域内没有名为 observe 的独立函数，导致 reset 执行即抛 ReferenceError: observe is not defined。该错误在 win/loss/restart 全部 9 次 replay 的 action_index=0 复现，使所有场景 L1 通过失败、后续玩法完全未执行。计划步骤5本身主张（实现 gametestlab/2 桥并含 observe() 返回状态）未被需求或代码反例推翻，属代码实现缺陷，非方案错误。",
+        "file": "game.js",
+        "excerpt": "    reset: function (opts) { reset(opts); return observe(); },\n    observe: function () {\n      return {\n        tick: currentTick,\n        status: state.status,\n        state: JSON.parse(JSON.stringify(state)),\n        event_epoch: event_epoch,\n        latest_event_seq: seqCounter\n      };\n    },",
+        "scenario_id": null,
+        "action_index": 0
+      },
+      {
+        "step_id": 6,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "game.manifest.json 的 state_schema.fields.player 下包含 \"properties\" 键，评测器合同校验报 unrecognized_keys: [\"properties\"]（path: state_schema.fields.player），manifest 不合规（contract.conformant=false）。计划步骤6主张各状态字段用对象定义类型，但 v3 schema 不接受 properties 子键，属实现与契约不一致。该缺陷独立于 observe 崩溃，导致 contract_pass=false。",
+        "file": "game.manifest.json",
+        "excerpt": "      \"player\": { \"type\": \"object\", \"description\": \"玩家坐标\", \"properties\": { \"x\": { \"type\": \"integer\", \"description\": \"x 坐标\" }, \"y\": { \"type\": \"integer\", \"description\": \"y 坐标\" } } },",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "所有场景在 L1 即因 reset 抛 ReferenceError 失败，迷宫/金币/胜负/阻挡等玩法逻辑从未被实际执行验证，只能静态阅读 game.js，无法从执行证据确认其核心玩法正确与否。",
+      "manifest 的 v3 精确 schema 未在所给数据中提供，'properties' 是否被允许依据评测器合同结论，非本评测独立验证。",
+      "实现摘要已声明未运行浏览器测试，故计划步骤中的验证项属于'打算测试'，不视为已通过证据。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": 5,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "观察桥 reset 方法调用自由变量 observe()，但 observe 仅作为 window.__GAMETESTLAB__ 对象的方法存在，作用域内没有名为 observe 的独立函数，导致 reset 执行即抛 ReferenceError: observe is not defined。该错误在 win/loss/restart 全部 9 次 replay 的 action_index=0 复现，使所有场景 L1 通过失败、后续玩法完全未执行。计划步骤5本身主张（实现 gametestlab/2 桥并含 observe() 返回状态）未被需求或代码反例推翻，属代码实现缺陷，非方案错误。",
+      "file": "game.js",
+      "excerpt": "    reset: function (opts) { reset(opts); return observe(); },\n    observe: function () {\n      return {\n        tick: currentTick,\n        status: state.status,\n        state: JSON.parse(JSON.stringify(state)),\n        event_epoch: event_epoch,\n        latest_event_seq: seqCounter\n      };\n    },",
+      "scenario_id": null,
+      "action_index": 0,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 206,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": 6,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "game.manifest.json 的 state_schema.fields.player 下包含 \"properties\" 键，评测器合同校验报 unrecognized_keys: [\"properties\"]（path: state_schema.fields.player），manifest 不合规（contract.conformant=false）。计划步骤6主张各状态字段用对象定义类型，但 v3 schema 不接受 properties 子键，属实现与契约不一致。该缺陷独立于 observe 崩溃，导致 contract_pass=false。",
+      "file": "game.manifest.json",
+      "excerpt": "      \"player\": { \"type\": \"object\", \"description\": \"玩家坐标\", \"properties\": { \"x\": { \"type\": \"integer\", \"description\": \"x 坐标\" }, \"y\": { \"type\": \"integer\", \"description\": \"y 坐标\" } } },",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 22,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

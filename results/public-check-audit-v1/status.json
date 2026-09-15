@@ -71,6 +71,21 @@
       "task_id": "pet-care-day",
       "status": "reviewed",
       "assertions": 51
+    },
+    {
+      "task_id": "mini-farm",
+      "status": "reviewed",
+      "assertions": 61
+    },
+    {
+      "task_id": "cooperative-city",
+      "status": "reviewed",
+      "assertions": 53
+    },
+    {
+      "task_id": "math-quest",
+      "status": "reviewed",
+      "assertions": 48
     }
   ]
 }

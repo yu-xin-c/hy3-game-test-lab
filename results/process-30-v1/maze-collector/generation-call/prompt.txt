@@ -1,0 +1,132 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Maze Collector
+
+## 游戏目标
+
+做一个俯视角网格迷宫游戏。玩家需要收集迷宫中的 3 枚金币，再到达出口，并且不能用完 18 次有效移动。
+
+## 完整玩法
+
+地图固定为 7×5：
+
+```text
+#######
+#S.C.E#
+#.#.#.#
+#C...C#
+#######
+```
+
+`#` 是墙，`S` 是起点 `(1,1)`，`C` 是金币，`E` 是出口。点击 Start 后，玩家使用方向键每次移动一格。撞墙、在金币未收齐时进入出口都要被阻挡，并且不消耗移动次数。进入金币格会收集金币，金币不能重复收集。
+
+玩家收齐 3 枚金币后进入出口即获胜。18 次有效移动用完仍未通关则失败。结束后不能继续移动。
+
+## 胜负与重开
+
+- 收齐 3 枚金币并进入出口：`won`。
+- 18 次有效移动用完且尚未通关：`lost`。
+- Restart 按钮或键盘 `R` 返回初始菜单，恢复地图、金币和移动次数。
+
+## 界面与反馈
+
+画面显示完整网格、玩家、金币、出口和墙。HUD 显示 `Coins: n/3`、`Moves: n/18` 和状态。撞墙时短暂显示 `Blocked by wall`，金币不足时碰出口显示 `Collect all coins first`。状态固定使用 `Menu`、`Playing`、`Won`、`Lost`。
+
+## 固定规则
+
+坐标原点位于左上角，x 向右增加，y 向下增加。只有成功进入相邻可走格才增加 moves。seed 相同必须得到相同地图和初始状态。
+
+## 自动测试接口
+
+- 界面：DOM 网格。
+- `#start-btn`、`#restart-btn`；`#board` 为游戏区域。
+- `[data-testid="score"]` 显示金币数；`[data-testid="status"]` 显示状态。
+- 控件名称：`START`、`UP`、`DOWN`、`LEFT`、`RIGHT`、`RESTART`、`RESTART_KEY`。
+- state 至少包含：`status`、`player:{x,y}`、`coins_collected`、`moves_used`、`moves_remaining`。
+- 事件：`game_started`、`player_moved`、`wall_blocked`、`coin_collected`、`exit_locked`、`game_won`、`game_lost`、`game_reset`。
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"用固定的 7×5 迷宫地图渲染完整 DOM 网格，包含墙、起点、3 枚金币、出口与玩家；seed 相同必须得到相同地图与初始状态（本题地图固定，seed 仅用于复位）。","implementation":"在 game.js 中把地图定义为常量二维数组 MAP[y][x]，'#'=墙、'S'=起点(1,1)、'C'=金币(3,1)(1,3)(5,3)、'E'=出口(5,1)。渲染时向 #board 生成 35 个 cell div，按类型加类（wall/coin/exit/player）。reset({seed}) 按相同常量重建状态，保证可复现。","verification":"在浏览器打开 index.html，检查 #board 含 35 个格子、3 个 .coin、1 个 .exit、玩家初始位于 (1,1)；调用 window.__GAMETESTLAB__.reset({seed:7}) 两次得到相同 observe().state.player。"},{"id":2,"requirement":"通过真实键盘方向键与按钮控制移动；撞墙或在金币未收齐时进入出口须被阻挡且不消耗移动次数，并分别给出反馈。","implementation":"绑定控件：START(#start-btn 鼠标)、UP/DOWN/LEFT/RIGHT(键盘 ArrowUp/Down/Left/Right)、RESTART(#restart-btn 鼠标)、RESTART_KEY(键盘 KeyR)。方向键触发 move(dx,dy)：目标为墙→发 wall_blocked，HUD 显示 'Blocked by wall'，moves 不变；目标为出口且 coins_collected<3→发 exit_locked，显示 'Collect all coins first'，moves 不变；其余进入相邻可走格才计入移动。","verification":"在起点按 ArrowUp（上方为墙）应发出 wall_blocked 且 moves_remaining 仍为 18；在未收币时按 ArrowRight 到 E 应发出 exit_locked 且 moves 不变。"},{"id":3,"requirement":"收集 3 枚金币后进入出口获胜；18 次有效移动用完仍未通关则失败；金币不可重复收集；终局后不能再移动。","implementation":"进入金币格：若未收集则 coins_collected++ 并发 coin_collected，已收集则忽略（不重复）。每次成功相邻移动 moves_used++、moves_remaining--、发 player_moved。当 coins_collected===3 且进入出口→status=won 发 game_won；moves_used 达到 18 且未 won→status=lost 发 game_lost。终局（won/lost）后忽略方向输入。","verification":"用脚本走通 S(1,1)→(2,1)→(3,1)收币→(3,2)→(3,3)→(2,3)→(1,3)收币→(1,2)→(1,1)→(2,1)...规划一条 ≤18 步先收齐 3 币再进 E 的路径，应得到 game_won；构造耗尽 18 步未通关的路径应得到 game_lost；重复踏入同一金币格 coins_collected 不超 3。"},{"id":4,"requirement":"维护可读状态与 HUD：显示 Coins n/3、Moves n/18、状态文案；状态只能是 menu/playing/won/lost。","implementation":"state={status, player:{x,y}, coins_collected, moves_used, moves_remaining}。status：菜单=menu，点 Start 后=playing，终局=won/lost。HUD 用 [data-testid=\"score\"] 显示 'Coins: n/3'，[data-testid=\"status\"] 显示当前状态（大小写与空白不敏感）。","verification":"检查 [data-testid=\"score\"] 文本含 'n/3'、[data-testid=\"status\"] 含当前状态；observe().state 含全部 5 个字段且 status 取值在四者之一。"},{"id":5,"requirement":"提供只读观察桥 window.__GAMETESTLAB__（协议 gametestlab/2），支持复位、观察与按序取事件；事件 seq 从 1 连续、可序列化。","implementation":"实现 protocol:'gametestlab/2' 的对象：isReady() 返回初始化完成；reset({seed}) 递增 event_epoch、seq 重置为 1、回到 menu 并发 game_reset；observe() 返回 {tick, status, state, event_epoch, latest_event_seq}；getEvents({afterSeq}) 返回当前周期内 seq>afterSeq 的事件。事件形如 {seq,tick,type,payload?}，tick 由 performance.now 驱动；所有时间靠 timer/raf 推进。","verification":"确认 window.__GAMETESTLAB__.protocol==='gametestlab/2'；reset({seed:1}) 后 observe().event_epoch 比复位前 +1、latest_event_seq=1 且首事件为 game_reset；getEvents({afterSeq:0}) 返回的可序列化 JSON 中 seq 连续。"},{"id":6,"requirement":"产出 game.manifest.json，严格按 v3 结构声明入口、surface=dom、视口 800×600、控件、HUD 选择器、状态字段与全部事件类型，且不添加额外顶层字段。","implementation":"manifest 含 schema_version='gametestlab.game-manifest.v3'、entry_path='index.html'、surface='dom'、viewport{800,600}；controls 覆盖 START/UP/DOWN/LEFT/RIGHT/RESTART/RESTART_KEY（鼠标用 selector、键盘用 code）；hud_selectors 含 score 与 status；state_schema.fields 含 status/player/coins_collected/moves_used/moves_remaining（各自用对象定义类型）；event_schema 列出 8 个事件及 payload 字段；bridge{protocol:'gametestlab/2',evidence_only:true,actions_via_real_input:true}。","verification":"用 JSON 解析校验 manifest 含全部要求键、无额外顶层字段；controls 的 action_id 集合为 7 个且匹配题面；event_schema 的 type 集合覆盖 8 个事件；state_schema.fields 覆盖 5 个状态字段且类型用对象形式。"}]}
