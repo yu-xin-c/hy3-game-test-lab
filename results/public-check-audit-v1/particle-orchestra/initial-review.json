@@ -1,0 +1,316 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "START未指定secondary，默认primary。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "START：mouse 操作 #start-btn",
+      "reason": "控件规定START设备为mouse。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "      \"device\": \"mouse\",\n      \"key_event\": \"press\",",
+      "reason": "模板中鼠标控件key_event为press，结构须严格沿用。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "START：mouse 操作 #start-btn",
+      "reason": "控件规定selector为#start-btn。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "A未指定secondary，默认primary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "A：键盘 Digit1 press",
+      "reason": "A设备为键盘。"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "public_quote": "A：键盘 Digit1 press",
+      "reason": "A按键事件为press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "A：键盘 Digit1 press",
+      "reason": "A对应Digit1。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "B未指定secondary，默认primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "B：键盘 Digit2 press",
+      "reason": "B设备为键盘。"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "public_quote": "B：键盘 Digit2 press",
+      "reason": "B按键事件为press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "B：键盘 Digit2 press",
+      "reason": "B对应Digit2。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "C未指定secondary，默认primary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "C：键盘 Digit3 press",
+      "reason": "C设备为键盘。"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "public_quote": "C：键盘 Digit3 press",
+      "reason": "C按键事件为press。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "C：键盘 Digit3 press",
+      "reason": "C对应Digit3。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "D未指定secondary，默认primary。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "D：键盘 Digit4 press",
+      "reason": "D设备为键盘。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "D：键盘 Digit4 press",
+      "reason": "D按键事件为press。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "D：键盘 Digit4 press",
+      "reason": "D对应Digit4。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+      "reason": "RESTART未指定secondary，默认primary。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "RESTART：mouse 操作 #restart-btn",
+      "reason": "RESTART设备为mouse。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "      \"device\": \"mouse\",\n      \"key_event\": \"press\",",
+      "reason": "模板中鼠标控件key_event为press，RESTART为鼠标控件沿用。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "RESTART：mouse 操作 #restart-btn",
+      "reason": "RESTART selector为#restart-btn。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "status 只能是 `menu`、`playing`、`won`、`lost`。",
+      "reason": "点击Start后游戏进行中，枚举中仅playing符合该上下文。"
+    },
+    {
+      "id": "A26",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "事件采样区间（自上一检查点）是评测器内部约定，并非游戏需求。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+      "reason": "点击Start须记录game_started事件。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "正确输入推进 progress 并增加25分；错误输入清空 progress、扣一次 attempts，但继续当前局。",
+      "reason": "正确输入推进progress，首步正确后progress=1。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "正确输入推进 progress 并增加25分；错误输入清空 progress、扣一次 attempts，但继续当前局。",
+      "reason": "正确输入+25分，首步后score=25。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "初始3次 attempts，第三次错误后失败。",
+      "reason": "无错误输入时attempts保持初始3；restart亦恢复3次。"
+    },
+    {
+      "id": "A31",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "publicText仅列出active_cluster为状态字段，未定义其语义，无法唯一推出A。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "cluster_triggered为规定事件，触发簇后产生。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "note_correct为规定事件，正确输入产生。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "完整输入 A、C、D、B 时获胜并得到100分。",
+      "reason": "完成序列后status=won。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "完整输入 A、C、D、B 时获胜并得到100分。",
+      "reason": "完成4步正确输入，progress=4。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "完整输入 A、C、D、B 时获胜并得到100分。",
+      "reason": "获胜得100分，终局score=100。"
+    },
+    {
+      "id": "A37",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "active_cluster语义未定义，无法唯一推出B。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "game_won为规定事件，获胜产生。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "HUD须显示分数，score可见。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "HUD须显示状态，status可见。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "HUD始终显示分数或进度，score文本非空。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "终局status文本为Won；另据'状态文字忽略大小写及连续空白'可忽略大小写匹配。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "初始3次 attempts，第三次错误后失败。",
+      "reason": "第三次错误后status=lost。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "错误输入清空 progress、扣一次 attempts，但继续当前局。",
+      "reason": "错误输入清空progress；restart亦清空进度。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "Restart 清空进度和分数，恢复3次机会并回到菜单。",
+      "reason": "错误输入不加分，restart清空分数，score=0。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "初始3次 attempts，第三次错误后失败。",
+      "reason": "三次错误后attempts=0。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "note_wrong为规定事件，错误输入产生。"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "progress_reset为规定事件，错误清空progress产生。"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "game_lost为规定事件，失败产生。"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "public_quote": "Restart 清空进度和分数，恢复3次机会并回到菜单。",
+      "reason": "restart恢复菜单状态，status=menu。"
+    },
+    {
+      "id": "A51",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "active_cluster语义未定义，无法唯一推出null。"
+    },
+    {
+      "id": "A52",
+      "verdict": "supported",
+      "public_quote": "事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。",
+      "reason": "game_reset为规定事件，restart即重置动作产生。"
+    }
+  ]
+}

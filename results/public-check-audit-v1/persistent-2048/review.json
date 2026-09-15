@@ -1,0 +1,312 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "a3612ee9c171c783181601c51489676972d434ac9d081a74e95be1cef057015e",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "默认玩家为 primary，控件未指定 actor 时即 primary。"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\"",
+        "reason": "manifest 模板中鼠标控件 key_event 为 press，RESTART 同为鼠标控件沿用该约定。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "默认玩家为 primary。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "默认玩家为 primary。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "默认玩家为 primary。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "默认玩家为 primary。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\"",
+        "reason": "模板鼠标控件 key_event 为 press，RESTART 鼠标控件沿用。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`",
+        "reason": "开始后未终局，非 menu/won/lost，故为 playing，枚举包含 playing。"
+      },
+      {
+        "id": "A22",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope/since_previous_checkpoint 是评测器在 checkpoint 间采样事件的内部约定，并非公开游戏需求。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`",
+        "reason": "点击 Start 后必须记录 game_started。"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "每次方向输入都计一次 moves 并立即保存",
+        "reason": "一次 RIGHT 输入计 moves=1，刷新后恢复该状态。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "第1行为 [4,0,0,0]",
+        "reason": "初始最大为 4，右滑后两 4 存在，未合成 8 前 max_tile 恒为 4（失败/重开均不超 4）。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "每次方向输入都计一次 moves 并立即保存",
+        "reason": "每次输入立即保存，此时 saved 为 true。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "右滑后两个4位于第0、1行最右列",
+        "reason": "第0行最右列即 grid[0][3]=4。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "右滑后两个4位于第0、1行最右列",
+        "reason": "第1行最右列即 grid[1][3]=4。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "事件列表含 state_loaded，刷新恢复触发加载。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "第二步向下合出 8 时获胜。",
+        "reason": "合出 8 即 won。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "每次方向输入都计一次 moves",
+        "reason": "两次输入 moves=2。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "在两次滑动内把固定棋盘合成数字 8",
+        "reason": "合出 8 时 max_tile=8。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "右滑后两个4位于第0、1行最右列",
+        "reason": "两 4 在 col3 的 row0/row1，向下合并落到底部 col3，即 grid[3][3]=8（结合‘第二步向下合出 8 时获胜’）。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "事件列表含 tile_merged，合并触发。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "每次方向输入都计一次 moves 并立即保存",
+        "reason": "输入后保存，触发 state_saved。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "事件列表含 game_won，获胜触发。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "分数 HUD 始终可见，dom.score.visible=true。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "状态 HUD 始终可见，dom.status.visible=true。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度",
+        "reason": "分数文本不得省略即非空。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "终局状态文案为 Won；‘状态文字忽略大小写及连续空白’支持 ignore_case。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "两次输入后最大数字仍小于 8 则失败。",
+        "reason": "两次输入未达 8 判 lost。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "初始第0行为 [2,2,0,0]",
+        "reason": "原始棋盘 (0,0)=2，失败/重开恢复后仍为 2。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "初始第0行为 [2,2,0,0]",
+        "reason": "原始棋盘 (0,1)=2。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "事件列表含 swipe，方向输入触发。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`",
+        "reason": "事件列表含 game_lost，失败触发。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "Restart 清除存档并恢复原始棋盘和菜单。",
+        "reason": "重开恢复菜单状态，status=menu。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "Restart 清除存档并恢复原始棋盘和菜单。",
+        "reason": "恢复初始菜单状态，moves=0。"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "Restart 清除存档并恢复原始棋盘和菜单。",
+        "reason": "重开清除存档，saved=false。"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "重新从 `seq=1` 记录 `game_reset`",
+        "reason": "重开触发 reset，事件列表含 game_reset，故应发出 game_reset。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "  - `START`：mouse 操作 #start-btn",
+        "reason": "第117行明确声明 START 为 mouse 操作 #start-btn，设备即 mouse"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "  - `START`：mouse 操作 #start-btn",
+        "reason": "第117行声明 START 操作为 #start-btn"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "  - `UP`：键盘 ArrowUp press",
+        "reason": "第118行声明 UP 为键盘 ArrowUp press，设备即 keyboard"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "  - `UP`：键盘 ArrowUp press",
+        "reason": "第118行声明 UP key_event 为 press"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "  - `UP`：键盘 ArrowUp press",
+        "reason": "第118行声明 UP code 为 ArrowUp"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "  - `RIGHT`：键盘 ArrowRight press",
+        "reason": "第119行声明 RIGHT 为键盘 ArrowRight press，设备即 keyboard"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "  - `RIGHT`：键盘 ArrowRight press",
+        "reason": "第119行声明 RIGHT key_event 为 press"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "  - `RIGHT`：键盘 ArrowRight press",
+        "reason": "第119行声明 RIGHT code 为 ArrowRight"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "  - `DOWN`：键盘 ArrowDown press",
+        "reason": "第120行声明 DOWN 为键盘 ArrowDown press，设备即 keyboard"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "  - `DOWN`：键盘 ArrowDown press",
+        "reason": "第120行声明 DOWN key_event 为 press"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "  - `DOWN`：键盘 ArrowDown press",
+        "reason": "第120行声明 DOWN code 为 ArrowDown"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "第121行声明 RESTART 为 mouse 操作 #restart-btn，设备即 mouse"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "第121行声明 RESTART selector 为 #restart-btn"
+      },
+      {
+        "id": "A44",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "grid.1.0=4 在该检查点由 2048 滑动合并与重开机制运行时推导，非公开文本直接规定，属执行器 test_mechanics"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

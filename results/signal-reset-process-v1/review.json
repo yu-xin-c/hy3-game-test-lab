@@ -1,0 +1,7 @@
+{
+  "model": "hy3",
+  "has_error": true,
+  "first_error_step": 5,
+  "error_type": "boundary_omission",
+  "explanation": "原文 verification 仅查即时状态：重启后 immediate 为 menu/menu 通过。但延时 1600ms 后，所有从 playing/playback 重启的用例（button-0/key-0/button-800）phase 均变为 input 且新增 input_phase_started，而 idle 对照仍稳定保持 menu/menu。说明 reset 未清除在途的 playback→input 异步转换，菜单状态在延时边界被破坏，浏览器直接反驳'重启恢复菜单状态'主张。"
+}

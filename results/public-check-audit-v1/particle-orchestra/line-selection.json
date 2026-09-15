@@ -1,0 +1,123 @@
+{
+  "assertions": [
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "Line 117 defines START as mouse operating #start-btn."
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "Line 117 specifies #start-btn selector for START."
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "Line 118 defines A as keyboard Digit1 press."
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "Line 118 specifies key_event press for A."
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "Line 118 specifies code Digit1 for A."
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "Line 119 defines B as keyboard Digit2 press."
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "Line 119 specifies key_event press for B."
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "Line 119 specifies code Digit2 for B."
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "Line 120 defines C as keyboard Digit3 press."
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "Line 120 specifies key_event press for C."
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "Line 120 specifies code Digit3 for C."
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "Line 121 defines D as keyboard Digit4 press."
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "Line 121 specifies key_event press for D."
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "Line 121 specifies code Digit4 for D."
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "Line 122 defines RESTART as mouse operating #restart-btn."
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "Line 122 specifies #restart-btn selector for RESTART."
+    },
+    {
+      "id": "A25",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "status=playing after START is determined by test executor scenario mechanics, not explicitly stated as a specific value in public spec lines."
+    }
+  ]
+}

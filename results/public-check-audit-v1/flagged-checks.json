@@ -1228,6 +1228,64 @@
         "reason": "控件列表行129仅标主页面，actor=primary仅在非相邻行66规定"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "particle-orchestra",
+      "assertion": {
+        "id": "A31",
+        "kind": "state",
+        "path": "active_cluster",
+        "expected": "A",
+        "contexts": [
+          "win-path/PO-CP-MID"
+        ]
+      },
+      "decision": {
+        "id": "A31",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "publicText仅列出active_cluster为状态字段，未定义其语义，无法唯一推出A。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "particle-orchestra",
+      "assertion": {
+        "id": "A37",
+        "kind": "state",
+        "path": "active_cluster",
+        "expected": "B",
+        "contexts": [
+          "win-path/PO-CP-WON",
+          "loss-path/PO-CP-LOST"
+        ]
+      },
+      "decision": {
+        "id": "A37",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "active_cluster语义未定义，无法唯一推出B。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "particle-orchestra",
+      "assertion": {
+        "id": "A51",
+        "kind": "state",
+        "path": "active_cluster",
+        "expected": null,
+        "contexts": [
+          "restart-path/PO-CP-RESET"
+        ]
+      },
+      "decision": {
+        "id": "A51",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "active_cluster语义未定义，无法唯一推出null。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

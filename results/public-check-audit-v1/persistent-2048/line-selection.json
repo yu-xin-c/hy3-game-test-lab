@@ -1,0 +1,102 @@
+{
+  "assertions": [
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "第117行明确声明 START 为 mouse 操作 #start-btn，设备即 mouse"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "第117行声明 START 操作为 #start-btn"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "第118行声明 UP 为键盘 ArrowUp press，设备即 keyboard"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "第118行声明 UP key_event 为 press"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "第118行声明 UP code 为 ArrowUp"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "第119行声明 RIGHT 为键盘 ArrowRight press，设备即 keyboard"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "第119行声明 RIGHT key_event 为 press"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "第119行声明 RIGHT code 为 ArrowRight"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "第120行声明 DOWN 为键盘 ArrowDown press，设备即 keyboard"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "第120行声明 DOWN key_event 为 press"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "第120行声明 DOWN code 为 ArrowDown"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "第121行声明 RESTART 为 mouse 操作 #restart-btn，设备即 mouse"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "第121行声明 RESTART selector 为 #restart-btn"
+    },
+    {
+      "id": "A44",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "grid.1.0=4 在该检查点由 2048 滑动合并与重开机制运行时推导，非公开文本直接规定，属执行器 test_mechanics"
+    }
+  ]
+}

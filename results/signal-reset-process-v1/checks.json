@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "repeat": 1,
+      "mode": "idle",
+      "playback_before_reset": null,
+      "immediate_menu": true,
+      "delayed_menu": true,
+      "extra_events_after_reset": 0
+    },
+    {
+      "repeat": 1,
+      "mode": "button-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 1,
+      "mode": "key-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 1,
+      "mode": "button-800",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 2,
+      "mode": "idle",
+      "playback_before_reset": null,
+      "immediate_menu": true,
+      "delayed_menu": true,
+      "extra_events_after_reset": 0
+    },
+    {
+      "repeat": 2,
+      "mode": "button-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 2,
+      "mode": "key-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 2,
+      "mode": "button-800",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 3,
+      "mode": "idle",
+      "playback_before_reset": null,
+      "immediate_menu": true,
+      "delayed_menu": true,
+      "extra_events_after_reset": 0
+    },
+    {
+      "repeat": 3,
+      "mode": "button-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 3,
+      "mode": "key-0",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    },
+    {
+      "repeat": 3,
+      "mode": "button-800",
+      "playback_before_reset": true,
+      "immediate_menu": true,
+      "delayed_menu": false,
+      "extra_events_after_reset": 1
+    }
+  ],
+  "immediate_passes": 9,
+  "delayed_passes": 0,
+  "delayed_trials": 9
+}

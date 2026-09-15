@@ -51,6 +51,26 @@
       "task_id": "room-five-in-row",
       "status": "reviewed",
       "assertions": 80
+    },
+    {
+      "task_id": "persistent-2048",
+      "status": "reviewed",
+      "assertions": 50
+    },
+    {
+      "task_id": "particle-orchestra",
+      "status": "reviewed",
+      "assertions": 52
+    },
+    {
+      "task_id": "photo-orbit-gallery",
+      "status": "reviewed",
+      "assertions": 49
+    },
+    {
+      "task_id": "pet-care-day",
+      "status": "reviewed",
+      "assertions": 51
     }
   ]
 }

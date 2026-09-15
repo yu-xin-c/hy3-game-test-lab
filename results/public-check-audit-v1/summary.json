@@ -3,16 +3,16 @@
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "inventory_total_tasks": 96,
   "total_tasks": 30,
-  "reviewed_tasks": 10,
+  "reviewed_tasks": 13,
   "total_predicates": 1654,
-  "reviewed_predicates": 570,
-  "remaining_tasks": 20,
-  "remaining_predicates": 1084,
+  "reviewed_predicates": 721,
+  "remaining_tasks": 17,
+  "remaining_predicates": 933,
   "model_labels": {
-    "supported": 478,
+    "supported": 619,
     "unsupported": 28,
-    "ambiguous": 36,
-    "test_mechanics": 28
+    "ambiguous": 39,
+    "test_mechanics": 35
   },
   "rows": [
     {
@@ -123,6 +123,39 @@
         "unsupported": 12,
         "ambiguous": 0,
         "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "persistent-2048",
+      "predicates": 50,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 48,
+        "unsupported": 0,
+        "ambiguous": 0,
+        "test_mechanics": 2
+      }
+    },
+    {
+      "task_id": "particle-orchestra",
+      "predicates": 52,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 47,
+        "unsupported": 0,
+        "ambiguous": 3,
+        "test_mechanics": 2
+      }
+    },
+    {
+      "task_id": "photo-orbit-gallery",
+      "predicates": 49,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 46,
+        "unsupported": 0,
+        "ambiguous": 0,
+        "test_mechanics": 3
       }
     }
   ]

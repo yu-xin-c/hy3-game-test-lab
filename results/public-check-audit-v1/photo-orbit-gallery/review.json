@@ -1,0 +1,306 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "684558e7d30c44fe0fb593f8f4912d180527618c1303c8bafad3dd8e49013701",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，START未另行指定actor。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "`START`：mouse 操作 #start-btn",
+        "reason": "控件规格明确START设备为mouse。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "`START`：mouse 操作 #start-btn",
+        "reason": "selector明确为#start-btn。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，NEXT未另行指定。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "`NEXT`：键盘 ArrowRight press",
+        "reason": "控件规格明确NEXT设备为keyboard。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "`NEXT`：键盘 ArrowRight press",
+        "reason": "控件规格明确key_event为press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "`NEXT`：键盘 ArrowRight press",
+        "reason": "键盘控件用code，规格给出ArrowRight。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，PREV未另行指定。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "`PREV`：键盘 ArrowLeft press",
+        "reason": "控件规格明确PREV设备为keyboard。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "`PREV`：键盘 ArrowLeft press",
+        "reason": "控件规格明确key_event为press。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "`PREV`：键盘 ArrowLeft press",
+        "reason": "键盘控件用code，规格给出ArrowLeft。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，SELECT未另行指定。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "`SELECT`：键盘 Enter press",
+        "reason": "控件规格明确SELECT设备为keyboard。"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "`SELECT`：键盘 Enter press",
+        "reason": "控件规格明确key_event为press。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "`SELECT`：键盘 Enter press",
+        "reason": "键盘控件用code，规格给出Enter。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为primary，RESTART未另行指定。"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+        "reason": "控件规格明确RESTART设备为mouse。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。",
+        "reason": "状态枚举含playing，点击Start后进入进行中状态。"
+      },
+      {
+        "id": "A22",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint是评测器在检查点间采样事件的执行器内部约定，并非游戏公开需求。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+        "reason": "公开要求所有游戏点击Start后记录game_started事件。"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "初始Forest(0)，两次右移焦点至Mars，按0基索引focus_index=2。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "排列中Mars为第3张，两次右移后焦点为Mars。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "按 Mars、Ocean、Forest 的顺序确认三张照片时获胜。",
+        "reason": "首次正确确认Mars后选择集合含Mars，selected记录已确认照片名。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "正确确认推进 progress；错误确认增加 mistakes。",
+        "reason": "一次正确确认使progress=1。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "正确确认推进 progress；错误确认增加 mistakes。",
+        "reason": "无错误确认时mistakes保持0。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`focus_changed`、`photo_selected`、`selection_wrong`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "事件清单含photo_selected，确认照片触发该事件。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "按 Mars、Ocean、Forest 的顺序确认三张照片时获胜。",
+        "reason": "完成获胜顺序后状态为won。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "三次右移后焦点循环回Forest，0基索引为0。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "终局/重开时焦点为Forest。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "按 Mars、Ocean、Forest 的顺序确认三张照片时获胜。",
+        "reason": "依次正确确认三张后selected含Mars、Ocean、Forest。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "正确确认推进 progress；错误确认增加 mistakes。",
+        "reason": "三次正确确认使progress=3。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`focus_changed`、`photo_selected`、`selection_wrong`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "事件清单含game_won，获胜时触发。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "分数HUD始终可见。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "状态HUD始终可见。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度。",
+        "reason": "分数或进度文本不得省略，故非空。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "终局状态文案为Won（忽略大小写）。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "第二次错误确认时失败。",
+        "reason": "两次错误确认后状态为lost。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "一次右移后焦点为City，0基索引为1。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "四张本地生成纹理按 Forest、City、Mars、Ocean 排列，初始选中 Forest。左右方向键循环移动焦点",
+        "reason": "失败路径焦点停在City。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "正确确认推进 progress；错误确认增加 mistakes。",
+        "reason": "错误确认不计入选择，故selected为空；重开亦恢复空选择。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "正确确认推进 progress；错误确认增加 mistakes。",
+        "reason": "错误确认不推进progress，故为0。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "第二次错误确认时失败。",
+        "reason": "两次错误确认使mistakes=2。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`focus_changed`、`photo_selected`、`selection_wrong`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "事件清单含selection_wrong，错误确认触发。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`focus_changed`、`photo_selected`、`selection_wrong`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "事件清单含game_lost，失败触发。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "重开恢复菜单状态，status=menu。"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "重新从 `seq=1` 记录 `game_reset`",
+        "reason": "重开记录game_reset事件，事件清单亦含game_reset。"
+      },
+      {
+        "id": "A3",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "公开文本仅 line 117 规定 START 为 mouse 操作 #start-btn，未规定 key_event；manifest 模板(line 34)虽示例 press 但 line 21 声明数组内容须按实际要求填写，示例值非本游戏明文规定。press 是执行器对鼠标控件的约定值，非公开原文规定。"
+      },
+      {
+        "id": "A19",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "RESTART 仅在 line 121 规定为 mouse 操作 #restart-btn，公开原文未规定 key_event；press 为执行器对鼠标控件的约定值，不能由公开文本唯一推出。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "line 121 明确 `RESTART`：mouse 操作 #restart-btn，selector=#restart-btn 被公开原文直接规定。"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

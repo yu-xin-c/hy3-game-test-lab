@@ -1,0 +1,25 @@
+{
+  "assertions": [
+    {
+      "id": "A3",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开文本仅 line 117 规定 START 为 mouse 操作 #start-btn，未规定 key_event；manifest 模板(line 34)虽示例 press 但 line 21 声明数组内容须按实际要求填写，示例值非本游戏明文规定。press 是执行器对鼠标控件的约定值，非公开原文规定。"
+    },
+    {
+      "id": "A19",
+      "verdict": "test_mechanics",
+      "line_start": null,
+      "line_end": null,
+      "reason": "RESTART 仅在 line 121 规定为 mouse 操作 #restart-btn，公开原文未规定 key_event；press 为执行器对鼠标控件的约定值，不能由公开文本唯一推出。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "line 121 明确 `RESTART`：mouse 操作 #restart-btn，selector=#restart-btn 被公开原文直接规定。"
+    }
+  ]
+}

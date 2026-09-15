@@ -1,0 +1,7 @@
+{
+  "scope": "Original Hy3 plan step 5 requirement and implementation; delayed asynchronous boundary",
+  "has_error": true,
+  "first_error_step": 5,
+  "error_type": "boundary_omission",
+  "unit": "one original game and one plan claim; repeats are not independent solutions"
+}

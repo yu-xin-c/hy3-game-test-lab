@@ -1,0 +1,462 @@
+{
+  "scope": "Original Hy3 plan step 5 requirement and implementation; delayed asynchronous boundary",
+  "step": {
+    "id": 5,
+    "requirement": "终局后输入不再改变状态；Restart 按钮与键盘 R 均恢复菜单状态（分数、生命、回合、序列）。",
+    "implementation": "status 为 won/lost 时四区域点击不产生 signal_correct/signal_wrong，不修改 score/lives/round/progress。RESTART 控件(#restart-btn) 与 RESTART_KEY 控件(code='KeyR') 均调用 reset 逻辑：score=0、lives=3、round=1、progress=0、status='menu'、phase='menu'、event_epoch++、并从 seq=1 重新记录、emit game_reset。",
+    "verification": "won 后点击黄色区域，getEvents 无新 signal_* 且 score 不变；按 KeyR 后 observe().state.status==='menu'、score=0、lives=3、round=1，且 event_epoch 较上次增大、含 game_reset(seq=1)。"
+  },
+  "time_probe_ms": 1600,
+  "observations": [
+    {
+      "repeat": 1,
+      "mode": "idle",
+      "before": {
+        "status": "menu",
+        "phase": "menu",
+        "events": [
+          "game_reset"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 1,
+      "mode": "button-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 1,
+      "mode": "key-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 1,
+      "mode": "button-800",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 2,
+      "mode": "idle",
+      "before": {
+        "status": "menu",
+        "phase": "menu",
+        "events": [
+          "game_reset"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 2,
+      "mode": "button-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 2,
+      "mode": "key-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 2,
+      "mode": "button-800",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 3,
+      "mode": "idle",
+      "before": {
+        "status": "menu",
+        "phase": "menu",
+        "events": [
+          "game_reset"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 3,
+      "mode": "button-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 3,
+      "mode": "key-0",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 3,
+      "mode": "button-800",
+      "before": {
+        "status": "playing",
+        "phase": "playback",
+        "events": [
+          "game_reset",
+          "game_started",
+          "playback_started"
+        ]
+      },
+      "immediate": {
+        "status": "menu",
+        "phase": "menu",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          }
+        ]
+      },
+      "delayed": {
+        "status": "menu",
+        "phase": "input",
+        "sequence": [],
+        "events": [
+          {
+            "seq": 1,
+            "type": "game_reset"
+          },
+          {
+            "seq": 2,
+            "type": "input_phase_started"
+          }
+        ]
+      }
+    }
+  ]
+}
