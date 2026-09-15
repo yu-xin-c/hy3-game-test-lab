@@ -10,6 +10,12 @@ test-results/
 *.log
 .DS_Store
 results/full-96/demo/
+/results/full-96/
+/results/consolidated/
+/results/infra-recovery/
+/results/quota-recovery/
+/results/codebuddy-hy3-pilot/
+/results/codebuddy-hy3-v4/
 results/process-localization-pilot/*/judge-response.raw.json
 results/process-v1/**/*.raw.json
 results/process-v1/**/*.raw.jsonl

@@ -6,18 +6,18 @@
 
 [判据修订与重跑](results/signal-checks-v3/README.md)：Signal Memory 原有路径在修正检查和指针执行后 12/12 通过，新增反例仍 0/3 通过。旧结果不覆盖。
 
-已完成 96 题历史运行评测；正式生成过程审计按最新要求缩为 15 题，现有[15 题最终报告](results/process-15-v1/FINAL.md)与[八页图表版中文汇报 PPT](docs/evaluation-slides-15-cn-v3.pptx)。详细口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
+累计生成并运行超过 60 款游戏；正式生成过程审计固定为 15 题。旧批次逐题记录和补跑证据只留本地，不随 GitHub 仓库发布。公开结果见[15 题最终报告](results/process-15-v1/FINAL.md)和[八页中文汇报 PPT](docs/evaluation-slides-15-cn-v3.pptx)。本次发布不包含视频。
 
 GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
 
 > 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。不训练、不微调，也不发布模型权重；自建校准集未调用模型，真实游戏实验使用 CodeBuddy CN 的 Hy3 High。
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [96 题去重结果](results/consolidated/README.md) · [逐批证据](results/full-96/README.md) · [校准集结果](results/sample/README.md)
+[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [正式审计结果](results/process-15-v1/FINAL.md) · [校准集结果](results/sample/README.md)
 
 
-历史批次已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。正式 15 题审计让混元先写编号方案再写游戏代码；已完成的 [Maze Collector](results/process-30-v1/maze-collector/README.md) 与 Key Door Escape 保留原生成记录，不重复运行。[判据溯源](results/public-check-audit-v1/README.md)也只统计同一 15 题。原始规则包含误报，混元复核也不是独立真值，因此不把任一列直接称为独立模型准确率。[执行状态](docs/full-run-status.md)说明历史批次的关系。
+正式 15 题审计让混元先写编号方案，再生成游戏代码，并由真实浏览器试玩和混元复核。历史批次的路径分数不并入这 15 题；原始规则可能误报，混元复核也不是独立真值。[判据溯源](results/public-check-audit-v1/README.md)只统计正式范围。
 
-新增[玩法故障与生成记录追溯实验](results/process-localization-pilot/README.md)：复用 3 个 Hy3 游戏，执行 15 次浏览器对照，再由 Hy3 复核并引用具体代码；有完整历史时，可追溯到写入该代码的工具步骤。现有 96 题的“过程”指标指试玩过程，不等于生成推理过程的正确率。自动定位、复现和误报的口径见分析报告。
+新增[玩法故障与生成记录追溯实验](results/process-localization-pilot/README.md)：复用 3 个 Hy3 游戏，执行 15 次浏览器对照，再由 Hy3 复核并引用具体代码；有完整历史时，可追溯到写入该代码的工具步骤。旧批次的“过程”指标指试玩过程，不等于生成推理过程的正确率。
 
 ## 怎么检测游戏
 
@@ -94,12 +94,12 @@ pnpm run eval:task -- \
 
 [完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
 
-首批曾用 CodeBuddy CN 的 Hy3 High 生成 5 款游戏、完成 48 次路径重放。去除手势烟花后，当前汇总保留 4 款、39 次重放，旧记录仍可追溯。发现了不可见目标，以及科学实验跳过必要步骤仍能获胜的问题；也查出了文案、编号和帧时序导致的评测误报。生成代码未手动修改。见 [Hy3 首批实测](results/codebuddy-hy3-pilot/README.md)与[结果复核](results/codebuddy-hy3-pilot/review.md)。这部分是早期试跑，不与正式 96 题结果混合。
+首批游戏生成与规则诊断属于本地留存的早期试跑，不计入正式 15 题结果。
 
 新规则 `2026-09-12.3` 补齐了各路径的启动检查、检查点间事件记录、终局后 32ms 的画面检查和两条跳步骤测试。它不再强制 HUD 使用隐藏的固定文案；目前 L3 基础检查只确认文字状态、非空及可见性，数值含义和画面质量仍需另测。已有游戏的新规则复核单独保存，不与旧分数合并。
 
 
-其中 Signal Memory 的原始检查通过 3/12；去除题面未规定的阶段名称约束后，诊断重算通过 12/12。游戏代码未修改，原分数不覆盖。详见[诊断记录](results/codebuddy-hy3-v4/README.md)。
+其中 Signal Memory 的阶段名称约束问题已在本地诊断；原分数不覆盖，也不并入正式 15 题。
 
 ## 仓库结构
 

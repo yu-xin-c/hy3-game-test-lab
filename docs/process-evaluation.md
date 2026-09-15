@@ -52,7 +52,7 @@ pnpm exec tsx scripts/judge-exploration.ts --source results/full-96/evidence/zen
 - [3 题生成过程与 33 次路径执行](../results/process-v1/REPORT.md)
 - [真实错误复验、混元定位与局部干预](../results/error-mining-v1/REPORT.md)
 - [混元自主探索、三次路径复现与复核漏检](../results/exploration-v1/REPORT.md)
-- [96 题运行汇总](../results/consolidated/summary.json)
+- 96 题运行汇总仅本地留存：`results/consolidated/summary.json`
 - [完整分析与指标口径](../reports/analysis-report.md)
 
 报告区分自动规则、模型意见与运行对照。代码追溯不是推理首错的独立证明；题面歧义不纳入确定错误集合。视频不在本次交付范围。

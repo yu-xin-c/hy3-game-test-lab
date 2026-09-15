@@ -3,9 +3,9 @@ import { expect, it } from "vitest";
 import { GameTaskOracleSchema, GameTaskPlanSchema } from "../../src/contracts/game-tasks";
 import { reviseTaskChecks } from "../../src/contracts/revise-task-checks";
 
-it("revises checks without changing archived input or applying timing twice", async () => {
+it("revises checks without changing task input or applying timing twice", async () => {
   for (const id of ["target-rush", "key-door-escape", "mini-farm", "science-lab"]) {
-    const root = new URL(`../../results/codebuddy-hy3-pilot/evidence/${id}/task/`, import.meta.url);
+    const root = new URL(`../../datasets/game-tasks/${id}/`, import.meta.url);
     const plan = GameTaskPlanSchema.parse(JSON.parse(await readFile(new URL("test-plan.json", root), "utf8")));
     const oracle = GameTaskOracleSchema.parse(JSON.parse(await readFile(new URL("oracle.private.json", root), "utf8")));
     const before = JSON.stringify({ plan, oracle });
