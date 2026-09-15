@@ -10,7 +10,7 @@ if (!path.isAbsolute(SKILL_DIR ?? "") || !path.isAbsolute(RUNTIME_PYTHON ?? ""))
   throw new Error("Provide absolute HY3_PRESENTATIONS_SKILL_DIR and HY3_PRESENTATIONS_PYTHON");
 }
 const buildDir = path.join(workspaceDir, "artifacts/process15-deck/build");
-const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-cn-v3.pptx");
+const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-cn-v5.pptx");
 const data = JSON.parse(await fs.readFile(path.join(workspaceDir, "results/process-15-v1/final-summary.json"), "utf8"));
 if (data.execution.completed_games !== 15 || data.scope.selected_ids.length !== 15) throw new Error("Deck requires finalized 15-game results");
 await fs.mkdir(buildDir, { recursive: true });
@@ -24,6 +24,10 @@ const text = (slide, value, x, y, w, h, size, color = INK, bold = false) => {
   shape.text.style = { typeface: FONT, fontSize: size, color, bold, autoFit: "none" };
   return shape;
 };
+const rule = (slide, x, y, w, color = GREEN, weight = 2) => slide.shapes.add({
+  geometry: "line", position: { left: x, top: y, width: w, height: 0 },
+  fill: "none", line: { style: "solid", fill: color, width: weight },
+});
 const page = (n, dark = false) => {
   const slide = ppt.slides.add();
   slide.background.fill = dark ? DARK : PAPER;
@@ -67,12 +71,12 @@ const chart = (slide, config) => {
 }
 {
   const s = page(3);
-  text(s, "一道题的评测过程", 68, 100, 900, 60, 42, GREEN, true);
+  text(s, "评估对象：游戏生成过程", 68, 100, 1050, 60, 42, GREEN, true);
   const items = [
-    ["01", "公开要求", "玩法规则、胜负目标；私有检查不进入生成提示"],
-    ["02", "混元编号方案", "先于代码写出，每一步对应可核对的主张"],
-    ["03", "混元生成代码", "依据文件写入记录和哈希追溯实现位置"],
-    ["04", "真实试玩与复核", "浏览器输入、状态观察、时间探针、反例与混元复核"],
+    ["01", "题目和标准", "公开玩法要求给混元；私有检查留到生成后"],
+    ["02", "公开编号方案", "混元先写方案，保留规则判断和预期结果"],
+    ["03", "实际代码写入", "逐次保存文件写入和修改、最终文件和哈希"],
+    ["04", "试玩与审查", "真实浏览器输入找反例；混元再审查方案和代码"],
   ];
   items.forEach(([n, title, detail], i) => {
     const y = 195 + i * 103;
@@ -80,11 +84,52 @@ const chart = (slide, config) => {
     text(s, title, 200, y + 2, 900, 44, 30, INK, true);
     text(s, detail, 203, y + 47, 970, 40, 21, MUTED);
   });
-  text(s, "分别记录操作首错、方案首错和相关实现位置", 203, 625, 950, 35, 21, GREEN, true);
-  s.speakerNotes.textFrame.setText("过程定义、证据哈希与验证设计：reports/analysis-report.md；results/process-15-v1/PROGRESS.md。观察桥只收集证据，玩家操作来自真实浏览器。");
+  text(s, "这里的“过程”指留下来的生成方案和实现记录，不推测模型的内部思维", 203, 625, 1010, 35, 21, GREEN, true);
+  s.speakerNotes.textFrame.setText("过程定义与证据追溯：docs/process-evaluation.md、reports/analysis-report.md。公开编号方案先于代码；工具日志需与最终文件一致。观察桥只收集证据，玩家操作来自真实浏览器。");
 }
 {
   const s = page(4);
+  text(s, "一条方案主张怎样受检", 68, 100, 1100, 60, 42, GREEN, true);
+  text(s, "以粒子乐队的终局计分为例", 71, 164, 900, 38, 24, MUTED);
+  const nodes = [
+    ["公开规则", "四次正确输入", "每次加 25 分", 70],
+    ["方案第三步", "预计终分 200", "多算了 100 分", 370],
+    ["代码写入", "终局又加 100", "可追溯到文件", 668],
+    ["浏览器试玩", "三次终局 200", "真实键鼠输入", 962],
+  ];
+  nodes.forEach(([heading, line1, line2, x]) => {
+    text(s, heading, x, 236, 245, 44, 28, GREEN, true);
+    rule(s, x, 292, 245);
+    text(s, line1, x, 313, 245, 42, 24, INK, true);
+    text(s, line2, x, 361, 245, 42, 21, MUTED);
+  });
+  text(s, "独立判据", 70, 458, 235, 40, 28, GREEN, true);
+  text(s, "公开规则可算出 100 分；该值不从方案或生成代码中取得", 70, 503, 1110, 45, 25, INK);
+  text(s, "结论", 70, 575, 235, 40, 28, CORAL, true);
+  text(s, "这条计分错误出现在方案第三步，实现继续沿用了错误计分", 70, 620, 1110, 38, 24, INK);
+  s.speakerNotes.textFrame.setText("粒子乐队：results/process-15-v1/particle-orchestra/score-plan-claim.json；results/process-15-v1/PROCESS-VALIDITY.md。公开规则每次 +25；方案和实现 +100 额外终局分；三次 Chromium 终分 200。这里只核对选定计分主张，不把整份方案当已穷尽验证。");
+}
+{
+  const s = page(5);
+  text(s, "过程评估重点与首错位置", 68, 100, 1110, 60, 42, GREEN, true);
+  const points = [
+    ["题意是否读对", "胜负、计分、时序和存档规则不能自行改写"],
+    ["方案是否成立", "每条可验证的预期结果，先与公开规则核对"],
+    ["实现是否兑现", "检查代码对应的动作、状态变化和边界条件"],
+    ["判据是否可靠", "私有断言若添加题面未写的限制，单列为标准风险"],
+  ];
+  points.forEach(([heading, detail], i) => {
+    const y = 202 + i * 86;
+    text(s, heading, 74, y, 275, 42, 27, GREEN, true);
+    text(s, detail, 360, y + 1, 825, 42, 23, INK);
+    rule(s, 74, y + 58, 1105, "#C8D3CA", 1);
+  });
+  text(s, "三种位置分别记录", 74, 572, 650, 40, 28, GREEN, true);
+  text(s, "浏览器第几次操作首错    方案第几步先失真    相关代码在哪次写入", 74, 618, 1110, 40, 23, INK);
+  s.speakerNotes.textFrame.setText("三种位置不一一对应：docs/process-evaluation.md。浏览器首错是首个可观察偏离，方案首错是公开主张首个有独立反例的步骤，代码写入只作来源追溯，不能证明内部推理首错。题面歧义或判据风险不记作确定游戏缺陷。");
+}
+{
+  const s = page(6);
   const e = data.execution, h = data.hy3_opinion;
   text(s, "混元对十五题的判定", 68, 100, 1100, 60, 42, GREEN, true);
   chart(s, {
@@ -107,7 +152,7 @@ const chart = (slide, config) => {
   s.speakerNotes.textFrame.setText("所有分母和口径：results/process-15-v1/final-summary.json。原固定路径含已核实的输入、私有断言和 observe 字段问题；声明文件合规也不保证完整运行接口合规。");
 }
 {
-  const s = page(5);
+  const s = page(7);
   const rows = data.difficulty_rows;
   text(s, "按难度分层的混元判断", 68, 100, 1100, 60, 42, GREEN, true);
   chart(s, {
@@ -130,7 +175,7 @@ const chart = (slide, config) => {
   s.speakerNotes.textFrame.setText("来源：results/process-15-v1/final-summary.json 的 difficulty_rows 与 difficulty_boundary。各难度分母和未知项未合并。");
 }
 {
-  const s = page(6);
+  const s = page(8);
   const types = data.supported_model_finding_types;
   text(s, "混元标记的错误类型", 68, 100, 1100, 60, 42, GREEN, true);
   chart(s, {
@@ -147,7 +192,7 @@ const chart = (slide, config) => {
   s.speakerNotes.textFrame.setText("来源：results/process-15-v1/final-summary.json 的 supported_model_finding_types；分类口径与限制见 results/process-15-v1/FINAL.md。");
 }
 {
-  const s = page(7);
+  const s = page(9);
   const c = JSON.parse(await fs.readFile(path.join(workspaceDir, "results/process-15-v1/particle-orchestra/score-plan-claim.json"), "utf8"));
   text(s, "计分错误：方案第三步", 68, 100, 1100, 60, 42, GREEN, true);
   chart(s, {
@@ -165,7 +210,7 @@ const chart = (slide, config) => {
   s.speakerNotes.textFrame.setText("来源：results/process-15-v1/particle-orchestra/score-plan-claim.json。三次浏览器终局均为 200；标准 100 仅针对选出的公开计分断言，不代表整份方案穷尽标准。");
 }
 {
-  const s = page(8, true);
+  const s = page(10, true);
   const v = data.validity, correct = data.correct_core_wrong_plan;
   text(s, "过程定位的有效性", 68, 100, 1080, 60, 42, MINT, true);
   text(s, `${v.detect_and_locate}/3`, 74, 185, 350, 105, 76, PAPER, true);
@@ -178,21 +223,21 @@ const chart = (slide, config) => {
   s.speakerNotes.textFrame.setText("三份公开方案子断言标准与复核结果：results/process-15-v1/PROCESS-VALIDITY.md。2048 补充混元提示不同，不能与原始全题复核合并；这里只描述已核对的一个正确核心游戏、错误过程单例。");
 }
 
-const candidatePath = path.join(buildDir, "evaluation-slides-15-cn-v3.candidate.pptx");
+const candidatePath = path.join(buildDir, "evaluation-slides-15-cn-v5.candidate.pptx");
 await (await PresentationFile.exportPptx(ppt)).save(candidatePath);
 const result = await finalizePresentation({
-  explicitTotalSlideCount: 8, requiredNativeTableOwnerSlides: [], requiredNativeChartOwnerSlides: [2, 4, 5, 6, 7],
+  explicitTotalSlideCount: 10, requiredNativeTableOwnerSlides: [], requiredNativeChartOwnerSlides: [2, 6, 7, 8, 9],
   materializeLiteralChartWorkbooks: true,
   workspaceDir, candidatePath, finalPath, pythonExecutable: RUNTIME_PYTHON,
   integrityValidatorPath: path.join(SKILL_DIR, "container_tools/inspect_presentation_package_integrity.py"),
   layoutValidatorPath: path.join(SKILL_DIR, "container_tools/inspect_presentation_layout_geometry.py"),
   layoutArgs: ["--expected-slide-size-emu", "12192000,6858000", "--validate-heading-fit"],
   fontPolicy: { basis: "design", families: [FONT] }, verifyArtifactToolImport: true,
-  receiptPath: path.join(buildDir, "evaluation-slides-15-cn-v3.validation.json"),
+  receiptPath: path.join(buildDir, "evaluation-slides-15-cn-v5.validation.json"),
 });
-for (let index = 0; index < 8; index++) {
+for (let index = 0; index < 10; index++) {
   const slide = ppt.slides.getItem(index);
   const preview = await ppt.export({ slide, format: "png", scale: 1 });
-  await fs.writeFile(path.join(buildDir, `slide-v3-${index + 1}.png`), new Uint8Array(await preview.arrayBuffer()));
+  await fs.writeFile(path.join(buildDir, `slide-v5-${index + 1}.png`), new Uint8Array(await preview.arrayBuffer()));
 }
-console.log(JSON.stringify({ path: finalPath, slides: 8, validation: result?.status ?? "completed" }));
+console.log(JSON.stringify({ path: finalPath, slides: 10, validation: result?.status ?? "completed" }));
