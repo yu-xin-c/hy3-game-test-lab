@@ -6,7 +6,7 @@
 
 [判据修订与重跑](results/signal-checks-v3/README.md)：Signal Memory 原有路径在修正检查和指针执行后 12/12 通过，新增反例仍 0/3 通过。旧结果不覆盖。
 
-已完成 96 题历史运行评测；正式生成过程审计按最新要求缩为 15 题，现有[15 题最终报告](results/process-15-v1/FINAL.md)与[五页汇报 PPT](docs/evaluation-slides-15-v3.pptx)。详细口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
+已完成 96 题历史运行评测；正式生成过程审计按最新要求缩为 15 题，现有[15 题最终报告](results/process-15-v1/FINAL.md)与[五页中文汇报 PPT](docs/evaluation-slides-15-cn-v1.pptx)。详细口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
 
 GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
 

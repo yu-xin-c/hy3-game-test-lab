@@ -10,12 +10,12 @@ if (!path.isAbsolute(SKILL_DIR ?? "") || !path.isAbsolute(RUNTIME_PYTHON ?? ""))
   throw new Error("Provide absolute HY3_PRESENTATIONS_SKILL_DIR and HY3_PRESENTATIONS_PYTHON");
 }
 const buildDir = path.join(workspaceDir, "artifacts/process15-deck/build");
-const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-v3.pptx");
+const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-cn-v1.pptx");
 const data = JSON.parse(await fs.readFile(path.join(workspaceDir, "results/process-15-v1/final-summary.json"), "utf8"));
 if (data.execution.completed_games !== 15 || data.scope.selected_ids.length !== 15) throw new Error("Deck requires finalized 15-game results");
 await fs.mkdir(buildDir, { recursive: true });
 const { finalizePresentation } = await import(pathToFileURL(path.join(SKILL_DIR, "container_tools/artifact_tool_utils.mjs")).href);
-const FONT = "Georgia";
+const FONT = "Arial Unicode MS";
 const DARK = "#17242A", PAPER = "#FAF8F1", GREEN = "#1B6D57", MINT = "#D4EABF", INK = "#26352F", MUTED = "#6F7A73", CORAL = "#C95E48";
 const ppt = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 const text = (slide, value, x, y, w, h, size, color = INK, bold = false) => {
@@ -27,28 +27,28 @@ const text = (slide, value, x, y, w, h, size, color = INK, bold = false) => {
 const page = (n, dark = false) => {
   const slide = ppt.slides.add();
   slide.background.fill = dark ? DARK : PAPER;
-  text(slide, "GAME TEST LAB", 68, 36, 290, 32, 16, dark ? MINT : GREEN, true);
+  text(slide, "游戏评测实验室", 68, 36, 290, 32, 16, dark ? MINT : GREEN, true);
   text(slide, String(n).padStart(2, "0"), 1160, 655, 50, 32, 14, dark ? MINT : MUTED);
   return slide;
 };
 
 {
   const s = page(1, true);
-  text(s, "GameTestLab", 70, 175, 700, 90, 62, PAPER, true);
-  text(s, "Game generation and process evaluation", 72, 280, 850, 72, 34, MINT);
-  text(s, "Hy3 plans, codes and reviews. Chromium plays.", 73, 380, 850, 48, 25, PAPER);
+  text(s, "游戏生成过程评估", 70, 175, 850, 90, 62, PAPER, true);
+  text(s, "定位玩法错误出现的步骤", 72, 280, 850, 72, 34, MINT);
+  text(s, "混元生成与复核，浏览器实际操作游戏", 73, 380, 850, 48, 25, PAPER);
   text(s, "15", 970, 212, 230, 180, 132, MINT, true);
-  text(s, "frozen game tasks", 965, 412, 260, 40, 22, PAPER);
+  text(s, "道固定游戏题", 965, 412, 260, 40, 22, PAPER);
   s.speakerNotes.textFrame.setText("正式范围：results/process-15-v1/scope.json；15 题全部完成见 results/process-15-v1/FINAL.md。历史 96 题不并入本报告。");
 }
 {
   const s = page(2);
-  text(s, "One game's evaluation path", 68, 100, 900, 60, 42, GREEN, true);
+  text(s, "一道题的评测过程", 68, 100, 900, 60, 42, GREEN, true);
   const items = [
-    ["01", "Game brief", "Rules, win/loss goals and executable checks"],
-    ["02", "Hy3's numbered plan", "Written before code, with a check for each step"],
-    ["03", "Code written with Write/Edit", "Reconstructed from tool calls and file hashes"],
-    ["04", "Chromium play and Hy3 review", "Real input, virtual time and counterexamples"],
+    ["01", "游戏要求", "玩法规则、胜负目标和可执行检查"],
+    ["02", "混元分步方案", "先写方案，再给每一步配检查点"],
+    ["03", "生成游戏代码", "根据文件操作和哈希还原实现过程"],
+    ["04", "实际游玩与复核", "浏览器输入、时间推进、失败路径和混元复核"],
   ];
   items.forEach(([n, title, detail], i) => {
     const y = 205 + i * 108;
@@ -61,45 +61,44 @@ const page = (n, dark = false) => {
 {
   const s = page(3);
   const e = data.execution, h = data.hy3_opinion;
-  text(s, "Three result types across 15 tasks", 68, 100, 1100, 60, 42, GREEN, true);
+  text(s, "十五题评测结果", 68, 100, 1100, 60, 42, GREEN, true);
   text(s, "15/15", 70, 190, 420, 100, 72, GREEN, true);
-  text(s, "plan, game, browser play and review", 72, 292, 750, 46, 27, INK);
+  text(s, "方案、游戏、浏览器游玩和复核均已完成", 72, 292, 950, 46, 27, INK);
   text(s, `${h.final_true}/${h.final_known}`, 71, 373, 300, 72, 52, INK, true);
-  text(s, "Hy3: final game correct / decided", 74, 448, 495, 40, 22, MUTED);
+  text(s, "混元判断游戏正确／已判定", 74, 448, 495, 40, 22, MUTED);
   text(s, `${h.process_true}/${h.process_known}`, 658, 373, 340, 72, 52, INK, true);
-  text(s, "Hy3: plan process valid / decided", 661, 448, 510, 40, 22, MUTED);
-  text(s, `Manifest files valid: ${e.current_strict_manifest_conformant_games}/15`, 74, 548, 490, 38, 24, GREEN, true);
-  text(s, `Original path passes: ${e.original_raw_final_paths_passed}/${e.original_raw_browser_paths}`, 660, 548, 530, 38, 24, CORAL, true);
-  text(s, "Hy3 opinions and raw path scores need independent checking", 72, 610, 1050, 32, 20, MUTED);
+  text(s, "混元判断方案成立／已判定", 661, 448, 510, 40, 22, MUTED);
+  text(s, `声明文件合规：${e.current_strict_manifest_conformant_games}/15`, 74, 548, 490, 38, 24, GREEN, true);
+  text(s, `原始游玩路径通过：${e.original_raw_final_paths_passed}/${e.original_raw_browser_paths}`, 660, 548, 530, 38, 24, CORAL, true);
+  text(s, "混元判断与原始路径得分仍需独立核对", 72, 610, 1050, 32, 20, MUTED);
   s.speakerNotes.textFrame.setText("所有分母和口径：results/process-15-v1/final-summary.json。原固定路径含已核实的输入、私有断言和 observe 字段问题；声明文件合规也不保证完整运行接口合规。");
 }
 {
   const s = page(4);
-  text(s, "Step 3 adds 100 points too many", 68, 96, 990, 60, 42, GREEN, true);
-  const img = await fs.readFile(path.join(workspaceDir, "results/process-15-v1/particle-orchestra/browser/screenshots/replay-1/win-path/particle-orchestra-action-04.png"));
-  s.images.add({ blob: new Uint8Array(img), contentType: "image/png", alt: "Real Chromium screenshot of Particle Orchestra showing final score 200", fit: "contain", position: { left: 68, top: 190, width: 520, height: 390 } });
-  text(s, "4 × 25 = 100", 660, 205, 490, 76, 52, INK, true);
-  text(s, "Score required by the brief", 663, 280, 480, 38, 22, MUTED);
-  text(s, "Code adds another 100", 660, 360, 490, 56, 32, CORAL, true);
-  text(s, "Three wins all scored 200", 663, 425, 510, 48, 27, INK);
-  text(s, "Hy3 detects and locates plan step 3", 663, 510, 520, 62, 25, GREEN, true);
-  s.speakerNotes.textFrame.setText("公开计分标准、原方案与三次重放：results/process-15-v1/particle-orchestra/score-plan-claim.json；截图是保存的原始 Chromium 执行证据，不是生成示意图。");
+  text(s, "第三步多加了一百分", 68, 96, 990, 60, 42, GREEN, true);
+  text(s, "公开标准", 74, 214, 470, 48, 28, MUTED);
+  text(s, "4 × 25 = 100", 70, 270, 520, 90, 59, INK, true);
+  text(s, "游戏实际", 666, 214, 470, 48, 28, MUTED);
+  text(s, "200 分", 660, 270, 520, 90, 59, CORAL, true);
+  text(s, "代码重复加了一百分", 71, 410, 540, 56, 32, INK, true);
+  text(s, "三次通关均得二百分", 662, 410, 520, 56, 32, INK, true);
+  text(s, "混元发现问题，定位到方案第三步", 74, 540, 1100, 62, 29, GREEN, true);
+  s.speakerNotes.textFrame.setText("公开计分标准、原方案与三次重放：results/process-15-v1/particle-orchestra/score-plan-claim.json。页面数字来自真实浏览器执行证据。");
 }
 {
   const s = page(5, true);
   const v = data.validity, correct = data.correct_core_wrong_plan;
-  text(s, "How reliable is step localization?", 68, 100, 1080, 60, 42, MINT, true);
+  text(s, "错误步骤定位效果", 68, 100, 1080, 60, 42, MINT, true);
   text(s, `${v.detect_and_locate}/3`, 72, 222, 370, 100, 72, PAPER, true);
-  text(s, "Original full review: detect and locate", 77, 321, 850, 42, 25, PAPER);
-  text(s, "2048 plays correctly", 76, 430, 730, 54, 31, MINT, true);
-  text(s, "Its plan calls a winning move a loss. A second Hy3 review finds step 3.", 78, 488, 1080, 44, 22, PAPER);
-  text(s, `One checked correct-core case: real issue ${correct.real_issue_among_flagged}/1, false alarm ${correct.false_alarm_among_flagged}/1`, 78, 557, 1080, 38, 21, PAPER);
-  text(s, "Small samples cannot establish a general error rate or difficulty threshold", 78, 610, 1100, 32, 20, MINT);
-  text(s, "github.com/yu-xin-c/hy3-game-test-lab", 76, 655, 820, 28, 16, MINT);
+  text(s, "原始复核同时发现并定位错误", 77, 321, 850, 42, 25, PAPER);
+  text(s, "二〇四八游戏可正常通关", 76, 430, 730, 54, 31, MINT, true);
+  text(s, "方案却把获胜动作写成失败。补充复核定位到第三步。", 78, 488, 1080, 44, 22, PAPER);
+  text(s, `正确游戏的过程问题抽检：真问题 ${correct.real_issue_among_flagged}/1，误报 ${correct.false_alarm_among_flagged}/1`, 78, 557, 1080, 38, 21, PAPER);
+  text(s, "样本较少，尚不能估计整体误报率或难度拐点", 78, 610, 1100, 32, 20, MINT);
   s.speakerNotes.textFrame.setText("三份公开方案子断言标准与复核结果：results/process-15-v1/PROCESS-VALIDITY.md。2048 补充混元提示不同，不能与原始全题复核合并；这里只描述已核对的一个正确核心游戏、错误过程单例。");
 }
 
-const candidatePath = path.join(buildDir, "evaluation-slides-15-v3.candidate.pptx");
+const candidatePath = path.join(buildDir, "evaluation-slides-15-cn-v1.candidate.pptx");
 await (await PresentationFile.exportPptx(ppt)).save(candidatePath);
 const result = await finalizePresentation({
   explicitTotalSlideCount: 5, requiredNativeTableOwnerSlides: [], requiredNativeChartOwnerSlides: [],
@@ -108,7 +107,7 @@ const result = await finalizePresentation({
   layoutValidatorPath: path.join(SKILL_DIR, "container_tools/inspect_presentation_layout_geometry.py"),
   layoutArgs: ["--expected-slide-size-emu", "12192000,6858000", "--validate-heading-fit"],
   fontPolicy: { basis: "design", families: [FONT] }, verifyArtifactToolImport: true,
-  receiptPath: path.join(buildDir, "evaluation-slides-15-v3.validation.json"),
+  receiptPath: path.join(buildDir, "evaluation-slides-15-cn-v1.validation.json"),
 });
 for (let index = 0; index < 5; index++) {
   const slide = ppt.slides.getItem(index);

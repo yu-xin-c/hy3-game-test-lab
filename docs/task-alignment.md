@@ -14,7 +14,7 @@
 | 完整运行结果 | `results/process-15-v1/FINAL.md` 和 `final-summary.json`，历史 96 题另列 | 15/15 完成；混元最终意见 4/11、过程意见 6/12，原固定路径通过 14/47 不能当独立准确率 |
 | 难度边界分析 | `reports/analysis-report.md` | 已分析，现有结果不支持可靠临界点 |
 | 开源仓库与说明 | README、MIT、环境示例、源码、运行说明 | 已发布，持续更新 |
-| 汇报材料 | `docs/evaluation-slides-15-v3.pptx` | 五页 PPT 按 15 题结果更新；视频由用户负责 |
+| 汇报材料 | `docs/evaluation-slides-15-cn-v1.pptx` | 五页中文 PPT 按 15 题结果更新；视频由用户负责 |
 
 ## 结果限制
 
