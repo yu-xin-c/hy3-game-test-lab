@@ -1,0 +1,106 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "canvas2d",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "主页面开始并创建固定房间"
+    },
+    {
+      "action_id": "JOIN",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#join-btn",
+      "description": "副页面加入房间"
+    },
+    {
+      "action_id": "P1_STEP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyD",
+      "description": "主页面按 D 前进一格"
+    },
+    {
+      "action_id": "P2_STEP",
+      "actor": "secondary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyL",
+      "description": "副页面按 L 前进一格"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "主页面重开并广播清空双方状态回到菜单"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "connected": { "type": "boolean", "description": "是否已与对方建立连接" },
+      "p1_position": { "type": "integer", "description": "玩家1进度 0-3" },
+      "p2_position": { "type": "integer", "description": "玩家2进度 0-3" },
+      "winner": { "type": ["string", "null"], "description": "获胜方 primary/secondary 或 null" }
+    },
+    "required": ["status", "connected", "p1_position", "p2_position", "winner"]
+  },
+  "event_schema": [
+    {
+      "type": "room_created",
+      "description": "主页面创建房间",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "player_joined",
+      "description": "副页面加入房间",
+      "payload_fields": {}
+    },
+    {
+      "type": "player_moved",
+      "description": "玩家前进一格",
+      "payload_fields": {
+        "actor": { "type": "string", "description": "primary 或 secondary" },
+        "position": { "type": "integer", "description": "移动后的位置" }
+      }
+    },
+    {
+      "type": "match_won",
+      "description": "比赛结束并产生胜者",
+      "payload_fields": {
+        "winner": { "type": "string", "description": "primary 或 secondary" }
+      }
+    },
+    {
+      "type": "game_reset",
+      "description": "重开回到菜单",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "固定种子" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

@@ -49,6 +49,10 @@ Target Rush 原方案后四步也完成了[真实浏览器核验](../results/pla
 
 最新固定 15 题范围的[生成进度](../results/process-15-v1/PROGRESS.md)复用三款原始方案及后来完成的 Maze Collector、Key Door Escape，其余 10 款使用相同混元管线，完成数以进度页为准。Maze Collector [逐例报告](../results/process-30-v1/maze-collector/README.md)记录 6 步方案和 4 次写入；三条 Chromium 路径各重放三次，均因 `reset()` 调用不存在的自由变量 `observe()` 在动作 0 前失败。真实堆栈定位 `game.js:206:43`，生成来源为第 3 次 Write；manifest 另有类型定义错误。混元把这两项关联方案步骤 5、6 的实现不符，但没有认定原方案文字本身出错，故原方案首错仍未知。Key Door Escape 的原方案第 1 步把陷阱写成 `(3,3)`，独立[地图坐标核验](../results/process-15-v1/GRID-PLAN-CLAIMS.md)确认公开地图实际为 `(4,3)`；生成时公开纠正，最终 manifest 又有独立类型错误。该题原浏览器终局检查 9/9 通过、过程检查 6/9 通过，但界面检查用精确 `Won` 文案，公开需求并未限定只显示该词；[15 题 HUD 判据风险表](../results/public-check-audit-v1/EXACT-HUD-RISKS.md)把这类精确比较隔离为标准风险，不把原分数直接当真值。15 题 D1/D2/D3 为 4/6/5，四类玩法为动作 6、益智 5、创意 2、模拟 2，没有教育类，不能代表 96 题完整分布。
 
+Neon Lane Racer 的原通关路径在 1000ms 边界换回有障碍的车道，原失败不是独立代码缺陷。按公开时间表构造的[追加 Chromium 对照](../results/process-15-v1/neon-lane-racer/README.md)三次均走完四次避障并以 500 分获胜，应撞车路径也 3/3 判负。[Meteor Survivor](../results/process-15-v1/meteor-survivor/README.md)同样存在原通关输入撞流星、失败观察点早于 1000ms 的标准问题；公开规则驱动的追加路径分别通关与应输 3/3。时间探针和真实输入因此也用于核查测试路径自身；原失败均保留，追加路径只作分离证据。
+
+[Dual Arena](../results/process-15-v1/dual-arena/README.md)的原检查把公开未定义类型的 `connected` 强制要求为人数 `2/0`，这类状态差异不能直接当代码故障；但严格 manifest 合同独立检出 `winner.type` 的数组联合类型不合规，并可追溯到原方案第 6 步。新 15 题进度页的合同栏使用当前检查器重验；旧浏览器记录中的合同结论保持原样，避免老版本规则的误差被当作本次真值。
+
 Platform Rescue 的原固定路径失败。保持代码不变，立即起跳 0/3 通关，确认落地后再跳 3/3 通关，说明该失败不能直接证明平台不可达。公开方案中的固定起跳时序与最终实现应分开评价。
 
 ## 真实错误与代码定位

@@ -1,0 +1,532 @@
+{
+  "scope": "Additional public-schedule browser probe; frozen original result and private oracle are unchanged",
+  "task_id": "neon-lane-racer",
+  "game_directory_sha256": "8406466bcccdaf6aa241fd799122e4bb06265d80f1847f8c6d452f4c98c43265",
+  "public_schedule": [
+    [
+      1000,
+      1
+    ],
+    [
+      2000,
+      0
+    ],
+    [
+      3000,
+      1
+    ],
+    [
+      4000,
+      2
+    ]
+  ],
+  "grounded_win_passes": 3,
+  "grounded_loss_passes": 3,
+  "replays": 3,
+  "rows": [
+    {
+      "replay": 0,
+      "scenario": "grounded-win",
+      "checkpoints": [
+        {
+          "id": "GR-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-1",
+          "action_index": 2,
+          "state": {
+            "status": "playing",
+            "lane": 0,
+            "elapsed_ms": 1087,
+            "passed": 1,
+            "collisions": 0,
+            "score": 100
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 100   Progress: 1087/5000ms   Passed: 1",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-2",
+          "action_index": 4,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 2095,
+            "passed": 2,
+            "collisions": 0,
+            "score": 200
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 200   Progress: 2095/5000ms   Passed: 2",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-3",
+          "action_index": 6,
+          "state": {
+            "status": "playing",
+            "lane": 2,
+            "elapsed_ms": 3087,
+            "passed": 3,
+            "collisions": 0,
+            "score": 300
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 300   Progress: 3087/5000ms   Passed: 3",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-4",
+          "action_index": 8,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 4095,
+            "passed": 4,
+            "collisions": 0,
+            "score": 400
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 400   Progress: 4095/5000ms   Passed: 4",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-WON",
+          "action_index": 9,
+          "state": {
+            "status": "won",
+            "lane": 1,
+            "elapsed_ms": 5007,
+            "passed": 4,
+            "collisions": 0,
+            "score": 500
+          },
+          "event_types": [
+            "game_won"
+          ],
+          "ui": {
+            "scoreText": "Score: 500   Passed: 4   Collisions: 0",
+            "statusText": "Won"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    },
+    {
+      "replay": 0,
+      "scenario": "grounded-loss",
+      "checkpoints": [
+        {
+          "id": "GR-LOSS-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-LOST",
+          "action_index": 1,
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1008,
+            "passed": 0,
+            "collisions": 1,
+            "score": 0
+          },
+          "event_types": [
+            "car_crashed"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Passed: 0   Collisions: 1",
+            "statusText": "Lost"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    },
+    {
+      "replay": 1,
+      "scenario": "grounded-win",
+      "checkpoints": [
+        {
+          "id": "GR-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-1",
+          "action_index": 2,
+          "state": {
+            "status": "playing",
+            "lane": 0,
+            "elapsed_ms": 1088,
+            "passed": 1,
+            "collisions": 0,
+            "score": 100
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 100   Progress: 1088/5000ms   Passed: 1",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-2",
+          "action_index": 4,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 2096,
+            "passed": 2,
+            "collisions": 0,
+            "score": 200
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 200   Progress: 2096/5000ms   Passed: 2",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-3",
+          "action_index": 6,
+          "state": {
+            "status": "playing",
+            "lane": 2,
+            "elapsed_ms": 3088,
+            "passed": 3,
+            "collisions": 0,
+            "score": 300
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 300   Progress: 3088/5000ms   Passed: 3",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-4",
+          "action_index": 8,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 4096,
+            "passed": 4,
+            "collisions": 0,
+            "score": 400
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 400   Progress: 4096/5000ms   Passed: 4",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-WON",
+          "action_index": 9,
+          "state": {
+            "status": "won",
+            "lane": 1,
+            "elapsed_ms": 5008,
+            "passed": 4,
+            "collisions": 0,
+            "score": 500
+          },
+          "event_types": [
+            "game_won"
+          ],
+          "ui": {
+            "scoreText": "Score: 500   Passed: 4   Collisions: 0",
+            "statusText": "Won"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    },
+    {
+      "replay": 1,
+      "scenario": "grounded-loss",
+      "checkpoints": [
+        {
+          "id": "GR-LOSS-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-LOST",
+          "action_index": 1,
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1008,
+            "passed": 0,
+            "collisions": 1,
+            "score": 0
+          },
+          "event_types": [
+            "car_crashed"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Passed: 0   Collisions: 1",
+            "statusText": "Lost"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    },
+    {
+      "replay": 2,
+      "scenario": "grounded-win",
+      "checkpoints": [
+        {
+          "id": "GR-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-1",
+          "action_index": 2,
+          "state": {
+            "status": "playing",
+            "lane": 0,
+            "elapsed_ms": 1088,
+            "passed": 1,
+            "collisions": 0,
+            "score": 100
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 100   Progress: 1088/5000ms   Passed: 1",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-2",
+          "action_index": 4,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 2096,
+            "passed": 2,
+            "collisions": 0,
+            "score": 200
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 200   Progress: 2096/5000ms   Passed: 2",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-3",
+          "action_index": 6,
+          "state": {
+            "status": "playing",
+            "lane": 2,
+            "elapsed_ms": 3088,
+            "passed": 3,
+            "collisions": 0,
+            "score": 300
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 300   Progress: 3088/5000ms   Passed: 3",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-PASS-4",
+          "action_index": 8,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 4096,
+            "passed": 4,
+            "collisions": 0,
+            "score": 400
+          },
+          "event_types": [
+            "obstacle_passed"
+          ],
+          "ui": {
+            "scoreText": "Score: 400   Progress: 4096/5000ms   Passed: 4",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-WON",
+          "action_index": 9,
+          "state": {
+            "status": "won",
+            "lane": 1,
+            "elapsed_ms": 5008,
+            "passed": 4,
+            "collisions": 0,
+            "score": 500
+          },
+          "event_types": [
+            "game_won"
+          ],
+          "ui": {
+            "scoreText": "Score: 500   Passed: 4   Collisions: 0",
+            "statusText": "Won"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    },
+    {
+      "replay": 2,
+      "scenario": "grounded-loss",
+      "checkpoints": [
+        {
+          "id": "GR-LOSS-START",
+          "action_index": 0,
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "passed": 0,
+            "collisions": 0,
+            "score": 0
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Progress: 0/5000ms   Passed: 0",
+            "statusText": "Playing"
+          }
+        },
+        {
+          "id": "GR-LOST",
+          "action_index": 1,
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1008,
+            "passed": 0,
+            "collisions": 1,
+            "score": 0
+          },
+          "event_types": [
+            "car_crashed"
+          ],
+          "ui": {
+            "scoreText": "Score: 0   Passed: 0   Collisions: 1",
+            "statusText": "Lost"
+          }
+        }
+      ],
+      "page_errors": [],
+      "console_errors": []
+    }
+  ]
+}

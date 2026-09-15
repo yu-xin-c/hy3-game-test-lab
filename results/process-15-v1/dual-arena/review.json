@@ -1,0 +1,100 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": false,
+    "process_correct": false,
+    "first_error_step": 2,
+    "apparent_pass_with_flaw": true,
+    "findings": [
+      {
+        "step_id": 2,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "Plan step 2 claims '每次前进发射 player_moved 事件' (every advance emits player_moved). Code emits player_moved only on the initiating page (movePrimary/moveSecondary). The receiving side (onMessage 'player_moved') updates the remote position but never emits a player_moved event into its own log. In loss-path traces the primary page shows p2_position advancing 1→2→3 with an empty events array, and checkpoint DA-CP-LOST fails because player_moved is 'missing'. This contradicts the plan's universal emission claim and the brief's listing of player_moved as a required supported event.",
+        "file": "game.js",
+        "excerpt": "      case 'player_moved':\n        if (msg.actor === 'primary') {\n          state.p1_position = msg.position;\n          if (state.p1_position >= TARGET && state.winner === null) setWin('primary');\n        } else if (msg.actor === 'secondary') {\n          state.p2_position = msg.position;\n          if (state.p2_position >= TARGET && state.winner === null) setWin('secondary');\n        }\n        break;",
+        "scenario_id": "loss-path",
+        "action_index": 2
+      },
+      {
+        "step_id": 6,
+        "kind": "invalid_assumption",
+        "status": "supported_defect",
+        "explanation": "Plan step 6 proposed winner as a union type 'string 或 null' and the manifest encodes it as an array [\"string\",\"null\"]. The manifest contract validator rejects array union types for field 'type' (only single JSON types allowed). This makes game.manifest.json non-conformant (contract_pass=false), confirmed by the contract finding. A valid manifest is required by the brief/auto-test interface, so this is a real deliverable defect traceable to step 6's assumption that union types are acceptable.",
+        "file": "game.manifest.json",
+        "excerpt": "\"winner\": { \"type\": [\"string\", \"null\"], \"description\": \"获胜方 primary/secondary 或 null\" }",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "Scenario failures report connected expected 2/0 but actual true/false (DA-CP-MID, DA-CP-WON, DA-CP-LOST, DA-CP-RESET). The public brief only requires 'connected' to exist in state; the manifest defines it as boolean. The eval's numeric expectation (a connected-player count) is a private rule not derivable from the public brief, so these diffs are most likely private-rule false positives rather than code defects against public requirements.",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "win-path",
+        "action_index": 2
+      }
+    ],
+    "limits": [
+      "Generation had no browser execution; conclusions rely on the contract validator output and supplied traces, which the harness notes are not human ground truth.",
+      "The player_moved-on-receiver gap is inferred from the primary-page trace; the brief does not explicitly mandate that the receiving page re-emit player_moved, so this finding leans on the plan's universal claim plus the eval's event expectation.",
+      "connected numeric expectations are treated as private-rule false positives because the public brief does not specify connected's value type; they are not counted as supported defects.",
+      "Restart and win/loss state transitions themselves match the brief (traces show correct status/winner/positions); only the manifest validity and event-log completeness are defective."
+    ]
+  },
+  "findings": [
+    {
+      "step_id": 2,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "Plan step 2 claims '每次前进发射 player_moved 事件' (every advance emits player_moved). Code emits player_moved only on the initiating page (movePrimary/moveSecondary). The receiving side (onMessage 'player_moved') updates the remote position but never emits a player_moved event into its own log. In loss-path traces the primary page shows p2_position advancing 1→2→3 with an empty events array, and checkpoint DA-CP-LOST fails because player_moved is 'missing'. This contradicts the plan's universal emission claim and the brief's listing of player_moved as a required supported event.",
+      "file": "game.js",
+      "excerpt": "      case 'player_moved':\n        if (msg.actor === 'primary') {\n          state.p1_position = msg.position;\n          if (state.p1_position >= TARGET && state.winner === null) setWin('primary');\n        } else if (msg.actor === 'secondary') {\n          state.p2_position = msg.position;\n          if (state.p2_position >= TARGET && state.winner === null) setWin('secondary');\n        }\n        break;",
+      "scenario_id": "loss-path",
+      "action_index": 2,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 188,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": 6,
+      "kind": "invalid_assumption",
+      "status": "supported_defect",
+      "explanation": "Plan step 6 proposed winner as a union type 'string 或 null' and the manifest encodes it as an array [\"string\",\"null\"]. The manifest contract validator rejects array union types for field 'type' (only single JSON types allowed). This makes game.manifest.json non-conformant (contract_pass=false), confirmed by the contract finding. A valid manifest is required by the brief/auto-test interface, so this is a real deliverable defect traceable to step 6's assumption that union types are acceptable.",
+      "file": "game.manifest.json",
+      "excerpt": "\"winner\": { \"type\": [\"string\", \"null\"], \"description\": \"获胜方 primary/secondary 或 null\" }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 58,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "Scenario failures report connected expected 2/0 but actual true/false (DA-CP-MID, DA-CP-WON, DA-CP-LOST, DA-CP-RESET). The public brief only requires 'connected' to exist in state; the manifest defines it as boolean. The eval's numeric expectation (a connected-player count) is a private rule not derivable from the public brief, so these diffs are most likely private-rule false positives rather than code defects against public requirements.",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "win-path",
+      "action_index": 2,
+      "code_provenance": null,
+      "quote_verified": null
+    }
+  ]
+}

@@ -1,8 +1,44 @@
 {
   "scope": "Independent ASCII-grid source check of explicit public-plan coordinates, not complete plan correctness",
-  "reviewed_grid_plans": 1,
+  "reviewed_grid_plans": 2,
   "wrong_coordinate_plans": 1,
   "rows": [
+    {
+      "id": "maze-collector",
+      "step_id": 1,
+      "claims": [
+        {
+          "symbol": "S",
+          "claimed": {
+            "x": 1,
+            "y": 1
+          },
+          "actual": [
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "valid": true
+        },
+        {
+          "symbol": "E",
+          "claimed": {
+            "x": 5,
+            "y": 1
+          },
+          "actual": [
+            {
+              "x": 5,
+              "y": 1
+            }
+          ],
+          "valid": true
+        }
+      ],
+      "wrong_symbols": [],
+      "status": "checked_explicit_coordinate_claims_only"
+    },
     {
       "id": "key-door-escape",
       "step_id": 1,

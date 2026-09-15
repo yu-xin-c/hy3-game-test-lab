@@ -1,0 +1,212 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "meteor-survivor",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "MS-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "MS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MS-CP-MID",
+          "action_index": 6,
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "lane": 0,
+              "elapsed_ms": 3000,
+              "wave": 3,
+              "score": 300,
+              "best_score": 300
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "wave_survived",
+              "leaderboard_updated"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MS-CP-WON",
+          "action_index": 8,
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "lane": 0,
+              "elapsed_ms": 5000,
+              "wave": 4,
+              "score": 500,
+              "best_score": 500
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_won",
+              "leaderboard_updated"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MS-CP-WON-UI",
+          "action_index": 9,
+          "layer": "L3",
+          "requirement_ids": [
+            "MS-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "meteor-survivor-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "MS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MS-CP-LOST",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "lane": 1,
+              "elapsed_ms": 1000,
+              "wave": 1,
+              "score": 0,
+              "best_score": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "meteor_hit"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "meteor-survivor-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "MS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "MS-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "lane": 1,
+              "elapsed_ms": 0,
+              "wave": 0,
+              "score": 0,
+              "best_score": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

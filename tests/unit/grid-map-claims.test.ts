@@ -15,4 +15,11 @@ describe("ASCII-map plan coordinates", () => {
   it("rejects malformed public grids", () => {
     expect(() => checkGridMapClaims("```text\n#S#\n##\n```", "S(1,0)")).toThrow("Non-rectangular");
   });
+  it("checks symbol-assignment prose for a normal maze plan", () => {
+    const maze = "```text\n#######\n#S.C.E#\n#.#.#.#\n#C...C#\n#######\n```";
+    expect(checkGridMapClaims(maze, "'S'=起点(1,1)、'C'=金币(3,1)(1,3)(5,3)、'E'=出口(5,1)")).toEqual([
+      { symbol: "S", claimed: { x: 1, y: 1 }, actual: [{ x: 1, y: 1 }], valid: true },
+      { symbol: "E", claimed: { x: 5, y: 1 }, actual: [{ x: 5, y: 1 }], valid: true }
+    ]);
+  });
 });

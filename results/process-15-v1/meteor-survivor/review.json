@@ -1,0 +1,100 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": null,
+    "process_correct": true,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "win-path 被判 L2/L3 失败，但 trace 显示玩家在 992ms 经 LEFT 切回轨道1（流星 1000ms 落轨道1），游戏于 1000ms 正确触发 meteor_hit 并置 lost。该行为完全符合需求‘与任一流星同轨时立即失败’。评测期望 won/score 500 与自身回放输入（把玩家送入流星轨道）矛盾，属私有评测回放/检查点误报，非代码缺陷。",
+        "file": "game.js",
+        "excerpt": "if (state.lane === w.lane) {\n        state.elapsed_ms = w.time;\n        state.status = \"lost\";\n        emit(\"meteor_hit\", { lane: w.lane, wave: processedWaves + 1 });\n        return;\n      }",
+        "scenario_id": "win-path",
+        "action_index": 4
+      },
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "loss-path 在 action_index 1（elapsed 992ms）断言已 lost 且含 meteor_hit，但公开需求时间表为 1000ms 流星落轨道1，游戏正确保留玩家至 elapsed >= 1000ms 才判负。评测观察点（992ms）早于实际触发时刻，属检查点错位误报；玩家若停留在轨道1 将在 1000ms 被正确判负。",
+        "file": "game.js",
+        "excerpt": "while (\n      processedWaves < METEOR_SCHEDULE.length &&\n      elapsed >= METEOR_SCHEDULE[processedWaves].time\n    ) {",
+        "scenario_id": "loss-path",
+        "action_index": 1
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "实现摘要称将‘每帧同轨即败’改为‘落点瞬时结算’以避免不可胜。但方案 step3 验证本就要求‘1000ms 前切到轨道0 则无命中继续’，即方案从未主张流星持续占位；代码与方案意图一致，不存在方案错误，故 first_error_step 为 null，该注释不构成过程偏差。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "执行证据中的 win/loss 失败来自私有评测回放，其输入序列（win-path 把玩家送入轨道1）与期望结果自相矛盾，不能据此认定游戏有缺陷（固定路径失败不证明不可玩）。",
+      "实现摘要自承 performance.now()/requestAnimationFrame 与评测器虚拟时钟的驱动方式未经验证；但 restart-path 在真实评测环境中 L1+L2 通过，说明时间推进与事件接口实际可用。",
+      "缺少一次由正确驱动获得 clean win（4 波全躲+生存到 5000ms）的端到端执行证据，故 final_correct 取 null，而非判定游戏错误。",
+      "best_score 在 Restart/reset 时清零，符合‘新的评测场景从空榜单开始’；单局内获胜更新为 500 符合需求，未发现明确边界缺陷。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "win-path 被判 L2/L3 失败，但 trace 显示玩家在 992ms 经 LEFT 切回轨道1（流星 1000ms 落轨道1），游戏于 1000ms 正确触发 meteor_hit 并置 lost。该行为完全符合需求‘与任一流星同轨时立即失败’。评测期望 won/score 500 与自身回放输入（把玩家送入流星轨道）矛盾，属私有评测回放/检查点误报，非代码缺陷。",
+      "file": "game.js",
+      "excerpt": "if (state.lane === w.lane) {\n        state.elapsed_ms = w.time;\n        state.status = \"lost\";\n        emit(\"meteor_hit\", { lane: w.lane, wave: processedWaves + 1 });\n        return;\n      }",
+      "scenario_id": "win-path",
+      "action_index": 4,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 127,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "loss-path 在 action_index 1（elapsed 992ms）断言已 lost 且含 meteor_hit，但公开需求时间表为 1000ms 流星落轨道1，游戏正确保留玩家至 elapsed >= 1000ms 才判负。评测观察点（992ms）早于实际触发时刻，属检查点错位误报；玩家若停留在轨道1 将在 1000ms 被正确判负。",
+      "file": "game.js",
+      "excerpt": "while (\n      processedWaves < METEOR_SCHEDULE.length &&\n      elapsed >= METEOR_SCHEDULE[processedWaves].time\n    ) {",
+      "scenario_id": "loss-path",
+      "action_index": 1,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 122,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "实现摘要称将‘每帧同轨即败’改为‘落点瞬时结算’以避免不可胜。但方案 step3 验证本就要求‘1000ms 前切到轨道0 则无命中继续’，即方案从未主张流星持续占位；代码与方案意图一致，不存在方案错误，故 first_error_step 为 null，该注释不构成过程偏差。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": null,
+      "quote_verified": null
+    }
+  ]
+}

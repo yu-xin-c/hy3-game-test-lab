@@ -1,6 +1,9 @@
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { ProcessReview, SolutionPlan } from "../src/contracts/process-review";
+import { GameTaskOracleSchema, GameTaskPlanSchema } from "../src/contracts/game-tasks";
+import { GameManifestSchema } from "../src/contracts/generation";
+import { assertGameManifestMatchesTask } from "../src/contracts/task-adapter";
 import { contentHash, reconstructGeneration } from "../src/evaluation/generation-provenance";
 
 const at = process.argv.indexOf("--root");
@@ -25,6 +28,14 @@ for (const id of scope.selected_ids) {
   for (const name of names) bundle += name + "\0" + game[name] + "\0";
   const browser = await json(resolve(dir, "browser/result.json"));
   if (contentHash(bundle) !== browser.input_hashes.game_directory_sha256) throw new Error(`Executed game changed: ${id}`);
+  const taskPlan = GameTaskPlanSchema.parse(await json(resolve(dir, "task/test-plan.json")));
+  const taskOracle = GameTaskOracleSchema.parse(await json(resolve(dir, "task/oracle.private.json")));
+  let currentContractConformant = false, currentContractError: string | null = null;
+  try {
+    const manifest = GameManifestSchema.parse(JSON.parse(game["game.manifest.json"]!));
+    assertGameManifestMatchesTask(taskPlan, taskOracle, manifest);
+    currentContractConformant = true;
+  } catch (error) { currentContractError = String((error as Error).message); }
   for (const call of ["plan-call", "generation-call", "review-call"]) {
     const receipt = await json(resolve(dir, call, "receipt.json"));
     if (receipt.model !== "hy3" || receipt.model_verified !== true || receipt.prompt_sha256 !== contentHash(await readFile(resolve(dir, call, "prompt.txt"), "utf8"))) throw new Error(`Invalid Hy3 ${call} receipt: ${id}`);
@@ -35,13 +46,16 @@ for (const id of scope.selected_ids) {
   const paths = browser.scenarios.filter((s: any) => s.replay_index === 0);
   rows.push({ id, source: reused.get(id) ?? `results/process-15-v1/${id}`, difficulty: browser.difficulty.level, category: browser.category,
     plan_steps: plan.steps.length, browser_paths: paths.length, replayed_runs: browser.scenarios.length,
+    contract_conformant: currentContractConformant, contract_error: currentContractError,
+    original_browser_contract_conformant: browser.contract.conformant === true,
     raw_final_paths_passed: paths.filter((s: any) => s.evaluation.final_outcome_correct === true).length,
     raw_process_paths_passed: paths.filter((s: any) => s.evaluation.process_correct === true).length,
     hy3_final_correct: review.final_correct, hy3_process_correct: review.process_correct, hy3_first_error_plan_step: review.first_error_step,
     hy3_apparent_pass_with_flaw: review.apparent_pass_with_flaw,
     hy3_supported_defect_types: review.findings.filter(f => f.status === "supported_defect").map(f => f.kind) });
 }
-const counts = (list: any[]) => ({ games: list.length, raw_final_paths_passed: list.reduce((n, r) => n + r.raw_final_paths_passed, 0),
+const counts = (list: any[]) => ({ games: list.length, contract_conformant_games: list.filter(r => r.contract_conformant).length,
+  raw_final_paths_passed: list.reduce((n, r) => n + r.raw_final_paths_passed, 0),
   raw_browser_paths: list.reduce((n, r) => n + r.browser_paths, 0), hy3_final_true: list.filter(r => r.hy3_final_correct === true).length,
   hy3_final_known: list.filter(r => r.hy3_final_correct !== null).length, hy3_process_true: list.filter(r => r.hy3_process_correct === true).length,
   hy3_process_known: list.filter(r => r.hy3_process_correct !== null).length });
@@ -55,10 +69,10 @@ const summary = { scope: "First 15 frozen tasks; progress only, not full answer/
 await writeFile(resolve(root, "progress-summary.json"), JSON.stringify(summary, null, 2) + "\n");
 await writeFile(resolve(root, "PROGRESS.md"), ["# 15 题生成过程进度", "",
   `${rows.length}/15 题已完成混元先写编号方案、再生成代码、Chromium 真输入与混元复核。前三款原始方案及另两款已完成的生成记录保留原件，新批次只生成剩余 10 款。`, "",
-  "| 题目 | 难度 | 原方案步数 | 浏览器原始终局路径 | Hy3 最终意见 | Hy3 过程意见 | 原方案首错意见 |", "| --- | --- | ---: | --- | --- | --- | --- |",
-  ...rows.map(r => `| ${r.id} | ${r.difficulty} | ${r.plan_steps} | ${r.raw_final_paths_passed}/${r.browser_paths} | ${r.hy3_final_correct === null ? "未知" : r.hy3_final_correct ? "正确" : "错误"} | ${r.hy3_process_correct === null ? "未知" : r.hy3_process_correct ? "正确" : "错误"} | ${r.hy3_first_error_plan_step ?? "—"} |`), "",
+  "| 题目 | 难度 | 原方案步数 | 合同 | 浏览器原始终局路径 | Hy3 最终意见 | Hy3 过程意见 | 原方案首错意见 |", "| --- | --- | ---: | --- | --- | --- | --- | --- |",
+  ...rows.map(r => `| ${r.id} | ${r.difficulty} | ${r.plan_steps} | ${r.contract_conformant ? "合规" : "不合规"} | ${r.raw_final_paths_passed}/${r.browser_paths} | ${r.hy3_final_correct === null ? "未知" : r.hy3_final_correct ? "正确" : "错误"} | ${r.hy3_process_correct === null ? "未知" : r.hy3_process_correct ? "正确" : "错误"} | ${r.hy3_first_error_plan_step ?? "—"} |`), "",
   `仍有 ${pending.length} 题未完成。前 15 题 D1/D2/D3 为 4/6/5，动作/益智/创意/模拟为 6/5/2/2，没有教育类；不能外推整个 96 题。`, "",
-  "表内浏览器通过数沿用原检查，是原始执行结果；Hy3 最终与过程栏是模型意见。公开判据来源核对虽完成 15/15，模型引文并不自动证明取值或比较方式成立，不能据此称为正式正确率。独立方案步骤标准另见 ../plan-claims-cross-game-v2/REPORT.md 和 ../signal-reset-process-v1/REPORT.md。", "",
+  "合同栏用当前严格 schema 与冻结题目接口重新检查；旧浏览器记录的合同判断另留在 progress-summary.json，二者有差异时不覆盖旧结果。浏览器通过数沿用原检查，是原始执行结果；Hy3 最终与过程栏是模型意见。公开判据来源核对虽完成 15/15，模型引文并不自动证明取值或比较方式成立，不能据此称为正式正确率。独立方案步骤标准另见 ../plan-claims-cross-game-v2/REPORT.md、GRID-PLAN-CLAIMS.md 和 ../signal-reset-process-v1/REPORT.md。", "",
   "操作首错、代码堆栈/Write/Edit 来源与公开编号方案首错分开。已修复的早期方案错误和最终实现缺陷也分别记录。", ""
 ].join("\n"));
 console.log(JSON.stringify({ selected_games: 15, completed_games: rows.length, pending: pending.length, counts: summary.counts }));

@@ -1,0 +1,126 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Dual Arena
+
+## 游戏目标
+
+两个本地页面加入同一房间，先走到第 3 格的玩家获胜。
+
+## 完整玩法
+
+主页面创建固定房间，副页面加入。P1 用 D 前进，P2 用 L 前进；每次只前进一格，并通过 BroadcastChannel 同步到两个页面。
+
+评测会同时打开两个页面；只能用 BroadcastChannel 做本机同步，不得访问服务器。
+
+## 胜负与重开
+
+- 任一玩家位置首次到 3 时比赛结束；主页面按 P1 的结果显示 won 或 lost。
+- P2 先到 3 时，主页面显示 lost，两个页面的 winner 都是 secondary。
+- 主页面 Restart 会同步清空双方位置和连接状态并回到菜单。
+
+## 界面与反馈
+
+固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。
+
+## 固定规则
+
+相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。
+
+## 自动测试接口
+
+- 界面类型：canvas2d；主要区域：`#arena`。
+- HUD：`[data-testid="score"]` 和 `[data-testid="status"]`。
+- state 至少包含：`status`、`connected`、`p1_position`、`p2_position`、`winner`。
+- 事件：`room_created`、`player_joined`、`player_moved`、`match_won`、`game_reset`。
+- 控件：
+  - `START`（主页面）：mouse 操作 #start-btn
+  - `JOIN`（副页面）：mouse 操作 #join-btn
+  - `P1_STEP`（主页面）：键盘 KeyD press
+  - `P2_STEP`（副页面）：键盘 KeyL press
+  - `RESTART`（主页面）：mouse 操作 #restart-btn
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"主页面创建固定房间，副页面加入，仅用 BroadcastChannel 在本机同步，不访问服务器。","implementation":"使用固定 channel 名 'dual-arena-room' 的 BroadcastChannel。primary 页面点击 #start-btn 触发 START，发出 room_created 事件并等待加入；secondary 页面点击 #join-btn 发出 player_joined，primary 收到后将 state.connected 置 true 并回发确认。两页各自维护 p1_position、p2_position、connected、winner。","verification":"同源打开两页，secondary 点 JOIN 后，读取 window.__GAMETESTLAB__.observe().state.connected === true，且 getEvents({afterSeq:0}) 中存在 type=player_joined 的事件。"},{"id":2,"requirement":"P1 用 D 前进一格，P2 用 L 前进一格，每步只进一格并通过 BroadcastChannel 同步到两页。","implementation":"primary 监听 keydown code=KeyD，p1_position = min(p1_position+1, 3)，发 player_moved{actor:'primary', position}；secondary 监听 keydown code=KeyL，p2_position = min(p2_position+1, 3)，发 player_moved{actor:'secondary', position}。两页收到广播后更新对应 position。每次前进发射 player_moved 事件。","verification":"primary 按一次 D，检查 observe().state.p1_position === 1 且存在 player_moved；secondary 页 observe().state.p1_position === 1（证明已同步）。"},{"id":3,"requirement":"任一玩家位置首次到达 3 时比赛结束；主页面按 P1 结果显示 won 或 lost，winner 为 primary 或 secondary；P2 先到 3 则主页面 lost 且两页 winner 都为 secondary。","implementation":"当 p1_position 或 p2_position 首次变为 3（本地或经广播），判定胜负：p1 先到→status='won', winner='primary'；p2 先到→status='lost', winner='secondary'；发射 match_won{payload:{winner}}。status 进入 won/lost 后忽略所有移动输入，不再更新 position 与胜负。","verification":"让 secondary 连续按 L 三次使 p2 先到 3，主页面 observe().status==='lost' 且 state.winner==='secondary'，两页 winner 一致；此时再按 D，p1_position 不再变化。"},{"id":4,"requirement":"主页面 Restart 同步清空双方位置与连接状态并回到菜单，局内与终局均可点击。","implementation":"#restart-btn 点击将 p1_position=p2_position=0、winner=null、status='menu'、connected=false，并通过 BroadcastChannel 广播 game_reset；两页都回到菜单，可重新 JOIN。reset({seed}) 同样复位并 event_epoch++，从 seq=1 重新记录 game_reset 事件。","verification":"终局点 Restart 后两页 status==='menu'、positions 为 0、connected 为 false；observe().event_epoch 较之前增加，getEvents 首条为 type=game_reset。"},{"id":5,"requirement":"固定 800×600 视口，主区域为 canvas2d 的 #arena；HUD 始终显示进度/分数与状态（Menu/Playing/Won/Lost），菜单、游戏区、终局、Restart 均可见。","implementation":"canvas 尺寸 800×600，绘制两条 0-3 格赛道并按 position 渲染棋子。DOM HUD：[data-testid=score] 显示 'P1: x/3  P2: y/3'（不得省略进度），[data-testid=status] 显示当前状态文本（忽略大小写与连续空白）。终局与菜单状态均保留 #restart-btn 可见。","verification":"读取 DOM：score 文本非空且含两玩家进度；status 文本匹配 /^(menu|playing|won|lost)$/i；#arena 为 canvas 元素且宽高 800×600。"},{"id":6,"requirement":"输出 index.html、styles.css、game.js、game.manifest.json；manifest 覆盖 controls/hud/state/event，并提供 window.__GAMETESTLAB__ 只读观察接口（protocol gametestlab/2）。","implementation":"manifest：schema_version 'gametestlab.game-manifest.v3'，surface 'canvas2d'，viewport 800×600，controls 含 START/JOIN/P1_STEP/P2_STEP/RESTART（mouse 用 selector，keyboard 用 code：KeyD/KeyL），hud_selectors score/status，state_schema.fields 含 status(string)/connected(boolean)/p1_position(integer)/p2_position(integer)/winner(string 或 null)，event_schema 含 room_created/player_joined/player_moved/match_won/game_reset。window.__GAMETESTLAB__ 实现 protocol、isReady()、reset({seed})、observe()、getEvents({afterSeq})，事件 seq 从 1 连续递增，所有时间逻辑由 performance/requestAnimationFrame 驱动。","verification":"校验 manifest JSON 字段完整且不超范围；浏览器中 typeof window.__GAMETESTLAB__.observe==='function'，isReady()===true，observe().protocol==='gametestlab/2'，getEvents 返回可序列化普通 JSON。"}]}

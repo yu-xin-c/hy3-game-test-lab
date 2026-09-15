@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #05070f;
+  color: #dfe7ff;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#app {
+  width: 800px;
+}
+
+#hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: #10182e;
+  font-size: 18px;
+  border: 1px solid #2a3b66;
+  border-bottom: none;
+}
+
+#hud [data-testid="score"] {
+  font-weight: bold;
+  color: #74f0d0;
+}
+
+#hud [data-testid="status"] {
+  font-weight: bold;
+  color: #ffd27a;
+}
+
+#game-canvas {
+  display: block;
+  width: 800px;
+  height: 600px;
+  background: #0b1020;
+  border: 1px solid #2a3b66;
+}
+
+#controls {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+#controls button {
+  padding: 10px 22px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #1d2b52;
+  color: #dfe7ff;
+  border: 1px solid #3a4f86;
+  border-radius: 6px;
+}
+
+#controls button:hover {
+  background: #26396b;
+}
+
+#controls button:active {
+  background: #324a86;
+}

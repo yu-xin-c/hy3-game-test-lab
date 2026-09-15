@@ -1,0 +1,123 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Meteor Survivor
+
+## 游戏目标
+
+在三条轨道中躲过 5 秒流星雨并刷新本局榜单。
+
+## 完整玩法
+
+玩家从轨道1开始。1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1。每躲过一波得 100 分，生存到 5000ms 再得 100 分。
+
+## 胜负与重开
+
+- 无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。
+- 与任一流星同轨时立即失败。
+- Restart 清空当前局；新的评测场景从空榜单开始。
+
+## 界面与反馈
+
+固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。
+
+## 固定规则
+
+相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。
+
+## 自动测试接口
+
+- 界面类型：canvas2d；主要区域：`#game-canvas`。
+- HUD：`[data-testid="score"]` 和 `[data-testid="status"]`。
+- state 至少包含：`status`、`lane`、`elapsed_ms`、`wave`、`score`、`best_score`。
+- 事件：`game_started`、`lane_changed`、`wave_survived`、`meteor_hit`、`leaderboard_updated`、`game_won`、`game_reset`。
+- 控件：
+  - `START`：mouse 操作 #start-btn
+  - `LEFT`：键盘 ArrowLeft press
+  - `RIGHT`：键盘 ArrowRight press
+  - `RESTART`：mouse 操作 #restart-btn
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"固定 800×600 视口与界面分区，菜单/游戏/终局/Restart 完整可见，HUD 含分数与状态。","implementation":"index.html 用 <canvas id=\"game-canvas\" width=\"800\" height=\"600\"> 作主区域；HUD 用 [data-testid=\"score\"] 与 [data-testid=\"status\"] 显示分数与状态；#start-btn 与 #restart-btn 始终在 DOM 中可点击。styles.css 固定 800×600 且四区布局。","verification":"浏览器打开 index.html，断言存在 #game-canvas、#start-btn、#restart-btn、[data-testid=score]、[data-testid=status]，且画布宽高属性为 800 与 600。"},{"id":2,"requirement":"三条轨道（0/1/2）与虚拟时间驱动推进，相同 seed 产生相同时间表。","implementation":"游戏循环用 requestAnimationFrame 配合 performance.now() 计算 elapsed_ms；start 时记录 t0，每帧 elapsed_ms = now - t0。流星固定时间表为 1000→轨道1、2000→轨道0、3000→轨道2、4000→轨道1，seed 相同则初始状态与时间序一致。","verification":"调用 __GAMETESTLAB__.reset({seed:1}) 后观察 elapsed_ms 随时间增长；相同 seed 连续两次 reset，断言 observe().state 的初始 lane 与时间表相等。"},{"id":3,"requirement":"流星按时间表落轨，与玩家同轨立即失败并触发 meteor_hit。","implementation":"elapsed_ms 跨过 1000/2000/3000/4000ms 时对应轨道落流星；每帧若 player.lane === meteor.lane 则 status='lost'，发出 meteor_hit，停止计时与计分。","verification":"虚拟时间推进至 1000ms 且玩家停在轨道1，断言 status='lost'、最近事件含 meteor_hit；1000ms 前用 ArrowLeft 切到轨道0 则无命中继续。"},{"id":4,"requirement":"躲过一波 +100 分、wave 递增；生存到 5000ms 获胜共 500 分并刷新 best_score。","implementation":"每躲过一波（越过时间点且无碰撞）wave+1、score+100、发 wave_survived；elapsed_ms>=5000 且无碰撞则 status='won'，score=500（4波×100+生存100），best_score=500，发 game_won 与 leaderboard_updated。","verification":"虚拟时间连续推进到 5000ms 且玩家避开所有当波轨道，断言 score=500、best_score=500、status='won'，事件含 4×wave_survived 与 game_won。"},{"id":5,"requirement":"状态字段与事件接口完整，终局后输入不再改变分数/进度/胜负。","implementation":"state 含 status、lane、elapsed_ms、wave、score、best_score；事件含 game_started、lane_changed、wave_survived、meteor_hit、leaderboard_updated、game_won、game_reset 且 seq 从1连续。终局后忽略 LEFT/RIGHT/START，仅 RESTART 生效。","verification":"胜利/失败后发出 ArrowLeft，断言 observe().state 的 lane、score、status 与终局快照一致（未变化）。"},{"id":6,"requirement":"Restart 在局内与终局均可见可用，清空当前局并恢复菜单状态。","implementation":"#restart-btn 在 playing/won/lost 均存在可点；点击清零 score、wave、elapsed_ms，lane 回到 1，status='menu'，发 game_reset（event_epoch+1，seq 从1重记）。","verification":"进行中点击 #restart-btn，断言 status='menu'、score=0、lane=1、latest_event_seq 归 1 且含 game_reset；终局同样可重复执行。"},{"id":7,"requirement":"只读观察接口 window.__GAMETESTLAB__ 符合 gametestlab/2，不提供代替玩家操作的方法。","implementation":"暴露 protocol:'gametestlab/2'：isReady()、reset({seed})、observe() 返回 tick/status/state/event_epoch/latest_event_seq、getEvents({afterSeq}) 返回周期内 seq>afterSeq 事件；状态与事件均为可序列化 JSON；时间由 performance/rAF 驱动。","verification":"断言 typeof window.__GAMETESTLAB__.protocol==='gametestlab/2' 且 isReady() 为真；getEvents({afterSeq:0}) 顺序返回连续 seq 事件；接口不存在 start/left 等操作方法。"}]}

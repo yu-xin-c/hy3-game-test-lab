@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dual Arena</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="arena" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="score" data-testid="score">P1: 0/3  P2: 0/3</div>
+      <div id="status" data-testid="status">Menu</div>
+    </div>
+
+    <div id="menu">
+      <h1>Dual Arena</h1>
+      <p>分工游玩：两个同源页面加入同一房间，先走到第 3 格者获胜。</p>
+      <p>主页面（Primary）：点击 START 创建房间，游戏中按 <b>D</b> 前进一格。</p>
+      <p>副页面（Secondary）：点击 JOIN 加入房间，游戏中按 <b>L</b> 前进一格。</p>
+      <div>
+        <button id="start-btn" type="button">START (Primary)</button>
+        <button id="join-btn" type="button">JOIN (Secondary)</button>
+      </div>
+    </div>
+
+    <div id="controls">
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

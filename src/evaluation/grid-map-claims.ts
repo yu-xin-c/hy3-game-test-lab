@@ -21,6 +21,11 @@ export function checkGridMapClaims(brief: string, implementation: string): GridC
     // Later explicit corrections supersede earlier tentative coordinates.
     claims.set(found[1]!, { x: Number(found[2]), y: Number(found[3]) });
   }
+  for (const found of implementation.matchAll(/['"]([A-Z])['"]\s*=\s*[^'";\n]*?\(\s*(\d+)\s*,\s*(\d+)\s*\)/g)) {
+    // Also accept plan prose such as 'S'=起点(1,1). Repeated symbols like
+    // 'C'=金币(3,1)(1,3) are excluded below because their map position is not unique.
+    if (!claims.has(found[1]!)) claims.set(found[1]!, { x: Number(found[2]), y: Number(found[3]) });
+  }
   return [...claims].filter(([symbol]) => positions.get(symbol)?.length === 1).map(([symbol, claimed]) => {
     const actual = positions.get(symbol)!;
     return { symbol, claimed, actual, valid: actual.some(point => point.x === claimed.x && point.y === claimed.y) };

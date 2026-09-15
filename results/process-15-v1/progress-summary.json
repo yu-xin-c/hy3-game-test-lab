@@ -1,19 +1,11 @@
 {
   "scope": "First 15 frozen tasks; progress only, not full answer/process accuracy",
   "selected_games": 15,
-  "completed_games": 7,
+  "completed_games": 9,
   "pending": [
     {
-      "id": "dual-arena",
-      "stage": "planning"
-    },
-    {
-      "id": "meteor-survivor",
-      "stage": "not_started"
-    },
-    {
       "id": "room-five-in-row",
-      "stage": "not_started"
+      "stage": "generating"
     },
     {
       "id": "persistent-2048",
@@ -37,13 +29,14 @@
     }
   ],
   "counts": {
-    "games": 7,
-    "raw_final_paths_passed": 11,
-    "raw_browser_paths": 23,
+    "games": 9,
+    "contract_conformant_games": 3,
+    "raw_final_paths_passed": 12,
+    "raw_browser_paths": 29,
     "hy3_final_true": 3,
-    "hy3_final_known": 6,
-    "hy3_process_true": 4,
-    "hy3_process_known": 6
+    "hy3_final_known": 7,
+    "hy3_process_true": 5,
+    "hy3_process_known": 8
   },
   "difficulty_composition": {
     "D1": 4,
@@ -59,6 +52,7 @@
   "by_difficulty": {
     "D1": {
       "games": 3,
+      "contract_conformant_games": 0,
       "raw_final_paths_passed": 5,
       "raw_browser_paths": 10,
       "hy3_final_true": 1,
@@ -67,26 +61,29 @@
       "hy3_process_known": 3
     },
     "D2": {
-      "games": 2,
-      "raw_final_paths_passed": 4,
-      "raw_browser_paths": 6,
+      "games": 3,
+      "contract_conformant_games": 1,
+      "raw_final_paths_passed": 5,
+      "raw_browser_paths": 9,
       "hy3_final_true": 0,
       "hy3_final_known": 1,
-      "hy3_process_true": 1,
-      "hy3_process_known": 1
-    },
-    "D3": {
-      "games": 2,
-      "raw_final_paths_passed": 2,
-      "raw_browser_paths": 7,
-      "hy3_final_true": 2,
-      "hy3_final_known": 2,
       "hy3_process_true": 2,
       "hy3_process_known": 2
+    },
+    "D3": {
+      "games": 3,
+      "contract_conformant_games": 2,
+      "raw_final_paths_passed": 2,
+      "raw_browser_paths": 10,
+      "hy3_final_true": 2,
+      "hy3_final_known": 3,
+      "hy3_process_true": 2,
+      "hy3_process_known": 3
     }
   },
   "hy3_supported_defect_types": {
-    "implementation_mismatch": 6
+    "implementation_mismatch": 7,
+    "invalid_assumption": 1
   },
   "rows": [
     {
@@ -97,6 +94,9 @@
       "plan_steps": 6,
       "browser_paths": 4,
       "replayed_runs": 12,
+      "contract_conformant": false,
+      "contract_error": "Generated game does not match task target-rush:\n- control MISS.x_ratio does not match\n- control MISS.y_ratio does not match\n- control RESTART_KEY.key_event does not match",
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 4,
       "raw_process_paths_passed": 4,
       "hy3_final_correct": true,
@@ -113,6 +113,9 @@
       "plan_steps": 6,
       "browser_paths": 3,
       "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"properties\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"properties\\\"\"\n  }\n]",
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 0,
       "raw_process_paths_passed": 0,
       "hy3_final_correct": false,
@@ -132,6 +135,9 @@
       "plan_steps": 7,
       "browser_paths": 3,
       "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"fields\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"player\"\n    ],\n    \"message\": \"Unrecognized key: \\\"fields\\\"\"\n  }\n]",
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 3,
       "raw_process_paths_passed": 2,
       "hy3_final_correct": false,
@@ -150,6 +156,9 @@
       "plan_steps": 6,
       "browser_paths": 3,
       "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "Generated game does not match task platform-rescue:\n- control JUMP.key_event does not match\n- control RESTART_KEY.key_event does not match",
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 1,
       "raw_process_paths_passed": 1,
       "hy3_final_correct": null,
@@ -166,6 +175,9 @@
       "plan_steps": 6,
       "browser_paths": 4,
       "replayed_runs": 12,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 1,
       "raw_process_paths_passed": 1,
       "hy3_final_correct": true,
@@ -182,6 +194,9 @@
       "plan_steps": 7,
       "browser_paths": 3,
       "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      0,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]",
+      "original_browser_contract_conformant": false,
       "raw_final_paths_passed": 1,
       "raw_process_paths_passed": 0,
       "hy3_final_correct": false,
@@ -202,9 +217,53 @@
       "plan_steps": 6,
       "browser_paths": 3,
       "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
       "raw_final_paths_passed": 1,
       "raw_process_paths_passed": 1,
       "hy3_final_correct": true,
+      "hy3_process_correct": true,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": []
+    },
+    {
+      "id": "dual-arena",
+      "source": "results/process-15-v1/dual-arena",
+      "difficulty": "D3",
+      "category": "action",
+      "plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"string\",\n      \"number\",\n      \"integer\",\n      \"boolean\",\n      \"object\",\n      \"array\",\n      \"null\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"winner\",\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"string\\\"|\\\"number\\\"|\\\"integer\\\"|\\\"boolean\\\"|\\\"object\\\"|\\\"array\\\"|\\\"null\\\"\"\n  }\n]",
+      "original_browser_contract_conformant": false,
+      "raw_final_paths_passed": 0,
+      "raw_process_paths_passed": 0,
+      "hy3_final_correct": false,
+      "hy3_process_correct": false,
+      "hy3_first_error_plan_step": 2,
+      "hy3_apparent_pass_with_flaw": true,
+      "hy3_supported_defect_types": [
+        "implementation_mismatch",
+        "invalid_assumption"
+      ]
+    },
+    {
+      "id": "meteor-survivor",
+      "source": "results/process-15-v1/meteor-survivor",
+      "difficulty": "D2",
+      "category": "action",
+      "plan_steps": 7,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 1,
+      "raw_process_paths_passed": 1,
+      "hy3_final_correct": null,
       "hy3_process_correct": true,
       "hy3_first_error_plan_step": null,
       "hy3_apparent_pass_with_flaw": false,

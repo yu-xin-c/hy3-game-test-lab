@@ -18,7 +18,7 @@ for (const id of scope.selected_ids) {
     throw error;
   }
   if (!/```text\s*\n[#A-Z.\n]+```/.test(brief)) continue;
-  const step = plan.steps.find((item: any) => /\b[A-Z]\s*\(\d+,\s*\d+\)/.test(item.implementation));
+  const step = plan.steps.find((item: any) => checkGridMapClaims(brief, item.implementation).length > 0);
   if (!step) continue;
   const claims = checkGridMapClaims(brief, step.implementation);
   rows.push({ id, step_id: step.id, claims, wrong_symbols: claims.filter(c => !c.valid).map(c => c.symbol),

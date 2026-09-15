@@ -1,0 +1,115 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "canvas2d",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft",
+      "description": "向左切换轨道"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight",
+      "description": "向右切换轨道"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始并恢复菜单状态"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态：menu/playing/won/lost" },
+      "lane": { "type": "integer", "description": "玩家当前轨道，0/1/2" },
+      "elapsed_ms": { "type": "integer", "description": "已生存毫秒数" },
+      "wave": { "type": "integer", "description": "已躲过的流星波数" },
+      "score": { "type": "integer", "description": "本局得分" },
+      "best_score": { "type": "integer", "description": "本局榜单最佳得分" }
+    },
+    "required": ["status", "lane", "elapsed_ms", "wave", "score", "best_score"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "lane_changed",
+      "description": "玩家切换轨道",
+      "payload_fields": {
+        "lane": { "type": "integer", "description": "切换后的轨道" },
+        "prev_lane": { "type": "integer", "description": "切换前的轨道" },
+        "direction": { "type": "string", "description": "方向 left/right" }
+      }
+    },
+    {
+      "type": "wave_survived",
+      "description": "躲过一波流星",
+      "payload_fields": {
+        "wave": { "type": "integer", "description": "当前已躲过波数" },
+        "score": { "type": "integer", "description": "当前得分" },
+        "lane": { "type": "integer", "description": "本波流星所在轨道" }
+      }
+    },
+    {
+      "type": "meteor_hit",
+      "description": "与流星同轨被击中",
+      "payload_fields": {
+        "lane": { "type": "integer", "description": "被击中的轨道" },
+        "wave": { "type": "integer", "description": "第几波" }
+      }
+    },
+    {
+      "type": "leaderboard_updated",
+      "description": "榜单更新",
+      "payload_fields": {
+        "best_score": { "type": "integer", "description": "最新最佳得分" },
+        "score": { "type": "integer", "description": "本局得分" }
+      }
+    },
+    {
+      "type": "game_won",
+      "description": "生存到 5000ms 获胜",
+      "payload_fields": {
+        "score": { "type": "integer", "description": "最终得分" }
+      }
+    },
+    {
+      "type": "game_reset",
+      "description": "重置为菜单状态",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "重置使用的种子" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

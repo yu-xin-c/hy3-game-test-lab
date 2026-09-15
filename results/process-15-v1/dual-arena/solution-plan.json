@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "主页面创建固定房间，副页面加入，仅用 BroadcastChannel 在本机同步，不访问服务器。",
+      "implementation": "使用固定 channel 名 'dual-arena-room' 的 BroadcastChannel。primary 页面点击 #start-btn 触发 START，发出 room_created 事件并等待加入；secondary 页面点击 #join-btn 发出 player_joined，primary 收到后将 state.connected 置 true 并回发确认。两页各自维护 p1_position、p2_position、connected、winner。",
+      "verification": "同源打开两页，secondary 点 JOIN 后，读取 window.__GAMETESTLAB__.observe().state.connected === true，且 getEvents({afterSeq:0}) 中存在 type=player_joined 的事件。"
+    },
+    {
+      "id": 2,
+      "requirement": "P1 用 D 前进一格，P2 用 L 前进一格，每步只进一格并通过 BroadcastChannel 同步到两页。",
+      "implementation": "primary 监听 keydown code=KeyD，p1_position = min(p1_position+1, 3)，发 player_moved{actor:'primary', position}；secondary 监听 keydown code=KeyL，p2_position = min(p2_position+1, 3)，发 player_moved{actor:'secondary', position}。两页收到广播后更新对应 position。每次前进发射 player_moved 事件。",
+      "verification": "primary 按一次 D，检查 observe().state.p1_position === 1 且存在 player_moved；secondary 页 observe().state.p1_position === 1（证明已同步）。"
+    },
+    {
+      "id": 3,
+      "requirement": "任一玩家位置首次到达 3 时比赛结束；主页面按 P1 结果显示 won 或 lost，winner 为 primary 或 secondary；P2 先到 3 则主页面 lost 且两页 winner 都为 secondary。",
+      "implementation": "当 p1_position 或 p2_position 首次变为 3（本地或经广播），判定胜负：p1 先到→status='won', winner='primary'；p2 先到→status='lost', winner='secondary'；发射 match_won{payload:{winner}}。status 进入 won/lost 后忽略所有移动输入，不再更新 position 与胜负。",
+      "verification": "让 secondary 连续按 L 三次使 p2 先到 3，主页面 observe().status==='lost' 且 state.winner==='secondary'，两页 winner 一致；此时再按 D，p1_position 不再变化。"
+    },
+    {
+      "id": 4,
+      "requirement": "主页面 Restart 同步清空双方位置与连接状态并回到菜单，局内与终局均可点击。",
+      "implementation": "#restart-btn 点击将 p1_position=p2_position=0、winner=null、status='menu'、connected=false，并通过 BroadcastChannel 广播 game_reset；两页都回到菜单，可重新 JOIN。reset({seed}) 同样复位并 event_epoch++，从 seq=1 重新记录 game_reset 事件。",
+      "verification": "终局点 Restart 后两页 status==='menu'、positions 为 0、connected 为 false；observe().event_epoch 较之前增加，getEvents 首条为 type=game_reset。"
+    },
+    {
+      "id": 5,
+      "requirement": "固定 800×600 视口，主区域为 canvas2d 的 #arena；HUD 始终显示进度/分数与状态（Menu/Playing/Won/Lost），菜单、游戏区、终局、Restart 均可见。",
+      "implementation": "canvas 尺寸 800×600，绘制两条 0-3 格赛道并按 position 渲染棋子。DOM HUD：[data-testid=score] 显示 'P1: x/3  P2: y/3'（不得省略进度），[data-testid=status] 显示当前状态文本（忽略大小写与连续空白）。终局与菜单状态均保留 #restart-btn 可见。",
+      "verification": "读取 DOM：score 文本非空且含两玩家进度；status 文本匹配 /^(menu|playing|won|lost)$/i；#arena 为 canvas 元素且宽高 800×600。"
+    },
+    {
+      "id": 6,
+      "requirement": "输出 index.html、styles.css、game.js、game.manifest.json；manifest 覆盖 controls/hud/state/event，并提供 window.__GAMETESTLAB__ 只读观察接口（protocol gametestlab/2）。",
+      "implementation": "manifest：schema_version 'gametestlab.game-manifest.v3'，surface 'canvas2d'，viewport 800×600，controls 含 START/JOIN/P1_STEP/P2_STEP/RESTART（mouse 用 selector，keyboard 用 code：KeyD/KeyL），hud_selectors score/status，state_schema.fields 含 status(string)/connected(boolean)/p1_position(integer)/p2_position(integer)/winner(string 或 null)，event_schema 含 room_created/player_joined/player_moved/match_won/game_reset。window.__GAMETESTLAB__ 实现 protocol、isReady()、reset({seed})、observe()、getEvents({afterSeq})，事件 seq 从 1 连续递增，所有时间逻辑由 performance/requestAnimationFrame 驱动。",
+      "verification": "校验 manifest JSON 字段完整且不超范围；浏览器中 typeof window.__GAMETESTLAB__.observe==='function'，isReady()===true，observe().protocol==='gametestlab/2'，getEvents 返回可序列化普通 JSON。"
+    }
+  ]
+}

@@ -1,0 +1,5508 @@
+{
+  "schema_version": "gametestlab.formal-task-result.v1",
+  "task_id": "meteor-survivor",
+  "title": "Meteor Survivor",
+  "category": "action",
+  "features": [
+    "leaderboard"
+  ],
+  "difficulty": {
+    "level": "D2",
+    "rationale": "固定时间波次、躲避输入和局内榜单需要同步计算。"
+  },
+  "generator": "codebuddy-hy3",
+  "evaluation_context": "frozen_task_evaluation",
+  "checking_policy_version": "2026-09-12.3",
+  "status": "evaluated",
+  "started_at": "2026-09-15T07:58:43.466Z",
+  "finished_at": "2026-09-15T07:58:51.925Z",
+  "replay_count": 3,
+  "browser": {
+    "name": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "input_hashes": {
+    "test_plan_sha256": "54b4320dba5e6df7cac1f64c5aad80ff51e17a0c601f5cdc99ded514b05408a0",
+    "oracle_sha256": "41d6c232e796698ebfdd45dd5989d9f50c3d9af427240dda53d1cc5709e9be78",
+    "evaluator_sha256": "26ea156c2d9354946afcbd40d1edf77066e47b2f267b750d6f331c4967f1da80",
+    "runner_sha256": "2a0879cd37e70599a0d34a6ff2f0778fa7746edbb24741c26c2059e194667fa0",
+    "task_adapter_sha256": "7b3ef6026ff5824a04f6b5af92946c08f2e470c25a754cf727e1bf6a70269bb3",
+    "frozen_task_sha256": "133221de7c2edf0219b2b5e1eb4cb37b524be9c18684b6c14cde6f43a1ef0457",
+    "game_directory_sha256": "fc01ac4eac601795fcd0c782815f37c101dd544a96d9888673a47dfa8925f78a",
+    "game_manifest_sha256": "b2a1bd35148cb931831e33752e69c1c018b05572f919915c8125396a110f1841"
+  },
+  "aggregate": {
+    "contract_pass": true,
+    "scenario_runs": 9,
+    "process_passes": 3,
+    "final_passes": 3,
+    "lucky_passes": 0,
+    "L1_passes": 9,
+    "L2_passes": 3,
+    "L3_passes": 0
+  },
+  "contract": {
+    "conformant": true,
+    "findings": []
+  },
+  "scenarios": [
+    {
+      "replay_index": 0,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "fail"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-MAIN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "lost"
+            },
+            {
+              "channel": "state",
+              "path": "lane",
+              "expected": 0,
+              "actual": 1
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 3000,
+              "actual": 1000
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 3,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "best_score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "wave_survived",
+              "expected": "present",
+              "actual": "missing"
+            },
+            {
+              "channel": "event",
+              "path": "leaderboard_updated",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 6,
+            "checkpoint_id": "MS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 3000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 3,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "wave_survived",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 8,
+            "checkpoint_id": "MS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 5000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 4,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 9,
+            "checkpoint_id": "MS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "MS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Lost"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "MS-CP-START",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [
+            "lane_changed",
+            "meteor_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/meteor-survivor-action-06.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "MS-CP-WON",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/meteor-survivor-action-08.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 9,
+          "checkpoint_id": "MS-CP-WON-UI",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 14,
+              "action_index": 9,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 15,
+              "action_index": 9,
+              "elapsed_ms": 5032,
+              "tick": 314,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/meteor-survivor-action-09.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-LOSS"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "lost",
+              "actual": "playing"
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 1000,
+              "actual": 992
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 1,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "meteor_hit",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 1,
+            "checkpoint_id": "MS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "playing"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 1000,
+                "actual": 992
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "meteor_hit",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-loss-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 992,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 721.734375,
+                  "y": -89,
+                  "width": 63.265625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "8a552f4e",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/meteor-survivor-action-01.png",
+            "state_hash": "7e20edc18eb2dec8329d5f8a962ff32742ac12d730a0e113ba8deeb2a842e1e5"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-restart-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "MS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/meteor-survivor-action-02.png",
+            "state_hash": "483ead2cb5c39d6aae9fa9b1640d25b429f73d0e119b6e73baf4d2c3da8b97bb"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "fail"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-MAIN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "lost"
+            },
+            {
+              "channel": "state",
+              "path": "lane",
+              "expected": 0,
+              "actual": 1
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 3000,
+              "actual": 1000
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 3,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "best_score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "wave_survived",
+              "expected": "present",
+              "actual": "missing"
+            },
+            {
+              "channel": "event",
+              "path": "leaderboard_updated",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 6,
+            "checkpoint_id": "MS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 3000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 3,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "wave_survived",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 8,
+            "checkpoint_id": "MS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 5000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 4,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 9,
+            "checkpoint_id": "MS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "MS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Lost"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "MS-CP-START",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [
+            "lane_changed",
+            "meteor_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/meteor-survivor-action-06.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "MS-CP-WON",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/meteor-survivor-action-08.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 9,
+          "checkpoint_id": "MS-CP-WON-UI",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 14,
+              "action_index": 9,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 15,
+              "action_index": 9,
+              "elapsed_ms": 5032,
+              "tick": 314,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/meteor-survivor-action-09.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-LOSS"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "lost",
+              "actual": "playing"
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 1000,
+              "actual": 992
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 1,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "meteor_hit",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 1,
+            "checkpoint_id": "MS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "playing"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 1000,
+                "actual": 992
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "meteor_hit",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-loss-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 992,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 721.734375,
+                  "y": -89,
+                  "width": 63.265625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "8a552f4e",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 992,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/meteor-survivor-action-01.png",
+            "state_hash": "7e20edc18eb2dec8329d5f8a962ff32742ac12d730a0e113ba8deeb2a842e1e5"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-restart-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "MS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/meteor-survivor-action-02.png",
+            "state_hash": "483ead2cb5c39d6aae9fa9b1640d25b429f73d0e119b6e73baf4d2c3da8b97bb"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "fail"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-MAIN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "lost"
+            },
+            {
+              "channel": "state",
+              "path": "lane",
+              "expected": 0,
+              "actual": 1
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 3000,
+              "actual": 1000
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 3,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "state",
+              "path": "best_score",
+              "expected": 300,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "wave_survived",
+              "expected": "present",
+              "actual": "missing"
+            },
+            {
+              "channel": "event",
+              "path": "leaderboard_updated",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 6,
+            "checkpoint_id": "MS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 3000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 3,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "wave_survived",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 8,
+            "checkpoint_id": "MS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "lane",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 5000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 4,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "best_score",
+                "expected": 500,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 9,
+            "checkpoint_id": "MS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "MS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Lost"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "MS-CP-START",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "MS-CP-MID",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [
+            "lane_changed",
+            "meteor_hit"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/meteor-survivor-action-06.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "MS-CP-WON",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/meteor-survivor-action-08.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        },
+        {
+          "action_index": 9,
+          "checkpoint_id": "MS-CP-WON-UI",
+          "state": {
+            "status": "lost",
+            "lane": 1,
+            "elapsed_ms": 1000,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 747.90625,
+                  "y": -89,
+                  "width": 37.09375,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "dbfdbe01",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 2,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 3,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 4,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 4,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "meteor_hit"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 5,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 8,
+              "action_index": 6,
+              "elapsed_ms": 2000,
+              "tick": 125,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 6,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 10,
+              "action_index": 7,
+              "elapsed_ms": 3000,
+              "tick": 187,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 11,
+              "action_index": 7,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 12,
+              "action_index": 8,
+              "elapsed_ms": 4000,
+              "tick": 250,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 13,
+              "action_index": 8,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 14,
+              "action_index": 9,
+              "elapsed_ms": 5000,
+              "tick": 312,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 15,
+              "action_index": 9,
+              "elapsed_ms": 5032,
+              "tick": 314,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "lane": 1,
+                "elapsed_ms": 1000,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/meteor-survivor-action-09.png",
+            "state_hash": "a8434440bfd73c2b1c807393e79e864dba69ac20db56536cf201abba9d99693b"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "MS-LOSS"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "lost",
+              "actual": "playing"
+            },
+            {
+              "channel": "state",
+              "path": "elapsed_ms",
+              "expected": 1000,
+              "actual": 991
+            },
+            {
+              "channel": "state",
+              "path": "wave",
+              "expected": 1,
+              "actual": 0
+            },
+            {
+              "channel": "event",
+              "path": "meteor_hit",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 1,
+            "checkpoint_id": "MS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "playing"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 1000,
+                "actual": 991
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "meteor_hit",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-loss-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "MS-CP-LOST",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 991,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 721.734375,
+                  "y": -89,
+                  "width": 63.265625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "bfb1f91b",
+              "sampled_alpha_pixels": 4103
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 1,
+              "elapsed_ms": 1000,
+              "tick": 62,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 991,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/meteor-survivor-action-01.png",
+            "state_hash": "506bc69652a3569d5d4a77af36e11a1654b0a4d8301dcaf4a22f85fe5b9d1f95"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "meteor-survivor",
+        "difficulty": "D2",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "meteor-survivor-restart-path-started",
+          "state": {
+            "status": "playing",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/meteor-survivor-action-00.png",
+            "state_hash": "a1305492def6b92bd91fc57597f6f14ed57e9f6ff02e914dadcca536a3b461fe"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "MS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "lane": 1,
+            "elapsed_ms": 0,
+            "wave": 0,
+            "score": 0,
+            "best_score": 0
+          },
+          "ui": {
+            "scoreText": "Score: 0",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": -89,
+                  "width": 71.640625,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 737.203125,
+                  "y": -89,
+                  "width": 47.796875,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600,
+              "pixel_checksum": "774a3c27",
+              "sampled_alpha_pixels": 0
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "lane": 2,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "lane_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "lane": 1,
+                "elapsed_ms": 0,
+                "wave": 0,
+                "score": 0,
+                "best_score": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/meteor-survivor-action-02.png",
+            "state_hash": "483ead2cb5c39d6aae9fa9b1640d25b429f73d0e119b6e73baf4d2c3da8b97bb"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently",
+            "location": {
+              "url": "",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 1
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:55719/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "files": {
+    "result": "result.json",
+    "trace": "events.jsonl"
+  }
+}

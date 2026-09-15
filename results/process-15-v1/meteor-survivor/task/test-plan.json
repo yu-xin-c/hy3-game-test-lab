@@ -1,0 +1,266 @@
+{
+  "checking_policy_version": "2026-09-12.3",
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "meteor-survivor",
+  "title": "Meteor Survivor",
+  "difficulty": {
+    "level": "D2",
+    "rationale": "固定时间波次、躲避输入和局内榜单需要同步计算。"
+  },
+  "category": "action",
+  "features": [
+    "leaderboard"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "canvas2d",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "MS-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "MS-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "按固定波次躲避会推进 wave、score 和 best_score。",
+      "depends_on": [
+        "MS-RUN"
+      ],
+      "observable": [
+        "lane",
+        "elapsed_ms",
+        "wave",
+        "score",
+        "best_score"
+      ]
+    },
+    {
+      "id": "MS-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "玩家和流星同轨会立即失败且不能获得该波分数。",
+      "depends_on": [
+        "MS-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "MS-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 清空当前局；新的评测场景从空榜单开始。",
+      "depends_on": [
+        "MS-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "MS-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
+      "depends_on": [
+        "MS-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 604,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MS-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": [
+            "MS-CP-MID"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": [
+            "MS-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
+            "MS-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 604,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "meteor-survivor-loss-path-started"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": [
+            "MS-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 604,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "meteor-survivor-restart-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "MS-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

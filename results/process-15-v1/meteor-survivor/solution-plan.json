@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "固定 800×600 视口与界面分区，菜单/游戏/终局/Restart 完整可见，HUD 含分数与状态。",
+      "implementation": "index.html 用 <canvas id=\"game-canvas\" width=\"800\" height=\"600\"> 作主区域；HUD 用 [data-testid=\"score\"] 与 [data-testid=\"status\"] 显示分数与状态；#start-btn 与 #restart-btn 始终在 DOM 中可点击。styles.css 固定 800×600 且四区布局。",
+      "verification": "浏览器打开 index.html，断言存在 #game-canvas、#start-btn、#restart-btn、[data-testid=score]、[data-testid=status]，且画布宽高属性为 800 与 600。"
+    },
+    {
+      "id": 2,
+      "requirement": "三条轨道（0/1/2）与虚拟时间驱动推进，相同 seed 产生相同时间表。",
+      "implementation": "游戏循环用 requestAnimationFrame 配合 performance.now() 计算 elapsed_ms；start 时记录 t0，每帧 elapsed_ms = now - t0。流星固定时间表为 1000→轨道1、2000→轨道0、3000→轨道2、4000→轨道1，seed 相同则初始状态与时间序一致。",
+      "verification": "调用 __GAMETESTLAB__.reset({seed:1}) 后观察 elapsed_ms 随时间增长；相同 seed 连续两次 reset，断言 observe().state 的初始 lane 与时间表相等。"
+    },
+    {
+      "id": 3,
+      "requirement": "流星按时间表落轨，与玩家同轨立即失败并触发 meteor_hit。",
+      "implementation": "elapsed_ms 跨过 1000/2000/3000/4000ms 时对应轨道落流星；每帧若 player.lane === meteor.lane 则 status='lost'，发出 meteor_hit，停止计时与计分。",
+      "verification": "虚拟时间推进至 1000ms 且玩家停在轨道1，断言 status='lost'、最近事件含 meteor_hit；1000ms 前用 ArrowLeft 切到轨道0 则无命中继续。"
+    },
+    {
+      "id": 4,
+      "requirement": "躲过一波 +100 分、wave 递增；生存到 5000ms 获胜共 500 分并刷新 best_score。",
+      "implementation": "每躲过一波（越过时间点且无碰撞）wave+1、score+100、发 wave_survived；elapsed_ms>=5000 且无碰撞则 status='won'，score=500（4波×100+生存100），best_score=500，发 game_won 与 leaderboard_updated。",
+      "verification": "虚拟时间连续推进到 5000ms 且玩家避开所有当波轨道，断言 score=500、best_score=500、status='won'，事件含 4×wave_survived 与 game_won。"
+    },
+    {
+      "id": 5,
+      "requirement": "状态字段与事件接口完整，终局后输入不再改变分数/进度/胜负。",
+      "implementation": "state 含 status、lane、elapsed_ms、wave、score、best_score；事件含 game_started、lane_changed、wave_survived、meteor_hit、leaderboard_updated、game_won、game_reset 且 seq 从1连续。终局后忽略 LEFT/RIGHT/START，仅 RESTART 生效。",
+      "verification": "胜利/失败后发出 ArrowLeft，断言 observe().state 的 lane、score、status 与终局快照一致（未变化）。"
+    },
+    {
+      "id": 6,
+      "requirement": "Restart 在局内与终局均可见可用，清空当前局并恢复菜单状态。",
+      "implementation": "#restart-btn 在 playing/won/lost 均存在可点；点击清零 score、wave、elapsed_ms，lane 回到 1，status='menu'，发 game_reset（event_epoch+1，seq 从1重记）。",
+      "verification": "进行中点击 #restart-btn，断言 status='menu'、score=0、lane=1、latest_event_seq 归 1 且含 game_reset；终局同样可重复执行。"
+    },
+    {
+      "id": 7,
+      "requirement": "只读观察接口 window.__GAMETESTLAB__ 符合 gametestlab/2，不提供代替玩家操作的方法。",
+      "implementation": "暴露 protocol:'gametestlab/2'：isReady()、reset({seed})、observe() 返回 tick/status/state/event_epoch/latest_event_seq、getEvents({afterSeq}) 返回周期内 seq>afterSeq 事件；状态与事件均为可序列化 JSON；时间由 performance/rAF 驱动。",
+      "verification": "断言 typeof window.__GAMETESTLAB__.protocol==='gametestlab/2' 且 isReady() 为真；getEvents({afterSeq:0}) 顺序返回连续 seq 事件；接口不存在 start/left 等操作方法。"
+    }
+  ]
+}
