@@ -422,6 +422,311 @@
         "reason": "行111 仅说键盘 R；KeyR 需由行66 的 KeyX 命名约定推断，无连续原文唯一规定"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "platform-rescue",
+      "assertion": {
+        "id": "A11",
+        "kind": "control",
+        "path": "LEFT_UP.key_event",
+        "expected": "up",
+        "contexts": [
+          "LEFT_UP"
+        ]
+      },
+      "decision": {
+        "id": "A11",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开文本仅示例 down，未规定 UP 对应 key_event=up"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "platform-rescue",
+      "assertion": {
+        "id": "A19",
+        "kind": "control",
+        "path": "RIGHT_UP.key_event",
+        "expected": "up",
+        "contexts": [
+          "RIGHT_UP"
+        ]
+      },
+      "decision": {
+        "id": "A19",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "未规定 UP 对应 key_event=up"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "platform-rescue",
+      "assertion": {
+        "id": "A31",
+        "kind": "control",
+        "path": "RESTART_KEY.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART_KEY"
+        ]
+      },
+      "decision": {
+        "id": "A31",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "仅说键盘 R，未规定 key_event 取值(press/down)"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "platform-rescue",
+      "assertion": {
+        "id": "A54",
+        "kind": "state",
+        "path": "player.support_id",
+        "expected": "goal",
+        "contexts": [
+          "win-path/PR-CP-WON"
+        ]
+      },
+      "decision": {
+        "id": "A54",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "终点平台/救援门未赋 id 字符串 goal，不能唯一推出"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A8",
+        "kind": "control",
+        "path": "RED.x_ratio",
+        "expected": 0.25,
+        "contexts": [
+          "RED"
+        ]
+      },
+      "decision": {
+        "id": "A8",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开只说 Canvas 分成红、绿、蓝、黄四个区域，未规定任何坐标，x_ratio=0.25 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A9",
+        "kind": "control",
+        "path": "RED.y_ratio",
+        "expected": 0.25,
+        "contexts": [
+          "RED"
+        ]
+      },
+      "decision": {
+        "id": "A9",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定红色区域坐标，y_ratio=0.25 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A13",
+        "kind": "control",
+        "path": "GREEN.x_ratio",
+        "expected": 0.75,
+        "contexts": [
+          "GREEN"
+        ]
+      },
+      "decision": {
+        "id": "A13",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定绿色区域坐标，x_ratio=0.75 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A14",
+        "kind": "control",
+        "path": "GREEN.y_ratio",
+        "expected": 0.25,
+        "contexts": [
+          "GREEN"
+        ]
+      },
+      "decision": {
+        "id": "A14",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定绿色区域坐标，y_ratio=0.25 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A18",
+        "kind": "control",
+        "path": "BLUE.x_ratio",
+        "expected": 0.25,
+        "contexts": [
+          "BLUE"
+        ]
+      },
+      "decision": {
+        "id": "A18",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定蓝色区域坐标，x_ratio=0.25 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A19",
+        "kind": "control",
+        "path": "BLUE.y_ratio",
+        "expected": 0.75,
+        "contexts": [
+          "BLUE"
+        ]
+      },
+      "decision": {
+        "id": "A19",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定蓝色区域坐标，y_ratio=0.75 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A23",
+        "kind": "control",
+        "path": "YELLOW.x_ratio",
+        "expected": 0.75,
+        "contexts": [
+          "YELLOW"
+        ]
+      },
+      "decision": {
+        "id": "A23",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定黄色区域坐标，x_ratio=0.75 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A24",
+        "kind": "control",
+        "path": "YELLOW.y_ratio",
+        "expected": 0.75,
+        "contexts": [
+          "YELLOW"
+        ]
+      },
+      "decision": {
+        "id": "A24",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定黄色区域坐标，y_ratio=0.75 是测试附加的限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A51",
+        "kind": "state",
+        "path": "phase",
+        "expected": "complete",
+        "contexts": [
+          "win-path/SM-CP-WON",
+          "loss-path/SM-CP-LOST"
+        ]
+      },
+      "decision": {
+        "id": "A51",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开只规定 status=won/lost 与播放/输入阶段，未定义名为 complete 的 phase 取值，属测试附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A66",
+        "kind": "state",
+        "path": "phase",
+        "expected": "idle",
+        "contexts": [
+          "restart-path/SM-CP-RESET"
+        ]
+      },
+      "decision": {
+        "id": "A66",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未定义名为 idle 的 phase 取值；菜单态由 status=menu 规定，phase 字符串 idle 是测试附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A26",
+        "kind": "control",
+        "path": "RESTART.device",
+        "expected": "mouse",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A26",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开文本未为RESTART明确指定device=mouse；selector用于鼠标或触控(line66)，无法唯一推出mouse"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion": {
+        "id": "A27",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开文本未为RESTART明确指定key_event=press，无依据唯一确定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

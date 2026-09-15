@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "步骤1：各 start 观测 status=playing 且 events 含 type=game_started(seq:2)，符合验证。步骤2：seed=42 下6次试验 targets 五坐标完全相同(454.015625,275.9375 / 643.046875,387.53125 / 133.453125,315.390625 / 207.453125,364.859375 / 652.828125,288.046875)，重放误差为0，符合验证。"
+}

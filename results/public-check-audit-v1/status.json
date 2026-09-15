@@ -15,12 +15,17 @@
     {
       "task_id": "key-door-escape",
       "status": "reviewed",
-      "assertions": 60
+      "cached": true
     },
     {
       "task_id": "platform-rescue",
-      "status": "failed",
-      "error": "Error: Unverified Hy3 completion"
+      "status": "reviewed",
+      "assertions": 73
+    },
+    {
+      "task_id": "signal-memory",
+      "status": "reviewed",
+      "assertions": 68
     }
   ]
 }

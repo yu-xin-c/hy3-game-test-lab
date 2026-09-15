@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "步骤1验证：点击#start-btn后 observe().status==='playing'（各trial start observation status均为playing），且events含seq:2 type:'game_started'。步骤2验证：seed=42的五个目标坐标在repeat1/2/3、trial1/2中完全一致（如首目标454.015625,275.9375等），重放一致。两项断言均被实验支持。"
+}

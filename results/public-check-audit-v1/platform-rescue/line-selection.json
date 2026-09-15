@@ -1,0 +1,305 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "line_start": 32,
+      "line_end": 32,
+      "reason": "清单示例 START 的 actor 为 primary"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "左右方向键移动→keyboard"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "示例 HEAT_DOWN 的 key_event=down，约定 _DOWN→down"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "左右方向键→keyboard"
+    },
+    {
+      "id": "A11",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开文本仅示例 down，未规定 UP 对应 key_event=up"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "左右方向键→keyboard"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "示例约定 _DOWN→down"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "右方向键→标准 code ArrowRight"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "左右方向键→keyboard"
+    },
+    {
+      "id": "A19",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "未规定 UP 对应 key_event=up"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "右方向键→code ArrowRight"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 92,
+      "reason": "Space 跳跃→keyboard"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 103,
+      "line_end": 103,
+      "reason": "Restart 按钮→mouse"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "line_start": 116,
+      "line_end": 116,
+      "reason": "列出 #restart-btn"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "line_start": 66,
+      "line_end": 66,
+      "reason": "默认玩家为 primary"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "line_start": 103,
+      "line_end": 103,
+      "reason": "键盘 R→keyboard"
+    },
+    {
+      "id": "A31",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "仅说键盘 R，未规定 key_event 取值(press/down)"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "line_start": 103,
+      "line_end": 103,
+      "reason": "键盘 R→标准 code KeyR"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "line_start": 78,
+      "line_end": 78,
+      "reason": "status 取值含 playing，为进行中状态"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "line_start": 80,
+      "line_end": 80,
+      "reason": "点击 Start 后记录 game_started"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "line_start": 96,
+      "line_end": 96,
+      "reason": "三次跳跃依次落在 platform-1…"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 player_landed"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "line_start": 96,
+      "line_end": 96,
+      "reason": "跳跃稳定落在 platform-1（apex 到达）"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "line_start": 96,
+      "line_end": 96,
+      "reason": "稳定落在 platform-1 即被支撑"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "line_start": 96,
+      "line_end": 96,
+      "reason": "第二次跳跃落在 platform-2"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 key_collected"
+    },
+    {
+      "id": "A53",
+      "verdict": "supported",
+      "line_start": 100,
+      "line_end": 100,
+      "reason": "取得钥匙接触救援门→won"
+    },
+    {
+      "id": "A54",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "终点平台/救援门未赋 id 字符串 goal，不能唯一推出"
+    },
+    {
+      "id": "A55",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 game_won"
+    },
+    {
+      "id": "A60",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "score testid 显示生命与钥匙（可见）"
+    },
+    {
+      "id": "A61",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "status testid 显示状态（可见）"
+    },
+    {
+      "id": "A63",
+      "verdict": "supported",
+      "line_start": 107,
+      "line_end": 107,
+      "reason": "状态固定使用 Won"
+    },
+    {
+      "id": "A66",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 hazard_hit"
+    },
+    {
+      "id": "A69",
+      "verdict": "supported",
+      "line_start": 101,
+      "line_end": 101,
+      "reason": "生命归零→lost"
+    },
+    {
+      "id": "A71",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 game_lost"
+    },
+    {
+      "id": "A72",
+      "verdict": "supported",
+      "line_start": 103,
+      "line_end": 103,
+      "reason": "Restart 返回菜单→menu"
+    },
+    {
+      "id": "A73",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "事件清单含 game_reset"
+    }
+  ]
+}

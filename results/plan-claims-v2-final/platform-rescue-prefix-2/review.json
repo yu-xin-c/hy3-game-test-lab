@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": true,
+  "first_error_step": 2,
+  "explanation": "步骤2验证要求 tick0/20/40 跳跃后 player_landed 的 support_id 依次为 'platform-1'、'platform-2'、'end'，随后 key_collected 与 game_won 触发。实测：seed=42 下玩家右移撞尖刺(58,528)反复 hazard_hit，仅 player_landed 于 'ground'，于 tick17 game_lost；全程无 platform-1/2/end 着陆、无 key_collected/game_won。在下一次计划跳跃(tick20)前已 game_lost，属路径直接反证。步骤1重放确定性在多次试验中被相同观测支持。"
+}

@@ -2,16 +2,16 @@
   "scope": "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality",
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "total_tasks": 96,
-  "reviewed_tasks": 3,
+  "reviewed_tasks": 5,
   "total_predicates": 5182,
-  "reviewed_predicates": 174,
-  "remaining_tasks": 93,
-  "remaining_predicates": 5008,
+  "reviewed_predicates": 315,
+  "remaining_tasks": 91,
+  "remaining_predicates": 4867,
   "model_labels": {
-    "supported": 147,
-    "unsupported": 1,
-    "ambiguous": 21,
-    "test_mechanics": 5
+    "supported": 270,
+    "unsupported": 11,
+    "ambiguous": 27,
+    "test_mechanics": 7
   },
   "rows": [
     {
@@ -44,6 +44,28 @@
         "supported": 50,
         "unsupported": 0,
         "ambiguous": 9,
+        "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "platform-rescue",
+      "predicates": 73,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 68,
+        "unsupported": 0,
+        "ambiguous": 4,
+        "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "signal-memory",
+      "predicates": 68,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 55,
+        "unsupported": 10,
+        "ambiguous": 2,
         "test_mechanics": 1
       }
     }

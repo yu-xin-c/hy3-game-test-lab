@@ -1,0 +1,74 @@
+{
+  "assertions": [
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 122,
+      "reason": "行120列出#start-btn，行122列出START控件名，可确定START.selector=#start-btn"
+    },
+    {
+      "id": "A26",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开文本未为RESTART明确指定device=mouse；selector用于鼠标或触控(line66)，无法唯一推出mouse"
+    },
+    {
+      "id": "A27",
+      "verdict": "ambiguous",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开文本未为RESTART明确指定key_event=press，无依据唯一确定"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 122,
+      "reason": "行120列出#restart-btn，行122列出RESTART控件名，可确定RESTART.selector=#restart-btn"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含input_phase_started"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含signal_correct"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含round_completed"
+    },
+    {
+      "id": "A54",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含game_won"
+    },
+    {
+      "id": "A60",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含signal_wrong"
+    },
+    {
+      "id": "A64",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "行124事件列表包含game_lost"
+    }
+  ]
+}

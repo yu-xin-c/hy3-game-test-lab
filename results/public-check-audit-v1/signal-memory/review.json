@@ -1,0 +1,420 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "bf5a026934be2fb457dd6ad539786dcbc983d5313ebb0a7877e4362057c8d54c",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "START 未指定 secondary，按默认玩家为 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。",
+        "reason": "START 使用 selector #start-btn，对应鼠标控件，支持 device=mouse。"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "START 为按钮按压，公开示例控件以 press 表示，支持 key_event=press。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "RED 未指 secondary，默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "红色区域为被点击的画布区域，点击即鼠标操作，支持 device=mouse。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "点击动作对应按压，支持 key_event=press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开只说 Canvas 分成红、绿、蓝、黄四个区域，未规定任何坐标，x_ratio=0.25 是测试附加的限制。"
+      },
+      {
+        "id": "A9",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定红色区域坐标，y_ratio=0.25 是测试附加的限制。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "GREEN 默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "绿色区域为被点击区域，支持 device=mouse。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "点击对应按压，支持 key_event=press。"
+      },
+      {
+        "id": "A13",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定绿色区域坐标，x_ratio=0.75 是测试附加的限制。"
+      },
+      {
+        "id": "A14",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定绿色区域坐标，y_ratio=0.25 是测试附加的限制。"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "BLUE 默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "蓝色区域为被点击区域，支持 device=mouse。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "点击对应按压，支持 key_event=press。"
+      },
+      {
+        "id": "A18",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定蓝色区域坐标，x_ratio=0.25 是测试附加的限制。"
+      },
+      {
+        "id": "A19",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定蓝色区域坐标，y_ratio=0.75 是测试附加的限制。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "YELLOW 默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "黄色区域为被点击区域，支持 device=mouse。"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "玩家随后按相同顺序点击四个颜色区域。",
+        "reason": "点击对应按压，支持 key_event=press。"
+      },
+      {
+        "id": "A23",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定黄色区域坐标，x_ratio=0.75 是测试附加的限制。"
+      },
+      {
+        "id": "A24",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未规定黄色区域坐标，y_ratio=0.75 是测试附加的限制。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "RESTART 默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "RESTART_KEY 默认玩家 primary，支持 actor=primary。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回菜单，恢复分数、生命、回合和序列。",
+        "reason": "RESTART_KEY 为键盘 R，支持 device=keyboard。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回菜单，恢复分数、生命、回合和序列。",
+        "reason": "键盘 R 为按压，支持 key_event=press。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "键盘控件使用 `code`，不是 `key_code`",
+        "reason": "键盘控件必须用 code，R 键标准 code 为 KeyR，支持 code=KeyR。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。",
+        "reason": "游戏进行中各检查点状态为 playing，落入公开规定的状态域。"
+      },
+      {
+        "id": "A34",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "事件采样区间（自上一检查点）是评测执行器内部约定，并非公开游戏需求。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+        "reason": "各路径点击 Start 后必须记录 game_started，支持事件类型。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "每回合开始时先播放序列",
+        "reason": "每回合含播放阶段，错误后重新播放同一回合，支持 playback_started 事件。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "播放结束后进入输入阶段。",
+        "reason": "CP-INPUT-1 处于输入阶段，支持 phase=input。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "1. 红、蓝",
+        "reason": "第一回合定义为序列 1，初始/未进阶时 round=1，支持各检查点 round=1。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "初始 3 条生命。",
+        "reason": "未损失生命时 lives=3，支持各未失败检查点。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "每次正确输入增加 10 分并推进进度。",
+        "reason": "尚无正确输入时分数为 0，支持 score=0。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "每次正确输入增加 10 分并推进进度。",
+        "reason": "进度随正确输入推进，初始无输入时 progress=0，支持该值。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "播放阶段显示 `Watch`，输入阶段显示 `Repeat`。",
+        "reason": "CP 处于播放阶段，支持 phase=playback。"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "2. 绿、黄、红",
+        "reason": "完成第一回合后进入第二回合，支持 round=2。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "每次正确输入增加 10 分并推进进度。",
+        "reason": "第一回合 2 次正确输入（红、蓝）×10=20，支持 score=20。"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "3. 蓝、红、黄、绿",
+        "reason": "完成第二回合后进入第三回合，支持 round=3。"
+      },
+      {
+        "id": "A49",
+        "verdict": "supported",
+        "public_quote": "每次正确输入增加 10 分并推进进度。",
+        "reason": "前两轮共 5 次正确输入（2+3）×10=50，支持 score=50。"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "完成第三回合全部输入：`won`，最终分数 90。",
+        "reason": "完成第三回合即 won，支持 status=won。"
+      },
+      {
+        "id": "A51",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开只规定 status=won/lost 与播放/输入阶段，未定义名为 complete 的 phase 取值，属测试附加限制。"
+      },
+      {
+        "id": "A52",
+        "verdict": "supported",
+        "public_quote": "完成第三回合全部输入：`won`，最终分数 90。",
+        "reason": "全部正确得 90 分，支持 score=90。"
+      },
+      {
+        "id": "A53",
+        "verdict": "supported",
+        "public_quote": "3. 蓝、红、黄、绿",
+        "reason": "第三回合序列含 4 个颜色，完成本回合进度为 4，支持 progress=4。"
+      },
+      {
+        "id": "A55",
+        "verdict": "supported",
+        "public_quote": "`[data-testid=\"score\"]` 显示分数；`[data-testid=\"status\"]` 显示状态。",
+        "reason": "score 元素须存在并显示，支持可见。"
+      },
+      {
+        "id": "A56",
+        "verdict": "supported",
+        "public_quote": "`[data-testid=\"score\"]` 显示分数；`[data-testid=\"status\"]` 显示状态。",
+        "reason": "status 元素须存在并显示，支持可见。"
+      },
+      {
+        "id": "A57",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度。",
+        "reason": "胜利界面须显示分数且非空，支持 scoreText 非空。"
+      },
+      {
+        "id": "A58",
+        "verdict": "supported",
+        "public_quote": "状态固定为 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "胜利时状态文案为 Won（忽略大小写），支持 statusText=Won。"
+      },
+      {
+        "id": "A59",
+        "verdict": "supported",
+        "public_quote": "错误输入损失 1 条生命、清空本回合进度，并重新播放同一回合。",
+        "reason": "第一次错误后 3-1=2，支持 lives=2。"
+      },
+      {
+        "id": "A61",
+        "verdict": "supported",
+        "public_quote": "错误输入损失 1 条生命、清空本回合进度，并重新播放同一回合。",
+        "reason": "第二次错误后 3-2=1，支持 lives=1。"
+      },
+      {
+        "id": "A62",
+        "verdict": "supported",
+        "public_quote": "生命归零：`lost`。",
+        "reason": "三次错误生命归零进入 lost，支持 status=lost。"
+      },
+      {
+        "id": "A63",
+        "verdict": "supported",
+        "public_quote": "初始 3 条生命。",
+        "reason": "三次错误后 3-3=0，支持 lives=0。"
+      },
+      {
+        "id": "A65",
+        "verdict": "supported",
+        "public_quote": "Restart 按钮或键盘 `R` 返回菜单，恢复分数、生命、回合和序列。",
+        "reason": "重开返回菜单，支持 status=menu。"
+      },
+      {
+        "id": "A66",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开未定义名为 idle 的 phase 取值；菜单态由 status=menu 规定，phase 字符串 idle 是测试附加限制。"
+      },
+      {
+        "id": "A67",
+        "verdict": "supported",
+        "public_quote": "每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。",
+        "reason": "事件列表含 game_reset，重开记录该事件，支持该事件类型。"
+      },
+      {
+        "id": "A68",
+        "verdict": "supported",
+        "public_quote": "播放期间玩家输入必须被忽略。",
+        "reason": "播放时输入被忽略并记录 input_ignored，支持该事件类型。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "- `#start-btn`、`#restart-btn`。\n- `[data-testid=\"score\"]` 显示分数；`[data-testid=\"status\"]` 显示状态。\n- 控件名称：`START`、`RED`、`GREEN`、`BLUE`、`YELLOW`、`RESTART`、`RESTART_KEY`。",
+        "reason": "行120列出#start-btn，行122列出START控件名，可确定START.selector=#start-btn"
+      },
+      {
+        "id": "A26",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开文本未为RESTART明确指定device=mouse；selector用于鼠标或触控(line66)，无法唯一推出mouse"
+      },
+      {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开文本未为RESTART明确指定key_event=press，无依据唯一确定"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "- `#start-btn`、`#restart-btn`。\n- `[data-testid=\"score\"]` 显示分数；`[data-testid=\"status\"]` 显示状态。\n- 控件名称：`START`、`RED`、`GREEN`、`BLUE`、`YELLOW`、`RESTART`、`RESTART_KEY`。",
+        "reason": "行120列出#restart-btn，行122列出RESTART控件名，可确定RESTART.selector=#restart-btn"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含input_phase_started"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含signal_correct"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含round_completed"
+      },
+      {
+        "id": "A54",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含game_won"
+      },
+      {
+        "id": "A60",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含signal_wrong"
+      },
+      {
+        "id": "A64",
+        "verdict": "supported",
+        "public_quote": "- 事件：`game_started`、`playback_started`、`input_phase_started`、`input_ignored`、`signal_correct`、`signal_wrong`、`round_completed`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "行124事件列表包含game_lost"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 2,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}
