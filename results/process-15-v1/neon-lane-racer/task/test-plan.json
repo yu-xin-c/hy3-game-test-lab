@@ -1,0 +1,267 @@
+{
+  "checking_policy_version": "2026-09-12.3",
+  "schema_version": "gametestlab.game-task-plan.v1",
+  "task_id": "neon-lane-racer",
+  "title": "Neon Lane Racer",
+  "difficulty": {
+    "level": "D3",
+    "rationale": "WebGL 场景、离散车道和虚拟时间共同决定碰撞与终局。"
+  },
+  "category": "action",
+  "features": [
+    "3d"
+  ],
+  "environment": {
+    "pages": 1,
+    "fake_camera": false,
+    "persistent_storage": false
+  },
+  "surface": "webgl",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "selectors": {
+    "score": "[data-testid='score']",
+    "status": "[data-testid='status']",
+    "surface": "#game-canvas"
+  },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "NR-RUN",
+      "layer": "L1",
+      "severity": "must",
+      "statement": "游戏可以开始且无运行、资源或网络错误。",
+      "depends_on": [],
+      "observable": [
+        "status",
+        "runtime"
+      ]
+    },
+    {
+      "id": "NR-MAIN",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "虚拟时间中的车道移动、障碍通过和得分必须按固定时刻一致更新。",
+      "depends_on": [
+        "NR-RUN"
+      ],
+      "observable": [
+        "lane",
+        "elapsed_ms",
+        "passed",
+        "score",
+        "events"
+      ]
+    },
+    {
+      "id": "NR-LOSS",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "障碍出现时同车道碰撞会立即失败。",
+      "depends_on": [
+        "NR-RUN"
+      ],
+      "observable": [
+        "status",
+        "game_lost",
+        "state"
+      ]
+    },
+    {
+      "id": "NR-RESET",
+      "layer": "L2",
+      "severity": "must",
+      "statement": "Restart 回到车道1、0ms、0分和菜单。",
+      "depends_on": [
+        "NR-RUN"
+      ],
+      "observable": [
+        "state",
+        "game_reset"
+      ]
+    },
+    {
+      "id": "NR-HUD",
+      "layer": "L3",
+      "severity": "must",
+      "statement": "HUD 可见且非空，胜负状态文字正确。分数含义和画面质量另行复核，不由非空检查认证。",
+      "depends_on": [
+        "NR-MAIN"
+      ],
+      "observable": [
+        "scoreText",
+        "statusText",
+        "screenshot"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "win-path",
+      "description": "按固定正确路径完成一局并验证中间状态与终局。",
+      "seed": 602,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "NR-CP-START"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": [
+            "NR-CP-MID"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "RIGHT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 2000,
+          "checkpoints": [
+            "NR-CP-WON"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 32,
+          "checkpoints": [
+            "NR-CP-WON-UI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loss-path",
+      "description": "按固定失败路径触发明确的失败条件。",
+      "seed": 602,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "neon-lane-racer-loss-path-started"
+          ]
+        },
+        {
+          "kind": "advance_time",
+          "advance_ms": 1000,
+          "checkpoints": [
+            "NR-CP-LOST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "restart-path",
+      "description": "改变局内状态后执行 Restart，检查完整重置。",
+      "seed": 602,
+      "clock": {
+        "mode": "virtual",
+        "start_time_ms": 1788105600000,
+        "setup_ms": 0
+      },
+      "steps": [
+        {
+          "kind": "input",
+          "action_id": "START",
+          "advance_ms": 0,
+          "checkpoints": [
+            "neon-lane-racer-restart-path-started"
+          ]
+        },
+        {
+          "kind": "input",
+          "action_id": "LEFT",
+          "advance_ms": 0,
+          "checkpoints": []
+        },
+        {
+          "kind": "input",
+          "action_id": "RESTART",
+          "advance_ms": 0,
+          "checkpoints": [
+            "NR-CP-RESET"
+          ]
+        }
+      ]
+    }
+  ]
+}

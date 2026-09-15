@@ -1,0 +1,106 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": true,
+    "process_correct": true,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "win-path 回放输入为：开始后 LEFT 到 lane0，再 RIGHT 回 lane1（动作3，elapsed≈992ms）。按公开需求，1000ms 障碍位于 lane1，赛车起 lane1 必须先错开该车道；回放却把车放回 lane1，1000ms 出现同车道障碍时游戏正确触发 car_crashed/lost（动作4：status=lost、collisions=1、elapsed1008）。判题器期望该回合成 win，属回放/预言本身与公开需求矛盾，非代码缺陷。执行证据与公开需求一致。",
+        "file": "game.js",
+        "excerpt": "      if (lane === ob.lane) {\n        collisions++;\n        status = 'lost';\n        emit('car_crashed', { lane: lane });",
+        "scenario_id": "win-path",
+        "action_index": 4
+      },
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "loss-path 在 action1（elapsed=992ms）即断言 status=lost、collisions=1、car_crashed 已出现。但 1000ms 障碍位于 lane1，车起 lane1 未移动，应在 elapsed>=1000 才碰撞；判题 checkpoint 在障碍时刻之前采样，属预言时序错误。游戏代码在 elapsed>=1000 时正确判负（win-path 已证明同逻辑在 1000ms 触发 car_crashed）。",
+        "file": "game.js",
+        "excerpt": "    while (next_obstacle < SCHEDULE.length && elapsed_ms >= SCHEDULE[next_obstacle].t) {\n      var ob = SCHEDULE[next_obstacle];\n      if (lane === ob.lane) {",
+        "scenario_id": "loss-path",
+        "action_index": 1
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "win 终局分支（elapsed>=5000 且无碰撞→status=won、score=500、emit game_won）在给定回放中因 win-path 输入非法未被真实跑通，缺少一条有效通关执行的完整直接证据。但代码逻辑与公开需求完全一致，且碰撞(lost)与重开(restart)分支已有执行证据，无任何反例推翻该分支。",
+        "file": "game.js",
+        "excerpt": "    if (status === 'playing' && elapsed_ms >= WIN_T) {\n      status = 'won';\n      score = 500;\n      emit('game_won', { score: score });",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "win 完整通关路径未被有效回放执行验证（win-path 测试回放输入非法导致提前碰撞），仅由代码与碰撞/重开执行证据推断正确",
+      "WebGL 实际渲染画面未经肉眼或截图验证（实现报告自陈未在浏览器中运行渲染验证）",
+      "虚拟时间推进依赖 harness 对 performance.now 的 mock，代码本身未提供时间注入接口；本评测未独立验证该 mock 行为"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "win-path 回放输入为：开始后 LEFT 到 lane0，再 RIGHT 回 lane1（动作3，elapsed≈992ms）。按公开需求，1000ms 障碍位于 lane1，赛车起 lane1 必须先错开该车道；回放却把车放回 lane1，1000ms 出现同车道障碍时游戏正确触发 car_crashed/lost（动作4：status=lost、collisions=1、elapsed1008）。判题器期望该回合成 win，属回放/预言本身与公开需求矛盾，非代码缺陷。执行证据与公开需求一致。",
+      "file": "game.js",
+      "excerpt": "      if (lane === ob.lane) {\n        collisions++;\n        status = 'lost';\n        emit('car_crashed', { lane: lane });",
+      "scenario_id": "win-path",
+      "action_index": 4,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 121,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "loss-path 在 action1（elapsed=992ms）即断言 status=lost、collisions=1、car_crashed 已出现。但 1000ms 障碍位于 lane1，车起 lane1 未移动，应在 elapsed>=1000 才碰撞；判题 checkpoint 在障碍时刻之前采样，属预言时序错误。游戏代码在 elapsed>=1000 时正确判负（win-path 已证明同逻辑在 1000ms 触发 car_crashed）。",
+      "file": "game.js",
+      "excerpt": "    while (next_obstacle < SCHEDULE.length && elapsed_ms >= SCHEDULE[next_obstacle].t) {\n      var ob = SCHEDULE[next_obstacle];\n      if (lane === ob.lane) {",
+      "scenario_id": "loss-path",
+      "action_index": 1,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 119,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "win 终局分支（elapsed>=5000 且无碰撞→status=won、score=500、emit game_won）在给定回放中因 win-path 输入非法未被真实跑通，缺少一条有效通关执行的完整直接证据。但代码逻辑与公开需求完全一致，且碰撞(lost)与重开(restart)分支已有执行证据，无任何反例推翻该分支。",
+      "file": "game.js",
+      "excerpt": "    if (status === 'playing' && elapsed_ms >= WIN_T) {\n      status = 'won';\n      score = 500;\n      emit('game_won', { score: score });",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 136,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "hy3-process-15-scope.v1",
+  "selection": "first fifteen from frozen ninety-six-task inventory",
+  "selected_ids": [
+    "target-rush",
+    "maze-collector",
+    "key-door-escape",
+    "platform-rescue",
+    "signal-memory",
+    "fruit-slice-touch",
+    "neon-lane-racer",
+    "dual-arena",
+    "meteor-survivor",
+    "room-five-in-row",
+    "persistent-2048",
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm"
+  ],
+  "reused_completed_games": [
+    {
+      "id": "target-rush",
+      "source": "results/process-v1/target-rush",
+      "plan_sha256": "b2c591aa962d957c6bfb9b0f63a1f50defee067816ffddd531c7ad762027b4a1",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "maze-collector",
+      "source": "results/process-30-v1/maze-collector",
+      "plan_sha256": "ee16d57783730e338f2d8b566ba3027a3baed7cd0447656d67d4c71065dc5671",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "key-door-escape",
+      "source": "results/process-30-v1/key-door-escape",
+      "plan_sha256": "80fc55ee495e978b4166b615de438253f2b006bb006a24735f17d3f2da616480",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "platform-rescue",
+      "source": "results/process-v1/platform-rescue",
+      "plan_sha256": "8232713250c3575fd6cffe799b802200dc3125beb4ad318e3e057ada47dfd1eb",
+      "generation_reconstructed": true
+    },
+    {
+      "id": "signal-memory",
+      "source": "results/process-v1/signal-memory",
+      "plan_sha256": "89864026d1c0ca71f36ef69ed8646dd351bd44d8176f9c1b4db464c682b2c056",
+      "generation_reconstructed": true
+    }
+  ],
+  "new_game_ids": [
+    "fruit-slice-touch",
+    "neon-lane-racer",
+    "dual-arena",
+    "meteor-survivor",
+    "room-five-in-row",
+    "persistent-2048",
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm"
+  ],
+  "total": 15,
+  "reused": 5,
+  "to_generate": 10,
+  "difficulty": {
+    "D1": 4,
+    "D2": 6,
+    "D3": 5
+  },
+  "category": {
+    "action": 6,
+    "creative": 2,
+    "puzzle": 5,
+    "simulation": 2
+  },
+  "consolidated_sha256": "8b7be3d455f80b6b90210dffe1dd87d17000d5162681375450a8f13da0431efc",
+  "public_check_inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
+  "representativeness_limit": "The fixed subset has no education game; difficulty and category are confounded."
+}

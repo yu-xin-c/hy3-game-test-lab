@@ -1,0 +1,234 @@
+{
+  "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
+  "formal_tasks": 15,
+  "exact_hud_assertions": 15,
+  "no_direct_value_mention": 2,
+  "scope": "Conservative source-risk gate, not a claim that every listed check is invalid",
+  "risks": [
+    {
+      "task_id": "target-rush",
+      "assertion_id": "A36",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态文字固定使用 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "maze-collector",
+      "assertion_id": "A61",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态固定使用 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "key-door-escape",
+      "assertion_id": "A52",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态文字忽略大小写及连续空白",
+      "direct_value_mention": false,
+      "gate": "exact_value_not_in_cited_text",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "platform-rescue",
+      "assertion_id": "A63",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "Canvas 绘制游戏，HUD 使用普通 DOM 显示 `Lives: n/3`、`Key: Yes/No` 和状态。玩家、平台、尖刺、钥匙和门必须有明显区别。状态固定使用 `Menu`、`Playing`、`Won`、`Lost`。",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "signal-memory",
+      "assertion_id": "A58",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态固定为 `Menu`、`Playing`、`Won`、`Lost`。",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion_id": "A33",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "neon-lane-racer",
+      "assertion_id": "A34",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "dual-arena",
+      "assertion_id": "A36",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "meteor-survivor",
+      "assertion_id": "A36",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion_id": "A72",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态文字忽略大小写及连续空白",
+      "direct_value_mention": false,
+      "gate": "exact_value_not_in_cited_text",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "persistent-2048",
+      "assertion_id": "A40",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "particle-orchestra",
+      "assertion_id": "A42",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "photo-orbit-gallery",
+      "assertion_id": "A39",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "pet-care-day",
+      "assertion_id": "A40",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    },
+    {
+      "task_id": "mini-farm",
+      "assertion_id": "A55",
+      "path": "statusText",
+      "expected": {
+        "mode": "equals",
+        "value": "Won",
+        "ignore_case": true
+      },
+      "model_verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "direct_value_mention": true,
+      "gate": "still_requires_exclusive_text_rule",
+      "treatment": "do_not_use_as_certified_game_failure_without_independent_semantic_rule"
+    }
+  ]
+}

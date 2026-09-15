@@ -1,0 +1,68 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "webgl",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft",
+      "description": "向左移动一条车道"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight",
+      "description": "向右移动一条车道"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始并回到菜单"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "lane": { "type": "integer", "description": "当前车道 0~2" },
+      "elapsed_ms": { "type": "integer", "description": "已进行毫秒数" },
+      "passed": { "type": "integer", "description": "已躲过障碍数" },
+      "collisions": { "type": "integer", "description": "碰撞次数" },
+      "score": { "type": "integer", "description": "当前得分" }
+    },
+    "required": ["status", "lane", "elapsed_ms", "passed", "collisions", "score"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    { "type": "lane_changed", "description": "车道变化", "payload_fields": { "lane": { "type": "integer", "description": "变化后的车道" } } },
+    { "type": "obstacle_passed", "description": "躲过障碍", "payload_fields": { "passed": { "type": "integer", "description": "已躲过障碍数" } } },
+    { "type": "car_crashed", "description": "车辆碰撞失败", "payload_fields": { "lane": { "type": "integer", "description": "碰撞发生的车道" } } },
+    { "type": "game_won", "description": "游戏胜利", "payload_fields": { "score": { "type": "integer", "description": "最终得分" } } },
+    { "type": "game_reset", "description": "游戏重置到菜单", "payload_fields": { "seed": { "type": "number", "description": "使用的随机种子" } } }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

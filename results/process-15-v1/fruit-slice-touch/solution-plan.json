@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "相同 seed 必须得到相同初始状态与同一时间表，reset 恢复菜单。",
+      "implementation": "使用 mulberry32 种子 PRNG。reset({seed}) 重建菜单：score=0、lives=3、sliced=0、remaining=5、status=menu；用 PRNG 派生水果/炸弹出现的延迟(ms)生成固定时间表；每次调用 event_epoch+=1 并从 seq=1 记录 game_reset。所有时间由 performance.now/定时器驱动以支持虚拟时间。",
+      "verification": "连续调用 reset({seed:42}) 两次，observe().state 完全一致；两次 getEvents({afterSeq:0}) 均只含一条 game_reset 且 event_epoch 递增。"
+    },
+    {
+      "id": 2,
+      "requirement": "一次只出现一个可触控水果，切中得 10 分并出现下一个。",
+      "implementation": "#playfield 内仅存在 #fruit；SLICE touch #fruit 时派发 fruit_sliced，score+=10、sliced+=1、remaining-=1，并按 PRNG 时间表安排下一个 #fruit。",
+      "verification": "START 后依次 SLICE #fruit 5 次，observe() 显示 score=50、sliced=5、remaining=0、status=won，且第 5 次后派发 game_won。"
+    },
+    {
+      "id": 3,
+      "requirement": "炸弹为独立触控目标，碰到扣 1 条生命。",
+      "implementation": "#bomb 按 PRNG 时间表独立出现；BOMB touch #bomb 时派发 bomb_hit，lives-=1；lives 降为 0（第 3 个炸弹）时 status=lost 并派发 game_lost。",
+      "verification": "START 后 touch #bomb 3 次，observe() 显示 lives=0、status=lost，事件含 3 条 bomb_hit 与 1 条 game_lost。"
+    },
+    {
+      "id": 4,
+      "requirement": "终局后输入不能再改变分数、进度或胜负。",
+      "implementation": "status 为 won/lost 时忽略 SLICE/BOMB 处理器，仅 RESTART 有效，不修改 state 也不派发游戏事件。",
+      "verification": "到达 won 后再次 touch #fruit，observe() 仍 score=50、status=won，getEvents 无新增 fruit_sliced。"
+    },
+    {
+      "id": 5,
+      "requirement": "Restart 在局内与终局均可见可用，恢复菜单状态。",
+      "implementation": "#restart-btn 始终渲染；RESTART touch 时重置 score=0、lives=3、remaining=5、status=menu，派发 game_reset 并使 event_epoch+=1。",
+      "verification": "在 lost 状态下 RESTART，observe() 显示 status=menu、score=0、lives=3、remaining=5，且新周期 seq 从 1 起。"
+    },
+    {
+      "id": 6,
+      "requirement": "HUD 显示分数/进度与状态；提供只读观察桥接接口。",
+      "implementation": "[data-testid=score] 显示 'Score X / 50 (sliced Y, left Z)'，[data-testid=status] 显示状态；window.__GAMETESTLAB__ 含 protocol:'gametestlab/2'、isReady()、reset()、observe()、getEvents()，tick 取自 performance.now，事件 seq 从 1 连续递增，状态与事件为可序列化 JSON。",
+      "verification": "加载后 isReady() 为 true；observe() 返回 tick/status/state/event_epoch/latest_event_seq；START 后 getEvents({afterSeq:0}) 含 game_started。"
+    },
+    {
+      "id": 7,
+      "requirement": "manifest 严格符合规定结构，覆盖控件、HUD、状态与事件。",
+      "implementation": "schema_version=gametestlab.game-manifest.v3，surface=dom，viewport 800x600；controls 含 START(#start-btn)/SLICE(#fruit)/BOMB(#bomb)/RESTART(#restart-btn)；state_schema.fields 含 status/score/lives/sliced/remaining；event_schema 含 game_started/fruit_sliced/bomb_hit/game_won/game_lost/game_reset。",
+      "verification": "校验 JSON 合法且顶层仅含规定字段，required 含全部状态字段，事件类型与题面一一对应。"
+    }
+  ]
+}

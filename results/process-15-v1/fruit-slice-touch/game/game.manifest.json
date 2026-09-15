@@ -1,0 +1,101 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "touch",
+      "key_event": "tap",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "SLICE",
+      "actor": "primary",
+      "device": "touch",
+      "key_event": "tap",
+      "selector": "#fruit",
+      "description": "切中水果"
+    },
+    {
+      "action_id": "BOMB",
+      "actor": "primary",
+      "device": "touch",
+      "key_event": "tap",
+      "selector": "#bomb",
+      "description": "碰到炸弹"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "touch",
+      "key_event": "tap",
+      "selector": "#restart-btn",
+      "description": "重新开始"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" },
+      "score": { "type": "integer", "description": "分数" },
+      "lives": { "type": "integer", "description": "剩余生命" },
+      "sliced": { "type": "integer", "description": "已切中水果数" },
+      "remaining": { "type": "integer", "description": "剩余水果数" }
+    },
+    "required": ["status", "score", "lives", "sliced", "remaining"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "fruit_sliced",
+      "description": "切中水果",
+      "payload_fields": {
+        "score": { "type": "integer", "description": "当前分数" },
+        "sliced": { "type": "integer", "description": "已切中水果数" },
+        "remaining": { "type": "integer", "description": "剩余水果数" }
+      }
+    },
+    {
+      "type": "bomb_hit",
+      "description": "碰到炸弹",
+      "payload_fields": {
+        "lives": { "type": "integer", "description": "剩余生命" }
+      }
+    },
+    {
+      "type": "game_won",
+      "description": "游戏胜利",
+      "payload_fields": {
+        "score": { "type": "integer", "description": "最终分数" }
+      }
+    },
+    {
+      "type": "game_lost",
+      "description": "游戏失败",
+      "payload_fields": {
+        "lives": { "type": "integer", "description": "剩余生命" }
+      }
+    },
+    {
+      "type": "game_reset",
+      "description": "回到菜单/重置",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

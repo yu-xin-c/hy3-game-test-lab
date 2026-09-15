@@ -1,0 +1,154 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowUp",
+      "description": "向上移动"
+    },
+    {
+      "action_id": "DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowDown",
+      "description": "向下移动"
+    },
+    {
+      "action_id": "LEFT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft",
+      "description": "向左移动"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight",
+      "description": "向右移动"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重开返回菜单"
+    },
+    {
+      "action_id": "RESTART_KEY",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "KeyR",
+      "description": "键盘重开"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "player": {
+        "type": "object",
+        "description": "玩家坐标",
+        "fields": {
+          "x": { "type": "integer", "description": "列坐标" },
+          "y": { "type": "integer", "description": "行坐标" }
+        }
+      },
+      "lives": { "type": "integer", "description": "剩余生命" },
+      "has_key": { "type": "boolean", "description": "是否持有钥匙" },
+      "door_open": { "type": "boolean", "description": "门是否打开" }
+    },
+    "required": ["status", "player", "lives", "has_key", "door_open"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "player_moved",
+      "description": "玩家移动",
+      "payload_fields": {
+        "from": { "type": "object", "description": "起点坐标" },
+        "to": { "type": "object", "description": "终点坐标" }
+      }
+    },
+    {
+      "type": "wall_blocked",
+      "description": "撞墙被阻挡",
+      "payload_fields": {}
+    },
+    {
+      "type": "door_blocked",
+      "description": "锁门阻挡",
+      "payload_fields": {}
+    },
+    {
+      "type": "key_collected",
+      "description": "取得钥匙",
+      "payload_fields": {}
+    },
+    {
+      "type": "door_opened",
+      "description": "门被打开",
+      "payload_fields": {}
+    },
+    {
+      "type": "trap_hit",
+      "description": "踩中陷阱",
+      "payload_fields": {
+        "at": { "type": "object", "description": "陷阱坐标" }
+      }
+    },
+    {
+      "type": "player_respawned",
+      "description": "回到起点复活",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_won",
+      "description": "通关胜利",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_lost",
+      "description": "生命耗尽失败",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_reset",
+      "description": "重置回菜单",
+      "payload_fields": {
+        "seed": { "type": "null", "description": "随机种子(本作固定地图)" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

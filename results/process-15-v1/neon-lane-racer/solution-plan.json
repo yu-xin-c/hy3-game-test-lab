@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "三车道霓虹赛道，车从中车道1出发；ArrowLeft/ArrowRight 各移动一条车道（夹在0~2）。障碍按固定时间表出现：1000ms车道1、2000ms车道0、3000ms车道1、4000ms车道2。障碍出现瞬间若车在同一车道则立即失败(collisions+1, status=lost)；否则该障碍记为躲过(passed+1, score+100)。无碰撞坚持到5000ms即获胜(status=won, score=500)。Restart回到lane=1,elapsed_ms=0,passed=0,collisions=0,score=0,status=menu。",
+      "implementation": "用单一 requestAnimationFrame 循环，以 performance.now() 减去 start_time 计算 elapsed_ms；所有时间规则以毫秒写在常量 SCHEDULE=[{t:1000,lane:1},{t:2000,lane:0},{t:3000,lane:1},{t:4000,lane:2}] 与 WIN_T=5000。移动时 lane=Math.max(0,Math.min(2,lane±1))，成功后派发 lane_changed；status!=playing 时忽略一切输入。",
+      "verification": "用虚拟时间将 performance.now 前推：1000ms时车在lane1应触发 car_crashed;改为先LEFT到lane0再RIGHT回lane1后在每个障碍时刻错开车道，到达5000ms应 status=won,score=500，且 passed=4、collisions=0。"
+    },
+    {
+      "id": 2,
+      "requirement": "原生 WebGL 渲染 800×600 视口与 #game-canvas，不加载 Three.js 或任何远程资源，本地生成纹理/顶点。",
+      "implementation": "getContext('webgl') 编译内置顶点/片段着色器；三条车道用程序化生成的渐变霓虹色四边形绘制，车与障碍用本地生成的小纹理或纯色三角形批次绘制；resize 固定 800×600，不引用外链。",
+      "verification": "在浏览器中打开 index.html，确认 canvas 尺寸为800×600且无网络请求(Network面板为空)，画面显示三条车道与车。"
+    },
+    {
+      "id": 3,
+      "requirement": "固定 seed 必须产生相同初始状态与同一时间表；游戏结束后输入不能再改变分数、进度或胜负。",
+      "implementation": "seed 经确定性伪随机(如 mulberry32)生成，但本题目时间表为常量、初始 lane 固定为1，故 reset({seed}) 仅用于恢复菜单态并递增 event_epoch、重置 seq=1 记录 game_reset；游戏结束(status=won/lost)后在输入处理中直接 return，确保分数/进度/胜负不可变。",
+      "verification": "对同一 seed 连续两次 reset 后 observe() 的 state 完全一致、event_epoch 递增且首事件 seq=1 为 game_reset；终局后多次按方向键再 observe()，score/lane/elapsed_ms/status 不变。"
+    },
+    {
+      "id": 4,
+      "requirement": "HUD 始终显示分数/进度与状态 Menu/Playing/Won/Lost；菜单、主游戏区、终局、Restart 均完整可见。state 至少含 status、lane、elapsed_ms、passed、collisions、score。",
+      "implementation": "DOM 叠层覆盖 canvas：#start-btn(菜单)、#game-canvas、[data-testid=score]、[data-testid=status]、#restart-btn(局内与终局均显示)。每帧更新 status 文本(menu/playing/won/lost，忽略大小写与空白比较)与 score=分数或进度(剩余至5000ms毫秒)。",
+      "verification": "初始页面 status=Menu 且 #start-btn 可见；点击开始后 status=Playing 且 score 实时变化；到达终局 status=Won/Lost 且 #restart-btn 可见可点。"
+    },
+    {
+      "id": 5,
+      "requirement": "事件 bridge 协议 gametestlab/2，事件含 game_started、lane_changed、obstacle_passed、car_crashed、game_won、game_reset，序号从1连续、可序列化、可分页。",
+      "implementation": "维护 events[] 与 seq 计数器、tick(帧计数)、event_epoch；每次状态转移 push {seq,tick,type,payload}。START 推 game_started；移动推 lane_changed{lane}；躲过障碍推 obstacle_passed{passed}；碰撞推 car_crashed{lane}；5000ms推 game_won{score}；reset 推 game_reset。",
+      "verification": "依次调用 getEvents({afterSeq:0}) 核对 seq 连续且类型与顺序正确；observe() 返回的 latest_event_seq 与事件数组末项一致，且 observe/getEvents 输出均为普通 JSON 可 JSON.stringify。"
+    },
+    {
+      "id": 6,
+      "requirement": "提供只读观察接口 window.__GAMETESTLAB__(protocol:'gametestlab/2')，含 isReady、reset、observe、getEvents；不提供替代玩家操作的方法；manifest 严格按 v3 结构填写 surface=webgl 与全部控件/HUD/state/event 定义。",
+      "implementation": "window.__GAMETESTLAB__={protocol:'gametestlab/2',isReady:()=>inited,reset:({seed})=>{...},observe:()=>({tick,status,state,event_epoch,latest_event_seq}),getEvents:({afterSeq})=>events.filter(e=>e.seq>afterSeq)}。manifest.json 填 entry_path、viewport 800×600、controls(START mouse #start-btn / LEFT keyboard code ArrowLeft press / RIGHT keyboard code ArrowRight press / RESTART mouse #restart-btn)、hud_selectors score/status、state_schema.fields(六字段对象定义)、event_schema(六事件含 payload_fields)。",
+      "verification": "在控制台执行 typeof window.__GAMETESTLAB__.observe==='function' 且 protocol 正确；读取 manifest.json 校验无额外顶层字段、controls 与题面动作/设备/selector 一一对应、state_schema 覆盖全部要求字段。"
+    }
+  ]
+}

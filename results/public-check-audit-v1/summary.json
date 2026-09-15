@@ -2,17 +2,17 @@
   "scope": "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality",
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "inventory_total_tasks": 96,
-  "total_tasks": 30,
-  "reviewed_tasks": 17,
-  "total_predicates": 1654,
-  "reviewed_predicates": 934,
-  "remaining_tasks": 13,
-  "remaining_predicates": 720,
+  "total_tasks": 15,
+  "reviewed_tasks": 15,
+  "total_predicates": 833,
+  "reviewed_predicates": 833,
+  "remaining_tasks": 0,
+  "remaining_predicates": 0,
   "model_labels": {
-    "supported": 805,
+    "supported": 721,
     "unsupported": 31,
-    "ambiguous": 52,
-    "test_mechanics": 46
+    "ambiguous": 44,
+    "test_mechanics": 37
   },
   "rows": [
     {
@@ -177,28 +177,6 @@
         "supported": 59,
         "unsupported": 0,
         "ambiguous": 1,
-        "test_mechanics": 1
-      }
-    },
-    {
-      "task_id": "cooperative-city",
-      "predicates": 53,
-      "quote_repair_applied": true,
-      "counts": {
-        "supported": 42,
-        "unsupported": 0,
-        "ambiguous": 3,
-        "test_mechanics": 8
-      }
-    },
-    {
-      "task_id": "math-quest",
-      "predicates": 48,
-      "quote_repair_applied": false,
-      "counts": {
-        "supported": 42,
-        "unsupported": 0,
-        "ambiguous": 5,
         "test_mechanics": 1
       }
     }

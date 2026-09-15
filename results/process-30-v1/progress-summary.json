@@ -1,15 +1,11 @@
 {
   "scope": "30 chosen tasks; all generated plans are public pre-implementation outputs; progress not final benchmark accuracy",
   "selected_games": 30,
-  "completed_games": 4,
+  "completed_games": 5,
   "pending": [
     {
-      "id": "key-door-escape",
-      "stage": "not_started"
-    },
-    {
       "id": "fruit-slice-touch",
-      "stage": "not_started"
+      "stage": "generating"
     },
     {
       "id": "neon-lane-racer",
@@ -109,13 +105,13 @@
     }
   ],
   "counts": {
-    "completed_games": 4,
-    "raw_browser_final_paths_passed": 6,
-    "raw_browser_paths": 14,
+    "completed_games": 5,
+    "raw_browser_final_paths_passed": 9,
+    "raw_browser_paths": 17,
     "hy3_final_true": 2,
-    "hy3_final_known": 3,
-    "hy3_process_true": 2,
-    "hy3_process_known": 3
+    "hy3_final_known": 4,
+    "hy3_process_true": 3,
+    "hy3_process_known": 4
   },
   "by_difficulty": {
     "D1": {
@@ -128,13 +124,13 @@
       "hy3_process_known": 2
     },
     "D2": {
-      "completed_games": 1,
-      "raw_browser_final_paths_passed": 1,
-      "raw_browser_paths": 3,
+      "completed_games": 2,
+      "raw_browser_final_paths_passed": 4,
+      "raw_browser_paths": 6,
       "hy3_final_true": 0,
-      "hy3_final_known": 0,
-      "hy3_process_true": 0,
-      "hy3_process_known": 0
+      "hy3_final_known": 1,
+      "hy3_process_true": 1,
+      "hy3_process_known": 1
     },
     "D3": {
       "completed_games": 1,
@@ -157,13 +153,13 @@
       "hy3_process_known": 1
     },
     "puzzle": {
-      "completed_games": 2,
-      "raw_browser_final_paths_passed": 1,
-      "raw_browser_paths": 7,
+      "completed_games": 3,
+      "raw_browser_final_paths_passed": 4,
+      "raw_browser_paths": 10,
       "hy3_final_true": 1,
-      "hy3_final_known": 2,
-      "hy3_process_true": 1,
-      "hy3_process_known": 2
+      "hy3_final_known": 3,
+      "hy3_process_true": 2,
+      "hy3_process_known": 3
     },
     "creative": {
       "completed_games": 0,
@@ -194,7 +190,7 @@
     }
   },
   "hy3_supported_defect_types": {
-    "implementation_mismatch": 2
+    "implementation_mismatch": 3
   },
   "rows": [
     {
@@ -229,6 +225,25 @@
       "hy3_apparent_pass_with_flaw": false,
       "supported_defect_types": [
         "implementation_mismatch",
+        "implementation_mismatch"
+      ],
+      "code_history_complete": true,
+      "baseline_reused": false
+    },
+    {
+      "id": "key-door-escape",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "original_plan_steps": 7,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "raw_browser_final_paths_passed": 3,
+      "raw_browser_process_paths_passed": 2,
+      "hy3_final_correct": false,
+      "hy3_process_correct": true,
+      "hy3_first_error_plan_step": 1,
+      "hy3_apparent_pass_with_flaw": true,
+      "supported_defect_types": [
         "implementation_mismatch"
       ],
       "code_history_complete": true,

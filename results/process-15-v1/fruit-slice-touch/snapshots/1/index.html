@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Slice Touch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game">
+    <div id="hud">
+      <div id="score" data-testid="score">Score 0 / 50 (sliced 0, left 5)</div>
+      <div id="status" data-testid="status">Menu</div>
+    </div>
+
+    <div id="playfield">
+      <button id="start-btn" type="button">Start</button>
+
+      <div id="fruit" class="target fruit" hidden></div>
+      <div id="bomb" class="target bomb" hidden></div>
+
+      <div id="end-overlay" hidden>
+        <div id="end-message"></div>
+      </div>
+    </div>
+
+    <div id="controls">
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

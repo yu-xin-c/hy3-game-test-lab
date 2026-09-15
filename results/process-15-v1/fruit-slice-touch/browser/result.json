@@ -1,0 +1,4001 @@
+{
+  "schema_version": "gametestlab.formal-task-result.v1",
+  "task_id": "fruit-slice-touch",
+  "title": "Fruit Slice Touch",
+  "category": "action",
+  "features": [
+    "touch"
+  ],
+  "difficulty": {
+    "level": "D1",
+    "rationale": "触控目标、炸弹惩罚和明确终局可以直接复现。"
+  },
+  "generator": "codebuddy-hy3",
+  "evaluation_context": "frozen_task_evaluation",
+  "checking_policy_version": "2026-09-12.3",
+  "status": "evaluated_with_contract_findings",
+  "started_at": "2026-09-15T07:27:06.420Z",
+  "finished_at": "2026-09-15T07:27:10.599Z",
+  "replay_count": 3,
+  "browser": {
+    "name": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "input_hashes": {
+    "test_plan_sha256": "e667755c922e3ec765b9109ee6e90edd55599a54f04845579cef49bc699645df",
+    "oracle_sha256": "7fd937ab9c732d03253a8680a1644990d37662697e0efa848a1fe800d8c57481",
+    "evaluator_sha256": "26ea156c2d9354946afcbd40d1edf77066e47b2f267b750d6f331c4967f1da80",
+    "runner_sha256": "2a0879cd37e70599a0d34a6ff2f0778fa7746edbb24741c26c2059e194667fa0",
+    "task_adapter_sha256": "7b3ef6026ff5824a04f6b5af92946c08f2e470c25a754cf727e1bf6a70269bb3",
+    "frozen_task_sha256": "b54996df375869e7989bdc4a76c32f8100937c44ae27e0e2ca57de9b04374530",
+    "game_directory_sha256": "177a096fc258c324b3487043fad0741f9428e0df58d4b07fb12e91d98bcf4cca",
+    "game_manifest_sha256": "3d1b95f4557f27554e11cbc93ac7352245d68282ec931b153aa09cf9fd9cc82c"
+  },
+  "aggregate": {
+    "contract_pass": false,
+    "scenario_runs": 9,
+    "process_passes": 0,
+    "final_passes": 3,
+    "lucky_passes": 3,
+    "L1_passes": 0,
+    "L2_passes": 0,
+    "L3_passes": 0
+  },
+  "contract": {
+    "conformant": false,
+    "findings": [
+      {
+        "path": "files",
+        "message": "invalid game.manifest.json: [\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      0,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      1,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      2,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"press\",\n      \"down\",\n      \"up\"\n    ],\n    \"path\": [\n      \"controls\",\n      3,\n      \"key_event\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"press\\\"|\\\"down\\\"|\\\"up\\\"\"\n  }\n]"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "replay_index": 0,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "FS-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 1,
+            "checkpoint_id": "FS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 10,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 4,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 5,
+            "checkpoint_id": "FS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 50,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 5,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 0,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 6,
+            "checkpoint_id": "FS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "FS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Menu"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "FS-CP-MID",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/fruit-slice-touch-action-01.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "FS-CP-WON",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/fruit-slice-touch-action-05.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "FS-CP-WON-UI",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 33,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/fruit-slice-touch-action-06.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 3,
+            "checkpoint_id": "FS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "lives",
+                "expected": 0,
+                "actual": 3
+              },
+              {
+                "channel": "event",
+                "path": "bomb_hit",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_lost",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "FS-CP-LOST",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/fruit-slice-touch-action-03.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": false,
+        "lucky_pass_detected": true,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "FS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/fruit-slice-touch-action-02.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "FS-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 1,
+            "checkpoint_id": "FS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 10,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 4,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 5,
+            "checkpoint_id": "FS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 50,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 5,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 0,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 6,
+            "checkpoint_id": "FS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "FS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Menu"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "FS-CP-MID",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/fruit-slice-touch-action-01.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "FS-CP-WON",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/fruit-slice-touch-action-05.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "FS-CP-WON-UI",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 32,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/fruit-slice-touch-action-06.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 3,
+            "checkpoint_id": "FS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "lives",
+                "expected": 0,
+                "actual": 3
+              },
+              {
+                "channel": "event",
+                "path": "bomb_hit",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_lost",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "FS-CP-LOST",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/fruit-slice-touch-action-03.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": false,
+        "lucky_pass_detected": true,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "FS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/fruit-slice-touch-action-02.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "FS-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 1,
+            "checkpoint_id": "FS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 10,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 4,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 5,
+            "checkpoint_id": "FS-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "won",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 50,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "sliced",
+                "expected": 5,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "remaining",
+                "expected": 0,
+                "actual": 5
+              },
+              {
+                "channel": "event",
+                "path": "fruit_sliced",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_won",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 6,
+            "checkpoint_id": "FS-CP-WON-UI",
+            "layer": "L3",
+            "requirement_ids": [
+              "FS-HUD"
+            ],
+            "error_type": "state_ui_inconsistency",
+            "diffs": [
+              {
+                "channel": "ui",
+                "path": "statusText",
+                "expected": {
+                  "mode": "equals",
+                  "value": "Won",
+                  "ignore_case": true
+                },
+                "actual": "Menu"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "FS-CP-START",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "FS-CP-MID",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/fruit-slice-touch-action-01.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "FS-CP-WON",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/fruit-slice-touch-action-05.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 6,
+          "checkpoint_id": "FS-CP-WON-UI",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 7,
+              "action_index": 6,
+              "elapsed_ms": 32,
+              "tick": 32,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/fruit-slice-touch-action-06.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          {
+            "action_index": 3,
+            "checkpoint_id": "FS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "FS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "menu"
+              },
+              {
+                "channel": "state",
+                "path": "lives",
+                "expected": 0,
+                "actual": 3
+              },
+              {
+                "channel": "event",
+                "path": "bomb_hit",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "game_lost",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-loss-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "FS-CP-LOST",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 1,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/fruit-slice-touch-action-03.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "fruit-slice-touch",
+        "difficulty": "D1",
+        "final_outcome_correct": true,
+        "process_correct": false,
+        "lucky_pass_detected": true,
+        "gates": {
+          "L1": "fail",
+          "L2": "blocked",
+          "L3": "blocked"
+        },
+        "highest_certified_level": "none",
+        "first_failure": {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "error_type": "terminal_condition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "status",
+              "expected": "playing",
+              "actual": "menu"
+            },
+            {
+              "channel": "event",
+              "path": "game_started",
+              "expected": "present",
+              "actual": "missing"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "fruit-slice-touch-restart-path-started",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/fruit-slice-touch-action-00.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "FS-CP-RESET",
+          "state": {
+            "status": "menu",
+            "score": 0,
+            "lives": 3,
+            "sliced": 0,
+            "remaining": 5
+          },
+          "ui": {
+            "scoreText": "Score 0 / 50 (sliced 0, left 5)",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score 0 / 50 (sliced 0, left 5)",
+                "visible": true,
+                "rect": {
+                  "x": 17,
+                  "y": 14.5,
+                  "width": 237.296875,
+                  "height": 21
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 736.09375,
+                  "y": 14.5,
+                  "width": 46.90625,
+                  "height": 21
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "div",
+              "client_width": 798,
+              "client_height": 494
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "score": 0,
+                "lives": 3,
+                "sliced": 0,
+                "remaining": 5
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/fruit-slice-touch-action-02.png",
+            "state_hash": "5d97a864cb9ee5eb7b67a3bcf68d11b98295ec17be1b7857927e93288cc3212a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51735/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "files": {
+    "result": "result.json",
+    "trace": "events.jsonl"
+  }
+}

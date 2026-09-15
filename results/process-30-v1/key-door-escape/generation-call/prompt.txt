@@ -1,0 +1,133 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Key Door Escape
+
+## 游戏目标
+
+做一个带钥匙、锁门和陷阱的网格解谜游戏。玩家必须先取得钥匙，打开门，再到达出口。
+
+## 完整玩法
+
+地图固定为 8×5：
+
+```text
+########
+#S..D.E#
+#.#.#..#
+#K..T..#
+########
+```
+
+`S` 是起点 `(1,1)`，`K` 是钥匙，`D` 是门，`T` 是陷阱，`E` 是出口。玩家用方向键逐格移动。没有钥匙时门会阻挡玩家；拿到钥匙后，再次进入门格会把门永久打开。钥匙不消耗，直到本局结束。
+
+玩家初始有 2 条生命。踩到陷阱损失 1 条生命，并回到起点；地图上的钥匙和门恢复到本条生命开始时的状态。生命归零立即失败。
+
+## 胜负与重开
+
+- 打开门并进入出口：`won`。
+- 生命归零：`lost`。
+- 游戏结束后不接受移动。
+- Restart 按钮或键盘 `R` 返回菜单，恢复 2 条生命、钥匙、门和玩家位置。
+
+## 界面与反馈
+
+地图必须清楚区分墙、玩家、钥匙、门、陷阱和出口。HUD 显示 `Lives: n/2`、是否持有钥匙、门的状态和当前状态。碰到锁门时显示 `Door is locked`，取得钥匙显示 `Key collected`，开门显示 `Door opened`。
+
+## 固定规则
+
+坐标与 Maze Collector 相同。撞墙或撞锁门不算成功移动。seed 相同必须产生相同状态。
+
+## 自动测试接口
+
+- 界面：DOM 网格。
+- `#start-btn`、`#restart-btn`；`#board` 为游戏区域。
+- `[data-testid="score"]` 显示生命与钥匙；`[data-testid="status"]` 显示状态。
+- 控件名称：`START`、`UP`、`DOWN`、`LEFT`、`RIGHT`、`RESTART`、`RESTART_KEY`。
+- state 至少包含：`status`、`player:{x,y}`、`lives`、`has_key`、`door_open`。
+- 事件：`game_started`、`player_moved`、`wall_blocked`、`door_blocked`、`key_collected`、`door_opened`、`trap_hit`、`player_respawned`、`game_won`、`game_lost`、`game_reset`。
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"固定 8×5 地图，区分墙/玩家/钥匙/门/陷阱/出口，DOM 网格渲染于 #board。","implementation":"地图常量 `[['#',8列]...]`，坐标 (x=列,y=行)，S(1,1) K(3,1) D(4,1) E(6,1) T(3,3)（按题面映射：S(1,1) K(3,3) D(4,1) T(3,3) 修正为 K(1,3) D(4,1) T(3,3) E(6,1)）。每格一个 div，加 class 与 data-type 属性；玩家格叠加 data-player。","verification":"打开页面后断言 document.querySelectorAll('#board > div').length === 40，且各 data-type 的存在数量符合墙=外框+2内墙、key=1、door=1、trap=1、exit=1。"},{"id":2,"requirement":"方向键逐格移动，撞墙或撞锁门不算成功移动。","implementation":"监听 keydown 的 ArrowUp/Down/Left/Right（code: ArrowUp 等），计算目标格；若目标越界或为 '#' 发出 wall_blocked 且不改 player；否则更新 player 并发 player_moved。状态字段 player:{x,y}。","verification":"初始 player=(1,1)，按左移（x=0 为墙）后应仍 (1,1) 且 getEvents 含 seq 递增的 wall_blocked；正常右移后 player 变 (2,1) 且含 player_moved。"},{"id":3,"requirement":"钥匙与门：无钥匙进门被挡，有钥匙进门永久打开。","implementation":"踏入 (1,3) 设 has_key=true 并发 key_collected；进门 D(4,1) 时若 !has_key 发 door_blocked 且阻挡，若 has_key 且 !door_open 则 door_open=true 发 door_opened 并放行。钥匙不消耗。","verification":"先移到 D 无钥匙断言 door_blocked 且 player 未越过；拾钥匙后再次进门断言 door_open===true 且发出 door_opened。"},{"id":4,"requirement":"陷阱扣命并回到起点，本命开始的钥匙/门状态复原；生命归零失败。","implementation":"踏入 T(3,3)：lives--，发 trap_hit；记录本命开始时的 {has_key,door_open,player} 快照并在 respawn 时恢复，player 回到 S，发 player_respawned。lives===0 时 status='lost' 并发 game_lost，停止接受移动。","verification":"持钥匙后踩陷阱断言 lives 减 1、has_key 回到本命开始值、player 回到 (1,1) 且含 trap_hit+player_respawned；连续踩两次（2 命）后 status==='lost' 且后续移动无 player_moved。"},{"id":5,"requirement":"开门后进出口判胜；结束态不接受移动。","implementation":"status==='playing' 且 door_open 时踏入 E(6,1)：status='won'，发 game_won。won/lost 下忽略方向键输入。","verification":"走通 S→K(1,3)→回程→D→E 路径后 observe().state.status==='won' 且含 game_won；终局后按键 observe 中 player 与 status 不变。"},{"id":6,"requirement":"Restart 与 R 键回到菜单态，恢复 2 命/钥匙/门/位置。","implementation":"#restart-btn 点击与 keydown code KeyR 触发 reset({seed})：status='menu'，lives=2，has_key=false，door_open=false，player=(1,1)，event_epoch++，seq 从 1 重记，发 game_reset。#start-btn 触发 game_started 且 status='playing'。","verification":"游玩至 lost 后点 #restart-btn 再调 observe，断言 lives=2、has_key=false、door_open=false、player={x:1,y:1}、status='menu'，且 event_epoch 较之前 +1、重置后首事件 seq=1。"},{"id":7,"requirement":"提供只读观察桥 window.__GAMETESTLAB__ 与合规 manifest。","implementation":"暴露 protocol:'gametestlab/2'、isReady()、reset({seed})、observe()（返回 tick/status/state/event_epoch/latest_event_seq）、getEvents({afterSeq})。state 含 status/player/lives/has_key/door_open；事件含题面 11 类，对象带 seq,tick,type,可选 payload。manifest surface='dom'、viewport 800×600、controls 覆盖 START/UP/DOWN/LEFT/RIGHT/RESTART/RESTART_KEY、hud_selectors 含 score/status。","verification":"断言 window.__GAMETESTLAB__.protocol==='gametestlab/2' 且 isReady()===true；reset 后 getEvents({afterSeq:0}) 首条 type==='game_reset' 且 seq=1；observe().state 字段齐全；[data-testid=score] 含 'Lives' 与钥匙信息、[data-testid=status] 含当前状态文案。"}]}

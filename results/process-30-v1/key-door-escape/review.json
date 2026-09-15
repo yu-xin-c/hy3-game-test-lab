@@ -1,0 +1,100 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": false,
+    "process_correct": true,
+    "first_error_step": 1,
+    "apparent_pass_with_flaw": true,
+    "findings": [
+      {
+        "step_id": 1,
+        "kind": "requirement_misread",
+        "status": "repaired",
+        "explanation": "方案 step 1 修正映射写成 T(3,3)，但题面 ASCII（第3行 `#K..T..#`）中 T 位于第4列，坐标为 (4,3)。实现未沿用此错误：implementation_summary 公开注明并改用 T(4,3)，game.js 的 MAP 第3行把 T 放在 x=4；loss-path 轨迹 action 5/10 的 trap_hit 坐标均为 (4,3)，证明实现与题面一致，方案坐标主张被代码/执行反例推翻但已修复。",
+        "file": "game.js",
+        "excerpt": "    ['#', 'K', '.', '.', 'T', '.', '.', '#'],",
+        "scenario_id": "loss-path",
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "game.manifest.json 的 state_schema.fields.player 下含嵌套 `fields` 键，被 manifest schema 校验拒绝（unrecognized_keys: 'fields'），导致 contract_pass=false。公开需求/方案 step 7 要求合规 manifest，但 manifest 结构违规。该缺陷源于实现（manifest 文件），方案未规定该具体结构，故 non-plan 错误。",
+        "file": "game.manifest.json",
+        "excerpt": "\"player\": { \"type\": \"object\", \"description\": \"玩家坐标\", \"fields\": { \"x\": { \"type\": \"integer\" }, \"y\": { \"type\": \"integer\" } } },",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "win-path 的 L3 检查 KD-CP-WON-UI 期望 statusText 恰为 'Won'，实际为 'Status: WON - You escaped!'。公开需求仅要求 HUD 显示当前状态与特定反馈语（Door is locked / Key collected / Door opened），未规定状态元素必须为裸 'Won'；代码将状态与提示合并显示已满足'显示状态'。该 L3 失败更可能是评测器私有格式期望过严，属潜在误报，无法确认为公开需求违背。",
+        "file": "game.js",
+        "excerpt": "statusEl.textContent = 'Status: ' + status.toUpperCase() + msg;",
+        "scenario_id": "win-path",
+        "action_index": 15
+      }
+    ],
+    "limits": [
+      "manifest schema 校验失败为真实缺陷，但属元数据契约问题，不影响游戏可玩性与核心玩法正确性。",
+      "win-path 的 L3 状态文本差异可能为评测器私有规则过严，公开需求未要求裸 'Won' 格式。",
+      "全部验证来自 harness 轨迹与契约报告，未提供真实浏览器渲染/像素证据（implementation_summary 已声明未实跑浏览器）。",
+      "功能性玩法（胜/负/重开/钥匙/门/陷阱/生命）均被轨迹证实正确，L1/L2 全通过。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": 1,
+      "kind": "requirement_misread",
+      "status": "repaired",
+      "explanation": "方案 step 1 修正映射写成 T(3,3)，但题面 ASCII（第3行 `#K..T..#`）中 T 位于第4列，坐标为 (4,3)。实现未沿用此错误：implementation_summary 公开注明并改用 T(4,3)，game.js 的 MAP 第3行把 T 放在 x=4；loss-path 轨迹 action 5/10 的 trap_hit 坐标均为 (4,3)，证明实现与题面一致，方案坐标主张被代码/执行反例推翻但已修复。",
+      "file": "game.js",
+      "excerpt": "    ['#', 'K', '.', '.', 'T', '.', '.', '#'],",
+      "scenario_id": "loss-path",
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 10,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "game.manifest.json 的 state_schema.fields.player 下含嵌套 `fields` 键，被 manifest schema 校验拒绝（unrecognized_keys: 'fields'），导致 contract_pass=false。公开需求/方案 step 7 要求合规 manifest，但 manifest 结构违规。该缺陷源于实现（manifest 文件），方案未规定该具体结构，故 non-plan 错误。",
+      "file": "game.manifest.json",
+      "excerpt": "\"player\": { \"type\": \"object\", \"description\": \"玩家坐标\", \"fields\": { \"x\": { \"type\": \"integer\" }, \"y\": { \"type\": \"integer\" } } },",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": null,
+      "quote_verified": false
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "win-path 的 L3 检查 KD-CP-WON-UI 期望 statusText 恰为 'Won'，实际为 'Status: WON - You escaped!'。公开需求仅要求 HUD 显示当前状态与特定反馈语（Door is locked / Key collected / Door opened），未规定状态元素必须为裸 'Won'；代码将状态与提示合并显示已满足'显示状态'。该 L3 失败更可能是评测器私有格式期望过严，属潜在误报，无法确认为公开需求违背。",
+      "file": "game.js",
+      "excerpt": "statusEl.textContent = 'Status: ' + status.toUpperCase() + msg;",
+      "scenario_id": "win-path",
+      "action_index": 15,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 84,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

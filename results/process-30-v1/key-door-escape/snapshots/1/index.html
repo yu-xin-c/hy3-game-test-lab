@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800, height=600">
+  <title>Key Door Escape</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Key Door Escape</h1>
+  <div id="hud">
+    <div data-testid="score">Lives: 2/2 | Key: No | Door: Locked</div>
+    <div data-testid="status">Status: MENU</div>
+  </div>
+  <div id="board"></div>
+  <div id="controls">
+    <button id="start-btn" type="button">START</button>
+    <button id="restart-btn" type="button">RESTART</button>
+  </div>
+  <div id="legend">
+    <span class="cell legend-cell wall">#</span> Wall
+    <span class="cell legend-cell start">S</span> Start
+    <span class="cell legend-cell key">K</span> Key
+    <span class="cell legend-cell door">D</span> Door
+    <span class="cell legend-cell trap">T</span> Trap
+    <span class="cell legend-cell exit">E</span> Exit
+    <span class="cell legend-cell player">P</span> Player
+  </div>
+  <p class="hint">Arrow keys to move. Get the key (K), open the door (D), reach the exit (E). Avoid traps (T).</p>
+  <script src="game.js"></script>
+</body>
+</html>

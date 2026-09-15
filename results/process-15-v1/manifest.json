@@ -1,0 +1,18 @@
+{
+  "version": "process-v1",
+  "tasks": [
+    "fruit-slice-touch",
+    "neon-lane-racer",
+    "dual-arena",
+    "meteor-survivor",
+    "room-five-in-row",
+    "persistent-2048",
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm"
+  ],
+  "generator": "hy3",
+  "reviewer": "hy3",
+  "public_process": "numbered pre-implementation plan plus recorded code mutations"
+}

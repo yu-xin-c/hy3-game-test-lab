@@ -1,0 +1,93 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": false,
+    "process_correct": false,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": true,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "Manifest control entries use key_event:\"tap\", but the schema only accepts \"press\"/\"down\"/\"up\" (contract finding). With an uninterpretable control descriptor the harness cannot map/dispatch the touch actions, so START never fires: every scenario run fails at L1 with status=\"menu\" and game_started missing. This is the root cause of the universal start failure and the contract conformance failure.",
+        "file": "game.manifest.json",
+        "excerpt": "\"key_event\": \"tap\"",
+        "scenario_id": "win-path",
+        "action_index": 0
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "START and RESTART buttons are bound only to 'click', while #fruit and #bomb also have 'touchstart' handlers. The brief defines all four controls as touch operations and the harness drives them via touch; under a touch-only dispatch the start/restart handlers never fire. This is an inconsistency in the input wiring (the developer added touchstart to fruit/bomb but omitted it for start/restart), a latent defect independent of the manifest issue.",
+        "file": "game.js",
+        "excerpt": "el.startBtn.addEventListener('click', startGame);\nel.restartBtn.addEventListener('click', function () { doReset(seed); });\nel.fruit.addEventListener('click', sliceFruit);\nel.bomb.addEventListener('click', hitBomb);\n\n// Touch support: preventDefault stops the synthetic click to avoid double firing.\nel.fruit.addEventListener('touchstart', function (e) { e.preventDefault(); sliceFruit(); }, { passive: false });\nel.bomb.addEventListener('touchstart', function (e) { e.preventDefault(); hitBomb(); }, { passive: false });",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "Plan steps 1/2 require PRNG-derived appearance delays forming a fixed, virtual-time-advanceable schedule (\"所有时间规则使用毫秒，并能由虚拟时间推进\"). The implementation shows the first fruit immediately on start and keeps the bomb always present, with no timed schedule and no setTimeout-based appearance. The implementation summary itself admits this deviation. So the brief's timed-schedule / virtual-time requirement is not met, though this path was never exercised because L1 start failed first.",
+        "file": "game.js",
+        "excerpt": "function startGame() {\n    if (state.status !== 'menu') return;\n    state.status = 'playing';\n    el.fruit.hidden = true;\n    el.bomb.hidden = true;\n    emit('game_started', {});\n    showFruit();\n    showBomb();\n    render();\n  }",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "Root cause of the start failure is ambiguous between the invalid manifest key_event (harness cannot interpret the touch action) and the missing touchstart handlers on start/restart; both are present and either alone can defeat control execution.",
+      "L2/L3 (gameplay process and HUD/UI certification) were never reached because L1 start failed in all 9 runs; the timing/schedule requirement therefore has no runtime evidence either way.",
+      "The 3 'final passes' are all restart-path lucky passes (final_outcome_correct=true but lucky_pass_detected=true): the game never started, so its state coincidentally matched the expected post-restart menu, not a real playthrough.",
+      "Functional logic after a successful start (scoring, win at 5 fruits/score 50, lose at 3rd bomb, post-game lock, restart reset) appears correct by code inspection but was never exercised by the certified browser run."
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "Manifest control entries use key_event:\"tap\", but the schema only accepts \"press\"/\"down\"/\"up\" (contract finding). With an uninterpretable control descriptor the harness cannot map/dispatch the touch actions, so START never fires: every scenario run fails at L1 with status=\"menu\" and game_started missing. This is the root cause of the universal start failure and the contract conformance failure.",
+      "file": "game.manifest.json",
+      "excerpt": "\"key_event\": \"tap\"",
+      "scenario_id": "win-path",
+      "action_index": 0,
+      "code_provenance": null,
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "START and RESTART buttons are bound only to 'click', while #fruit and #bomb also have 'touchstart' handlers. The brief defines all four controls as touch operations and the harness drives them via touch; under a touch-only dispatch the start/restart handlers never fire. This is an inconsistency in the input wiring (the developer added touchstart to fruit/bomb but omitted it for start/restart), a latent defect independent of the manifest issue.",
+      "file": "game.js",
+      "excerpt": "el.startBtn.addEventListener('click', startGame);\nel.restartBtn.addEventListener('click', function () { doReset(seed); });\nel.fruit.addEventListener('click', sliceFruit);\nel.bomb.addEventListener('click', hitBomb);\n\n// Touch support: preventDefault stops the synthetic click to avoid double firing.\nel.fruit.addEventListener('touchstart', function (e) { e.preventDefault(); sliceFruit(); }, { passive: false });\nel.bomb.addEventListener('touchstart', function (e) { e.preventDefault(); hitBomb(); }, { passive: false });",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": null,
+      "quote_verified": false
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "Plan steps 1/2 require PRNG-derived appearance delays forming a fixed, virtual-time-advanceable schedule (\"所有时间规则使用毫秒，并能由虚拟时间推进\"). The implementation shows the first fruit immediately on start and keeps the bomb always present, with no timed schedule and no setTimeout-based appearance. The implementation summary itself admits this deviation. So the brief's timed-schedule / virtual-time requirement is not met, though this path was never exercised because L1 start failed first.",
+      "file": "game.js",
+      "excerpt": "function startGame() {\n    if (state.status !== 'menu') return;\n    state.status = 'playing';\n    el.fruit.hidden = true;\n    el.bomb.hidden = true;\n    emit('game_started', {});\n    showFruit();\n    showBomb();\n    render();\n  }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 147,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "fruit-slice-touch",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "FS-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FS-CP-MID",
+          "action_index": 1,
+          "layer": "L2",
+          "requirement_ids": [
+            "FS-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "score": 10,
+              "lives": 3,
+              "sliced": 1,
+              "remaining": 4
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "fruit_sliced"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FS-CP-WON",
+          "action_index": 5,
+          "layer": "L2",
+          "requirement_ids": [
+            "FS-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "score": 50,
+              "lives": 3,
+              "sliced": 5,
+              "remaining": 0
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "fruit_sliced",
+              "game_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FS-CP-WON-UI",
+          "action_index": 6,
+          "layer": "L3",
+          "requirement_ids": [
+            "FS-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "fruit-slice-touch-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FS-CP-LOST",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "FS-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "score": 0,
+              "lives": 0,
+              "sliced": 0,
+              "remaining": 5
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "bomb_hit",
+              "game_lost"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "fruit-slice-touch-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FS-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FS-CP-RESET",
+          "action_index": 2,
+          "layer": "L2",
+          "requirement_ids": [
+            "FS-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "score": 0,
+              "lives": 3,
+              "sliced": 0,
+              "remaining": 5
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

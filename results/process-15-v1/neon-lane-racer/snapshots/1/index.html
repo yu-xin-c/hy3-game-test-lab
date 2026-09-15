@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=600" />
+  <title>Neon Lane Racer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="hud-top">
+        <div id="score" data-testid="score">Score: 0</div>
+        <div id="status" data-testid="status">Menu</div>
+      </div>
+
+      <div id="menu" class="overlay">
+        <h1>NEON LANE RACER</h1>
+        <p>Use &larr; / &rarr; to switch lanes. Dodge all 4 obstacles and survive to 5000ms.</p>
+        <button id="start-btn">Start</button>
+      </div>
+
+      <div id="result" class="overlay" style="display:none"></div>
+
+      <button id="restart-btn">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

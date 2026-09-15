@@ -1,0 +1,87 @@
+{
+  "scope": "Independent ASCII-grid source check of explicit public-plan coordinates, not complete plan correctness",
+  "reviewed_grid_plans": 1,
+  "wrong_coordinate_plans": 1,
+  "rows": [
+    {
+      "id": "key-door-escape",
+      "step_id": 1,
+      "claims": [
+        {
+          "symbol": "S",
+          "claimed": {
+            "x": 1,
+            "y": 1
+          },
+          "actual": [
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "valid": true
+        },
+        {
+          "symbol": "K",
+          "claimed": {
+            "x": 1,
+            "y": 3
+          },
+          "actual": [
+            {
+              "x": 1,
+              "y": 3
+            }
+          ],
+          "valid": true
+        },
+        {
+          "symbol": "D",
+          "claimed": {
+            "x": 4,
+            "y": 1
+          },
+          "actual": [
+            {
+              "x": 4,
+              "y": 1
+            }
+          ],
+          "valid": true
+        },
+        {
+          "symbol": "E",
+          "claimed": {
+            "x": 6,
+            "y": 1
+          },
+          "actual": [
+            {
+              "x": 6,
+              "y": 1
+            }
+          ],
+          "valid": true
+        },
+        {
+          "symbol": "T",
+          "claimed": {
+            "x": 3,
+            "y": 3
+          },
+          "actual": [
+            {
+              "x": 4,
+              "y": 3
+            }
+          ],
+          "valid": false
+        }
+      ],
+      "wrong_symbols": [
+        "T"
+      ],
+      "status": "checked_explicit_coordinate_claims_only"
+    }
+  ]
+}

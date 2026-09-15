@@ -1,0 +1,30 @@
+{
+  "scope": "first real-browser failure frame per scenario; not a plan-step judgment or proven root cause",
+  "task_id": "fruit-slice-touch",
+  "game_directory_sha256": "177a096fc258c324b3487043fad0741f9428e0df58d4b07fb12e91d98bcf4cca",
+  "generation_reconstructed": true,
+  "located_runtime_scenarios": 0,
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "terminal_condition_error",
+      "executed_runtime_frame": null,
+      "runtime_error_present": false
+    },
+    {
+      "scenario_id": "loss-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "terminal_condition_error",
+      "executed_runtime_frame": null,
+      "runtime_error_present": false
+    },
+    {
+      "scenario_id": "restart-path",
+      "first_observable_action_index": 0,
+      "first_observable_error_type": "terminal_condition_error",
+      "executed_runtime_frame": null,
+      "runtime_error_present": false
+    }
+  ]
+}

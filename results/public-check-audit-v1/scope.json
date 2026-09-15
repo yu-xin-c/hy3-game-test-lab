@@ -1,5 +1,5 @@
 {
-  "task_limit": 30,
+  "task_limit": 15,
   "selection": "first_n_in_frozen_inventory",
-  "reason": "User reduced verification from 96 to 30 tasks. Preserve completed audits and the original 96-game execution results."
+  "reason": "User reduced formal verification to 15 tasks. Preserve completed out-of-scope audits and the original 96-game execution results as history."
 }

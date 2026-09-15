@@ -1,0 +1,36 @@
+[
+  {
+    "tool_step": 1,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "9c44807fcda0425246becb7212613ee7c1e9a1ac5e3f97bc2341819d1ed63add"
+    }
+  },
+  {
+    "tool_step": 2,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "9c44807fcda0425246becb7212613ee7c1e9a1ac5e3f97bc2341819d1ed63add",
+      "styles.css": "53bb72433df1e46536be0e67cce30084be9511b8b9bdfcacfb13e6c8b2997b8e"
+    }
+  },
+  {
+    "tool_step": 3,
+    "bundle_complete": false,
+    "files": {
+      "index.html": "9c44807fcda0425246becb7212613ee7c1e9a1ac5e3f97bc2341819d1ed63add",
+      "styles.css": "53bb72433df1e46536be0e67cce30084be9511b8b9bdfcacfb13e6c8b2997b8e",
+      "game.js": "c45917dcc08e5dcea07cc894e2544e8c81a963a53b4dd20e12f3d3d2ca4b7efb"
+    }
+  },
+  {
+    "tool_step": 4,
+    "bundle_complete": true,
+    "files": {
+      "index.html": "9c44807fcda0425246becb7212613ee7c1e9a1ac5e3f97bc2341819d1ed63add",
+      "styles.css": "53bb72433df1e46536be0e67cce30084be9511b8b9bdfcacfb13e6c8b2997b8e",
+      "game.js": "c45917dcc08e5dcea07cc894e2544e8c81a963a53b4dd20e12f3d3d2ca4b7efb",
+      "game.manifest.json": "3d1b95f4557f27554e11cbc93ac7352245d68282ec931b153aa09cf9fd9cc82c"
+    }
+  }
+]
