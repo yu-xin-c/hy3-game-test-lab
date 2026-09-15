@@ -2,16 +2,16 @@
   "scope": "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality",
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "total_tasks": 96,
-  "reviewed_tasks": 5,
+  "reviewed_tasks": 6,
   "total_predicates": 5182,
-  "reviewed_predicates": 315,
-  "remaining_tasks": 91,
-  "remaining_predicates": 4867,
+  "reviewed_predicates": 357,
+  "remaining_tasks": 90,
+  "remaining_predicates": 4825,
   "model_labels": {
-    "supported": 270,
-    "unsupported": 11,
-    "ambiguous": 27,
-    "test_mechanics": 7
+    "supported": 302,
+    "unsupported": 15,
+    "ambiguous": 32,
+    "test_mechanics": 8
   },
   "rows": [
     {
@@ -66,6 +66,17 @@
         "supported": 55,
         "unsupported": 10,
         "ambiguous": 2,
+        "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "predicates": 42,
+      "quote_repair_applied": false,
+      "counts": {
+        "supported": 32,
+        "unsupported": 4,
+        "ambiguous": 5,
         "test_mechanics": 1
       }
     }

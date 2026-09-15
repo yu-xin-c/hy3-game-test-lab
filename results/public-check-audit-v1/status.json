@@ -26,6 +26,11 @@
       "task_id": "signal-memory",
       "status": "reviewed",
       "assertions": 68
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "status": "reviewed",
+      "assertions": 42
     }
   ]
 }

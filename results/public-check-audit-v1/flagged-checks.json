@@ -727,6 +727,178 @@
         "reason": "公开文本未为RESTART明确指定key_event=press，无依据唯一确定"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A3",
+        "kind": "control",
+        "path": "START.key_event",
+        "expected": "press",
+        "contexts": [
+          "START"
+        ]
+      },
+      "decision": {
+        "id": "A3",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开要求对触控控件只规定使用 selector，从未规定 key_event 取值；唯一的 key_event 示例是 mouse 控件。断言强制 key_event=press 属附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A7",
+        "kind": "control",
+        "path": "SLICE.key_event",
+        "expected": "press",
+        "contexts": [
+          "SLICE"
+        ]
+      },
+      "decision": {
+        "id": "A7",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A11",
+        "kind": "control",
+        "path": "BOMB.key_event",
+        "expected": "press",
+        "contexts": [
+          "BOMB"
+        ]
+      },
+      "decision": {
+        "id": "A11",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A15",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A15",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A22",
+        "kind": "state",
+        "path": "sliced",
+        "expected": 1,
+        "contexts": [
+          "win-path/FS-CP-MID"
+        ]
+      },
+      "decision": {
+        "id": "A22",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅将 sliced 列为状态字段并以“切中第 5 个水果”描述胜利，但未定义 sliced 字段的计数/增量语义，无法唯一推出切中 1 个后 sliced=1。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A23",
+        "kind": "state",
+        "path": "remaining",
+        "expected": 4,
+        "contexts": [
+          "win-path/FS-CP-MID"
+        ]
+      },
+      "decision": {
+        "id": "A23",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅以“5 个剩余水果”给出重置初值，未规定 remaining 每次切中减 1，无法唯一推出剩余=4。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A27",
+        "kind": "state",
+        "path": "sliced",
+        "expected": 5,
+        "contexts": [
+          "win-path/FS-CP-WON"
+        ]
+      },
+      "decision": {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求以“切中第 5 个水果”描述胜利，但未将 sliced 字段明确定义为已切水果计数，无法唯一推出获胜时 sliced=5。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A28",
+        "kind": "state",
+        "path": "remaining",
+        "expected": 0,
+        "contexts": [
+          "win-path/FS-CP-WON"
+        ]
+      },
+      "decision": {
+        "id": "A28",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求未规定 remaining 字段在获胜时归零的取值，无法唯一推出 remaining=0。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "fruit-slice-touch",
+      "assertion": {
+        "id": "A37",
+        "kind": "state",
+        "path": "sliced",
+        "expected": 0,
+        "contexts": [
+          "loss-path/FS-CP-LOST",
+          "restart-path/FS-CP-RESET"
+        ]
+      },
+      "decision": {
+        "id": "A37",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求未定义 sliced 字段在失败/重置时的取值，重置清单也未含 sliced，无法唯一推出 sliced=0。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

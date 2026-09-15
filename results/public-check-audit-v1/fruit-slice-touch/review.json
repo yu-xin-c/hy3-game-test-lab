@@ -1,0 +1,264 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "a7edd929660344fb2d128a3b0d84c8acf1d9a934b974f7499be7d4e49a2e4078",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "公开要求规定默认玩家为 primary，START 未指定 secondary，故 actor 为 primary。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "`START`：touch 操作 #start-btn",
+        "reason": "控件定义 START 为 touch 操作 #start-btn，device 即 touch。"
+      },
+      {
+        "id": "A3",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开要求对触控控件只规定使用 selector，从未规定 key_event 取值；唯一的 key_event 示例是 mouse 控件。断言强制 key_event=press 属附加限制。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "`START`：touch 操作 #start-btn",
+        "reason": "控件定义 START 的 selector 为 #start-btn。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为 primary，SLICE 未指定次要玩家。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "`SLICE`：touch 操作 #fruit",
+        "reason": "控件定义 SLICE 为 touch 操作 #fruit，device 即 touch。"
+      },
+      {
+        "id": "A7",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "`SLICE`：touch 操作 #fruit",
+        "reason": "控件定义 SLICE 的 selector 为 #fruit。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为 primary，BOMB 未指定次要玩家。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "`BOMB`：touch 操作 #bomb",
+        "reason": "控件定义 BOMB 为 touch 操作 #bomb，device 即 touch。"
+      },
+      {
+        "id": "A11",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "`BOMB`：touch 操作 #bomb",
+        "reason": "控件定义 BOMB 的 selector 为 #bomb。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`。",
+        "reason": "默认玩家为 primary，RESTART 未指定次要玩家。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：touch 操作 #restart-btn",
+        "reason": "控件定义 RESTART 为 touch 操作 #restart-btn，device 即 touch。"
+      },
+      {
+        "id": "A15",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "触控控件的 key_event 取值未在公开要求中规定，强制 press 属附加限制。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：touch 操作 #restart-btn",
+        "reason": "控件定义 RESTART 的 selector 为 #restart-btn。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。",
+        "reason": "点 Start 后离开菜单且未分胜负，唯一活动态为 playing，故这些已启动检查点 status=playing。"
+      },
+      {
+        "id": "A18",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint 是评测器在相邻检查点间采样事件的内部约定，公开要求未规定。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+        "reason": "公开要求所有游戏点击 Start 后记录 game_started，三个启动检查点均适用。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "切中后得 10 分并出现下一个。",
+        "reason": "切中水果得 10 分，首次切中后 score=10。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "初始 3 条生命",
+        "reason": "初始 3 条生命；胜局未碰炸弹生命不减，故仍为 3。"
+      },
+      {
+        "id": "A22",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅将 sliced 列为状态字段并以“切中第 5 个水果”描述胜利，但未定义 sliced 字段的计数/增量语义，无法唯一推出切中 1 个后 sliced=1。"
+      },
+      {
+        "id": "A23",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅以“5 个剩余水果”给出重置初值，未规定 remaining 每次切中减 1，无法唯一推出剩余=4。"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`fruit_sliced`、`bomb_hit`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "fruit_sliced 为规定事件，切中水果应产生该事件。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "切中第 5 个水果时立即获胜",
+        "reason": "切中第 5 个水果立即获胜，状态为 won。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "切中第 5 个水果时立即获胜，最终分数为 50",
+        "reason": "获胜时最终分数为 50。"
+      },
+      {
+        "id": "A27",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求以“切中第 5 个水果”描述胜利，但未将 sliced 字段明确定义为已切水果计数，无法唯一推出获胜时 sliced=5。"
+      },
+      {
+        "id": "A28",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求未规定 remaining 字段在获胜时归零的取值，无法唯一推出 remaining=0。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`fruit_sliced`、`bomb_hit`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "game_won 为规定事件，获胜应产生。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "HUD 始终显示分数，故 score 元素可见。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+        "reason": "HUD 始终显示状态，故 status 元素可见。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度。",
+        "reason": "公开要求分数不可省略，故 score 文本非空。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "状态显示值含 Won；且公开要求状态文字忽略大小写，故 equals Won(ignore_case) 成立。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "碰到第 3 个炸弹时立即失败",
+        "reason": "碰第 3 个炸弹立即失败，状态为 lost。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "恢复 0 分、3 条生命和 5 个剩余水果。",
+        "reason": "重置恢复 0 分；失败路径未切水果，按“切中后得 10 分”分数仍为 0。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "初始 3 条生命，碰到第 3 个炸弹时立即失败。",
+        "reason": "初始 3 生命，每碰炸弹扣 1，第 3 个炸弹后生命为 0。"
+      },
+      {
+        "id": "A37",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求未定义 sliced 字段在失败/重置时的取值，重置清单也未含 sliced，无法唯一推出 sliced=0。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "恢复 0 分、3 条生命和 5 个剩余水果。",
+        "reason": "重置时剩余水果为 5；失败路径未切水果，剩余亦为 5。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`fruit_sliced`、`bomb_hit`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "bomb_hit 为规定事件，碰炸弹应产生。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`fruit_sliced`、`bomb_hit`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "game_lost 为规定事件，失败应产生。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "Restart 返回菜单，恢复 0 分、3 条生命和 5 个剩余水果。",
+        "reason": "Restart 返回菜单，故状态为 menu。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`fruit_sliced`、`bomb_hit`、`game_won`、`game_lost`、`game_reset`。",
+        "reason": "game_reset 为规定事件，重置应产生。"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": false,
+  "repair_attempt": 2,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}
