@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "步骤1：所有trial的start observation.status均为playing且events含seq:2 type:game_started，成立。步骤2：6次trial（3 repeat×2 trial）的5个#target坐标完全一致（如454.015625/275.9375…），重放误差为0，成立。"
+}

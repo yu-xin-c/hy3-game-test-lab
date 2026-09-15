@@ -1,0 +1,270 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "d71682ad81015409778fd8f094f1497e70a30da8818b689b42f89f1b48723665",
+  "review": {
+    "assertions": [
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。",
+        "reason": "START 未指定 actor，适用默认 primary。"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "`START`：mouse 操作 #start-btn",
+        "reason": "控件明文规定 START 为 mouse 且 selector #start-btn。"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "`START`：mouse 操作 #start-btn",
+        "reason": "控件明文规定 selector #start-btn。"
+      },
+      {
+        "id": "A5",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "LEFT 未指定 actor，适用默认 primary。"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "`LEFT`：键盘 ArrowLeft press",
+        "reason": "控件明文规定 LEFT 为键盘。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "`LEFT`：键盘 ArrowLeft press",
+        "reason": "控件明文给出 key_event 为 press。"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "`LEFT`：键盘 ArrowLeft press",
+        "reason": "结合“键盘控件使用 `code`”规则，ArrowLeft 即 code 取值。"
+      },
+      {
+        "id": "A9",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "RIGHT 未指定 actor，适用默认 primary。"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "`RIGHT`：键盘 ArrowRight press",
+        "reason": "控件明文规定 RIGHT 为键盘。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "`RIGHT`：键盘 ArrowRight press",
+        "reason": "控件明文给出 key_event 为 press。"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "`RIGHT`：键盘 ArrowRight press",
+        "reason": "结合“键盘控件使用 `code`”规则，ArrowRight 即 code 取值。"
+      },
+      {
+        "id": "A13",
+        "verdict": "supported",
+        "public_quote": "默认玩家为 `primary`",
+        "reason": "RESTART 未指定 actor，适用默认 primary。"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+        "reason": "控件明文规定 RESTART 为 mouse。"
+      },
+      {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "RESTART 控件仅给“mouse 操作 #restart-btn”，未规定 key_event，无法唯一推出必须为 press。"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "`RESTART`：mouse 操作 #restart-btn",
+        "reason": "控件明文规定 selector #restart-btn。"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "点击 Start 后进入进行中状态，Playing 为唯一的对局中状态。"
+      },
+      {
+        "id": "A18",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope=since_previous_checkpoint 是执行器事件采样区间约定，非游戏公开需求。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+        "reason": "明文要求 Start 后记录 game_started 事件。"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "赛车从中间车道 1 出发",
+        "reason": "起点 lane=1；MID/WON 经左后再右回到 1，LOST 未移动仍为 1，RESET 回到车道 1。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进",
+        "reason": "elapsed_ms 以毫秒计并随虚拟时间推进，2000ms 处取值 2000。"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "障碍依次在 1000ms 的车道1、2000ms 的车道0、3000ms 的车道1、4000ms 的车道2 出现",
+        "reason": "至 2000ms 已出现两个障碍且均已避开，passed=2。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "无碰撞到达 5000ms 时获胜",
+        "reason": "胜局路径无碰撞，collisions=0；RESET 回到菜单初始态亦为 0。"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "每躲过一个得 100 分",
+        "reason": "至 2000ms 躲过 2 个障碍，score=200。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`lane_changed`、`obstacle_passed`、`car_crashed`、`game_won`、`game_reset`",
+        "reason": "obstacle_passed 为规定事件，至 2000ms 已产生两次通过。"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "无碰撞到达 5000ms 时获胜",
+        "reason": "无碰撞到达终点即获胜，状态置 won。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "无碰撞到达 5000ms 时获胜",
+        "reason": "胜利时刻为 5000ms，elapsed_ms=5000。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "在三车道霓虹赛道上避开四个障碍",
+        "reason": "全场共四个障碍，胜利时全部通过，passed=4。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "最终 500 分",
+        "reason": "明文规定胜利最终分数为 500。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`lane_changed`、`obstacle_passed`、`car_crashed`、`game_won`、`game_reset`",
+        "reason": "game_won 为规定胜利事件。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "HUD 须始终显示分数，score 可见。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "HUD 须始终显示状态，status 可见。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度",
+        "reason": "分数文本不得省略，故非空。"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+        "reason": "状态取值含 Won，且“状态文字忽略大小写及连续空白”允许忽略大小写比较。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "任意一次在障碍出现时位于同一车道立即失败。",
+        "reason": "同道碰撞即失败，状态置 lost。"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "障碍依次在 1000ms 的车道1、2000ms 的车道0、3000ms 的车道1、4000ms 的车道2 出现",
+        "reason": "1000ms 障碍出现即碰撞失败，elapsed_ms=1000。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "Restart 回到车道1、0ms、0分和菜单。",
+        "reason": "RESET 回到初始；失败局首个障碍即碰撞，无通过，passed=0。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "任意一次在障碍出现时位于同一车道立即失败。",
+        "reason": "一次同道碰撞即失败，collisions=1。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "Restart 回到车道1、0ms、0分和菜单。",
+        "reason": "RESET 回到 0 分；失败局未通过任何障碍，score=0。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "事件：`game_started`、`lane_changed`、`obstacle_passed`、`car_crashed`、`game_won`、`game_reset`",
+        "reason": "car_crashed 为规定碰撞事件。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "Restart 回到车道1、0ms、0分和菜单。",
+        "reason": "重开后状态回到菜单。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "Restart 回到车道1、0ms、0分和菜单。",
+        "reason": "重开后 elapsed_ms 归零。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "重新从 `seq=1` 记录 `game_reset`",
+        "reason": "reset 须记录 game_reset 事件。"
+      },
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "    {\n      \"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\",\n      \"key_event\": \"press\",\n      \"selector\": \"#start-btn\",\n      \"description\": \"开始游戏\"\n    }",
+        "reason": "Manifest 强制模板（须严格使用）中 START 控件对象明确写为 \"key_event\": \"press\"（第34行），且 Neon Lane Racer 的 START 为 mouse 操作 #start-btn（第117行）与此条目一致，语义上支持取值 press。"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 2,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "所有 repeat(1-3) 与 trial(1-2) 在相同 seed=42 与相同输入序列下，各采样点 player.x/y/vx/vy 与 latest_event_seq 均完全一致（如 320ms: x58 y528 vx3 vy0 seq11），重放一致性被数据支持。"
+}

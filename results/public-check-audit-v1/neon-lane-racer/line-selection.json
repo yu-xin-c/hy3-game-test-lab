@@ -1,0 +1,11 @@
+{
+  "assertions": [
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "line_start": 30,
+      "line_end": 37,
+      "reason": "Manifest 强制模板（须严格使用）中 START 控件对象明确写为 \"key_event\": \"press\"（第34行），且 Neon Lane Racer 的 START 为 mouse 操作 #start-btn（第117行）与此条目一致，语义上支持取值 press。"
+    }
+  ]
+}

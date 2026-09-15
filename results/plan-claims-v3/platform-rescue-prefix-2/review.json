@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": true,
+  "first_error_step": 2,
+  "explanation": "步骤2 verification 要求 'support_id 依次为 platform-1、platform-2、end，随后 key_collected 与 game_won 依次触发'；观测所有 trial 均在 tick4/10/16 着陆 ground、tick5/11/17 撞 spike、tick17 game_lost，从未着陆 platform-1/2/end，未触发 key_collected/game_won（计划跳跃 tick20/40 前已停止）。步骤1确定性（同 seed 同输入重放 player 状态与 latest_event_seq 一致）被 6 次 trial 相同终局支持。"
+}

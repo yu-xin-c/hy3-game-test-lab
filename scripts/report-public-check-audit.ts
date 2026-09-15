@@ -9,7 +9,14 @@ const root = resolve(process.argv[index + 1]!);
 const inventoryText = await readFile(resolve(root, "inventory.json"), "utf8");
 const hashRecord = (await readFile(resolve(root, "inventory.sha256"), "utf8")).trim();
 if (hashRecord !== contentHash(inventoryText) + "  inventory.json") throw new Error("Inventory hash mismatch");
-const inventory = JSON.parse(inventoryText);
+const fullInventory = JSON.parse(inventoryText);
+let limit = fullInventory.length;
+try {
+  const scope = JSON.parse(await readFile(resolve(root, "scope.json"), "utf8"));
+  if (scope.selection !== "first_n_in_frozen_inventory" || !Number.isInteger(scope.task_limit) || scope.task_limit < 1 || scope.task_limit > fullInventory.length) throw new Error("Invalid audit scope");
+  limit = scope.task_limit;
+} catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+const inventory = fullInventory.slice(0, limit);
 const rows = [], issues = [];
 let covered = 0;
 const counts: Record<string, number> = { supported: 0, unsupported: 0, ambiguous: 0, test_mechanics: 0 };
@@ -40,11 +47,12 @@ for (const packet of inventory) {
 }
 const total = inventory.reduce((n: number, p: any) => n + p.assertions.length, 0);
 const summary = { scope: "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality", inventory_sha256: contentHash(inventoryText),
-  total_tasks: inventory.length, reviewed_tasks: rows.length, total_predicates: total, reviewed_predicates: covered,
+  inventory_total_tasks: fullInventory.length, total_tasks: inventory.length, reviewed_tasks: rows.length, total_predicates: total, reviewed_predicates: covered,
   remaining_tasks: inventory.length - rows.length, remaining_predicates: total - covered, model_labels: counts, rows };
 await writeFile(resolve(root, "summary.json"), JSON.stringify(summary, null, 2));
 await writeFile(resolve(root, "flagged-checks.json"), JSON.stringify({ scope: summary.scope, issues }, null, 2));
 await writeFile(resolve(root, "SUMMARY.md"), ["# 判据核对快照", "",
+  `本轮范围为冻结清单按原顺序的前 ${inventory.length} 题；原始清单仍保留 ${fullInventory.length} 题，不修改历史游戏运行成绩。`, "",
   `已核对 ${rows.length}/${inventory.length} 题、${covered}/${total} 个去重检查项；其余 ${inventory.length - rows.length} 题没有完整且凭据有效的核对结果。此文件反映已保存产物，不判断后台进程是否运行。`, "",
   "| 题目 | 检查项 | 有依据（模型） | 缺依据（模型） | 歧义（模型） | 执行约定 | 引用纠正 |", "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
   ...rows.map(r => `| [${r.task_id}](${r.task_id}/review.json) | ${r.predicates} | ${r.counts.supported} | ${r.counts.unsupported} | ${r.counts.ambiguous} | ${r.counts.test_mechanics} | ${r.quote_repair_applied ? "有，原输出保留" : "无"} |`), "",

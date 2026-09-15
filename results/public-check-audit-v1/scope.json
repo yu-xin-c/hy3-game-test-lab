@@ -1,0 +1,5 @@
+{
+  "task_limit": 30,
+  "selection": "first_n_in_frozen_inventory",
+  "reason": "User reduced verification from 96 to 30 tasks. Preserve completed audits and the original 96-game execution results."
+}

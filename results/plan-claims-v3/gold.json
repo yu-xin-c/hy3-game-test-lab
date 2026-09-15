@@ -1,0 +1,36 @@
+[
+  {
+    "id": "target-rush-prefix-1",
+    "has_error": false,
+    "first_error_step": null,
+    "selected_assertion_results": [
+      true
+    ]
+  },
+  {
+    "id": "target-rush-prefix-2",
+    "has_error": false,
+    "first_error_step": null,
+    "selected_assertion_results": [
+      true,
+      true
+    ]
+  },
+  {
+    "id": "platform-rescue-prefix-1",
+    "has_error": false,
+    "first_error_step": null,
+    "selected_assertion_results": [
+      true
+    ]
+  },
+  {
+    "id": "platform-rescue-prefix-2",
+    "has_error": true,
+    "first_error_step": 2,
+    "selected_assertion_results": [
+      true,
+      false
+    ]
+  }
+]

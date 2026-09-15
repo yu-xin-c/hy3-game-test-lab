@@ -31,6 +31,11 @@
       "task_id": "fruit-slice-touch",
       "status": "reviewed",
       "assertions": 42
+    },
+    {
+      "task_id": "neon-lane-racer",
+      "status": "reviewed",
+      "assertions": 43
     }
   ]
 }

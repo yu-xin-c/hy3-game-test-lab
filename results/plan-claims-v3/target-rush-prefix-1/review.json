@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "所有 trial 点击 #start-btn 后 observe().status==='playing'，且 getEvents 均含 {seq:2,type:'game_started'}，与步骤1 verification 一致，无反驳。"
+}

@@ -899,6 +899,25 @@
         "reason": "公开要求未定义 sliced 字段在失败/重置时的取值，重置清单也未含 sliced，无法唯一推出 sliced=0。"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "neon-lane-racer",
+      "assertion": {
+        "id": "A15",
+        "kind": "control",
+        "path": "RESTART.key_event",
+        "expected": "press",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A15",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "RESTART 控件仅给“mouse 操作 #restart-btn”，未规定 key_event，无法唯一推出必须为 press。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

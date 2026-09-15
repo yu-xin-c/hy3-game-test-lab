@@ -1,0 +1,17 @@
+import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { contentHash } from "../src/evaluation/generation-provenance";
+import { isolatePrefixEvidence } from "../src/evaluation/prefix-evidence";
+const i = process.argv.indexOf("--out");
+if (i < 0 || !process.argv[i + 1]) throw new Error("Provide --out NEW_DIRECTORY");
+const out = resolve(process.argv[i + 1]!), source = resolve("results/plan-claims-v2-final");
+const names = ["observations.json", "packets.json", "gold.json"];
+const hashes = async (dir: string) => (await Promise.all(names.map(async name => `${contentHash(await readFile(resolve(dir, name), "utf8"))}  ${name}`))).join("\n") + "\n";
+if (await hashes(source) !== await readFile(resolve(source, "input-sha256.txt"), "utf8")) throw new Error("Source evidence changed");
+const packets = JSON.parse(await readFile(resolve(source, "packets.json"), "utf8"));
+await mkdir(out, { recursive: false });
+for (const name of ["observations.json", "gold.json"]) await copyFile(resolve(source, name), resolve(out, name));
+await writeFile(resolve(out, "packets.json"), JSON.stringify(packets.map(isolatePrefixEvidence), null, 2));
+await writeFile(resolve(out, "input-sha256.txt"), await hashes(out));
+await writeFile(resolve(out, "condition.json"), JSON.stringify({ condition: "prefix_evidence_isolated", baseline: "../plan-claims-v2-final", source_input_sha256: contentHash(await readFile(resolve(source, "input-sha256.txt"), "utf8")), observations_and_gold: "byte-identical to baseline", scope: "post-hoc diagnostic input isolation; no new games or browser runs" }, null, 2));
+console.log("Prepared four isolated prefixes; observations and gold unchanged.");

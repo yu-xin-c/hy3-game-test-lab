@@ -1,0 +1,7 @@
+{
+  "condition": "prefix_evidence_isolated",
+  "baseline": "../plan-claims-v2-final",
+  "source_input_sha256": "1f1189cf4082f8133b87c9f23fea3cf606cc14909322ac0e0d7b4d41c8af6e5d",
+  "observations_and_gold": "byte-identical to baseline",
+  "scope": "post-hoc diagnostic input isolation; no new games or browser runs"
+}

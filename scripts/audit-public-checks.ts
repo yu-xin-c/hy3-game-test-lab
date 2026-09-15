@@ -6,8 +6,13 @@ import { callCodeBuddy } from "../src/llm/codebuddy";
 
 const arg = (flag: string) => { const i = process.argv.indexOf(flag); if (i < 0 || !process.argv[i + 1]) throw new Error(`Missing ${flag}`); return process.argv[i + 1]!; };
 const out = resolve(arg("--out")), calls = resolve(arg("--calls")), cli = resolve(arg("--cli"));
-const limit = process.argv.includes("--limit") ? Number(arg("--limit")) : 96;
+let limit = process.argv.includes("--limit") ? Number(arg("--limit")) : 96;
 if (!Number.isInteger(limit) || limit < 1 || limit > 96) throw new Error("limit must be 1..96");
+try {
+  const scope = JSON.parse(await readFile(resolve(out, "scope.json"), "utf8"));
+  if (scope.selection !== "first_n_in_frozen_inventory" || !Number.isInteger(scope.task_limit) || scope.task_limit < 1 || scope.task_limit > 96) throw new Error("Invalid frozen audit scope");
+  limit = Math.min(limit, scope.task_limit);
+} catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
 const repairAttempt = process.argv.includes("--repair-attempt") ? Number(arg("--repair-attempt")) : 1;
 if (!Number.isInteger(repairAttempt) || repairAttempt < 1 || repairAttempt > 20) throw new Error("repair-attempt must be 1..20");
 const repairSuffix = repairAttempt === 1 ? "" : `-attempt-${repairAttempt}`;
