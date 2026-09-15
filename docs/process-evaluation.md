@@ -24,6 +24,16 @@ pnpm run report:process -- --out results/process-v1
 
 生成和模型复核均固定 Hy3/high。模型只接收公开要求；私有检查只用于生成后的测试。已有代码核对哈希后复用，中断尝试单独保留，基础设施错误不计作游戏缺陷。单题续跑使用 --only。
 
+## 复验现有游戏
+
+从仓库根目录重新试玩粒子乐队，不需要再次调用混元。`--out` 应换成一个新的空目录；复验结果另存，不覆盖原记录。
+
+```sh
+pnpm exec tsx scripts/evaluate-generated-task.ts --task particle-orchestra --task-dir results/process-15-v1/particle-orchestra/task --game-dir results/process-15-v1/particle-orchestra/game --out artifacts/particle-replay-new --generator codebuddy-hy3 --replays 3
+```
+
+重新让混元生成代码是一次新实验；现有游戏的文件哈希和浏览器结果保存在各题目录。
+
 ## 三种位置
 
 | 位置 | 含义 |
