@@ -1,0 +1,262 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "控件列表 START（主页面），主页面即默认玩家，actor 应为 primary。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "`START`（主页面）：mouse 操作 #start-btn",
+      "reason": "控件列表明确 START 使用 mouse，device=mouse。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\",\n      \"key_event\": \"press\",",
+      "reason": "清单模板示例中鼠标控件配合 key_event=press，鼠标点击即 press。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "`START`（主页面）：mouse 操作 #start-btn",
+      "reason": "控件列表给出 selector=#start-btn。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`",
+      "reason": "JOIN 属副页面，actor 应为 secondary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "`JOIN`（副页面）：mouse 操作 #join-btn",
+      "reason": "控件列表明确 JOIN 使用 mouse。"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\",\n      \"key_event\": \"press\",",
+      "reason": "清单模板鼠标控件示例用 key_event=press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "`JOIN`（副页面）：mouse 操作 #join-btn",
+      "reason": "控件列表给出 selector=#join-btn。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "P1_STEP 属主页面，actor 应为 primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "`P1_STEP`（主页面）：键盘 KeyD press",
+      "reason": "键盘对应 device=keyboard。"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "public_quote": "`P1_STEP`（主页面）：键盘 KeyD press",
+      "reason": "控件列表显式写 press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "`P1_STEP`（主页面）：键盘 KeyD press",
+      "reason": "控件列表给出 code=KeyD。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 `actor` 为 `secondary`",
+      "reason": "P2_STEP 属副页面，actor 应为 secondary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "`P2_STEP`（副页面）：键盘 KeyL press",
+      "reason": "键盘对应 device=keyboard。"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "public_quote": "`P2_STEP`（副页面）：键盘 KeyL press",
+      "reason": "控件列表显式写 press。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "`P2_STEP`（副页面）：键盘 KeyL press",
+      "reason": "控件列表给出 code=KeyL。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 `primary`",
+      "reason": "RESTART 属主页面，actor 应为 primary。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "`RESTART`（主页面）：mouse 操作 #restart-btn",
+      "reason": "控件列表明确 RESTART 使用 mouse。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\",\n      \"key_event\": \"press\",",
+      "reason": "清单模板鼠标控件示例用 key_event=press。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "`RESTART`（主页面）：mouse 操作 #restart-btn",
+      "reason": "控件列表给出 selector=#restart-btn。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "status 只能是 `menu`、`playing`、`won`、`lost`",
+      "reason": "点击 Start 后进入对局进行中，状态取 playing（全局要求 Start 后记录 game_started，进行中即 playing）。"
+    },
+    {
+      "id": "A22",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "event_scope=since_previous_checkpoint 是评测器在检查点之间采样事件的执行器内部约定，并非游戏需求。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 `game_started`。",
+      "reason": "Start 后必记录 game_started 事件。"
+    },
+    {
+      "id": "A24",
+      "verdict": "ambiguous",
+      "public_quote": null,
+      "reason": "公开要求仅规定 state 须含 `connected` 字段，未定义其为连接数整数，无法唯一推出等于 2。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "每次只前进一格",
+      "reason": "首步后 P1 由初始 0 前进到 1，与每次一格及先到 3 获胜的步数推导一致。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "每次只前进一格",
+      "reason": "MID/WON 时 P2 未操作保持初值 0；reset 见清空规则。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "先走到第 3 格的玩家获胜",
+      "reason": "仅当某方位置到 3 才确定 winner，MID 时无人到 3 故 winner 为 null。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "事件：`room_created`、`player_joined`、`player_moved`、`match_won`、`game_reset`。",
+      "reason": "player_moved 为规定事件，步进后触发。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "主页面按 P1 的结果显示 won 或 lost",
+      "reason": "P1 先到 3，主页面显示 won。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "先走到第 3 格的玩家获胜",
+      "reason": "3 步后 P1 到 3，符合每次一格。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "P2 先到 3 时，主页面显示 lost，两个页面的 winner 都是 secondary。",
+      "reason": "反向推得 P1 先到 3 时 winner 为 primary。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "事件：`room_created`、`player_joined`、`player_moved`、`match_won`、`game_reset`。",
+      "reason": "match_won 为规定事件，比赛结束时触发。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度",
+      "reason": "HUD 须始终显示分数，故 score 可见。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。",
+      "reason": "HUD 须始终显示状态，故 status 可见。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度",
+      "reason": "HUD 须显示分数，scoreText 非空。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "状态 `Menu`、`Playing`、`Won`、`Lost`",
+      "reason": "终局状态文案为 Won（全局允许忽略大小写及连续空白）。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "P2 先到 3 时，主页面显示 lost",
+      "reason": "失败路径 P2 先到 3，主页面 lost。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "每次只前进一格",
+      "reason": "失败路径 P1 未操作保持初值 0；reset 见清空规则。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "每次只前进一格",
+      "reason": "P2 三步由 0 到 3，符合每次一格。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "P2 先到 3 时，主页面显示 lost，两个页面的 winner 都是 secondary。",
+      "reason": "P2 先到 3，winner 为 secondary。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "主页面 Restart 会同步清空双方位置和连接状态并回到菜单。",
+      "reason": "Restart 后回到菜单，status=menu。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "主页面 Restart 会同步清空双方位置和连接状态并回到菜单。",
+      "reason": "清空连接状态后 connected 复位为 0。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "事件：`room_created`、`player_joined`、`player_moved`、`match_won`、`game_reset`。",
+      "reason": "game_reset 为规定事件，Restart 后触发。"
+    }
+  ]
+}

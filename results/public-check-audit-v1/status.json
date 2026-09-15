@@ -20,20 +20,25 @@
     {
       "task_id": "platform-rescue",
       "status": "reviewed",
-      "assertions": 73
+      "cached": true
     },
     {
       "task_id": "signal-memory",
       "status": "reviewed",
-      "assertions": 68
+      "cached": true
     },
     {
       "task_id": "fruit-slice-touch",
       "status": "reviewed",
-      "assertions": 42
+      "cached": true
     },
     {
       "task_id": "neon-lane-racer",
+      "status": "reviewed",
+      "cached": true
+    },
+    {
+      "task_id": "dual-arena",
       "status": "reviewed",
       "assertions": 43
     }

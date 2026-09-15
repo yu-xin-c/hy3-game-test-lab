@@ -918,6 +918,49 @@
         "reason": "RESTART 控件仅给“mouse 操作 #restart-btn”，未规定 key_event，无法唯一推出必须为 press。"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "dual-arena",
+      "assertion": {
+        "id": "A24",
+        "kind": "state",
+        "path": "connected",
+        "expected": 2,
+        "contexts": [
+          "win-path/DA-CP-MID",
+          "win-path/DA-CP-WON",
+          "loss-path/DA-CP-LOST"
+        ]
+      },
+      "decision": {
+        "id": "A24",
+        "verdict": "ambiguous",
+        "public_quote": null,
+        "reason": "公开要求仅规定 state 须含 `connected` 字段，未定义其为连接数整数，无法唯一推出等于 2。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "dual-arena",
+      "assertion": {
+        "id": "A21",
+        "kind": "state",
+        "path": "status",
+        "expected": "playing",
+        "contexts": [
+          "win-path/DA-CP-START",
+          "win-path/DA-CP-MID",
+          "loss-path/dual-arena-loss-path-started",
+          "restart-path/dual-arena-restart-path-started"
+        ]
+      },
+      "decision": {
+        "id": "A21",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "公开原文仅在第78行列举 status 枚举为 menu/playing/won/lost，并在第98行描述“位置到3时比赛结束→won/lost”、第104行提及 HUD 显示 Playing 状态，但从未明确规定 START 后或局内检查点（DA-CP-START/MID、loss/restart-path-started）的 status 具体取值为 \"playing\"。该取值需跨非连续行（枚举+终局规则）推断，无法由一段连续公开原文唯一推出具体值。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

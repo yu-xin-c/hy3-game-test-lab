@@ -1,0 +1,11 @@
+{
+  "assertions": [
+    {
+      "id": "A21",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "公开原文仅在第78行列举 status 枚举为 menu/playing/won/lost，并在第98行描述“位置到3时比赛结束→won/lost”、第104行提及 HUD 显示 Playing 状态，但从未明确规定 START 后或局内检查点（DA-CP-START/MID、loss/restart-path-started）的 status 具体取值为 \"playing\"。该取值需跨非连续行（枚举+终局规则）推断，无法由一段连续公开原文唯一推出具体值。"
+    }
+  ]
+}

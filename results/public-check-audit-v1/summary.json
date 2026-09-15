@@ -3,16 +3,16 @@
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "inventory_total_tasks": 96,
   "total_tasks": 30,
-  "reviewed_tasks": 7,
+  "reviewed_tasks": 8,
   "total_predicates": 1654,
-  "reviewed_predicates": 400,
-  "remaining_tasks": 23,
-  "remaining_predicates": 1254,
+  "reviewed_predicates": 443,
+  "remaining_tasks": 22,
+  "remaining_predicates": 1211,
   "model_labels": {
-    "supported": 343,
-    "unsupported": 15,
-    "ambiguous": 33,
-    "test_mechanics": 9
+    "supported": 383,
+    "unsupported": 16,
+    "ambiguous": 34,
+    "test_mechanics": 10
   },
   "rows": [
     {
@@ -88,6 +88,17 @@
       "counts": {
         "supported": 41,
         "unsupported": 0,
+        "ambiguous": 1,
+        "test_mechanics": 1
+      }
+    },
+    {
+      "task_id": "dual-arena",
+      "predicates": 43,
+      "quote_repair_applied": true,
+      "counts": {
+        "supported": 40,
+        "unsupported": 1,
         "ambiguous": 1,
         "test_mechanics": 1
       }
