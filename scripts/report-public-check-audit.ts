@@ -36,7 +36,7 @@ for (const packet of inventory) {
       status: "model_flag_only_not_confirmed_standard_error" });
   }
   covered += review.assertions.length;
-  rows.push({ task_id: packet.task_id, predicates: review.assertions.length, quote_repair_applied: result.quote_repair_applied === true, counts: taskCounts });
+  rows.push({ task_id: packet.task_id, predicates: review.assertions.length, quote_repair_applied: result.quote_repair_applied === true || result.line_repair_applied === true, counts: taskCounts });
 }
 const total = inventory.reduce((n: number, p: any) => n + p.assertions.length, 0);
 const summary = { scope: "Source-grounded model audit, not gameplay accuracy or independently validated oracle quality", inventory_sha256: contentHash(inventoryText),

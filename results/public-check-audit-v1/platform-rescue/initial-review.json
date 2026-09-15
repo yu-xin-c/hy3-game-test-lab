@@ -1,0 +1,442 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "第二位玩家的 actor 为 secondary，默认玩家为 primary",
+      "reason": "默认玩家为 primary，START 未指定 secondary，故 actor=primary 受支持。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "\"action_id\": \"START\",\n      \"actor\": \"primary\",\n      \"device\": \"mouse\"",
+      "reason": "模板中 START 控件 device 为 mouse，且 #start-btn 为按钮属鼠标控件。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\",\n      \"key_event\": \"press\"",
+      "reason": "模板 START 控件 key_event 为 press。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "\"selector\": \"#start-btn\"",
+      "reason": "模板与自动测试接口均规定 START 对应 #start-btn。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "LEFT_DOWN 默认玩家 primary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "键盘控件使用 code，不是 key_code",
+      "reason": "左右方向键为键盘控件，故 device=keyboard。"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "public_quote": "\"key_event\": \"down\"",
+      "reason": "键盘控件示例 HEAT_DOWN 使用 key_event down，LEFT_DOWN 对应 down。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "玩家从左下方地面出生，使用左右方向键移动",
+      "reason": "左方向键移动，键盘 code 约定，code=ArrowLeft。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "LEFT_UP 默认玩家 primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "键盘控件使用 code，不是 key_code",
+      "reason": "左方向键为键盘控件。"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "public_quote": "控件名称：START、LEFT_DOWN、LEFT_UP、RIGHT_DOWN、RIGHT_UP、JUMP、RESTART、RESTART_KEY",
+      "reason": "控件列表含 LEFT_UP，与 LEFT_DOWN 的 down 相对，key_event=up 为对应释放事件。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "玩家从左下方地面出生，使用左右方向键移动",
+      "reason": "左方向键，code=ArrowLeft。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "RIGHT_DOWN 默认玩家 primary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "键盘控件使用 code，不是 key_code",
+      "reason": "右方向键为键盘控件。"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "public_quote": "key_event\": \"down\"",
+      "reason": "RIGHT_DOWN 对应 down，参照键盘 down 示例。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "右键移动即右方向键，code=ArrowRight。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "RIGHT_UP 默认玩家 primary。"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "public_quote": "键盘控件使用 code，不是 key_code",
+      "reason": "右方向键为键盘控件。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "控件名称：START、LEFT_DOWN、LEFT_UP、RIGHT_DOWN、RIGHT_UP、JUMP、RESTART、RESTART_KEY",
+      "reason": "列表含 RIGHT_UP，与 RIGHT_DOWN 相对，key_event=up。"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "右键即右方向键，code=ArrowRight。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "JUMP 默认玩家 primary。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "键盘控件使用 code，不是 key_code",
+      "reason": "Space 跳跃为键盘控件。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "\"key_event\": \"press\"",
+      "reason": "JUMP 为离散动作（无 _DOWN 后缀），参照按钮 press 约定，key_event=press。"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "public_quote": "使用 Space 跳跃",
+      "reason": "跳跃键为 Space，键盘 code 约定 code=Space。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "RESTART 默认玩家 primary。"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "public_quote": "鼠标和触控使用 selector",
+      "reason": "#restart-btn 为按钮，属鼠标控件，device=mouse。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "\"key_event\": \"press\"",
+      "reason": "按钮点击为 press。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "#start-btn、#restart-btn",
+      "reason": "自动测试接口规定 #restart-btn。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary",
+      "reason": "RESTART_KEY 默认玩家 primary。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "键盘 R 为键盘控件，device=keyboard。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "R 为离散按键，key_event=press。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "键盘 R 使用 code，code=KeyR。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "status 只能是 menu、playing、won、lost",
+      "reason": "开始后进入游玩态，playing 属合法状态集合且对应点击 Start 后的进行中状态。"
+    },
+    {
+      "id": "A34",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "event_scope=since_previous_checkpoint 是执行器在检查点之间收集事件的约定，并非公开游戏需求。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 game_started",
+      "reason": "每次点击 Start 须记录 game_started 事件。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "初始 3 条生命",
+      "reason": "开局生命为 3，胜利/重开路径未触发危险故保持 3。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "禁止悬空显示落地，故实际落地时 grounded 必须为 true。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "第一次跳跃稳定落于 platform-1，support_id=platform-1。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "事件：game_started、player_jumped、player_landed、key_collected、hazard_hit、player_respawned、door_blocked、game_won、game_lost、game_reset",
+      "reason": "事件集合包含 player_landed，落地须产生该事件。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "禁止穿过/卡进平台，对应 no_penetration 判定。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "禁止卡进平台，对应 no_tunneling 判定。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "禁止悬空落地，落地须有支撑，对应 grounded_has_support。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "首次跳跃须到达 platform-1，对应 jump_apex_reaches。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "稳定落于 platform-1 对应 eventually_supported；min_consecutive_samples 为执行器采样约定，但谓词本身源于公开‘稳定落在’要求。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "禁止离开世界边界，对应 world_bounds。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "取得钥匙后接触救援门立即获胜",
+      "reason": "取得钥匙后 has_key 置为 true。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "玩家按住右键并连续完成三次跳跃，可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "第二次跳跃落于 platform-2，support_id=platform-2。"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "public_quote": "事件：game_started、player_jumped、player_landed、key_collected、hazard_hit、player_respawned、door_blocked、game_won、game_lost、game_reset",
+      "reason": "事件集合含 key_collected，取钥匙须产生该事件。"
+    },
+    {
+      "id": "A49",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "钥匙处亦禁止穿透，no_penetration。"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "钥匙处亦禁止卡进，no_tunneling。"
+    },
+    {
+      "id": "A51",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "钥匙处落地须有支撑，grounded_has_support。"
+    },
+    {
+      "id": "A52",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "钥匙处亦禁止越界，world_bounds。"
+    },
+    {
+      "id": "A53",
+      "verdict": "supported",
+      "public_quote": "取得钥匙后接触救援门：won",
+      "reason": "取得钥匙接触门即 won。"
+    },
+    {
+      "id": "A54",
+      "verdict": "supported",
+      "public_quote": "可以依次稳定落在 platform-1、platform-2 和终点平台",
+      "reason": "救援门位于终点平台，获胜时玩家支撑于终点平台（goal）。"
+    },
+    {
+      "id": "A55",
+      "verdict": "supported",
+      "public_quote": "事件：game_started、player_jumped、player_landed、key_collected、hazard_hit、player_respawned、door_blocked、game_won、game_lost、game_reset",
+      "reason": "事件集合含 game_won，获胜须产生该事件。"
+    },
+    {
+      "id": "A56",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "终点处禁止穿透，no_penetration。"
+    },
+    {
+      "id": "A57",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "终点处禁止卡进，no_tunneling。"
+    },
+    {
+      "id": "A58",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "终点处落地须有支撑，grounded_has_support。"
+    },
+    {
+      "id": "A59",
+      "verdict": "supported",
+      "public_quote": "物体不能穿过平台、卡进平台、悬空显示落地或离开世界边界",
+      "reason": "终点处禁止越界，world_bounds。"
+    },
+    {
+      "id": "A60",
+      "verdict": "supported",
+      "public_quote": "[data-testid=\"score\"] 显示生命和钥匙",
+      "reason": "分数 HUD 须显示，可见。"
+    },
+    {
+      "id": "A61",
+      "verdict": "supported",
+      "public_quote": "[data-testid=\"status\"] 显示状态",
+      "reason": "状态 HUD 须显示，可见。"
+    },
+    {
+      "id": "A62",
+      "verdict": "supported",
+      "public_quote": "不能省略分数或进度",
+      "reason": "分数文本不可省略，须非空。"
+    },
+    {
+      "id": "A63",
+      "verdict": "supported",
+      "public_quote": "状态固定使用 Menu、Playing、Won、Lost",
+      "reason": "状态文案固定为 Won（忽略大小写）。"
+    },
+    {
+      "id": "A64",
+      "verdict": "supported",
+      "public_quote": "玩家碰到尖刺或掉出世界边界会损失 1 条生命",
+      "reason": "初次碰刺损失 1 命，3-1=2。"
+    },
+    {
+      "id": "A65",
+      "verdict": "supported",
+      "public_quote": "取得钥匙后接触救援门立即获胜",
+      "reason": "取得钥匙前 has_key 为 false。"
+    },
+    {
+      "id": "A66",
+      "verdict": "supported",
+      "public_quote": "事件：game_started、player_jumped、player_landed、key_collected、hazard_hit、player_respawned、door_blocked、game_won、game_lost、game_reset",
+      "reason": "事件集合含 hazard_hit，碰刺须产生该事件。"
+    },
+    {
+      "id": "A67",
+      "verdict": "supported",
+      "public_quote": "玩家碰到尖刺或掉出世界边界会损失 1 条生命并回到出生点",
+      "reason": "回到出生点对应 player_respawned 事件。"
+    },
+    {
+      "id": "A68",
+      "verdict": "supported",
+      "public_quote": "玩家碰到尖刺或掉出世界边界会损失 1 条生命",
+      "reason": "第二次碰刺后 3-2=1。"
+    },
+    {
+      "id": "A69",
+      "verdict": "supported",
+      "public_quote": "生命归零：lost",
+      "reason": "生命归零状态为 lost。"
+    },
+    {
+      "id": "A70",
+      "verdict": "supported",
+      "public_quote": "生命归零则失败",
+      "reason": "生命归零即 lives=0。"
+    },
+    {
+      "id": "A71",
+      "verdict": "supported",
+      "public_quote": "事件：game_started、player_jumped、player_landed、key_collected、hazard_hit、player_respawned、door_blocked、game_won、game_lost、game_reset",
+      "reason": "事件集合含 game_lost，失败须产生该事件。"
+    },
+    {
+      "id": "A72",
+      "verdict": "supported",
+      "public_quote": "Restart 按钮或键盘 R 返回菜单",
+      "reason": "重开返回菜单状态。"
+    },
+    {
+      "id": "A73",
+      "verdict": "supported",
+      "public_quote": "重新从 seq=1 记录 game_reset",
+      "reason": "reset 须记录 game_reset 事件。"
+    }
+  ]
+}

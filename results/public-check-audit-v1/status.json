@@ -16,6 +16,11 @@
       "task_id": "key-door-escape",
       "status": "reviewed",
       "assertions": 60
+    },
+    {
+      "task_id": "platform-rescue",
+      "status": "failed",
+      "error": "Error: Unverified Hy3 completion"
     }
   ]
 }

@@ -1,5 +1,7 @@
 # 96 题判据溯源
 
+恢复平台题时，原引文纠正调用返回流超时，失败响应保留在本地。可添加 `--line-citations` 跳过复述式纠正，直接用原文行号恢复；不会重跑已有有效结果，也不会覆盖原始失败响应。
+
 已保存结果的汇总见 [SUMMARY.md](SUMMARY.md)，可用 `pnpm exec tsx scripts/report-public-check-audit.ts --root results/public-check-audit-v1` 重建。脚本会重新核验完整性、引用和调用凭据，不把未完成题目算作已核对。
 
 inventory.json 冻结了去重汇总所选 96 个原始游戏任务，共 5,182 个不同检查项。相同字段、取值和检查类型合并，但保留全部场景/检查点位置。清单使用生成时实际保存的 prompt.md，而不是后来修订的题面。
