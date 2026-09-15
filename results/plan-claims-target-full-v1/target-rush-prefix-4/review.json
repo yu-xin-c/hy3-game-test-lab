@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "步骤1：start后status=playing且events含game_started(seq2)；步骤2：seed=42的5个目标坐标在6次trial中完全一致(误差0)；步骤3：HIT后score0→1且target_hit、MISS后misses0→1且target_missed、点击HUD后misses仍1且latest_event_seq不变(seq4)；步骤4：五HIT后status=won且game_won(seq8)、三MISS后status=lost且game_lost(seq6)、计时归零status=lost且game_lost、postWin/postLoss的latest_event_seq未变(8/6)。所选断言均被观测支持。"
+}

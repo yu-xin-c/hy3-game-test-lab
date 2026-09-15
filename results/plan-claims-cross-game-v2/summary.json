@@ -1,0 +1,97 @@
+{
+  "scope": "Post-hoc synthesis of selected executable public-plan verification assertions; each original Hy3 game counted once. Not complete reasoning or final gameplay correctness.",
+  "games": 3,
+  "wrong_plan_claims": 2,
+  "clean_selected_claims": 1,
+  "detected": 2,
+  "located": 2,
+  "clean_false_positive": 0,
+  "model_unknown": 0,
+  "selected_claim_process_valid": 1,
+  "descriptive_error_type_distribution": {
+    "预设输入时机不成立": 1,
+    "验证断言误述重置状态": 1
+  },
+  "by_difficulty": {
+    "D1": [
+      {
+        "game": "target-rush",
+        "difficulty": "D1",
+        "selected_steps": 6,
+        "standard_has_issue": false,
+        "standard_first_issue_step": null,
+        "hy3_has_issue": false,
+        "hy3_first_issue_step": null,
+        "descriptive_error_type": null,
+        "evidence": "results/plan-claims-target-full-v1/README.md",
+        "review": "results/plan-claims-target-full-v1/target-rush-prefix-6/review.json"
+      }
+    ],
+    "D2": [
+      {
+        "game": "platform-rescue",
+        "difficulty": "D2",
+        "selected_steps": 2,
+        "standard_has_issue": true,
+        "standard_first_issue_step": 2,
+        "hy3_has_issue": true,
+        "hy3_first_issue_step": 2,
+        "descriptive_error_type": "预设输入时机不成立",
+        "evidence": "results/plan-claims-v3/README.md",
+        "review": "results/plan-claims-v3/platform-rescue-prefix-2/review.json"
+      }
+    ],
+    "D3": [
+      {
+        "game": "signal-memory",
+        "difficulty": "D3",
+        "selected_steps": 2,
+        "standard_has_issue": true,
+        "standard_first_issue_step": 2,
+        "hy3_has_issue": true,
+        "hy3_first_issue_step": 2,
+        "descriptive_error_type": "验证断言误述重置状态",
+        "evidence": "results/plan-claims-v1/README.md",
+        "review": "results/plan-claims-v1/prefix-2/review.json"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "game": "target-rush",
+      "difficulty": "D1",
+      "selected_steps": 6,
+      "standard_has_issue": false,
+      "standard_first_issue_step": null,
+      "hy3_has_issue": false,
+      "hy3_first_issue_step": null,
+      "descriptive_error_type": null,
+      "evidence": "results/plan-claims-target-full-v1/README.md",
+      "review": "results/plan-claims-target-full-v1/target-rush-prefix-6/review.json"
+    },
+    {
+      "game": "platform-rescue",
+      "difficulty": "D2",
+      "selected_steps": 2,
+      "standard_has_issue": true,
+      "standard_first_issue_step": 2,
+      "hy3_has_issue": true,
+      "hy3_first_issue_step": 2,
+      "descriptive_error_type": "预设输入时机不成立",
+      "evidence": "results/plan-claims-v3/README.md",
+      "review": "results/plan-claims-v3/platform-rescue-prefix-2/review.json"
+    },
+    {
+      "game": "signal-memory",
+      "difficulty": "D3",
+      "selected_steps": 2,
+      "standard_has_issue": true,
+      "standard_first_issue_step": 2,
+      "hy3_has_issue": true,
+      "hy3_first_issue_step": 2,
+      "descriptive_error_type": "验证断言误述重置状态",
+      "evidence": "results/plan-claims-v1/README.md",
+      "review": "results/plan-claims-v1/prefix-2/review.json"
+    }
+  ]
+}

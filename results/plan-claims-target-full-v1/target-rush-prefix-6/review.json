@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "step1点击#start-btn后observe().status===playing且getEvents含game_started；step2 reset(seed:42)各repeat/trial目标坐标完全一致(x454.015625,y275.9375…误差0)；step3 #target点击score+1且target_hit、空白点击misses+1且target_missed、HUD点击后misses仍为1不变；step4 五HIT=>status=won含game_won、三MISS=>lost含game_lost、计时归零lost且终局后latest_event_seq不变；step5 #restart-btn与KeyR均status=menu且首事件game_reset；step6 observe含status/score/misses/remaining_ms/target_index五字段、isReady true、getEvents按afterSeq过滤seq连续。"
+}

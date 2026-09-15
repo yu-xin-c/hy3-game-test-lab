@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "step1: 点击后 status=playing 且含 game_started(seq2)；step2: seed=42 三重复现 targets 坐标完全一致、均位于[24,776]×[72,576]内；step3: hit→score+1/target_hit，miss→misses+1/target_missed，HUD点击 misses 不变；step4: 5HIT→won+game_won，3MISS→lost+game_lost，超时→lost，终局后 latest_event_seq 不变；step5: 按钮/KeyR/终局重开均 status=menu 且 score=misses=target_index=0、首事件 game_reset。各步 verification 均被观测支持，无直接反驳。"
+}

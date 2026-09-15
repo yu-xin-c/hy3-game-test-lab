@@ -1,0 +1,64 @@
+{
+  "scope": "Selected executable verification assertions only",
+  "checks": [
+    {
+      "repeat": 1,
+      "step3": true,
+      "step4": true,
+      "step5": true,
+      "step6": true
+    },
+    {
+      "repeat": 2,
+      "step3": true,
+      "step4": true,
+      "step5": true,
+      "step6": true
+    },
+    {
+      "repeat": 3,
+      "step3": true,
+      "step4": true,
+      "step5": true,
+      "step6": true
+    }
+  ],
+  "results": [
+    {
+      "step": 3,
+      "observed_three_contexts": [
+        true,
+        true,
+        true
+      ],
+      "selected_assertion_valid": true
+    },
+    {
+      "step": 4,
+      "observed_three_contexts": [
+        true,
+        true,
+        true
+      ],
+      "selected_assertion_valid": true
+    },
+    {
+      "step": 5,
+      "observed_three_contexts": [
+        true,
+        true,
+        true
+      ],
+      "selected_assertion_valid": true
+    },
+    {
+      "step": 6,
+      "observed_three_contexts": [
+        true,
+        true,
+        true
+      ],
+      "selected_assertion_valid": true
+    }
+  ]
+}

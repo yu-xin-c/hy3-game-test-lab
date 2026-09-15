@@ -103,7 +103,11 @@ if (process.argv.includes("--prepare")) {
   const calls = arg("--calls"), cli = arg("--cli");
   await mkdir(calls, { recursive: true });
   const actual = (await Promise.all(files.map(async name => `${contentHash(await readFile(resolve(out, name), "utf8"))}  ${name}`))).join("\n") + "\n";
-  if (actual !== await readFile(resolve(out, "input-sha256.txt"), "utf8")) throw new Error("Frozen input mismatch");
+  const freezeRecord = await readFile(resolve(out, "input-sha256.txt"), "utf8");
+  let fullActual = actual;
+  try { fullActual = (await Promise.all(["observations.json", "checks.json", "packets.json", "gold.json"].map(async name => `${contentHash(await readFile(resolve(out, name), "utf8"))}  ${name}`))).join("\n") + "\n"; }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+  if (![actual, fullActual].includes(freezeRecord)) throw new Error("Frozen input mismatch");
   const packets = JSON.parse(await readFile(resolve(out, "packets.json"), "utf8"));
   const gold = JSON.parse(await readFile(resolve(out, "gold.json"), "utf8"));
   const comparison = [];

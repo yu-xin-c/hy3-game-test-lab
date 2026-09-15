@@ -1,0 +1,6 @@
+{
+  "model": "hy3",
+  "has_error": false,
+  "first_error_step": null,
+  "explanation": "步骤1：start后 observe().status==='playing' 且 events 含 type:game_started(seq2)。步骤2：reset({seed:42}) 各组 targets 坐标(x/y)在repeat1-3、trial1-2间完全一致，误差0，5次target_hit(target_index0-4)。步骤3：#target click→score=1且target_hit；playfield空白click→misses=1且target_missed；点击HUD后misses仍为1未变。三项verification均被观测支持，无反驳。"
+}

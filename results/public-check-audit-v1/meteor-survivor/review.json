@@ -1,0 +1,294 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "6f201d130127f630f8020bae7f8881601553101508d6ac4330aefd7d3e2a40ce",
+  "review": {
+    "assertions": [
+      {
+        "id": "A18",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "since_previous_checkpoint 是评测器事件采样区间的内部约定，非游戏需求。"
+      },
+      {
+        "id": "A20",
+        "verdict": "ambiguous",
+        "public_quote": "玩家从轨道1开始。",
+        "reason": "公开要求未规定 LEFT/RIGHT 对 lane 的增减方向，lane=0 非唯一推出。"
+      },
+      {
+        "id": "A21",
+        "verdict": "supported",
+        "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+        "reason": "elapsed_ms 为自开始经过毫秒数，推进 3000ms 即 3000。"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+        "reason": "至 3000ms 已落下 3 波，wave=3。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "每躲过一波得 100 分，生存到 5000ms 再得 100 分。",
+        "reason": "至 3000ms 躲过 3 波，得分 300。"
+      },
+      {
+        "id": "A24",
+        "verdict": "ambiguous",
+        "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+        "reason": "公开仅规定获胜时 best_score=500，未规定局内 mid 时的 best_score 取值，=300 非唯一推出。"
+      },
+      {
+        "id": "A25",
+        "verdict": "supported",
+        "public_quote": "每躲过一波得 100 分",
+        "reason": "每躲过一波应有 wave_survived 事件。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "无碰撞坚持到 5000ms 获胜",
+        "reason": "生存到 5000ms 获胜，状态为 won。"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+        "reason": "推进至 5000ms。"
+      },
+      {
+        "id": "A29",
+        "verdict": "supported",
+        "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+        "reason": "至 5000ms 共 4 波，wave=4。"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+        "reason": "获胜得 500 分。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+        "reason": "获胜时 best_score 更新为 500。"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "无碰撞坚持到 5000ms 获胜",
+        "reason": "获胜记录 game_won 事件。"
+      },
+      {
+        "id": "A33",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "终局 HUD 仍须显示分数，score 可见。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "终局分数文案不得省略，非空。"
+      },
+      {
+        "id": "A37",
+        "verdict": "supported",
+        "public_quote": "与任一流星同轨时立即失败。",
+        "reason": "同轨失败，状态为 lost。"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "玩家从轨道1开始。",
+        "reason": "失败/重置均未移动，初始轨道1 对应 lane=1。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+        "reason": "推进 1000ms，elapsed_ms=1000。"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+        "reason": "至 1000ms 第 1 波落下，wave=1。"
+      },
+      {
+        "id": "A41",
+        "verdict": "supported",
+        "public_quote": "Restart 清空当前局；新的评测场景从空榜单开始。",
+        "reason": "失败立即终止未得分、重置清空，score=0。"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "新的评测场景从空榜单开始。",
+        "reason": "重置后空榜单，best_score=0。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "与任一流星同轨时立即失败。",
+        "reason": "同轨失败记录 meteor_hit。"
+      },
+      {
+        "id": "A45",
+        "verdict": "supported",
+        "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+        "reason": "重置后自开始计时为 0。"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+        "reason": "重置时尚未到第一波(1000ms)，wave=0。"
+      },
+      {
+        "id": "A1",
+        "verdict": "test_mechanics",
+        "public_quote": "\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n",
+        "reason": "控件未指定actor时默认primary（第66行），START属primary玩家操作"
+      },
+      {
+        "id": "A2",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "Meteor Survivor控件定义START为mouse操作#start-btn"
+      },
+      {
+        "id": "A3",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "START定义为mouse操作，由执行器以press触发"
+      },
+      {
+        "id": "A4",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "START selector为#start-btn"
+      },
+      {
+        "id": "A5",
+        "verdict": "test_mechanics",
+        "public_quote": "\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n",
+        "reason": "控件未指定actor时默认primary"
+      },
+      {
+        "id": "A6",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "LEFT定义为键盘ArrowLeft"
+      },
+      {
+        "id": "A7",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "LEFT定义为键盘ArrowLeft press"
+      },
+      {
+        "id": "A8",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "LEFT code为ArrowLeft"
+      },
+      {
+        "id": "A9",
+        "verdict": "test_mechanics",
+        "public_quote": "\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n",
+        "reason": "默认primary"
+      },
+      {
+        "id": "A10",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RIGHT定义为键盘ArrowRight"
+      },
+      {
+        "id": "A11",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RIGHT press"
+      },
+      {
+        "id": "A12",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RIGHT code为ArrowRight"
+      },
+      {
+        "id": "A13",
+        "verdict": "test_mechanics",
+        "public_quote": "\n键盘控件使用 `code`，不是 `key_code`；例如 `{\"action_id\":\"HEAT_DOWN\",\"actor\":\"primary\",\"device\":\"keyboard\",\"key_event\":\"down\",\"code\":\"KeyH\",\"description\":\"按下加热键\"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。\n",
+        "reason": "默认primary"
+      },
+      {
+        "id": "A14",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RESTART为mouse #restart-btn"
+      },
+      {
+        "id": "A15",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RESTART为mouse操作，执行器press触发"
+      },
+      {
+        "id": "A16",
+        "verdict": "test_mechanics",
+        "public_quote": "- 控件：\n  - `START`：mouse 操作 #start-btn\n  - `LEFT`：键盘 ArrowLeft press\n  - `RIGHT`：键盘 ArrowRight press\n  - `RESTART`：mouse 操作 #restart-btn",
+        "reason": "RESTART selector为#restart-btn"
+      },
+      {
+        "id": "A17",
+        "verdict": "supported",
+        "public_quote": "玩家从轨道1开始。1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1。每躲过一波得 100 分，生存到 5000ms 再得 100 分。\n\n## 胜负与重开\n\n- 无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。\n- 与任一流星同轨时立即失败。\n- Restart 清空当前局；新的评测场景从空榜单开始。\n\n## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。",
+        "reason": "开始后至5000ms获胜前处于Playing阶段，HUD显示Playing状态"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "第80行：点击Start后记录game_started事件"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "## 自动测试接口\n\n- 界面类型：canvas2d；主要区域：`#game-canvas`。\n- HUD：`[data-testid=\"score\"]` 和 `[data-testid=\"status\"]`。\n- state 至少包含：`status`、`lane`、`elapsed_ms`、`wave`、`score`、`best_score`。\n- 事件：`game_started`、`lane_changed`、`wave_survived`、`meteor_hit`、`leaderboard_updated`、`game_won`、`game_reset`。",
+        "reason": "leaderboard_updated为定义事件，榜单随分数/胜利更新（第96、113行）"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。",
+        "reason": "HUD始终显示状态，终局必须完整可见"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "## 界面与反馈\n\n固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。",
+        "reason": "状态标签含Won，胜利终局显示Won"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "Restart恢复菜单状态，status为menu（第80行）"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。\n- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。\n- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。\n\n`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "reset记录game_reset，Restart触发菜单重置（第74、80行）"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

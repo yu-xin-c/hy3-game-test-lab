@@ -1,0 +1,319 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "line_start": 31,
+      "line_end": 32,
+      "reason": "manifest示例(行31-32)显式规定START的actor为primary"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "控件列表行117规定START用mouse操作#start-btn，device=mouse"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "line_start": 117,
+      "line_end": 117,
+      "reason": "控件列表行117规定START的selector为#start-btn"
+    },
+    {
+      "id": "A5",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行118仅标副页面，actor=secondary的取值仅在非相邻行66规定，无连续行唯一推出"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "控件列表行118规定JOIN用mouse操作#join-btn"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "line_start": 118,
+      "line_end": 118,
+      "reason": "控件列表行118规定JOIN的selector为#join-btn"
+    },
+    {
+      "id": "A9",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行119仅标主页面，actor=primary取值仅在非相邻行66规定"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "控件列表行119规定P1_C0用mouse操作#cell-r0-c0"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "line_start": 119,
+      "line_end": 119,
+      "reason": "控件列表行119规定P1_C0的selector为#cell-r0-c0"
+    },
+    {
+      "id": "A13",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行120仅标主页面，actor=primary仅在非相邻行66规定"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "控件列表行120规定P1_C1用mouse操作#cell-r0-c1"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "line_start": 120,
+      "line_end": 120,
+      "reason": "控件列表行120规定P1_C1的selector为#cell-r0-c1"
+    },
+    {
+      "id": "A17",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行121仅标主页面，actor=primary仅在非相邻行66规定"
+    },
+    {
+      "id": "A18",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "控件列表行121规定P1_C2用mouse操作#cell-r0-c2"
+    },
+    {
+      "id": "A20",
+      "verdict": "supported",
+      "line_start": 121,
+      "line_end": 121,
+      "reason": "控件列表行121规定P1_C2的selector为#cell-r0-c2"
+    },
+    {
+      "id": "A21",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行122仅标主页面，actor=primary仅在非相邻行66规定"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "控件列表行122规定P1_C3用mouse操作#cell-r0-c3"
+    },
+    {
+      "id": "A24",
+      "verdict": "supported",
+      "line_start": 122,
+      "line_end": 122,
+      "reason": "控件列表行122规定P1_C3的selector为#cell-r0-c3"
+    },
+    {
+      "id": "A25",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行123仅标主页面，actor=primary仅在非相邻行66规定"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "控件列表行123规定P1_C4用mouse操作#cell-r0-c4"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "line_start": 123,
+      "line_end": 123,
+      "reason": "控件列表行123规定P1_C4的selector为#cell-r0-c4"
+    },
+    {
+      "id": "A29",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行124仅标副页面，actor=secondary仅在非相邻行66规定"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "控件列表行124规定P2_C0用mouse操作#cell-r4-c0"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "line_start": 124,
+      "line_end": 124,
+      "reason": "控件列表行124规定P2_C0的selector为#cell-r4-c0"
+    },
+    {
+      "id": "A33",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行125仅标副页面，actor=secondary仅在非相邻行66规定"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "line_start": 125,
+      "line_end": 125,
+      "reason": "控件列表行125规定P2_C1用mouse操作#cell-r4-c1"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "line_start": 125,
+      "line_end": 125,
+      "reason": "控件列表行125规定P2_C1的selector为#cell-r4-c1"
+    },
+    {
+      "id": "A37",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行126仅标副页面，actor=secondary仅在非相邻行66规定"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "line_start": 126,
+      "line_end": 126,
+      "reason": "控件列表行126规定P2_C2用mouse操作#cell-r4-c2"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "line_start": 126,
+      "line_end": 126,
+      "reason": "控件列表行126规定P2_C2的selector为#cell-r4-c2"
+    },
+    {
+      "id": "A41",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行127仅标副页面，actor=secondary仅在非相邻行66规定"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "line_start": 127,
+      "line_end": 127,
+      "reason": "控件列表行127规定P2_C3用mouse操作#cell-r4-c3"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "line_start": 127,
+      "line_end": 127,
+      "reason": "控件列表行127规定P2_C3的selector为#cell-r4-c3"
+    },
+    {
+      "id": "A45",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行128仅标副页面，actor=secondary仅在非相邻行66规定"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "line_start": 128,
+      "line_end": 128,
+      "reason": "控件列表行128规定P2_C4用mouse操作#cell-r4-c4"
+    },
+    {
+      "id": "A48",
+      "verdict": "supported",
+      "line_start": 128,
+      "line_end": 128,
+      "reason": "控件列表行128规定P2_C4的selector为#cell-r4-c4"
+    },
+    {
+      "id": "A49",
+      "verdict": "unsupported",
+      "line_start": null,
+      "line_end": null,
+      "reason": "控件列表行129仅标主页面，actor=primary仅在非相邻行66规定"
+    },
+    {
+      "id": "A50",
+      "verdict": "supported",
+      "line_start": 129,
+      "line_end": 129,
+      "reason": "控件列表行129规定RESTART用mouse操作#restart-btn"
+    },
+    {
+      "id": "A52",
+      "verdict": "supported",
+      "line_start": 129,
+      "line_end": 129,
+      "reason": "控件列表行129规定RESTART的selector为#restart-btn"
+    },
+    {
+      "id": "A53",
+      "verdict": "supported",
+      "line_start": 78,
+      "line_end": 80,
+      "reason": "状态枚举含playing(行78)，点击Start记录game_started(行80)表明对局进行中状态为playing"
+    },
+    {
+      "id": "A55",
+      "verdict": "supported",
+      "line_start": 80,
+      "line_end": 80,
+      "reason": "行80规定所有游戏点击Start后记录game_started"
+    },
+    {
+      "id": "A61",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "行115事件清单含piece_placed"
+    },
+    {
+      "id": "A62",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "行115事件清单含turn_changed"
+    },
+    {
+      "id": "A68",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "行115事件清单含match_won，且行98规定任一方连成五子即结束"
+    },
+    {
+      "id": "A80",
+      "verdict": "supported",
+      "line_start": 115,
+      "line_end": 115,
+      "reason": "行115事件清单含game_reset"
+    }
+  ]
+}

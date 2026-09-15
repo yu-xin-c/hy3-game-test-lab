@@ -1,0 +1,165 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "test_mechanics",
+      "line_start": 65,
+      "line_end": 67,
+      "reason": "控件未指定actor时默认primary（第66行），START属primary玩家操作"
+    },
+    {
+      "id": "A2",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "Meteor Survivor控件定义START为mouse操作#start-btn"
+    },
+    {
+      "id": "A3",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "START定义为mouse操作，由执行器以press触发"
+    },
+    {
+      "id": "A4",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "START selector为#start-btn"
+    },
+    {
+      "id": "A5",
+      "verdict": "test_mechanics",
+      "line_start": 65,
+      "line_end": 67,
+      "reason": "控件未指定actor时默认primary"
+    },
+    {
+      "id": "A6",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "LEFT定义为键盘ArrowLeft"
+    },
+    {
+      "id": "A7",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "LEFT定义为键盘ArrowLeft press"
+    },
+    {
+      "id": "A8",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "LEFT code为ArrowLeft"
+    },
+    {
+      "id": "A9",
+      "verdict": "test_mechanics",
+      "line_start": 65,
+      "line_end": 67,
+      "reason": "默认primary"
+    },
+    {
+      "id": "A10",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RIGHT定义为键盘ArrowRight"
+    },
+    {
+      "id": "A11",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RIGHT press"
+    },
+    {
+      "id": "A12",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RIGHT code为ArrowRight"
+    },
+    {
+      "id": "A13",
+      "verdict": "test_mechanics",
+      "line_start": 65,
+      "line_end": 67,
+      "reason": "默认primary"
+    },
+    {
+      "id": "A14",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RESTART为mouse #restart-btn"
+    },
+    {
+      "id": "A15",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RESTART为mouse操作，执行器press触发"
+    },
+    {
+      "id": "A16",
+      "verdict": "test_mechanics",
+      "line_start": 114,
+      "line_end": 118,
+      "reason": "RESTART selector为#restart-btn"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "line_start": 92,
+      "line_end": 102,
+      "reason": "开始后至5000ms获胜前处于Playing阶段，HUD显示Playing状态"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "line_start": 80,
+      "line_end": 80,
+      "reason": "第80行：点击Start后记录game_started事件"
+    },
+    {
+      "id": "A26",
+      "verdict": "supported",
+      "line_start": 108,
+      "line_end": 113,
+      "reason": "leaderboard_updated为定义事件，榜单随分数/胜利更新（第96、113行）"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "line_start": 100,
+      "line_end": 102,
+      "reason": "HUD始终显示状态，终局必须完整可见"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "line_start": 100,
+      "line_end": 102,
+      "reason": "状态标签含Won，胜利终局显示Won"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "line_start": 78,
+      "line_end": 80,
+      "reason": "Restart恢复菜单状态，status为menu（第80行）"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "line_start": 74,
+      "line_end": 80,
+      "reason": "reset记录game_reset，Restart触发菜单重置（第74、80行）"
+    }
+  ]
+}

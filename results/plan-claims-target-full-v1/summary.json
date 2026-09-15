@@ -1,0 +1,100 @@
+{
+  "scope": "Selected verification assertions only; related prefixes, not independent full plans",
+  "condition": "target_full_selected_claims",
+  "games": [
+    "target-rush"
+  ],
+  "total_prefixes": 4,
+  "errors": 0,
+  "detected": 0,
+  "localized": 0,
+  "normal": 4,
+  "false_positives": 0,
+  "normal_unknown": 0,
+  "model_unknown": 0,
+  "gold_unknown": 0,
+  "rows": [
+    {
+      "id": "target-rush-prefix-3",
+      "expected": {
+        "id": "target-rush-prefix-3",
+        "has_error": false,
+        "first_error_step": null,
+        "selected_assertion_results": [
+          true,
+          true,
+          true
+        ]
+      },
+      "review": {
+        "model": "hy3",
+        "has_error": false,
+        "first_error_step": null,
+        "explanation": "步骤1：start后 observe().status==='playing' 且 events 含 type:game_started(seq2)。步骤2：reset({seed:42}) 各组 targets 坐标(x/y)在repeat1-3、trial1-2间完全一致，误差0，5次target_hit(target_index0-4)。步骤3：#target click→score=1且target_hit；playfield空白click→misses=1且target_missed；点击HUD后misses仍为1未变。三项verification均被观测支持，无反驳。"
+      }
+    },
+    {
+      "id": "target-rush-prefix-4",
+      "expected": {
+        "id": "target-rush-prefix-4",
+        "has_error": false,
+        "first_error_step": null,
+        "selected_assertion_results": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "review": {
+        "model": "hy3",
+        "has_error": false,
+        "first_error_step": null,
+        "explanation": "步骤1：start后status=playing且events含game_started(seq2)；步骤2：seed=42的5个目标坐标在6次trial中完全一致(误差0)；步骤3：HIT后score0→1且target_hit、MISS后misses0→1且target_missed、点击HUD后misses仍1且latest_event_seq不变(seq4)；步骤4：五HIT后status=won且game_won(seq8)、三MISS后status=lost且game_lost(seq6)、计时归零status=lost且game_lost、postWin/postLoss的latest_event_seq未变(8/6)。所选断言均被观测支持。"
+      }
+    },
+    {
+      "id": "target-rush-prefix-5",
+      "expected": {
+        "id": "target-rush-prefix-5",
+        "has_error": false,
+        "first_error_step": null,
+        "selected_assertion_results": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "review": {
+        "model": "hy3",
+        "has_error": false,
+        "first_error_step": null,
+        "explanation": "step1: 点击后 status=playing 且含 game_started(seq2)；step2: seed=42 三重复现 targets 坐标完全一致、均位于[24,776]×[72,576]内；step3: hit→score+1/target_hit，miss→misses+1/target_missed，HUD点击 misses 不变；step4: 5HIT→won+game_won，3MISS→lost+game_lost，超时→lost，终局后 latest_event_seq 不变；step5: 按钮/KeyR/终局重开均 status=menu 且 score=misses=target_index=0、首事件 game_reset。各步 verification 均被观测支持，无直接反驳。"
+      }
+    },
+    {
+      "id": "target-rush-prefix-6",
+      "expected": {
+        "id": "target-rush-prefix-6",
+        "has_error": false,
+        "first_error_step": null,
+        "selected_assertion_results": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "review": {
+        "model": "hy3",
+        "has_error": false,
+        "first_error_step": null,
+        "explanation": "step1点击#start-btn后observe().status===playing且getEvents含game_started；step2 reset(seed:42)各repeat/trial目标坐标完全一致(x454.015625,y275.9375…误差0)；step3 #target点击score+1且target_hit、空白点击misses+1且target_missed、HUD点击后misses仍为1不变；step4 五HIT=>status=won含game_won、三MISS=>lost含game_lost、计时归零lost且终局后latest_event_seq不变；step5 #restart-btn与KeyR均status=menu且首事件game_reset；step6 observe含status/score/misses/remaining_ms/target_index五字段、isReady true、getEvents按afterSeq过滤seq连续。"
+      }
+    }
+  ]
+}

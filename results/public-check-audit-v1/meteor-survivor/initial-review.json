@@ -1,0 +1,286 @@
+{
+  "assertions": [
+    {
+      "id": "A1",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "START 未指定其他玩家，默认 actor 为 primary。"
+    },
+    {
+      "id": "A2",
+      "verdict": "supported",
+      "public_quote": "START：mouse 操作 #start-btn",
+      "reason": "公开控件表规定 START 为 mouse 操作 #start-btn。"
+    },
+    {
+      "id": "A3",
+      "verdict": "supported",
+      "public_quote": "\"device\": \"mouse\", \"key_event\": \"press\"",
+      "reason": "manifest 示例规定鼠标控件 key_event 为 press，配合 #start-btn。"
+    },
+    {
+      "id": "A4",
+      "verdict": "supported",
+      "public_quote": "START：mouse 操作 #start-btn",
+      "reason": "selector 为 #start-btn。"
+    },
+    {
+      "id": "A5",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "LEFT 未指定其他玩家，默认 primary。"
+    },
+    {
+      "id": "A6",
+      "verdict": "supported",
+      "public_quote": "LEFT：键盘 ArrowLeft press",
+      "reason": "device 为 keyboard。"
+    },
+    {
+      "id": "A7",
+      "verdict": "supported",
+      "public_quote": "LEFT：键盘 ArrowLeft press",
+      "reason": "key_event 为 press。"
+    },
+    {
+      "id": "A8",
+      "verdict": "supported",
+      "public_quote": "LEFT：键盘 ArrowLeft press",
+      "reason": "键盘控件使用 code，ArrowLeft 即 code 值。"
+    },
+    {
+      "id": "A9",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "RIGHT 默认 primary。"
+    },
+    {
+      "id": "A10",
+      "verdict": "supported",
+      "public_quote": "RIGHT：键盘 ArrowRight press",
+      "reason": "device 为 keyboard。"
+    },
+    {
+      "id": "A11",
+      "verdict": "supported",
+      "public_quote": "RIGHT：键盘 ArrowRight press",
+      "reason": "key_event 为 press。"
+    },
+    {
+      "id": "A12",
+      "verdict": "supported",
+      "public_quote": "RIGHT：键盘 ArrowRight press",
+      "reason": "code 为 ArrowRight。"
+    },
+    {
+      "id": "A13",
+      "verdict": "supported",
+      "public_quote": "默认玩家为 primary。",
+      "reason": "RESTART 默认 primary。"
+    },
+    {
+      "id": "A14",
+      "verdict": "supported",
+      "public_quote": "RESTART：mouse 操作 #restart-btn",
+      "reason": "device 为 mouse。"
+    },
+    {
+      "id": "A15",
+      "verdict": "supported",
+      "public_quote": "RESTART：mouse 操作 #restart-btn",
+      "reason": "鼠标 press 配合 #restart-btn。"
+    },
+    {
+      "id": "A16",
+      "verdict": "supported",
+      "public_quote": "RESTART：mouse 操作 #restart-btn",
+      "reason": "selector 为 #restart-btn。"
+    },
+    {
+      "id": "A17",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 game_started",
+      "reason": "点击 Start 后离开 menu 进入 playing，状态枚举含 playing。"
+    },
+    {
+      "id": "A18",
+      "verdict": "test_mechanics",
+      "public_quote": null,
+      "reason": "since_previous_checkpoint 是评测器事件采样区间的内部约定，非游戏需求。"
+    },
+    {
+      "id": "A19",
+      "verdict": "supported",
+      "public_quote": "所有游戏点击 Start 后记录 game_started",
+      "reason": "开始后必须记录 game_started。"
+    },
+    {
+      "id": "A20",
+      "verdict": "ambiguous",
+      "public_quote": "玩家从轨道1开始。",
+      "reason": "公开要求未规定 LEFT/RIGHT 对 lane 的增减方向，lane=0 非唯一推出。"
+    },
+    {
+      "id": "A21",
+      "verdict": "supported",
+      "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+      "reason": "elapsed_ms 为自开始经过毫秒数，推进 3000ms 即 3000。"
+    },
+    {
+      "id": "A22",
+      "verdict": "supported",
+      "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+      "reason": "至 3000ms 已落下 3 波，wave=3。"
+    },
+    {
+      "id": "A23",
+      "verdict": "supported",
+      "public_quote": "每躲过一波得 100 分，生存到 5000ms 再得 100 分。",
+      "reason": "至 3000ms 躲过 3 波，得分 300。"
+    },
+    {
+      "id": "A24",
+      "verdict": "ambiguous",
+      "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+      "reason": "公开仅规定获胜时 best_score=500，未规定局内 mid 时的 best_score 取值，=300 非唯一推出。"
+    },
+    {
+      "id": "A25",
+      "verdict": "supported",
+      "public_quote": "每躲过一波得 100 分",
+      "reason": "每躲过一波应有 wave_survived 事件。"
+    },
+    {
+      "id": "A26",
+      "verdict": "ambiguous",
+      "public_quote": "事件：game_started、lane_changed、wave_survived、meteor_hit、leaderboard_updated、game_won、game_reset。",
+      "reason": "公开列出 leaderboard_updated 但未规定触发时机，mid 即出现非唯一推出（仅明确获胜刷新榜单）。"
+    },
+    {
+      "id": "A27",
+      "verdict": "supported",
+      "public_quote": "无碰撞坚持到 5000ms 获胜",
+      "reason": "生存到 5000ms 获胜，状态为 won。"
+    },
+    {
+      "id": "A28",
+      "verdict": "supported",
+      "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+      "reason": "推进至 5000ms。"
+    },
+    {
+      "id": "A29",
+      "verdict": "supported",
+      "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+      "reason": "至 5000ms 共 4 波，wave=4。"
+    },
+    {
+      "id": "A30",
+      "verdict": "supported",
+      "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+      "reason": "获胜得 500 分。"
+    },
+    {
+      "id": "A31",
+      "verdict": "supported",
+      "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+      "reason": "获胜时 best_score 更新为 500。"
+    },
+    {
+      "id": "A32",
+      "verdict": "supported",
+      "public_quote": "无碰撞坚持到 5000ms 获胜",
+      "reason": "获胜记录 game_won 事件。"
+    },
+    {
+      "id": "A33",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度",
+      "reason": "终局 HUD 仍须显示分数，score 可见。"
+    },
+    {
+      "id": "A34",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度，以及状态 Menu、Playing、Won、Lost。",
+      "reason": "终局 status 可见。"
+    },
+    {
+      "id": "A35",
+      "verdict": "supported",
+      "public_quote": "HUD 始终显示分数或进度",
+      "reason": "终局分数文案不得省略，非空。"
+    },
+    {
+      "id": "A36",
+      "verdict": "supported",
+      "public_quote": "状态 Menu、Playing、Won、Lost",
+      "reason": "终局状态为 Won，且状态文字忽略大小写及连续空白。"
+    },
+    {
+      "id": "A37",
+      "verdict": "supported",
+      "public_quote": "与任一流星同轨时立即失败。",
+      "reason": "同轨失败，状态为 lost。"
+    },
+    {
+      "id": "A38",
+      "verdict": "supported",
+      "public_quote": "玩家从轨道1开始。",
+      "reason": "失败/重置均未移动，初始轨道1 对应 lane=1。"
+    },
+    {
+      "id": "A39",
+      "verdict": "supported",
+      "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+      "reason": "推进 1000ms，elapsed_ms=1000。"
+    },
+    {
+      "id": "A40",
+      "verdict": "supported",
+      "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+      "reason": "至 1000ms 第 1 波落下，wave=1。"
+    },
+    {
+      "id": "A41",
+      "verdict": "supported",
+      "public_quote": "Restart 清空当前局；新的评测场景从空榜单开始。",
+      "reason": "失败立即终止未得分、重置清空，score=0。"
+    },
+    {
+      "id": "A42",
+      "verdict": "supported",
+      "public_quote": "新的评测场景从空榜单开始。",
+      "reason": "重置后空榜单，best_score=0。"
+    },
+    {
+      "id": "A43",
+      "verdict": "supported",
+      "public_quote": "与任一流星同轨时立即失败。",
+      "reason": "同轨失败记录 meteor_hit。"
+    },
+    {
+      "id": "A44",
+      "verdict": "supported",
+      "public_quote": "reset({seed})：按固定 seed 恢复菜单状态",
+      "reason": "重置恢复菜单状态，status=menu。"
+    },
+    {
+      "id": "A45",
+      "verdict": "supported",
+      "public_quote": "所有时间规则使用毫秒，并能由虚拟时间推进。",
+      "reason": "重置后自开始计时为 0。"
+    },
+    {
+      "id": "A46",
+      "verdict": "supported",
+      "public_quote": "1000/2000/3000/4000ms 的流星依次落在轨道1/0/2/1",
+      "reason": "重置时尚未到第一波(1000ms)，wave=0。"
+    },
+    {
+      "id": "A47",
+      "verdict": "supported",
+      "public_quote": "reset({seed})：按固定 seed 恢复菜单状态；每次调用增加 event_epoch，并重新从 seq=1 记录 game_reset。",
+      "reason": "重置记录 game_reset 事件。"
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "model": "hy3",
+  "prompt_sha256": "e1882ce856b62dbed3968cceabdf664554a5a7a06768f486374d01160a938c36",
+  "review": {
+    "assertions": [
+      {
+        "id": "A3",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板中 mouse START 示例 key_event 为 press。"
+      },
+      {
+        "id": "A7",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A11",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A15",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A19",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A23",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A27",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A31",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A35",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A39",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A43",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A47",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A51",
+        "verdict": "supported",
+        "public_quote": "\"key_event\": \"press\"",
+        "reason": "manifest 模板 mouse 控件 key_event 为 press。"
+      },
+      {
+        "id": "A54",
+        "verdict": "test_mechanics",
+        "public_quote": null,
+        "reason": "event_scope/since_previous_checkpoint 为评测器事件采样区间内部约定，非游戏需求。"
+      },
+      {
+        "id": "A56",
+        "verdict": "supported",
+        "public_quote": "两个本地页面完成一局 5×5 五子棋",
+        "reason": "两页面均加入后 connected 表示已连接玩家数=2。"
+      },
+      {
+        "id": "A57",
+        "verdict": "supported",
+        "public_quote": "P1 与 P2 严格轮流落子",
+        "reason": "严格轮流，P1 落子后轮到 P2(secondary)；终局立即结束不换回合。"
+      },
+      {
+        "id": "A58",
+        "verdict": "supported",
+        "public_quote": "P1 测试路径在第0行从左到右落五子；P2 在第4行从左到右落四子",
+        "reason": "至 FR-CP-MID 已落 P1×3+P2×2=5 子，moves=5。"
+      },
+      {
+        "id": "A59",
+        "verdict": "supported",
+        "public_quote": "任一方横、竖或斜线连续五子立即结束",
+        "reason": "终局前未分胜负，winner 为 null。"
+      },
+      {
+        "id": "A60",
+        "verdict": "supported",
+        "public_quote": "P1 测试路径在第0行从左到右落五子",
+        "reason": "P1 在第0行落子，board[0][2] 为 primary。"
+      },
+      {
+        "id": "A63",
+        "verdict": "supported",
+        "public_quote": "主页面按 P1 结果显示 won 或 lost",
+        "reason": "P1 连成五子，主页面显示 won。"
+      },
+      {
+        "id": "A64",
+        "verdict": "supported",
+        "public_quote": "P1 与 P2 严格轮流落子",
+        "reason": "P1 落制胜子后游戏立即结束，回合停在 primary。"
+      },
+      {
+        "id": "A65",
+        "verdict": "supported",
+        "public_quote": "P1 测试路径在第0行从左到右落五子；P2 在第4行从左到右落四子",
+        "reason": "至 WON 已落 P1×5+P2×4=9 子，moves=9。"
+      },
+      {
+        "id": "A66",
+        "verdict": "supported",
+        "public_quote": "主页面按 P1 结果显示 won 或 lost",
+        "reason": "P1 连成五子，winner=primary。"
+      },
+      {
+        "id": "A67",
+        "verdict": "supported",
+        "public_quote": "P1 测试路径在第0行从左到右落五子",
+        "reason": "P1 在第0行落子，board[0][4] 为 primary。"
+      },
+      {
+        "id": "A69",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度",
+        "reason": "HUD 始终显示 score，故可见。"
+      },
+      {
+        "id": "A70",
+        "verdict": "supported",
+        "public_quote": "HUD 始终显示分数或进度，以及状态",
+        "reason": "HUD 始终显示 status，故可见。"
+      },
+      {
+        "id": "A71",
+        "verdict": "supported",
+        "public_quote": "不能省略分数或进度",
+        "reason": "分数文案不可省略，故非空。"
+      },
+      {
+        "id": "A72",
+        "verdict": "supported",
+        "public_quote": "状态文字忽略大小写及连续空白",
+        "reason": "状态文案为 Won，且忽略大小写。"
+      },
+      {
+        "id": "A73",
+        "verdict": "supported",
+        "public_quote": "P2 先连成五子时主页面显示 lost",
+        "reason": "P2 连成五子，主页面显示 lost。"
+      },
+      {
+        "id": "A74",
+        "verdict": "supported",
+        "public_quote": "P1 测试路径在第0行从左到右落五子；P2 在第4行从左到右落四子",
+        "reason": "至 LOST 已落 P1×5+P2×5=10 子，moves=10。"
+      },
+      {
+        "id": "A75",
+        "verdict": "supported",
+        "public_quote": "P2 先连成五子时主页面显示 lost",
+        "reason": "P2 连成五子，winner=secondary。"
+      },
+      {
+        "id": "A76",
+        "verdict": "supported",
+        "public_quote": "P2 在第4行从左到右落四子",
+        "reason": "P2 在第4行落子，board[4][4] 为 secondary。"
+      },
+      {
+        "id": "A77",
+        "verdict": "supported",
+        "public_quote": "主页面 Restart 同步清空棋盘、回合、步数和房间状态",
+        "reason": "Restart 恢复菜单（初始）状态。"
+      },
+      {
+        "id": "A78",
+        "verdict": "supported",
+        "public_quote": "主页面 Restart 同步清空棋盘、回合、步数和房间状态",
+        "reason": "清空房间状态后 connected=0。"
+      },
+      {
+        "id": "A79",
+        "verdict": "supported",
+        "public_quote": "主页面 Restart 同步清空棋盘、回合、步数和房间状态",
+        "reason": "清空步数后 moves=0。"
+      },
+      {
+        "id": "A1",
+        "verdict": "supported",
+        "public_quote": "      \"action_id\": \"START\",\n      \"actor\": \"primary\",",
+        "reason": "manifest示例(行31-32)显式规定START的actor为primary"
+      },
+      {
+        "id": "A2",
+        "verdict": "supported",
+        "public_quote": "  - `START`（主页面）：mouse 操作 #start-btn",
+        "reason": "控件列表行117规定START用mouse操作#start-btn，device=mouse"
+      },
+      {
+        "id": "A4",
+        "verdict": "supported",
+        "public_quote": "  - `START`（主页面）：mouse 操作 #start-btn",
+        "reason": "控件列表行117规定START的selector为#start-btn"
+      },
+      {
+        "id": "A5",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行118仅标副页面，actor=secondary的取值仅在非相邻行66规定，无连续行唯一推出"
+      },
+      {
+        "id": "A6",
+        "verdict": "supported",
+        "public_quote": "  - `JOIN`（副页面）：mouse 操作 #join-btn",
+        "reason": "控件列表行118规定JOIN用mouse操作#join-btn"
+      },
+      {
+        "id": "A8",
+        "verdict": "supported",
+        "public_quote": "  - `JOIN`（副页面）：mouse 操作 #join-btn",
+        "reason": "控件列表行118规定JOIN的selector为#join-btn"
+      },
+      {
+        "id": "A9",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行119仅标主页面，actor=primary取值仅在非相邻行66规定"
+      },
+      {
+        "id": "A10",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C0`（主页面）：mouse 操作 #cell-r0-c0",
+        "reason": "控件列表行119规定P1_C0用mouse操作#cell-r0-c0"
+      },
+      {
+        "id": "A12",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C0`（主页面）：mouse 操作 #cell-r0-c0",
+        "reason": "控件列表行119规定P1_C0的selector为#cell-r0-c0"
+      },
+      {
+        "id": "A13",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行120仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      {
+        "id": "A14",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C1`（主页面）：mouse 操作 #cell-r0-c1",
+        "reason": "控件列表行120规定P1_C1用mouse操作#cell-r0-c1"
+      },
+      {
+        "id": "A16",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C1`（主页面）：mouse 操作 #cell-r0-c1",
+        "reason": "控件列表行120规定P1_C1的selector为#cell-r0-c1"
+      },
+      {
+        "id": "A17",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行121仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      {
+        "id": "A18",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C2`（主页面）：mouse 操作 #cell-r0-c2",
+        "reason": "控件列表行121规定P1_C2用mouse操作#cell-r0-c2"
+      },
+      {
+        "id": "A20",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C2`（主页面）：mouse 操作 #cell-r0-c2",
+        "reason": "控件列表行121规定P1_C2的selector为#cell-r0-c2"
+      },
+      {
+        "id": "A21",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行122仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      {
+        "id": "A22",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C3`（主页面）：mouse 操作 #cell-r0-c3",
+        "reason": "控件列表行122规定P1_C3用mouse操作#cell-r0-c3"
+      },
+      {
+        "id": "A24",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C3`（主页面）：mouse 操作 #cell-r0-c3",
+        "reason": "控件列表行122规定P1_C3的selector为#cell-r0-c3"
+      },
+      {
+        "id": "A25",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行123仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      {
+        "id": "A26",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C4`（主页面）：mouse 操作 #cell-r0-c4",
+        "reason": "控件列表行123规定P1_C4用mouse操作#cell-r0-c4"
+      },
+      {
+        "id": "A28",
+        "verdict": "supported",
+        "public_quote": "  - `P1_C4`（主页面）：mouse 操作 #cell-r0-c4",
+        "reason": "控件列表行123规定P1_C4的selector为#cell-r0-c4"
+      },
+      {
+        "id": "A29",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行124仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      {
+        "id": "A30",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C0`（副页面）：mouse 操作 #cell-r4-c0",
+        "reason": "控件列表行124规定P2_C0用mouse操作#cell-r4-c0"
+      },
+      {
+        "id": "A32",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C0`（副页面）：mouse 操作 #cell-r4-c0",
+        "reason": "控件列表行124规定P2_C0的selector为#cell-r4-c0"
+      },
+      {
+        "id": "A33",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行125仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      {
+        "id": "A34",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C1`（副页面）：mouse 操作 #cell-r4-c1",
+        "reason": "控件列表行125规定P2_C1用mouse操作#cell-r4-c1"
+      },
+      {
+        "id": "A36",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C1`（副页面）：mouse 操作 #cell-r4-c1",
+        "reason": "控件列表行125规定P2_C1的selector为#cell-r4-c1"
+      },
+      {
+        "id": "A37",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行126仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      {
+        "id": "A38",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C2`（副页面）：mouse 操作 #cell-r4-c2",
+        "reason": "控件列表行126规定P2_C2用mouse操作#cell-r4-c2"
+      },
+      {
+        "id": "A40",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C2`（副页面）：mouse 操作 #cell-r4-c2",
+        "reason": "控件列表行126规定P2_C2的selector为#cell-r4-c2"
+      },
+      {
+        "id": "A41",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行127仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      {
+        "id": "A42",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C3`（副页面）：mouse 操作 #cell-r4-c3",
+        "reason": "控件列表行127规定P2_C3用mouse操作#cell-r4-c3"
+      },
+      {
+        "id": "A44",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C3`（副页面）：mouse 操作 #cell-r4-c3",
+        "reason": "控件列表行127规定P2_C3的selector为#cell-r4-c3"
+      },
+      {
+        "id": "A45",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行128仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      {
+        "id": "A46",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C4`（副页面）：mouse 操作 #cell-r4-c4",
+        "reason": "控件列表行128规定P2_C4用mouse操作#cell-r4-c4"
+      },
+      {
+        "id": "A48",
+        "verdict": "supported",
+        "public_quote": "  - `P2_C4`（副页面）：mouse 操作 #cell-r4-c4",
+        "reason": "控件列表行128规定P2_C4的selector为#cell-r4-c4"
+      },
+      {
+        "id": "A49",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行129仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      {
+        "id": "A50",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`（主页面）：mouse 操作 #restart-btn",
+        "reason": "控件列表行129规定RESTART用mouse操作#restart-btn"
+      },
+      {
+        "id": "A52",
+        "verdict": "supported",
+        "public_quote": "  - `RESTART`（主页面）：mouse 操作 #restart-btn",
+        "reason": "控件列表行129规定RESTART的selector为#restart-btn"
+      },
+      {
+        "id": "A53",
+        "verdict": "supported",
+        "public_quote": "`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。\n\n事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "状态枚举含playing(行78)，点击Start记录game_started(行80)表明对局进行中状态为playing"
+      },
+      {
+        "id": "A55",
+        "verdict": "supported",
+        "public_quote": "事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{\"seq\":1,\"tick\":0,\"type\":\"game_started\",\"payload\":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。",
+        "reason": "行80规定所有游戏点击Start后记录game_started"
+      },
+      {
+        "id": "A61",
+        "verdict": "supported",
+        "public_quote": "- 事件：`room_created`、`player_joined`、`piece_placed`、`turn_changed`、`match_won`、`game_reset`。",
+        "reason": "行115事件清单含piece_placed"
+      },
+      {
+        "id": "A62",
+        "verdict": "supported",
+        "public_quote": "- 事件：`room_created`、`player_joined`、`piece_placed`、`turn_changed`、`match_won`、`game_reset`。",
+        "reason": "行115事件清单含turn_changed"
+      },
+      {
+        "id": "A68",
+        "verdict": "supported",
+        "public_quote": "- 事件：`room_created`、`player_joined`、`piece_placed`、`turn_changed`、`match_won`、`game_reset`。",
+        "reason": "行115事件清单含match_won，且行98规定任一方连成五子即结束"
+      },
+      {
+        "id": "A80",
+        "verdict": "supported",
+        "public_quote": "- 事件：`room_created`、`player_joined`、`piece_placed`、`turn_changed`、`match_won`、`game_reset`。",
+        "reason": "行115事件清单含game_reset"
+      }
+    ]
+  },
+  "quote_repair_applied": false,
+  "line_repair_applied": true,
+  "repair_attempt": 1,
+  "scope": "Model semantic audit candidates; exact quote validation is not independent semantic ground truth. No scores or standards changed."
+}

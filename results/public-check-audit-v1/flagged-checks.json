@@ -961,6 +961,273 @@
         "reason": "公开原文仅在第78行列举 status 枚举为 menu/playing/won/lost，并在第98行描述“位置到3时比赛结束→won/lost”、第104行提及 HUD 显示 Playing 状态，但从未明确规定 START 后或局内检查点（DA-CP-START/MID、loss/restart-path-started）的 status 具体取值为 \"playing\"。该取值需跨非连续行（枚举+终局规则）推断，无法由一段连续公开原文唯一推出具体值。"
       },
       "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "meteor-survivor",
+      "assertion": {
+        "id": "A20",
+        "kind": "state",
+        "path": "lane",
+        "expected": 0,
+        "contexts": [
+          "win-path/MS-CP-MID",
+          "win-path/MS-CP-WON"
+        ]
+      },
+      "decision": {
+        "id": "A20",
+        "verdict": "ambiguous",
+        "public_quote": "玩家从轨道1开始。",
+        "reason": "公开要求未规定 LEFT/RIGHT 对 lane 的增减方向，lane=0 非唯一推出。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "meteor-survivor",
+      "assertion": {
+        "id": "A24",
+        "kind": "state",
+        "path": "best_score",
+        "expected": 300,
+        "contexts": [
+          "win-path/MS-CP-MID"
+        ]
+      },
+      "decision": {
+        "id": "A24",
+        "verdict": "ambiguous",
+        "public_quote": "无碰撞坚持到 5000ms 获胜，得 500 分并把 best_score 更新为 500。",
+        "reason": "公开仅规定获胜时 best_score=500，未规定局内 mid 时的 best_score 取值，=300 非唯一推出。"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A5",
+        "kind": "control",
+        "path": "JOIN.actor",
+        "expected": "secondary",
+        "contexts": [
+          "JOIN"
+        ]
+      },
+      "decision": {
+        "id": "A5",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行118仅标副页面，actor=secondary的取值仅在非相邻行66规定，无连续行唯一推出"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A9",
+        "kind": "control",
+        "path": "P1_C0.actor",
+        "expected": "primary",
+        "contexts": [
+          "P1_C0"
+        ]
+      },
+      "decision": {
+        "id": "A9",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行119仅标主页面，actor=primary取值仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A13",
+        "kind": "control",
+        "path": "P1_C1.actor",
+        "expected": "primary",
+        "contexts": [
+          "P1_C1"
+        ]
+      },
+      "decision": {
+        "id": "A13",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行120仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A17",
+        "kind": "control",
+        "path": "P1_C2.actor",
+        "expected": "primary",
+        "contexts": [
+          "P1_C2"
+        ]
+      },
+      "decision": {
+        "id": "A17",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行121仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A21",
+        "kind": "control",
+        "path": "P1_C3.actor",
+        "expected": "primary",
+        "contexts": [
+          "P1_C3"
+        ]
+      },
+      "decision": {
+        "id": "A21",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行122仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A25",
+        "kind": "control",
+        "path": "P1_C4.actor",
+        "expected": "primary",
+        "contexts": [
+          "P1_C4"
+        ]
+      },
+      "decision": {
+        "id": "A25",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行123仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A29",
+        "kind": "control",
+        "path": "P2_C0.actor",
+        "expected": "secondary",
+        "contexts": [
+          "P2_C0"
+        ]
+      },
+      "decision": {
+        "id": "A29",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行124仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A33",
+        "kind": "control",
+        "path": "P2_C1.actor",
+        "expected": "secondary",
+        "contexts": [
+          "P2_C1"
+        ]
+      },
+      "decision": {
+        "id": "A33",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行125仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A37",
+        "kind": "control",
+        "path": "P2_C2.actor",
+        "expected": "secondary",
+        "contexts": [
+          "P2_C2"
+        ]
+      },
+      "decision": {
+        "id": "A37",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行126仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A41",
+        "kind": "control",
+        "path": "P2_C3.actor",
+        "expected": "secondary",
+        "contexts": [
+          "P2_C3"
+        ]
+      },
+      "decision": {
+        "id": "A41",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行127仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A45",
+        "kind": "control",
+        "path": "P2_C4.actor",
+        "expected": "secondary",
+        "contexts": [
+          "P2_C4"
+        ]
+      },
+      "decision": {
+        "id": "A45",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行128仅标副页面，actor=secondary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
+    },
+    {
+      "task_id": "room-five-in-row",
+      "assertion": {
+        "id": "A49",
+        "kind": "control",
+        "path": "RESTART.actor",
+        "expected": "primary",
+        "contexts": [
+          "RESTART"
+        ]
+      },
+      "decision": {
+        "id": "A49",
+        "verdict": "unsupported",
+        "public_quote": null,
+        "reason": "控件列表行129仅标主页面，actor=primary仅在非相邻行66规定"
+      },
+      "status": "model_flag_only_not_confirmed_standard_error"
     }
   ]
 }

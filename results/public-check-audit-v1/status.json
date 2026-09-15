@@ -41,6 +41,16 @@
       "task_id": "dual-arena",
       "status": "reviewed",
       "assertions": 43
+    },
+    {
+      "task_id": "meteor-survivor",
+      "status": "reviewed",
+      "assertions": 47
+    },
+    {
+      "task_id": "room-five-in-row",
+      "status": "reviewed",
+      "assertions": 80
     }
   ]
 }
