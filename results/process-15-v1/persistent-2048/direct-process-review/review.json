@@ -1,0 +1,28 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "core_game_outcome_correct": true,
+    "full_interface_correct": true,
+    "original_plan_process_correct": false,
+    "earliest_wrong_plan_step": 3,
+    "error_type": "incorrect_outcome_prediction",
+    "explanation": "公开规则：右滑后第0、1行最右列各为4，即第3列是[4,4,0,0]；任意方向滑动都会把该列两个4合并成8而获胜（brief：合出8即胜）。核心玩法执行证据成立：right-down-refresh 路径 status=won、max_tile=8、刷新后恢复 playing 且存档一致；right-left-loss 路径 status=lost（max_tile=4<8）；终局后输入不再改变状态。完整接口 contract.conformant=true，#board、[data-testid=score/status]、state(status/grid/moves/max_tile/saved)、全部事件与控件均齐备。原方案 step 3 验证断言“ArrowRight 再 ArrowUp（不产生8）后 status==='lost'”是错误预测：traces.right-up-plan-counterexample 显示该路径实际 status='won'、max_tile=8、grid=[[0,0,0,8],...]。原方案把一条实际获胜路径错判为失败路径，属方案过程自身的错误预测，不因后续代码正确执行而改写。",
+    "code_excerpt": "plan.step[3].verification: \"另起一局 ArrowRight 再 ArrowUp（不产生 8）后 status==='lost'\"\n// 实际：move('up') 取 col=[4,4,0,0]; slideLine→合并 4+4=8 ⇒ max_tile=8 ⇒ status='won'\n// traces.right-up-plan-counterexample.terminal: status='won', grid=[[0,0,0,8],[0,0,0,0],...], max_tile=8",
+    "limits": [
+      "仅提供 game_js，未提供 HTML/CSS；800×600 视口与菜单/终局可见性依据 contract.conformant=true 推断，未在本数据中独立验证",
+      "original_setup_error 为浏览器 harness 配置错误（Unrecognized key: protocol），属基础设施问题，非游戏逻辑或方案问题；评测以提供的 traces 与 contract 为准",
+      "原方案过程判定仅针对原方案主张与验证步骤本身，不因后续正确执行结果而自动改写原预测"
+    ]
+  },
+  "code_excerpt_verified": false,
+  "code_excerpt_issue": "The model supplied a composite plan/trace explanation rather than a verbatim game.js excerpt; do not cite it as code evidence",
+  "gold_subset": {
+    "selected_plan_step": 3,
+    "rule": "RIGHT leaves two 4 tiles vertically aligned; UP merges them into 8",
+    "source": "public fixed grid plus 3 Chromium win replays",
+    "source_sha256": "91c230a4a632267a6baaf345cdb626d353a5e555b61601d5d79c74d3e0765de6",
+    "localization_match": true
+  },
+  "scope": "Independent supplemental Hy3 judging of actual core play and published plan; original review unchanged"
+}

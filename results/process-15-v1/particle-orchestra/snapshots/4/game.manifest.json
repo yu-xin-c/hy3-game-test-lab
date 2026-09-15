@@ -1,0 +1,122 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "webgl",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "A",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit1",
+      "description": "触发 A 粒子簇"
+    },
+    {
+      "action_id": "B",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit2",
+      "description": "触发 B 粒子簇"
+    },
+    {
+      "action_id": "C",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit3",
+      "description": "触发 C 粒子簇"
+    },
+    {
+      "action_id": "D",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Digit4",
+      "description": "触发 D 粒子簇"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "sequence": { "type": "array", "description": "目标顺序 A,C,D,B" },
+      "progress": { "type": "integer", "description": "当前进度" },
+      "score": { "type": "integer", "description": "分数" },
+      "attempts": { "type": "integer", "description": "剩余尝试次数" },
+      "active_cluster": { "type": "string", "description": "当前高亮粒子簇名，可为 null" }
+    },
+    "required": ["status", "sequence", "progress", "score", "attempts", "active_cluster"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "cluster_triggered",
+      "description": "触发粒子簇",
+      "payload_fields": {
+        "cluster": { "type": "string", "description": "簇名 A/B/C/D" }
+      }
+    },
+    {
+      "type": "note_correct",
+      "description": "正确音轨",
+      "payload_fields": {}
+    },
+    {
+      "type": "note_wrong",
+      "description": "错误音轨",
+      "payload_fields": {}
+    },
+    {
+      "type": "progress_reset",
+      "description": "进度重置",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_won",
+      "description": "获胜",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_lost",
+      "description": "失败",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_reset",
+      "description": "重置",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "使用的 seed" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

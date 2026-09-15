@@ -1,0 +1,52 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "canvas2d",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    { "action_id": "START", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#start-btn", "description": "开始游戏" },
+    { "action_id": "PLOT1", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#plot-1", "description": "选择田地1" },
+    { "action_id": "PLOT2", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#plot-2", "description": "选择田地2" },
+    { "action_id": "PLOT3", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#plot-3", "description": "选择田地3" },
+    { "action_id": "PLANT", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#plant-btn", "description": "种植" },
+    { "action_id": "WATER", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#water-btn", "description": "浇水" },
+    { "action_id": "HARVEST", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#harvest-btn", "description": "收获" },
+    { "action_id": "RESTART", "actor": "primary", "device": "mouse", "key_event": "press", "selector": "#restart-btn", "description": "重新开始" }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" },
+      "selected_plot": { "type": "integer", "description": "当前选中的田地索引，-1 表示未选择" },
+      "plots": { "type": "array", "description": "三块田的状态数组" },
+      "elapsed_ms": { "type": "number", "description": "自开始以来的虚拟时间（毫秒）" },
+      "harvested": { "type": "integer", "description": "已收获的田地数量" },
+      "coins": { "type": "integer", "description": "当前金币" },
+      "best_coins": { "type": "integer", "description": "最佳金币（榜单）" },
+      "saved": { "type": "boolean", "description": "是否已保存" }
+    },
+    "required": ["status", "selected_plot", "plots", "elapsed_ms", "harvested", "coins", "best_coins", "saved"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    { "type": "plot_selected", "description": "选择田地", "payload_fields": { "plot": { "type": "integer", "description": "田地索引" } } },
+    { "type": "crop_planted", "description": "种植作物", "payload_fields": { "plot": { "type": "integer", "description": "田地索引" } } },
+    { "type": "crop_watered", "description": "浇水", "payload_fields": { "plot": { "type": "integer", "description": "田地索引" } } },
+    { "type": "crop_ready", "description": "作物成熟", "payload_fields": { "plot": { "type": "integer", "description": "田地索引" } } },
+    { "type": "crop_harvested", "description": "收获作物", "payload_fields": { "plot": { "type": "integer", "description": "田地索引" } } },
+    { "type": "state_saved", "description": "状态已保存", "payload_fields": {} },
+    { "type": "state_loaded", "description": "状态已加载", "payload_fields": {} },
+    { "type": "leaderboard_updated", "description": "榜单更新", "payload_fields": { "best_coins": { "type": "integer", "description": "最佳金币" } } },
+    { "type": "game_won", "description": "游戏胜利", "payload_fields": {} },
+    { "type": "game_lost", "description": "游戏失败", "payload_fields": {} },
+    { "type": "game_reset", "description": "游戏重置", "payload_fields": { "seed": { "type": "integer", "description": "随机种子" } } }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

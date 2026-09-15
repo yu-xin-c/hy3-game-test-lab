@@ -1,0 +1,171 @@
+{
+  "title": "15 个冻结游戏任务：Hy3 公开方案、生成代码、真浏览器试玩与复核",
+  "scope": {
+    "selected_ids": [
+      "target-rush",
+      "maze-collector",
+      "key-door-escape",
+      "platform-rescue",
+      "signal-memory",
+      "fruit-slice-touch",
+      "neon-lane-racer",
+      "dual-arena",
+      "meteor-survivor",
+      "room-five-in-row",
+      "persistent-2048",
+      "particle-orchestra",
+      "photo-orbit-gallery",
+      "pet-care-day",
+      "mini-farm"
+    ],
+    "difficulty": {
+      "D1": 4,
+      "D2": 6,
+      "D3": 5
+    },
+    "category": {
+      "action": 6,
+      "creative": 2,
+      "puzzle": 5,
+      "simulation": 2
+    },
+    "excluded": [
+      "摄像头",
+      "视频理解",
+      "语音交互"
+    ],
+    "historical_96_not_pooled": true
+  },
+  "execution": {
+    "completed_games": 15,
+    "current_strict_manifest_conformant_games": 8,
+    "original_raw_final_paths_passed": 14,
+    "original_raw_browser_paths": 47,
+    "original_raw_path_pass_rate": "29.8%",
+    "warning": "原固定路径与私有断言存在已核实或待核实风险；原始路径率是执行记录，不是独立游戏正确率"
+  },
+  "hy3_opinion": {
+    "final_true": 4,
+    "final_known": 11,
+    "final_true_among_determinate": "36.4%",
+    "process_true": 6,
+    "process_known": 12,
+    "process_true_among_determinate": "50.0%",
+    "warning": "混元判定是待检验的评估器输出，不是由标准答案独立确认的最终/过程准确率"
+  },
+  "supported_model_finding_types": {
+    "implementation_mismatch": 12,
+    "invalid_assumption": 1,
+    "requirement_misread": 1
+  },
+  "difficulty_rows": [
+    {
+      "level": "D1",
+      "games": 4,
+      "contract_conformant_games": 1,
+      "raw_final_paths_passed": 5,
+      "raw_browser_paths": 13,
+      "hy3_final_true": 1,
+      "hy3_final_known": 3,
+      "hy3_process_true": 1,
+      "hy3_process_known": 3
+    },
+    {
+      "level": "D2",
+      "games": 6,
+      "contract_conformant_games": 3,
+      "raw_final_paths_passed": 6,
+      "raw_browser_paths": 18,
+      "hy3_final_true": 0,
+      "hy3_final_known": 3,
+      "hy3_process_true": 2,
+      "hy3_process_known": 4
+    },
+    {
+      "level": "D3",
+      "games": 5,
+      "contract_conformant_games": 4,
+      "raw_final_paths_passed": 3,
+      "raw_browser_paths": 16,
+      "hy3_final_true": 3,
+      "hy3_final_known": 5,
+      "hy3_process_true": 3,
+      "hy3_process_known": 5
+    }
+  ],
+  "validity": {
+    "total": 3,
+    "detect_and_locate": 1,
+    "step_only": 2,
+    "rate": "1/3",
+    "rows": [
+      {
+        "id": "key-door-escape",
+        "difficulty": "D2",
+        "gold_step": 1,
+        "basis": "公开地图 T 坐标",
+        "limit": "只核对明确写出的坐标，不保证整份方案首错",
+        "model_process_wrong": false,
+        "model_step": 1,
+        "combined_hit": false,
+        "step_only_hit": true
+      },
+      {
+        "id": "room-five-in-row",
+        "difficulty": "D2",
+        "gold_step": 4,
+        "basis": "双页真输入与重启计时，3 次",
+        "limit": "前 3 步只测试了核心路径，第 4 步是首个已知错步",
+        "model_process_wrong": true,
+        "model_step": null,
+        "combined_hit": false,
+        "step_only_hit": false
+      },
+      {
+        "id": "particle-orchestra",
+        "difficulty": "D3",
+        "gold_step": 3,
+        "basis": "公开算术及 3 次浏览器终局",
+        "limit": "只核对选出的计分断言",
+        "model_process_wrong": true,
+        "model_step": 3,
+        "combined_hit": true,
+        "step_only_hit": true
+      }
+    ]
+  },
+  "correct_core_wrong_plan": {
+    "total": 1,
+    "flagged": 1,
+    "real_issue_among_flagged": 1,
+    "false_alarm_among_flagged": 0,
+    "row": {
+      "id": "persistent-2048",
+      "difficulty": "D2",
+      "gold_core_outcome_correct": true,
+      "gold_plan_step": 3,
+      "model_core_outcome_correct": true,
+      "model_process_wrong": true,
+      "model_step": 3,
+      "true_issue_among_flagged": true,
+      "limit": "独立补充复核；原始全题复核未判定。只覆盖核心玩法与选出的方案第 3 步，不能算完整接口或全题正确率。"
+    }
+  },
+  "source_audit": {
+    "reviewed_tasks": 15,
+    "deduplicated_predicates": 833,
+    "model_labels": {
+      "supported": 721,
+      "unsupported": 31,
+      "ambiguous": 44,
+      "test_mechanics": 37
+    },
+    "warning": "引文存在性不等于判据语义有效"
+  },
+  "sensitivity": {
+    "excluded_context_checks": 54,
+    "invalid_fixed_paths": 4,
+    "warning": "重算与追加真实输入用于排查标准问题，不覆盖冻结原结果，也不是正式正确率"
+  },
+  "difficulty_boundary": "D1/D2/D3 仅 4/6/5 题，玩法组成与检查强度不同且标准风险影响原始路径；没有可可靠判定的显著下降临界难度。"
+}

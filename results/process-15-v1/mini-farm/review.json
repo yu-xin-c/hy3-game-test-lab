@@ -1,0 +1,137 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": false,
+    "process_correct": false,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": true,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "win-path 在 status='playing' 状态下点击 #plot-1/#plant-btn/#water-btn 均报 'element is not enabled'（runtime_error，action 1-3）。代码将作物相关控件的 disabled 状态完全交由 rAF 循环的 updateUI() 依据 state.status 切换，而 start() 等状态切换函数自身不调用 updateUI()。执行证据显示逻辑状态已为 playing，但 DOM 控件仍处于禁用态，导致核心种/收流程在第一步即被阻断。该缺陷属于代码实现层，方案步骤未主张此行为，故非方案首错。",
+        "file": "game.js",
+        "excerpt": "    if (startBtn) startBtn.disabled = (state.status !== 'menu');\n    if (plantBtn) plantBtn.disabled = (state.status !== 'playing');\n    if (waterBtn) waterBtn.disabled = (state.status !== 'playing');\n    if (harvestBtn) harvestBtn.disabled = (state.status !== 'playing');\n    for (var i = 0; i < plotBtns.length; i++) {\n      if (plotBtns[i]) plotBtns[i].disabled = (state.status !== 'playing');\n    }",
+        "scenario_id": "win-path",
+        "action_index": 1
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "因上述控件禁用缺陷，win-path 在 reload 后仅能收获 2 块田（action 16: harvested=2, coins=20, best_coins=0, status='playing'），无法达成 3 块田胜利条件。期望的 game_won 与 leaderboard_updated 事件缺失，coins 与 best_coins 均未达到 30。这是核心交互缺陷的连锁结果，证明游戏未满足'收获三块田获得30金币'的主目标。",
+        "file": "game.js",
+        "excerpt": "  function checkWin() {\n    if (state.status === 'playing' && state.harvested >= 3) {\n      state.best_coins = Math.max(state.best_coins, state.coins);\n      emit('leaderboard_updated', { best_coins: state.best_coins });\n      state.status = 'won';\n      emit('game_won', {});\n      save();\n    }\n  }",
+        "scenario_id": "win-path",
+        "action_index": 16
+      },
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "test_problem",
+        "explanation": "restart-path action 3 检查点 MF-CP-RESET 期望 saved=false，实测 saved=true。reset()/Restart 调用 save() 会置 saved=true 并派发 state_saved。公开需求仅要求 Restart 清空田地/计时/金币并从空榜单开始（defaultState 已将 best_coins 归零，满足），并未规定 persist 标志 saved 必须为 false；reset 后写出清空态属正常持久化行为，对可玩性无害。该失败更可能是评测私有规则误报，与公开要求不一致，故判为 test_problem 而非实现缺陷。",
+        "file": "game.js",
+        "excerpt": "  function reset(opts) {\n    event_epoch += 1;\n    seq = 0;\n    events = [];\n    seed = (opts && typeof opts.seed === 'number') ? opts.seed : 0;\n    state = defaultState();\n    start_time = performance.now();\n    emit('game_reset', { seed: seed });\n    save();\n    updateUI();\n  }",
+        "scenario_id": "restart-path",
+        "action_index": 3
+      },
+      {
+        "step_id": 4,
+        "kind": "other",
+        "status": "insufficient_evidence",
+        "explanation": "方案步骤4主张'相同 seed 产生相同初始状态与同一时间表'，代码确无随机逻辑（plots 恒为 empty，偏移量 3000/15000ms 恒定），初始状态具确定性；但时间基准 start_time 取自 performance.now()（墙钟）而非由 seed 推导，严格'同一时间表'未由任何场景实测。无 reset({seed}) 双跑对比证据，确定性仅属推导，无法认证。",
+        "file": "game.js",
+        "excerpt": "    start_time = performance.now();",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "生成阶段自述未运行浏览器测试，仅提供 browser_result 作为执行证据，且该结果由裁判流程产生、非人工真值。",
+      "win-path 仅收获 2/3 块田即终止，3 块田完整胜利路径未被实测证明；游戏主目标未达。",
+      "loss-path 通过 L1/L2 但全程未点击任何作物控件（只点击 START 并等待超时），其通过属表面通过，掩盖了核心交互缺陷（apparent_pass_with_flaw=true）。",
+      "无任何场景执行 reset({seed}) 双跑以验证确定性，方案步骤4的'同一时间表'主张缺乏实证。",
+      "restart-path 的 saved 检查点失败与公开需求不一致，疑为私有规则误报，未计入实现缺陷。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "win-path 在 status='playing' 状态下点击 #plot-1/#plant-btn/#water-btn 均报 'element is not enabled'（runtime_error，action 1-3）。代码将作物相关控件的 disabled 状态完全交由 rAF 循环的 updateUI() 依据 state.status 切换，而 start() 等状态切换函数自身不调用 updateUI()。执行证据显示逻辑状态已为 playing，但 DOM 控件仍处于禁用态，导致核心种/收流程在第一步即被阻断。该缺陷属于代码实现层，方案步骤未主张此行为，故非方案首错。",
+      "file": "game.js",
+      "excerpt": "    if (startBtn) startBtn.disabled = (state.status !== 'menu');\n    if (plantBtn) plantBtn.disabled = (state.status !== 'playing');\n    if (waterBtn) waterBtn.disabled = (state.status !== 'playing');\n    if (harvestBtn) harvestBtn.disabled = (state.status !== 'playing');\n    for (var i = 0; i < plotBtns.length; i++) {\n      if (plotBtns[i]) plotBtns[i].disabled = (state.status !== 'playing');\n    }",
+      "scenario_id": "win-path",
+      "action_index": 1,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 273,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "因上述控件禁用缺陷，win-path 在 reload 后仅能收获 2 块田（action 16: harvested=2, coins=20, best_coins=0, status='playing'），无法达成 3 块田胜利条件。期望的 game_won 与 leaderboard_updated 事件缺失，coins 与 best_coins 均未达到 30。这是核心交互缺陷的连锁结果，证明游戏未满足'收获三块田获得30金币'的主目标。",
+      "file": "game.js",
+      "excerpt": "  function checkWin() {\n    if (state.status === 'playing' && state.harvested >= 3) {\n      state.best_coins = Math.max(state.best_coins, state.coins);\n      emit('leaderboard_updated', { best_coins: state.best_coins });\n      state.status = 'won';\n      emit('game_won', {});\n      save();\n    }\n  }",
+      "scenario_id": "win-path",
+      "action_index": 16,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 138,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "test_problem",
+      "explanation": "restart-path action 3 检查点 MF-CP-RESET 期望 saved=false，实测 saved=true。reset()/Restart 调用 save() 会置 saved=true 并派发 state_saved。公开需求仅要求 Restart 清空田地/计时/金币并从空榜单开始（defaultState 已将 best_coins 归零，满足），并未规定 persist 标志 saved 必须为 false；reset 后写出清空态属正常持久化行为，对可玩性无害。该失败更可能是评测私有规则误报，与公开要求不一致，故判为 test_problem 而非实现缺陷。",
+      "file": "game.js",
+      "excerpt": "  function reset(opts) {\n    event_epoch += 1;\n    seq = 0;\n    events = [];\n    seed = (opts && typeof opts.seed === 'number') ? opts.seed : 0;\n    state = defaultState();\n    start_time = performance.now();\n    emit('game_reset', { seed: seed });\n    save();\n    updateUI();\n  }",
+      "scenario_id": "restart-path",
+      "action_index": 3,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 156,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": 4,
+      "kind": "other",
+      "status": "insufficient_evidence",
+      "explanation": "方案步骤4主张'相同 seed 产生相同初始状态与同一时间表'，代码确无随机逻辑（plots 恒为 empty，偏移量 3000/15000ms 恒定），初始状态具确定性；但时间基准 start_time 取自 performance.now()（墙钟）而非由 seed 推导，严格'同一时间表'未由任何场景实测。无 reset({seed}) 双跑对比证据，确定性仅属推导，无法认证。",
+      "file": "game.js",
+      "excerpt": "    start_time = performance.now();",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 162,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

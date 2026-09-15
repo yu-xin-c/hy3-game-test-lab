@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "三块田按 选田→种植→浇水→等待→收获 推进，每次状态变化立即存档",
+      "implementation": "plots 为长度3数组，状态机 empty→planted(选田后点PLANT)→growing(点WATER)→ready(虚拟时间累计3000ms)→harvested(点HARVEST,+10金币)。用 performance.now() 基准推进虚拟时钟，每块田记录 watered_at 时间戳；ready 判定为 elapsed_ms - watered_at >= 3000（误差<=32ms）。每次变化后写入 localStorage 键 mini_farm_state 并派发 state_saved。",
+      "verification": "Playwright 点击 #start-btn、#plot-1、#plant-btn、#water-btn，虚拟时间前进3000ms后点 #harvest-btn，检查 [data-testid=score] 显示10且 getEvents 含 crop_harvested；刷新页面后 observe().state.plots[0] 仍为 harvested。"
+    },
+    {
+      "id": 2,
+      "requirement": "存档跨刷新恢复，Restart 在局内与终局都可用并清空",
+      "implementation": "每次状态变化触发 state_saved 并 localStorage.setItem('mini_farm_state', JSON.stringify(state))；页面加载时若存档存在则 state_loaded 恢复 status/plots/elapsed_ms/coins。#restart-btn 调用 reset 清空 plots 为空、elapsed_ms=0、coins=0、harvested=0、status='menu'，从 seq=1 记 game_reset，event_epoch+1。",
+      "verification": "游戏中操作后刷新页面，observe().state 与刷新前一致（elapsed 允许<=32ms漂移）；点 #restart-btn 后 observe() 显示 status='menu'、coins=0、plots 全 empty。"
+    },
+    {
+      "id": 3,
+      "requirement": "胜负判定：三田各收获一次获胜；Start 起15000ms未达成失败",
+      "implementation": "harvested 计数到3且 coins==30、best_coins==30 时 status='won' 派发 game_won，best_coins=max(best_coins,coins) 并派发 leaderboard_updated。elapsed_ms 自 Start 起累加，>=15000（边界+32ms容差）且未获胜时 status='lost' 派发 game_lost。",
+      "verification": "依次收获三田，observe().state.status=='won' 且 coins==best_coins==30；另起一局虚拟时间推进至15032ms不收获，检查 status=='lost'。"
+    },
+    {
+      "id": 4,
+      "requirement": "相同 seed 产生相同初始状态与时间表，终局后输入不再改变结果",
+      "implementation": "reset({seed}) 用 seed 经确定性函数生成固定初始 plots 与计时基准（不依赖随机或 Date 抖动）。status 进入 won/lost 后所有控件 handler 直接 return，不修改 coins/progress/status，也不派发新作物事件。",
+      "verification": "两次 reset({seed:42}) 后 observe().state 完全一致；终局后点击 PLANT/WATER/HARVEST，observe().state 无变化且 getEvents 无新增作物事件。"
+    },
+    {
+      "id": 5,
+      "requirement": "通过 window.__GAMETESTLAB__ 暴露只读观察与事件接口",
+      "implementation": "对象含 protocol:'gametestlab/2'、isReady()、reset({seed})、observe() 返回 {tick,status,state,event_epoch,latest_event_seq}、getEvents({afterSeq})。所有事件带 seq(从1连续)、tick(虚拟时钟ms)、type、可选 payload，覆盖题面12种事件；点击 Start 必记 game_started。",
+      "verification": "加载后 window.__GAMETESTLAB__.isReady()===true；点 Start 后 getEvents({afterSeq:0}) 含 seq=1 type=game_started；observe().event_epoch 为整数且 latest_event_seq 随操作递增。"
+    },
+    {
+      "id": 6,
+      "requirement": "固定 800×600 视口与始终可见 HUD/控件",
+      "implementation": "index.html 含 #farm-canvas(canvas2d)、[data-testid=score]、[data-testid=status] 及 #start-btn #plot-1 #plot-2 #plot-3 #plant-btn #water-btn #harvest-btn #restart-btn；styles.css 固定 body 800×600 禁止滚动。state.status 取 menu/playing/won/lost；HUD 文案显示 Menu/Playing/Won/Lost（评测忽略大小写与连续空白）。",
+      "verification": "Playwright 断言视口 800×600；菜单态 [data-testid=status] 忽略大小写匹配 'menu'；游戏中全部按钮可见可点击；终局后 #restart-btn 仍可见可用。"
+    }
+  ]
+}

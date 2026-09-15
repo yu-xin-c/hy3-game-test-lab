@@ -1,0 +1,48 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": null,
+    "process_correct": null,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "全部 9 个 scenario 在 L1 即因 runner 报 'Browser setup failed: Unrecognized key: protocol' 而失败，浏览器从未真正运行游戏。该错误来自评测 runner 的初始化校验，并非游戏运行时错误。manifest 的 contract_pass=true 且 contract.conformant=true（bridge.protocol=gametestlab/2 已通过官方契约校验），说明 'protocol' 键在公开 schema 下合法；私有 runner 的 unrecognized_keys 报错属于规则误报/工具配置问题。因此本批执行未产生任何关于游戏功能的有效证据，不能据此判定游戏不可玩或有缺陷。",
+        "file": "game.manifest.json",
+        "excerpt": "\"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "浏览器评测在 setup 阶段即失败（runner 拒绝 'protocol' 键），游戏从未实际执行，故无任何运行时证据来验证衰减计时、localStorage 持久化、事件派发与 HUD 渲染等动态行为。",
+      "仅能基于公开需求、方案步骤与四份源码做静态一致性审查；静态审查未发现代码与公开需求或方案主张相矛盾之处，但这不等于运行时正确。",
+      "由于无执行证据，final_correct 与 process_correct 均取 null，不将 harness 误报导致的全场景失败判为游戏缺陷。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "全部 9 个 scenario 在 L1 即因 runner 报 'Browser setup failed: Unrecognized key: protocol' 而失败，浏览器从未真正运行游戏。该错误来自评测 runner 的初始化校验，并非游戏运行时错误。manifest 的 contract_pass=true 且 contract.conformant=true（bridge.protocol=gametestlab/2 已通过官方契约校验），说明 'protocol' 键在公开 schema 下合法；私有 runner 的 unrecognized_keys 报错属于规则误报/工具配置问题。因此本批执行未产生任何关于游戏功能的有效证据，不能据此判定游戏不可玩或有缺陷。",
+      "file": "game.manifest.json",
+      "excerpt": "\"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 120,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

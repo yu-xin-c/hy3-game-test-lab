@@ -1,0 +1,46 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "相同 seed 必须得到相同初始状态（hunger/happiness/energy 均为 2、status=menu）和同一时间表；游戏结束后输入不可改变状态。",
+      "implementation": "用 seed 通过确定性伪随机（如 mulberry32）生成初始 schedule，但本题初始值恒为 2 故 seed 仅决定 decay 基准时刻；reset({seed}) 将三者重置为 2、status='menu'、event_epoch+1、seq 从 1 重计、清除内存运行态。终局（won/lost）后所有按钮点击被 ignore 分支拦截，不写 localStorage 不改 state。",
+      "verification": "调用 reset({seed:'a'}) 两次后 observe() 返回 status='menu'、hunger=happiness=energy=2；在 won/lost 下点击 feed-btn 后 state 三项不变且 latest_event_seq 不新增 game 内事件。"
+    },
+    {
+      "id": 2,
+      "requirement": "Feed/Play/Sleep 各把对应值 +1（上限 3），并立即写入 localStorage。",
+      "implementation": "三个处理函数：feed→hunger=min(3,hunger+1) 等；执行后 setState 并 localStorage.setItem('petcare.save', JSON.stringify({hunger,happiness,energy,status}))，随后派发 pet_fed/pet_played/pet_slept 与 state_saved 事件（seq 连续递增）。",
+      "verification": "playing 下点击 #feed-btn，observe().state.hunger 从 2 变 3，game.js 后执行 localStorage.getItem('petcare.save') 包含 hunger:3；派发事件类型含 pet_fed 与 state_saved。"
+    },
+    {
+      "id": 3,
+      "requirement": "每 2000ms 三项各 -1；任一项降到 0 立即失败；三项均为 3 立即获胜。",
+      "implementation": "用 setInterval/setTimeout 基于 Date.now 驱动 decay，每 2000ms 三项 =max(0,v-1)，派发 need_decayed；若任一为 0 → status='lost' 派发 game_lost 并停表；若三者均=3 → status='won' 派发 game_won 并停表。所有计时用真实 timer 以便虚拟时间推进。",
+      "verification": "playing 后将虚拟时间推进 ≥2000ms，observe().state 三项从 2 变 1 且出现 need_decayed；构造为 0 时 observe().status='lost' 且有 game_lost；三项=3 时 status='won' 且有 game_won。"
+    },
+    {
+      "id": 4,
+      "requirement": "刷新后从 localStorage 恢复进度；Restart 清除存档并回到菜单三项为 2。",
+      "implementation": "页面加载时读取 'petcare.save'：若 status 为 playing 则恢复三项并继续计时；派发 state_loaded。#restart-btn 执行 localStorage.removeItem('petcare.save')、重置三项为 2、status='menu'、停表、派发 game_reset。",
+      "verification": "playing 下 feed 后刷新页面，observe().state.hunger 保持 3 且出现 state_loaded；点击 #restart-btn 后 localStorage 无 petcare.save、observe() 三项=2、status='menu'、有 game_reset。"
+    },
+    {
+      "id": 5,
+      "requirement": "固定 800×600 视口；HUD 始终显示分数/进度与状态；菜单、游戏区、终局、Restart 完整可见。",
+      "implementation": "viewport 800×600；#pet-room 为主区；HUD 用 [data-testid=score] 显示 'H2/H2/H2→...' 进度，[data-testid=status] 显示 Menu/Playing/Won/Lost（忽略大小写与空白）；#start-btn、#feed-btn、#play-btn、#sleep-btn、#restart-btn 在所有阶段可见可用。",
+      "verification": "读取 DOM：#pet-room 存在；data-testid=score 与 status 文本含数值与状态词；在 won/lost 下 #restart-btn 可见可点。"
+    },
+    {
+      "id": 6,
+      "requirement": "提供只读观察接口 window.__GAMETESTLAB__（协议 gametestlab/2）与全部事件类型。",
+      "implementation": "暴露 protocol、isReady()、reset({seed})、observe()（返回 tick/status/state/event_epoch/latest_event_seq）、getEvents({afterSeq})；事件对象含 seq、tick、type、可选 payload，类型覆盖 game_started/pet_fed/pet_played/pet_slept/need_decayed/state_saved/state_loaded/game_won/game_lost/game_reset；点击 Start 派发 game_started。接口不含代替玩家操作的方法。",
+      "verification": "typeof window.__GAMETESTLAB__.isReady==='function' 且 isReady() 为 true；observe().protocol==='gametestlab/2'；getEvents({afterSeq:0}) 含 game_started 等；手动点击按钮后 getEvents 能按 seq 顺序取到对应类型。"
+    },
+    {
+      "id": 7,
+      "requirement": "生成四个独立可打开文件，且 manifest 严格符合 gametestlab.game-manifest.v3。",
+      "implementation": "输出 index.html、styles.css、game.js、game.manifest.json；manifest 含 schema_version、entry_path、surface='dom'、viewport 800×600、controls（START/FEED/PLAY/SLEEP/RESTART 均为 mouse+selector）、hud_selectors、state_schema.fields(status/hunger/happiness/energy/actions/saved)、event_schema 十类事件、bridge(protocol gametestlab/2, evidence_only true, actions_via_real_input true)；不加载任何网络资源。",
+      "verification": "JSON.parse(game.manifest.json) 校验字段完整且无额外顶层键；本地以 file:// 打开 index.html 可完整游玩；搜索代码确认无 http(s) 远程引用。"
+    }
+  ]
+}

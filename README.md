@@ -6,7 +6,7 @@
 
 [判据修订与重跑](results/signal-checks-v3/README.md)：Signal Memory 原有路径在修正检查和指针执行后 12/12 通过，新增反例仍 0/3 通过。旧结果不覆盖。
 
-已完成 96 题历史运行评测；正式生成过程审计按最新要求缩为 15 题，现有[完成进度](results/process-15-v1/PROGRESS.md)。指标口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
+已完成 96 题历史运行评测；正式生成过程审计按最新要求缩为 15 题，现有[15 题最终报告](results/process-15-v1/FINAL.md)与[五页汇报 PPT](docs/evaluation-slides-15-v3.pptx)。详细口径见[完整分析报告](reports/analysis-report.md)。本次发布不包含视频。
 
 GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
 
@@ -15,7 +15,7 @@ GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 
 [项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [96 题去重结果](results/consolidated/README.md) · [逐批证据](results/full-96/README.md) · [校准集结果](results/sample/README.md)
 
 
-历史批次已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。正式 15 题审计让混元先写编号方案再写游戏代码；已完成的 [Maze Collector](results/process-30-v1/maze-collector/README.md) 与 Key Door Escape 保留原生成记录，不重复运行。[判据溯源](results/public-check-audit-v1/README.md)也只统计同一 15 题。原始规则包含误报，混元复核也不是独立真值，因此暂不把任一列称为最终模型准确率。[执行状态](docs/full-run-status.md)说明三个历史批次的关系。[六页汇报 PPT](docs/evaluation-slides-v3.pptx)区分游戏执行与生成方案的验证结果。
+历史批次已完成 **96/96** 个不同游戏的生成、浏览器测试和混元复核，共执行 876 次浏览器路径。正式 15 题审计让混元先写编号方案再写游戏代码；已完成的 [Maze Collector](results/process-30-v1/maze-collector/README.md) 与 Key Door Escape 保留原生成记录，不重复运行。[判据溯源](results/public-check-audit-v1/README.md)也只统计同一 15 题。原始规则包含误报，混元复核也不是独立真值，因此不把任一列直接称为独立模型准确率。[执行状态](docs/full-run-status.md)说明历史批次的关系。
 
 新增[玩法故障与生成记录追溯实验](results/process-localization-pilot/README.md)：复用 3 个 Hy3 游戏，执行 15 次浏览器对照，再由 Hy3 复核并引用具体代码；有完整历史时，可追溯到写入该代码的工具步骤。现有 96 题的“过程”指标指试玩过程，不等于生成推理过程的正确率。自动定位、复现和误报的口径见分析报告。
 

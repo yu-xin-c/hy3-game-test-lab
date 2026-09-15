@@ -1,0 +1,104 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "webgl",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "NEXT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight",
+      "description": "向右移动焦点"
+    },
+    {
+      "action_id": "PREV",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowLeft",
+      "description": "向左移动焦点"
+    },
+    {
+      "action_id": "SELECT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "Enter",
+      "description": "确认当前焦点照片"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "focus_index": { "type": "integer", "description": "焦点照片索引 0..3" },
+      "focus_name": { "type": "string", "description": "焦点照片名称" },
+      "selected": { "type": "string", "description": "最近一次确认的照片名" },
+      "progress": { "type": "integer", "description": "正确确认进度 0..3" },
+      "mistakes": { "type": "integer", "description": "错误确认次数 0..2" }
+    },
+    "required": ["status", "focus_index", "focus_name", "selected", "progress", "mistakes"]
+  },
+  "event_schema": [
+    { "type": "game_started", "description": "游戏开始", "payload_fields": {} },
+    {
+      "type": "focus_changed",
+      "description": "焦点变化",
+      "payload_fields": {
+        "focus_index": { "type": "integer", "description": "焦点索引" },
+        "focus_name": { "type": "string", "description": "焦点名称" }
+      }
+    },
+    {
+      "type": "photo_selected",
+      "description": "正确确认照片",
+      "payload_fields": {
+        "focus_name": { "type": "string", "description": "照片名" },
+        "progress": { "type": "integer", "description": "当前进度" }
+      }
+    },
+    {
+      "type": "selection_wrong",
+      "description": "错误确认照片",
+      "payload_fields": {
+        "focus_name": { "type": "string", "description": "照片名" },
+        "mistakes": { "type": "integer", "description": "错误次数" }
+      }
+    },
+    { "type": "game_won", "description": "游戏胜利", "payload_fields": {} },
+    { "type": "game_lost", "description": "游戏失败", "payload_fields": {} },
+    {
+      "type": "game_reset",
+      "description": "游戏重置",
+      "payload_fields": {
+        "seed": { "type": "integer", "description": "使用的种子" }
+      }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

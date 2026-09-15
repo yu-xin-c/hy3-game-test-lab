@@ -1,0 +1,4264 @@
+{
+  "schema_version": "gametestlab.formal-task-result.v1",
+  "task_id": "particle-orchestra",
+  "title": "Particle Orchestra",
+  "category": "creative",
+  "features": [
+    "3d"
+  ],
+  "difficulty": {
+    "level": "D3",
+    "rationale": "WebGL 粒子反馈、输入序列和错误恢复需要跨层一致。"
+  },
+  "generator": "codebuddy-hy3",
+  "evaluation_context": "frozen_task_evaluation",
+  "checking_policy_version": "2026-09-12.3",
+  "status": "evaluated",
+  "started_at": "2026-09-15T09:04:24.714Z",
+  "finished_at": "2026-09-15T09:04:27.415Z",
+  "replay_count": 3,
+  "browser": {
+    "name": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "input_hashes": {
+    "test_plan_sha256": "b925533c2a17b81ff82e8ffc31fbb271bb79797df779b7b44875e4bed542aa77",
+    "oracle_sha256": "d9b1d737387605aa3883ef97e703b999a860a2495280e6355c27093ec2ed0981",
+    "evaluator_sha256": "26ea156c2d9354946afcbd40d1edf77066e47b2f267b750d6f331c4967f1da80",
+    "runner_sha256": "2a0879cd37e70599a0d34a6ff2f0778fa7746edbb24741c26c2059e194667fa0",
+    "task_adapter_sha256": "7b3ef6026ff5824a04f6b5af92946c08f2e470c25a754cf727e1bf6a70269bb3",
+    "frozen_task_sha256": "e45af3e353b5610700ddb8332a64ea300a66c02c5ae1e0ea212e2c1c20e5134b",
+    "game_directory_sha256": "4586e817e83d9876e1f36fc53fbd13ea6a2ef643e8df6018e11e90c78a5a3a9a",
+    "game_manifest_sha256": "8e877f9d384da8e9c685f84af6d373e07de8096a32f77eb73a420868467eea3d"
+  },
+  "aggregate": {
+    "contract_pass": true,
+    "scenario_runs": 9,
+    "process_passes": 3,
+    "final_passes": 3,
+    "lucky_passes": 0,
+    "L1_passes": 9,
+    "L2_passes": 3,
+    "L3_passes": 0
+  },
+  "contract": {
+    "conformant": true,
+    "findings": []
+  },
+  "scenarios": [
+    {
+      "replay_index": 0,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-MAIN"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 100,
+              "actual": 200
+            },
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 4,
+            "checkpoint_id": "PO-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-MAIN"
+            ],
+            "error_type": "state_effect_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 100,
+                "actual": 200
+              },
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PO-CP-START",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "PO-CP-MID",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 1,
+            "score": 25,
+            "attempts": 3,
+            "active_cluster": "A"
+          },
+          "ui": {
+            "scoreText": "Score: 25 | Progress: 1/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 25 | Progress: 1/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 188.53125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/particle-orchestra-action-01.png",
+            "state_hash": "fdeec2472d16b8a7e774950a7108cc82e37e6cf13146ebe897ca0a715217c50a"
+          }
+        },
+        {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/particle-orchestra-action-04.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "PO-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 5,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/particle-orchestra-action-05.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x10400524e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+              "line_number": 35,
+              "column_number": 0
+            },
+            "action_index": null
+          },
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x10400524e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 5
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PO-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-loss-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "state": {
+            "status": "lost",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 0,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 751.578125,
+                  "y": 9,
+                  "width": 33.421875,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 2,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 1,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 0,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/particle-orchestra-action-03.png",
+            "state_hash": "6a33e7bef766999560c8bfbd8881f2bf2d4553a673c3bd898b24c23de8adc118"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x11c00574e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 0
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-restart-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PO-CP-RESET",
+          "state": {
+            "status": "menu",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 742.046875,
+                  "y": 9,
+                  "width": 42.953125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/particle-orchestra-action-02.png",
+            "state_hash": "34ca9149d2e3803ec84f774d698f5a73d30cfbd3c9be20808b784000d9b8cf78"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x11400574e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+            "location": {
+              "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": null
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-MAIN"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 100,
+              "actual": 200
+            },
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 4,
+            "checkpoint_id": "PO-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-MAIN"
+            ],
+            "error_type": "state_effect_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 100,
+                "actual": 200
+              },
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PO-CP-START",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "PO-CP-MID",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 1,
+            "score": 25,
+            "attempts": 3,
+            "active_cluster": "A"
+          },
+          "ui": {
+            "scoreText": "Score: 25 | Progress: 1/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 25 | Progress: 1/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 188.53125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/particle-orchestra-action-01.png",
+            "state_hash": "fdeec2472d16b8a7e774950a7108cc82e37e6cf13146ebe897ca0a715217c50a"
+          }
+        },
+        {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/particle-orchestra-action-04.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "PO-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 5,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/particle-orchestra-action-05.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PO-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-loss-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "state": {
+            "status": "lost",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 0,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 751.578125,
+                  "y": 9,
+                  "width": 33.421875,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 2,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 1,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 0,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/particle-orchestra-action-03.png",
+            "state_hash": "6a33e7bef766999560c8bfbd8881f2bf2d4553a673c3bd898b24c23de8adc118"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-restart-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PO-CP-RESET",
+          "state": {
+            "status": "menu",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 742.046875,
+                  "y": 9,
+                  "width": 42.953125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/particle-orchestra-action-02.png",
+            "state_hash": "34ca9149d2e3803ec84f774d698f5a73d30cfbd3c9be20808b784000d9b8cf78"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-MAIN"
+          ],
+          "error_type": "state_effect_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "score",
+              "expected": 100,
+              "actual": 200
+            },
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 4,
+            "checkpoint_id": "PO-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-MAIN"
+            ],
+            "error_type": "state_effect_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 100,
+                "actual": 200
+              },
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PO-CP-START",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 1,
+          "checkpoint_id": "PO-CP-MID",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 1,
+            "score": 25,
+            "attempts": 3,
+            "active_cluster": "A"
+          },
+          "ui": {
+            "scoreText": "Score: 25 | Progress: 1/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 25 | Progress: 1/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 188.53125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/particle-orchestra-action-01.png",
+            "state_hash": "fdeec2472d16b8a7e774950a7108cc82e37e6cf13146ebe897ca0a715217c50a"
+          }
+        },
+        {
+          "action_index": 4,
+          "checkpoint_id": "PO-CP-WON",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/particle-orchestra-action-04.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        },
+        {
+          "action_index": 5,
+          "checkpoint_id": "PO-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 4,
+            "score": 200,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 200 | Progress: 4/4",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 200 | Progress: 4/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 202.3125,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 750.765625,
+                  "y": 9,
+                  "width": 34.234375,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 2,
+                "score": 50,
+                "attempts": 3,
+                "active_cluster": "C"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 3,
+                "score": 75,
+                "attempts": 3,
+                "active_cluster": "D"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 6,
+              "action_index": 5,
+              "elapsed_ms": 32,
+              "tick": 2,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 4,
+                "score": 200,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/particle-orchestra-action-05.png",
+            "state_hash": "37be7be6aa58d630a0f7009e6ab90196ca7a5a5dffd00f21e73ac0e8162df73a"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PO-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "active_cluster",
+              "expected": "B",
+              "actual": null
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PO-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "active_cluster",
+                "expected": "B",
+                "actual": null
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-loss-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PO-CP-LOST",
+          "state": {
+            "status": "lost",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 0,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 751.578125,
+                  "y": 9,
+                  "width": 33.421875,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_wrong",
+            "progress_reset",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 2,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 1,
+                "active_cluster": "B"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 0,
+                "active_cluster": null
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_wrong",
+                "progress_reset",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/particle-orchestra-action-03.png",
+            "state_hash": "6a33e7bef766999560c8bfbd8881f2bf2d4553a673c3bd898b24c23de8adc118"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "particle-orchestra",
+        "difficulty": "D3",
+        "final_outcome_correct": true,
+        "process_correct": true,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "pass",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L2",
+        "first_failure": null,
+        "all_failures": []
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "particle-orchestra-restart-path-started",
+          "state": {
+            "status": "playing",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 727.96875,
+                  "y": 9,
+                  "width": 57.03125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/particle-orchestra-action-00.png",
+            "state_hash": "2fc955fb811d66dc6c6fdb6b860dca8e284936c99b7ac740223d2547ba4a7b63"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PO-CP-RESET",
+          "state": {
+            "status": "menu",
+            "sequence": [
+              "A",
+              "C",
+              "D",
+              "B"
+            ],
+            "progress": 0,
+            "score": 0,
+            "attempts": 3,
+            "active_cluster": null
+          },
+          "ui": {
+            "scoreText": "Score: 0 | Progress: 0/4",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Score: 0 | Progress: 0/4",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 9,
+                  "width": 181.65625,
+                  "height": 18
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 742.046875,
+                  "y": 9,
+                  "width": 42.953125,
+                  "height": 18
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "cluster_triggered",
+            "note_correct",
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 1,
+                "score": 25,
+                "attempts": 3,
+                "active_cluster": "A"
+              },
+              "event_types": [
+                "cluster_triggered",
+                "note_correct"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "sequence": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "progress": 0,
+                "score": 0,
+                "attempts": 3,
+                "active_cluster": null
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/particle-orchestra-action-02.png",
+            "state_hash": "34ca9149d2e3803ec84f774d698f5a73d30cfbd3c9be20808b784000d9b8cf78"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:51040/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "files": {
+    "result": "result.json",
+    "trace": "events.jsonl"
+  }
+}

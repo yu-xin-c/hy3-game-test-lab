@@ -1,0 +1,127 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Particle Orchestra
+
+## 游戏目标
+
+按 A、C、D、B 的顺序点亮四组粒子音轨。
+
+## 完整玩法
+
+数字键1/2/3/4分别触发 A/B/C/D 粒子簇。正确输入推进 progress 并增加25分；错误输入清空 progress、扣一次 attempts，但继续当前局。
+
+三维画面使用原生 WebGL，不加载 Three.js 或任何远程资源。
+
+## 胜负与重开
+
+- 完整输入 A、C、D、B 时获胜并得到100分。
+- 初始3次 attempts，第三次错误后失败。
+- Restart 清空进度和分数，恢复3次机会并回到菜单。
+
+## 界面与反馈
+
+固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。
+
+## 固定规则
+
+相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。
+
+## 自动测试接口
+
+- 界面类型：webgl；主要区域：`#game-canvas`。
+- HUD：`[data-testid="score"]` 和 `[data-testid="status"]`。
+- state 至少包含：`status`、`sequence`、`progress`、`score`、`attempts`、`active_cluster`。
+- 事件：`game_started`、`cluster_triggered`、`note_correct`、`note_wrong`、`progress_reset`、`game_won`、`game_lost`、`game_reset`。
+- 控件：
+  - `START`：mouse 操作 #start-btn
+  - `A`：键盘 Digit1 press
+  - `B`：键盘 Digit2 press
+  - `C`：键盘 Digit3 press
+  - `D`：键盘 Digit4 press
+  - `RESTART`：mouse 操作 #restart-btn
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"固定 800×600 视口；菜单、游戏区、终局、Restart 均完整可见；HUD 始终显示分数/进度与状态。","implementation":"index.html 用固定 800×600 容器；canvas#game-canvas 为 WebGL 主区；HUD 用 [data-testid=\"score\"] 与 [data-testid=\"status\"]；#start-btn 与 #restart-btn 常驻 DOM（终局也可见）；menu/playing/endgame 面板用 CSS 显隐切换。不加载任何远程资源（无 CDN、字体、图片、接口）。","verification":"Playwright 打开页面，断言窗口 innerWidth/innerHeight 为 800×600（或容器固定），且 #game-canvas、#start-btn、#restart-btn、[data-testid=\"score\"]、[data-testid=\"status\"] 均存在；进入终局后 #restart-btn 仍可见。"},{"id":2,"requirement":"原生 WebGL 三维粒子，本地生成纹理，不依赖 Three.js 或远程资源。","implementation":"game.js 创建 webgl 上下文，用 gl.POINTS 渲染四组粒子簇 A/B/C/D，顶点位置由 seeded PRNG 生成；active_cluster 高亮（颜色/尺寸变化）。用 gl.texImage2D 以 Uint8Array 程序内生成纹理（渐变或点），不加载图片。requestAnimationFrame 驱动渲染循环，所有时间用 ms（performance.now / Date.now）。","verification":"页面加载后 canvas.getContext('webgl') 非空；通过 Playwright 离线或 networkidle 断言无外部 fetch/请求；点击 Start 后连续两帧像素或 observe().tick 递增，证明渲染循环运行。"},{"id":3,"requirement":"顺序 A,C,D,B；键 1/2/3/4 触发 A/B/C/D；正确 +25 分并推进 progress；错误清空 progress、attempts-1 且继续；完成获胜 +100；3 次错误失败；结束后输入无效。","implementation":"state={status:'menu'|'playing'|'won'|'lost', sequence:['A','C','D','B'], progress:0, score:0, attempts:3, active_cluster:null}。仅 status==='playing' 时处理 Digit1/2/3/4：取对应簇，比较 sequence[progress]。正确：progress++、score+=25、emit cluster_triggered+note_correct；若 progress===4 则 score+=100、status='won'、emit game_won。错误：progress=0、attempts--、emit cluster_triggered+note_wrong+progress_reset；若 attempts===0 则 status='lost'、emit game_lost。status 非 playing 时输入被忽略（不触发事件、不改分）。","verification":"Start 后发 Digit1：score=25、progress=1、status=playing；发 Digit2（错，应为 C）：progress=0、attempts=2；连错至 attempts=0：status=lost，再按键时 observe().state 的 score/attempts/progress 不变。"},{"id":4,"requirement":"相同 seed 得相同初始状态与同一时间表；reset({seed}) 恢复菜单并重建事件周期。","implementation":"用 mulberry32(seed) PRNG 替代 Math.random 生成粒子位置与时间偏移；reset({seed}) 将 state 置回 menu 初始、event_epoch++、事件缓冲清空并从 seq=1 重新记录并 emit game_reset。所有计时基于 Date/performance/timer/rAF，可由 Playwright 虚拟时钟推进。","verification":"同一 seed 连续 reset 两次后，observe().state 中粒子位置与初始字段完全一致（可序列化相等）；不同 seed 初始位置不同；reset 后 event_epoch 增加且 getEvents({afterSeq:0})[0] 为 game_reset 且 seq=1。"},{"id":5,"requirement":"只读观察接口 window.__GAMETESTLAB__（协议 gametestlab/2）：isReady / reset / observe / getEvents；事件 seq 从 1 连续递增，状态可序列化。","implementation":"暴露对象 protocol:'gametestlab/2'；isReady() 返回初始化布尔；reset({seed}) 见步骤 4；observe() 返回 {tick, status, state, event_epoch, latest_event_seq}；getEvents({afterSeq}) 返回 seq>afterSeq 的事件数组。事件对象 {seq, tick, type, payload?}，seq 从 1 连续；全部为普通 JSON 可序列化，不提供代替玩家操作的方法。","verification":"加载后断言 typeof window.__GAMETESTLAB__.protocol==='gametestlab/2' 且 isReady()===true；产生事件后 getEvents({afterSeq:0}) 非空且 seq 连续无缺号；observe() 含全部字段。"},{"id":6,"requirement":"事件集全覆盖（game_started/cluster_triggered/note_correct/note_wrong/progress_reset/game_won/game_lost/game_reset）；HUD 及时刷新。","implementation":"#start-btn click→game_started；键按下→cluster_triggered(payload:{cluster:'A'|'B'|'C'|'D'})；正确→note_correct；错误→note_wrong+progress_reset；获胜→game_won；失败→game_lost；reset→game_reset。每帧或每次状态变化写 [data-testid=\"score\"]（含分数/进度）与 [data-testid=\"status\"]（含 Menu/Playing/Won/Lost，忽略大小写与连续空白）。","verification":"正确流程依次收到 game_started、cluster_triggered×4、note_correct×4、game_won；错误流程收到 note_wrong 与 progress_reset；断言 [data-testid=\"score\"] 文本含分数，[data-testid=\"status\"] 含 playing/won/lost（大小写不敏感）。"},{"id":7,"requirement":"game.manifest.json 严格使用给定结构，surface=webgl，controls/hud/state/event 覆盖题目要求。","implementation":"按 schema_version gametestlab.game-manifest.v3 生成：entry_path=index.html、surface=webgl、viewport 800×600；controls 含 START(#start-btn,mouse,press)、A(code Digit1,keyboard,press)、B(Digit2)、C(Digit3)、D(Digit4)、RESTART(#restart-btn,mouse,press)；hud_selectors 含 score/status；state_schema.fields 含 status/sequence/progress/score/attempts/active_cluster（均为对象定义，含 type/description）；event_schema 覆盖 8 个事件及 payload 字段；bridge.protocol='gametestlab/2'、evidence_only:true、actions_via_real_input:true。无额外顶层字段。","verification":"JSON.parse 成功；断言 controls 含 6 项且 code 正确、hud_selectors 含两 selector、state_schema.required 含 status、event_schema 含 8 个 type；运行 pnpm run check 通过 schema 校验。"}]}

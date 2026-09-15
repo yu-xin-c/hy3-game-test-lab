@@ -1,34 +1,17 @@
 {
   "scope": "First 15 frozen tasks; progress only, not full answer/process accuracy",
   "selected_games": 15,
-  "completed_games": 11,
-  "pending": [
-    {
-      "id": "particle-orchestra",
-      "stage": "planning"
-    },
-    {
-      "id": "photo-orbit-gallery",
-      "stage": "not_started"
-    },
-    {
-      "id": "pet-care-day",
-      "stage": "not_started"
-    },
-    {
-      "id": "mini-farm",
-      "stage": "not_started"
-    }
-  ],
+  "completed_games": 15,
+  "pending": [],
   "counts": {
-    "games": 11,
-    "contract_conformant_games": 4,
-    "raw_final_paths_passed": 12,
-    "raw_browser_paths": 35,
-    "hy3_final_true": 3,
-    "hy3_final_known": 8,
-    "hy3_process_true": 5,
-    "hy3_process_known": 9
+    "games": 15,
+    "contract_conformant_games": 8,
+    "raw_final_paths_passed": 14,
+    "raw_browser_paths": 47,
+    "hy3_final_true": 4,
+    "hy3_final_known": 11,
+    "hy3_process_true": 6,
+    "hy3_process_known": 12
   },
   "difficulty_composition": {
     "D1": 4,
@@ -43,39 +26,40 @@
   },
   "by_difficulty": {
     "D1": {
-      "games": 3,
-      "contract_conformant_games": 0,
+      "games": 4,
+      "contract_conformant_games": 1,
       "raw_final_paths_passed": 5,
-      "raw_browser_paths": 10,
+      "raw_browser_paths": 13,
       "hy3_final_true": 1,
       "hy3_final_known": 3,
       "hy3_process_true": 1,
       "hy3_process_known": 3
     },
     "D2": {
-      "games": 5,
-      "contract_conformant_games": 2,
-      "raw_final_paths_passed": 5,
-      "raw_browser_paths": 15,
+      "games": 6,
+      "contract_conformant_games": 3,
+      "raw_final_paths_passed": 6,
+      "raw_browser_paths": 18,
       "hy3_final_true": 0,
-      "hy3_final_known": 2,
-      "hy3_process_true": 2,
-      "hy3_process_known": 3
-    },
-    "D3": {
-      "games": 3,
-      "contract_conformant_games": 2,
-      "raw_final_paths_passed": 2,
-      "raw_browser_paths": 10,
-      "hy3_final_true": 2,
       "hy3_final_known": 3,
       "hy3_process_true": 2,
-      "hy3_process_known": 3
+      "hy3_process_known": 4
+    },
+    "D3": {
+      "games": 5,
+      "contract_conformant_games": 4,
+      "raw_final_paths_passed": 3,
+      "raw_browser_paths": 16,
+      "hy3_final_true": 3,
+      "hy3_final_known": 5,
+      "hy3_process_true": 3,
+      "hy3_process_known": 5
     }
   },
   "hy3_supported_defect_types": {
-    "implementation_mismatch": 10,
-    "invalid_assumption": 1
+    "implementation_mismatch": 12,
+    "invalid_assumption": 1,
+    "requirement_misread": 1
   },
   "rows": [
     {
@@ -302,6 +286,87 @@
       "hy3_first_error_plan_step": null,
       "hy3_apparent_pass_with_flaw": false,
       "hy3_supported_defect_types": []
+    },
+    {
+      "id": "particle-orchestra",
+      "source": "results/process-15-v1/particle-orchestra",
+      "difficulty": "D3",
+      "category": "creative",
+      "plan_steps": 7,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 1,
+      "raw_process_paths_passed": 1,
+      "hy3_final_correct": false,
+      "hy3_process_correct": false,
+      "hy3_first_error_plan_step": 3,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": [
+        "requirement_misread"
+      ]
+    },
+    {
+      "id": "photo-orbit-gallery",
+      "source": "results/process-15-v1/photo-orbit-gallery",
+      "difficulty": "D3",
+      "category": "creative",
+      "plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 0,
+      "raw_process_paths_passed": 0,
+      "hy3_final_correct": true,
+      "hy3_process_correct": true,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": []
+    },
+    {
+      "id": "pet-care-day",
+      "source": "results/process-15-v1/pet-care-day",
+      "difficulty": "D1",
+      "category": "simulation",
+      "plan_steps": 7,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 0,
+      "raw_process_paths_passed": 0,
+      "hy3_final_correct": null,
+      "hy3_process_correct": null,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": []
+    },
+    {
+      "id": "mini-farm",
+      "source": "results/process-15-v1/mini-farm",
+      "difficulty": "D2",
+      "category": "simulation",
+      "plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 1,
+      "raw_process_paths_passed": 1,
+      "hy3_final_correct": false,
+      "hy3_process_correct": false,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": true,
+      "hy3_supported_defect_types": [
+        "implementation_mismatch",
+        "implementation_mismatch"
+      ]
     }
   ],
   "boundary": "The public-check source audit is complete for 15 tasks, but quote matching and model labels alone do not prove semantic oracle correctness; independently executed plan claims remain a small subset."

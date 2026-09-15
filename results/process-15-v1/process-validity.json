@@ -1,0 +1,78 @@
+{
+  "scope": "Frozen first 15 games; independently checkable selected public-plan claims, not full-plan gold",
+  "completed_games": 15,
+  "selected_games": 15,
+  "original_full_review_wrong_answer_subset": {
+    "total": 3,
+    "detect_and_locate": 1,
+    "step_only": 2,
+    "rate": "1/3",
+    "rows": [
+      {
+        "id": "key-door-escape",
+        "difficulty": "D2",
+        "gold_step": 1,
+        "basis": "公开地图 T 坐标",
+        "limit": "只核对明确写出的坐标，不保证整份方案首错",
+        "model_process_wrong": false,
+        "model_step": 1,
+        "combined_hit": false,
+        "step_only_hit": true
+      },
+      {
+        "id": "room-five-in-row",
+        "difficulty": "D2",
+        "gold_step": 4,
+        "basis": "双页真输入与重启计时，3 次",
+        "limit": "前 3 步只测试了核心路径，第 4 步是首个已知错步",
+        "model_process_wrong": true,
+        "model_step": null,
+        "combined_hit": false,
+        "step_only_hit": false
+      },
+      {
+        "id": "particle-orchestra",
+        "difficulty": "D3",
+        "gold_step": 3,
+        "basis": "公开算术及 3 次浏览器终局",
+        "limit": "只核对选出的计分断言",
+        "model_process_wrong": true,
+        "model_step": 3,
+        "combined_hit": true,
+        "step_only_hit": true
+      }
+    ]
+  },
+  "supplemental_core_correct_plan_wrong_subset": {
+    "total": 1,
+    "flagged": 1,
+    "real_issue_among_flagged": 1,
+    "false_alarm_among_flagged": 0,
+    "row": {
+      "id": "persistent-2048",
+      "difficulty": "D2",
+      "gold_core_outcome_correct": true,
+      "gold_plan_step": 3,
+      "model_core_outcome_correct": true,
+      "model_process_wrong": true,
+      "model_step": 3,
+      "true_issue_among_flagged": true,
+      "limit": "独立补充复核；原始全题复核未判定。只覆盖核心玩法与选出的方案第 3 步，不能算完整接口或全题正确率。"
+    }
+  },
+  "timing_sensitive_plan_claim_not_pooled": {
+    "id": "mini-farm",
+    "selected_plan_step": 1,
+    "original_plan_direct_click_claim_fails": true,
+    "model_process_wrong": true,
+    "model_step": null,
+    "model_selected_step_hit": false,
+    "limit": "The direct-click assertion fails under a frozen clock but public core play succeeds after 32ms; final-answer failure status is timing-sensitive, so this case is not pooled with clear wrong-final subset"
+  },
+  "targeted_prefix_review_not_pooled": "Platform Rescue / Signal Memory 2/2 selected-step hits use a different targeted prompt; do not pool with original full-review rate",
+  "limitations": [
+    "Original full-review 1/3 is a selected, heterogeneous small subset; Room step 4 is first known, not exhaustive gold.",
+    "The 2048 correct-core counterexample is one supplemental Hy3 call and not a statistically reliable false-positive rate.",
+    "A correct published plan and final game must both be independently established before classifying a false alarm; model opinions alone cannot provide that gold."
+  ]
+}

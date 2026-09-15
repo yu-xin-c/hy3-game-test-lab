@@ -1,0 +1,1520 @@
+{
+  "scope": "Direct actual mouse/reload/virtual-time probe bypasses only the strict observe-object parser; original game/browser scores unchanged",
+  "game_directory_sha256": "526d0404c32c4af9de45c5c5a3a7a181d0682fbc7b802771d8e5de2264385cf5",
+  "replays": 3,
+  "observe_extra_protocol_present": true,
+  "win_refresh_passes": 3,
+  "loss_virtual_time_passes": 3,
+  "restart_clears_save_passes": 3,
+  "rows": [
+    {
+      "replay": 0,
+      "scenario": "win-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 0,
+      "scenario": "loss-virtual-time",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "afterDecay": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 1,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 1,
+            "happiness": 1,
+            "energy": 1,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":1,\"happiness\":1,\"energy\":1,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":1}",
+        "hud": {
+          "score": "H:1/P:1/E:1",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      }
+    },
+    {
+      "replay": 0,
+      "scenario": "restart-clears-save",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": null,
+      "frozen": null,
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      }
+    },
+    {
+      "replay": 1,
+      "scenario": "win-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 1,
+      "scenario": "loss-virtual-time",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "afterDecay": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 1,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 1,
+            "happiness": 1,
+            "energy": 1,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":1,\"happiness\":1,\"energy\":1,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":1}",
+        "hud": {
+          "score": "H:1/P:1/E:1",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      }
+    },
+    {
+      "replay": 1,
+      "scenario": "restart-clears-save",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": null,
+      "frozen": null,
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      }
+    },
+    {
+      "replay": 2,
+      "scenario": "win-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "hunger": 3,
+            "happiness": 3,
+            "energy": 3,
+            "actions": {
+              "feed": 1,
+              "play": 1,
+              "sleep": 1
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "state_loaded",
+          "pet_played",
+          "state_saved",
+          "pet_slept",
+          "state_saved",
+          "state_saved",
+          "game_won"
+        ],
+        "storage": "{\"status\":\"won\",\"hunger\":3,\"happiness\":3,\"energy\":3,\"actions\":{\"feed\":1,\"play\":1,\"sleep\":1},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:3/E:3",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 2,
+      "scenario": "loss-virtual-time",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "afterDecay": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 1,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 1,
+            "happiness": 1,
+            "energy": 1,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":1,\"happiness\":1,\"energy\":1,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":1}",
+        "hud": {
+          "score": "H:1/P:1/E:1",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 2,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "hunger": 0,
+            "happiness": 0,
+            "energy": 0,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "need_decayed",
+          "state_saved",
+          "need_decayed",
+          "state_saved",
+          "state_saved",
+          "game_lost"
+        ],
+        "storage": "{\"status\":\"lost\",\"hunger\":0,\"happiness\":0,\"energy\":0,\"actions\":{\"feed\":0,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":2}",
+        "hud": {
+          "score": "H:0/P:0/E:0",
+          "status": "Lost"
+        }
+      }
+    },
+    {
+      "replay": 2,
+      "scenario": "restart-clears-save",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "fed": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 3
+        },
+        "event_types": [
+          "game_started",
+          "pet_fed",
+          "state_saved"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "hunger": 3,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 1,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": true
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage": "{\"status\":\"playing\",\"hunger\":3,\"happiness\":2,\"energy\":2,\"actions\":{\"feed\":1,\"play\":0,\"sleep\":0},\"saved\":true,\"tick\":0}",
+        "hud": {
+          "score": "H:3/P:2/E:2",
+          "status": "Playing"
+        }
+      },
+      "terminal": null,
+      "frozen": null,
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "hunger": 2,
+            "happiness": 2,
+            "energy": 2,
+            "actions": {
+              "feed": 0,
+              "play": 0,
+              "sleep": 0
+            },
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage": null,
+        "hud": {
+          "score": "H:2/P:2/E:2",
+          "status": "Menu"
+        }
+      }
+    }
+  ]
+}

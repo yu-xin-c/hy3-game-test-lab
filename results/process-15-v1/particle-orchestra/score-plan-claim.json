@@ -1,0 +1,16 @@
+{
+  "scope": "Selected publicly arithmetic score claim and actual three-run browser result; not entire-plan exhaustive gold",
+  "brief_sha256": "2c4a6913ff9d3aece93832367ca16b63b172658caeea9a22792369e354efb5fc",
+  "step_id": 3,
+  "public_final_score": 100,
+  "plan_predicted_final_score": 200,
+  "browser_final_scores": [
+    200,
+    200,
+    200
+  ],
+  "selected_claim_wrong": true,
+  "hy3_first_error_plan_step": 3,
+  "hy3_localization_matches_selected_step": true,
+  "unrelated_private_oracle_diff": "active_cluster expected B at terminal is not specified by the public brief"
+}

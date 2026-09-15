@@ -71,10 +71,10 @@ const summary = { scope: "First 15 frozen tasks; progress only, not full answer/
 await writeFile(resolve(root, "progress-summary.json"), JSON.stringify(summary, null, 2) + "\n");
 await writeFile(resolve(root, "PROGRESS.md"), ["# 15 题生成过程进度", "",
   `${rows.length}/15 题已完成混元先写编号方案、再生成代码、Chromium 真输入与混元复核。前三款原始方案及另两款已完成的生成记录保留原件，新批次只生成剩余 10 款。`, "",
-  "| 题目 | 难度 | 原方案步数 | 合同 | 浏览器原始终局路径 | Hy3 最终意见 | Hy3 过程意见 | 原方案首错意见 |", "| --- | --- | ---: | --- | --- | --- | --- | --- |",
+  "| 题目 | 难度 | 原方案步数 | manifest 合同 | 浏览器原始终局路径 | Hy3 最终意见 | Hy3 过程意见 | 原方案首错意见 |", "| --- | --- | ---: | --- | --- | --- | --- | --- |",
   ...rows.map(r => `| ${r.id} | ${r.difficulty} | ${r.plan_steps} | ${r.contract_conformant ? "合规" : "不合规"} | ${r.raw_final_paths_passed}/${r.browser_paths} | ${r.hy3_final_correct === null ? "未知" : r.hy3_final_correct ? "正确" : "错误"} | ${r.hy3_process_correct === null ? "未知" : r.hy3_process_correct ? "正确" : "错误"} | ${r.hy3_first_error_plan_step ?? "—"} |`), "",
   `仍有 ${pending.length} 题未完成。前 15 题 D1/D2/D3 为 4/6/5，动作/益智/创意/模拟为 6/5/2/2，没有教育类；不能外推整个 96 题。`, "",
-  "合同栏用当前严格 schema 与冻结题目接口重新检查；旧浏览器记录的合同判断另留在 progress-summary.json，二者有差异时不覆盖旧结果。浏览器通过数沿用原检查，是原始执行结果；Hy3 最终与过程栏是模型意见。公开判据来源核对虽完成 15/15，模型引文并不自动证明取值或比较方式成立，不能据此称为正式正确率。独立方案步骤标准另见 ../plan-claims-cross-game-v2/REPORT.md、GRID-PLAN-CLAIMS.md 和 ../signal-reset-process-v1/REPORT.md。", "",
+  "manifest 合同栏用当前严格 schema 与冻结题目接口重新检查，不代表 observe() 运行对象也合规；旧浏览器记录的合同判断另留在 progress-summary.json，二者有差异时不覆盖旧结果。浏览器通过数沿用原检查，是原始执行结果；Hy3 最终与过程栏是模型意见。公开判据来源核对虽完成 15/15，模型引文并不自动证明取值或比较方式成立，不能据此称为正式正确率。独立方案步骤标准另见 ../plan-claims-cross-game-v2/REPORT.md、GRID-PLAN-CLAIMS.md 和 ../signal-reset-process-v1/REPORT.md。", "",
   "操作首错、代码堆栈/Write/Edit 来源与公开编号方案首错分开。已修复的早期方案错误和最终实现缺陷也分别记录。", ""
 ].join("\n"));
 console.log(JSON.stringify({ selected_games: 15, completed_games: rows.length, pending: pending.length, counts: summary.counts }));

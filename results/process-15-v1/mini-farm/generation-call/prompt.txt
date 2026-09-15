@@ -1,0 +1,129 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Mini Farm
+
+## 游戏目标
+
+在15秒内种植、浇水并收获三块田，获得30金币。
+
+## 完整玩法
+
+点击 PLOT1/2/3 选择田地；Plant 后变为 planted，Water 后变为 growing，虚拟时间累计3000ms后变为 ready，Harvest 得10金币。每次状态变化立即保存，刷新后继续。
+
+存档使用 localStorage 或 IndexedDB；页面刷新后必须恢复，Restart 按题目要求清理。
+
+## 胜负与重开
+
+- 三块田各收获一次后获胜，coins 和 best_coins 都为30。
+- 从 Start 起15000ms仍未收获三块田则失败。
+- Restart 清空当前田地、计时和金币；评测新场景从空榜单开始。
+
+## 界面与反馈
+
+固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。
+
+## 固定规则
+
+相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。
+
+## 自动测试接口
+
+- 界面类型：canvas2d；主要区域：`#farm-canvas`。
+- HUD：`[data-testid="score"]` 和 `[data-testid="status"]`。
+- state 至少包含：`status`、`selected_plot`、`plots`、`elapsed_ms`、`harvested`、`coins`、`best_coins`、`saved`。
+- 事件：`game_started`、`plot_selected`、`crop_planted`、`crop_watered`、`crop_ready`、`crop_harvested`、`state_saved`、`state_loaded`、`leaderboard_updated`、`game_won`、`game_lost`、`game_reset`。
+- 控件：
+  - `START`：mouse 操作 #start-btn
+  - `PLOT1`：mouse 操作 #plot-1
+  - `PLOT2`：mouse 操作 #plot-2
+  - `PLOT3`：mouse 操作 #plot-3
+  - `PLANT`：mouse 操作 #plant-btn
+  - `WATER`：mouse 操作 #water-btn
+  - `HARVEST`：mouse 操作 #harvest-btn
+  - `RESTART`：mouse 操作 #restart-btn
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"三块田按 选田→种植→浇水→等待→收获 推进，每次状态变化立即存档","implementation":"plots 为长度3数组，状态机 empty→planted(选田后点PLANT)→growing(点WATER)→ready(虚拟时间累计3000ms)→harvested(点HARVEST,+10金币)。用 performance.now() 基准推进虚拟时钟，每块田记录 watered_at 时间戳；ready 判定为 elapsed_ms - watered_at >= 3000（误差<=32ms）。每次变化后写入 localStorage 键 mini_farm_state 并派发 state_saved。","verification":"Playwright 点击 #start-btn、#plot-1、#plant-btn、#water-btn，虚拟时间前进3000ms后点 #harvest-btn，检查 [data-testid=score] 显示10且 getEvents 含 crop_harvested；刷新页面后 observe().state.plots[0] 仍为 harvested。"},{"id":2,"requirement":"存档跨刷新恢复，Restart 在局内与终局都可用并清空","implementation":"每次状态变化触发 state_saved 并 localStorage.setItem('mini_farm_state', JSON.stringify(state))；页面加载时若存档存在则 state_loaded 恢复 status/plots/elapsed_ms/coins。#restart-btn 调用 reset 清空 plots 为空、elapsed_ms=0、coins=0、harvested=0、status='menu'，从 seq=1 记 game_reset，event_epoch+1。","verification":"游戏中操作后刷新页面，observe().state 与刷新前一致（elapsed 允许<=32ms漂移）；点 #restart-btn 后 observe() 显示 status='menu'、coins=0、plots 全 empty。"},{"id":3,"requirement":"胜负判定：三田各收获一次获胜；Start 起15000ms未达成失败","implementation":"harvested 计数到3且 coins==30、best_coins==30 时 status='won' 派发 game_won，best_coins=max(best_coins,coins) 并派发 leaderboard_updated。elapsed_ms 自 Start 起累加，>=15000（边界+32ms容差）且未获胜时 status='lost' 派发 game_lost。","verification":"依次收获三田，observe().state.status=='won' 且 coins==best_coins==30；另起一局虚拟时间推进至15032ms不收获，检查 status=='lost'。"},{"id":4,"requirement":"相同 seed 产生相同初始状态与时间表，终局后输入不再改变结果","implementation":"reset({seed}) 用 seed 经确定性函数生成固定初始 plots 与计时基准（不依赖随机或 Date 抖动）。status 进入 won/lost 后所有控件 handler 直接 return，不修改 coins/progress/status，也不派发新作物事件。","verification":"两次 reset({seed:42}) 后 observe().state 完全一致；终局后点击 PLANT/WATER/HARVEST，observe().state 无变化且 getEvents 无新增作物事件。"},{"id":5,"requirement":"通过 window.__GAMETESTLAB__ 暴露只读观察与事件接口","implementation":"对象含 protocol:'gametestlab/2'、isReady()、reset({seed})、observe() 返回 {tick,status,state,event_epoch,latest_event_seq}、getEvents({afterSeq})。所有事件带 seq(从1连续)、tick(虚拟时钟ms)、type、可选 payload，覆盖题面12种事件；点击 Start 必记 game_started。","verification":"加载后 window.__GAMETESTLAB__.isReady()===true；点 Start 后 getEvents({afterSeq:0}) 含 seq=1 type=game_started；observe().event_epoch 为整数且 latest_event_seq 随操作递增。"},{"id":6,"requirement":"固定 800×600 视口与始终可见 HUD/控件","implementation":"index.html 含 #farm-canvas(canvas2d)、[data-testid=score]、[data-testid=status] 及 #start-btn #plot-1 #plot-2 #plot-3 #plant-btn #water-btn #harvest-btn #restart-btn；styles.css 固定 body 800×600 禁止滚动。state.status 取 menu/playing/won/lost；HUD 文案显示 Menu/Playing/Won/Lost（评测忽略大小写与连续空白）。","verification":"Playwright 断言视口 800×600；菜单态 [data-testid=status] 忽略大小写匹配 'menu'；游戏中全部按钮可见可点击；终局后 #restart-btn 仍可见可用。"}]}

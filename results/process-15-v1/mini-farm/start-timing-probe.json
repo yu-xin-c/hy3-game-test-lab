@@ -1,0 +1,1694 @@
+{
+  "scope": "Selected original-plan step1 direct-click timing and public grounded play; generated code and original browser scores unchanged",
+  "game_directory_sha256": "9fa07f1e58d11729532e9aae52acca2eef121e4fbee5e1758826a0fa611eb98e",
+  "replays": 3,
+  "immediate_buttons_disabled_after_start": 3,
+  "buttons_enabled_after_32ms_frame": 3,
+  "grounded_three_plot_win_passes": 3,
+  "original_plan_step1_verification": "Playwright 点击 #start-btn、#plot-1、#plant-btn、#water-btn，虚拟时间前进3000ms后点 #harvest-btn，检查 [data-testid=score] 显示10且 getEvents 含 crop_harvested；刷新页面后 observe().state.plots[0] 仍为 harvested。",
+  "rows": [
+    {
+      "replay": 0,
+      "initial": {
+        "observation": {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "events": [],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": null
+      },
+      "immediate": {
+        "observation": {
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "frame32": {
+        "observation": {
+          "tick": 19,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 19,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "harvests": [
+        {
+          "plot": 1,
+          "ready": {
+            "observation": {
+              "tick": 3059,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "ready",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3059,
+                "harvested": 0,
+                "coins": 0,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 10
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"ready\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3043,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 3064,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3064,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 12
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3064,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 2,
+          "ready": {
+            "observation": {
+              "tick": 6083,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6083,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 20
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"ready\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6067,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 6096,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6096,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 22
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6096,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 3,
+          "ready": {
+            "observation": {
+              "tick": 9123,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9123,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 30
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"ready\",\"watered_at\":6096}],\"elapsed_ms\":9107,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 9128,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9128,
+                "harvested": 3,
+                "coins": 30,
+                "best_coins": 30,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 35
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "leaderboard_updated",
+              "game_won",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+          }
+        }
+      ],
+      "terminal": {
+        "observation": {
+          "tick": 9128,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "status": "harvested",
+                "watered_at": 32
+              },
+              {
+                "status": "harvested",
+                "watered_at": 3064
+              },
+              {
+                "status": "harvested",
+                "watered_at": 6096
+              }
+            ],
+            "elapsed_ms": 9128,
+            "harvested": 3,
+            "coins": 30,
+            "best_coins": 30,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 35
+        },
+        "events": [
+          "game_started",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "leaderboard_updated",
+          "game_won",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+      }
+    },
+    {
+      "replay": 1,
+      "initial": {
+        "observation": {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "events": [],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": null
+      },
+      "immediate": {
+        "observation": {
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "frame32": {
+        "observation": {
+          "tick": 24,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 24,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "harvests": [
+        {
+          "plot": 1,
+          "ready": {
+            "observation": {
+              "tick": 3064,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "ready",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3064,
+                "harvested": 0,
+                "coins": 0,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 10
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"ready\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3032,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 3064,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3064,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 12
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3064,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 2,
+          "ready": {
+            "observation": {
+              "tick": 6088,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6088,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 20
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"ready\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6072,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 6096,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6096,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 22
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6096,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 3,
+          "ready": {
+            "observation": {
+              "tick": 9128,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9128,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 30
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"ready\",\"watered_at\":6096}],\"elapsed_ms\":9096,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 9128,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9128,
+                "harvested": 3,
+                "coins": 30,
+                "best_coins": 30,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 35
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "leaderboard_updated",
+              "game_won",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+          }
+        }
+      ],
+      "terminal": {
+        "observation": {
+          "tick": 9128,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "status": "harvested",
+                "watered_at": 32
+              },
+              {
+                "status": "harvested",
+                "watered_at": 3064
+              },
+              {
+                "status": "harvested",
+                "watered_at": 6096
+              }
+            ],
+            "elapsed_ms": 9128,
+            "harvested": 3,
+            "coins": 30,
+            "best_coins": 30,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 35
+        },
+        "events": [
+          "game_started",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "leaderboard_updated",
+          "game_won",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+      }
+    },
+    {
+      "replay": 2,
+      "initial": {
+        "observation": {
+          "tick": 0,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "events": [],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": null
+      },
+      "immediate": {
+        "observation": {
+          "tick": 0,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 0,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": false,
+          "plant": false
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "frame32": {
+        "observation": {
+          "tick": 23,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "selected_plot": -1,
+            "plots": [
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              },
+              {
+                "status": "empty",
+                "watered_at": null
+              }
+            ],
+            "elapsed_ms": 23,
+            "harvested": 0,
+            "coins": 0,
+            "best_coins": 0,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 2
+        },
+        "events": [
+          "game_started",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"playing\",\"selected_plot\":-1,\"plots\":[{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":0,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+      },
+      "harvests": [
+        {
+          "plot": 1,
+          "ready": {
+            "observation": {
+              "tick": 3063,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "ready",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3063,
+                "harvested": 0,
+                "coins": 0,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 10
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"ready\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3047,\"harvested\":0,\"coins\":0,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 3064,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 0,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 3064,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 12
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":0,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"empty\",\"watered_at\":null},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":3064,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 2,
+          "ready": {
+            "observation": {
+              "tick": 6087,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6087,
+                "harvested": 1,
+                "coins": 10,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 20
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"ready\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6071,\"harvested\":1,\"coins\":10,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 6096,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 1,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "empty",
+                    "watered_at": null
+                  }
+                ],
+                "elapsed_ms": 6096,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 22
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":1,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"empty\",\"watered_at\":null}],\"elapsed_ms\":6096,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          }
+        },
+        {
+          "plot": 3,
+          "ready": {
+            "observation": {
+              "tick": 9127,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "ready",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9127,
+                "harvested": 2,
+                "coins": 20,
+                "best_coins": 0,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 30
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"playing\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"ready\",\"watered_at\":6096}],\"elapsed_ms\":9111,\"harvested\":2,\"coins\":20,\"best_coins\":0,\"saved\":true}"
+          },
+          "harvested": {
+            "observation": {
+              "tick": 9128,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "selected_plot": 2,
+                "plots": [
+                  {
+                    "status": "harvested",
+                    "watered_at": 32
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 3064
+                  },
+                  {
+                    "status": "harvested",
+                    "watered_at": 6096
+                  }
+                ],
+                "elapsed_ms": 9128,
+                "harvested": 3,
+                "coins": 30,
+                "best_coins": 30,
+                "saved": true
+              },
+              "event_epoch": 1,
+              "latest_event_seq": 35
+            },
+            "events": [
+              "game_started",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "plot_selected",
+              "state_saved",
+              "crop_planted",
+              "state_saved",
+              "crop_watered",
+              "state_saved",
+              "crop_ready",
+              "state_saved",
+              "crop_harvested",
+              "state_saved",
+              "leaderboard_updated",
+              "game_won",
+              "state_saved"
+            ],
+            "buttons": {
+              "plot1": true,
+              "plant": true
+            },
+            "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+          }
+        }
+      ],
+      "terminal": {
+        "observation": {
+          "tick": 9128,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "selected_plot": 2,
+            "plots": [
+              {
+                "status": "harvested",
+                "watered_at": 32
+              },
+              {
+                "status": "harvested",
+                "watered_at": 3064
+              },
+              {
+                "status": "harvested",
+                "watered_at": 6096
+              }
+            ],
+            "elapsed_ms": 9128,
+            "harvested": 3,
+            "coins": 30,
+            "best_coins": 30,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 35
+        },
+        "events": [
+          "game_started",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "plot_selected",
+          "state_saved",
+          "crop_planted",
+          "state_saved",
+          "crop_watered",
+          "state_saved",
+          "crop_ready",
+          "state_saved",
+          "crop_harvested",
+          "state_saved",
+          "leaderboard_updated",
+          "game_won",
+          "state_saved"
+        ],
+        "buttons": {
+          "plot1": true,
+          "plant": true
+        },
+        "storage": "{\"status\":\"won\",\"selected_plot\":2,\"plots\":[{\"status\":\"harvested\",\"watered_at\":32},{\"status\":\"harvested\",\"watered_at\":3064},{\"status\":\"harvested\",\"watered_at\":6096}],\"elapsed_ms\":9128,\"harvested\":3,\"coins\":30,\"best_coins\":30,\"saved\":true}"
+      }
+    }
+  ]
+}

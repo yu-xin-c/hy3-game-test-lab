@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Particle Orchestra</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="viewport">
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="score" data-testid="score">Score: 0 | Progress: 0/4</div>
+      <div id="status" data-testid="status">Menu</div>
+    </div>
+
+    <div id="menu" class="screen">
+      <h1>Particle Orchestra</h1>
+      <p>Light the tracks in order: <b>A &rarr; C &rarr; D &rarr; B</b></p>
+      <p>Keys: <b>1&rarr;A</b> &nbsp; <b>2&rarr;B</b> &nbsp; <b>3&rarr;C</b> &nbsp; <b>4&rarr;D</b></p>
+      <button id="start-btn" type="button">Start</button>
+    </div>
+
+    <div id="endgame" class="screen hidden">
+      <h1 id="endgame-title">Result</h1>
+      <p id="endgame-detail"></p>
+    </div>
+
+    <button id="restart-btn" type="button">Restart</button>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

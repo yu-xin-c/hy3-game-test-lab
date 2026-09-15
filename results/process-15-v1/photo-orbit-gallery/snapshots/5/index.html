@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>Photo Orbit Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="gallery-canvas" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="hud-left">
+        <span data-testid="status">Menu</span>
+        <span id="focus-label">Focus: Forest</span>
+      </div>
+      <div id="hud-right">
+        <span data-testid="score">Progress 0/3 · Mistakes 0/2</span>
+      </div>
+    </div>
+
+    <div id="hint">← / → 移动焦点 · Enter 确认 · 顺序: Mars → Ocean → Forest</div>
+
+    <div id="controls">
+      <button id="start-btn" type="button">Start</button>
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

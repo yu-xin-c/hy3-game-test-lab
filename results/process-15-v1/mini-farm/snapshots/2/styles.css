@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  background: #1b1b1b;
+  font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
+}
+
+#game {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+#farm-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 600px;
+  display: block;
+}
+
+#hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.plot-btn {
+  position: absolute;
+  width: 180px;
+  height: 200px;
+  background: transparent;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 5;
+}
+
+.plot-btn:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.plot-btn:disabled {
+  cursor: default;
+  border-color: transparent !important;
+}
+
+#plot-1 { left: 80px;  top: 120px; }
+#plot-2 { left: 310px; top: 120px; }
+#plot-3 { left: 540px; top: 120px; }
+
+#controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 800px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 10;
+}
+
+#controls button {
+  font-size: 15px;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#controls button:disabled {
+  background: #555;
+  color: #999;
+  cursor: default;
+}
+
+#restart-btn {
+  background: #e53935;
+}

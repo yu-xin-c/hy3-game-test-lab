@@ -2,21 +2,16 @@
   "scope": "Sensitivity analysis: source-gated oracle copy; model labels are not independent standard truth, and invalid fixed paths remain flagged",
   "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
   "counts": {
-    "completed_games": 11,
-    "pending_games": 4,
-    "excluded_context_checks": 41,
-    "unhandled_risk_contexts": 51,
-    "original_process_paths": 10,
-    "gated_process_paths": 15,
-    "total_paths": 35,
+    "completed_games": 15,
+    "pending_games": 0,
+    "excluded_context_checks": 54,
+    "unhandled_risk_contexts": 55,
+    "original_process_paths": 12,
+    "gated_process_paths": 18,
+    "total_paths": 47,
     "invalid_fixed_paths": 4
   },
-  "pending": [
-    "particle-orchestra",
-    "photo-orbit-gallery",
-    "pet-care-day",
-    "mini-farm"
-  ],
+  "pending": [],
   "rows": [
     {
       "id": "target-rush",
@@ -1545,6 +1540,443 @@
                 "path": "browser",
                 "expected": "no error",
                 "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "particle-orchestra",
+      "excluded_context_checks": 5,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A31",
+          "context": "win-path/PO-CP-MID",
+          "kind": "state",
+          "path": "active_cluster",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A37",
+          "context": "win-path/PO-CP-WON",
+          "kind": "state",
+          "path": "active_cluster",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A37",
+          "context": "loss-path/PO-CP-LOST",
+          "kind": "state",
+          "path": "active_cluster",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A42",
+          "context": "win-path/PO-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A51",
+          "context": "restart-path/PO-CP-RESET",
+          "kind": "state",
+          "path": "active_cluster",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 4,
+            "checkpoint_id": "PO-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PO-MAIN"
+            ],
+            "error_type": "state_effect_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 100,
+                "actual": 200
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "photo-orbit-gallery",
+      "excluded_context_checks": 1,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A39",
+          "context": "win-path/PG-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars"
+                ],
+                "actual": "Mars"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": "City"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 2,
+            "checkpoint_id": "PG-CP-RESET",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-RESET"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": ""
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "pet-care-day",
+      "excluded_context_checks": 5,
+      "unhandled_risk_contexts": 4,
+      "removed": [
+        {
+          "assertion_id": "A27",
+          "context": "win-path/PC-CP-MID",
+          "kind": "state",
+          "path": "actions",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "win-path/PC-CP-WON",
+          "kind": "state",
+          "path": "actions",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A40",
+          "context": "win-path/PC-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A45",
+          "context": "loss-path/PC-CP-LOST",
+          "kind": "state",
+          "path": "actions",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A45",
+          "context": "restart-path/PC-CP-RESET",
+          "kind": "state",
+          "path": "actions",
+          "why": "Hy3 source label: unsupported"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A7",
+          "context": "FEED",
+          "kind": "control",
+          "path": "FEED.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A11",
+          "context": "PLAY",
+          "kind": "control",
+          "path": "PLAY.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A15",
+          "context": "SLEEP",
+          "kind": "control",
+          "path": "SLEEP.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A19",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "PC-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "PC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "pet-care-day-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "PC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "pet-care-day-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "PC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "mini-farm",
+      "excluded_context_checks": 2,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A55",
+          "context": "win-path/MF-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A60",
+          "context": "restart-path/MF-CP-RESET",
+          "kind": "state",
+          "path": "saved",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 1,
+            "elapsed_ms": 0,
+            "checkpoint_id": "MF-CP-MID",
+            "layer": "L1",
+            "requirement_ids": [
+              "MF-MAIN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Step PLOT1 failed: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#plot-1').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled id=\"plot-1\" type=\"button\" class=\"plot-btn\" aria-label=\"Plot 1\"></button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+              },
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Step PLANT failed: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#plant-btn').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled type=\"button\" id=\"plant-btn\">Plant</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+              },
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Step WATER failed: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#water-btn').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled type=\"button\" id=\"water-btn\">Water</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 1,
+            "elapsed_ms": 0,
+            "checkpoint_id": "MF-CP-RESET",
+            "layer": "L1",
+            "requirement_ids": [
+              "MF-RESET"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Step PLOT1 failed: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#plot-1').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled id=\"plot-1\" type=\"button\" class=\"plot-btn\" aria-label=\"Plot 1\"></button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+              },
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Step PLANT failed: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#plant-btn').first()\u001b[22m\n\u001b[2m    - locator resolved to <button disabled type=\"button\" id=\"plant-btn\">Plant</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
               }
             ]
           },

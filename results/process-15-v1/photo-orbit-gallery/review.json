@@ -1,0 +1,49 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": true,
+    "process_correct": true,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "other",
+        "status": "test_problem",
+        "explanation": "全部 9 个 scenario 的 L2 失败都集中在 state.selected：评测期望数组（如 [\"Mars\"]、[\"Mars\",\"Ocean\",\"Forest\"]、[]），实际为字符串（\"Mars\"、\"\"）。公开 brief 仅要求 state 含 selected 而未规定其语义；plan step 3 明确 selected=focus_name（字符串），manifest state_schema 将 selected 声明为 type:string、描述为‘最近一次确认的照片名’并举例 selected=''。代码与公开方案及契约一致，win/lose/restart 在 traces 中均正确（win→won，两次错误→lost，restart→menu 且字段归零）。该 L2 失败是私有评测规则对 selected 的数组化期望与公开要求不一致导致的误报，非实现缺陷。",
+        "file": "game.js",
+        "excerpt": "selected = name;",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "WebGL 像素级渲染外观（焦点高亮、四图环绕布局、终局/菜单可见性）未在提供证据中逐帧验证，仅有契约 L1 通过。",
+      "评测先调用 reset 再 START，使 game_started 为 seq=2；plan step 5 已声明此属预期行为（epoch 重记），非缺陷。",
+      "L2 selected 数组期望为私有规则，与公开 manifest/plan 的 string 定义冲突，L2 失败应视为误报。",
+      "确定性（同 seed 同初始态）与虚拟时间推进能力在证据中未见直接 replay 验证，但代码使用 mulberry32 且 tick 基于 performance.now，逻辑上满足。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "other",
+      "status": "test_problem",
+      "explanation": "全部 9 个 scenario 的 L2 失败都集中在 state.selected：评测期望数组（如 [\"Mars\"]、[\"Mars\",\"Ocean\",\"Forest\"]、[]），实际为字符串（\"Mars\"、\"\"）。公开 brief 仅要求 state 含 selected 而未规定其语义；plan step 3 明确 selected=focus_name（字符串），manifest state_schema 将 selected 声明为 type:string、描述为‘最近一次确认的照片名’并举例 selected=''。代码与公开方案及契约一致，win/lose/restart 在 traces 中均正确（win→won，两次错误→lost，restart→menu 且字段归零）。该 L2 失败是私有评测规则对 selected 的数组化期望与公开要求不一致导致的误报，非实现缺陷。",
+      "file": "game.js",
+      "excerpt": "selected = name;",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 315,
+        "contributing_tool_steps": [
+          5
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

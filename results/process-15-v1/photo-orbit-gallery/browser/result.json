@@ -1,0 +1,4288 @@
+{
+  "schema_version": "gametestlab.formal-task-result.v1",
+  "task_id": "photo-orbit-gallery",
+  "title": "Photo Orbit Gallery",
+  "category": "creative",
+  "features": [
+    "3d"
+  ],
+  "difficulty": {
+    "level": "D3",
+    "rationale": "WebGL 相册导航、循环索引和有序选择必须一致。"
+  },
+  "generator": "codebuddy-hy3",
+  "evaluation_context": "frozen_task_evaluation",
+  "checking_policy_version": "2026-09-12.3",
+  "status": "evaluated",
+  "started_at": "2026-09-15T09:13:46.817Z",
+  "finished_at": "2026-09-15T09:13:50.893Z",
+  "replay_count": 3,
+  "browser": {
+    "name": "chromium",
+    "version": "151.0.7922.34"
+  },
+  "input_hashes": {
+    "test_plan_sha256": "49863e858249f6f536822bbe4cb7c5a5c4b8485b58c6dffa7c39d9e6da9936d5",
+    "oracle_sha256": "78b60d95ef8c185516a789b1c96045c63fc3546cda07d38df9b22a72f8139377",
+    "evaluator_sha256": "26ea156c2d9354946afcbd40d1edf77066e47b2f267b750d6f331c4967f1da80",
+    "runner_sha256": "2a0879cd37e70599a0d34a6ff2f0778fa7746edbb24741c26c2059e194667fa0",
+    "task_adapter_sha256": "7b3ef6026ff5824a04f6b5af92946c08f2e470c25a754cf727e1bf6a70269bb3",
+    "frozen_task_sha256": "1da6af0fdd08f25dc1bb530cf2e8f521ec1a81e9f9df42704a2e5ca3b8adf00e",
+    "game_directory_sha256": "8fbb12e0915463a0cc6004fe530a3068d05955d7ed7c8d20f3331596ba237055",
+    "game_manifest_sha256": "e935d97273f50df8897464b2078fde0c02c34f9ad2de9b36f0976a384bd4e494"
+  },
+  "aggregate": {
+    "contract_pass": true,
+    "scenario_runs": 9,
+    "process_passes": 0,
+    "final_passes": 0,
+    "lucky_passes": 0,
+    "L1_passes": 9,
+    "L2_passes": 0,
+    "L3_passes": 0
+  },
+  "contract": {
+    "conformant": true,
+    "findings": []
+  },
+  "scenarios": [
+    {
+      "replay_index": 0,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-MAIN"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [
+                "Mars"
+              ],
+              "actual": "Mars"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars"
+                ],
+                "actual": "Mars"
+              }
+            ]
+          },
+          {
+            "action_index": 7,
+            "checkpoint_id": "PG-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars",
+                  "Ocean",
+                  "Forest"
+                ],
+                "actual": "Forest"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PG-CP-START",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "state": {
+            "status": "playing",
+            "focus_index": 2,
+            "focus_name": "Mars",
+            "selected": "Mars",
+            "progress": 1,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 1/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 1/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 599.171875,
+                  "y": 25.5,
+                  "width": 185.828125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "b1ee79500f354ea451f5cdc47135593db24a75f32f71eb6798f2c68958540371"
+          }
+        },
+        {
+          "action_index": 7,
+          "checkpoint_id": "PG-CP-WON",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/photo-orbit-gallery-action-07.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "PG-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 8,
+              "action_index": 8,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 8,
+              "elapsed_ms": 32,
+              "tick": 32,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/win-path/photo-orbit-gallery-action-08.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x12c00464200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": null
+          },
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x12c00464200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": 8
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": "City"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": "City"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-loss-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "state": {
+            "status": "lost",
+            "focus_index": 1,
+            "focus_name": "City",
+            "selected": "City",
+            "progress": 0,
+            "mistakes": 2
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 2/2",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 2/2",
+                "visible": true,
+                "rect": {
+                  "x": 597.34375,
+                  "y": 25.5,
+                  "width": 187.65625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "selection_wrong",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "selection_wrong",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 1
+              },
+              "event_types": [
+                "selection_wrong"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 2
+              },
+              "event_types": [
+                "selection_wrong",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/loss-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "263ea279e3f46b010bd77d82421c9ba33cd9cf601c777c7d4b09f6e0a3c69b23"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x12400584e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+            "location": {
+              "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": null
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 0,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-RESET"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": ""
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 2,
+            "checkpoint_id": "PG-CP-RESET",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-RESET"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": ""
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-restart-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "state": {
+            "status": "menu",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-1/restart-path/photo-orbit-gallery-action-02.png",
+            "state_hash": "fd1c497b56ee1f9f439f917e59c62262b801ce26f83fdc4262fb88d35c150d1f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [
+          {
+            "type": "warning",
+            "text": "[.WebGL-0x10400584e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+            "location": {
+              "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+              "line_number": 0,
+              "column_number": 0
+            },
+            "action_index": null
+          }
+        ],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-MAIN"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [
+                "Mars"
+              ],
+              "actual": "Mars"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars"
+                ],
+                "actual": "Mars"
+              }
+            ]
+          },
+          {
+            "action_index": 7,
+            "checkpoint_id": "PG-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars",
+                  "Ocean",
+                  "Forest"
+                ],
+                "actual": "Forest"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PG-CP-START",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "state": {
+            "status": "playing",
+            "focus_index": 2,
+            "focus_name": "Mars",
+            "selected": "Mars",
+            "progress": 1,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 1/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 1/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 599.171875,
+                  "y": 25.5,
+                  "width": 185.828125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "b1ee79500f354ea451f5cdc47135593db24a75f32f71eb6798f2c68958540371"
+          }
+        },
+        {
+          "action_index": 7,
+          "checkpoint_id": "PG-CP-WON",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/photo-orbit-gallery-action-07.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "PG-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 8,
+              "action_index": 8,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 8,
+              "elapsed_ms": 32,
+              "tick": 32,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/win-path/photo-orbit-gallery-action-08.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": "City"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": "City"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-loss-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "state": {
+            "status": "lost",
+            "focus_index": 1,
+            "focus_name": "City",
+            "selected": "City",
+            "progress": 0,
+            "mistakes": 2
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 2/2",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 2/2",
+                "visible": true,
+                "rect": {
+                  "x": 597.34375,
+                  "y": 25.5,
+                  "width": 187.65625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "selection_wrong",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "selection_wrong",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 1
+              },
+              "event_types": [
+                "selection_wrong"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 2
+              },
+              "event_types": [
+                "selection_wrong",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/loss-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "263ea279e3f46b010bd77d82421c9ba33cd9cf601c777c7d4b09f6e0a3c69b23"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 1,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-RESET"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": ""
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 2,
+            "checkpoint_id": "PG-CP-RESET",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-RESET"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": ""
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-restart-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "state": {
+            "status": "menu",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-2/restart-path/photo-orbit-gallery-action-02.png",
+            "state_hash": "fd1c497b56ee1f9f439f917e59c62262b801ce26f83fdc4262fb88d35c150d1f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "win-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "observed_not_certified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-MAIN"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [
+                "Mars"
+              ],
+              "actual": "Mars"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars"
+                ],
+                "actual": "Mars"
+              }
+            ]
+          },
+          {
+            "action_index": 7,
+            "checkpoint_id": "PG-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-MAIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [
+                  "Mars",
+                  "Ocean",
+                  "Forest"
+                ],
+                "actual": "Forest"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "PG-CP-START",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-MID",
+          "state": {
+            "status": "playing",
+            "focus_index": 2,
+            "focus_name": "Mars",
+            "selected": "Mars",
+            "progress": 1,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 1/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 1/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 599.171875,
+                  "y": 25.5,
+                  "width": 185.828125,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "b1ee79500f354ea451f5cdc47135593db24a75f32f71eb6798f2c68958540371"
+          }
+        },
+        {
+          "action_index": 7,
+          "checkpoint_id": "PG-CP-WON",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "photo_selected",
+            "game_won"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "photo_selected",
+            "game_won"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/photo-orbit-gallery-action-07.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        },
+        {
+          "action_index": 8,
+          "checkpoint_id": "PG-CP-WON-UI",
+          "state": {
+            "status": "won",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "Forest",
+            "progress": 3,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 3/3 · Mistakes 0/2",
+            "statusText": "Won",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 3/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.984375,
+                  "y": 25.5,
+                  "width": 188.015625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Won",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 28.859375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [],
+          "event_types_since_checkpoint": [],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 2,
+                "focus_name": "Mars",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 4,
+              "action_index": 4,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Mars",
+                "progress": 1,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 5,
+              "action_index": 5,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 3,
+                "focus_name": "Ocean",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected"
+              ]
+            },
+            {
+              "sample_index": 6,
+              "action_index": 6,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Ocean",
+                "progress": 2,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 7,
+              "action_index": 7,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": [
+                "photo_selected",
+                "game_won"
+              ]
+            },
+            {
+              "sample_index": 8,
+              "action_index": 8,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            },
+            {
+              "sample_index": 9,
+              "action_index": 8,
+              "elapsed_ms": 32,
+              "tick": 32,
+              "status": "won",
+              "state": {
+                "status": "won",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "Forest",
+                "progress": 3,
+                "mistakes": 0
+              },
+              "event_types": []
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/win-path/photo-orbit-gallery-action-08.png",
+            "state_hash": "38007496e3ba6552b63db52876f92d737699bd5ef13a9abbe8f8c77253e1ebe0"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "loss-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-LOSS"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": "City"
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 3,
+            "checkpoint_id": "PG-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-LOSS"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": "City"
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-loss-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 3,
+          "checkpoint_id": "PG-CP-LOST",
+          "state": {
+            "status": "lost",
+            "focus_index": 1,
+            "focus_name": "City",
+            "selected": "City",
+            "progress": 0,
+            "mistakes": 2
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 2/2",
+            "statusText": "Lost",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 2/2",
+                "visible": true,
+                "rect": {
+                  "x": 597.34375,
+                  "y": 25.5,
+                  "width": 187.65625,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Lost",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 27.625,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "selection_wrong",
+            "game_lost"
+          ],
+          "event_types_since_checkpoint": [
+            "focus_changed",
+            "selection_wrong",
+            "game_lost"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 1
+              },
+              "event_types": [
+                "selection_wrong"
+              ]
+            },
+            {
+              "sample_index": 3,
+              "action_index": 3,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "lost",
+              "state": {
+                "status": "lost",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "City",
+                "progress": 0,
+                "mistakes": 2
+              },
+              "event_types": [
+                "selection_wrong",
+                "game_lost"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/loss-path/photo-orbit-gallery-action-03.png",
+            "state_hash": "263ea279e3f46b010bd77d82421c9ba33cd9cf601c777c7d4b09f6e0a3c69b23"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "replay_index": 2,
+      "scenario_id": "restart-path",
+      "evaluation": {
+        "schema_version": "gametestlab.evaluation.v2",
+        "case_id": "photo-orbit-gallery",
+        "difficulty": "D3",
+        "final_outcome_correct": false,
+        "process_correct": false,
+        "lucky_pass_detected": false,
+        "gates": {
+          "L1": "pass",
+          "L2": "fail",
+          "L3": "unverified"
+        },
+        "highest_certified_level": "L1",
+        "first_failure": {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "layer": "L2",
+          "requirement_ids": [
+            "PG-RESET"
+          ],
+          "error_type": "state_transition_error",
+          "diffs": [
+            {
+              "channel": "state",
+              "path": "selected",
+              "expected": [],
+              "actual": ""
+            }
+          ]
+        },
+        "all_failures": [
+          {
+            "action_index": 2,
+            "checkpoint_id": "PG-CP-RESET",
+            "layer": "L2",
+            "requirement_ids": [
+              "PG-RESET"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "selected",
+                "expected": [],
+                "actual": ""
+              }
+            ]
+          }
+        ]
+      },
+      "observations": [
+        {
+          "action_index": 0,
+          "checkpoint_id": "photo-orbit-gallery-restart-path-started",
+          "state": {
+            "status": "playing",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Playing",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Playing",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 46.59375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_started"
+          ],
+          "event_types_since_checkpoint": [
+            "game_started"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/photo-orbit-gallery-action-00.png",
+            "state_hash": "bed79c562c486b6a6441f699250c07e086e2f8c2c7952cf6b6208ee22d65e0b0"
+          }
+        },
+        {
+          "action_index": 2,
+          "checkpoint_id": "PG-CP-RESET",
+          "state": {
+            "status": "menu",
+            "focus_index": 0,
+            "focus_name": "Forest",
+            "selected": "",
+            "progress": 0,
+            "mistakes": 0
+          },
+          "ui": {
+            "scoreText": "Progress 0/3 · Mistakes 0/2",
+            "statusText": "Menu",
+            "canvasVisible": true,
+            "dom": {
+              "score": {
+                "present": true,
+                "text": "Progress 0/3 · Mistakes 0/2",
+                "visible": true,
+                "rect": {
+                  "x": 596.765625,
+                  "y": 25.5,
+                  "width": 188.234375,
+                  "height": 17
+                }
+              },
+              "status": {
+                "present": true,
+                "text": "Menu",
+                "visible": true,
+                "rect": {
+                  "x": 15,
+                  "y": 25.5,
+                  "width": 35.984375,
+                  "height": 17
+                }
+              }
+            },
+            "canvas": {
+              "present": true,
+              "visible": true,
+              "tag_name": "canvas",
+              "client_width": 800,
+              "client_height": 600,
+              "width": 800,
+              "height": 600
+            }
+          },
+          "event_types": [
+            "game_reset"
+          ],
+          "event_types_since_checkpoint": [
+            "game_reset"
+          ],
+          "samples": [
+            {
+              "sample_index": 0,
+              "action_index": 0,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_started"
+              ]
+            },
+            {
+              "sample_index": 1,
+              "action_index": 1,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "playing",
+              "state": {
+                "status": "playing",
+                "focus_index": 1,
+                "focus_name": "City",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "focus_changed"
+              ]
+            },
+            {
+              "sample_index": 2,
+              "action_index": 2,
+              "elapsed_ms": 0,
+              "tick": 0,
+              "status": "menu",
+              "state": {
+                "status": "menu",
+                "focus_index": 0,
+                "focus_name": "Forest",
+                "selected": "",
+                "progress": 0,
+                "mistakes": 0
+              },
+              "event_types": [
+                "game_reset"
+              ]
+            }
+          ],
+          "runtime_errors": [],
+          "runtime_error_evidence": [],
+          "evidence": {
+            "screenshot": "screenshots/replay-3/restart-path/photo-orbit-gallery-action-02.png",
+            "state_hash": "fd1c497b56ee1f9f439f917e59c62262b801ce26f83fdc4262fb88d35c150d1f"
+          }
+        }
+      ],
+      "browser": {
+        "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+        "console": [],
+        "page_errors": [],
+        "network": [
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/index.html?variant=formal&actor=primary",
+            "method": "GET",
+            "resource_type": "document",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/styles.css",
+            "method": "GET",
+            "resource_type": "stylesheet",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          },
+          {
+            "kind": "response",
+            "url": "http://127.0.0.1:52483/game.js",
+            "method": "GET",
+            "resource_type": "script",
+            "status": 200,
+            "status_text": "OK",
+            "failure": null,
+            "action_index": null
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "files": {
+    "result": "result.json",
+    "trace": "events.jsonl"
+  }
+}

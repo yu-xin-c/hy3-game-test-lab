@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Farm</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game">
+    <canvas id="farm-canvas" width="800" height="600"></canvas>
+
+    <div id="hud">
+      <div id="score" data-testid="score">Coins: 0 / 30   Harvested: 0/3   Time: 0ms</div>
+      <div id="status" data-testid="status">Menu</div>
+    </div>
+
+    <button id="plot-1" class="plot-btn" type="button" aria-label="Plot 1"></button>
+    <button id="plot-2" class="plot-btn" type="button" aria-label="Plot 2"></button>
+    <button id="plot-3" class="plot-btn" type="button" aria-label="Plot 3"></button>
+
+    <div id="controls">
+      <button id="start-btn" type="button">Start</button>
+      <button id="plant-btn" type="button">Plant</button>
+      <button id="water-btn" type="button">Water</button>
+      <button id="harvest-btn" type="button">Harvest</button>
+      <button id="restart-btn" type="button">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

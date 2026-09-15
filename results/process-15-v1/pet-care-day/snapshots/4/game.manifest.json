@@ -1,0 +1,125 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "FEED",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#feed-btn",
+      "description": "喂食，饱腹 +1"
+    },
+    {
+      "action_id": "PLAY",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#play-btn",
+      "description": "玩耍，快乐 +1"
+    },
+    {
+      "action_id": "SLEEP",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#sleep-btn",
+      "description": "睡觉，精力 +1"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重开，清除存档并回到菜单"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态：menu/playing/won/lost" },
+      "hunger": { "type": "integer", "description": "饱腹值，0-3" },
+      "happiness": { "type": "integer", "description": "快乐值，0-3" },
+      "energy": { "type": "integer", "description": "精力值，0-3" },
+      "actions": { "type": "object", "description": "各动作累计次数 {feed,play,sleep}" },
+      "saved": { "type": "boolean", "description": "是否已写入 localStorage" }
+    },
+    "required": ["status", "hunger", "happiness", "energy", "actions", "saved"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "pet_fed",
+      "description": "喂食",
+      "payload_fields": { "hunger": { "type": "integer", "description": "喂食后的饱腹值" } }
+    },
+    {
+      "type": "pet_played",
+      "description": "玩耍",
+      "payload_fields": { "happiness": { "type": "integer", "description": "玩耍后的快乐值" } }
+    },
+    {
+      "type": "pet_slept",
+      "description": "睡觉",
+      "payload_fields": { "energy": { "type": "integer", "description": "睡觉后的精力值" } }
+    },
+    {
+      "type": "need_decayed",
+      "description": "三项随时间衰减",
+      "payload_fields": {
+        "tick": { "type": "integer", "description": "衰减计数" },
+        "hunger": { "type": "integer", "description": "衰减后的饱腹值" },
+        "happiness": { "type": "integer", "description": "衰减后的快乐值" },
+        "energy": { "type": "integer", "description": "衰减后的精力值" }
+      }
+    },
+    {
+      "type": "state_saved",
+      "description": "状态已写入存档",
+      "payload_fields": { "stored": { "type": "boolean", "description": "是否成功写入" } }
+    },
+    {
+      "type": "state_loaded",
+      "description": "状态已从存档恢复",
+      "payload_fields": { "status": { "type": "string", "description": "恢复后的状态" } }
+    },
+    {
+      "type": "game_won",
+      "description": "获胜",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_lost",
+      "description": "失败",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_reset",
+      "description": "重置到菜单状态",
+      "payload_fields": { "seed": { "type": "string", "description": "使用的 seed" } }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
