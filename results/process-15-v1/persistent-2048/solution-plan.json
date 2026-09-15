@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "固定初始棋盘且不生成随机块；相同 seed 必须得到相同初始状态。",
+      "implementation": "4×4 grid 初始化为 grid[0]=[2,2,0,0]、grid[1]=[4,0,0,0]、其余为 0；无随机新块。reset({seed}) 仅用 seed 作为菜单恢复键，不驱动任何 RNG，固定还原该矩阵并将 status 置为 menu、moves=0、max_tile=4、saved=false。",
+      "verification": "打开页面后 observe().state.grid 等于 [[2,2,0,0],[4,0,0,0],[0,0,0,0],[0,0,0,0]]；调用 reset(任意seed) 后 observe().state.status==='menu' 且 grid 与 moves=0 不变。"
+    },
+    {
+      "id": 2,
+      "requirement": "每次方向输入计一次 moves 并立即保存到 localStorage；刷新后状态必须恢复。",
+      "implementation": "监听 ArrowRight/ArrowDown/ArrowUp；每次触发执行对应行列合并（同值合并为 2 倍并朝方向靠齐，无相邻同值则不合并），moves+=1，重算 max_tile，写入 localStorage 键 persistent2048（含 status、grid、moves、max_tile、saved:true），派发 state_saved 事件（seq 递增）。",
+      "verification": "按 ArrowRight 后 observe().state.moves===1 且 localStorage 中 saved===true；真实刷新页面后 observe().state.grid 与刷新前一致、status 恢复为 playing 而非 menu。"
+    },
+    {
+      "id": 3,
+      "requirement": "第二步向下合出 8 则胜；两次输入后最大数字仍小于 8 则败；终局后输入不再改变状态。",
+      "implementation": "每次滑动后计算 max_tile：若合出 8 则 status='won' 并派发 game_won；若 moves>=2 且 max_tile<8 则 status='lost' 并派发 game_lost。终局后忽略所有方向输入（不修改 moves/grid/status）。",
+      "verification": "ArrowRight 再 ArrowDown 后 observe().state.status==='won' 且 max_tile===8；另起一局 ArrowRight 再 ArrowUp（不产生 8）后 status==='lost'；终局后再按方向键 observe().state.moves 不再增加。"
+    },
+    {
+      "id": 4,
+      "requirement": "Restart 必须清除存档并恢复原始棋盘与菜单，且在局内与终局均可见可用。",
+      "implementation": "#restart-btn 点击后移除 localStorage 键，grid 还原初始矩阵，status='menu'、moves=0、saved=false，派发 game_reset（event_epoch+1、seq 从 1 重记）。按钮在 playing/won/lost 状态下均渲染可见。",
+      "verification": "进行中点击 #restart-btn 后 observe().state.status==='menu' 且 localStorage 中 saved 为 false/不存在；getEvents({afterSeq:0}) 中首条事件 seq=1 且 type==='game_reset'。"
+    },
+    {
+      "id": 5,
+      "requirement": "固定 800×600 视口；HUD 始终显示分数/进度与状态；#board、菜单、终局、Restart 完整可见；事件齐备。",
+      "implementation": "viewport 设 800×600（meta 视口+CSS 固定）；#board 渲染 4×4 格；HUD 用 [data-testid=score] 显示 max_tile/moves，[data-testid=status] 显示 Menu/Playing/Won/Lost（忽略大小写与连续空白）。派发事件：game_started(点击 #start-btn)、swipe、tile_merged、state_saved、state_loaded、game_won、game_lost、game_reset。",
+      "verification": "浏览器打开后 #board 可见且页面尺寸为 800×600；点击 #start-btn 后 getEvents 含 game_started 且 status='playing'；HUD 文本包含 Playing/分数且终局与 Restart 控件同时可见。"
+    },
+    {
+      "id": 6,
+      "requirement": "提供只读观察接口 window.__GAMETESTLAB__，协议 gametestlab/2。",
+      "implementation": "暴露对象 protocol:'gametestlab/2'，含 isReady()、reset({seed})、observe()（返回 tick、status、state、event_epoch、latest_event_seq）、getEvents({afterSeq})。tick 由 performance.now() 驱动；不提供任何代替玩家操作的方法；状态与事件均为可序列化 JSON。",
+      "verification": "控制台检测 typeof window.__GAMETESTLAB__.observe==='function' 且 observe().protocol 满足；连续两次 reset 后 observe().event_epoch 递增；getEvents({afterSeq:0}) 首事件 seq=1 且 type==='game_reset'，无替代操作接口暴露。"
+    }
+  ]
+}

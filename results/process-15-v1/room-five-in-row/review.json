@@ -1,0 +1,175 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "review_call": "review-call-compact",
+  "verdict": {
+    "final_correct": false,
+    "process_correct": false,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "真实浏览器记录所有场景 action_index=0 处均报 status 期望 playing 实际 menu、game_started 缺失。但代码 enterPlaying 由 checkReady 在收到 room_created+player_joined 后触发，单页仅 START/JOIN 一方时本就停留在 menu，这是双页驱动时序问题而非代码逻辑错误；评测在 action_index=0（仅一方点击）即断言 playing 属于测试路径/断言时序错误。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "win-path",
+        "action_index": 0
+      },
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "loss-path 与 win-path 在 action_index=10/11 处评测期望 connected===2、turn 用 primary/secondary、winner 用 primary/secondary，但代码与 manifest 约定 connected 为布尔、turn/winner 为 'P1'/'P2'，评测断言使用了错误的字段语义（私有路径与公开规则冲突），属测试路径错误。",
+        "file": null,
+        "excerpt": null,
+        "scenario_id": "loss-path",
+        "action_index": 11
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "原编号方案步骤6要求 manifest 的 state_schema 字段齐全且 schema_version 为 v3；但契约校验报告 game.manifest.json 中 state_schema.fields.winner.type 为 [\"string\",\"null\"] 不被允许（应为字符串枚举或单一类型），schema 校验不通过，manifest 不合规。",
+        "file": "game.manifest.json",
+        "excerpt": "\"winner\": { \"type\": [\"string\", \"null\"], \"description\": \"胜者 P1/P2 或 null\" }",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "原方案步骤3要求胜负判定后主页面按 P1 结果显示 won/lost；代码 applyMove 中 status = (player === role) ? 'won' : 'lost'，即胜负面依本页角色而定。在 P2 先连成五子的 loss-path 中，主页面(P1)因未落制胜手、收 piece_placed 时 player==='P2'!==role('P1') 故 status='lost'，此路径代码正确；但验证逻辑依赖本页角色而非全局 winner，若主页面自身落子获胜才 won，符合预期。不过 loss-path 测试中 P2 仅落4子（c0..c3）board.4.4 为 null，P2 并未连成五子，主页面因 P1 在第0行连成五子而 status='won'，评测期望 lost 实为测试路径未驱动 P2 第五子，属测试问题而非代码缺陷。代码本身按角色判定 won/lost 与设计一致。",
+        "file": "game.js",
+        "excerpt": "state.status = (player === role) ? 'won' : 'lost';",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "unsupported_claim",
+        "status": "insufficient_evidence",
+        "explanation": "原方案步骤4要求相同 seed 复现相同初始状态且计时可虚拟推进。代码 mulberry32 仅被 bridgeReset 调用一次返回值即丢弃（mulberry32(s);），board 为固定空盘、tick 来自 requestAnimationFrame 自增，并无基于 seed 的初始化差异，也无虚拟时间推进机制。待审数据无具体复现/虚拟时间测试证据，无法充分证实或证伪，verdict 为 null。",
+        "file": "game.js",
+        "excerpt": "mulberry32(s); // fixed-seed hook (board is deterministic)",
+        "scenario_id": null,
+        "action_index": null
+      },
+      {
+        "step_id": null,
+        "kind": "implementation_mismatch",
+        "status": "supported_defect",
+        "explanation": "原方案步骤1要求收到双方消息后 status='Playing'（不区分大小写）。代码使用小写 'playing'，HUD 显示首字母大写的 'Playing'，状态值本身为小写，符合“忽略大小写”约定；但事件名按方案应为 room_created/player_joined，代码额外 emit 'game_started'，而 manifest 将 game_started 列入 event_schema，方案步骤未要求该事件，属实现冗余但非缺陷。整体步骤1逻辑达成。",
+        "file": "game.js",
+        "excerpt": "state.status = 'playing';",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "真实浏览器记录中 connected/turn/winner 的期望值使用 primary/secondary/数值2 语义，与公开方案及 manifest 约定的 P1/P2/布尔冲突，无法直接据其判定代码缺陷，已归为测试路径错误。",
+      "loss-path 测试未驱动 P2 第5子（c4），P2 未连成五子，主页面因 P1 连成而 won，评测期望 lost 不成立，属测试驱动缺失。",
+      "seed 复现与虚拟时间推进缺少具体测试证据，无法判定，verdict 置 null。",
+      "manifest state_schema.winner.type 不合规为已确认缺陷，影响 schema 校验通过性。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "真实浏览器记录所有场景 action_index=0 处均报 status 期望 playing 实际 menu、game_started 缺失。但代码 enterPlaying 由 checkReady 在收到 room_created+player_joined 后触发，单页仅 START/JOIN 一方时本就停留在 menu，这是双页驱动时序问题而非代码逻辑错误；评测在 action_index=0（仅一方点击）即断言 playing 属于测试路径/断言时序错误。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "win-path",
+      "action_index": 0,
+      "code_provenance": null,
+      "quote_verified": null
+    },
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "loss-path 与 win-path 在 action_index=10/11 处评测期望 connected===2、turn 用 primary/secondary、winner 用 primary/secondary，但代码与 manifest 约定 connected 为布尔、turn/winner 为 'P1'/'P2'，评测断言使用了错误的字段语义（私有路径与公开规则冲突），属测试路径错误。",
+      "file": null,
+      "excerpt": null,
+      "scenario_id": "loss-path",
+      "action_index": 11,
+      "code_provenance": null,
+      "quote_verified": null
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "原编号方案步骤6要求 manifest 的 state_schema 字段齐全且 schema_version 为 v3；但契约校验报告 game.manifest.json 中 state_schema.fields.winner.type 为 [\"string\",\"null\"] 不被允许（应为字符串枚举或单一类型），schema 校验不通过，manifest 不合规。",
+      "file": "game.manifest.json",
+      "excerpt": "\"winner\": { \"type\": [\"string\", \"null\"], \"description\": \"胜者 P1/P2 或 null\" }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 122,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "原方案步骤3要求胜负判定后主页面按 P1 结果显示 won/lost；代码 applyMove 中 status = (player === role) ? 'won' : 'lost'，即胜负面依本页角色而定。在 P2 先连成五子的 loss-path 中，主页面(P1)因未落制胜手、收 piece_placed 时 player==='P2'!==role('P1') 故 status='lost'，此路径代码正确；但验证逻辑依赖本页角色而非全局 winner，若主页面自身落子获胜才 won，符合预期。不过 loss-path 测试中 P2 仅落4子（c0..c3）board.4.4 为 null，P2 并未连成五子，主页面因 P1 在第0行连成五子而 status='won'，评测期望 lost 实为测试路径未驱动 P2 第五子，属测试问题而非代码缺陷。代码本身按角色判定 won/lost 与设计一致。",
+      "file": "game.js",
+      "excerpt": "state.status = (player === role) ? 'won' : 'lost';",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 154,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "unsupported_claim",
+      "status": "insufficient_evidence",
+      "explanation": "原方案步骤4要求相同 seed 复现相同初始状态且计时可虚拟推进。代码 mulberry32 仅被 bridgeReset 调用一次返回值即丢弃（mulberry32(s);），board 为固定空盘、tick 来自 requestAnimationFrame 自增，并无基于 seed 的初始化差异，也无虚拟时间推进机制。待审数据无具体复现/虚拟时间测试证据，无法充分证实或证伪，verdict 为 null。",
+      "file": "game.js",
+      "excerpt": "mulberry32(s); // fixed-seed hook (board is deterministic)",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 309,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": null,
+      "kind": "implementation_mismatch",
+      "status": "supported_defect",
+      "explanation": "原方案步骤1要求收到双方消息后 status='Playing'（不区分大小写）。代码使用小写 'playing'，HUD 显示首字母大写的 'Playing'，状态值本身为小写，符合“忽略大小写”约定；但事件名按方案应为 room_created/player_joined，代码额外 emit 'game_started'，而 manifest 将 game_started 列入 event_schema，方案步骤未要求该事件，属实现冗余但非缺陷。整体步骤1逻辑达成。",
+      "file": "game.js",
+      "excerpt": "state.status = 'playing';",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": null,
+      "quote_verified": true
+    }
+  ],
+  "recovery": "Original review call did not produce a verified completion; it is preserved unchanged. Compact Hy3 call uses the same frozen game and browser input hashes."
+}

@@ -1,0 +1,12 @@
+{
+  "scope": "Selected original public-plan step 5, not the verified first wrong step of the entire plan",
+  "brief_sha256": "a32abca6f71f36a60f7b78372fa9186d96bc35ad404f8eeea7d1732369078e3b",
+  "plan_step_id": 5,
+  "plan_claim": "#restart-btn 广播 game_reset；两页均置 board=全 null、turn='P1'、moves=0、status='Playing'（connected 保持）、event_epoch++，并从 seq=1 记录 game_reset 事件。",
+  "public_rule": "Restart synchronously clears board, turn, moves and room state",
+  "observed_connected_and_playing_after_restart": 3,
+  "replays": 3,
+  "selected_claim_inconsistent": true,
+  "hy3_first_error_plan_step": null,
+  "hy3_step5_findings": []
+}

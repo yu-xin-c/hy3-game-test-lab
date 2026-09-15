@@ -1,0 +1,40 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "requirement": "主页面创建房间、副页面加入，仅用 BroadcastChannel 本机同步，不访问服务器；双方就绪后进入 Playing。",
+      "implementation": "打开同源两页。主点 #start-btn 广播 {type:'room_created', seed}；副点 #join-btn 广播 {type:'player_joined'}。频道名固定 'room-five-in-a-row'。收到双方消息后 state.connected=true、status='Playing'，board 初始化为 5×5 全 null 数组。",
+      "verification": "同时开两页，依次点 START、JOIN：断言 [data-testid=status] 文本为 Playing（忽略大小写/空白），state.connected===true；用浏览器网络面板确认无任何网络请求。"
+    },
+    {
+      "id": 2,
+      "requirement": "P1 与 P2 严格轮流落子；测试路径 P1 在第0行 c0→c4、P2 在第4行 c0→c3。",
+      "implementation": "turn 初始 'P1'。主点 #cell-r0-c{0..4} 仅当 turn==='P1' 且格空时置 'X'，广播 piece_placed 并 turn_changed 到 'P2'，moves++；副点 #cell-r4-c{0..3} 仅当 turn==='P2' 时置 'O' 并切回 'P1'。board 为 5×5 数组，记录坐标。",
+      "verification": "主点 #cell-r0-c0 后断言 state.turn==='P2'、board[0][0]!==null、moves===1、getEvents 含 piece_placed 且 seq 连续；副点 #cell-r4-c0 后断言 turn 回 'P1'。"
+    },
+    {
+      "id": 3,
+      "requirement": "任一方横/竖/斜连续五子立即结束；P2 先连成五子主页面显示 lost，否则 P1 显示 won。终局后输入冻结。",
+      "implementation": "每次 piece_placed 后从落子点查 4 方向（横、竖、两斜）是否同色连续 5 子；成立则设 winner、status = winner==='P1'?'won':'lost'，广播 match_won。status!=='Playing' 时忽略所有落子点击。",
+      "verification": "驱动 P1 在第0行落满5子 → 断言主 status 'Won'、state.winner==='P1'；RESTART 后驱动 P2 在第4行落满5子 → 断言主 status 'Lost'、winner==='P2'。"
+    },
+    {
+      "id": 4,
+      "requirement": "相同 seed 复现相同初始状态与时间线；所有计时为毫秒且可虚拟时间推进；终局后输入不再改变分数/进度/胜负。",
+      "implementation": "reset({seed}) 用 mulberry32(seed) 生成确定性空盘与 tick=0；所有计时经 setTimeout/performance/requestAnimationFrame。终局守卫：placePiece 在 status!=='Playing' 时直接 return，不改 moves/winner/board。",
+      "verification": "连续 reset({seed:1}) 两次，断言 observe().state.board 深度相等；match_won 后再点任意 cell，断言 state.moves 与 winner 不变。"
+    },
+    {
+      "id": 5,
+      "requirement": "Restart 同步清空棋盘、回合、步数与房间状态，两页一致，并重记 game_reset。",
+      "implementation": "#restart-btn 广播 game_reset；两页均置 board=全 null、turn='P1'、moves=0、status='Playing'（connected 保持）、event_epoch++，并从 seq=1 记录 game_reset 事件。",
+      "verification": "一局结束后点 RESTART：断言两页 state.status==='Playing'、moves===0、board 全部 null、observe().event_epoch 增大、getEvents({afterSeq:0}) 含 type'game_reset' 且 seq===1。"
+    },
+    {
+      "id": 6,
+      "requirement": "固定 800×600 视口，HUD 常显分数/进度与状态，#board 完整可见；提供 v3 manifest 与只读 __GAMETESTLAB__ 桥接。",
+      "implementation": "CSS 固定 width:800px;height:600px。#board 为 5×5 网格；[data-testid=score] 显示 moves/9 进度、[data-testid=status] 显示状态。window.__GAMETESTLAB__ 含 protocol、isReady、reset、observe(tick,status,state,event_epoch,latest_event_seq)、getEvents。manifest 列全部控件、hud_selectors、state_schema(status,connected,turn,moves,winner,board)、event_schema(6事件)。",
+      "verification": "断言窗口 800×600、#board 存在、score/status 有文本；typeof window.__GAMETESTLAB__.observe==='function'；用 schema 校验 game.manifest.json 的 schema_version 为 gametestlab.game-manifest.v3 且字段齐全。"
+    }
+  ]
+}

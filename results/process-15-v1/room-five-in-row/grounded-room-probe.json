@@ -1,0 +1,5352 @@
+{
+  "scope": "Extra actual two-page pointer play; original frozen paths and private oracle unchanged",
+  "game_directory_sha256": "3f448350319ae063975dde745a04245853a036bb6a535f7b7d7e87d761a9ceeb",
+  "replays": 3,
+  "start_waits_for_join": 6,
+  "primary_win_passes": 3,
+  "secondary_win_passes": 3,
+  "restart_room_clear_passes": 0,
+  "plan_step4_tick_reset_passes": 0,
+  "rows": [
+    {
+      "replay": 0,
+      "scenario": "primary-win-and-restart",
+      "afterStart": {
+        "observation": {
+          "tick": 5,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 4,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 8,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 8,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 8,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 8,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 8,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 8,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 26,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 8,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 8,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 26,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 26,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 26,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Won"
+          }
+        },
+        {
+          "observation": {
+            "tick": 26,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 8,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 8,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 26,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 26,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 26,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Lost"
+          }
+        }
+      ],
+      "restarted": [
+        {
+          "observation": {
+            "tick": 28,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 28,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 28,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 28,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "tick_probe": {
+        "before": {
+          "tick": 28,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "connected": true,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "after": {
+          "tick": 28,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events_after": [
+          {
+            "seq": 1,
+            "tick": 28,
+            "type": "game_reset",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "replay": 0,
+      "scenario": "secondary-win",
+      "afterStart": {
+        "observation": {
+          "tick": 3,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 3,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 5,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 5,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 25,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 7,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 7,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 9,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 9,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 11,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 11,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 13,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 13,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 15,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 15,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 17,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 17,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 19,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 19,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 21,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 21,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 23,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 23,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 25,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 25,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 25,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Lost"
+          }
+        },
+        {
+          "observation": {
+            "tick": 25,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 7,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 7,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 9,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 9,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 11,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 11,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 13,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 13,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 15,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 15,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 17,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 17,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 19,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 19,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 21,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 21,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 23,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 23,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 25,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 25,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 25,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Won"
+          }
+        }
+      ]
+    },
+    {
+      "replay": 1,
+      "scenario": "primary-win-and-restart",
+      "afterStart": {
+        "observation": {
+          "tick": 4,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 4,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 6,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 6,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 24,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 8,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 8,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 24,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Won"
+          }
+        },
+        {
+          "observation": {
+            "tick": 24,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 8,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 8,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 24,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Lost"
+          }
+        }
+      ],
+      "restarted": [
+        {
+          "observation": {
+            "tick": 26,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 26,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 26,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 26,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "tick_probe": {
+        "before": {
+          "tick": 26,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "connected": true,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "after": {
+          "tick": 26,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events_after": [
+          {
+            "seq": 1,
+            "tick": 26,
+            "type": "game_reset",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "replay": 1,
+      "scenario": "secondary-win",
+      "afterStart": {
+        "observation": {
+          "tick": 3,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 3,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 5,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 5,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 25,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 7,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 7,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 9,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 9,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 11,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 11,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 13,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 13,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 15,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 15,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 17,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 17,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 19,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 19,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 21,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 21,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 23,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 23,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 25,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 25,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 25,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Lost"
+          }
+        },
+        {
+          "observation": {
+            "tick": 25,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 7,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 7,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 9,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 9,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 11,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 11,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 13,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 13,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 15,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 15,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 17,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 17,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 19,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 19,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 21,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 21,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 23,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 23,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 25,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 25,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 25,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Won"
+          }
+        }
+      ]
+    },
+    {
+      "replay": 2,
+      "scenario": "primary-win-and-restart",
+      "afterStart": {
+        "observation": {
+          "tick": 4,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 4,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 6,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 5,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 24,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 8,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 8,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 24,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Won"
+          }
+        },
+        {
+          "observation": {
+            "tick": 23,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P2",
+              "moves": 9,
+              "winner": "P1",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  "X"
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 22
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 3,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 5,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 5,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 7,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 7,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 9,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 9,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 11,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 11,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 13,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 13,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 15,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 15,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 17,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 17,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 19,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 19,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 21,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 21,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 23,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 4,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 23,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 23,
+              "type": "match_won",
+              "payload": {
+                "winner": "P1",
+                "row": 0,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "9 / 9",
+            "status": "Lost"
+          }
+        }
+      ],
+      "restarted": [
+        {
+          "observation": {
+            "tick": 26,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 26,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 25,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 1,
+            "latest_event_seq": 1
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 25,
+              "type": "game_reset",
+              "payload": {
+                "seed": 1
+              }
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "tick_probe": {
+        "before": {
+          "tick": 26,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "connected": true,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "after": {
+          "tick": 26,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "events_after": [
+          {
+            "seq": 1,
+            "tick": 26,
+            "type": "game_reset",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "replay": 2,
+      "scenario": "secondary-win",
+      "afterStart": {
+        "observation": {
+          "tick": 4,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "connected": false,
+            "turn": "P1",
+            "moves": 0,
+            "winner": null,
+            "board": [
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          },
+          "event_epoch": 0,
+          "latest_event_seq": 1
+        },
+        "events": [
+          {
+            "seq": 1,
+            "tick": 4,
+            "type": "room_created",
+            "payload": {
+              "seed": 1
+            }
+          }
+        ],
+        "hud": {
+          "score": "0 / 9",
+          "status": "Menu"
+        }
+      },
+      "joined": [
+        {
+          "observation": {
+            "tick": 6,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        },
+        {
+          "observation": {
+            "tick": 6,
+            "status": "playing",
+            "state": {
+              "status": "playing",
+              "connected": true,
+              "turn": "P1",
+              "moves": 0,
+              "winner": null,
+              "board": [
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 3
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            }
+          ],
+          "hud": {
+            "score": "0 / 9",
+            "status": "Playing"
+          }
+        }
+      ],
+      "terminal": [
+        {
+          "observation": {
+            "tick": 26,
+            "status": "lost",
+            "state": {
+              "status": "lost",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 8,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 8,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 26,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 26,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 26,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Lost"
+          }
+        },
+        {
+          "observation": {
+            "tick": 26,
+            "status": "won",
+            "state": {
+              "status": "won",
+              "connected": true,
+              "turn": "P1",
+              "moves": 10,
+              "winner": "P2",
+              "board": [
+                [
+                  "X",
+                  "X",
+                  "X",
+                  "X",
+                  null
+                ],
+                [
+                  "X",
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                [
+                  "O",
+                  "O",
+                  "O",
+                  "O",
+                  "O"
+                ]
+              ]
+            },
+            "event_epoch": 0,
+            "latest_event_seq": 24
+          },
+          "events": [
+            {
+              "seq": 1,
+              "tick": 4,
+              "type": "room_created",
+              "payload": {
+                "seed": 1
+              }
+            },
+            {
+              "seq": 2,
+              "tick": 6,
+              "type": "player_joined",
+              "payload": {}
+            },
+            {
+              "seq": 3,
+              "tick": 6,
+              "type": "game_started",
+              "payload": {}
+            },
+            {
+              "seq": 4,
+              "tick": 8,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 5,
+              "tick": 8,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 6,
+              "tick": 10,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 0,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 7,
+              "tick": 10,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 8,
+              "tick": 12,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 1,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 9,
+              "tick": 12,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 10,
+              "tick": 14,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 1,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 11,
+              "tick": 14,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 12,
+              "tick": 16,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 2,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 13,
+              "tick": 16,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 14,
+              "tick": 18,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 2,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 15,
+              "tick": 18,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 16,
+              "tick": 20,
+              "type": "piece_placed",
+              "payload": {
+                "row": 0,
+                "col": 3,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 17,
+              "tick": 20,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 18,
+              "tick": 22,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 3,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 19,
+              "tick": 22,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 20,
+              "tick": 24,
+              "type": "piece_placed",
+              "payload": {
+                "row": 1,
+                "col": 0,
+                "player": "P1",
+                "symbol": "X"
+              }
+            },
+            {
+              "seq": 21,
+              "tick": 24,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P2"
+              }
+            },
+            {
+              "seq": 22,
+              "tick": 26,
+              "type": "piece_placed",
+              "payload": {
+                "row": 4,
+                "col": 4,
+                "player": "P2",
+                "symbol": "O"
+              }
+            },
+            {
+              "seq": 23,
+              "tick": 26,
+              "type": "turn_changed",
+              "payload": {
+                "turn": "P1"
+              }
+            },
+            {
+              "seq": 24,
+              "tick": 26,
+              "type": "match_won",
+              "payload": {
+                "winner": "P2",
+                "row": 4,
+                "col": 4
+              }
+            }
+          ],
+          "hud": {
+            "score": "10 / 9",
+            "status": "Won"
+          }
+        }
+      ]
+    }
+  ]
+}

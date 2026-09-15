@@ -36,7 +36,9 @@ for (const id of scope.selected_ids) {
     assertGameManifestMatchesTask(taskPlan, taskOracle, manifest);
     currentContractConformant = true;
   } catch (error) { currentContractError = String((error as Error).message); }
-  for (const call of ["plan-call", "generation-call", "review-call"]) {
+  const reviewCall = (await json(resolve(dir, "review.json"))).review_call ?? "review-call";
+  if (!["review-call", "review-call-compact"].includes(reviewCall)) throw new Error(`Unknown review call: ${id}`);
+  for (const call of ["plan-call", "generation-call", reviewCall]) {
     const receipt = await json(resolve(dir, call, "receipt.json"));
     if (receipt.model !== "hy3" || receipt.model_verified !== true || receipt.prompt_sha256 !== contentHash(await readFile(resolve(dir, call, "prompt.txt"), "utf8"))) throw new Error(`Invalid Hy3 ${call} receipt: ${id}`);
   }

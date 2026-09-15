@@ -1,0 +1,212 @@
+{
+  "schema_version": "gametestlab.game-task-oracle.v1",
+  "task_id": "room-five-in-row",
+  "scenarios": [
+    {
+      "scenario_id": "win-path",
+      "checkpoints": [
+        {
+          "id": "FR-CP-START",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FR-CP-MID",
+          "action_index": 6,
+          "layer": "L2",
+          "requirement_ids": [
+            "FR-MAIN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing",
+              "connected": 2,
+              "turn": "secondary",
+              "moves": 5,
+              "winner": null,
+              "board.0.2": "primary"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "piece_placed",
+              "turn_changed"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FR-CP-WON",
+          "action_index": 10,
+          "layer": "L2",
+          "requirement_ids": [
+            "FR-MAIN"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "won",
+              "connected": 2,
+              "turn": "primary",
+              "moves": 9,
+              "winner": "primary",
+              "board.0.4": "primary"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "piece_placed",
+              "match_won"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FR-CP-WON-UI",
+          "action_index": 11,
+          "layer": "L3",
+          "requirement_ids": [
+            "FR-HUD"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {},
+            "ui": {
+              "dom.score.visible": true,
+              "dom.status.visible": true
+            },
+            "ui_text": {
+              "scoreText": {
+                "mode": "nonempty"
+              },
+              "statusText": {
+                "mode": "equals",
+                "value": "Won",
+                "ignore_case": true
+              }
+            },
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "loss-path",
+      "checkpoints": [
+        {
+          "id": "room-five-in-row-loss-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FR-CP-LOST",
+          "action_index": 11,
+          "layer": "L2",
+          "requirement_ids": [
+            "FR-LOSS"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "lost",
+              "connected": 2,
+              "turn": "secondary",
+              "moves": 10,
+              "winner": "secondary",
+              "board.4.4": "secondary"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "piece_placed",
+              "match_won"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "restart-path",
+      "checkpoints": [
+        {
+          "id": "room-five-in-row-restart-path-started",
+          "action_index": 0,
+          "layer": "L1",
+          "requirement_ids": [
+            "FR-RUN"
+          ],
+          "terminal": false,
+          "expected": {
+            "state": {
+              "status": "playing"
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_started"
+            ],
+            "physics": []
+          }
+        },
+        {
+          "id": "FR-CP-RESET",
+          "action_index": 3,
+          "layer": "L2",
+          "requirement_ids": [
+            "FR-RESET"
+          ],
+          "terminal": true,
+          "expected": {
+            "state": {
+              "status": "menu",
+              "connected": 0,
+              "turn": "primary",
+              "moves": 0,
+              "winner": null
+            },
+            "ui": {},
+            "event_scope": "since_previous_checkpoint",
+            "event_types": [
+              "game_reset"
+            ],
+            "physics": []
+          }
+        }
+      ]
+    }
+  ]
+}

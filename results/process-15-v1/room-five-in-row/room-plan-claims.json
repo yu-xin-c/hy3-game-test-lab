@@ -1,0 +1,53 @@
+{
+  "scope": "First known failed original-plan claim after tested core steps 1-3; not all subclaims of steps 1-3 or complete entire-plan gold",
+  "game_directory_sha256": "3f448350319ae063975dde745a04245853a036bb6a535f7b7d7e87d761a9ceeb",
+  "replays": 3,
+  "core_prefix": {
+    "join": 6,
+    "primary_win": 3,
+    "secondary_win": 3
+  },
+  "selected": [
+    {
+      "step_id": 4,
+      "claim": "reset sets tick to zero",
+      "browser_passes": 0,
+      "observed": [
+        {
+          "before": 28,
+          "after": 28
+        },
+        {
+          "before": 26,
+          "after": 26
+        },
+        {
+          "before": 26,
+          "after": 26
+        }
+      ]
+    },
+    {
+      "step_id": 5,
+      "claim": "Restart preserves connected room and playing",
+      "browser_passes": 0,
+      "observed": [
+        {
+          "status": "playing",
+          "connected": true
+        },
+        {
+          "status": "playing",
+          "connected": true
+        },
+        {
+          "status": "playing",
+          "connected": true
+        }
+      ]
+    }
+  ],
+  "earliest_known_wrong_step": 4,
+  "hy3_first_error_step": null,
+  "hy3_selected_step_findings": []
+}

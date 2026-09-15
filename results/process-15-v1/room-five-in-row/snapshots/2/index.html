@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=800, height=600" />
+  <title>Room Five in a Row</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header id="hud">
+      <div id="score-box">Progress: <span data-testid="score">0 / 9</span></div>
+      <div id="status-box">Status: <span data-testid="status">Menu</span></div>
+    </header>
+
+    <section id="controls">
+      <button id="start-btn" type="button">Create Room (P1)</button>
+      <button id="join-btn" type="button">Join Room (P2)</button>
+      <button id="restart-btn" type="button">Restart</button>
+    </section>
+
+    <section id="board" aria-label="game board"></section>
+
+    <footer id="info">
+      <span id="info-role">Role: -</span>
+      <span id="info-turn">Turn: -</span>
+      <span id="info-conn">Connected: no</span>
+    </footer>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

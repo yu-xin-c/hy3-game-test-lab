@@ -1,19 +1,11 @@
 {
   "scope": "First 15 frozen tasks; progress only, not full answer/process accuracy",
   "selected_games": 15,
-  "completed_games": 9,
+  "completed_games": 11,
   "pending": [
     {
-      "id": "room-five-in-row",
-      "stage": "generating"
-    },
-    {
-      "id": "persistent-2048",
-      "stage": "not_started"
-    },
-    {
       "id": "particle-orchestra",
-      "stage": "not_started"
+      "stage": "planning"
     },
     {
       "id": "photo-orbit-gallery",
@@ -29,14 +21,14 @@
     }
   ],
   "counts": {
-    "games": 9,
-    "contract_conformant_games": 3,
+    "games": 11,
+    "contract_conformant_games": 4,
     "raw_final_paths_passed": 12,
-    "raw_browser_paths": 29,
+    "raw_browser_paths": 35,
     "hy3_final_true": 3,
-    "hy3_final_known": 7,
+    "hy3_final_known": 8,
     "hy3_process_true": 5,
-    "hy3_process_known": 8
+    "hy3_process_known": 9
   },
   "difficulty_composition": {
     "D1": 4,
@@ -61,14 +53,14 @@
       "hy3_process_known": 3
     },
     "D2": {
-      "games": 3,
-      "contract_conformant_games": 1,
+      "games": 5,
+      "contract_conformant_games": 2,
       "raw_final_paths_passed": 5,
-      "raw_browser_paths": 9,
+      "raw_browser_paths": 15,
       "hy3_final_true": 0,
-      "hy3_final_known": 1,
+      "hy3_final_known": 2,
       "hy3_process_true": 2,
-      "hy3_process_known": 2
+      "hy3_process_known": 3
     },
     "D3": {
       "games": 3,
@@ -82,7 +74,7 @@
     }
   },
   "hy3_supported_defect_types": {
-    "implementation_mismatch": 7,
+    "implementation_mismatch": 10,
     "invalid_assumption": 1
   },
   "rows": [
@@ -265,6 +257,48 @@
       "raw_process_paths_passed": 1,
       "hy3_final_correct": null,
       "hy3_process_correct": true,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": []
+    },
+    {
+      "id": "room-five-in-row",
+      "source": "results/process-15-v1/room-five-in-row",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": false,
+      "contract_error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"string\",\n      \"number\",\n      \"integer\",\n      \"boolean\",\n      \"object\",\n      \"array\",\n      \"null\"\n    ],\n    \"path\": [\n      \"state_schema\",\n      \"fields\",\n      \"winner\",\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"string\\\"|\\\"number\\\"|\\\"integer\\\"|\\\"boolean\\\"|\\\"object\\\"|\\\"array\\\"|\\\"null\\\"\"\n  }\n]",
+      "original_browser_contract_conformant": false,
+      "raw_final_paths_passed": 0,
+      "raw_process_paths_passed": 0,
+      "hy3_final_correct": false,
+      "hy3_process_correct": false,
+      "hy3_first_error_plan_step": null,
+      "hy3_apparent_pass_with_flaw": false,
+      "hy3_supported_defect_types": [
+        "implementation_mismatch",
+        "implementation_mismatch",
+        "implementation_mismatch"
+      ]
+    },
+    {
+      "id": "persistent-2048",
+      "source": "results/process-15-v1/persistent-2048",
+      "difficulty": "D2",
+      "category": "puzzle",
+      "plan_steps": 6,
+      "browser_paths": 3,
+      "replayed_runs": 9,
+      "contract_conformant": true,
+      "contract_error": null,
+      "original_browser_contract_conformant": true,
+      "raw_final_paths_passed": 0,
+      "raw_process_paths_passed": 0,
+      "hy3_final_correct": null,
+      "hy3_process_correct": null,
       "hy3_first_error_plan_step": null,
       "hy3_apparent_pass_with_flaw": false,
       "hy3_supported_defect_types": []

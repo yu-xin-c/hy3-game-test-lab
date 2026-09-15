@@ -1,0 +1,118 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    },
+    {
+      "action_id": "UP",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowUp",
+      "description": "向上滑动"
+    },
+    {
+      "action_id": "RIGHT",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowRight",
+      "description": "向右滑动"
+    },
+    {
+      "action_id": "DOWN",
+      "actor": "primary",
+      "device": "keyboard",
+      "key_event": "press",
+      "code": "ArrowDown",
+      "description": "向下滑动"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始并清除存档"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" },
+      "grid": { "type": "array", "description": "4x4 棋盘数据" },
+      "moves": { "type": "integer", "description": "已进行的滑动次数" },
+      "max_tile": { "type": "integer", "description": "当前棋盘最大方块" },
+      "saved": { "type": "boolean", "description": "是否已写入存档" }
+    },
+    "required": ["status", "grid", "moves", "max_tile", "saved"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "swipe",
+      "description": "方向滑动输入",
+      "payload_fields": {
+        "direction": { "type": "string", "description": "滑动方向" }
+      }
+    },
+    {
+      "type": "tile_merged",
+      "description": "方块合并",
+      "payload_fields": {
+        "direction": { "type": "string", "description": "滑动方向" },
+        "value": { "type": "integer", "description": "合并后数值" }
+      }
+    },
+    {
+      "type": "state_saved",
+      "description": "状态已保存到存档",
+      "payload_fields": {}
+    },
+    {
+      "type": "state_loaded",
+      "description": "从存档恢复状态",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_won",
+      "description": "游戏胜利（合成 8）",
+      "payload_fields": {
+        "max_tile": { "type": "integer", "description": "最大方块" }
+      }
+    },
+    {
+      "type": "game_lost",
+      "description": "游戏失败（两次滑动未合成 8）",
+      "payload_fields": {
+        "max_tile": { "type": "integer", "description": "最大方块" }
+      }
+    },
+    {
+      "type": "game_reset",
+      "description": "游戏重置（重置菜单状态）",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

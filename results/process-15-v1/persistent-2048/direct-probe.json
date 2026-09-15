@@ -1,0 +1,2730 @@
+{
+  "scope": "Direct actual keyboard/reload probe bypasses only the harness strict observe-object parser; original browser result and game unchanged",
+  "game_directory_sha256": "b7d5810c555ceb10cfead17cb30c9dc0fcd22d7d3f46e3a7a5844cb4196679ba",
+  "original_plan_step3_claim": "ArrowRight 再 ArrowDown 后 observe().state.status==='won' 且 max_tile===8；另起一局 ArrowRight 再 ArrowUp（不产生 8）后 status==='lost'；终局后再按方向键 observe().state.moves 不再增加。",
+  "observe_extra_protocol_present": true,
+  "replays": 3,
+  "right_down_refresh_win_passes": 3,
+  "right_up_plan_counterexample_passes": 3,
+  "right_left_loss_passes": 3,
+  "rows": [
+    {
+      "replay": 0,
+      "scenario": "right-down-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 41,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 90,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 109,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 11,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 13,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 14,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 50,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      }
+    },
+    {
+      "replay": 0,
+      "scenario": "right-up-plan-counterexample",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 21,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 59,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 0,
+      "scenario": "right-left-loss",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 21,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 55,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 1,
+      "scenario": "right-down-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 21,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 65,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 67,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 10,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 11,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 13,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 47,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      }
+    },
+    {
+      "replay": 1,
+      "scenario": "right-up-plan-counterexample",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 20,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 59,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 1,
+      "scenario": "right-left-loss",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 20,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 55,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 2,
+      "scenario": "right-down-refresh",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 20,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 55,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 10,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "state_loaded"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 11,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 12,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                8
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 5
+        },
+        "event_types": [
+          "state_loaded",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 47,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 2,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_reset"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      }
+    },
+    {
+      "replay": 2,
+      "scenario": "right-up-plan-counterexample",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 20,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 59,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 59,
+          "status": "won",
+          "state": {
+            "status": "won",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 8,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 8
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "tile_merged",
+          "game_won",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 8 | Moves: 2 / 2",
+          "status": "Won"
+        }
+      },
+      "restarted": null
+    },
+    {
+      "replay": 2,
+      "scenario": "right-left-loss",
+      "initial": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 21,
+          "status": "menu",
+          "state": {
+            "status": "menu",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 0
+        },
+        "event_types": [],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Menu"
+        }
+      },
+      "started": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 56,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                2,
+                2,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 0,
+            "max_tile": 4,
+            "saved": false
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 1
+        },
+        "event_types": [
+          "game_started"
+        ],
+        "storage_keys": [],
+        "hud": {
+          "score": "Max: 4 | Moves: 0 / 2",
+          "status": "Playing"
+        }
+      },
+      "afterRight": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 57,
+          "status": "playing",
+          "state": {
+            "status": "playing",
+            "grid": [
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 1,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 4
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 1 / 2",
+          "status": "Playing"
+        }
+      },
+      "restored": null,
+      "terminal": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 58,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "frozen": {
+        "observation": {
+          "protocol": "gametestlab/2",
+          "tick": 59,
+          "status": "lost",
+          "state": {
+            "status": "lost",
+            "grid": [
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "moves": 2,
+            "max_tile": 4,
+            "saved": true
+          },
+          "event_epoch": 1,
+          "latest_event_seq": 7
+        },
+        "event_types": [
+          "game_started",
+          "swipe",
+          "tile_merged",
+          "state_saved",
+          "swipe",
+          "game_lost",
+          "state_saved"
+        ],
+        "storage_keys": [
+          "persistent2048"
+        ],
+        "hud": {
+          "score": "Max: 4 | Moves: 2 / 2",
+          "status": "Lost"
+        }
+      },
+      "restarted": null
+    }
+  ]
+}

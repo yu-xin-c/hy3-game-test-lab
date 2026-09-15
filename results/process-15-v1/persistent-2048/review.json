@@ -1,0 +1,77 @@
+{
+  "model": "hy3",
+  "model_verified": true,
+  "verdict": {
+    "final_correct": null,
+    "process_correct": null,
+    "first_error_step": null,
+    "apparent_pass_with_flaw": false,
+    "findings": [
+      {
+        "step_id": null,
+        "kind": "test_problem",
+        "status": "test_problem",
+        "explanation": "全部 9 个场景在 L1 即失败，根因为 runner 报 'Browser setup failed: Unrecognized key: \"protocol\"'。这是测试夹具/清单 schema 校验错误，页面从未真正加载，因此所有状态/事件 'missing' diff（status、moves、grid.*、game_started、state_loaded、tile_merged、game_won、game_lost、game_reset 等）都是浏览器未启动的下游假象，并非游戏逻辑缺陷。该失败属于固定路径失败（manifest 契约），不证明游戏不可玩，与公开需求是否一致需另查——公开需求并未要求 game.manifest.json，故不视为需求违背。",
+        "file": "game.manifest.json",
+        "excerpt": "\"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }",
+        "scenario_id": null,
+        "action_index": 0
+      },
+      {
+        "step_id": 3,
+        "kind": "invalid_assumption",
+        "status": "repaired",
+        "explanation": "方案步骤 3 的次级验证主张 'ArrowRight 再 ArrowUp（不产生 8）后 status===\"lost\"' 与自身合并规则不自洽：右滑后两个 4 位于第 3 列第 0、1 行，按标准 2048 垂直合并，Up（同 Down）会把它们合成为 8，即应为胜而非负。代码未采纳该错误测试预期，而是实现通用规则（moves>=2 且 max_tile<8 则 lost），逻辑正确：Right+Down 合出 8→won，真正未触达 8 的序列（如 Right+Right/Left/Up 实际也会合 8 而胜，仅 Right+Left 等不产生 8 才判负）判负。故实现自行规避了该错误主张，无功能缺陷，first_error_step 为 null。",
+        "file": "game.js",
+        "excerpt": "if (state.max_tile >= WIN_TILE) {\n    state.status = 'won';\n    logEvent('game_won', { max_tile: state.max_tile });\n  } else if (state.moves >= MAX_MOVES) {\n    state.status = 'lost';\n    logEvent('game_lost', { max_tile: state.max_tile });\n  }",
+        "scenario_id": null,
+        "action_index": null
+      }
+    ],
+    "limits": [
+      "执行证据完全缺失：所有场景因 game.manifest.json 的 bridge.protocol 触发 runner schema 校验失败，浏览器从未加载，无任何功能级通过/失败的真值信号。",
+      "游戏逻辑（固定棋盘、Right+Down 合 8 获胜、刷新恢复、Restart 清档、HUD/事件齐备、只读桥协议 gametestlab/2）仅经代码静态审查，未经真实 Chromium 端到端验证，无法据此认证 final_correct 或 process_correct，故均置 null。",
+      "私有 oracle 的 loss-path 网格期望（grid.0.0=2, grid.0.1=2, grid.1.0=4，即初始盘）与任何两步滑动结果不符，属可能的私有规则误报，需以公开需求为准。"
+    ]
+  },
+  "findings": [
+    {
+      "step_id": null,
+      "kind": "test_problem",
+      "status": "test_problem",
+      "explanation": "全部 9 个场景在 L1 即失败，根因为 runner 报 'Browser setup failed: Unrecognized key: \"protocol\"'。这是测试夹具/清单 schema 校验错误，页面从未真正加载，因此所有状态/事件 'missing' diff（status、moves、grid.*、game_started、state_loaded、tile_merged、game_won、game_lost、game_reset 等）都是浏览器未启动的下游假象，并非游戏逻辑缺陷。该失败属于固定路径失败（manifest 契约），不证明游戏不可玩，与公开需求是否一致需另查——公开需求并未要求 game.manifest.json，故不视为需求违背。",
+      "file": "game.manifest.json",
+      "excerpt": "\"bridge\": {\n    \"protocol\": \"gametestlab/2\",\n    \"evidence_only\": true,\n    \"actions_via_real_input\": true\n  }",
+      "scenario_id": null,
+      "action_index": 0,
+      "code_provenance": {
+        "file": "game.manifest.json",
+        "line": 113,
+        "contributing_tool_steps": [
+          4
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    },
+    {
+      "step_id": 3,
+      "kind": "invalid_assumption",
+      "status": "repaired",
+      "explanation": "方案步骤 3 的次级验证主张 'ArrowRight 再 ArrowUp（不产生 8）后 status===\"lost\"' 与自身合并规则不自洽：右滑后两个 4 位于第 3 列第 0、1 行，按标准 2048 垂直合并，Up（同 Down）会把它们合成为 8，即应为胜而非负。代码未采纳该错误测试预期，而是实现通用规则（moves>=2 且 max_tile<8 则 lost），逻辑正确：Right+Down 合出 8→won，真正未触达 8 的序列（如 Right+Right/Left/Up 实际也会合 8 而胜，仅 Right+Left 等不产生 8 才判负）判负。故实现自行规避了该错误主张，无功能缺陷，first_error_step 为 null。",
+      "file": "game.js",
+      "excerpt": "if (state.max_tile >= WIN_TILE) {\n    state.status = 'won';\n    logEvent('game_won', { max_tile: state.max_tile });\n  } else if (state.moves >= MAX_MOVES) {\n    state.status = 'lost';\n    logEvent('game_lost', { max_tile: state.max_tile });\n  }",
+      "scenario_id": null,
+      "action_index": null,
+      "code_provenance": {
+        "file": "game.js",
+        "line": 170,
+        "contributing_tool_steps": [
+          3
+        ],
+        "meaning": "code provenance only; not proof of earliest reasoning error"
+      },
+      "quote_verified": true
+    }
+  ]
+}

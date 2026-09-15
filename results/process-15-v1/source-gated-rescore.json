@@ -1,0 +1,1556 @@
+{
+  "scope": "Sensitivity analysis: source-gated oracle copy; model labels are not independent standard truth, and invalid fixed paths remain flagged",
+  "inventory_sha256": "ce09405fba7627738965a5af2d5b5dd0da9a7856db4eab9e0960a2a6e1f53d95",
+  "counts": {
+    "completed_games": 11,
+    "pending_games": 4,
+    "excluded_context_checks": 41,
+    "unhandled_risk_contexts": 51,
+    "original_process_paths": 10,
+    "gated_process_paths": 15,
+    "total_paths": 35,
+    "invalid_fixed_paths": 4
+  },
+  "pending": [
+    "particle-orchestra",
+    "photo-orbit-gallery",
+    "pet-care-day",
+    "mini-farm"
+  ],
+  "rows": [
+    {
+      "id": "target-rush",
+      "excluded_context_checks": 2,
+      "unhandled_risk_contexts": 7,
+      "removed": [
+        {
+          "assertion_id": "A31",
+          "context": "win-path/TR-CP-WON",
+          "kind": "state",
+          "path": "target_index",
+          "why": "next target does not entail terminal target_index=5"
+        },
+        {
+          "assertion_id": "A36",
+          "context": "win-path/TR-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A6",
+          "context": "HIT",
+          "kind": "control",
+          "path": "HIT.device",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A7",
+          "context": "HIT",
+          "kind": "control",
+          "path": "HIT.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A10",
+          "context": "MISS",
+          "kind": "control",
+          "path": "MISS.device",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A11",
+          "context": "MISS",
+          "kind": "control",
+          "path": "MISS.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A15",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.device",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A16",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A20",
+          "context": "RESTART_KEY",
+          "kind": "control",
+          "path": "RESTART_KEY.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "timeout-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "maze-collector",
+      "excluded_context_checks": 1,
+      "unhandled_risk_contexts": 6,
+      "removed": [
+        {
+          "assertion_id": "A61",
+          "context": "win-path/MC-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A7",
+          "context": "UP",
+          "kind": "control",
+          "path": "UP.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A11",
+          "context": "DOWN",
+          "kind": "control",
+          "path": "DOWN.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A15",
+          "context": "LEFT",
+          "kind": "control",
+          "path": "LEFT.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A19",
+          "context": "RIGHT",
+          "kind": "control",
+          "path": "RIGHT.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A23",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A27",
+          "context": "RESTART_KEY",
+          "kind": "control",
+          "path": "RESTART_KEY.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "MC-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "MC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: page.evaluate: ReferenceError: observe is not defined\n    at Object.reset (http://127.0.0.1:63840/game.js:206:43)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:142)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "maze-collector-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "MC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: page.evaluate: ReferenceError: observe is not defined\n    at Object.reset (http://127.0.0.1:63840/game.js:206:43)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:142)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "maze-collector-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "MC-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: page.evaluate: ReferenceError: observe is not defined\n    at Object.reset (http://127.0.0.1:63840/game.js:206:43)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:142)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "key-door-escape",
+      "excluded_context_checks": 6,
+      "unhandled_risk_contexts": 8,
+      "removed": [
+        {
+          "assertion_id": "A33",
+          "context": "win-path/KD-CP-DOOR-BLOCKED",
+          "kind": "state",
+          "path": "player.y",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "win-path/KD-CP-DOOR-OPEN",
+          "kind": "state",
+          "path": "player.y",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "win-path/KD-CP-WON",
+          "kind": "state",
+          "path": "player.y",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "loss-path/KD-CP-TRAP-1",
+          "kind": "state",
+          "path": "player.y",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "restart-path/KD-CP-RESET",
+          "kind": "state",
+          "path": "player.y",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A52",
+          "context": "win-path/KD-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A7",
+          "context": "UP",
+          "kind": "control",
+          "path": "UP.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A11",
+          "context": "DOWN",
+          "kind": "control",
+          "path": "DOWN.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A15",
+          "context": "LEFT",
+          "kind": "control",
+          "path": "LEFT.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A19",
+          "context": "RIGHT",
+          "kind": "control",
+          "path": "RIGHT.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A22",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.device",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A23",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A27",
+          "context": "RESTART_KEY",
+          "kind": "control",
+          "path": "RESTART_KEY.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A28",
+          "context": "RESTART_KEY",
+          "kind": "control",
+          "path": "RESTART_KEY.code",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": true,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "platform-rescue",
+      "excluded_context_checks": 2,
+      "unhandled_risk_contexts": 3,
+      "removed": [
+        {
+          "assertion_id": "A54",
+          "context": "win-path/PR-CP-WON",
+          "kind": "state",
+          "path": "player.support_id",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A63",
+          "context": "win-path/PR-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A11",
+          "context": "LEFT_UP",
+          "kind": "control",
+          "path": "LEFT_UP.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A19",
+          "context": "RIGHT_UP",
+          "kind": "control",
+          "path": "RIGHT_UP.key_event",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A31",
+          "context": "RESTART_KEY",
+          "kind": "control",
+          "path": "RESTART_KEY.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "sample_index": 0,
+            "tick": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "PR-CP-LAND-1",
+            "layer": "L1",
+            "requirement_ids": [
+              "PR-MOTION",
+              "PR-PHYSICS"
+            ],
+            "error_type": "artifact_failure",
+            "diffs": [
+              {
+                "channel": "physics",
+                "path": "physics.PR-BOUNDS-1",
+                "expected": "valid player and platform geometry",
+                "actual": "missing or invalid player/world bounds geometry"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 2,
+            "checkpoint_id": "PR-CP-HIT-1",
+            "layer": "L2",
+            "requirement_ids": [
+              "PR-HAZARD"
+            ],
+            "error_type": "state_effect_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "lives",
+                "expected": 2,
+                "actual": 3
+              },
+              {
+                "channel": "event",
+                "path": "hazard_hit",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "player_respawned",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "signal-memory",
+      "excluded_context_checks": 4,
+      "unhandled_risk_contexts": 10,
+      "removed": [
+        {
+          "assertion_id": "A51",
+          "context": "win-path/SM-CP-WON",
+          "kind": "state",
+          "path": "phase",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A51",
+          "context": "loss-path/SM-CP-LOST",
+          "kind": "state",
+          "path": "phase",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A58",
+          "context": "win-path/SM-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A66",
+          "context": "restart-path/SM-CP-RESET",
+          "kind": "state",
+          "path": "phase",
+          "why": "Hy3 source label: unsupported"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A8",
+          "context": "RED",
+          "kind": "control",
+          "path": "RED.x_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A9",
+          "context": "RED",
+          "kind": "control",
+          "path": "RED.y_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A13",
+          "context": "GREEN",
+          "kind": "control",
+          "path": "GREEN.x_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A14",
+          "context": "GREEN",
+          "kind": "control",
+          "path": "GREEN.y_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A18",
+          "context": "BLUE",
+          "kind": "control",
+          "path": "BLUE.x_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A19",
+          "context": "BLUE",
+          "kind": "control",
+          "path": "BLUE.y_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A23",
+          "context": "YELLOW",
+          "kind": "control",
+          "path": "YELLOW.x_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A24",
+          "context": "YELLOW",
+          "kind": "control",
+          "path": "YELLOW.y_ratio",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A26",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.device",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A27",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 12,
+            "checkpoint_id": "SM-CP-WON",
+            "layer": "L2",
+            "requirement_ids": [
+              "SM-SEQUENCE",
+              "SM-WIN"
+            ],
+            "error_type": "state_transition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "round",
+                "expected": 3,
+                "actual": 4
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "playback-input-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "fruit-slice-touch",
+      "excluded_context_checks": 7,
+      "unhandled_risk_contexts": 4,
+      "removed": [
+        {
+          "assertion_id": "A22",
+          "context": "win-path/FS-CP-MID",
+          "kind": "state",
+          "path": "sliced",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A23",
+          "context": "win-path/FS-CP-MID",
+          "kind": "state",
+          "path": "remaining",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A27",
+          "context": "win-path/FS-CP-WON",
+          "kind": "state",
+          "path": "sliced",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A28",
+          "context": "win-path/FS-CP-WON",
+          "kind": "state",
+          "path": "remaining",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "win-path/FS-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A37",
+          "context": "loss-path/FS-CP-LOST",
+          "kind": "state",
+          "path": "sliced",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A37",
+          "context": "restart-path/FS-CP-RESET",
+          "kind": "state",
+          "path": "sliced",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A3",
+          "context": "START",
+          "kind": "control",
+          "path": "START.key_event",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A7",
+          "context": "SLICE",
+          "kind": "control",
+          "path": "SLICE.key_event",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A11",
+          "context": "BOMB",
+          "kind": "control",
+          "path": "BOMB.key_event",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A15",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: unsupported"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "FS-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "fruit-slice-touch-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FS-RUN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "menu"
+              },
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "neon-lane-racer",
+      "excluded_context_checks": 1,
+      "unhandled_risk_contexts": 1,
+      "removed": [
+        {
+          "assertion_id": "A34",
+          "context": "win-path/NR-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A15",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.key_event",
+          "why": "Hy3 source label: ambiguous"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 4,
+            "checkpoint_id": "NR-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "NR-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 2000,
+                "actual": 1008
+              },
+              {
+                "channel": "state",
+                "path": "passed",
+                "expected": 2,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "collisions",
+                "expected": 0,
+                "actual": 1
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 200,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "obstacle_passed",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": true
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 1,
+            "checkpoint_id": "NR-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "NR-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "playing"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 1000,
+                "actual": 992
+              },
+              {
+                "channel": "state",
+                "path": "collisions",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "car_crashed",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": true
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "dual-arena",
+      "excluded_context_checks": 9,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A21",
+          "context": "win-path/DA-CP-START",
+          "kind": "state",
+          "path": "status",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A21",
+          "context": "win-path/DA-CP-MID",
+          "kind": "state",
+          "path": "status",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A21",
+          "context": "loss-path/dual-arena-loss-path-started",
+          "kind": "state",
+          "path": "status",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A21",
+          "context": "restart-path/dual-arena-restart-path-started",
+          "kind": "state",
+          "path": "status",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A24",
+          "context": "win-path/DA-CP-MID",
+          "kind": "state",
+          "path": "connected",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A24",
+          "context": "win-path/DA-CP-WON",
+          "kind": "state",
+          "path": "connected",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A24",
+          "context": "loss-path/DA-CP-LOST",
+          "kind": "state",
+          "path": "connected",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A36",
+          "context": "win-path/DA-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        },
+        {
+          "assertion_id": "A42",
+          "context": "restart-path/DA-CP-RESET",
+          "kind": "state",
+          "path": "connected",
+          "why": "reset connection does not entail a numeric connected=0"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 4,
+            "checkpoint_id": "DA-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "DA-LOSS"
+            ],
+            "error_type": "missing_event",
+            "diffs": [
+              {
+                "channel": "event",
+                "path": "player_moved",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "meteor-survivor",
+      "excluded_context_checks": 4,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A20",
+          "context": "win-path/MS-CP-MID",
+          "kind": "state",
+          "path": "lane",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A20",
+          "context": "win-path/MS-CP-WON",
+          "kind": "state",
+          "path": "lane",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A24",
+          "context": "win-path/MS-CP-MID",
+          "kind": "state",
+          "path": "best_score",
+          "why": "Hy3 source label: ambiguous"
+        },
+        {
+          "assertion_id": "A36",
+          "context": "win-path/MS-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 6,
+            "checkpoint_id": "MS-CP-MID",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-MAIN"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "playing",
+                "actual": "lost"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 3000,
+                "actual": 1000
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 3,
+                "actual": 0
+              },
+              {
+                "channel": "state",
+                "path": "score",
+                "expected": 300,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "wave_survived",
+                "expected": "present",
+                "actual": "missing"
+              },
+              {
+                "channel": "event",
+                "path": "leaderboard_updated",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": true
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 1,
+            "checkpoint_id": "MS-CP-LOST",
+            "layer": "L2",
+            "requirement_ids": [
+              "MS-LOSS"
+            ],
+            "error_type": "terminal_condition_error",
+            "diffs": [
+              {
+                "channel": "state",
+                "path": "status",
+                "expected": "lost",
+                "actual": "playing"
+              },
+              {
+                "channel": "state",
+                "path": "elapsed_ms",
+                "expected": 1000,
+                "actual": 992
+              },
+              {
+                "channel": "state",
+                "path": "wave",
+                "expected": 1,
+                "actual": 0
+              },
+              {
+                "channel": "event",
+                "path": "meteor_hit",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": true
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": true,
+          "original_process": true,
+          "gated_final": true,
+          "gated_process": true,
+          "gated_first_failure": null,
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "room-five-in-row",
+      "excluded_context_checks": 4,
+      "unhandled_risk_contexts": 12,
+      "removed": [
+        {
+          "assertion_id": "A53",
+          "context": "win-path/FR-CP-START",
+          "kind": "state",
+          "path": "status",
+          "why": "creating a room does not require playing before the second page joins"
+        },
+        {
+          "assertion_id": "A53",
+          "context": "loss-path/room-five-in-row-loss-path-started",
+          "kind": "state",
+          "path": "status",
+          "why": "creating a room does not require playing before the second page joins"
+        },
+        {
+          "assertion_id": "A53",
+          "context": "restart-path/room-five-in-row-restart-path-started",
+          "kind": "state",
+          "path": "status",
+          "why": "creating a room does not require playing before the second page joins"
+        },
+        {
+          "assertion_id": "A72",
+          "context": "win-path/FR-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [
+        {
+          "assertion_id": "A5",
+          "context": "JOIN",
+          "kind": "control",
+          "path": "JOIN.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A9",
+          "context": "P1_C0",
+          "kind": "control",
+          "path": "P1_C0.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A13",
+          "context": "P1_C1",
+          "kind": "control",
+          "path": "P1_C1.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A17",
+          "context": "P1_C2",
+          "kind": "control",
+          "path": "P1_C2.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A21",
+          "context": "P1_C3",
+          "kind": "control",
+          "path": "P1_C3.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A25",
+          "context": "P1_C4",
+          "kind": "control",
+          "path": "P1_C4.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A29",
+          "context": "P2_C0",
+          "kind": "control",
+          "path": "P2_C0.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A33",
+          "context": "P2_C1",
+          "kind": "control",
+          "path": "P2_C1.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A37",
+          "context": "P2_C2",
+          "kind": "control",
+          "path": "P2_C2.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A41",
+          "context": "P2_C3",
+          "kind": "control",
+          "path": "P2_C3.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A45",
+          "context": "P2_C4",
+          "kind": "control",
+          "path": "P2_C4.actor",
+          "why": "Hy3 source label: unsupported"
+        },
+        {
+          "assertion_id": "A49",
+          "context": "RESTART",
+          "kind": "control",
+          "path": "RESTART.actor",
+          "why": "Hy3 source label: unsupported"
+        }
+      ],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "FR-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "FR-RUN"
+            ],
+            "error_type": "missing_event",
+            "diffs": [
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "room-five-in-row-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FR-RUN"
+            ],
+            "error_type": "missing_event",
+            "diffs": [
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "checkpoint_id": "room-five-in-row-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "FR-RUN"
+            ],
+            "error_type": "missing_event",
+            "diffs": [
+              {
+                "channel": "event",
+                "path": "game_started",
+                "expected": "present",
+                "actual": "missing"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    },
+    {
+      "id": "persistent-2048",
+      "excluded_context_checks": 1,
+      "unhandled_risk_contexts": 0,
+      "removed": [
+        {
+          "assertion_id": "A40",
+          "context": "win-path/P2-CP-WON-UI",
+          "kind": "ui_text",
+          "path": "statusText",
+          "why": "entire HUD node exclusivity not established"
+        }
+      ],
+      "unhandled": [],
+      "paths": [
+        {
+          "scenario_id": "win-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "P2-CP-START",
+            "layer": "L1",
+            "requirement_ids": [
+              "P2-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "loss-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "persistent-2048-loss-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "P2-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        },
+        {
+          "scenario_id": "restart-path",
+          "original_final": false,
+          "original_process": false,
+          "gated_final": false,
+          "gated_process": false,
+          "gated_first_failure": {
+            "action_index": 0,
+            "elapsed_ms": 0,
+            "checkpoint_id": "persistent-2048-restart-path-started",
+            "layer": "L1",
+            "requirement_ids": [
+              "P2-RUN"
+            ],
+            "error_type": "runtime_error",
+            "diffs": [
+              {
+                "channel": "runtime",
+                "path": "browser",
+                "expected": "no error",
+                "actual": "runner: Browser setup failed: [\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"protocol\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"protocol\\\"\"\n  }\n]"
+              }
+            ]
+          },
+          "path_problem": false
+        }
+      ]
+    }
+  ]
+}

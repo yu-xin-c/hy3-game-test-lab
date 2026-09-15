@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=600" />
+  <title>Persistent 2048</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Persistent 2048</h1>
+      <div class="hud">
+        <div data-testid="score">Max: 4 | Moves: 0 / 2</div>
+        <div data-testid="status">Menu</div>
+      </div>
+    </header>
+
+    <div id="board"></div>
+
+    <div id="panel">
+      <p id="menu-msg" class="msg">在两次滑动内合成数字 8。点击 Start 开始。</p>
+      <p id="endgame-msg" class="msg hidden"></p>
+      <div class="controls">
+        <button id="start-btn">Start</button>
+        <button id="restart-btn" class="hidden">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

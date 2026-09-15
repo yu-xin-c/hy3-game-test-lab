@@ -1,0 +1,178 @@
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "创建房间 (P1)"
+    },
+    {
+      "action_id": "JOIN",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#join-btn",
+      "description": "加入房间 (P2)"
+    },
+    {
+      "action_id": "P1_C0",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r0-c0",
+      "description": "P1 落子 第0行第0列"
+    },
+    {
+      "action_id": "P1_C1",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r0-c1",
+      "description": "P1 落子 第0行第1列"
+    },
+    {
+      "action_id": "P1_C2",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r0-c2",
+      "description": "P1 落子 第0行第2列"
+    },
+    {
+      "action_id": "P1_C3",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r0-c3",
+      "description": "P1 落子 第0行第3列"
+    },
+    {
+      "action_id": "P1_C4",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r0-c4",
+      "description": "P1 落子 第0行第4列"
+    },
+    {
+      "action_id": "P2_C0",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r4-c0",
+      "description": "P2 落子 第4行第0列"
+    },
+    {
+      "action_id": "P2_C1",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r4-c1",
+      "description": "P2 落子 第4行第1列"
+    },
+    {
+      "action_id": "P2_C2",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r4-c2",
+      "description": "P2 落子 第4行第2列"
+    },
+    {
+      "action_id": "P2_C3",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r4-c3",
+      "description": "P2 落子 第4行第3列"
+    },
+    {
+      "action_id": "P2_C4",
+      "actor": "secondary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#cell-r4-c4",
+      "description": "P2 落子 第4行第4列"
+    },
+    {
+      "action_id": "RESTART",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#restart-btn",
+      "description": "重新开始"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态 menu/playing/won/lost" },
+      "connected": { "type": "boolean", "description": "双方是否已连接" },
+      "turn": { "type": "string", "description": "当前落子方 P1/P2" },
+      "moves": { "type": "integer", "description": "已落子步数" },
+      "winner": { "type": ["string", "null"], "description": "胜者 P1/P2 或 null" },
+      "board": { "type": "array", "description": "5x5 棋盘，元素为 null/'X'/'O'" }
+    },
+    "required": ["status", "connected", "turn", "moves", "winner", "board"]
+  },
+  "event_schema": [
+    {
+      "type": "room_created",
+      "description": "主页面创建房间",
+      "payload_fields": { "seed": { "type": "integer", "description": "房间种子" } }
+    },
+    {
+      "type": "player_joined",
+      "description": "副页面加入房间",
+      "payload_fields": {}
+    },
+    {
+      "type": "game_started",
+      "description": "双方就绪，对局开始",
+      "payload_fields": {}
+    },
+    {
+      "type": "piece_placed",
+      "description": "落子",
+      "payload_fields": {
+        "row": { "type": "integer", "description": "行" },
+        "col": { "type": "integer", "description": "列" },
+        "player": { "type": "string", "description": "落子方 P1/P2" },
+        "symbol": { "type": "string", "description": "棋子 X/O" }
+      }
+    },
+    {
+      "type": "turn_changed",
+      "description": "回合切换",
+      "payload_fields": { "turn": { "type": "string", "description": "新的落子方" } }
+    },
+    {
+      "type": "match_won",
+      "description": "对局结束并产生胜者",
+      "payload_fields": {
+        "winner": { "type": "string", "description": "胜者 P1/P2" },
+        "row": { "type": "integer", "description": "制胜手行" },
+        "col": { "type": "integer", "description": "制胜手列" }
+      }
+    },
+    {
+      "type": "game_reset",
+      "description": "重开或重置",
+      "payload_fields": { "seed": { "type": "integer", "description": "重置种子" } }
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}

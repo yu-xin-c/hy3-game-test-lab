@@ -1,0 +1,126 @@
+在当前目录实现下面完整可玩的浏览器游戏。只创建 index.html、styles.css、game.js、game.manifest.json 四个文件，不访问当前目录以外的文件。
+按给定公开方案实现；如发现方案不成立，可调整实现，并在公开简短说明中注明对应步骤和原因。先写可运行基础，再补齐玩法，每次重要修改前简短说明对应方案步骤。只能用Read/Write/Edit，无法执行浏览器测试，不要声称已运行。不要写额外说明文件。最终简短说明已实现的功能与未验证事项。
+题目：
+# Persistent 2048
+
+## 游戏目标
+
+在两次滑动内把固定棋盘合成数字 8，并在中途刷新后继续。
+
+## 完整玩法
+
+初始第0行为 [2,2,0,0]，第1行为 [4,0,0,0]，其余为0；不生成随机新块。每次方向输入都计一次 moves 并立即保存。右滑后两个4位于第0、1行最右列；刷新后该状态必须恢复。
+
+存档使用 localStorage 或 IndexedDB；页面刷新后必须恢复，Restart 按题目要求清理。
+
+## 胜负与重开
+
+- 第二步向下合出 8 时获胜。
+- 两次输入后最大数字仍小于 8 则失败。
+- Restart 清除存档并恢复原始棋盘和菜单。
+
+## 界面与反馈
+
+固定 800×600 视口。HUD 始终显示分数或进度，以及状态 `Menu`、`Playing`、`Won`、`Lost`。菜单、主要游戏区域、终局和 Restart 都要完整可见。
+
+## 固定规则
+
+相同 seed 必须得到相同初始状态和同一时间表。游戏结束后输入不能再改变分数、进度或胜负。所有时间规则使用毫秒，并能由虚拟时间推进。
+
+## 自动测试接口
+
+- 界面类型：dom；主要区域：`#board`。
+- HUD：`[data-testid="score"]` 和 `[data-testid="status"]`。
+- state 至少包含：`status`、`grid`、`moves`、`max_tile`、`saved`。
+- 事件：`game_started`、`swipe`、`tile_merged`、`state_saved`、`state_loaded`、`game_won`、`game_lost`、`game_reset`。
+- 控件：
+  - `START`：mouse 操作 #start-btn
+  - `UP`：键盘 ArrowUp press
+  - `RIGHT`：键盘 ArrowRight press
+  - `DOWN`：键盘 ArrowDown press
+  - `RESTART`：mouse 操作 #restart-btn
+
+接口要求：
+# 生成要求
+
+每道题都要生成一个可以独立打开和完整游玩的浏览器游戏。只输出以下四个文件：
+
+- `index.html`
+- `styles.css`
+- `game.js`
+- `game.manifest.json`
+
+游戏固定使用 800×600 视口，不加载网络资源，不依赖 CDN、字体服务、远程图片或后端接口。玩家操作必须来自真实的键盘、鼠标或触控。本批不含摄像头题。
+
+带复杂环境的题目遵守以下约定：
+
+- 3D 题使用原生 WebGL 和本地生成纹理。
+- 多人题由评测器打开两个同源页面，只能通过 `BroadcastChannel` 在本机同步。
+- 存档题使用 `localStorage` 或 IndexedDB，评测器会真实刷新页面检查恢复结果。
+- 排行榜只统计题目声明的本局或本地成绩，不访问服务器。
+
+`game.manifest.json` 必须严格使用下面的结构。数组内容按题目实际要求填写，不能改用 `schema`、`entry`、`interface`、`pages`、`status_fields` 或 `event_types` 等简写字段。
+
+```json
+{
+  "schema_version": "gametestlab.game-manifest.v3",
+  "entry_path": "index.html",
+  "surface": "dom",
+  "viewport": { "width": 800, "height": 600 },
+  "controls": [
+    {
+      "action_id": "START",
+      "actor": "primary",
+      "device": "mouse",
+      "key_event": "press",
+      "selector": "#start-btn",
+      "description": "开始游戏"
+    }
+  ],
+  "hud_selectors": {
+    "score": "[data-testid=\"score\"]",
+    "status": "[data-testid=\"status\"]"
+  },
+  "state_schema": {
+    "fields": {
+      "status": { "type": "string", "description": "当前状态" }
+    },
+    "required": ["status"]
+  },
+  "event_schema": [
+    {
+      "type": "game_started",
+      "description": "游戏开始",
+      "payload_fields": {}
+    }
+  ],
+  "bridge": {
+    "protocol": "gametestlab/2",
+    "evidence_only": true,
+    "actions_via_real_input": true
+  }
+}
+```
+
+`surface` 按题目填写 `dom`、`canvas2d` 或 `webgl`。控件对象必须与题面的动作、设备、按键或 selector 对应。`hud_selectors` 至少包含 `score` 和 `status`；`state_schema.fields` 与 `event_schema` 必须覆盖题目要求。除字段定义允许的内容外，不添加额外顶层字段。
+
+键盘控件使用 `code`，不是 `key_code`；例如 `{"action_id":"HEAT_DOWN","actor":"primary","device":"keyboard","key_event":"down","code":"KeyH","description":"按下加热键"}`。鼠标和触控使用 `selector`，或 0～1 的 `x_ratio`、`y_ratio`。第二位玩家的 `actor` 为 `secondary`，默认玩家为 `primary`。
+
+每个状态字段和非空事件字段都使用对象定义，例如 `"temperature":{"type":"number","description":"温度，摄氏度"}`，不能写成 `"temperature":"number"`。类型可选 `string`、`number`、`integer`、`boolean`、`array`、`object`、`null`。事件示例：`{"type":"temperature_changed","description":"温度变化","payload_fields":{"temperature":{"type":"number","description":"温度"}}}`。
+
+游戏要提供只读观察接口 `window.__GAMETESTLAB__`，协议为 `gametestlab/2`：
+
+- 对象必须有 `protocol: "gametestlab/2"` 字段，不能只在 manifest 中声明。
+- `isReady()`：游戏是否完成初始化。
+- `reset({seed})`：按固定 seed 恢复菜单状态；每次调用增加 `event_epoch`，并重新从 `seq=1` 记录 `game_reset`。
+- `observe()`：返回 `tick`、`status`、`state`、`event_epoch` 和 `latest_event_seq`。
+- `getEvents({afterSeq})`：返回当前事件周期中序号大于 `afterSeq` 的事件。
+
+`status` 只能是 `menu`、`playing`、`won`、`lost`。事件序号从 1 连续递增，状态和事件必须是可序列化的普通 JSON。观察接口不能提供代替玩家操作的方法。所有时间逻辑必须由 `Date`、`performance`、timer 或 `requestAnimationFrame` 驱动，以便评测器用虚拟时间重复执行。
+
+事件对象包含 `seq`、`tick`、`type`，可选 `payload`；例如 `{"seq":1,"tick":0,"type":"game_started","payload":{}}`。所有游戏点击 Start 后记录 `game_started`。Restart 在局内和终局都必须可见、可用，并恢复题目规定的菜单状态。
+
+检查时会分别保存操作后状态与等待 32ms 后的终局画面，不要求 DOM 在同一 JavaScript 调用中刷新。HUD 可自定文案布局，状态文字忽略大小写及连续空白；不能省略分数或进度。计时边界检查可多等待 32ms；科学实验的温度误差为 0.64°C，农场计时读数误差为 32ms。生命、金币、收获数量和胜负不使用数值容差。
+
+公开方案：
+{"steps":[{"id":1,"requirement":"固定初始棋盘且不生成随机块；相同 seed 必须得到相同初始状态。","implementation":"4×4 grid 初始化为 grid[0]=[2,2,0,0]、grid[1]=[4,0,0,0]、其余为 0；无随机新块。reset({seed}) 仅用 seed 作为菜单恢复键，不驱动任何 RNG，固定还原该矩阵并将 status 置为 menu、moves=0、max_tile=4、saved=false。","verification":"打开页面后 observe().state.grid 等于 [[2,2,0,0],[4,0,0,0],[0,0,0,0],[0,0,0,0]]；调用 reset(任意seed) 后 observe().state.status==='menu' 且 grid 与 moves=0 不变。"},{"id":2,"requirement":"每次方向输入计一次 moves 并立即保存到 localStorage；刷新后状态必须恢复。","implementation":"监听 ArrowRight/ArrowDown/ArrowUp；每次触发执行对应行列合并（同值合并为 2 倍并朝方向靠齐，无相邻同值则不合并），moves+=1，重算 max_tile，写入 localStorage 键 persistent2048（含 status、grid、moves、max_tile、saved:true），派发 state_saved 事件（seq 递增）。","verification":"按 ArrowRight 后 observe().state.moves===1 且 localStorage 中 saved===true；真实刷新页面后 observe().state.grid 与刷新前一致、status 恢复为 playing 而非 menu。"},{"id":3,"requirement":"第二步向下合出 8 则胜；两次输入后最大数字仍小于 8 则败；终局后输入不再改变状态。","implementation":"每次滑动后计算 max_tile：若合出 8 则 status='won' 并派发 game_won；若 moves>=2 且 max_tile<8 则 status='lost' 并派发 game_lost。终局后忽略所有方向输入（不修改 moves/grid/status）。","verification":"ArrowRight 再 ArrowDown 后 observe().state.status==='won' 且 max_tile===8；另起一局 ArrowRight 再 ArrowUp（不产生 8）后 status==='lost'；终局后再按方向键 observe().state.moves 不再增加。"},{"id":4,"requirement":"Restart 必须清除存档并恢复原始棋盘与菜单，且在局内与终局均可见可用。","implementation":"#restart-btn 点击后移除 localStorage 键，grid 还原初始矩阵，status='menu'、moves=0、saved=false，派发 game_reset（event_epoch+1、seq 从 1 重记）。按钮在 playing/won/lost 状态下均渲染可见。","verification":"进行中点击 #restart-btn 后 observe().state.status==='menu' 且 localStorage 中 saved 为 false/不存在；getEvents({afterSeq:0}) 中首条事件 seq=1 且 type==='game_reset'。"},{"id":5,"requirement":"固定 800×600 视口；HUD 始终显示分数/进度与状态；#board、菜单、终局、Restart 完整可见；事件齐备。","implementation":"viewport 设 800×600（meta 视口+CSS 固定）；#board 渲染 4×4 格；HUD 用 [data-testid=score] 显示 max_tile/moves，[data-testid=status] 显示 Menu/Playing/Won/Lost（忽略大小写与连续空白）。派发事件：game_started(点击 #start-btn)、swipe、tile_merged、state_saved、state_loaded、game_won、game_lost、game_reset。","verification":"浏览器打开后 #board 可见且页面尺寸为 800×600；点击 #start-btn 后 getEvents 含 game_started 且 status='playing'；HUD 文本包含 Playing/分数且终局与 Restart 控件同时可见。"},{"id":6,"requirement":"提供只读观察接口 window.__GAMETESTLAB__，协议 gametestlab/2。","implementation":"暴露对象 protocol:'gametestlab/2'，含 isReady()、reset({seed})、observe()（返回 tick、status、state、event_epoch、latest_event_seq）、getEvents({afterSeq})。tick 由 performance.now() 驱动；不提供任何代替玩家操作的方法；状态与事件均为可序列化 JSON。","verification":"控制台检测 typeof window.__GAMETESTLAB__.observe==='function' 且 observe().protocol 满足；连续两次 reset 后 observe().event_epoch 递增；getEvents({afterSeq:0}) 首事件 seq=1 且 type==='game_reset'，无替代操作接口暴露。"}]}
