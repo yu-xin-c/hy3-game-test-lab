@@ -14,7 +14,7 @@
 | 完整运行结果 | `results/process-15-v1/FINAL.md` 和 `final-summary.json`；历史运行输出仅本地留存 | 15/15 完成；混元最终意见 4/11、过程意见 6/12，原固定路径通过 14/47 不能当独立准确率 |
 | 难度边界分析 | `reports/analysis-report.md` | 已分析，现有结果不支持可靠临界点 |
 | 开源仓库与说明 | README、MIT、环境示例、源码、运行说明 | 已发布，持续更新 |
-| 汇报材料 | `docs/evaluation-slides-15-cn-v9.pptx` | 十页中文 PPT 展示评价单位、审计重点、逐条核对、分层结果和定位案例；视频由用户负责 |
+| 汇报材料 | `docs/evaluation-slides-15-cn-v11.pptx` | 十页中文 PPT 展示研究设计、评价单位、审计重点、逐条核对、分层结果和定位案例；视频由用户负责 |
 
 ## 结果限制
 
