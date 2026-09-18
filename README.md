@@ -1,122 +1,148 @@
 # GameTestLab
 
-本地应用：`pnpm run app`。生成过程页在 `/`，真实错误自动证据页在 `/mined`，混元自主探索记录在 `/exploration`。探索页可切换三个游戏，逐步查看状态、页面文字、重放结果与代码定位。
+GameTestLab 用真实浏览器检查混元生成的网页游戏。它不仅判断游戏终局是否获胜，还会核对生成前的编号方案、代码实现和逐步试玩记录，找出第一次出现偏差的玩家操作、方案步骤与相关代码。
 
-补充案例：[播放中重开导致旧计时器干扰新一局](results/playback-restart-v1/REPORT.md)。原始混元游戏、真实浏览器复现、混元复核和生成代码来源均保留。
+本项目参加 2026 腾讯犀牛鸟开源人才培养计划“可验证场景：过程评估与错误定位”课题。项目由个人完成，不是腾讯或混元团队的官方项目。
 
-[判据修订与重跑](results/signal-checks-v3/README.md)：Signal Memory 原有路径在修正检查和指针执行后 12/12 通过，新增反例仍 0/3 通过。旧结果不覆盖。
+## 正式实验
 
-累计生成并运行超过 60 款游戏；正式生成过程审计固定为 15 题。旧批次逐题记录和补跑证据只留本地，不随 GitHub 仓库发布。公开结果见[15 题最终报告](results/process-15-v1/FINAL.md)和[十页中文汇报 PPT](docs/evaluation-slides-15-cn-v11.pptx)。本次发布不包含视频。
+| 项目 | 结果 |
+| --- | ---: |
+| 正式审计游戏 | 15 |
+| 玩法路径 | 47 |
+| 浏览器重复执行 | 141 |
+| 当前接口声明合规 | 8/15 |
+| 原固定路径到达预期终点 | 14/47 |
+| 可独立核对的错误步骤同时检出并定位 | 1/3 |
+| “游戏结果正确、方案过程错误”案例 | 1 |
 
-GameTestLab 面向 AI 生成的浏览器游戏。对已经配置测试场景和 oracle 的游戏，它会在 Chromium 里发送键鼠输入，按定义的路径试玩，同时记录页面错误、网络失败、游戏状态、事件、界面和截图。发现问题后，报告会指出它属于哪一层，以及第一次出错发生在哪一步。
+原固定路径中存在输入时机、状态字段和界面文案方面的判据问题，因此 14/47 只记录原测试执行结果，不作为游戏正确率。1/3 的定位结果来自三个可独立核对的方案错误，样本较少，不外推为总体准确率。完整口径见[最终实验报告](reports/analysis-report.md)。
 
-> 这是个人参加 2026 腾讯犀牛鸟开源人才培养计划相关活动的作品，不是腾讯或混元团队的官方项目。不训练、不微调，也不发布模型权重；自建校准集未调用模型，真实游戏实验使用 CodeBuddy CN 的 Hy3 High。
+![粒子乐队到达获胜状态，但最终分数为 200](results/process-15-v1/particle-orchestra/browser/screenshots/replay-3/win-path/particle-orchestra-action-05.png)
 
-[项目方案](docs/proposal.md) · [系统架构](docs/architecture.md) · [正式审计结果](results/process-15-v1/FINAL.md) · [校准集结果](results/sample/README.md)
+上图是一个过程错误实例。公开规则要求四次正确输入各加 25 分，正确终分应为 100。混元生成的方案第 3 步和代码都加入了额外 100 分，浏览器三次执行均以 200 分结束。评估器判定过程有误，并定位到方案第 3 步。
 
+## 评估对象
 
-正式 15 题审计让混元先写编号方案，再生成游戏代码，并由真实浏览器试玩和混元复核。过程评价以方案中的一条可核对判断为单位，对照公开规则、代码和实际操作结果；分别记录操作首错、方案首错与相关代码写入。重点看题意、方案依据、实现兑现和判据风险，详见[过程评价体系](docs/process-evaluation.md)。历史批次的路径分数不并入这 15 题；原始规则可能误报，混元复核也不是独立真值。[判据溯源](results/public-check-audit-v1/README.md)只统计正式范围。
+本项目评估混元实际留下的外部过程，不推测模型内部思维。每题保存四类材料：公开需求、生成前编号方案、实际代码写入记录和真实浏览器运行证据。过程评价的基本单位是方案里可以验证的一条判断，例如“这次输入增加 25 分”“重开后计时归零”或“角色能够落到下一个平台”。
 
-新增[玩法故障与生成记录追溯实验](results/process-localization-pilot/README.md)：复用 3 个 Hy3 游戏，执行 15 次浏览器对照，再由 Hy3 复核并引用具体代码；有完整历史时，可追溯到写入该代码的工具步骤。旧批次的“过程”指标指试玩过程，不等于生成推理过程的正确率。
+```mermaid
+flowchart LR
+    A[公开游戏需求] --> B[混元编号方案]
+    B --> C[混元生成代码]
+    C --> D[Playwright 真实输入]
+    D --> E[状态、事件、HUD、截图、报错]
+    E --> F[确定性规则与混元复核]
+    F --> G[游戏结论]
+    F --> H[方案首错步骤]
+    F --> I[相关代码与写入来源]
+```
 
-## 怎么检测游戏
+生成和复核均使用 CodeBuddy CN 中的 Hy3 High。生成阶段只提供公开需求和接口说明；预期结果在生成完成后才交给测试程序，避免把答案写入生成提示。
 
-测试分成三层，但都来自同一次自动试玩：
+## 检查内容
 
-本轮不测摄像头、视频理解和语音交互类游戏；DOM、Canvas、3D 游戏保留。这个限制针对游戏任务，不限制用多模态模型辅助检查界面。
+同一次试玩从三个层面留下证据。
 
-| 层级 | 实际检查 |
+| 层级 | 检查内容 |
 | --- | --- |
-| L1 运行 | 页面能否加载和启动，是否出现 console、page、网络错误或外部依赖 |
-| L2 逻辑 | 声明的检查点上，输入后的状态、计分和事件是否符合预期，完整路径能否走通 |
-| L3 界面 | HUD 是否与内部状态一致，DOM 和 Canvas 证据是否符合断言 |
+| L1 运行 | 页面能否启动，是否出现 console、page、网络或外部依赖错误 |
+| L2 玩法 | 输入后的状态、计分、事件、胜负、重开和存档是否符合公开规则 |
+| L3 界面 | HUD 是否与内部状态一致，DOM、Canvas 和截图是否支持当前结论 |
 
-L1 直接在 Playwright 启动的真实 Chromium 中执行。L2 按测试路径发送真实输入，并在每个检查点读取状态和事件，与 oracle 比较。计时或物理玩法可以冻结浏览器时钟，按固定时间片推进，并根据观察桥提供的几何状态检查碰撞、穿透、跳跃高度、落脚支撑和世界边界。L3 采集 DOM、Canvas 和截图；截图用于界面证据检查，也可以交给独立的多模态裁判。
+计时和物理游戏可冻结浏览器时钟，按固定时间片推进。平台游戏会读取位置、速度、碰撞和支撑关系，从而区分“没有及时刷新”“跳不到平台”和“穿过平台”。双人游戏可以同时打开两个页面；存档游戏会在刷新后继续检查浏览器存储。
 
-最终状态正确不代表过程正确。如果中间出现过偏离，后面又被其他错误抵消，报告仍会保留第一次偏离并标记为 `lucky pass`。Vitest 和 jsdom 用于快速检查纯逻辑与 DOM；能否实际游玩以 Chromium 结果为准。
+框架继续执行安全的失败路径，不因中途出现一次错误就停止。这样可以发现中间状态错误、后续错误抵消以及最终结果碰巧正确的 `lucky pass`。
+
+## 题集与实验范围
+
+候选题库包含 96 道完整游戏任务，由动作、益智、创意、模拟和教育五类任务构成，不含摄像头、视频理解和语音输入。正式实验在生成前冻结前 15 题，不按结果挑选。
+
+| 难度 | 题数 | 主要特征 |
+| --- | ---: | --- |
+| D1 | 4 | 短规则链、单页面、直接状态转换 |
+| D2 | 6 | 多阶段玩法、计时或边界条件 |
+| D3 | 5 | 多页面、持久化、复杂交互或物理过程 |
+
+正式子集包含动作 6 题、益智 5 题、创意 2 题、模拟 2 题，没有教育类任务。题量和玩法构成不足以支持可靠的难度下降临界点，报告保留分层数字，但不强行给出趋势结论。
+
+## 主要发现
+
+模型生成错误与测试标准错误需要分开处理。赛车和流星游戏的原通关输入会主动撞上障碍，按公开规则重写输入后，胜负路径均连续三次符合预期。2048 的原测试因为观察对象多出一个字段而在操作前停止，但真实键盘与刷新路径可以完成获胜、失败和存档。测试失败因此不能直接等同于游戏错误。
+
+过程评价能够发现终局检查遗漏的问题。2048 的核心玩法可以运行，原方案却把一条实际获胜路径写成失败；补充复核定位到方案第 3 步。联机五子棋的方案声称重开后计时归零，双页面实际操作连续三次否定这一判断，但原混元复核没有给出对应步号，形成一次漏定位。
+
+更完整的结果、逐例证据和限制见以下文件：
+
+| 阅读目的 | 文件 |
+| --- | --- |
+| 完整方法与实验结果 | [最终实验报告](reports/analysis-report.md) |
+| 15 题简明结果 | [正式审计终稿](results/process-15-v1/FINAL.md) |
+| 评估器有效性逐例核对 | [过程定位验证](results/process-15-v1/PROCESS-VALIDITY.md) |
+| 过程评价定义与命令 | [过程评价方法](docs/process-evaluation.md) |
+| 课题要求逐项对应 | [任务对照](docs/task-alignment.md) |
+| 数据来源、用途和限制 | [数据卡](docs/dataset-card.md) |
+| 十页中文汇报材料 | [汇报 PPT](docs/evaluation-slides-15-cn-v11.pptx) |
 
 ## 运行
 
-需要 Node.js 22+ 和 pnpm 10+。
+环境要求为 Node.js 22+、pnpm 10+ 和 Chromium。
 
 ```bash
 pnpm install
 pnpm exec playwright install chromium
 pnpm run check
 pnpm run test:browser
-pnpm run eval:sample
 ```
 
-示例游戏可以单独打开：
+`pnpm run check` 运行类型、数据、Vitest 和 jsdom 检查；`pnpm run test:browser` 运行真实 Chromium 回归测试。查看只读评审应用：
 
 ```bash
-pnpm run demo:serve
-# http://127.0.0.1:4173/examples/coin-collector/index.html
+pnpm run app
+# http://127.0.0.1:4175/
+# http://127.0.0.1:4175/mined
+# http://127.0.0.1:4175/exploration
 ```
 
-## 接入一个游戏
-
-现有 pilot 从 `case.json` 读取游戏入口、控件、界面 selector、测试路径和检查点。正式任务中的生成游戏使用 `game.manifest.json`；adapter 会把它和该题已经冻结的试玩步骤、正确结果接到同一套 Chromium runner。当前任务使用页面上的真实键鼠或触控输入，观察桥只负责重置游戏和读取证据；摄像头类已移出评测范围。
-
-测试路径和检查点可以直接编写；如果手头有需求文档或 PRD，也可以把它作为生成测试建议的可选输入：
+重新试玩粒子乐队不需要调用混元，也不会覆盖原始记录：
 
 ```bash
-cp .env.example .env
-pnpm run hy3:probe
-pnpm run hy3:plan -- \
-  --prd examples/coin-collector/PRD.md \
-  --case datasets/cases/clean-control/case.json
+pnpm exec tsx scripts/evaluate-generated-task.ts \
+  --task particle-orchestra \
+  --task-dir results/process-15-v1/particle-orchestra/task \
+  --game-dir results/process-15-v1/particle-orchestra/game \
+  --out artifacts/particle-replay-new \
+  --generator codebuddy-hy3 \
+  --replays 3
 ```
 
-仓库里的 `hy3:generate` 可以生成实验用游戏包，并在隔离 Chromium 中检查入口和观察桥。CodeBuddy 批量实验使用单独的工作目录：
+重新生成游戏属于新实验，结果不会自动等同于仓库中冻结的正式记录。
 
-```bash
-pnpm run prepare:codebuddy
-pnpm run eval:task -- \
-  --task target-rush \
-  --game-dir ../codebuddy-hy3-experiments/20260912-formal-96-v4/generated/target-rush/files \
-  --replays 3 \
-  --generator codebuddy-hy3
-```
+## 接入新的游戏
 
-第二条命令要在 CodeBuddy 生成该题的四个游戏文件后运行。
+游戏需要提供入口页面、可执行控件、只读观察桥和 `game.manifest.json`。测试计划定义真实键鼠或触控操作、检查点及预期结果。若已有需求文档或 PRD，可以用它帮助混元提出测试建议，但 PRD 本身不作为标准答案。
 
-每次评测会留下这些文件：
+一次评测会保存：
 
-- `events.jsonl`：每次操作后的状态、事件、UI 和截图引用
-- `cases.json`：每个 case 的 L1/L2/L3 结果、终局结果和首次错误
-- `summary.json`：整体正确率、定位结果、错误分布和难度拆分
-- `screenshots/`：逐步保存的画面证据
+- `events.jsonl`：每次操作后的状态、事件、界面和截图引用；
+- `cases.json`：每条路径的 L1/L2/L3 结果与首次偏差；
+- `summary.json`：汇总、错误类型和难度拆分；
+- `screenshots/`：逐步画面证据。
 
-## 现在做到哪了
-
-当前用 5 个 Coin Collector 变体校准评测器，分别覆盖正常样本、终局错误、中间错误补偿、HUD 错误和跨层遮蔽。另有一个平台跳跃样例，用固定时间片采集内存状态，并在 `tick=41` 定位穿透；它不计入冻结的 sample 指标。测试命令是 `pnpm run check` 与 `pnpm run test:browser`；冻结结果在 [results/sample](results/sample/README.md)。
-
-[完整游戏任务集](datasets/game-tasks/README.md) 当前有 96 道题：动作 31、益智 26、创意 13、模拟 16、教育 10。原 106 题中的 10 道摄像头题已移除，其余题目保持不变，仍覆盖 3D、多人、存档、排行榜和触控。每题都有完整玩法、胜负与重开规则，以及生成前固定的试玩步骤和私有正确结果。
-
-首批游戏生成与规则诊断属于本地留存的早期试跑，不计入正式 15 题结果。
-
-新规则 `2026-09-12.3` 补齐了各路径的启动检查、检查点间事件记录、终局后 32ms 的画面检查和两条跳步骤测试。它不再强制 HUD 使用隐藏的固定文案；目前 L3 基础检查只确认文字状态、非空及可见性，数值含义和画面质量仍需另测。已有游戏的新规则复核单独保存，不与旧分数合并。
-
-
-其中 Signal Memory 的阶段名称约束问题已在本地诊断；原分数不覆盖，也不并入正式 15 题。
+接口格式和接入步骤见[评估方法](docs/evaluation-method.md)。
 
 ## 仓库结构
 
 ```text
-src/runtime/       Chromium 自动试玩与证据采集
-src/evaluation/    分层判定、首错定位、指标和视觉判断
-src/contracts/     游戏、测试和结果的数据结构
-src/agents/        Hy3 测试规划与样本生成
-datasets/          96 道当前任务、已移除题目归档、Pilot case 和 private oracle
-scripts/           数据构造、CodeBuddy 准备和正式评测命令
+src/runtime/       Chromium 输入、时间推进与证据采集
+src/evaluation/    分层判定、首错定位和指标
+src/contracts/     游戏、测试计划和结果的数据结构
+src/agents/        Hy3 方案生成与复核接口
+datasets/          96 道候选任务、校准样本和私有 oracle
+results/           正式 15 题及逐例可复验证据
+reports/           完整实验报告与验证报告
 tests/             Vitest、jsdom 和 Playwright 测试
-docs/              方案、方法、数据与安全说明
-results/sample/    已冻结的 Pilot 结果
+docs/              方法、数据卡、任务对照和汇报材料
 ```
 
-详细排期见 [项目方案](docs/proposal.md)，赛题要求对应关系见 [任务对照](docs/task-alignment.md)。
-
-## License
-
-代码及仓库自建 fixture 使用 [MIT License](LICENSE)。外部游戏和素材需要单独记录来源与许可证。
+代码与仓库自建样本使用 [MIT License](LICENSE)。外部游戏和素材需单独记录来源与许可证。
