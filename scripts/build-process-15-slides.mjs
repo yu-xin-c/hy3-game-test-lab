@@ -14,7 +14,7 @@ const { Presentation, PresentationFile } = await import(
 );
 
 const buildDir = path.join(workspaceDir, "artifacts/process15-deck/build");
-const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-cn-v7.pptx");
+const finalPath = path.join(workspaceDir, "docs/evaluation-slides-15-cn-v9.pptx");
 const data = JSON.parse(await fs.readFile(path.join(workspaceDir, "results/process-15-v1/final-summary.json"), "utf8"));
 if (data.execution.completed_games !== 15 || data.scope.selected_ids.length !== 15) {
   throw new Error("Deck requires finalized 15-game results");
@@ -40,6 +40,7 @@ const imageFiles = {
   particle: "results/process-15-v1/particle-orchestra/browser/screenshots/replay-1/win-path/particle-orchestra-action-04.png",
   platform: "results/process-v1/platform-rescue/browser/screenshots/replay-1/win-path/platform-rescue-action-08.png",
   game2048: "results/process-15-v1/persistent-2048/browser/screenshots/replay-1/win-path/persistent-2048-action-04.png",
+  game2048Alt: "results/process-15-v1/persistent-2048/browser/screenshots/replay-2/win-path/persistent-2048-action-04.png",
   miniFarm: "results/process-15-v1/mini-farm/browser/screenshots/replay-1/win-path/mini-farm-action-17.png",
   meteor: "results/process-15-v1/meteor-survivor/browser/screenshots/replay-1/win-path/meteor-survivor-action-09.png",
   keydoor: "results/process-30-v1/key-door-escape/browser/screenshots/replay-1/win-path/key-door-escape-action-15.png",
@@ -110,6 +111,8 @@ const chart = (slide, config, dark = false) => {
 {
   const s = page(true);
   addImage(s, images.orbit, 760, 0, 520, 720, "照片轨道游戏完成画面", { left: 0.18, top: 0, right: 0.12, bottom: 0 });
+  rect(s, 760, 0, 520, 86, DARK);
+  rect(s, 760, 582, 520, 138, DARK);
   rect(s, 0, 0, 16, 720, GREEN);
   text(s, "混元游戏生成实验", 64, 48, 520, 30, 15, GREEN, true);
   text(s, "不只看\n游戏能不能赢", 62, 145, 650, 155, 56, WHITE, true);
@@ -140,9 +143,11 @@ const chart = (slide, config, dark = false) => {
     yAxis: { min: 0, max: 7, majorUnit: 1, tickLabelPosition: "none", majorGridlines: null },
     dataLabels: { showValue: true, position: "outEnd", textStyle: { typeface: FONT, fontSize: 20, fill: INK, bold: true } },
   });
-  addImage(s, images.meteor, 350, 530, 252, 126, "陨石生存游戏失败画面", { left: 0, top: 0.08, right: 0, bottom: 0.08 });
-  addImage(s, images.keydoor, 618, 530, 252, 126, "钥匙开门游戏完成画面", { left: 0, top: 0.08, right: 0, bottom: 0.08 });
-  addImage(s, images.miniFarm, 886, 530, 252, 126, "迷你农场游戏画面", { left: 0, top: 0.08, right: 0, bottom: 0.08 });
+  addImage(s, images.orbit, 350, 530, 252, 126, "照片轨道核心玩法区域", { left: 0.12, top: 0.12, right: 0.12, bottom: 0.22 });
+  addImage(s, images.keydoor, 618, 530, 252, 126, "钥匙开门地图区域", { left: 0.18, top: 0.16, right: 0.18, bottom: 0.34 });
+  rect(s, 618, 625, 252, 31, "#20202E");
+  text(s, "钥匙、门与出口地图", 636, 630, 220, 22, 13, WHITE, true);
+  addImage(s, images.game2048, 886, 530, 252, 126, "二〇四八数字棋盘区域", { left: 0.23, top: 0.12, right: 0.28, bottom: 0.27 });
   text(s, "不含摄像头、视频和语音任务；按冻结清单顺序选取，不做代表性抽样。", 62, 665, 1135, 24, 16, MUTED);
   s.speakerNotes.textFrame.setText("来源：results/process-15-v1/final-summary.json 的 scope。题集来源与分层依据见 results/process-15-v1/FINAL.md。");
 }
@@ -175,7 +180,10 @@ const chart = (slide, config, dark = false) => {
   section(s, "一条主张怎样受检", true);
   title(s, "粒子乐队：计分从方案第三步开始错", 100, true);
   text(s, "四次正确输入，每次 +25。公开规则可直接算出终分 100。", 64, 165, 750, 40, 22, "#CCD3D0");
-  addImage(s, images.particle, 875, 118, 330, 248, "粒子乐队终局分数 200", { left: 0, top: 0.05, right: 0, bottom: 0.05 });
+  rect(s, 875, 118, 330, 248, "#080B0C", "#41494A", 1);
+  text(s, "浏览器终局", 908, 167, 260, 36, 18, "#A9B1AE", true);
+  text(s, "200 分", 906, 216, 260, 78, 55, GREEN, true);
+  text(s, "三次结果一致", 908, 307, 260, 32, 18, WHITE, true);
   const cols = [
     ["公开规则", "4 × 25", "标准 100"],
     ["方案第 3 步", "预计 200", "第一次写错"],
@@ -198,7 +206,11 @@ const chart = (slide, config, dark = false) => {
   const s = page();
   section(s, "检查重点");
   title(s, "错误会出现在三个不同位置");
-  addImage(s, images.platform, 735, 164, 470, 390, "平台跳跃游戏在试玩路径中失败", { left: 0.03, top: 0.03, right: 0.02, bottom: 0.03 });
+  addImage(s, images.platform, 735, 164, 470, 390, "平台跳跃游戏在试玩路径中失败", { left: 0.03, top: 0.10, right: 0.02, bottom: 0.16 });
+  rect(s, 735, 164, 470, 20, "#03080E");
+  rect(s, 735, 524, 470, 30, "#03080E");
+  rect(s, 846, 316, 250, 52, "#03080E");
+  text(s, "三次跳跃失败", 875, 328, 220, 30, 22, WHITE, true);
   const points = [
     ["题意", "胜负、计分、时序、存档有没有读错"],
     ["方案", "预期结果能不能由公开规则推出"],
@@ -361,14 +373,15 @@ const chart = (slide, config, dark = false) => {
     text(s, detail, 870, y + 2, 300, 42, 19, hit ? GREEN_DARK : RED, hit);
     rule(s, 470, y + 63, 700, LIGHT_RULE, 1);
   });
-  addImage(s, images.game2048, 64, 409, 330, 215, "二〇四八核心玩法可通关但方案第三步有错", { left: 0.02, top: 0.03, right: 0.02, bottom: 0.03 });
+  addImage(s, images.game2048Alt, 64, 409, 330, 215, "二〇四八核心玩法可通关但方案第三步有错", { left: 0.23, top: 0.12, right: 0.28, bottom: 0.27 });
+  rect(s, 64, 592, 330, 32, "#20202E");
   text(s, "另一个重要样本", 470, 535, 260, 28, 17, MUTED, true);
   text(s, "二〇四八核心玩法可通关，但方案第三步仍然有错。", 470, 570, 700, 40, 23, INK, true);
   text(s, `补充复核：真问题 ${correct.real_issue_among_flagged}/1，误报 ${correct.false_alarm_among_flagged}/1。样本太少，不能估计总体误报率。`, 64, 658, 1120, 25, 17, MUTED);
   s.speakerNotes.textFrame.setText("三份公开方案子断言标准与复核结果：results/process-15-v1/PROCESS-VALIDITY.md。2048 补充混元提示不同，不能与原始全题复核合并；这里只描述已核对的一个正确核心游戏、错误过程单例。");
 }
 
-const candidatePath = path.join(buildDir, "evaluation-slides-15-cn-v7.candidate.pptx");
+const candidatePath = path.join(buildDir, "evaluation-slides-15-cn-v9.candidate.pptx");
 await (await PresentationFile.exportPptx(ppt)).save(candidatePath);
 const result = await finalizePresentation({
   explicitTotalSlideCount: 10,
@@ -384,12 +397,12 @@ const result = await finalizePresentation({
   layoutArgs: ["--expected-slide-size-emu", "12192000,6858000", "--validate-heading-fit"],
   fontPolicy: { basis: "design", families: [FONT] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(buildDir, "evaluation-slides-15-cn-v7.validation.json"),
+  receiptPath: path.join(buildDir, "evaluation-slides-15-cn-v9.validation.json"),
 });
 
 for (let index = 0; index < 10; index++) {
   const slide = ppt.slides.getItem(index);
   const preview = await ppt.export({ slide, format: "png", scale: 1 });
-  await fs.writeFile(path.join(buildDir, `slide-v7-${index + 1}.png`), new Uint8Array(await preview.arrayBuffer()));
+  await fs.writeFile(path.join(buildDir, `slide-v9-${index + 1}.png`), new Uint8Array(await preview.arrayBuffer()));
 }
 console.log(JSON.stringify({ path: finalPath, slides: 10, validation: result?.status ?? "completed" }));
